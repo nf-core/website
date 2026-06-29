@@ -561,7 +561,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -1895,7 +1895,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -5083,7 +5083,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -5220,7 +5220,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -5467,7 +5467,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -5643,7 +5643,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -5783,7 +5783,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -6191,7 +6191,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -6298,7 +6298,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -8745,6 +8745,10 @@
       },
       "pipelines": [
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "pacsomatic",
           "version": "dev"
         }
@@ -8848,6 +8852,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
         {
           "name": "pacsomatic",
           "version": "dev"
@@ -9739,7 +9747,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -9849,7 +9857,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -10923,9 +10931,9 @@
                 }
               },
               {
-                "echo 0.5.0": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "0.5.0": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -10947,9 +10955,9 @@
                 }
               },
               {
-                "echo 0.5.0": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "0.5.0": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -11110,7 +11118,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -12431,6 +12439,56 @@
               }
             ]
           ],
+          "pre_normalisation_coverage_report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.pre-normalisation.coverage.tsv": {
+                  "type": "file",
+                  "description": "TSV report containing per-base coverage depth before normalisation",
+                  "pattern": "*.pre-normalisation.coverage.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "post_normalisation_coverage_report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.post-normalisation.coverage.tsv": {
+                  "type": "file",
+                  "description": "TSV report containing per-base coverage depth after normalisation",
+                  "pattern": "*.post-normalisation.coverage.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "versions_align_trim": [
             [
               {
@@ -13612,7 +13670,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.3.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -13763,7 +13821,7 @@
                 }
               },
               {
-                "echo \\$(ataqv --version)": {
+                "ataqv --version 2>&1 || true": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -13787,7 +13845,7 @@
                 }
               },
               {
-                "echo \\$(ataqv --version)": {
+                "ataqv --version 2>&1 || true": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -13875,7 +13933,7 @@
                 }
               },
               {
-                "echo \\$(ataqv --version)": {
+                "ataqv --version 2>&1 || true": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -13921,7 +13979,7 @@
                 }
               },
               {
-                "echo \\$(ataqv --version)": {
+                "ataqv --version 2>&1 || true": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -14834,7 +14892,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -14952,7 +15010,7 @@
                 }
               },
               {
-                "echo \\$(AuthentiCT --version 2>&1)": {
+                "AuthentiCT --version": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -14998,7 +15056,7 @@
                 }
               },
               {
-                "echo \\$(AuthentiCT --version 2>&1)": {
+                "AuthentiCT --version": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -16783,7 +16841,7 @@
         },
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "pathogensurveillance",
@@ -16899,7 +16957,7 @@
         },
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "pathogensurveillance",
@@ -17461,9 +17519,9 @@
                 }
               },
               {
-                "echo 2.2": {
+                "2.2": {
                   "type": "string",
-                  "description": "The version used (constant)"
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -17484,7 +17542,7 @@
               },
               {
                 "samtools version | sed '1!d;s/.* //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -17507,9 +17565,9 @@
                 }
               },
               {
-                "echo 2.2": {
+                "2.2": {
                   "type": "string",
-                  "description": "The version used (constant)"
+                  "description": "The version of the tool"
                 }
               }
             ],
@@ -17528,7 +17586,7 @@
               },
               {
                 "samtools version | sed '1!d;s/.* //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -18221,7 +18279,7 @@
       "pipelines": [
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         }
       ]
     },
@@ -19928,7 +19986,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         }
       ]
     },
@@ -20088,7 +20146,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "taxprofiler",
@@ -20431,7 +20489,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         }
       ]
     },
@@ -21088,7 +21146,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         }
       ]
     },
@@ -21805,7 +21863,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "rnavar",
@@ -22137,6 +22195,10 @@
           "version": "dev"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "pacsomatic",
           "version": "dev"
         },
@@ -22150,7 +22212,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "sarek",
@@ -22958,8 +23020,12 @@
       },
       "pipelines": [
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "variantbenchmarking",
@@ -23109,6 +23175,10 @@
           "version": "dev"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "mag",
           "version": "5.4.2"
         },
@@ -23118,7 +23188,7 @@
         },
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "phaseimpute",
@@ -23505,12 +23575,16 @@
       },
       "pipelines": [
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "phaseimpute",
           "version": "1.1.0"
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "sarek",
@@ -23926,6 +24000,10 @@
       },
       "pipelines": [
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "pacsomatic",
           "version": "dev"
         },
@@ -23939,7 +24017,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "sarek",
@@ -25013,7 +25091,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -25876,8 +25954,12 @@
       },
       "pipelines": [
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "variantbenchmarking",
@@ -26058,7 +26140,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -26398,6 +26480,10 @@
           "version": "dev"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "nanoseq",
           "version": "3.1.0"
         },
@@ -26407,7 +26493,7 @@
         },
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "radseq",
@@ -26415,7 +26501,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "rnadnavar",
@@ -26989,6 +27075,10 @@
           "version": "dev"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "mag",
           "version": "5.4.2"
         },
@@ -27006,7 +27096,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "sarek",
@@ -29099,7 +29189,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "rnaseq",
@@ -30995,7 +31085,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "tfactivity",
@@ -32147,7 +32237,13 @@
           "@vagkaratzas",
           "@SkyLex"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "funcscan",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "bigslice_downloaddb",
@@ -32300,7 +32396,13 @@
           "@vagkaratzas",
           "@SkyLex"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "funcscan",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "bio2zarr_vcf2zarrconvert",
@@ -41298,9 +41400,9 @@
                 }
               },
               {
-                "echo 20240919": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "20240919": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -41322,9 +41424,9 @@
                 }
               },
               {
-                "echo 20240919": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "20240919": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -41659,7 +41761,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "hgtseq",
@@ -41691,7 +41793,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "references",
@@ -42073,7 +42175,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "rnadnavar",
@@ -42735,7 +42837,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -43005,7 +43107,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -43028,6 +43130,13 @@
               "description": "BWA-mem2 is a software package for mapping DNA sequences against\na large reference genome, such as the human genome.\n",
               "homepage": "https://github.com/bwa-mem2/bwa-mem2",
               "documentation": "https://github.com/bwa-mem2/bwa-mem2#usage",
+              "doi": "10.1109/IPDPS.2019.00041",
+              "publication": {
+                "author": "Vasimuddin M., Misra S., Li H. & Aluru S.",
+                "year": 2018,
+                "source": "IEEE International Parallel and Distributed Processing Symposium (IPDPS)",
+                "title": "Efficient Architecture-Aware Acceleration of BWA-MEM for Multicore Systems"
+              },
               "licence": [
                 "MIT"
               ],
@@ -43175,7 +43284,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "references",
@@ -43221,11 +43330,17 @@
         ],
         "tools": [
           {
-            "bwa": {
+            "bwamem2": {
               "description": "BWA-mem2 is a software package for mapping DNA sequences against\na large reference genome, such as the human genome.\n",
               "homepage": "https://github.com/bwa-mem2/bwa-mem2",
-              "documentation": "http://www.htslib.org/doc/samtools.html",
-              "arxiv": "arXiv:1303.3997",
+              "documentation": "https://github.com/bwa-mem2/bwa-mem2#usage",
+              "doi": "10.1109/IPDPS.2019.00041",
+              "publication": {
+                "author": "Vasimuddin M., Misra S., Li H. & Aluru S.",
+                "year": 2018,
+                "source": "IEEE International Parallel and Distributed Processing Symposium (IPDPS)",
+                "title": "Efficient Architecture-Aware Acceleration of BWA-MEM for Multicore Systems"
+              },
               "licence": [
                 "MIT"
               ],
@@ -43531,7 +43646,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "rnadnavar",
@@ -43679,7 +43794,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -43950,7 +44065,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -44999,7 +45114,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -45235,9 +45350,9 @@
                 }
               },
               {
-                "echo 5.1.0": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "5.1.0": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -45259,9 +45374,9 @@
                 }
               },
               {
-                "echo 5.1.0": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "5.1.0": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -46477,10 +46592,6 @@
           "version": "1.0.3"
         },
         {
-          "name": "metatdenovo",
-          "version": "1.3.0"
-        },
-        {
           "name": "nascent",
           "version": "2.3.0"
         },
@@ -46490,7 +46601,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "reportho",
@@ -46510,7 +46621,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "tfactivity",
@@ -46693,6 +46804,10 @@
           "version": "dev"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "mag",
           "version": "5.4.2"
         },
@@ -46702,7 +46817,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "methylseq",
@@ -46718,7 +46833,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "riboseq",
@@ -46754,7 +46869,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "smrnaseq",
@@ -56250,7 +56365,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -57331,6 +57446,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
         {
           "name": "methylong",
           "version": "2.0.0"
@@ -58738,9 +58857,9 @@
                 }
               },
               {
-                "echo $(clusty --version 2>&1": {
-                  "type": "string",
-                  "description": "The version of the tool"
+                "clusty --version 2>&1 || true": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -58762,9 +58881,9 @@
                 }
               },
               {
-                "echo $(clusty --version 2>&1": {
-                  "type": "string",
-                  "description": "The version of the tool"
+                "clusty --version 2>&1 || true": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -61277,7 +61396,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -61405,7 +61524,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -69296,6 +69415,10 @@
         {
           "name": "reportho",
           "version": "1.1.0"
+        },
+        {
+          "name": "scnanoseq",
+          "version": "1.3.0"
         }
       ]
     },
@@ -69434,6 +69557,10 @@
         {
           "name": "circrna",
           "version": "dev"
+        },
+        {
+          "name": "differentialabundance",
+          "version": "2.0.0"
         },
         {
           "name": "multiplesequencealign",
@@ -71719,7 +71846,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "genomeannotator",
@@ -71783,7 +71910,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "ssds",
@@ -72003,7 +72130,13 @@
           "@pinin4fjords",
           "@WackerO"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "custom_geneticmapconvert",
@@ -72664,7 +72797,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -73011,6 +73144,72 @@
               }
             ]
           ],
+          "consensus_bed12": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta."
+                }
+              },
+              {
+                "${prefix}.consensus.bed12": {
+                  "type": "file",
+                  "description": "Consensus view as BED12: the collapsed catalogue filtered to ORFs\nsupported by at least `--min-callers` distinct callers and recurring\nin at least `--min-samples` samples (identical to the full collapsed\ncatalogue at the defaults of 1/1).\n",
+                  "pattern": "*.consensus.bed12",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3586"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "consensus_tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta."
+                }
+              },
+              {
+                "${prefix}.consensus.tsv": {
+                  "type": "file",
+                  "description": "Consensus-filtered per-ORF table, same columns as the collapsed catalogue.",
+                  "pattern": "*.consensus.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "consensus_orf_to_gene_tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta."
+                }
+              },
+              {
+                "${prefix}.consensus.orf_to_gene.tsv": {
+                  "type": "file",
+                  "description": "ORF-to-gene mapping restricted to the consensus-filtered ORFs.",
+                  "pattern": "*.consensus.orf_to_gene.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "versions": [
             {
               "versions.yml": {
@@ -73050,7 +73249,7 @@
       "type": "module",
       "meta": {
         "name": "custom_orfmerge",
-        "description": "Cluster normalised per-sample, per-caller ORF predictions into a single\ncohort-level catalogue. Pair with `custom/orfnormalise` upstream and\n(typically) `bedtools/getfasta` + `seqkit/translate` downstream to obtain\nthe AA FASTA.\n\nStrategy is class-aware (operating on the harmonised `orf_class` written\nby `custom/orfnormalise`):\n\n  - canonical_cds:        collapse by (transcript_id, strand). One\n                          canonical CDS per transcript by definition.\n  - uORF, dORF, other:    collapse by (transcript_id, strand, start,\n                          end). A single transcript can host multiple\n                          distinct uORFs / dORFs / internal ORFs, so\n                          keying on the outer span keeps them in\n                          separate clusters while still merging\n                          cross-caller calls that agree on coordinates.\n  - novel_u, smORF:       greedy reciprocal-overlap clustering on the\n                          outer genomic span at `--reciprocal-overlap`\n                          (default 0.8). Catches fuzzy cross-caller\n                          matches and exact-coordinate collapses in\n                          one pass. Order-dependent at the boundary:\n                          a chain A-B-C where A-B and B-C overlap at\n                          ~0.85 but A-C only at ~0.75 may cluster as\n                          {A,B,C} or {A,B}+{C} depending on iteration\n                          order. Rare in practice at 0.8.\n\nCross-caller consensus is recorded in two column families on the\ncatalogue TSV:\n\n  - `called_by_<caller>`: 0/1 indicator per supported caller\n                          (ribotish, ribocode, ribotricer, rpbp, price).\n  - `score_<caller>`:     best score from that caller within the cluster.\n                          Score direction is per-caller (p-values are\n                          minimised; Bayes factors / phase scores are\n                          maximised).\n\nCross-sample recurrence is recorded in two further columns:\n\n  - `n_samples`:          number of distinct samples contributing to the\n                          cluster (a cohort recurrence metric).\n  - `samples`:            sorted, comma-separated list of those sample ids.\n\nEmits a small MultiQC custom-content TSV (per-class counts) for\ninclusion in downstream MultiQC reports.\n",
+        "description": "Cluster normalised per-sample, per-caller ORF predictions into a single\ncohort-level catalogue. Pair with `custom/orfnormalise` upstream and\n(typically) `bedtools/getfasta` + `seqkit/translate` downstream to obtain\nthe AA FASTA.\n\nStrategy is class-aware (operating on the harmonised `orf_class` written\nby `custom/orfnormalise`):\n\n  - canonical_cds:        collapse by (transcript_id, strand). One\n                          canonical CDS per transcript by definition.\n  - uORF, dORF, other:    collapse by (transcript_id, strand, start,\n                          end). A single transcript can host multiple\n                          distinct uORFs / dORFs / internal ORFs, so\n                          keying on the outer span keeps them in\n                          separate clusters while still merging\n                          cross-caller calls that agree on coordinates.\n  - novel_u, smORF:       greedy reciprocal-overlap clustering on the\n                          outer genomic span at `--reciprocal-overlap`\n                          (default 0.8). Catches fuzzy cross-caller\n                          matches and exact-coordinate collapses in\n                          one pass. Order-dependent at the boundary:\n                          a chain A-B-C where A-B and B-C overlap at\n                          ~0.85 but A-C only at ~0.75 may cluster as\n                          {A,B,C} or {A,B}+{C} depending on iteration\n                          order. Rare in practice at 0.8.\n\nCross-caller consensus is recorded in two column families on the\ncatalogue TSV:\n\n  - `called_by_<caller>`: 0/1 indicator per supported caller\n                          (ribotish, ribocode, ribotricer, rpbp, price).\n  - `score_<caller>`:     best score from that caller within the cluster.\n                          Score direction is per-caller (p-values are\n                          minimised; Bayes factors / phase scores are\n                          maximised).\n\nCross-sample recurrence is recorded in two further columns:\n\n  - `n_samples`:          number of distinct samples contributing to the\n                          cluster (a cohort recurrence metric).\n  - `samples`:            sorted, comma-separated list of those sample ids.\n\nEmits a small MultiQC custom-content TSV (per-class counts) for\ninclusion in downstream MultiQC reports.\n\nAlongside the full catalogue, emits a consensus view (`*.consensus.*`)\nfiltered to ORFs supported by at least `--min-callers` distinct callers\nand recurring in at least `--min-samples` samples (both default 1, i.e.\nno filtering, so the consensus view equals the full catalogue). Raising\neither threshold yields a higher-confidence catalogue without altering\nthe full one.\n",
         "keywords": [
           "orf",
           "ribo-seq",
@@ -73184,6 +73383,72 @@
                   "type": "file",
                   "description": "MultiQC custom-content TSV (per-class ORF counts).\n",
                   "pattern": "*.mqc.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "consensus_bed12": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta.\n"
+                }
+              },
+              {
+                "${prefix}.consensus.bed12": {
+                  "type": "file",
+                  "description": "Consensus-filtered catalogue as BED12 (ORFs meeting the\n`--min-callers` / `--min-samples` thresholds).\n",
+                  "pattern": "*.consensus.bed12",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3586"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "consensus_tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta.\n"
+                }
+              },
+              {
+                "${prefix}.consensus.tsv": {
+                  "type": "file",
+                  "description": "Consensus-filtered per-ORF table, same columns as the full\ncatalogue TSV.\n",
+                  "pattern": "*.consensus.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "consensus_orf_to_gene_tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta.\n"
+                }
+              },
+              {
+                "${prefix}.consensus.orf_to_gene.tsv": {
+                  "type": "file",
+                  "description": "ORF-to-gene mapping restricted to the consensus-filtered ORFs.\n",
+                  "pattern": "*.consensus.orf_to_gene.tsv",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3475"
@@ -74197,7 +74462,13 @@
         "maintainers": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "custom_tabulartogseacls",
@@ -74321,7 +74592,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -74447,7 +74718,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -74927,7 +75198,13 @@
           "@christopher-hakkaart",
           "@yuukiiwa"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "damageprofiler",
@@ -76146,7 +76423,415 @@
           "@mberacochea"
         ],
         "maintainers": [
-          "@mberacochea"
+          "@mberacochea",
+          "@pmoris"
+        ]
+      }
+    },
+    {
+      "name": "deacon_indexdiff",
+      "path": "modules/nf-core/deacon/indexdiff/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "deacon_indexdiff",
+        "description": "Subtract minimizers in deacon index (or fasta file) from another index (A - B)",
+        "keywords": [
+          "index",
+          "fasta",
+          "genome",
+          "reference",
+          "minimizer",
+          "decontamination"
+        ],
+        "tools": [
+          {
+            "deacon": {
+              "description": "Fast alignment-free sequence filter",
+              "homepage": "https://github.com/bede/deacon",
+              "documentation": "https://github.com/bede/deacon#readme",
+              "tool_dev_url": "https://github.com/bede/deacon",
+              "doi": "10.1093/bioinformatics/btae004",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:deacon"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing reference index information.\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "Deacon .idx index file to perform the diff operation on\n",
+                "pattern": "*.idx",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3210"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing metadata for the genome to subtract from the index (deacon .idx index or fasta file).\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "genome": {
+                "type": "file",
+                "description": "A single .idx or fasta file to subtract from the main reference index.\n",
+                "pattern": "*.{idx,fasta,fasta.gz,fas,fas.gz,fa,fa.gz,fna,fna.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3210"
+                  },
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing reference index information.\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.idx": {
+                  "type": "file",
+                  "description": "Deacon minimizer index file",
+                  "pattern": "*.idx",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3210"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_deacon": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deacon": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deacon --version | head -n1 | sed \"s/deacon //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deacon": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deacon --version | head -n1 | sed \"s/deacon //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@pmoris"
+        ]
+      }
+    },
+    {
+      "name": "deacon_indexintersect",
+      "path": "modules/nf-core/deacon/indexintersect/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "deacon_indexintersect",
+        "description": "Intersect multiple deacon indexes (A ∩ B ...)",
+        "keywords": [
+          "index",
+          "fasta",
+          "genome",
+          "reference",
+          "minimizer",
+          "decontamination"
+        ],
+        "tools": [
+          {
+            "deacon": {
+              "description": "Fast alignment-free sequence filter",
+              "homepage": "https://github.com/bede/deacon",
+              "documentation": "https://github.com/bede/deacon#readme",
+              "tool_dev_url": "https://github.com/bede/deacon",
+              "doi": "10.1093/bioinformatics/btae004",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:deacon"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing reference index information.\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "indices": {
+                "type": "file",
+                "description": "One or more deacon .idx index files to intersect\n",
+                "pattern": "*.idx",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3210"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing reference index information.\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.idx": {
+                  "type": "file",
+                  "description": "Deacon minimizer index file",
+                  "pattern": "*.idx",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3210"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_deacon": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deacon": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deacon --version | head -n1 | sed \"s/deacon //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deacon": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deacon --version | head -n1 | sed \"s/deacon //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@pmoris"
+        ]
+      }
+    },
+    {
+      "name": "deacon_indexunion",
+      "path": "modules/nf-core/deacon/indexunion/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "deacon_indexunion",
+        "description": "Combine multiple deacon indexes (A ∪ B ...)",
+        "keywords": [
+          "index",
+          "fasta",
+          "genome",
+          "reference",
+          "minimizer",
+          "decontamination"
+        ],
+        "tools": [
+          {
+            "deacon": {
+              "description": "Fast alignment-free sequence filter",
+              "homepage": "https://github.com/bede/deacon",
+              "documentation": "https://github.com/bede/deacon#readme",
+              "tool_dev_url": "https://github.com/bede/deacon",
+              "doi": "10.1093/bioinformatics/btae004",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:deacon"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing reference index information.\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "indices": {
+                "type": "file",
+                "description": "One or more deacon .idx index files to combine\n",
+                "pattern": "*.idx",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3210"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing reference index information.\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.idx": {
+                  "type": "file",
+                  "description": "Deacon minimizer index file",
+                  "pattern": "*.idx",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3210"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_deacon": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deacon": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deacon --version | head -n1 | sed \"s/deacon //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deacon": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deacon --version | head -n1 | sed \"s/deacon //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@pmoris"
         ]
       }
     },
@@ -76343,7 +77028,13 @@
           "@vicpaton",
           "@Nic-Nic"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "dedup",
@@ -76623,7 +77314,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -76825,7 +77516,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -76930,7 +77621,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -77298,7 +77989,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -80811,7 +81502,7 @@
       "pipelines": [
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "variantcatalogue",
@@ -80945,7 +81636,7 @@
       "pipelines": [
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -81183,7 +81874,7 @@
       "pipelines": [
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -81457,7 +82148,7 @@
       "pipelines": [
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -81743,12 +82434,16 @@
       },
       "pipelines": [
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "sarek",
@@ -81873,7 +82568,13 @@
         "maintainers": [
           "@fellen31"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "delly_call",
@@ -82636,7 +83337,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         },
         {
           "name": "tfactivity",
@@ -82927,7 +83628,13 @@
           "@vagkaratzas",
           "@sofstam"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "metatdenovo",
+          "version": "1.4.0"
+        }
+      ]
     },
     {
       "name": "diamond_blastx",
@@ -91288,6 +91995,167 @@
       }
     },
     {
+      "name": "echtvar_anno",
+      "path": "modules/nf-core/echtvar/anno/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "echtvar_anno",
+        "description": "Annotate a decomposed (and normalized) VCF with an echtvar file",
+        "keywords": [
+          "echtvar",
+          "vcf",
+          "annotate",
+          "filter",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "echtvar": {
+              "description": "Using all the bits for echt rapid variant annotation and filtering.",
+              "homepage": "https://github.com/brentp/echtvar/blob/v0.2.2/README.md",
+              "documentation": "https://github.com/brentp/echtvar/blob/v0.2.2/README.md",
+              "tool_dev_url": "https://github.com/brentp/echtvar",
+              "doi": "10.1093/nar/gkac931",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:echtvar"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "VCF input file",
+                "pattern": "*.{vcf,bcf}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3020"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "annotation_files": {
+                "type": "file",
+                "description": "List of echtvar annotation files to be used for annotation",
+                "pattern": "*.{zip}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3987"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "output_suffix": {
+              "type": "string",
+              "description": "The suffix for the output file, e.g. \"vcf.gz\" or \"bcf\""
+            }
+          }
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.{vcf.gz,bcf,bcf.gz}": {
+                  "type": "file",
+                  "description": "Compressed VCF file",
+                  "pattern": "*.{vcf.gz,bcf,bcf.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3020"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_echtvar": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "echtvar": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "echtvar --version | sed 's/echtvar //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "echtvar": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "echtvar --version | sed 's/echtvar //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@sofiademmou"
+        ],
+        "maintainers": [
+          "@sofiademmou"
+        ]
+      }
+    },
+    {
       "name": "echtvar_encode",
       "path": "modules/nf-core/echtvar/encode/meta.yml",
       "type": "module",
@@ -94137,6 +95005,10 @@
           "version": "dev"
         },
         {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -94734,8 +95606,12 @@
           "version": "dev"
         },
         {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "rnadnavar",
@@ -96297,7 +97173,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -98149,7 +99025,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -100227,7 +101103,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "riboseq",
@@ -100738,16 +101614,12 @@
           "version": "dev"
         },
         {
-          "name": "datasync",
-          "version": "dev"
-        },
-        {
           "name": "deepmutscan",
           "version": "dev"
         },
         {
           "name": "demo",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "demultiplex",
@@ -100771,7 +101643,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "funcprofiler",
@@ -100818,6 +101690,10 @@
           "version": "dev"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "mag",
           "version": "5.4.2"
         },
@@ -100835,7 +101711,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "methylarray",
@@ -100871,7 +101747,7 @@
         },
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "panoramaseq",
@@ -100891,7 +101767,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "readsimulator",
@@ -100931,7 +101807,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "scrnaseq",
@@ -106002,6 +106878,10 @@
         {
           "name": "methylong",
           "version": "2.0.0"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
         }
       ]
     },
@@ -106146,6 +107026,10 @@
         {
           "name": "methylong",
           "version": "2.0.0"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
         }
       ]
     },
@@ -106285,6 +107169,10 @@
         {
           "name": "methylong",
           "version": "2.0.0"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
         }
       ]
     },
@@ -106980,6 +107868,168 @@
       }
     },
     {
+      "name": "finaletoolkit_endmotifs",
+      "path": "modules/nf-core/finaletoolkit/endmotifs/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "finaletoolkit_endmotifs",
+        "description": "Measure the frequency of 5' k-mer end motifs.\n",
+        "keywords": [
+          "end-motifs",
+          "genomics",
+          "fragmentomics"
+        ],
+        "tools": [
+          {
+            "finaletoolkit": {
+              "description": "Extract cfDNA fragmentation features from sequencing data.",
+              "homepage": "https://epifluidlab.github.io/FinaleToolkit/",
+              "documentation": "https://epifluidlab.github.io/FinaleToolkit/documentation/index.html",
+              "tool_dev_url": "https://github.com/epifluidlab/FinaleToolkit",
+              "doi": "10.1093/bioadv/vbaf236",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:finaletoolkit"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM file",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM file index",
+                "pattern": "*.bai",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "genome": {
+                "type": "file",
+                "description": "FASTA or 2bit compressed genome file (must be the same as the one used for the\nBAM file)\n",
+                "pattern": "*.2bit|*.fasta|*.fa",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3009"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.tsv": {
+                  "type": "file",
+                  "pattern": "*.tsv",
+                  "description": "TSV file containing k-mer frequencies\n",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_finaletoolkit": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "finaletoolkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "finaletoolkit --version | sed 's/FinaleToolkit //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "finaletoolkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "finaletoolkit --version | sed 's/FinaleToolkit //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@lbeltrame"
+        ],
+        "maintainers": [
+          "@lbeltrame"
+        ]
+      }
+    },
+    {
       "name": "finaletoolkit_fraglengthbins",
       "path": "modules/nf-core/finaletoolkit/fraglengthbins/meta.yml",
       "type": "module",
@@ -107538,6 +108588,10 @@
         {
           "name": "createtaxdb",
           "version": "3.0.0"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "1.4.0"
         },
         {
           "name": "proteinfamilies",
@@ -111043,6 +112097,425 @@
           "version": "3.0.0"
         }
       ]
+    },
+    {
+      "name": "fungtion_downloadmodels",
+      "path": "modules/nf-core/fungtion/downloadmodels/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fungtion_downloadmodels",
+        "description": "Downloads the pretrained ESM-1b weights (esm1b_t33_650M_UR50S.pt) that fungtion\nuses for fungal effector prediction into a local models/ directory via\n`fungtion setup-models`. The downloaded directory is used as input to the\nFUNGTION_FUNGTION prediction module.\n",
+        "keywords": [
+          "fungal",
+          "effector",
+          "protein",
+          "prediction",
+          "language model",
+          "deep learning",
+          "model",
+          "download"
+        ],
+        "tools": [
+          {
+            "fungtion": {
+              "description": "Fungtion predicts and visualizes fungal effector proteins from protein FASTA\nsequences using ESM-1b protein language model embeddings and R-based SVM models.\nFor predicted effectors it can generate similarity-network and relationship-tree\nvisualizations and an HTML report.\n",
+              "homepage": "https://github.com/noHup-cc/fungtion",
+              "documentation": "https://github.com/noHup-cc/fungtion",
+              "tool_dev_url": "https://github.com/noHup-cc/fungtion",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:fungtion"
+            }
+          }
+        ],
+        "input": [],
+        "output": {
+          "models": [
+            {
+              "models": {
+                "type": "directory",
+                "description": "Directory containing the pretrained ESM-1b weights (esm1b_t33_650M_UR50S.pt)\ndownloaded by `fungtion setup-models`. This directory is passed as the\n`pretrain` input to FUNGTION_FUNGTION.\n",
+                "pattern": "models",
+                "ontologies": []
+              }
+            }
+          ],
+          "versions_fungtion": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fungtion": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "fungtion --version 2>&1 | head -1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_python": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "python": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python --version | sed 's/Python //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fungtion": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "fungtion --version 2>&1 | head -1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "python": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python --version | sed 's/Python //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
+      "name": "fungtion_fungtion",
+      "path": "modules/nf-core/fungtion/fungtion/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fungtion_fungtion",
+        "description": "Predicts fungal effector proteins from protein FASTA sequences using ESM-1b\nprotein language model embeddings and R-based SVM models. Optionally produces\nsimilarity-network and relationship-tree visualizations and an HTML report for\npredicted effectors. Requires the pretrained ESM-1b weights from\nFUNGTION_DOWNLOADMODELS as input.\n",
+        "keywords": [
+          "fungal",
+          "effector",
+          "protein",
+          "prediction",
+          "language model",
+          "deep learning",
+          "svm",
+          "classification"
+        ],
+        "tools": [
+          {
+            "fungtion": {
+              "description": "Fungtion predicts and visualizes fungal effector proteins from protein FASTA\nsequences using ESM-1b protein language model embeddings and R-based SVM models.\nFor predicted effectors it can generate similarity-network and relationship-tree\nvisualizations and an HTML report.\n",
+              "homepage": "https://github.com/noHup-cc/fungtion",
+              "documentation": "https://github.com/noHup-cc/fungtion",
+              "tool_dev_url": "https://github.com/noHup-cc/fungtion",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:fungtion"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Protein sequences in FASTA format.",
+                "pattern": "*.{fa,fasta,faa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "pretrain": {
+              "type": "directory",
+              "description": "Directory containing the pretrained ESM-1b weights (esm1b_t33_650M_UR50S.pt),\nas produced by FUNGTION_DOWNLOADMODELS.\n",
+              "pattern": "models",
+              "ontologies": []
+            }
+          }
+        ],
+        "output": {
+          "predictions": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}.csv": {
+                  "type": "file",
+                  "description": "CSV file containing per-sequence effector predictions from fungtion.\n",
+                  "pattern": "${prefix}/${prefix}.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "analysis": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_analysis": {
+                  "type": "directory",
+                  "description": "Directory containing similarity-network and relationship-tree visualizations\nfor predicted effectors. Optional; produced unless `--skip-visualization` is\npassed.\n",
+                  "pattern": "${prefix}/${prefix}_analysis",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "html": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}.html": {
+                  "type": "file",
+                  "description": "HTML report summarising the fungtion predictions and visualizations.\nOptional; produced when `--html-report` is passed.\n",
+                  "pattern": "${prefix}/${prefix}.html",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2331"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "assets": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_assets": {
+                  "type": "directory",
+                  "description": "Directory containing assets (images, scripts) referenced by the HTML report.\nOptional; produced when `--html-report` is passed.\n",
+                  "pattern": "${prefix}/${prefix}_assets",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "temp": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_temp_folder": {
+                  "type": "directory",
+                  "description": "Temporary working directory retained from the fungtion run.\nOptional; produced when `--keep-temp` is passed.\n",
+                  "pattern": "${prefix}/${prefix}_temp_folder",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.log": {
+                  "type": "file",
+                  "description": "Log file containing the stdout of the fungtion run.",
+                  "pattern": "*.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_fungtion": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fungtion": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "fungtion --version 2>&1 | head -1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_python": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "python": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python --version | sed 's/Python //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fungtion": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "fungtion --version 2>&1 | head -1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "python": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python --version | sed 's/Python //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
     },
     {
       "name": "fusioncatcher_build",
@@ -116349,7 +117822,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "rnadnavar",
@@ -117321,7 +118794,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -118649,7 +120122,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "references",
@@ -119030,7 +120503,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -119221,7 +120694,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -119954,7 +121427,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "rnadnavar",
@@ -121109,7 +122582,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -121593,7 +123066,7 @@
         },
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnavar",
@@ -121991,7 +123464,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "rnavar",
@@ -122766,7 +124239,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -123085,7 +124558,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "rnadnavar",
@@ -123545,7 +125018,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "rnadnavar",
@@ -123742,7 +125215,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -124153,7 +125626,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "variantcatalogue",
@@ -124642,7 +126115,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -124770,7 +126243,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "variantcatalogue",
@@ -124941,7 +126414,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "tbanalyzer",
@@ -125194,7 +126667,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -125691,7 +127164,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -126687,7 +128160,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "rnadnavar",
@@ -128586,7 +130059,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "references",
@@ -130794,7 +132267,13 @@
         "maintainers": [
           "@vagkaratzas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "funcscan",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "gecco_run",
@@ -131028,7 +132507,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -133061,7 +134540,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -133185,7 +134664,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -133328,7 +134807,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -133467,7 +134946,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -134796,7 +136275,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -135055,7 +136534,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -138662,8 +140141,12 @@
       },
       "pipelines": [
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "variantcatalogue",
@@ -140226,7 +141709,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         },
         {
           "name": "diseasemodulediscovery",
@@ -142264,7 +143747,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -145121,7 +146604,7 @@
         },
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         },
         {
           "name": "epitopeprediction",
@@ -145137,7 +146620,7 @@
         },
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "genomeannotator",
@@ -145162,6 +146645,10 @@
         {
           "name": "lncpipe",
           "version": "dev"
+        },
+        {
+          "name": "longraredisease",
+          "version": "1.0.0"
         },
         {
           "name": "mag",
@@ -145197,7 +146684,7 @@
         },
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "panoramaseq",
@@ -145706,7 +147193,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -145884,7 +147371,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -146056,7 +147543,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -146230,7 +147717,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -146404,7 +147891,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -146554,7 +148041,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -147319,7 +148806,7 @@
             "happy": {
               "description": "Haplotype VCF comparison tools",
               "homepage": "https://www.illumina.com/products/by-type/informatics-products/basespace-sequence-hub/apps/hap-py-benchmarking.html",
-              "documentation": "https://github.com/Illumina/hap.py",
+              "documentation": "https://github.com/Illumina/hap.py/blob/master/doc/happy.md",
               "tool_dev_url": "https://github.com/Illumina/hap.py",
               "licence": [
                 "BSD-2-clause"
@@ -150453,7 +151940,17 @@
         "maintainers": [
           "@chaochaowong"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        }
+      ]
     },
     {
       "name": "hifitrimmer_filterbam",
@@ -151361,7 +152858,7 @@
         },
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -151799,7 +153296,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "references",
@@ -152330,9 +153827,9 @@
                 }
               },
               {
-                "echo 1.0.4": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.0.4": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -152354,9 +153851,9 @@
                 }
               },
               {
-                "echo 1.0.4": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.0.4": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -152627,9 +154124,9 @@
                 }
               },
               {
-                "echo 1.0.4": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.0.4": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -152651,9 +154148,9 @@
                 }
               },
               {
-                "echo 1.0.4": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.0.4": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -155080,11 +156577,11 @@
         },
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "phyloplace",
@@ -157387,7 +158884,11 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.3.0"
+          "version": "3.0.0"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnavar",
@@ -162429,7 +163930,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -165179,7 +166680,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "jellyfish_count",
@@ -171085,7 +172592,13 @@
         "maintainers": [
           "@thomasguignard"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "kofamscan",
@@ -171266,6 +172779,12 @@
               "documentation": "https://github.com/DerrickWood/kraken2/wiki/Manual",
               "tool_dev_url": "https://github.com/DerrickWood/kraken2",
               "doi": "10.1186/s13059-019-1891-0",
+              "publication": {
+                "author": "Wood D.E., Lu J. & Langmead B.",
+                "year": 2019,
+                "title": "Improved metagenomic analysis with Kraken 2",
+                "source": "Genome Biology"
+              },
               "licence": [
                 "MIT"
               ],
@@ -171497,6 +173016,12 @@
               "documentation": "https://github.com/DerrickWood/kraken2/wiki/Manual",
               "tool_dev_url": "https://github.com/DerrickWood/kraken2",
               "doi": "10.1186/s13059-019-1891-0",
+              "publication": {
+                "author": "Wood D.E., Lu J. & Langmead B.",
+                "year": 2019,
+                "title": "Improved metagenomic analysis with Kraken 2",
+                "source": "Genome Biology"
+              },
               "licence": [
                 "MIT"
               ],
@@ -171754,6 +173279,12 @@
               "documentation": "https://github.com/DerrickWood/kraken2/wiki/Manual",
               "tool_dev_url": "https://github.com/DerrickWood/kraken2",
               "doi": "10.1186/s13059-019-1891-0",
+              "publication": {
+                "author": "Wood D.E., Lu J. & Langmead B.",
+                "year": 2019,
+                "title": "Improved metagenomic analysis with Kraken 2",
+                "source": "Genome Biology"
+              },
               "licence": [
                 "MIT"
               ],
@@ -171860,6 +173391,12 @@
               "homepage": "https://ccb.jhu.edu/software/kraken2/",
               "documentation": "https://github.com/DerrickWood/kraken2/wiki/Manual",
               "doi": "10.1186/s13059-019-1891-0",
+              "publication": {
+                "author": "Wood D.E., Lu J. & Langmead B.",
+                "year": 2019,
+                "title": "Improved metagenomic analysis with Kraken 2",
+                "source": "Genome Biology"
+              },
               "licence": [
                 "MIT"
               ],
@@ -173017,6 +174554,15 @@
               "homepage": "https://github.com/marbl/Krona/wiki/KronaTools",
               "documentation": "https://github.com/marbl/Krona/wiki/Installing",
               "doi": "10.1186/1471-2105-12-385",
+              "publication": {
+                "author": "Ondov B.D., Bergman N.H. & Phillippy A.M.",
+                "year": 2011,
+                "title": "Interactive metagenomic visualization in a Web browser",
+                "source": "BMC Bioinformatics"
+              },
+              "licence": [
+                "https://raw.githubusercontent.com/marbl/Krona/master/KronaTools/LICENSE.txt"
+              ],
               "identifier": "biotools:krona"
             }
           }
@@ -173081,6 +174627,15 @@
               "homepage": "https://github.com/marbl/Krona/wiki/KronaTools",
               "documentation": "http://manpages.ubuntu.com/manpages/impish/man1/ktImportTaxonomy.1.html",
               "doi": "10.1186/1471-2105-12-385",
+              "publication": {
+                "author": "Ondov B.D., Bergman N.H. & Phillippy A.M.",
+                "year": 2011,
+                "title": "Interactive metagenomic visualization in a Web browser",
+                "source": "BMC Bioinformatics"
+              },
+              "licence": [
+                "https://raw.githubusercontent.com/marbl/Krona/master/KronaTools/LICENSE.txt"
+              ],
               "identifier": "biotools:krona"
             }
           }
@@ -173182,6 +174737,15 @@
               "homepage": "https://github.com/marbl/Krona/wiki/KronaTools",
               "documentation": "http://manpages.ubuntu.com/manpages/impish/man1/ktImportTaxonomy.1.html",
               "doi": "10.1186/1471-2105-12-385",
+              "publication": {
+                "author": "Ondov B.D., Bergman N.H. & Phillippy A.M.",
+                "year": 2011,
+                "title": "Interactive metagenomic visualization in a Web browser",
+                "source": "BMC Bioinformatics"
+              },
+              "licence": [
+                "https://raw.githubusercontent.com/marbl/Krona/master/KronaTools/LICENSE.txt"
+              ],
               "identifier": "biotools:krona"
             }
           }
@@ -173326,6 +174890,12 @@
               "documentation": "http://manpages.ubuntu.com/manpages/impish/man1/ktImportTaxonomy.1.html",
               "tool_dev_url": "https://github.com/marbl/Krona",
               "doi": "10.1186/1471-2105-12-385",
+              "publication": {
+                "author": "Ondov B.D., Bergman N.H. & Phillippy A.M.",
+                "year": 2011,
+                "title": "Interactive metagenomic visualization in a Web browser",
+                "source": "BMC Bioinformatics"
+              },
               "licence": [
                 "https://raw.githubusercontent.com/marbl/Krona/master/KronaTools/LICENSE.txt"
               ],
@@ -173455,6 +175025,15 @@
               "homepage": "https://github.com/marbl/Krona/wiki/KronaTools",
               "documentation": "https://github.com/marbl/Krona/wiki/Installing",
               "doi": "10.1186/1471-2105-12-385",
+              "publication": {
+                "author": "Ondov B.D., Bergman N.H. & Phillippy A.M.",
+                "year": 2011,
+                "title": "Interactive metagenomic visualization in a Web browser",
+                "source": "BMC Bioinformatics"
+              },
+              "licence": [
+                "https://raw.githubusercontent.com/marbl/Krona/master/KronaTools/LICENSE.txt"
+              ],
               "identifier": "biotools:krona"
             }
           }
@@ -173693,7 +175272,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.3.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -173859,7 +175438,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.3.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -173988,11 +175567,11 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.3.0"
+          "version": "3.0.0"
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -174208,7 +175787,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.3.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -174596,7 +176175,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.3.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -174756,7 +176335,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.3.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -174912,9 +176491,9 @@
                 }
               },
               {
-                "echo 'leafcutter 2.0.3'": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "2.0.3": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -174936,9 +176515,9 @@
                 }
               },
               {
-                "echo 'leafcutter 2.0.3'": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "2.0.3": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -176318,7 +177897,7 @@
         },
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -176568,7 +178147,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -176849,7 +178428,7 @@
                 }
               },
               {
-                "echo \\$(LINKS | grep -o 'LINKS v.*' | sed 's/LINKS v//')": {
+                "LINKS | sed '/LINKS/!d;s/.*LINKS v//;s/ .*//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -176873,7 +178452,7 @@
                 }
               },
               {
-                "echo \\$(LINKS | grep -o 'LINKS v.*' | sed 's/LINKS v//')": {
+                "LINKS | sed '/LINKS/!d;s/.*LINKS v//;s/ .*//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -178617,7 +180196,13 @@
         "maintainers": [
           "@fellen31"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "longphase_phase",
@@ -178848,7 +180433,13 @@
         "maintainers": [
           "@fellen31"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "longstitch",
@@ -180642,7 +182233,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -182937,19 +184528,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_magus": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "magus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "magus --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "magus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "magus --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -182990,14 +184613,22 @@
           }
         ],
         "input": [
-          {
-            "fastas": {
-              "type": "file",
-              "description": "Directory of, or list of FASTA reference files for indexing",
-              "pattern": "*/|*.fasta",
-              "ontologies": []
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fastas": {
+                "type": "file",
+                "description": "Directory of, or list of FASTA reference files for indexing",
+                "pattern": "*/|*.fasta",
+                "ontologies": []
+              }
             }
-          },
+          ],
           {
             "gff": {
               "type": "file",
@@ -183024,37 +184655,85 @@
         ],
         "output": {
           "index": [
-            {
-              "malt_index/": {
-                "type": "directory",
-                "description": "Directory containing MALT database index directory",
-                "pattern": "malt_index/"
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "malt_index/": {
+                  "type": "directory",
+                  "description": "Directory containing MALT database index directory",
+                  "pattern": "malt_index/"
+                }
               }
-            }
-          ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
-              }
-            }
+            ]
           ],
           "log": [
-            {
-              "malt-build.log": {
-                "type": "file",
-                "description": "Log file from STD out of malt-build",
-                "pattern": "malt-build.log",
-                "ontologies": []
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "malt-build.log": {
+                  "type": "file",
+                  "description": "Log file from STD out of malt-build",
+                  "pattern": "malt-build.log",
+                  "ontologies": []
+                }
               }
-            }
+            ]
+          ],
+          "versions_malt": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "malt": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "malt-build --help |& sed '/version/!d;s/.*version //;s/,.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "malt": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "malt-build --help |& sed '/version/!d;s/.*version //;s/,.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -183121,13 +184800,21 @@
               }
             }
           ],
-          {
-            "index": {
-              "type": "directory",
-              "description": "Index/database directory from malt-build",
-              "pattern": "*/"
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "index": {
+                "type": "directory",
+                "description": "Index/database directory from malt-build",
+                "pattern": "*/"
+              }
             }
-          }
+          ]
         ],
         "output": {
           "rma6": [
@@ -183194,19 +184881,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_malt": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "malt": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "malt-run --help |& sed '/version/!d;s/.*version //;s/,.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "malt": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "malt-run --help |& sed '/version/!d;s/.*version //;s/,.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -183853,7 +185572,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "sarek",
@@ -184550,19 +186269,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mapad": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mapad": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mapad --version | sed 's/^mapAD //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mapad": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mapad --version | sed 's/^mapAD //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -184718,19 +186469,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mapad": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mapad": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mapad --version | sed 's/^mapAD //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mapad": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mapad --version | sed 's/^mapAD //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -185136,19 +186919,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mapdamage2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mapdamage2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mapDamage --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mapdamage2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mapDamage --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -185246,19 +187061,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mash": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mash": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mash --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mash": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mash --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -185359,19 +187206,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mash": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mash": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mash --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mash": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mash --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -185477,19 +187356,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mash": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mash": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mash --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mash": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mash --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -190205,9 +192116,9 @@
                 }
               },
               {
-                "echo 1.1.1": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.1.1": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -190227,9 +192138,9 @@
                 }
               },
               {
-                "echo 1.1": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.1": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -190273,9 +192184,9 @@
                 }
               },
               {
-                "echo 1.1.1": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.1.1": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ],
@@ -190293,9 +192204,9 @@
                 }
               },
               {
-                "echo 1.1": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.1": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ],
@@ -196089,6 +198000,10 @@
           "version": "2.0.0"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "mag",
           "version": "5.4.2"
         },
@@ -196102,7 +198017,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "taxprofiler",
@@ -196241,6 +198156,10 @@
           "version": "dev"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "mag",
           "version": "5.4.2"
         },
@@ -196250,7 +198169,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "taxprofiler",
@@ -197804,6 +199723,173 @@
       ]
     },
     {
+      "name": "misopy_index",
+      "path": "modules/nf-core/misopy/index/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "misopy_index",
+        "description": "Build an indexed representation of a GFF for efficient retrieval of genes",
+        "keywords": [
+          "misopy",
+          "index",
+          "gff",
+          "alternative splicing"
+        ],
+        "tools": [
+          {
+            "misopy": {
+              "description": "Mixture of Isoforms model (MISO) for isoform quantitation using RNA-Seq",
+              "homepage": "https://github.com/yarden/MISO",
+              "documentation": "https://miso.readthedocs.io/en/fastmiso/",
+              "tool_dev_url": "https://github.com/yarden/MISO",
+              "doi": "10.1038/nmeth.1528",
+              "licence": [
+                "GPL v2"
+              ],
+              "identifier": "biotools:misopy"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing genome information\ne.g. `[ id:'genome1' ]`\n"
+              }
+            },
+            {
+              "gff3": {
+                "type": "file",
+                "description": "GFF3 file",
+                "pattern": "*.gff3",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1965"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "miso_index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing genome information\ne.g. `[ id:'genome1' ]`\n"
+                }
+              },
+              {
+                "index": {
+                  "type": "file",
+                  "description": "Processed MISO index file",
+                  "pattern": "*.{shelve}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_python": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "python": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python --version 2>&1 | sed \"s/Python //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_misopy": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "misopy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import pkg_resources; print(pkg_resources.get_distribution('misopy').version)\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "python": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python --version 2>&1 | sed \"s/Python //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "misopy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import pkg_resources; print(pkg_resources.get_distribution('misopy').version)\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@valentinoruggieri",
+          "@piplus2"
+        ],
+        "maintainers": [
+          "@piplus2"
+        ]
+      }
+    },
+    {
       "name": "mitohifi_findmitoreference",
       "path": "modules/nf-core/mitohifi/findmitoreference/meta.yml",
       "type": "module",
@@ -197897,9 +199983,9 @@
                 }
               },
               {
-                "echo 3.2.3": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "3.2.3": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -197921,9 +200007,9 @@
                 }
               },
               {
-                "echo 3.2.3": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "3.2.3": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -198408,8 +200494,8 @@
                 }
               },
               {
-                "echo 3.2.3": {
-                  "type": "eval",
+                "3.2.3": {
+                  "type": "string",
                   "description": "The expression to obtain the version of the tool"
                 }
               }
@@ -198432,8 +200518,8 @@
                 }
               },
               {
-                "echo 3.2.3": {
-                  "type": "eval",
+                "3.2.3": {
+                  "type": "string",
                   "description": "The expression to obtain the version of the tool"
                 }
               }
@@ -199226,7 +201312,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "proteinfamilies",
@@ -199669,7 +201755,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "proteinfamilies",
@@ -199783,7 +201869,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "mag",
@@ -200611,7 +202697,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -201568,6 +203654,10 @@
       },
       "pipelines": [
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "methylong",
           "version": "2.0.0"
         }
@@ -202317,12 +204407,16 @@
           "version": "dev"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "pacsomatic",
           "version": "dev"
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "rnadnavar",
@@ -204767,7 +206861,7 @@
         },
         {
           "name": "demo",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "demultiplex",
@@ -204803,7 +206897,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "funcprofiler",
@@ -204811,7 +206905,7 @@
         },
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "genomeannotator",
@@ -204858,6 +206952,10 @@
           "version": "dev"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "lsmquant",
           "version": "1.0.2"
         },
@@ -204887,7 +206985,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "methylarray",
@@ -204943,11 +207041,11 @@
         },
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "pairgenomealign",
-          "version": "2.3.0"
+          "version": "3.0.0"
         },
         {
           "name": "pangenome",
@@ -204999,7 +207097,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "readsimulator",
@@ -205055,7 +207153,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "scrnaseq",
@@ -208557,7 +210655,7 @@
       "pipelines": [
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         }
       ]
     },
@@ -209569,6 +211667,10 @@
           "version": "2.6.0"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "mag",
           "version": "5.4.2"
         },
@@ -209582,7 +211684,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "viralrecon",
@@ -212017,7 +214119,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -213653,6 +215755,155 @@
         "maintainers": [
           "@sateeshperi",
           "@mjcipriano"
+        ]
+      }
+    },
+    {
+      "name": "numorph_3dunet",
+      "path": "modules/nf-core/numorph/3dunet/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "numorph_3dunet",
+        "description": "3DUnet for cell nuclei quantification on 3D microscopy images of the numorph toolkit.",
+        "keywords": [
+          "segmentation",
+          "cell nuclei",
+          "light-sheet microscopy",
+          "numorph"
+        ],
+        "tools": [
+          {
+            "numorph_3dunet": {
+              "description": "This package contains the original 3DUnet for cell nuclei quantification on 3D microscopy images of the numorph toolkit.",
+              "homepage": "https://github.com/qbic-pipelines/numorph_3dunet",
+              "documentation": "https://github.com/qbic-pipelines/numorph_3dunet",
+              "tool_dev_url": "https://github.com/qbic-pipelines/numorph_3dunet",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "img_directory": {
+                "type": "directory",
+                "description": "Directory containing stitched image files",
+                "pattern": "*.{tif,tiff}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3591"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3727"
+                  }
+                ]
+              }
+            },
+            {
+              "parameter_file": {
+                "type": "file",
+                "description": "File containing parameters for numorph tools",
+                "pattern": "*.{csv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "model_file": {
+              "type": "file",
+              "description": "File containing the trained model",
+              "pattern": "*.{h5}",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3590"
+                }
+              ]
+            }
+          }
+        ],
+        "output": {
+          "cellcounts": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/": {
+                  "type": "directory",
+                  "description": "Directory containing cell count results",
+                  "pattern": "${meta.id}/"
+                }
+              }
+            ]
+          ],
+          "versions_numorph_3dunet": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "numorph_3dunet": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "numorph_3dunet --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "numorph_3dunet": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "numorph_3dunet --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@CaroAMN"
+        ],
+        "maintainers": [
+          "@CaroAMN"
         ]
       }
     },
@@ -226754,6 +229005,10 @@
         {
           "name": "pacsomatic",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
         }
       ]
     },
@@ -227200,7 +229455,7 @@
         },
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -227426,7 +229681,7 @@
       "pipelines": [
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -227539,7 +229794,7 @@
       "pipelines": [
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -227850,6 +230105,10 @@
         {
           "name": "pacsomatic",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
         }
       ]
     },
@@ -228959,7 +231218,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -231671,7 +233930,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -232296,7 +234555,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "seqinspector",
@@ -232643,7 +234902,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "seqinspector",
@@ -233199,7 +235458,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "rnafusion",
@@ -234306,7 +236565,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "variantbenchmarking",
@@ -234542,7 +236801,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "rnaseq",
@@ -234558,7 +236817,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "ssds",
@@ -235115,7 +237374,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -235727,7 +237986,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -236207,7 +238466,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "methylong",
@@ -236219,7 +238478,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         }
       ]
     },
@@ -236355,7 +238614,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         }
       ]
     },
@@ -246253,7 +248512,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "mag",
@@ -246265,7 +248524,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         }
       ]
     },
@@ -246611,7 +248870,7 @@
         },
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "mag",
@@ -246623,7 +248882,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "viralmetagenome",
@@ -246994,7 +249253,13 @@
           "@caraiz2001",
           "@suzannejin"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "propr_logratio",
@@ -247428,7 +249693,13 @@
         "maintainers": [
           "@suzannejin"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "propr_propr",
@@ -248791,7 +251062,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -252664,7 +254935,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -254244,6 +256515,10 @@
         {
           "name": "coproid",
           "version": "2.0.1"
+        },
+        {
+          "name": "differentialabundance",
+          "version": "2.0.0"
         },
         {
           "name": "scdownstream",
@@ -255948,9 +258223,9 @@
                 }
               },
               {
-                "echo 2.3.2": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "2.3.2": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -255994,9 +258269,9 @@
                 }
               },
               {
-                "echo 2.3.2": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "2.3.2": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ],
@@ -259955,8 +262230,12 @@
       },
       "pipelines": [
         {
+          "name": "funcprofiler",
+          "version": "dev"
+        },
+        {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -260122,7 +262401,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -260278,7 +262557,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -260436,7 +262715,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -263280,13 +265559,7 @@
         "maintainers": [
           "@grst"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "differentialabundance",
-          "version": "1.5.0"
-        }
-      ]
+      }
     },
     {
       "name": "rmats_prep",
@@ -266528,7 +268801,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         }
       ]
     },
@@ -267915,8 +270188,12 @@
       },
       "pipelines": [
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "variantbenchmarking",
@@ -268773,7 +271050,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "variantbenchmarking",
@@ -269126,7 +271403,13 @@
         "maintainers": [
           "@Xinpeng021001"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "funcscan",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "rundbcan_database",
@@ -269221,7 +271504,13 @@
         "maintainers": [
           "@Xinpeng021001"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "funcscan",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "rundbcan_easycgc",
@@ -269511,7 +271800,13 @@
         "maintainers": [
           "@Xinpeng021001"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "funcscan",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "rundbcan_easysubstrate",
@@ -269851,7 +272146,13 @@
         "maintainers": [
           "@Xinpeng021001"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "funcscan",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "rustqc",
@@ -271177,7 +273478,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -271367,7 +273668,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -271502,7 +273803,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -271829,7 +274130,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -274323,7 +276624,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -275518,7 +277819,7 @@
       "pipelines": [
         {
           "name": "fastquorum",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "oncoanalyser",
@@ -275530,7 +277831,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.3.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -275751,11 +278052,15 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "genomicrelatedness",
           "version": "dev"
+        },
+        {
+          "name": "longraredisease",
+          "version": "1.0.0"
         },
         {
           "name": "mag",
@@ -275783,7 +278088,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.3.0"
+          "version": "3.0.0"
         },
         {
           "name": "pangenome",
@@ -275803,7 +278108,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "references",
@@ -275835,7 +278140,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "seqinspector",
@@ -276247,6 +278552,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "methylong",
           "version": "2.0.0"
         },
@@ -276644,12 +278953,16 @@
           "version": "dev"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "magmap",
           "version": "1.1.0"
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "methylong",
@@ -276709,7 +279022,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "smrnaseq",
@@ -277016,12 +279329,16 @@
           "version": "dev"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "magmap",
           "version": "1.1.0"
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "methylseq",
@@ -277077,7 +279394,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "smrnaseq",
@@ -277466,6 +279783,10 @@
           "version": "dev"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "mag",
           "version": "5.4.2"
         },
@@ -277475,7 +279796,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "methylong",
@@ -277499,7 +279820,7 @@
         },
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "panoramaseq",
@@ -277523,7 +279844,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "readsimulator",
@@ -277563,7 +279884,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "seqinspector",
@@ -278000,7 +280321,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "genomicrelatedness",
@@ -278011,12 +280332,16 @@
           "version": "1.0.0"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "nascent",
           "version": "2.3.0"
         },
         {
           "name": "pairgenomealign",
-          "version": "2.3.0"
+          "version": "3.0.0"
         },
         {
           "name": "phaseimpute",
@@ -278028,7 +280353,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "rnadnavar",
@@ -278044,7 +280369,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "tbanalyzer",
@@ -279224,12 +281549,16 @@
           "version": "dev"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "magmap",
           "version": "1.1.0"
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "methylong",
@@ -279257,7 +281586,7 @@
         },
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "panoramaseq",
@@ -279273,7 +281602,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "riboseq",
@@ -279305,7 +281634,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "smrnaseq",
@@ -279711,6 +282040,10 @@
           "version": "dev"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "mag",
           "version": "5.4.2"
         },
@@ -279720,7 +282053,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "methylseq",
@@ -279748,7 +282081,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "riboseq",
@@ -279784,7 +282117,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "smrnaseq",
@@ -280180,6 +282513,10 @@
           "version": "2.2.0"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "phaseimpute",
           "version": "1.1.0"
         },
@@ -280189,7 +282526,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "rnadnavar",
@@ -280209,7 +282546,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "ssds",
@@ -281226,7 +283563,13 @@
         "maintainers": [
           "@padraicc"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        }
+      ]
     },
     {
       "name": "sawfish_jointcall",
@@ -281601,7 +283944,13 @@
         "maintainers": [
           "@padraicc"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        }
+      ]
     },
     {
       "name": "scanpy_filter",
@@ -284272,7 +286621,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -284494,7 +286843,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "sarek",
@@ -285321,7 +287670,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -285596,7 +287945,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "sarek",
@@ -285795,7 +288144,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "sarek",
@@ -286099,7 +288448,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "sarek",
@@ -287285,7 +289634,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -289633,7 +291982,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -290097,6 +292446,12 @@
               "documentation": "https://telatin.github.io/seqfu2/tools/check.html#usage",
               "tool_dev_url": "https://github.com/telatin/seqfu2",
               "doi": "10.3390/bioengineering8050059",
+              "publication": {
+                "author": "Telatin A., Fariselli P. & Birolo G.",
+                "year": 2021,
+                "title": "SeqFu: A Suite of Utilities for the Robust and Reproducible Manipulation of Sequence Files",
+                "source": "Bioengineering"
+              },
               "licence": [
                 "MIT"
               ],
@@ -290227,6 +292582,12 @@
               "documentation": "https://telatin.github.io/seqfu2/",
               "tool_dev_url": "https://telatin.github.io/seqfu2/tools/derep.html",
               "doi": "10.3390/bioengineering8050059",
+              "publication": {
+                "author": "Telatin A., Fariselli P. & Birolo G.",
+                "year": 2021,
+                "title": "SeqFu: A Suite of Utilities for the Robust and Reproducible Manipulation of Sequence Files",
+                "source": "Bioengineering"
+              },
               "licence": [
                 "GPL v3"
               ],
@@ -290350,6 +292711,12 @@
               "documentation": "https://telatin.github.io/seqfu2/",
               "tool_dev_url": "https://github.com/telatin/seqfu2",
               "doi": "10.3390/bioengineering8050059",
+              "publication": {
+                "author": "Telatin A., Fariselli P. & Birolo G.",
+                "year": 2021,
+                "title": "SeqFu: A Suite of Utilities for the Robust and Reproducible Manipulation of Sequence Files",
+                "source": "Bioengineering"
+              },
               "licence": [
                 "GPL v3"
               ],
@@ -292034,7 +294401,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "genomeqc",
@@ -292433,6 +294800,10 @@
         {
           "name": "callingcards",
           "version": "1.0.0"
+        },
+        {
+          "name": "scnanoseq",
+          "version": "1.3.0"
         }
       ]
     },
@@ -293246,7 +295617,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.3.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -293374,7 +295745,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         }
       ]
     },
@@ -293642,7 +296013,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "seqinspector",
@@ -293778,7 +296149,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "radseq",
@@ -294045,7 +296416,7 @@
       "pipelines": [
         {
           "name": "demo",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -297070,7 +299441,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -297239,7 +299610,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -297565,7 +299936,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -297797,7 +300168,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -300494,9 +302865,9 @@
                 }
               },
               {
-                "echo 2.04": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "2.04": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -300518,9 +302889,9 @@
                 }
               },
               {
-                "echo 2.04": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "2.04": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -300691,7 +303062,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -301716,7 +304087,13 @@
           "@yuukiiwa",
           "@fellen31"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "snippy_core",
@@ -302554,6 +304931,10 @@
       },
       "pipelines": [
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "rnavar",
           "version": "1.3.0"
         },
@@ -302904,6 +305285,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
         {
           "name": "rnavar",
           "version": "1.3.0"
@@ -306608,7 +308993,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "pathogensurveillance",
@@ -307436,7 +309821,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "sarek",
@@ -312400,8 +314785,12 @@
       },
       "pipelines": [
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -314489,7 +316878,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "nascent",
@@ -316857,7 +319246,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "sarek",
@@ -317021,7 +319410,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -317323,7 +319712,13 @@
         "maintainers": [
           "@nourmahfel"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "svtk_baftest",
@@ -320349,7 +322744,11 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
+        },
+        {
+          "name": "longraredisease",
+          "version": "1.0.0"
         },
         {
           "name": "nanoseq",
@@ -320357,7 +322756,7 @@
         },
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "pangenome",
@@ -320373,11 +322772,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
-        },
-        {
-          "name": "rnadnavar",
-          "version": "dev"
+          "version": "3.1.1"
         },
         {
           "name": "tbanalyzer",
@@ -320573,6 +322968,10 @@
           "version": "3.2.2"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "methylong",
           "version": "2.0.0"
         },
@@ -320586,11 +322985,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
-        },
-        {
-          "name": "rnadnavar",
-          "version": "dev"
+          "version": "3.1.1"
         },
         {
           "name": "sarek",
@@ -320773,6 +323168,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "nanoseq",
           "version": "3.1.0"
         },
@@ -320790,15 +323189,11 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "references",
           "version": "0.1"
-        },
-        {
-          "name": "rnadnavar",
-          "version": "dev"
         },
         {
           "name": "sarek",
@@ -321337,7 +323732,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         }
       ]
     },
@@ -324726,9 +327121,9 @@
                 }
               },
               {
-                "echo 0.0.2": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of telseq"
+                "0.0.2": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -324772,9 +327167,9 @@
                 }
               },
               {
-                "echo 0.0.2": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of telseq"
+                "0.0.2": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ],
@@ -325756,7 +328151,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -325946,7 +328341,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "sarek",
@@ -327159,7 +329554,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         }
       ]
     },
@@ -327994,8 +330389,12 @@
       },
       "pipelines": [
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -328380,7 +330779,7 @@
       "pipelines": [
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -328783,7 +331182,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "methylseq",
@@ -331935,6 +334334,10 @@
         {
           "name": "rnafusion",
           "version": "4.1.3"
+        },
+        {
+          "name": "scnanoseq",
+          "version": "1.3.0"
         }
       ]
     },
@@ -332223,7 +334626,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -333437,7 +335840,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "viralmetagenome",
@@ -334385,7 +336788,7 @@
         },
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         },
         {
           "name": "drop",
@@ -334401,7 +336804,7 @@
         },
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "hgtseq",
@@ -334412,12 +336815,16 @@
           "version": "dev"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "mag",
           "version": "5.4.2"
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "methylseq",
@@ -334465,7 +336872,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "riboseq",
@@ -334782,7 +337189,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "lsmquant",
@@ -334952,7 +337359,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         }
       ]
     },
@@ -335076,7 +337483,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -336052,7 +338459,13 @@
           "@nschcolnicov",
           "@atrigila"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "variantbam",
@@ -337629,7 +340042,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -338031,6 +340444,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
         {
           "name": "tumourevo",
           "version": "dev"
@@ -338470,7 +340887,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -342204,7 +344621,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -351831,7 +354248,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         },
         {
           "name": "tfactivity",
@@ -352194,7 +354611,13 @@
           "@pinin4fjords",
           "@suzannejin"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "archive_extract",
@@ -355063,10 +357486,6 @@
           "version": "1.1.0"
         },
         {
-          "name": "metatdenovo",
-          "version": "1.3.0"
-        },
-        {
           "name": "methylseq",
           "version": "4.2.0"
         },
@@ -355112,7 +357531,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "smrnaseq",
@@ -355342,12 +357761,16 @@
           "version": "dev"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "magmap",
           "version": "1.1.0"
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "methylseq",
@@ -355395,7 +357818,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "smrnaseq",
@@ -357713,7 +360136,13 @@
           "@suzannejin",
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "faa_seqfu_seqkit",
@@ -357833,7 +360262,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.3.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -360961,11 +363390,6 @@
           {
             "idxstats": {
               "description": "File containing samtools idxstats output\nStructure: [ val(meta), path(idxstats) ]\n"
-            }
-          },
-          {
-            "versions": {
-              "description": "Files containing software versions\nStructure: [ path(versions.yml) ]\n"
             }
           }
         ],
@@ -365114,6 +367538,21 @@
             "multiqc": {
               "description": "MultiQC custom-content sidecar (per-class ORF counts).\nStructure: [ val(meta), path(tsv) ]\n"
             }
+          },
+          {
+            "consensus_bed12": {
+              "description": "Consensus view of the catalogue as BED12 (ORFs meeting the\n--min-callers / --min-samples thresholds; identical to the full\ncatalogue at the defaults of 1/1). Taken from the amino-acid collapse\nwhen it runs, otherwise from the merger.\nStructure: [ val(meta), path(bed12) ]\n"
+            }
+          },
+          {
+            "consensus_tsv": {
+              "description": "Consensus-filtered per-ORF table, same columns as the full catalogue.\nStructure: [ val(meta), path(tsv) ]\n"
+            }
+          },
+          {
+            "consensus_orf_to_gene_tsv": {
+              "description": "ORF-to-gene mapping restricted to the consensus-filtered ORFs.\nStructure: [ val(meta), path(tsv) ]\n"
+            }
           }
         ],
         "authors": [
@@ -365998,6 +368437,10 @@
       },
       "pipelines": [
         {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
           "name": "rnavar",
           "version": "1.3.0"
         }
@@ -366129,7 +368572,7 @@
         },
         {
           "name": "demo",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "demultiplex",
@@ -366145,7 +368588,7 @@
         },
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         },
         {
           "name": "diseasemodulediscovery",
@@ -366157,7 +368600,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "epitopeprediction",
@@ -366173,7 +368616,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "fetchngs",
@@ -366185,7 +368628,7 @@
         },
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "genephylomodeler",
@@ -366220,6 +368663,10 @@
           "version": "dev"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "lsmquant",
           "version": "1.0.2"
         },
@@ -366249,7 +368696,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "methylarray",
@@ -366305,11 +368752,11 @@
         },
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "pairgenomealign",
-          "version": "2.3.0"
+          "version": "3.0.0"
         },
         {
           "name": "pangenome",
@@ -366357,7 +368804,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "rarevariantburden",
@@ -366409,7 +368856,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "scrnaseq",
@@ -366582,7 +369029,7 @@
         },
         {
           "name": "demo",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "demultiplex",
@@ -366598,7 +369045,7 @@
         },
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         },
         {
           "name": "diseasemodulediscovery",
@@ -366610,7 +369057,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "epitopeprediction",
@@ -366626,7 +369073,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "fetchngs",
@@ -366638,7 +369085,7 @@
         },
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "genephylomodeler",
@@ -366673,6 +369120,10 @@
           "version": "dev"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "lsmquant",
           "version": "1.0.2"
         },
@@ -366702,7 +369153,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "methylarray",
@@ -366758,11 +369209,11 @@
         },
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "pairgenomealign",
-          "version": "2.3.0"
+          "version": "3.0.0"
         },
         {
           "name": "pangenome",
@@ -366810,7 +369261,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "rarevariantburden",
@@ -366862,7 +369313,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "scrnaseq",
@@ -367089,7 +369540,7 @@
         },
         {
           "name": "demo",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "demultiplex",
@@ -367104,6 +369555,10 @@
           "version": "1.3.0"
         },
         {
+          "name": "differentialabundance",
+          "version": "2.0.0"
+        },
+        {
           "name": "diseasemodulediscovery",
           "version": "dev"
         },
@@ -367113,7 +369568,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "epitopeprediction",
@@ -367129,7 +369584,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "funcprofiler",
@@ -367137,7 +369592,7 @@
         },
         {
           "name": "funcscan",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "genephylomodeler",
@@ -367168,6 +369623,10 @@
           "version": "dev"
         },
         {
+          "name": "longraredisease",
+          "version": "1.0.0"
+        },
+        {
           "name": "lsmquant",
           "version": "1.0.2"
         },
@@ -367189,7 +369648,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "methylarray",
@@ -367245,11 +369704,11 @@
         },
         {
           "name": "pacvar",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "pairgenomealign",
-          "version": "2.3.0"
+          "version": "3.0.0"
         },
         {
           "name": "pangenome",
@@ -367297,7 +369756,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "rarevariantburden",
@@ -367345,7 +369804,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "scrnaseq",
@@ -367491,10 +369950,6 @@
           "version": "2.1.0"
         },
         {
-          "name": "differentialabundance",
-          "version": "1.5.0"
-        },
-        {
           "name": "fetchngs",
           "version": "1.12.0"
         },
@@ -367638,6 +370093,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"

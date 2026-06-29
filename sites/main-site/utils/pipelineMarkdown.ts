@@ -1,13 +1,7 @@
-import { createMarkdownProcessor } from "@astrojs/markdown-remark";
+import { createSatteriMarkdownProcessor } from "@astrojs/markdown-satteri";
 import type { MarkdownHeading } from "astro";
-import { sharedMarkdownConfig } from "@root/bin/markdownConfig.ts";
-import remarkGitHubMarkdown from "@root/bin/remark-github-markdown.js";
-
-// Created once for the entire build — Shiki grammars and plugin instances are reused.
-const processorPromise = createMarkdownProcessor({
-    ...sharedMarkdownConfig,
-    remarkPlugins: [remarkGitHubMarkdown, ...sharedMarkdownConfig.remarkPlugins],
-});
+import { createSatteriPluginSets } from "@root/bin/satteri/markdownConfig.ts";
+import { createGitHubMarkdownPlugin, trimGitHubReadme } from "@root/bin/satteri/mdast-github-markdown.ts";
 
 export async function renderPipelineMarkdown(
     body: string,
@@ -15,9 +9,17 @@ export async function renderPipelineMarkdown(
     ref: string,
     parentDir: string,
 ): Promise<{ html: string; headings: MarkdownHeading[] }> {
-    const processor = await processorPromise;
-    const { code: html, metadata } = await processor.render(body, {
-        frontmatter: { repo, ref, parent_directory: parentDir },
+    const { features, mdastPlugins, hastPlugins } = createSatteriPluginSets();
+    // The processor is created per call: the GitHub URL rewriting is parameterised by
+    // repo/ref, and the shared hast plugins carry per-document state. Creation is
+    // cheap — satteri loads once and syntaxHighlight is off (hast-expressive-code.ts
+    // renders the code blocks, with a shared Expressive Code engine).
+    const processor = await createSatteriMarkdownProcessor({
+        syntaxHighlight: false,
+        features,
+        mdastPlugins: [createGitHubMarkdownPlugin({ repo, ref, parentDirectory: parentDir }), ...mdastPlugins],
+        hastPlugins,
     });
+    const { code: html, metadata } = await processor.render(trimGitHubReadme(body));
     return { html, headings: (metadata?.headings ?? []) as MarkdownHeading[] };
 }

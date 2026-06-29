@@ -34,10 +34,10 @@ cd nf-core_website/
 ### Installing dependencies
 
 The website is built using [Astro](https://astro.build/), a static site generator.
-To install the dependencies for all sub-sites, run:
+To install the dependencies for the root project and all sub-sites, run:
 
 ```bash
-npm install --workspaces
+npm install
 ```
 
 ### Running a local server
