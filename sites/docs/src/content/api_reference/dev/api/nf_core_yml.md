@@ -84,35 +84,35 @@ schema for linting config in .nf-core.yml should cover:
 
 ```yaml
 files_unchanged:
-    - .github/workflows/branch.yml
+  - .github/workflows/branch.yml
 modules_config: False
 modules_config:
-        - fastqc
+  - fastqc
 # merge_markers: False
 merge_markers:
-        - docs/my_pdf.pdf
+  - docs/my_pdf.pdf
 nextflow_config: False
 nextflow_config:
-    - manifest.name
-    - config_defaults:
-        - params.annotation_db
-        - params.multiqc_comment_headers
-        - params.custom_table_headers
+  - manifest.name
+  - config_defaults:
+      - params.annotation_db
+      - params.multiqc_comment_headers
+      - params.custom_table_headers
 # multiqc_config: False
 multiqc_config:
-    - report_section_order
-    - report_comment
+  - report_section_order
+  - report_comment
 files_exist:
-    - CITATIONS.md
+  - CITATIONS.md
 template_strings: False
 template_strings:
-        - docs/my_pdf.pdf
+  - docs/my_pdf.pdf
 nfcore_components: False
 # nf_test_content: False
 nf_test_content:
-    - tests/<test_name>.nf.test
-    - tests/nextflow.config
-    - nf-test.config
+  - tests/<test_name>.nf.test
+  - tests/nextflow.config
+  - nf-test.config
 ```
 
 - **Fields:**
