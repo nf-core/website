@@ -15,11 +15,11 @@ The 'Maintainers Minutes' aims to give further insight into the workings of the 
 
 ## Overview
 
-The last two maintainer meetings covered a wide range of topics from AI related topics to infrastructure updates, and of course, the usual discussions about the meaning of life.
+The last two maintainer meetings covered a wide range of topics from agentic-coding related topics to infrastructure updates, and of course, the usual discussions about the meaning of life.
 
 Major topics covered in this period:
 
-- AI in general
+- Agentic coding and nf-core
 - Configs strict syntax
 - Deprecations documentation
 - Topic migration progress
@@ -28,44 +28,36 @@ Major topics covered in this period:
 - r-nf-core-utils
 - Summer break and miscellaneous updates
 
-### AI in general
+### Agentic coding and nf-core
 
 #### RFC on agents
 
 The [agents.md and AI steering document](https://github.com/nf-core/proposals/issues/141) RFC on agents has been accepted, and Igor is leading the effort.
-This is a significant step towards formalizing how we handle AI-generated contributions and maintaining code quality standards.
+Next we will test the current approach in several pipelines, before [adding a version of it to the pipeilnes template](https://github.com/nf-core/tools/pull/4318)
 
 #### Dealing with PRs made by/with agents
 
 Related to that, we had a long discussion about how to deal with PRs made by or with agents.
 These were some of the several key points that were raised, and what we talked about:
 
-- Snapshots hallucination: AI agents can sometimes generate incorrect or hallucinated content
+- Snapshots hallucination: AI agents can sometimes generate incorrect content
 - Human responsibility: The human launching agents should be responsible, not the reviewers
 - Agent origin doesn't matter: We don't care if contributions come from an agent or a human, but the volume is concerning
 - Closing unsatisfactory PRs: Maxime recommends just closing PRs if the reviewer is not happy
 - Assisted by tags: It would be nice to have an "assisted by" comment or tag somewhere to identify AI-generated contributions
 
 The general consensus was that an "assisted by" tag would be useful, and that in the end the human launching the agent should be responsible for the quality of the contribution.
-The reviewers should not be expected to verify the correctness of AI-generated content, and they are free to close PRs if they are not satisfied with the quality.
+The reviewers should not be expected to verify the correctness of llm-generated content, and they are free to close PRs if they are not satisfied with the quality.
 
 #### Need for more specifications and documentation
 
 We discussed the need for more documentation and specifications about tools.
 This could go in `meta.yml` files so that AI and humans don't remove or misunderstand the underlying logic of modules.
 
-#### Igor is our only hope against AI
-
-Igor will lead the effort for creating a steering file for agents, helping guide AI contributions to maintain our quality standards.
-
-#### Open for testing AGENTS.md
-
-AGENTS.md is progressing, and we can probably test it after summer.
-Igor is looking for volunteers, and Maxime is volunteering to test it.
 
 ### Configs strict syntax
 
-The configs repository is almost fully Nextflow lint valid with strict syntax.
+The configs repository is almost fully following strict syntax and passing Nextflow linting.
 This is a major milestone for improving code quality and consistency across nf-core configurations.
 
 ### Deprecations documentation
@@ -82,8 +74,9 @@ nf-core tools should handle this nicely, as the modules.json file might still be
 
 ### Topic migration progress
 
-End of May, the topic migration has reached the end of letter H, showing steady progress.
-By the end of June, we are now at the letter M, which shows the dedication of Louis into leading this herculean task.
+End of May, the topic migration has reached the end of letter H, and covering 79%, showing steady progress.
+By the end of June, we are now at the letter M, which covers 88%, which shows the dedication of Louis into leading this herculean task.
+Note that since modules were not worked on alphabetically the letter is merely an indication as which modules we know have been covered for sure, and not a good measure.
 
 ### Megatests snapshots
 
@@ -108,14 +101,10 @@ A proof of concept is available at [nf-core/modules#11933](https://github.com/nf
 
 #### tools dev has a new container subcommand
 
-Tools dev has a new subcommand for containers (in modules).
+Tools dev has a new subcommand for migrating to seqera containers, `nf-core modules container create`.
 It will facilitate automated container building and management.
-Modules will get ARM support in a much easier way.
+Additionally, modules will get ARM compatibility on the side with this.
 
-#### Wave with different build template
-
-Seqera containers via wave can be done using a different build template (pixi).
-There might be some issues with the default base image that are being looked into.
 
 ### Meta pipelines
 
