@@ -1,4 +1,4 @@
-# multiqc_config
+# multiqc\_config
 
 #### `PipelineLint.multiqc_config() → dict[str, list[str]]{:python}`
 
@@ -37,6 +37,6 @@ For example:
 ```
 
 lint:
-: multiqc_config:
-: - report_section_order
-\- report_comment
+: multiqc\_config:
+: - report\_section\_order
+\- report\_comment

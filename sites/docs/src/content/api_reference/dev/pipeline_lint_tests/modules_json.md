@@ -1,4 +1,4 @@
-# modules_json
+# modules\_json
 
 #### `PipelineLint.modules_json() → dict[str, list[str]]{:python}`
 

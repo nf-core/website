@@ -1,4 +1,4 @@
-# meta_yml
+# meta\_yml
 
 #### `ModuleLint.meta_yml(module: NFCoreComponent, allow_missing: bool = False) → None{:python}`
 

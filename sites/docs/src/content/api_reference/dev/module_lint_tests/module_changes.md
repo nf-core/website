@@ -1,4 +1,4 @@
-# module_changes
+# module\_changes
 
 #### `ModuleLint.module_changes(module){:python}`
 

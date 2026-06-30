@@ -1,4 +1,4 @@
-# environment_yml
+# environment\_yml
 
 #### `ModuleLint.environment_yml(module: NFCoreComponent, allow_missing: bool = False, fix_version: bool = False, progress_bar: Progress | None = None) → None{:python}`
 
