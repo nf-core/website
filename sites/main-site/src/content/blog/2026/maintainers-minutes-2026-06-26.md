@@ -99,7 +99,6 @@ Tools dev has a new subcommand for migrating to seqera containers, `nf-core modu
 It will facilitate automated container building and management.
 Additionally, modules will get ARM compatibility on the side with this.
 
-
 ### Meta pipelines
 
 Meta pipelines are being discussed in [nextflow-io/nextflow#7213](https://github.com/nextflow-io/nextflow/pull/7213).
