@@ -33,7 +33,7 @@ Major topics covered in this period:
 #### RFC on agents
 
 The [agents.md and AI steering document](https://github.com/nf-core/proposals/issues/141) RFC on agents has been accepted, and Igor is leading the effort.
-Next we will test the current approach in several pipelines, before [adding a version of it to the pipeilnes template](https://github.com/nf-core/tools/pull/4318)
+Next we will test the current approach in several pipelines, before [adding a version of it to the pipelines template](https://github.com/nf-core/tools/pull/4318), [and the modules repo](https://github.com/nf-core/modules/pull/12028).
 
 #### Dealing with PRs made by/with agents
 
