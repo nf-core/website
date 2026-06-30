@@ -1,4 +1,4 @@
-# main_nf
+# main\_nf
 
 #### `ModuleLint.main_nf(module: NFCoreComponent, fix_version: bool, registry: tuple[str, ...], progress_bar: Progress) → tuple[list[str], list[str]]{:python}`
 
@@ -21,6 +21,15 @@ The following checks are performed:
   are specified, their tags must reference the same software version. A warning
   is issued if they do not match. Modules using the newer docker-only format
   (no singularity container) skip this check.
+- `singularity_tag`: A Singularity container must be resolvable via
+  `nextflow inspect -profile singularity`. The check fails if none can be
+  resolved or if it falls back to a docker container that has an automatic
+  singularity equivalent, i.e., `quay.io/biocontainers/` or
+  `community.wave.seqera.io/`.
+  It is skipped for modules listed under `singularity` in `.github/skip_nf_test.json`.
+- `oras_singularity_tag`: The resolved Singularity container must not be
+  served over the `oras://` scheme; it should be a plain `https://` URL.
+  The check fails if an `oras://` container is used.
 - `main_nf_script_shell`: Exactly one of `script:`, `shell:`, or `exec:`
   blocks must be present.
 - `main_nf_shell_template`: If a `shell:` block is used, it must call

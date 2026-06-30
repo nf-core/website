@@ -1,4 +1,4 @@
-# module_deprecations
+# module\_deprecations
 
 #### `ModuleLint.module_deprecations(module){:python}`
 

@@ -1,4 +1,4 @@
-# main_nf
+# main\_nf
 
 #### `SubworkflowLint.main_nf(subworkflow: NFCoreComponent) → tuple[list[str], list[str]]{:python}`
 
