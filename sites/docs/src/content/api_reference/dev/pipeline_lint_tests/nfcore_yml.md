@@ -1,4 +1,4 @@
-# nfcore_yml
+# nfcore\_yml
 
 #### `PipelineLint.nfcore_yml() → dict[str, list[str]]{:python}`
 

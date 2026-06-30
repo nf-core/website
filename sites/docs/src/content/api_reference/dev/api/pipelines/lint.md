@@ -1,4 +1,4 @@
-# nf_core.pipelines.lint
+# nf\_core.pipelines.lint
 
 :::tip
 See the [Lint Tests]() docs for information about specific linting functions.
@@ -18,10 +18,10 @@ in either release mode or normal mode (default). Returns an object
 of type [`PipelineLint`](#nf_core.pipelines.lint.PipelineLint) after finished.
 
 - **Parameters:**
-  - **pipeline_dir** (_str_) – The path to the Nextflow pipeline root directory
-  - **release_mode** (_bool_) – Set this to True, if the linting should be run in the release mode.
+  - **pipeline\_dir** (_str_) – The path to the Nextflow pipeline root directory
+  - **release\_mode** (_bool_) – Set this to True, if the linting should be run in the release mode.
     See [`PipelineLint`](#nf_core.pipelines.lint.PipelineLint) for more information.
-  - **plain_text** (_bool_) – Print output in plain text without rich formatting
+  - **plain\_text** (_bool_) – Print output in plain text without rich formatting
 - **Returns:**
   An object of type [`PipelineLint`](#nf_core.pipelines.lint.PipelineLint) that contains all the linting results.
   An object of type `ComponentLint` that contains all the linting results for the modules.
@@ -111,7 +111,7 @@ summarising the linting results.
 Function to dump lint results to a JSON file for downstream use
 
 - **Parameters:**
-  **json_fn** (_str_) – File path to write JSON to.
+  **json\_fn** (_str_) – File path to write JSON to.
 
 #### `_wrap_quotes(files: list[str] | list[Path] | Path) → str{:python}`
 

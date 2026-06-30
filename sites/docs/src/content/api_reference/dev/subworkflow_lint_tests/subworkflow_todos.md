@@ -1,4 +1,4 @@
-# subworkflow_todos
+# subworkflow\_todos
 
 #### `SubworkflowLint.subworkflow_todos(subworkflow){:python}`
 

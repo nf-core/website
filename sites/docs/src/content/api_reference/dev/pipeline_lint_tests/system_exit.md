@@ -1,4 +1,4 @@
-# system_exit
+# system\_exit
 
 #### `PipelineLint.system_exit(){:python}`
 

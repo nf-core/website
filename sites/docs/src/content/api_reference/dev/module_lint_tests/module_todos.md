@@ -1,4 +1,4 @@
-# module_todos
+# module\_todos
 
 #### `ModuleLint.module_todos(module){:python}`
 

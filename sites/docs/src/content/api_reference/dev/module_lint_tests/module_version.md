@@ -1,4 +1,4 @@
-# module_version
+# module\_version
 
 #### `ModuleLint.module_version(module: NFCoreComponent){:python}`
 

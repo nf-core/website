@@ -44,7 +44,7 @@ Bases: `BaseModel`
 
 #### _`field{:python}`_`bump_version{:python}`_: dict\[str, bool] | None_`{:python}`_= None_
 
-Disable bumping of the version for a module/subworkflow (when repository_type is modules). See <https://nf-co.re/docs/nf-core-tools/modules/bump-versions> for more information.
+Disable bumping of the version for a module/subworkflow (when repository\_type is modules). See <https://nf-co.re/docs/nf-core-tools/modules/bump-versions> for more information.
 
 #### _`field{:python}`_`container_registry{:python}`_: list\[str] | None_`{:python}`_= None_`{:python}`_(alias 'container-registry')_
 
@@ -60,7 +60,7 @@ Version of nf-core/tools used to create/update the pipeline
 
 #### _`field{:python}`_`org_path{:python}`_: str | None_`{:python}`_= None_
 
-Path to the organisation’s modules repository (used for modules repo_type only)
+Path to the organisation’s modules repository (used for modules repo\_type only)
 
 #### _`field{:python}`_`repository_type{:python}`_: Literal\['pipeline', 'modules'] | None_`{:python}`_= None_
 
@@ -72,7 +72,7 @@ Pipeline template configuration
 
 #### _`field{:python}`_`update{:python}`_: dict\[str, str | bool | dict\[str, str | dict\[str, str | bool]]] | None_`{:python}`_= None_
 
-Disable updating specific modules/subworkflows (when repository_type is pipeline). See <https://nf-co.re/docs/nf-core-tools/modules/update> for more information.
+Disable updating specific modules/subworkflows (when repository\_type is pipeline). See <https://nf-co.re/docs/nf-core-tools/modules/update> for more information.
 
 ### `lint``block ({:python}``NFCoreYamlLintConfig``){:python}`
 
@@ -254,7 +254,7 @@ Check that every parameter in the schema has a description.
 
 #### _`field{:python}`_`schema_lint{:python}`_: bool | None_`{:python}`_= None_
 
-Lint nextflow_schema.json file
+Lint nextflow\_schema.json file
 
 #### _`field{:python}`_`schema_params{:python}`_: bool | None_`{:python}`_= None_
 

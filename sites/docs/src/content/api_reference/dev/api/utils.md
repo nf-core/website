@@ -1,4 +1,4 @@
-# nf_core.utils
+# nf\_core.utils
 
 Common utility functions for the nf-core python package.
 
@@ -17,7 +17,7 @@ Bases: `Enum`
 Bases: `CachedSession`
 
 Class to provide a single session for interacting with the GitHub API for a run.
-Inherits the requests_cache.CachedSession and adds additional functionality,
+Inherits the requests\_cache.CachedSession and adds additional functionality,
 such as automatically setting up GitHub authentication if we can.
 
 #### `auth_mode{:python}`_: str | None_
@@ -65,7 +65,7 @@ Bases: `BaseModel`
 
 Template configuration schema
 
-#### `_abc_impl{:python}`_= <\_abc.\_abc_data object>_
+#### `_abc_impl{:python}`_= <\_abc.\_abc\_data object>_
 
 #### `author{:python}`_: str | None_
 
@@ -120,14 +120,14 @@ Bases: `BaseModel`
 
 .nf-core.yml configuration file schema
 
-#### `_abc_impl{:python}`_= <\_abc.\_abc_data object>_
+#### `_abc_impl{:python}`_= <\_abc.\_abc\_data object>_
 
 #### `bump_version{:python}`_: dict\[str, bool] | None_
 
 //nf-co.re/docs/nf-core-tools/modules/bump-versions for more information.
 
 - **Type:**
-  Disable bumping of the version for a module/subworkflow (when repository_type is modules). See https
+  Disable bumping of the version for a module/subworkflow (when repository\_type is modules). See https
 
 #### `container_registry{:python}`_: list\[str] | None_
 
@@ -142,38 +142,38 @@ Additional container registry prefixes allowed when linting container directives
 - **Type:**
   Pipeline linting configuration, see https
 
-#### `model_config{:python}`_: ClassVar\[ConfigDict]_ _= {'populate_by_name': True, 'validate_by_alias': True, 'validate_by_name': True}_
+#### `model_config{:python}`_: ClassVar\[ConfigDict]_ _= {'populate\_by\_name': True, 'validate\_by\_alias': True, 'validate\_by\_name': True}_
 
 Configuration for the model, should be a dictionary conforming to \[ConfigDict]\[pydantic.config.ConfigDict].
 
 #### `model_dump(**kwargs) → dict[str, Any]{:python}`
 
 !!! abstract “Usage Documentation”
-: [model_dump](../concepts/serialization#python-mode)
+: [model\_dump](../concepts/serialization#python-mode)
 
 Generate a dictionary representation of the model, optionally specifying which fields to include or exclude.
 
 - **Parameters:**
-  - **mode** – The mode in which to_python should run.
+  - **mode** – The mode in which to\_python should run.
     If mode is ‘json’, the output will only contain JSON serializable types.
     If mode is ‘python’, the output may contain non-JSON-serializable Python objects.
   - **include** – A set of fields to include in the output.
   - **exclude** – A set of fields to exclude from the output.
   - **context** – Additional context to pass to the serializer.
-  - **by_alias** – Whether to use the field’s alias in the dictionary key if defined.
-  - **exclude_unset** – Whether to exclude fields that have not been explicitly set.
-  - **exclude_defaults** – Whether to exclude fields that are set to their default value.
-  - **exclude_none** – Whether to exclude fields that have a value of None.
-  - **exclude_computed_fields** – Whether to exclude computed fields.
+  - **by\_alias** – Whether to use the field’s alias in the dictionary key if defined.
+  - **exclude\_unset** – Whether to exclude fields that have not been explicitly set.
+  - **exclude\_defaults** – Whether to exclude fields that are set to their default value.
+  - **exclude\_none** – Whether to exclude fields that have a value of None.
+  - **exclude\_computed\_fields** – Whether to exclude computed fields.
     While this can be useful for round-tripping, it is usually recommended to use the dedicated
-    round_trip parameter instead.
-  - **round_trip** – If True, dumped values should be valid as input for non-idempotent types such as Json\[T].
+    round\_trip parameter instead.
+  - **round\_trip** – If True, dumped values should be valid as input for non-idempotent types such as Json\[T].
   - **warnings** – How to handle serialization errors. False/”none” ignores them, True/”warn” logs errors,
-    “error” raises a \[PydanticSerializationError]\[pydantic_core.PydanticSerializationError].
+    “error” raises a \[PydanticSerializationError]\[pydantic\_core.PydanticSerializationError].
   - **fallback** – A function to call when an unknown value is encountered. If not provided,
-    a \[PydanticSerializationError]\[pydantic_core.PydanticSerializationError] error is raised.
-  - **serialize_as_any** – Whether to serialize fields with duck-typing serialization behavior.
-  - **polymorphic_serialization** – Whether to use model and dataclass polymorphic serialization for this call.
+    a \[PydanticSerializationError]\[pydantic\_core.PydanticSerializationError] error is raised.
+  - **serialize\_as\_any** – Whether to serialize fields with duck-typing serialization behavior.
+  - **polymorphic\_serialization** – Whether to use model and dataclass polymorphic serialization for this call.
 - **Returns:**
   A dictionary representation of the model.
 
@@ -183,7 +183,7 @@ Version of nf-core/tools used to create/update the pipeline
 
 #### `org_path{:python}`_: str | None_
 
-Path to the organisation’s modules repository (used for modules repo_type only)
+Path to the organisation’s modules repository (used for modules repo\_type only)
 
 #### `repository_type{:python}`_: Literal\['pipeline', 'modules'] | None_
 
@@ -198,7 +198,7 @@ Pipeline template configuration
 //nf-co.re/docs/nf-core-tools/modules/update for more information.
 
 - **Type:**
-  Disable updating specific modules/subworkflows (when repository_type is pipeline). See https
+  Disable updating specific modules/subworkflows (when repository\_type is pipeline). See https
 
 ### _`class{:python}`_`nf_core.utils.NFCoreYamlLintConfig(, files_unchanged: bool | list[str] | None = None, modules_config: bool | list[str] | None = None, merge_markers: bool | list[str] | None = None, nextflow_config: bool | list[str | dict[str, list[str]]] | None = None, nf_test_content: bool | list[str] | None = None, multiqc_config: bool | list[str] | None = None, files_exist: bool | list[str] | None = None, template_strings: bool | list[str] | None = None, readme: bool | list[str] | None = None, nfcore_components: bool | None = None, actions_nf_test: bool | None = None, actions_awstest: bool | None = None, actions_awsfulltest: bool | None = None, pipeline_todos: bool | None = None, pipeline_if_empty_null: bool | None = None, plugin_includes: bool | None = None, pipeline_name_conventions: bool | None = None, schema_lint: bool | None = None, schema_params: bool | None = None, system_exit: bool | None = None, schema_description: bool | None = None, actions_schema_validation: bool | None = None, modules_json: bool | None = None, modules_structure: bool | None = None, base_config: bool | None = None, nfcore_yml: bool | None = None, version_consistency: bool | None = None, included_configs: bool | None = None, local_component_structure: bool | None = None, container_configs: bool | None = None, rocrate_readme_sync: bool | None = None){:python}`
 
@@ -239,7 +239,7 @@ nf_test_content:
   - nf-test.config
 ```
 
-#### `_abc_impl{:python}`_= <\_abc.\_abc_data object>_
+#### `_abc_impl{:python}`_= <\_abc.\_abc\_data object>_
 
 #### `actions_awsfulltest{:python}`_: bool | None_
 
@@ -353,7 +353,7 @@ Check that every parameter in the schema has a description.
 
 #### `schema_lint{:python}`_: bool | None_
 
-Lint nextflow_schema.json file
+Lint nextflow\_schema.json file
 
 #### `schema_params{:python}`_: bool | None_
 
@@ -410,7 +410,7 @@ A list of files found during the linting process.
 
 #### `git_sha{:python}`
 
-The git sha for the repo commit / current GitHub pull-request ($GITHUB_PR_COMMIT)
+The git sha for the repo commit / current GitHub pull-request ($GITHUB\_PR\_COMMIT)
 
 - **Type:**
   str
@@ -491,7 +491,7 @@ Bases: `Validator`
 
 Validator for file path specified as –singularity-cache-index argument in nf-core pipelines download
 
-#### `_abc_impl{:python}`_= <\_abc.\_abc_data object>_
+#### `_abc_impl{:python}`_= <\_abc.\_abc\_data object>_
 
 #### `validate(document) → None{:python}`
 
@@ -509,10 +509,10 @@ Sends a HTTP GET request to the Anaconda remote API.
 
 - **Parameters:**
   - **dep** (_str_) – A conda package name.
-  - **dep_channels** (_list_) – list of conda channels to use
+  - **dep\_channels** (_list_) – list of conda channels to use
 - **Raises:**
   - **A LookupError**\*\*,\*\* **if the connection fails** **or** **times out** **or** **gives an unexpected status code** –
-  - **A ValueError**\*\*,\*\* **if the package name can not be found** **(\*\***404\***\*)** –
+  - **A ValueError**\*\*,\*\* **if the package name can not be found** **(****404****)** –
 
 ### `nf_core.utils.check_if_outdated(current_version=None, remote_version=None, source_url='https://nf-co.re/tools_version'){:python}`
 
@@ -523,10 +523,10 @@ Check if the current version of nf-core is outdated
 Check the version of Nextflow installed on the system.
 
 - **Parameters:**
-  - **minimal_nf_version** (_tuple_ \*\[\*_int_ _,_ _int_ _,_ _int_ _,_ _bool_ _]_) – The minimal version of Nextflow required.
+  - **minimal\_nf\_version** (_tuple_ \*\[\*_int_ _,_ _int_ _,_ _int_ _,_ _bool_ _]_) – The minimal version of Nextflow required.
   - **silent** (_bool_) – Whether to log the version or not.
 - **Returns:**
-  True if the installed version is greater than or equal to minimal_nf_version
+  True if the installed version is greater than or equal to minimal\_nf\_version
 - **Return type:**
   bool
 
@@ -544,8 +544,8 @@ Uses Nextflow to retrieve the the configuration variables
 from a Nextflow workflow.
 
 - **Parameters:**
-  - **wf_path** (_str_) – Nextflow workflow file system path.
-  - **cache_config** (_bool_) – cache configuration or not (def. True)
+  - **wf\_path** (_str_) – Nextflow workflow file system path.
+  - **cache\_config** (_bool_) – cache configuration or not (def. True)
 - **Returns:**
   Workflow configuration settings.
 - **Return type:**
@@ -571,7 +571,7 @@ Returns the most recent container versions by default.
 
 - **Raises:**
   - **A LookupError**\*\*,\*\* **if the connection fails** **or** **times out** **or** **gives an unexpected status code** –
-  - **A ValueError**\*\*,\*\* **if the package name can not be found** **(\*\***404\***\*)** –
+  - **A ValueError**\*\*,\*\* **if the package name can not be found** **(****404****)** –
 
 ### `nf_core.utils.get_first_available_path(directory: Path | str, paths: list[str]) → Path | None{:python}`
 
@@ -581,15 +581,15 @@ Get the version of Nextflow installed on the system. Cached for the lifetime of 
 
 ### `nf_core.utils.get_repo_commit(pipeline, commit_id){:python}`
 
-Check if the repo contains the requested commit_id, and expand it to long form if necessary.
+Check if the repo contains the requested commit\_id, and expand it to long form if necessary.
 
 - **Parameters:**
   - **pipeline** (_str_) – GitHub repo username/repo
-  - **commit_id** – The requested commit ID (SHA). It can be in standard long/short form, or any length.
+  - **commit\_id** – The requested commit ID (SHA). It can be in standard long/short form, or any length.
 - **Returns:**
   String or None
 - **Return type:**
-  commit_id
+  commit\_id
 
 ### `nf_core.utils.get_repo_releases_branches(pipeline, wfs){:python}`
 
@@ -597,11 +597,11 @@ Fetches details of a nf-core workflow to download.
 
 - **Parameters:**
   - **pipeline** (_str_) – GitHub repo username/repo
-  - **wfs** – A nf_core.pipelines.list.Workflows() object, where get_remote_workflows() has been called.
+  - **wfs** – A nf\_core.pipelines.list.Workflows() object, where get\_remote\_workflows() has been called.
 - **Returns:**
   Array of releases, Array of branches
 - **Return type:**
-  wf_releases, wf_branches (tuple)
+  wf\_releases, wf\_branches (tuple)
 - **Raises:**
   **LockupError**\*\*,\*\* **if the pipeline can not be found.** –
 
@@ -623,7 +623,7 @@ Checks if the specified directory have the minimum required files
 (‘main.nf’, ‘nextflow.config’) for a pipeline directory
 
 - **Parameters:**
-  **wf_path** (_str_) – The directory to be inspected
+  **wf\_path** (_str_) – The directory to be inspected
 - **Raises:**
   **UserWarning** – If one of the files are missing
 
@@ -631,7 +631,7 @@ Checks if the specified directory have the minimum required files
 
 Checks if a path is relative to another.
 
-Should mimic Path.is_relative_to which not available in Python < 3.9
+Should mimic Path.is\_relative\_to which not available in Python < 3.9
 
 path1 (Path | str): The path that could be a subpath
 path2 (Path | str): The path the could be the superpath
@@ -666,7 +666,7 @@ Sets the value in a nested dict using a list of keys to traverse
 
 ### `nf_core.utils.parse_anaconda_licence(anaconda_response, version=None){:python}`
 
-Given a response from the anaconda API using anaconda_package, parse the software licences.
+Given a response from the anaconda API using anaconda\_package, parse the software licences.
 
 Returns: Set of licence types
 
@@ -698,7 +698,7 @@ Return ‘ies’ if the input is not one or has not the length of one, else ‘y
 
 Poll the nf-core website API
 
-Takes argument api_url for URL
+Takes argument api\_url for URL
 
 Expects API response to be valid JSON and contain a top-level ‘status’ key.
 
@@ -709,8 +709,8 @@ Expects API response to be valid JSON and contain a top-level ‘status’ key.
 Prompt for pipeline release / branch
 
 - **Parameters:**
-  - **wf_releases** (_array_) – Array of repo releases as returned by the GitHub API
-  - **wf_branches** (_array_) – Array of repo branches, as returned by the GitHub API
+  - **wf\_releases** (_array_) – Array of repo releases as returned by the GitHub API
+  - **wf\_branches** (_array_) – Array of repo branches, as returned by the GitHub API
   - **multiple** (_bool_) – Allow selection of multiple releases & branches (for Seqera Platform)
 - **Returns:**
   Selected release / branch or False if no releases / branches available
@@ -722,7 +722,7 @@ Prompt for pipeline release / branch
 Prompt for the pipeline name with questionary
 
 - **Parameters:**
-  **wfs** – A nf_core.pipelines.list.Workflows() object, where get_remote_workflows() has been called.
+  **wfs** – A nf\_core.pipelines.list.Workflows() object, where get\_remote\_workflows() has been called.
 - **Returns:**
   GitHub repo - username/repo
 - **Return type:**
@@ -755,7 +755,7 @@ Context manager to create a tempdir and change into it, ensuring its removal and
 the original working directory on exit (including exceptions).
 
 - **Parameters:**
-  **base_dir** – Directory in which to create the tempdir. Defaults to the system temp location.
+  **base\_dir** – Directory in which to create the tempdir. Defaults to the system temp location.
 
 ### `nf_core.utils.setup_nfcore_cachedir(cache_fn: str | Path) → Path{:python}`
 
@@ -774,7 +774,7 @@ Sets up local caching for faster remote HTTP requests.
 Caching directory will be set up in the user’s home directory under
 a .config/nf-core/cache\_\* subdir.
 
-Uses requests_cache monkey patching.
+Uses requests\_cache monkey patching.
 Also returns the config dict so that we can use the same setup with a Session.
 
 ### `nf_core.utils.sort_dictionary(d: dict) → dict{:python}`
@@ -791,7 +791,7 @@ From Stack Overflow: <https://stackoverflow.com/a/14693789/713980>
 
 Remove paired quotes (single or double) from start and end of string.
 
-Uses ast.literal_eval to safely parse Python string literals, preserving
+Uses ast.literal\_eval to safely parse Python string literals, preserving
 the original string if it’s not a valid literal.
 
 Special handling for ruamel.yaml DoubleQuotedScalarString to preserve
@@ -807,7 +807,7 @@ strings that should not be converted to numbers (e.g., “123” stays as string
 Validates the md5 checksum of a file on disk.
 
 - **Parameters:**
-  - **file_name** (_str_) – Path to a local file.
+  - **file\_name** (_str_) – Path to a local file.
   - **expected** (_str_) – The expected md5sum.
 - **Raises:**
   **IOError**\*\*,\*\* **if the md5sum does not match the remote sum.** –
@@ -819,7 +819,7 @@ Display a command-line spinner while calling a function repeatedly.
 Keep waiting until that function returns True
 
 - **Parameters:**
-  - **poll_func** (_function_) – Function to call
-  - **refresh_per_second** (_int_) – Refresh this many times per second. Default: 20.
+  - **poll\_func** (_function_) – Function to call
+  - **refresh\_per\_second** (_int_) – Refresh this many times per second. Default: 20.
 - **Returns:**
   None. Just sits in an infinite loop until the function returns True.
