@@ -1,4 +1,4 @@
-# actions_schema_validation
+# actions\_schema\_validation
 
 #### `PipelineLint.actions_schema_validation() → dict[str, list[str]]{:python}`
 

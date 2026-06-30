@@ -1,4 +1,4 @@
-# subworkflow_changes
+# subworkflow\_changes
 
 #### `SubworkflowLint.subworkflow_changes(subworkflow){:python}`
 

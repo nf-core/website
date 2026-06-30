@@ -1,4 +1,4 @@
-# module_tests
+# module\_tests
 
 #### `ModuleLint.module_tests(module: NFCoreComponent, allow_missing: bool = False){:python}`
 
