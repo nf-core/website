@@ -49,11 +49,6 @@ These were some of the several key points that were raised, and what we talked a
 The general consensus was that an "assisted by" tag would be useful, and that in the end the human launching the agent should be responsible for the quality of the contribution.
 The reviewers should not be expected to verify the correctness of llm-generated content, and they are free to close PRs if they are not satisfied with the quality.
 
-#### Need for more specifications and documentation
-
-We discussed the need for more documentation and specifications about tools.
-This could go in `meta.yml` files so that AI and humans don't remove or misunderstand the underlying logic of modules.
-
 
 ### Configs strict syntax
 
