@@ -49,7 +49,6 @@ These were some of the several key points that were raised, and what we talked a
 The general consensus was that an "assisted by" tag would be useful, and that in the end the human launching the agent should be responsible for the quality of the contribution.
 The reviewers should not be expected to verify the correctness of llm-generated content, and they are free to close PRs if they are not satisfied with the quality.
 
-
 ### Configs strict syntax
 
 The configs repository is almost fully following strict syntax and passing Nextflow linting.
