@@ -95,7 +95,13 @@ function adjacentMonths(year: number, month: number, count: number, step: 1 | -1
 // ========================================
 
 /**
- * Get all months that have any newsletter content, sorted descending.
+ * Candidate newsletter months (the 1st-of-month dates a newsletter could be dated),
+ * sorted newest-first and limited to past/current months.
+ *
+ * Seeded from the months that *report* each piece of content rather than the months
+ * the content is dated in (see the seed helpers below), so the newsletter that renders
+ * a given item is always in the set. Callers still pass this through
+ * newsletterMonthHasContent to drop any candidate whose sections would all be empty.
  */
 export function getNewsletterMonths(
     blogPosts: { data: { pubDate: Date } }[],
@@ -104,31 +110,46 @@ export function getNewsletterMonths(
     advisories: { data: { publishedDate: Date } }[] = [],
 ): NewsletterMonth[] {
     const monthSet = new Set<string>();
+    const add = (year: number, month: number) => monthSet.add(`${year}-${month}`);
+
+    // A newsletter is *dated* the 1st of month M but reports the content it renders
+    // from other months, so we must seed the month that *reports* each item — not the
+    // month the item is dated in — or a newsletter can be missing its own content.
+    //
+    // Backward-looking content (blog posts, advisories, releases, new pipelines) from
+    // month X is reported by the newsletter dated X+1. This mirrors the `contentMonth`
+    // look-back in getNewsletterContentData / newsletterMonthHasContent.
+    const seedFromContent = (date: Date) => {
+        const [{ year, month }] = adjacentMonths(date.getUTCFullYear(), date.getUTCMonth() + 1, 1, 1);
+        add(year, month);
+    };
+    // Events are forward-looking: an event in month X appears in the newsletters dated
+    // X (this month) and X-1 (next month's "upcoming events").
+    const seedFromEvent = (date: Date) => {
+        add(date.getUTCFullYear(), date.getUTCMonth() + 1);
+        const [{ year, month }] = adjacentMonths(date.getUTCFullYear(), date.getUTCMonth() + 1, 1, -1);
+        add(year, month);
+    };
 
     for (const post of blogPosts) {
-        const d = new Date(post.data.pubDate);
-        monthSet.add(`${d.getUTCFullYear()}-${d.getUTCMonth() + 1}`);
+        seedFromContent(new Date(post.data.pubDate));
     }
 
     for (const event of events) {
-        const d = new Date(event.data.start);
-        monthSet.add(`${d.getUTCFullYear()}-${d.getUTCMonth() + 1}`);
+        seedFromEvent(new Date(event.data.start));
     }
 
     for (const advisory of advisories) {
-        const d = new Date(advisory.data.publishedDate);
-        monthSet.add(`${d.getUTCFullYear()}-${d.getUTCMonth() + 1}`);
+        seedFromContent(new Date(advisory.data.publishedDate));
     }
 
     for (const pipeline of pipelines) {
         for (const release of pipeline.releases) {
             if (release.tag_name === "dev") continue;
-            const d = new Date(release.published_at);
-            monthSet.add(`${d.getUTCFullYear()}-${d.getUTCMonth() + 1}`);
+            seedFromContent(new Date(release.published_at));
         }
-        // Also include month when pipeline was created
-        const created = new Date(pipeline.created_at);
-        monthSet.add(`${created.getUTCFullYear()}-${created.getUTCMonth() + 1}`);
+        // Also seed from the month the pipeline was created (new-pipeline section).
+        seedFromContent(new Date(pipeline.created_at));
     }
 
     const months: NewsletterMonth[] = [...monthSet].map((key) => {
