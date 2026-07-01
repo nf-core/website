@@ -22,7 +22,7 @@ test("getMonthName maps 1-indexed months to English names", () => {
     expect(getMonthName(12)).toBe("December");
 });
 
-test("getNewsletterMonths dedupes, sorts newest-first, and drops future months", () => {
+test("getNewsletterMonths seeds the reporting newsletter, dedupes, sorts newest-first, drops future months", () => {
     const future = new Date();
     future.setFullYear(future.getFullYear() + 5);
 
@@ -30,13 +30,19 @@ test("getNewsletterMonths dedupes, sorts newest-first, and drops future months",
         [blog("a", "2020-03-10"), blog("future", future.toISOString())],
         [evt("e", "2020-05-20")],
         [], // pipelines
-        [advisory("adv", "2020-05-02")], // same month as the event -> must dedupe
+        [advisory("adv", "2020-05-02")],
     );
 
-    // 2020-05 appears once despite event + advisory; future month excluded.
+    // Backward-looking content is reported by the *next* month's newsletter:
+    // the March blog -> April, the May advisory -> June.
+    expect(months).toContainEqual({ year: 2020, month: 4 });
+    expect(months).toContainEqual({ year: 2020, month: 6 });
+    // An event seeds its own month (this month) and the previous month (next
+    // month's "upcoming events"): the May event -> May and April.
     expect(months).toContainEqual({ year: 2020, month: 5 });
-    expect(months).toContainEqual({ year: 2020, month: 3 });
-    expect(months.filter((m) => m.year === 2020 && m.month === 5)).toHaveLength(1);
+    // April is seeded by both the March blog and the May event -> still one entry.
+    expect(months.filter((m) => m.year === 2020 && m.month === 4)).toHaveLength(1);
+    // Future months excluded.
     expect(months.some((m) => m.year === future.getFullYear())).toBe(false);
 
     // Sorted strictly newest-first.
