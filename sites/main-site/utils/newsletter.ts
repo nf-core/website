@@ -112,44 +112,41 @@ export function getNewsletterMonths(
     const monthSet = new Set<string>();
     const add = (year: number, month: number) => monthSet.add(`${year}-${month}`);
 
-    // A newsletter is *dated* the 1st of month M but reports the content it renders
-    // from other months, so we must seed the month that *reports* each item — not the
-    // month the item is dated in — or a newsletter can be missing its own content.
+    // A newsletter is *dated* the 1st of month M but reports content from adjacent months,
+    // so we seed the newsletter(s) that *report* each item rather than the month of the item.
     //
-    // Backward-looking content (blog posts, advisories, releases, new pipelines) from
-    // month X is reported by the newsletter dated X+1. This mirrors the `contentMonth`
-    // look-back in getNewsletterContentData / newsletterMonthHasContent.
-    const seedFromContent = (date: Date) => {
-        const [{ year, month }] = adjacentMonths(date.getUTCFullYear(), date.getUTCMonth() + 1, 1, 1);
-        add(year, month);
-    };
-    // Events are forward-looking: an event in month X appears in the newsletters dated
-    // X (this month) and X-1 (next month's "upcoming events").
-    const seedFromEvent = (date: Date) => {
-        add(date.getUTCFullYear(), date.getUTCMonth() + 1);
-        const [{ year, month }] = adjacentMonths(date.getUTCFullYear(), date.getUTCMonth() + 1, 1, -1);
-        add(year, month);
+    // offsets control which newsletter month(s) to seed relative to the item's month:
+    //   [1]     – backward-looking content (blog posts, advisories, releases, new pipelines):
+    //             month X is reported by the newsletter dated X+1.
+    //   [0, -1] – events: an event in month X appears in newsletters dated X (this month)
+    //             and X-1 (next month's "upcoming events").
+    const seedFrom = (date: Date, offsets: number[]) => {
+        const anchor = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), 1, 12));
+        for (const offset of offsets) {
+            const d = addMonths(anchor, offset);
+            add(d.getUTCFullYear(), d.getUTCMonth() + 1);
+        }
     };
 
     for (const post of blogPosts) {
-        seedFromContent(new Date(post.data.pubDate));
+        seedFrom(new Date(post.data.pubDate), [1]);
     }
 
     for (const event of events) {
-        seedFromEvent(new Date(event.data.start));
+        seedFrom(new Date(event.data.start), [0, -1]);
     }
 
     for (const advisory of advisories) {
-        seedFromContent(new Date(advisory.data.publishedDate));
+        seedFrom(new Date(advisory.data.publishedDate), [1]);
     }
 
     for (const pipeline of pipelines) {
         for (const release of pipeline.releases) {
             if (release.tag_name === "dev") continue;
-            seedFromContent(new Date(release.published_at));
+            seedFrom(new Date(release.published_at), [1]);
         }
         // Also seed from the month the pipeline was created (new-pipeline section).
-        seedFromContent(new Date(pipeline.created_at));
+        seedFrom(new Date(pipeline.created_at), [1]);
     }
 
     const months: NewsletterMonth[] = [...monthSet].map((key) => {
