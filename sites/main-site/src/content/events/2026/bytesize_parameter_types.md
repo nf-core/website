@@ -6,10 +6,11 @@ startDate: "2026-06-30"
 startTime: "13:00+02:00"
 endDate: "2026-06-30"
 endTime: "13:30+02:00"
+youtubeEmbed: https://youtu.be/jTI4Opo0IOY
 locations:
   - name: Online
     links:
-      - https://stockholmuniversity.zoom.us/j/66855293599
+      - https://youtu.be/jTI4Opo0IOY
 ---
 
 This week, Nicolas ([@nvnieuwk](https://github.com/nvnieuwk)) will talk about parameter typing in Nextflow strict syntax.
