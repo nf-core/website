@@ -35,7 +35,9 @@ const latest = months[0];
                 <a
                     href="https://www.linkedin.com/newsletters/nf-core-7474718981564706816/"
                     target="_blank"
-                    rel="noopener"><i class="fab fa-linkedin me-1"></i>LinkedIn</a
+                    rel="noopener"
+                >
+                    <i class="fab fa-linkedin mx-1"></i>LinkedIn</a
                 >.
             </p>
         </div>
@@ -44,7 +46,7 @@ const latest = months[0];
     {
         latest && (
             <div class="alert alert-success mb-4">
-                <strong>Latest newsletter:</strong>
+                <strong>Latest newsletter: </strong>
                 <a href={`/newsletter/${latest.year}/${String(latest.month).padStart(2, "0")}`}>
                     {getMonthName(latest.month)} {latest.year}
                 </a>
