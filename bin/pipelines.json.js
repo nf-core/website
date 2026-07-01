@@ -334,7 +334,7 @@ export const writePipelinesJson = async () => {
 
     // remove empty values from releases (usually from draft releases)
     releases = releases.filter((release) => release.tag_name !== "" && release.draft === false);
-
+    console.log(`Releases for ${name}:`, releases.map((release) => release.tag_name));
     // remove releases that are already in the pipelines.json file
     const pipelineIndex = pipelines.remote_workflows.findIndex((workflow) => workflow.name === name);
     let new_releases = releases;
@@ -469,6 +469,10 @@ export const writePipelinesJson = async () => {
 
       data[`${branch}_nextflow_config_plugins`] = nextflowConfig.plugins;
       data[`${branch}_nextflow_config_manifest`] = nextflowConfig.manifest;
+
+      // Check if the root main.nf file declares a `params {` block
+      const mainNf = await getGitHubFile(name, "main.nf", branch);
+      data[`${branch}_uses_params_block`] = mainNf ? /params\s*\{/.test(mainNf) : false;
     }
 
     new_releases = await Promise.all(
