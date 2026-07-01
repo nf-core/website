@@ -95,13 +95,11 @@ function adjacentMonths(year: number, month: number, count: number, step: 1 | -1
 // ========================================
 
 /**
- * Candidate newsletter months (the 1st-of-month dates a newsletter could be dated),
- * sorted newest-first and limited to past/current months.
+ * Candidate newsletter months, sorted newest-first and limited to past/current months.
  *
- * Seeded from the months that *report* each piece of content rather than the months
- * the content is dated in (see the seed helpers below), so the newsletter that renders
- * a given item is always in the set. Callers still pass this through
- * newsletterMonthHasContent to drop any candidate whose sections would all be empty.
+ * Seeded from the months that *report* each item, not the months it's dated in, so the
+ * newsletter that renders an item is always in the set. Callers filter this further with
+ * newsletterMonthHasContent to drop candidates whose sections would all be empty.
  */
 export function getNewsletterMonths(
     blogPosts: { data: { pubDate: Date } }[],
@@ -112,14 +110,9 @@ export function getNewsletterMonths(
     const monthSet = new Set<string>();
     const add = (year: number, month: number) => monthSet.add(`${year}-${month}`);
 
-    // A newsletter is *dated* the 1st of month M but reports content from adjacent months,
-    // so we seed the newsletter(s) that *report* each item rather than the month of the item.
-    //
-    // offsets control which newsletter month(s) to seed relative to the item's month:
-    //   [1]     – backward-looking content (blog posts, advisories, releases, new pipelines):
-    //             month X is reported by the newsletter dated X+1.
-    //   [0, -1] – events: an event in month X appears in newsletters dated X (this month)
-    //             and X-1 (next month's "upcoming events").
+    // Seeds the newsletter month(s) an item's month is reported in, relative to its own month:
+    //   [1]     – content (posts, advisories, releases, new pipelines): month X → newsletter X+1.
+    //   [0, -1] – events: month X → newsletters X (this month) and X-1 (upcoming events).
     const seedFrom = (date: Date, offsets: number[]) => {
         const anchor = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), 1, 12));
         for (const offset of offsets) {
@@ -170,14 +163,10 @@ export function getNewsletterMonths(
 /**
  * Whether the newsletter dated the 1st of (year, month) would render any content.
  *
- * The candidate-month set above is seeded from the months that content lands in,
- * but a newsletter looks *back* at the previous calendar month (blog posts,
- * advisories, releases, new pipelines, recent events, proposals) and *forward* at
- * this + next month (upcoming events). That offset means a seeded month can end up
- * with every section empty — e.g. a lone advisory dated in a month whose preceding
- * month has nothing. This mirrors the section gating in NewsletterLayout so we only
- * keep months where at least one section would actually render, and never publish a
- * page that is just the header and footer.
+ * A newsletter looks *back* a month (posts, advisories, releases, new pipelines, recent
+ * events, proposals) and *forward* (upcoming events), so a seeded candidate month can still
+ * end up empty — e.g. a lone advisory whose preceding month has nothing. This mirrors the
+ * section gating in NewsletterLayout so we never publish a page with just a header/footer.
  */
 export function newsletterMonthHasContent(
     blogPosts: { id: string; data: { pubDate: Date } }[],
