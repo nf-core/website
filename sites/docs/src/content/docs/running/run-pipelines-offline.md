@@ -79,7 +79,7 @@ See [Reference genomes](./reference-genomes) for more information.
 
 For more information about running nf-core pipelines offline, see:
 
-- Read the nf-core/tools [`pipeline download`](../nf-core-tools/cli/pipelines/download) subcommand documentation
+- Read the nf-core/tools [`pipeline download`](../docs/nf-core-tools/cli/pipelines/download) subcommand documentation
 - Watch the nf-core/bytesize: Running pipelines offline
 
   <!-- markdownlint-disable -->
