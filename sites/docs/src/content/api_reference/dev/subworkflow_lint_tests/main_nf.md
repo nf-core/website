@@ -17,8 +17,16 @@ The test checks for the following:
 
 The following checks are performed:
 
-- `main_nf_exists`: The `main.nf` file must exist.
-- `main_nf_script_outputs`: The workflow must have an `emit:` block.
-- `main_nf_version_emitted`: The subworkflow should emit a software version
-  channel. A warning is issued if no `versions` output is found (can be
-  ignored if the subworkflow uses topic channels).
+## main\_nf\_exists
+
+The `main.nf` file must exist.
+
+## main\_nf\_script\_outputs
+
+The workflow must have an `emit:` block.
+
+## main\_nf\_version\_emitted
+
+The subworkflow should emit a software version
+channel. A warning is issued if no `versions` output is found (can be
+ignored if the subworkflow uses topic channels).
