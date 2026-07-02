@@ -10,18 +10,35 @@ is sorted alphabetically.
 
 The following checks are performed:
 
-- `environment_yml_exists`: The `environment.yml` file must exist, unless the
-  module has a Dockerfile. If neither `environment.yml` nor a Dockerfile is
-  present, the test fails.
-- `environment_yml_dockerfile_conflict`: A module must not have both an
-  `environment.yml` and a Dockerfile; Remove the Dockerfile if present.
-- `environment_yml_valid`: The `environment.yml` must be valid according to
-  the JSON schema defined at <https://raw.githubusercontent.com/nf-core/modules/master/modules/environment-schema.json>.
-- `environment_yml_sorted`: The dependencies listed in `environment.yml`
-  must be sorted alphabetically. If they are not, they will be sorted
-  automatically.
-- `bioconda_version`: The version specified for each bioconda package must
-  be a valid, known version available in the bioconda channel.
-- `bioconda_latest`: Each bioconda package should be pinned to the latest
-  available version. A warning is raised (or the version updated if
-  `fix_version` is set) when a newer version exists.
+## environment\_yml\_exists
+
+The `environment.yml` file must exist, unless the
+module has a Dockerfile. If neither `environment.yml` nor a Dockerfile is
+present, the test fails.
+
+## environment\_yml\_dockerfile\_conflict
+
+A module must not have both an
+`environment.yml` and a Dockerfile; Remove the Dockerfile if present.
+
+## environment\_yml\_valid
+
+The `environment.yml` must be valid according to
+the JSON schema defined at <https://raw.githubusercontent.com/nf-core/modules/master/modules/environment-schema.json>.
+
+## environment\_yml\_sorted
+
+The dependencies listed in `environment.yml`
+must be sorted alphabetically. If they are not, they will be sorted
+automatically.
+
+## bioconda\_version
+
+The version specified for each bioconda package must
+be a valid, known version available in the bioconda channel.
+
+## bioconda\_latest
+
+Each bioconda package should be pinned to the latest
+available version. A warning is raised (or the version updated if
+`fix_version` is set) when a newer version exists.
