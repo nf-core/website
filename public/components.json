@@ -44712,6 +44712,28 @@
                 }
               }
             ]
+          ],
+          "versions_cuda": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cuda": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import torch; print(torch.version.cuda or 'no CUDA available')\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the CUDA version available to torch"
+                }
+              }
+            ]
           ]
         },
         "topics": {
@@ -44793,6 +44815,26 @@
                 "python -c 'import faiss; print(faiss.__version__)'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cuda": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import torch; print(torch.version.cuda or 'no CUDA available')\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the CUDA version available to torch"
                 }
               }
             ]
@@ -45124,11 +45166,12 @@
       "type": "module",
       "meta": {
         "name": "caddsv_get",
-        "description": "Download CADD-SV annotation resources and, optionally, SegmentNT model files.",
+        "description": "Download CADD-SV annotation resources or SegmentNT model files.",
         "keywords": [
           "caddsv",
           "structural variants",
           "annotations",
+          "segmentnt",
           "resource download"
         ],
         "tools": [
@@ -45146,13 +45189,22 @@
             }
           }
         ],
-        "input": [],
+        "input": [
+          {
+            "flag": {
+              "type": "string",
+              "description": "CADD-SV resource flag to download. Use `annotations` to download the CADD-SV annotation bundle, or `segmentnt` to download only the SegmentNT model files into `<annotations-dir>/segment_nt`.\n",
+              "pattern": "annotations|segmentnt",
+              "ontologies": []
+            }
+          }
+        ],
         "output": {
           "annotations": [
             {
               "caddsv_annotations": {
                 "type": "directory",
-                "description": "Directory containing downloaded CADD-SV annotations. If `--with-segmentnt` is supplied via `task.ext.args`, this directory will also contain the SegmentNT model files under `segment_nt/`.\n",
+                "description": "Directory containing downloaded CADD-SV resources. If `flag` is `annotations`, this contains the CADD-SV annotation bundle. If `flag` is `segmentnt`, this contains SegmentNT files under `segment_nt/`. If `flag` is `annotations` and `--with-segmentnt` is supplied via `task.ext.args`, this contains both resources.\n",
                 "pattern": "caddsv_annotations",
                 "ontologies": []
               }
@@ -189278,19 +189330,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mdust": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mdust": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "2006.10.17": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mdust": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "2006.10.17": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -324949,7 +325033,7 @@
                 }
               },
               {
-                "t_coffee -version | awk '{gsub(\"Version_\", \"\"); print \\$3}'": {
+                "t_coffee -version | sed -n 's/.*Version_\\([^ ]*\\).*/\\1/p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -324995,7 +325079,7 @@
                 }
               },
               {
-                "t_coffee -version | awk '{gsub(\"Version_\", \"\"); print \\$3}'": {
+                "t_coffee -version | sed -n 's/.*Version_\\([^ ]*\\).*/\\1/p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -325157,7 +325241,7 @@
                 }
               },
               {
-                "t_coffee -version | awk '{gsub(\"Version_\", \"\"); print \\$3}'": {
+                "t_coffee -version | sed -n 's/.*Version_\\([^ ]*\\).*/\\1/p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -325203,7 +325287,7 @@
                 }
               },
               {
-                "t_coffee -version | awk '{gsub(\"Version_\", \"\"); print \\$3}'": {
+                "t_coffee -version | sed -n 's/.*Version_\\([^ ]*\\).*/\\1/p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -325372,7 +325456,7 @@
                 }
               },
               {
-                "t_coffee -version | awk '{gsub(\"Version_\", \"\"); print \\$3}'": {
+                "t_coffee -version | sed -n 's/.*Version_\\([^ ]*\\).*/\\1/p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -325418,7 +325502,7 @@
                 }
               },
               {
-                "t_coffee -version | awk '{gsub(\"Version_\", \"\"); print \\$3}'": {
+                "t_coffee -version | sed -n 's/.*Version_\\([^ ]*\\).*/\\1/p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -325523,19 +325607,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_tcoffee": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "tcoffee": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "t_coffee -version | sed -n 's/.*Version_\\([^ ]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "tcoffee": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "t_coffee -version | sed -n 's/.*Version_\\([^ ]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -325677,7 +325793,7 @@
                 }
               },
               {
-                "t_coffee -version | awk '{gsub(\"Version_\", \"\"); print \\$3}'": {
+                "t_coffee -version | sed -n 's/.*Version_\\([^ ]*\\).*/\\1/p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -325723,7 +325839,7 @@
                 }
               },
               {
-                "t_coffee -version | awk '{gsub(\"Version_\", \"\"); print \\$3}'": {
+                "t_coffee -version | sed -n 's/.*Version_\\([^ ]*\\).*/\\1/p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -325922,7 +326038,7 @@
                 }
               },
               {
-                "t_coffee -version | awk '{gsub(\"Version_\", \"\"); print \\$3}'": {
+                "t_coffee -version | sed -n 's/.*Version_\\([^ ]*\\).*/\\1/p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -325968,7 +326084,7 @@
                 }
               },
               {
-                "t_coffee -version | awk '{gsub(\"Version_\", \"\"); print \\$3}'": {
+                "t_coffee -version | sed -n 's/.*Version_\\([^ ]*\\).*/\\1/p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -326073,19 +326189,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_tcoffee": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "tcoffee": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "t_coffee -version | sed -n 's/.*Version_\\([^ ]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "tcoffee": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "t_coffee -version | sed -n 's/.*Version_\\([^ ]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -326234,7 +326382,7 @@
                 }
               },
               {
-                "t_coffee -version | awk '{gsub(\"Version_\", \"\"); print \\$3}'": {
+                "t_coffee -version | sed -n 's/.*Version_\\([^ ]*\\).*/\\1/p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -326280,7 +326428,7 @@
                 }
               },
               {
-                "t_coffee -version | awk '{gsub(\"Version_\", \"\"); print \\$3}'": {
+                "t_coffee -version | sed -n 's/.*Version_\\([^ ]*\\).*/\\1/p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -339845,19 +339993,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_varscan": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "varscan": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "varscan 2>&1 | sed -n 's/VarScan v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "varscan": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "varscan 2>&1 | sed -n 's/VarScan v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -340074,19 +340254,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_varscan": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "varscan": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "varscan 2>&1 | sed -n 's/VarScan v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "varscan": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "varscan 2>&1 | sed -n 's/VarScan v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -340212,19 +340424,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_varscan": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "varscan": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "varscan 2>&1 | sed -n 's/VarScan v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "varscan": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "varscan 2>&1 | sed -n 's/VarScan v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
