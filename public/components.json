@@ -199185,6 +199185,394 @@
       ]
     },
     {
+      "name": "minibwa_index",
+      "path": "modules/nf-core/minibwa/index/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "minibwa_index",
+        "description": "Create a minibwa index for a reference genome",
+        "keywords": [
+          "index",
+          "fasta",
+          "genome",
+          "reference"
+        ],
+        "tools": [
+          {
+            "minibwa": {
+              "description": "Aligning short and accurate long reads to a reference genome, a reimplementation of bwa-mem.",
+              "homepage": "https://github.com/lh3/minibwa",
+              "documentation": "https://github.com/lh3/minibwa",
+              "tool_dev_url": "https://github.com/lh3/minibwa",
+              "licence": [
+                "GPL-2.0-or-later"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input genome fasta file",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "minibwa": {
+                  "type": "directory",
+                  "description": "minibwa genome index files",
+                  "pattern": "*.{l2b,mbw}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3210"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_minibwa": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "minibwa": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "minibwa version | grep -o -E \"[0-9]+(\\.[0-9]+)+\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "minibwa": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "minibwa version | grep -o -E \"[0-9]+(\\.[0-9]+)+\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@nh13"
+        ],
+        "maintainers": [
+          "@nh13"
+        ]
+      }
+    },
+    {
+      "name": "minibwa_map",
+      "path": "modules/nf-core/minibwa/map/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "minibwa_map",
+        "description": "Align fastq reads to a fasta reference using minibwa",
+        "keywords": [
+          "map",
+          "mem",
+          "alignment",
+          "fastq",
+          "bam",
+          "sam"
+        ],
+        "tools": [
+          {
+            "minibwa": {
+              "description": "Aligning short and accurate long reads to a reference genome, a reimplementation of bwa-mem.",
+              "homepage": "https://github.com/lh3/minibwa",
+              "documentation": "https://github.com/lh3/minibwa",
+              "tool_dev_url": "https://github.com/lh3/minibwa",
+              "licence": [
+                "GPL-2.0-or-later"
+              ],
+              "identifier": ""
+            }
+          },
+          {
+            "samtools": {
+              "description": "Tools for dealing with SAM, BAM and CRAM files",
+              "homepage": "http://www.htslib.org",
+              "documentation": "http://www.htslib.org/doc/samtools.html",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:samtools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference/index information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "minibwa genome index files",
+                "pattern": "Directory containing minibwa index *.{l2b,mbw}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3210"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome in FASTA format",
+                "pattern": "*.{fa,fasta,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "sort_bam": {
+              "type": "boolean",
+              "description": "use samtools sort (true) or samtools view (false)",
+              "pattern": "true or false"
+            }
+          }
+        ],
+        "output": {
+          "aligned": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.{sam,bam,cram}": {
+                  "type": "file",
+                  "description": "Output SAM/BAM/CRAM file containing read alignments",
+                  "pattern": "*.{sam,bam,cram}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2573"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3462"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.{bai,csi,crai}": {
+                  "type": "file",
+                  "description": "Index file for the aligned BAM/CRAM file",
+                  "pattern": "*.{bai,csi,crai}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_minibwa": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "minibwa": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "minibwa version | grep -o -E \"[0-9]+(\\.[0-9]+)+\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "minibwa": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "minibwa version | grep -o -E \"[0-9]+(\\.[0-9]+)+\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@nh13"
+        ],
+        "maintainers": [
+          "@nh13"
+        ]
+      }
+    },
+    {
       "name": "minimac4_compressref",
       "path": "modules/nf-core/minimac4/compressref/meta.yml",
       "type": "module",
