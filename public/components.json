@@ -103993,6 +103993,288 @@
       ]
     },
     {
+      "name": "ferrohgvs_normalize",
+      "path": "modules/nf-core/ferrohgvs/normalize/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ferrohgvs_normalize",
+        "description": "Normalize HGVS variant descriptions to canonical form with ferro",
+        "keywords": [
+          "hgvs",
+          "variant",
+          "normalize",
+          "nomenclature",
+          "canonical"
+        ],
+        "tools": [
+          {
+            "ferrohgvs": {
+              "description": "A Rust library and CLI for parsing, validating, and normalizing HGVS variant descriptions.",
+              "homepage": "https://github.com/fulcrumgenomics/ferro-hgvs",
+              "documentation": "https://github.com/fulcrumgenomics/ferro-hgvs",
+              "tool_dev_url": "https://github.com/fulcrumgenomics/ferro-hgvs",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "variants": {
+                "type": "file",
+                "description": "Text file of HGVS variant descriptions, one per line",
+                "pattern": "*.{txt,tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2330"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'reference' ]\n"
+              }
+            },
+            {
+              "reference": {
+                "type": "directory",
+                "description": "Optional reference data directory produced by `ferro prepare`. If omitted,\nnormalization uses the built-in provider for basic single-exon variants.\n"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "normalized": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.${suffix}": {
+                  "type": "file",
+                  "description": "Normalized variants (text or JSON), one record per input variant",
+                  "pattern": "*.{txt,json}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_ferrohgvs": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ferrohgvs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ferro --version | sed 's/^ferro //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ferrohgvs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ferro --version | sed 's/^ferro //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@nh13"
+        ],
+        "maintainers": [
+          "@nh13"
+        ]
+      }
+    },
+    {
+      "name": "ferrohgvs_parse",
+      "path": "modules/nf-core/ferrohgvs/parse/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ferrohgvs_parse",
+        "description": "Parse and validate HGVS variant descriptions with ferro",
+        "keywords": [
+          "hgvs",
+          "variant",
+          "parse",
+          "validation",
+          "nomenclature"
+        ],
+        "tools": [
+          {
+            "ferrohgvs": {
+              "description": "A Rust library and CLI for parsing, validating, and normalizing HGVS variant descriptions.",
+              "homepage": "https://github.com/fulcrumgenomics/ferro-hgvs",
+              "documentation": "https://github.com/fulcrumgenomics/ferro-hgvs",
+              "tool_dev_url": "https://github.com/fulcrumgenomics/ferro-hgvs",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "variants": {
+                "type": "file",
+                "description": "Text file of HGVS variant descriptions, one per line",
+                "pattern": "*.{txt,tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2330"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "parsed": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.${suffix}": {
+                  "type": "file",
+                  "description": "Parse results (text or JSON), one record per input variant",
+                  "pattern": "*.{txt,json}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_ferrohgvs": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ferrohgvs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ferro --version | sed 's/^ferro //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ferrohgvs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ferro --version | sed 's/^ferro //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@nh13"
+        ],
+        "maintainers": [
+          "@nh13"
+        ]
+      }
+    },
+    {
       "name": "ffq",
       "path": "modules/nf-core/ffq/meta.yml",
       "type": "module",
@@ -158972,6 +159254,653 @@
         ],
         "maintainers": [
           "@sysbiocoder"
+        ]
+      }
+    },
+    {
+      "name": "holodeck_eval",
+      "path": "modules/nf-core/holodeck/eval/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "holodeck_eval",
+        "description": "Evaluate alignment accuracy of holodeck-simulated reads",
+        "keywords": [
+          "simulation",
+          "evaluation",
+          "alignment",
+          "accuracy",
+          "benchmarking"
+        ],
+        "tools": [
+          {
+            "holodeck": {
+              "description": "Modern NGS read simulator written in Rust.",
+              "homepage": "https://github.com/fg-labs/holodeck",
+              "documentation": "https://github.com/fg-labs/holodeck",
+              "tool_dev_url": "https://github.com/fg-labs/holodeck",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM file of mapped reads to evaluate",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "truth": {
+                "type": "file",
+                "description": "Optional golden BAM with truth alignments. If omitted, truth positions\nare parsed from the simulated read names.\n",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "eval": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.eval.txt": {
+                  "type": "file",
+                  "description": "Placement accuracy report stratified by MAPQ bin",
+                  "pattern": "*.eval.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_holodeck": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "holodeck": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "holodeck --version | sed 's/^holodeck //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "holodeck": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "holodeck --version | sed 's/^holodeck //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@nh13"
+        ],
+        "maintainers": [
+          "@nh13"
+        ]
+      }
+    },
+    {
+      "name": "holodeck_methylate",
+      "path": "modules/nf-core/holodeck/methylate/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "holodeck_methylate",
+        "description": "Generate a methylation-annotated VCF from a reference genome with holodeck",
+        "keywords": [
+          "simulation",
+          "vcf",
+          "methylation",
+          "bisulfite",
+          "benchmarking"
+        ],
+        "tools": [
+          {
+            "holodeck": {
+              "description": "Modern NGS read simulator written in Rust.",
+              "homepage": "https://github.com/fg-labs/holodeck",
+              "documentation": "https://github.com/fg-labs/holodeck",
+              "tool_dev_url": "https://github.com/fg-labs/holodeck",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome in FASTA format",
+                "pattern": "*.{fa,fasta,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Reference genome FASTA index (.fai)",
+                "pattern": "*.fai",
+                "ontologies": []
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "Optional VCF of phased variants to annotate with methylation",
+                "pattern": "*.{vcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.vcf.gz": {
+                  "type": "file",
+                  "description": "Methylation-annotated VCF (MT/MB FORMAT fields)",
+                  "pattern": "*.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_holodeck": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "holodeck": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "holodeck --version | sed 's/^holodeck //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "holodeck": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "holodeck --version | sed 's/^holodeck //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@nh13"
+        ],
+        "maintainers": [
+          "@nh13"
+        ]
+      }
+    },
+    {
+      "name": "holodeck_mutate",
+      "path": "modules/nf-core/holodeck/mutate/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "holodeck_mutate",
+        "description": "Generate a VCF of random mutations from a reference genome with holodeck",
+        "keywords": [
+          "simulation",
+          "vcf",
+          "mutations",
+          "variants",
+          "benchmarking"
+        ],
+        "tools": [
+          {
+            "holodeck": {
+              "description": "Modern NGS read simulator written in Rust.",
+              "homepage": "https://github.com/fg-labs/holodeck",
+              "documentation": "https://github.com/fg-labs/holodeck",
+              "tool_dev_url": "https://github.com/fg-labs/holodeck",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome in FASTA format",
+                "pattern": "*.{fa,fasta,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Reference genome FASTA index (.fai)",
+                "pattern": "*.fai",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.vcf": {
+                  "type": "file",
+                  "description": "VCF of simulated mutations",
+                  "pattern": "*.vcf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_holodeck": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "holodeck": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "holodeck --version | sed 's/^holodeck //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "holodeck": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "holodeck --version | sed 's/^holodeck //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@nh13"
+        ],
+        "maintainers": [
+          "@nh13"
+        ]
+      }
+    },
+    {
+      "name": "holodeck_simulate",
+      "path": "modules/nf-core/holodeck/simulate/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "holodeck_simulate",
+        "description": "Simulate sequencing reads from a reference genome with holodeck",
+        "keywords": [
+          "simulation",
+          "fastq",
+          "reads",
+          "sequencing",
+          "benchmarking"
+        ],
+        "tools": [
+          {
+            "holodeck": {
+              "description": "Modern NGS read simulator written in Rust.",
+              "homepage": "https://github.com/fg-labs/holodeck",
+              "documentation": "https://github.com/fg-labs/holodeck",
+              "tool_dev_url": "https://github.com/fg-labs/holodeck",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome in FASTA format",
+                "pattern": "*.{fa,fasta,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Reference genome FASTA index (.fai)",
+                "pattern": "*.fai",
+                "ontologies": []
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "Optional VCF of variants to embed in the simulated reads",
+                "pattern": "*.{vcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "reads_1": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.r1.fastq.gz": {
+                  "type": "file",
+                  "description": "Simulated R1 (or single-end) reads",
+                  "pattern": "*.r1.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "reads_2": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.r2.fastq.gz": {
+                  "type": "file",
+                  "description": "Simulated R2 reads (paired-end only)",
+                  "pattern": "*.r2.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "golden_bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.golden.bam": {
+                  "type": "file",
+                  "description": "Ground-truth BAM with the true alignments of the simulated reads",
+                  "pattern": "*.golden.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "golden_vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.golden.vcf.gz": {
+                  "type": "file",
+                  "description": "Ground-truth VCF annotated with simulated coverage",
+                  "pattern": "*.golden.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_holodeck": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "holodeck": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "holodeck --version | sed 's/^holodeck //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "holodeck": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "holodeck --version | sed 's/^holodeck //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@nh13"
+        ],
+        "maintainers": [
+          "@nh13"
         ]
       }
     },
