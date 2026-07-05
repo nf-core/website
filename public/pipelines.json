@@ -57265,10 +57265,10 @@
                     "avatar_url": "https://avatars.githubusercontent.com/u/7884825?v=4"
                 }
             ],
-            "released_after_tools": false,
+            "released_after_tools": true,
             "head_sha": "3fc17b4f971a89e47c88337de71d0e777ffad8cc",
-            "last_release_is_head": false,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/scrnaseq/compare/3fc17b4f971a89e47c88337de71d0e777ffad8cc...f7bf36d7c7e4bddc5302c3facd8d19ca83e22226",
+            "last_release_is_head": true,
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/scrnaseq/compare/3fc17b4f971a89e47c88337de71d0e777ffad8cc...3fc17b4f971a89e47c88337de71d0e777ffad8cc",
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": true,
@@ -57288,6 +57288,54 @@
             },
             "dev_uses_params_block": false,
             "releases": [
+                {
+                    "tag_name": "4.2.0",
+                    "published_at": "2026-07-04T07:40:45Z",
+                    "tag_sha": "3fc17b4f971a89e47c88337de71d0e777ffad8cc",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "anndata_barcodes",
+                            "cellbender_removebackground",
+                            "cellranger_count",
+                            "cellranger_mkgtf",
+                            "cellranger_mkref",
+                            "cellranger_mkvdjref",
+                            "cellranger_multi",
+                            "cellrangerarc_count",
+                            "cellrangerarc_mkgtf",
+                            "cellrangerarc_mkref",
+                            "fastqc",
+                            "gawk",
+                            "gffread",
+                            "gunzip",
+                            "kallistobustools_count",
+                            "kallistobustools_ref",
+                            "multiqc",
+                            "qcatch",
+                            "simpleaf_index",
+                            "simpleaf_quant",
+                            "star_genomegenerate",
+                            "unzip"
+                        ],
+                        "subworkflows": [
+                            "h5ad_removebackground_barcodes_cellbender_anndata",
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfschema_plugin"
+                        ]
+                    },
+                    "nextflow_version": "!>=25.10.4",
+                    "nf_core_version": "4.0.2",
+                    "plugins": [
+                        "nf-schema@2.5.1"
+                    ],
+                    "co2footprint_files": null
+                },
                 {
                     "tag_name": "4.1.0",
                     "published_at": "2025-10-30T19:52:05Z",
