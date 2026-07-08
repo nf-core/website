@@ -1,6 +1,343 @@
 {
   "modules": [
     {
+      "name": "aardvark_compare",
+      "path": "modules/nf-core/aardvark/compare/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "aardvark_compare",
+        "description": "A tool to evaluate variant calling performance by comparing a query VCF against a truth VCF.",
+        "keywords": [
+          "variant calling",
+          "benchmarking",
+          "vcf",
+          "comparison",
+          "consensus"
+        ],
+        "tools": [
+          {
+            "aardvark": {
+              "description": "A benchmarking tool that constructs haplotype sequences and it enables basepair-level\ncomparisons that work across all variant types. The program evaluates genotypes using traditional,\nstrict exact-match scoring, while also allowing for implicit partial credit when variant calls are an\ninexact but close match.      \n",
+              "homepage": "https://github.com/PacificBiosciences/aardvark",
+              "documentation": "https://github.com/PacificBiosciences/aardvark/blob/main/docs/methods.md#compare-command",
+              "tool_dev_url": "https://github.com/PacificBiosciences/aardvark",
+              "doi": "10.1101/2025.10.03.680257",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:aardvark"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "query_vcf": {
+                "type": "file",
+                "description": "Query VCF file to be benchmarked",
+                "pattern": "*.{vcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            },
+            {
+              "query_vcf_tbi": {
+                "type": "file",
+                "description": "Index for the query VCF file",
+                "pattern": "*.{vcf.gz.tbi,vcf.gz.csi}"
+              }
+            },
+            {
+              "truth_vcf": {
+                "type": "file",
+                "description": "Truth VCF file containing the ground truth baseline",
+                "pattern": "*.{vcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            },
+            {
+              "truth_vcf_tbi": {
+                "type": "file",
+                "description": "Index for the truth VCF file",
+                "pattern": "*.{vcf.gz.tbi,vcf.gz.csi}"
+              }
+            },
+            {
+              "regions_bed": {
+                "type": "file",
+                "description": "Regions BED file containing genomic regions to restrict the evaluation",
+                "pattern": "*.{bed}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3586"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference fasta information"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome fasta file",
+                "pattern": "*.{fasta,fa,fasta.gz,fa.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing stratification TSV information"
+              }
+            },
+            {
+              "stratification_tsv": {
+                "type": "file",
+                "description": "Optional TSV file defining stratification regions for fine grained benchmarking",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing stratification BEDs information"
+              }
+            },
+            {
+              "stratification_beds": {
+                "type": "file",
+                "description": "Optional BED files corresponding to the regions defined in the stratification TSV",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3586"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "summary": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.summary.tsv": {
+                  "type": "file",
+                  "description": "Global summary statistics of the variant comparison",
+                  "pattern": "*.summary.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "labelled_truth": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.truth.vcf.gz": {
+                  "type": "file",
+                  "description": "Truth VCF file annotated with evaluation results",
+                  "pattern": "*.truth.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "labelled_query": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.query.vcf.gz": {
+                  "type": "file",
+                  "description": "Query VCF file annotated with evaluation results",
+                  "pattern": "*.query.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "runinfo": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.json": {
+                  "type": "file",
+                  "description": "JSON file containing parameter settings used during the run",
+                  "pattern": "*.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "region_sequences": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.region_sequences.tsv.gz": {
+                  "type": "file",
+                  "description": "Sequence level output for specific evaluated regions",
+                  "pattern": "*.region_sequences.tsv.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "region_summary": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.region_summary.tsv.gz": {
+                  "type": "file",
+                  "description": "Summary statistics broken down by individual genomic regions",
+                  "pattern": "*.region_summary.tsv.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_aardvark": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "aardvark": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "aardvark compare --version 2>&1 | sed 's/aardvark-bio-compare //; s/-conda//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "aardvark": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "aardvark compare --version 2>&1 | sed 's/aardvark-bio-compare //; s/-conda//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@kubranarci"
+        ],
+        "maintainers": [
+          "@kubranarci"
+        ]
+      }
+    },
+    {
       "name": "abacas",
       "path": "modules/nf-core/abacas/meta.yml",
       "type": "module",
@@ -16763,6 +17100,28 @@
                   "type": "file",
                   "description": "genome statistics and annotation summary",
                   "pattern": "*.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}.json": {
+                  "type": "file",
+                  "description": "Machine-readable genome annotation output in JSON format,\nincluding genome metadata, annotated genomic features,          \n",
+                  "pattern": "*.json",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3475"
@@ -50552,12 +50911,20 @@
               }
             }
           ],
-          {
-            "reference": {
-              "type": "directory",
-              "description": "Folder containing all the reference indices needed by Cell Ranger"
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "reference": {
+                "type": "directory",
+                "description": "Folder containing all the reference indices needed by Cell Ranger"
+              }
             }
-          }
+          ]
         ],
         "output": {
           "outs": [
@@ -50902,24 +51269,40 @@
           }
         ],
         "input": [
-          {
-            "gtf": {
-              "type": "file",
-              "description": "The reference GTF transcriptome file",
-              "pattern": "*.gtf",
-              "ontologies": []
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "gtf": {
+                "type": "file",
+                "description": "The reference GTF transcriptome file",
+                "pattern": "*.gtf",
+                "ontologies": []
+              }
             }
-          }
+          ]
         ],
         "output": {
           "gtf": [
-            {
-              "*.gtf": {
-                "type": "directory",
-                "description": "The filtered GTF transcriptome file",
-                "pattern": "*.filtered.gtf"
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing reference information"
+                }
+              },
+              {
+                "${prefix}.gtf": {
+                  "type": "file",
+                  "description": "The filtered GTF transcriptome file",
+                  "pattern": "*.filtered.gtf"
+                }
               }
-            }
+            ]
           ],
           "versions_cellranger": [
             [
@@ -51011,22 +51394,38 @@
           }
         ],
         "input": [
-          {
-            "fasta": {
-              "type": "file",
-              "description": "Reference genome FASTA file",
-              "pattern": "*.{fasta,fa}",
-              "ontologies": []
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome FASTA file",
+                "pattern": "*.{fasta,fa}",
+                "ontologies": []
+              }
             }
-          },
-          {
-            "gtf": {
-              "type": "file",
-              "description": "Reference transcriptome GTF file",
-              "pattern": "*.gtf",
-              "ontologies": []
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "gtf": {
+                "type": "file",
+                "description": "Reference transcriptome GTF file",
+                "pattern": "*.gtf",
+                "ontologies": []
+              }
             }
-          },
+          ],
           {
             "reference_name": {
               "type": "string",
@@ -51037,12 +51436,20 @@
         ],
         "output": {
           "reference": [
-            {
-              "${reference_name}": {
-                "type": "directory",
-                "description": "Folder containing all the reference indices needed by Cell Ranger"
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing reference information"
+                }
+              },
+              {
+                "${reference_name}": {
+                  "type": "directory",
+                  "description": "Folder containing all the reference indices needed by Cell Ranger"
+                }
               }
-            }
+            ]
           ],
           "versions_cellranger": [
             [
@@ -51408,13 +51815,21 @@
               }
             }
           ],
-          {
-            "gex_reference": {
-              "type": "directory",
-              "description": "Folder containing Cellranger gene expression reference. Can also be a gzipped tarball",
-              "pattern": "*.tar.gz"
+          [
+            {
+              "meta8": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "gex_reference": {
+                "type": "directory",
+                "description": "Folder containing Cellranger gene expression reference. Can also be a gzipped tarball",
+                "pattern": "*.tar.gz"
+              }
             }
-          },
+          ],
           {
             "gex_frna_probeset": {
               "type": "file",
@@ -134090,6 +134505,133 @@
       }
     },
     {
+      "name": "gcta_makebksparse",
+      "path": "modules/nf-core/gcta/makebksparse/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gcta_makebksparse",
+        "description": "Create a sparse GRM from a dense GRM for downstream fastGWA analyses",
+        "keywords": [
+          "gcta",
+          "genome-wide complex trait analysis",
+          "grm",
+          "genetic relationship matrix",
+          "sparse",
+          "genetics"
+        ],
+        "tools": [
+          {
+            "gcta": {
+              "description": "Genome-wide Complex Trait Analysis (GCTA) estimates genetic relationships, variance components, and association statistics from genome-wide data.",
+              "homepage": "https://yanglab.westlake.edu.cn/software/gcta/",
+              "documentation": "https://yanglab.westlake.edu.cn/software/gcta/static/gcta_doc_latest.pdf",
+              "tool_dev_url": "https://yanglab.westlake.edu.cn/software/gcta/",
+              "licence": [
+                "GPL-3.0-only"
+              ],
+              "identifier": "biotools:gcta"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy map containing dense GRM metadata\ne.g. `[ id:'plink_simulated' ]`\n`meta.id` is required and is the dense GRM basename contract used by `gcta --grm`.\nInput files must therefore be staged as `<meta.id>.grm.id`, `<meta.id>.grm.bin`, and `<meta.id>.grm.N.bin`.\n"
+              }
+            },
+            {
+              "grm_files": {
+                "type": "file",
+                "description": "Dense GRM sidecar files",
+                "pattern": "*.grm.{id,bin,N.bin}",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "cutoff": {
+              "type": "float",
+              "description": "Sparse GRM cutoff passed to `--make-bK-sparse`"
+            }
+          }
+        ],
+        "output": {
+          "sparse_grm_files": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy map containing the unchanged input metadata\ne.g. `[ id:'plink_simulated' ]`\nThe sparse GRM basename is represented by the emitted file names, typically `<prefix>_sp.grm.id` and `<prefix>_sp.grm.sp`.\n"
+                }
+              },
+              {
+                "*_sp.grm.*": {
+                  "type": "file",
+                  "description": "Sparse GRM sidecar files",
+                  "pattern": "*_sp.grm.{id,sp}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_gcta": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the version was collected from"
+                }
+              },
+              {
+                "gcta": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "gcta --version | sed -En 's/^[*] version v([0-9.]*).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The command used to retrieve the GCTA version"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the version was collected from"
+                }
+              },
+              {
+                "gcta": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "gcta --version | sed -En 's/^[*] version v([0-9.]*).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The command used to retrieve the GCTA version"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@lyh970817"
+        ],
+        "maintainers": [
+          "@lyh970817"
+        ]
+      }
+    },
+    {
       "name": "gcta_makegrm",
       "path": "modules/nf-core/gcta/makegrm/meta.yml",
       "type": "module",
@@ -212973,6 +213515,22 @@
             }
           ]
         },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
         "authors": [
           "@LuisHeinzlmeier"
         ],
@@ -246619,6 +247177,210 @@
       }
     },
     {
+      "name": "plink2_pmerge",
+      "path": "modules/nf-core/plink2/pmerge/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "plink2_pmerge",
+        "description": "Merge a second PLINK 2 fileset into the first and write a new combined PLINK 2 fileset",
+        "keywords": [
+          "plink2",
+          "pmerge",
+          "merge",
+          "fileset",
+          "quality control"
+        ],
+        "tools": [
+          {
+            "plink2": {
+              "description": "Whole genome association analysis toolset, designed to perform a range\nof basic, large-scale analyses in a computationally efficient manner\n",
+              "homepage": "http://www.cog-genomics.org/plink/2.0/",
+              "documentation": "http://www.cog-genomics.org/plink/2.0/data#pmerge",
+              "doi": "10.1186/s13742-015-0047-8",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "pgen": {
+                "type": "file",
+                "description": "PLINK 2 binary genotype table",
+                "pattern": "*.{pgen}",
+                "ontologies": []
+              }
+            },
+            {
+              "pvar": {
+                "type": "file",
+                "description": "PLINK 2 variant information file",
+                "pattern": "*.{pvar}",
+                "ontologies": []
+              }
+            },
+            {
+              "psam": {
+                "type": "file",
+                "description": "PLINK 2 sample information file",
+                "pattern": "*.{psam}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information for the second fileset\ne.g. [ id:'test2', single_end:false ]\n"
+              }
+            },
+            {
+              "pgen2": {
+                "type": "file",
+                "description": "PLINK 2 binary genotype table to merge in",
+                "pattern": "*.{pgen}",
+                "ontologies": []
+              }
+            },
+            {
+              "pvar2": {
+                "type": "file",
+                "description": "PLINK 2 variant information file to merge in",
+                "pattern": "*.{pvar}",
+                "ontologies": []
+              }
+            },
+            {
+              "psam2": {
+                "type": "file",
+                "description": "PLINK 2 sample information file to merge in",
+                "pattern": "*.{psam}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "pgen": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.pgen": {
+                  "type": "file",
+                  "description": "Merged PLINK 2 binary genotype table",
+                  "pattern": "*.{pgen}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "pvar": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.pvar": {
+                  "type": "file",
+                  "description": "Merged PLINK 2 variant information file",
+                  "pattern": "*.{pvar}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "psam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.psam": {
+                  "type": "file",
+                  "description": "Merged PLINK 2 sample information file",
+                  "pattern": "*.{psam}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_plink2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@lyh970817"
+        ],
+        "maintainers": [
+          "@lyh970817"
+        ]
+      }
+    },
+    {
       "name": "plink2_remove",
       "path": "modules/nf-core/plink2/remove/meta.yml",
       "type": "module",
@@ -249253,6 +250015,213 @@
         ],
         "maintainers": [
           "@davidebag"
+        ],
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink --version 2>&1 | sed 's/^PLINK v//;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "name": "plink_missing",
+      "path": "modules/nf-core/plink/missing/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "plink_missing",
+        "description": "Compute sample-based and variant-based missing genotype rates and write a new PLINK binary fileset",
+        "keywords": [
+          "plink",
+          "missingness",
+          "missing genotype rate",
+          "quality control"
+        ],
+        "tools": [
+          {
+            "plink": {
+              "description": "Whole genome association analysis toolset, designed to perform a range of basic, large-scale analyses in a computationally efficient manner.",
+              "homepage": "https://www.cog-genomics.org/plink",
+              "documentation": "https://www.cog-genomics.org/plink/1.9/basic_stats#missing",
+              "tool_dev_url": "https://www.cog-genomics.org/plink/1.9/dev",
+              "licence": [
+                "GPL"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "bed": {
+                "type": "file",
+                "description": "PLINK binary biallelic genotype table file",
+                "pattern": "*.{bed}",
+                "ontologies": []
+              }
+            },
+            {
+              "bim": {
+                "type": "file",
+                "description": "PLINK extended MAP file",
+                "pattern": "*.{bim}",
+                "ontologies": []
+              }
+            },
+            {
+              "fam": {
+                "type": "file",
+                "description": "PLINK sample information file",
+                "pattern": "*.{fam}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bed": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bed": {
+                  "type": "file",
+                  "description": "PLINK binary biallelic genotype table file",
+                  "pattern": "*.{bed}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "bim": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bim": {
+                  "type": "file",
+                  "description": "PLINK extended MAP file",
+                  "pattern": "*.{bim}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "fam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.fam": {
+                  "type": "file",
+                  "description": "PLINK sample information file",
+                  "pattern": "*.{fam}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "imiss": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.imiss": {
+                  "type": "file",
+                  "description": "Sample-based missing genotype report",
+                  "pattern": "*.{imiss}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "lmiss": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.lmiss": {
+                  "type": "file",
+                  "description": "Variant-based missing genotype report",
+                  "pattern": "*.{lmiss}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_plink": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink --version 2>&1 | sed 's/^PLINK v//;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@lyh970817"
+        ],
+        "maintainers": [
+          "@lyh970817"
         ],
         "topics": {
           "versions": [
@@ -335766,19 +336735,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_topas": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "topas": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "topas": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -336426,19 +337427,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_transdecoder": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "transdecoder": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "TransDecoder.LongOrfs --version | sed 's/TransDecoder.LongOrfs //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "transdecoder": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "TransDecoder.LongOrfs --version | sed 's/TransDecoder.LongOrfs //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -336574,19 +337607,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_transdecoder": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "transdecoder": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "TransDecoder.Predict --version | sed 's/TransDecoder.Predict //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "transdecoder": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "TransDecoder.Predict --version | sed 's/TransDecoder.Predict //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -339639,19 +340704,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_trycycler": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "trycycler": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "trycycler --version | sed 's/Trycycler v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "trycycler": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "trycycler --version | sed 's/Trycycler v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -339724,19 +340821,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_trycycler": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "trycycler": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "trycycler --version | sed 's/Trycycler v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "trycycler": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "trycycler --version | sed 's/Trycycler v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -339861,19 +340990,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_tsebra": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "tsebra": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.1.2.5": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "tsebra": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.1.2.5": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -369036,7 +370197,7 @@
       "type": "subworkflow",
       "meta": {
         "name": "fastq_align_chromap",
-        "description": "Align high throughput chromatin profiles using Chromap then sort with samtools",
+        "description": "Align high throughput chromatin profiles using Chromap, updating readgroups if neccessary and then sort with samtools",
         "keywords": [
           "align",
           "fasta",
@@ -369049,6 +370210,7 @@
         ],
         "components": [
           "chromap/chromap",
+          "picard/addorreplacereadgroups",
           "samtools/sort",
           "samtools/index",
           "samtools/stats",
@@ -369111,6 +370273,12 @@
             "ch_pairs_chr_order": {
               "type": "file",
               "description": "Structure: [path(pairs_chr_order)]\nNatural chromosome order for pairs flipping\n"
+            }
+          },
+          {
+            "update_readgroups": {
+              "type": "boolean",
+              "description": "Boolean controling whether the readgroups should be added or updated\nafter chromap alignment\n"
             }
           }
         ],
