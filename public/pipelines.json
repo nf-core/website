@@ -199,7 +199,7 @@
             "forks_count": 57,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 48,
+            "open_issues_count": 49,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -214,7 +214,7 @@
             ],
             "visibility": "public",
             "forks": 57,
-            "open_issues": 48,
+            "open_issues": 49,
             "watchers": 80,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -390,7 +390,7 @@
             "dev_nextflow_config_manifest": {
                 "defaultBranch": "master"
             },
-            "dev_uses_params_block": false,
+            "dev_uses_params_block": true,
             "releases": [
                 {
                     "tag_name": "5.1.0",
@@ -997,7 +997,9 @@
             "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
-            "main_nextflow_config_plugins": [],
+            "main_nextflow_config_plugins": [
+                "nf-validation@1.1.3"
+            ],
             "main_nextflow_config_manifest": {},
             "main_uses_params_block": false,
             "dev_nextflow_config_plugins": [
@@ -1033,7 +1035,9 @@
                     },
                     "nextflow_version": "!>=23.04.0",
                     "nf_core_version": "3.3.1",
-                    "plugins": [],
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
                     "co2footprint_files": null
                 }
             ]
@@ -3197,7 +3201,7 @@
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": true,
-            "has_nf_test_dev": false,
+            "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
                 "nf-schema@2.5.1"
             ],
@@ -4342,7 +4346,7 @@
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": true,
-            "has_nf_test_dev": false,
+            "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
                 "nf-schema@2.6.1"
             ],
@@ -4599,9 +4603,9 @@
             "url": "https://api.github.com/repos/nf-core/cageseq",
             "created_at": "2019-05-28T06:57:58Z",
             "updated_at": "2024-11-15T01:34:43Z",
-            "pushed_at": "2026-07-03T10:23:03Z",
+            "pushed_at": "2026-07-09T10:14:03Z",
             "homepage": "https://nf-co.re/cageseq",
-            "size": 160510,
+            "size": 160516,
             "stargazers_count": 11,
             "watchers_count": 11,
             "language": "Nextflow",
@@ -4972,8 +4976,12 @@
             ],
             "master_nextflow_config_manifest": {},
             "master_uses_params_block": false,
-            "dev_nextflow_config_plugins": [],
-            "dev_nextflow_config_manifest": {},
+            "dev_nextflow_config_plugins": [
+                "nf-schema@2.2.0"
+            ],
+            "dev_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "dev_uses_params_block": false,
             "releases": [
                 {
@@ -5344,7 +5352,7 @@
             "forks_count": 180,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 27,
+            "open_issues_count": 28,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -5359,7 +5367,7 @@
             ],
             "visibility": "public",
             "forks": 180,
-            "open_issues": 27,
+            "open_issues": 28,
             "watchers": 242,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -5722,7 +5730,7 @@
                     "tag_name": "dev",
                     "published_at": "2026-06-30T13:06:05Z",
                     "tag_sha": "c1786b355ac6a8996fe0a3558b5519f09f81f082",
-                    "has_schema": false,
+                    "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
                         "docs/usage.md"
@@ -7333,9 +7341,9 @@
             "url": "https://api.github.com/repos/nf-core/createtaxdb",
             "created_at": "2023-10-24T08:41:35Z",
             "updated_at": "2026-07-06T14:04:16Z",
-            "pushed_at": "2026-07-03T09:49:18Z",
+            "pushed_at": "2026-07-09T06:43:09Z",
             "homepage": "https://nf-co.re/createtaxdb",
-            "size": 8579,
+            "size": 8580,
             "stargazers_count": 22,
             "watchers_count": 22,
             "language": "Nextflow",
@@ -7760,8 +7768,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2026-07-03T09:49:16Z",
-                    "tag_sha": "6775a358555e292bc2d9755c31c3c568d20f1bfd",
+                    "published_at": "2026-07-09T06:43:07Z",
+                    "tag_sha": "336763b0e0567be070b17a92ff71286d5574e2db",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -8637,11 +8645,17 @@
             "is_DSL2": true,
             "has_nf_test": false,
             "has_nf_test_dev": true,
-            "master_nextflow_config_plugins": [],
+            "master_nextflow_config_plugins": [
+                "nf-validation@1.1.3"
+            ],
             "master_nextflow_config_manifest": {},
             "master_uses_params_block": false,
-            "dev_nextflow_config_plugins": [],
-            "dev_nextflow_config_manifest": {},
+            "dev_nextflow_config_plugins": [
+                "nf-schema@2.5.1"
+            ],
+            "dev_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "dev_uses_params_block": false,
             "releases": [
                 {
@@ -9065,8 +9079,10 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": null,
-                    "plugins": [],
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
                     "co2footprint_files": null
                 }
             ]
@@ -9197,8 +9213,12 @@
             "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
-            "master_nextflow_config_plugins": [],
-            "master_nextflow_config_manifest": {},
+            "master_nextflow_config_plugins": [
+                "nf-schema@2.5.1"
+            ],
+            "master_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "master_uses_params_block": false,
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.5.1"
@@ -9239,7 +9259,9 @@
                     },
                     "nextflow_version": "!>=25.04.0",
                     "nf_core_version": "3.5.2",
-                    "plugins": [],
+                    "plugins": [
+                        "nf-schema@2.5.1"
+                    ],
                     "co2footprint_files": null
                 }
             ]
@@ -9961,18 +9983,26 @@
             "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
-            "main_nextflow_config_plugins": [],
-            "main_nextflow_config_manifest": {},
+            "main_nextflow_config_plugins": [
+                "nf-schema@2.4.2"
+            ],
+            "main_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "main_uses_params_block": false,
-            "dev_nextflow_config_plugins": [],
-            "dev_nextflow_config_manifest": {},
+            "dev_nextflow_config_plugins": [
+                "nf-schema@2.3.0"
+            ],
+            "dev_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "dev_uses_params_block": false,
             "releases": [
                 {
                     "tag_name": "dev",
                     "published_at": "2025-06-26T12:43:52Z",
                     "tag_sha": "151accd47c04e24cde6fdefc7aa0e371b9ab157a",
-                    "has_schema": false,
+                    "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
                         "docs/usage.md"
@@ -9994,9 +10024,11 @@
                             "utils_nfschema_plugin"
                         ]
                     },
-                    "nextflow_version": null,
-                    "nf_core_version": null,
-                    "plugins": [],
+                    "nextflow_version": "!>=24.04.2",
+                    "nf_core_version": "3.2.0",
+                    "plugins": [
+                        "nf-schema@2.4.2"
+                    ],
                     "co2footprint_files": null
                 }
             ]
@@ -10582,10 +10614,10 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 25,
+            "forks_count": 26,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 2,
+            "open_issues_count": 3,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -10598,8 +10630,8 @@
                 "tutorial"
             ],
             "visibility": "public",
-            "forks": 25,
-            "open_issues": 2,
+            "forks": 26,
+            "open_issues": 3,
             "watchers": 16,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -10641,7 +10673,7 @@
                     "status": "disabled"
                 }
             },
-            "network_count": 25,
+            "network_count": 26,
             "subscribers_count": 173,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
@@ -10664,7 +10696,7 @@
             "dev_branch_protection_enforce_admins": false,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 0,
+            "open_pr_count": 1,
             "repository_url": "https://github.com/nf-core/demo",
             "contributors": [
                 {
@@ -10719,10 +10751,14 @@
             "last_release_vs_default_compare_url": "https://github.com/nf-core/demo/compare/32893afef8076a03a2767a020b3f0cab2e0b40b2...32893afef8076a03a2767a020b3f0cab2e0b40b2",
             "commits_to_dev": 30,
             "is_DSL2": true,
-            "has_nf_test": false,
-            "has_nf_test_dev": false,
-            "master_nextflow_config_plugins": [],
-            "master_nextflow_config_manifest": {},
+            "has_nf_test": true,
+            "has_nf_test_dev": true,
+            "master_nextflow_config_plugins": [
+                "nf-schema@2.7.2"
+            ],
+            "master_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "master_uses_params_block": false,
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.7.2"
@@ -10864,7 +10900,7 @@
                     "tag_name": "dev",
                     "published_at": "2026-06-24T11:11:56Z",
                     "tag_sha": "3c55d394d872f0fab8d8c21422b59235e7981cbd",
-                    "has_schema": false,
+                    "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
                         "docs/usage.md"
@@ -10882,8 +10918,10 @@
                         ]
                     },
                     "nextflow_version": "!>=25.10.4",
-                    "nf_core_version": null,
-                    "plugins": [],
+                    "nf_core_version": "4.0.2",
+                    "plugins": [
+                        "nf-schema@2.7.2"
+                    ],
                     "co2footprint_files": null
                 }
             ]
@@ -11172,13 +11210,21 @@
             "last_release_vs_default_compare_url": "https://github.com/nf-core/demultiplex/compare/fbec8e442f0599f8b74876e62263af05b9a41d33...fbec8e442f0599f8b74876e62263af05b9a41d33",
             "commits_to_dev": 30,
             "is_DSL2": true,
-            "has_nf_test": false,
-            "has_nf_test_dev": false,
-            "master_nextflow_config_plugins": [],
-            "master_nextflow_config_manifest": {},
+            "has_nf_test": true,
+            "has_nf_test_dev": true,
+            "master_nextflow_config_plugins": [
+                "nf-schema@2.7.0"
+            ],
+            "master_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "master_uses_params_block": false,
-            "dev_nextflow_config_plugins": [],
-            "dev_nextflow_config_manifest": {},
+            "dev_nextflow_config_plugins": [
+                "nf-schema@2.7.2"
+            ],
+            "dev_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "dev_uses_params_block": false,
             "releases": [
                 {
@@ -11774,7 +11820,7 @@
                     "tag_name": "dev",
                     "published_at": "2026-07-06T15:17:23Z",
                     "tag_sha": "429fe850df1cf41f189f4ab50289d76929cdffcc",
-                    "has_schema": false,
+                    "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
                         "docs/usage.md"
@@ -11809,7 +11855,9 @@
                     },
                     "nextflow_version": "!>=25.10.4",
                     "nf_core_version": "4.0.2",
-                    "plugins": [],
+                    "plugins": [
+                        "nf-schema@2.7.0"
+                    ],
                     "co2footprint_files": null
                 }
             ]
@@ -12310,8 +12358,12 @@
             "is_DSL2": true,
             "has_nf_test": false,
             "has_nf_test_dev": false,
-            "main_nextflow_config_plugins": [],
-            "main_nextflow_config_manifest": {},
+            "main_nextflow_config_plugins": [
+                "nf-schema@2.3.0"
+            ],
+            "main_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "main_uses_params_block": false,
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.2.0"
@@ -12469,7 +12521,7 @@
                     "tag_name": "dev",
                     "published_at": "2025-05-27T08:03:22Z",
                     "tag_sha": "c5f4e32a1c444762e45bc8a2d69d21af4d91dd54",
-                    "has_schema": false,
+                    "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
                         "docs/usage.md",
@@ -12500,7 +12552,9 @@
                     },
                     "nextflow_version": "!>=24.04.2",
                     "nf_core_version": "3.2.1",
-                    "plugins": [],
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
                     "co2footprint_files": null
                 }
             ]
@@ -12681,13 +12735,21 @@
             "last_release_vs_default_compare_url": "https://github.com/nf-core/detaxizer/compare/3586921aa3a4c49271f1b2082309bdc33c819749...3586921aa3a4c49271f1b2082309bdc33c819749",
             "commits_to_dev": 30,
             "is_DSL2": true,
-            "has_nf_test": false,
-            "has_nf_test_dev": false,
-            "master_nextflow_config_plugins": [],
-            "master_nextflow_config_manifest": {},
+            "has_nf_test": true,
+            "has_nf_test_dev": true,
+            "master_nextflow_config_plugins": [
+                "nf-schema@2.5.1"
+            ],
+            "master_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "master_uses_params_block": false,
-            "dev_nextflow_config_plugins": [],
-            "dev_nextflow_config_manifest": {},
+            "dev_nextflow_config_plugins": [
+                "nf-schema@2.5.1"
+            ],
+            "dev_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "dev_uses_params_block": false,
             "releases": [
                 {
@@ -12833,8 +12895,10 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.8",
-                    "nf_core_version": null,
-                    "plugins": [],
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.5.1"
+                    ],
                     "co2footprint_files": null
                 }
             ]
@@ -13088,7 +13152,7 @@
                         "docs/output.md",
                         "docs/usage.md"
                     ],
-                    "nextflow_version": null,
+                    "nextflow_version": ">=20.04.0",
                     "nf_core_version": null,
                     "plugins": [],
                     "co2footprint_files": null
@@ -14402,8 +14466,8 @@
             "last_release_vs_default_compare_url": "https://github.com/nf-core/drugresponseeval/compare/84cb752a7ca4584fcb95fcb7492aceb4137a3df7...84cb752a7ca4584fcb95fcb7492aceb4137a3df7",
             "commits_to_dev": 30,
             "is_DSL2": true,
-            "has_nf_test": false,
-            "has_nf_test_dev": false,
+            "has_nf_test": true,
+            "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
                 "nf-validation"
             ],
@@ -14789,12 +14853,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/eager",
             "created_at": "2018-06-03T15:52:24Z",
-            "updated_at": "2026-07-04T09:08:32Z",
+            "updated_at": "2026-07-09T09:41:47Z",
             "pushed_at": "2026-07-06T16:22:07Z",
             "homepage": "https://nf-co.re/eager",
             "size": 68399,
-            "stargazers_count": 209,
-            "watchers_count": 209,
+            "stargazers_count": 210,
+            "watchers_count": 210,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -14823,7 +14887,7 @@
             "visibility": "public",
             "forks": 90,
             "open_issues": 60,
-            "watchers": 209,
+            "watchers": 210,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -15619,7 +15683,7 @@
                         "docs/usage.md"
                     ],
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": null,
+                    "nf_core_version": "3.5.2",
                     "plugins": [
                         "nf-schema@2.5.1"
                     ],
@@ -15638,9 +15702,9 @@
             "url": "https://api.github.com/repos/nf-core/epitopeprediction",
             "created_at": "2018-11-28T15:37:41Z",
             "updated_at": "2026-05-11T19:22:06Z",
-            "pushed_at": "2026-07-03T12:19:15Z",
+            "pushed_at": "2026-07-09T09:38:30Z",
             "homepage": "https://nf-co.re/epitopeprediction",
-            "size": 5548,
+            "size": 5590,
             "stargazers_count": 52,
             "watchers_count": 52,
             "language": "Nextflow",
@@ -15653,7 +15717,7 @@
             "forks_count": 34,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 27,
+            "open_issues_count": 28,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -15666,7 +15730,7 @@
             ],
             "visibility": "public",
             "forks": 34,
-            "open_issues": 27,
+            "open_issues": 28,
             "watchers": 52,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -15735,7 +15799,7 @@
             "dev_branch_protection_enforce_admins": false,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 5,
+            "open_pr_count": 6,
             "repository_url": "https://github.com/nf-core/epitopeprediction",
             "contributors": [
                 {
@@ -16202,8 +16266,12 @@
             "is_DSL2": true,
             "has_nf_test": false,
             "has_nf_test_dev": false,
-            "main_nextflow_config_plugins": [],
-            "main_nextflow_config_manifest": {},
+            "main_nextflow_config_plugins": [
+                "nf-schema@2.3.0"
+            ],
+            "main_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "main_uses_params_block": false,
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
@@ -16242,7 +16310,9 @@
                     },
                     "nextflow_version": "!>=23.04.0",
                     "nf_core_version": "2.14.1",
-                    "plugins": [],
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
                     "co2footprint_files": null
                 }
             ]
@@ -16774,7 +16844,7 @@
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": true,
-            "has_nf_test_dev": false,
+            "has_nf_test_dev": true,
             "main_nextflow_config_plugins": [
                 "nf-schema@2.5.1",
                 "nf-fgbio@1.0.0"
@@ -17199,7 +17269,7 @@
             "last_release_vs_default_compare_url": "https://github.com/nf-core/fetchngs/compare/8ec2d934f9301c818d961b1e4fdf7fc79610bdc5...8ec2d934f9301c818d961b1e4fdf7fc79610bdc5",
             "commits_to_dev": 30,
             "is_DSL2": true,
-            "has_nf_test": false,
+            "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
@@ -17516,10 +17586,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/funcprofiler",
             "created_at": "2025-08-13T15:13:41Z",
-            "updated_at": "2026-07-09T02:44:38Z",
-            "pushed_at": "2026-07-09T02:44:34Z",
+            "updated_at": "2026-07-09T12:36:58Z",
+            "pushed_at": "2026-07-09T12:36:54Z",
             "homepage": "",
-            "size": 1192,
+            "size": 1144,
             "stargazers_count": 2,
             "watchers_count": 2,
             "language": "Nextflow",
@@ -17616,7 +17686,7 @@
             "contributors": [
                 {
                     "name": "nickp60",
-                    "count": 144,
+                    "count": 146,
                     "avatar_url": "https://avatars.githubusercontent.com/u/14367274?v=4"
                 },
                 {
@@ -17636,7 +17706,7 @@
                 }
             ],
             "released_after_tools": false,
-            "head_sha": "6446f24658e1df4b58030c6a42a15e86a38f74b7",
+            "head_sha": "a72f04ec4edfcfa8886de5a8dff4bd0d873191f3",
             "last_release_is_head": false,
             "last_release_vs_default_compare_url": "",
             "commits_to_dev": 30,
@@ -17660,8 +17730,8 @@
             "releases": [
                 {
                     "tag_name": "dev",
-                    "published_at": "2026-07-09T02:44:32Z",
-                    "tag_sha": "6446f24658e1df4b58030c6a42a15e86a38f74b7",
+                    "published_at": "2026-07-09T12:36:50Z",
+                    "tag_sha": "a72f04ec4edfcfa8886de5a8dff4bd0d873191f3",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -18842,7 +18912,7 @@
             "last_release_vs_default_compare_url": "",
             "commits_to_dev": 30,
             "is_DSL2": true,
-            "has_nf_test": false,
+            "has_nf_test": true,
             "has_nf_test_dev": true,
             "main_nextflow_config_plugins": [
                 "nf-schema@2.5.1"
@@ -19211,8 +19281,12 @@
             "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
-            "master_nextflow_config_plugins": [],
-            "master_nextflow_config_manifest": {},
+            "master_nextflow_config_plugins": [
+                "nf-schema@2.4.2"
+            ],
+            "master_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "master_uses_params_block": false,
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.7.2"
@@ -19407,7 +19481,9 @@
                     },
                     "nextflow_version": "!>=25.10.4",
                     "nf_core_version": "4.0.2",
-                    "plugins": [],
+                    "plugins": [
+                        "nf-schema@2.4.2"
+                    ],
                     "co2footprint_files": null
                 }
             ]
@@ -20020,10 +20096,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/gwas",
             "created_at": "2020-07-13T13:58:04Z",
-            "updated_at": "2026-07-02T12:26:31Z",
-            "pushed_at": "2026-07-08T11:10:06Z",
+            "updated_at": "2026-07-09T09:35:31Z",
+            "pushed_at": "2026-07-09T09:35:24Z",
             "homepage": "https://nf-co.re/gwas",
-            "size": 3154,
+            "size": 3199,
             "stargazers_count": 28,
             "watchers_count": 28,
             "language": "Nextflow",
@@ -20141,6 +20217,11 @@
                     "avatar_url": "https://avatars.githubusercontent.com/u/12799326?v=4"
                 },
                 {
+                    "name": "lyh970817",
+                    "count": 10,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/32429705?v=4"
+                },
+                {
                     "name": "edmundmiller",
                     "count": 2,
                     "avatar_url": "https://avatars.githubusercontent.com/u/20095261?v=4"
@@ -20154,11 +20235,6 @@
                     "name": "max-laurent",
                     "count": 2,
                     "avatar_url": "https://avatars.githubusercontent.com/u/69277125?v=4"
-                },
-                {
-                    "name": "lyh970817",
-                    "count": 2,
-                    "avatar_url": "https://avatars.githubusercontent.com/u/32429705?v=4"
                 },
                 {
                     "name": "jeantristanb",
@@ -20182,7 +20258,7 @@
                 }
             ],
             "released_after_tools": false,
-            "head_sha": "2e6660aa8db59c674df4a70a25449cf2aedc630c",
+            "head_sha": "3c0ec4e488868d15852ff09f33f5b25c918edefb",
             "last_release_is_head": false,
             "last_release_vs_default_compare_url": "",
             "commits_to_dev": 30,
@@ -20209,8 +20285,8 @@
             "releases": [
                 {
                     "tag_name": "dev",
-                    "published_at": "2026-03-16T20:01:55Z",
-                    "tag_sha": "2e6660aa8db59c674df4a70a25449cf2aedc630c",
+                    "published_at": "2026-07-09T09:35:24Z",
+                    "tag_sha": "3c0ec4e488868d15852ff09f33f5b25c918edefb",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -20218,9 +20294,25 @@
                     ],
                     "components": {
                         "modules": [
+                            "gcta_addgrms",
+                            "gcta_adjustgrm",
+                            "gcta_bivariatereml",
+                            "gcta_bivariateremlldms",
+                            "gcta_calculateldscores",
+                            "gcta_grmcutoff",
+                            "gcta_keep",
+                            "gcta_makebksparse",
+                            "gcta_makegrm",
+                            "gcta_makegrmpart",
+                            "gcta_reml",
+                            "gcta_remlldms",
                             "multiqc",
                             "plink_gwas",
-                            "plink_vcf"
+                            "plink_vcf",
+                            "regenie_runl0",
+                            "regenie_splitl0",
+                            "regenie_step1",
+                            "regenie_step2"
                         ],
                         "subworkflows": [
                             "utils_nextflow_pipeline",
@@ -20228,8 +20320,8 @@
                             "utils_nfschema_plugin"
                         ]
                     },
-                    "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.5.2",
+                    "nextflow_version": "!>=25.10.4",
+                    "nf_core_version": "4.0.2",
                     "plugins": [
                         "nf-schema@2.2.0"
                     ],
@@ -20386,8 +20478,12 @@
                 "defaultBranch": "master"
             },
             "main_uses_params_block": false,
-            "dev_nextflow_config_plugins": [],
-            "dev_nextflow_config_manifest": {},
+            "dev_nextflow_config_plugins": [
+                "nf-schema@2.5.1"
+            ],
+            "dev_nextflow_config_manifest": {
+                "defaultBranch": "main"
+            },
             "dev_uses_params_block": false,
             "releases": [
                 {
@@ -21391,9 +21487,9 @@
             "url": "https://api.github.com/repos/nf-core/hlatyping",
             "created_at": "2018-07-11T12:42:26Z",
             "updated_at": "2026-06-25T06:54:24Z",
-            "pushed_at": "2026-07-07T15:54:38Z",
+            "pushed_at": "2026-07-09T11:05:44Z",
             "homepage": "https://nf-co.re/hlatyping",
-            "size": 44063,
+            "size": 44078,
             "stargazers_count": 81,
             "watchers_count": 81,
             "language": "Nextflow",
@@ -24058,9 +24154,9 @@
             "url": "https://api.github.com/repos/nf-core/mag",
             "created_at": "2018-05-22T06:06:58Z",
             "updated_at": "2026-07-08T12:35:59Z",
-            "pushed_at": "2026-07-08T10:50:18Z",
+            "pushed_at": "2026-07-09T06:49:00Z",
             "homepage": "https://nf-co.re/mag",
-            "size": 49207,
+            "size": 49210,
             "stargazers_count": 305,
             "watchers_count": 305,
             "language": "Nextflow",
@@ -24073,7 +24169,7 @@
             "forks_count": 154,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 80,
+            "open_issues_count": 79,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -24091,7 +24187,7 @@
             ],
             "visibility": "public",
             "forks": 154,
-            "open_issues": 80,
+            "open_issues": 79,
             "watchers": 305,
             "default_branch": "main",
             "temp_clone_token": "",
@@ -24164,7 +24260,7 @@
             "dev_branch_protection_enforce_admins": false,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 8,
+            "open_pr_count": 7,
             "repository_url": "https://github.com/nf-core/mag",
             "contributors": [
                 {
@@ -26545,8 +26641,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2026-07-08T10:50:17Z",
-                    "tag_sha": "56a0eb388262251ffa1fd9c8df0dfb9b34886ba6",
+                    "published_at": "2026-07-09T06:49:00Z",
+                    "tag_sha": "57b6a549559435818a6ac1eabc4a7c996db3c381",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -28841,7 +28937,7 @@
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": true,
-            "has_nf_test_dev": false,
+            "has_nf_test_dev": true,
             "main_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
@@ -31595,7 +31691,7 @@
                     "tag_name": "dev",
                     "published_at": "2026-02-17T18:59:44Z",
                     "tag_sha": "fdbb5802a4de87ada9c7aa4b85423726c461db41",
-                    "has_schema": false,
+                    "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
                         "docs/usage.md"
@@ -31763,15 +31859,19 @@
                 "defaultBranch": "main"
             },
             "main_uses_params_block": false,
-            "dev_nextflow_config_plugins": [],
-            "dev_nextflow_config_manifest": {},
+            "dev_nextflow_config_plugins": [
+                "nf-schema@2.7.2"
+            ],
+            "dev_nextflow_config_manifest": {
+                "defaultBranch": "main"
+            },
             "dev_uses_params_block": false,
             "releases": [
                 {
                     "tag_name": "dev",
                     "published_at": "2026-06-09T11:34:45Z",
                     "tag_sha": "6b5c623d878e520308eb0feb61d7ae36428f88d7",
-                    "has_schema": false,
+                    "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
                         "docs/usage.md"
@@ -31793,7 +31893,7 @@
                             "utils_nfschema_plugin"
                         ]
                     },
-                    "nextflow_version": null,
+                    "nextflow_version": "!>=25.10.4",
                     "nf_core_version": "4.0.2",
                     "plugins": [
                         "nf-schema@2.5.1"
@@ -31957,8 +32057,8 @@
             "last_release_vs_default_compare_url": "https://github.com/nf-core/multiplesequencealign/compare/79724dac3d240b9bb7684532d3fe238b42f6a4b4...79724dac3d240b9bb7684532d3fe238b42f6a4b4",
             "commits_to_dev": 30,
             "is_DSL2": true,
-            "has_nf_test": false,
-            "has_nf_test_dev": false,
+            "has_nf_test": true,
+            "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
                 "nf-schema@2.2.0",
                 "nf-co2footprint@1.0.0-beta",
@@ -32164,7 +32264,7 @@
                     "tag_name": "dev",
                     "published_at": "2026-05-29T09:26:24Z",
                     "tag_sha": "1fd8bda62787418bff4c2df9dbff4561e888dadc",
-                    "has_schema": false,
+                    "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
                         "docs/usage.md",
@@ -32213,7 +32313,7 @@
                         ]
                     },
                     "nextflow_version": "!>=25.10.4",
-                    "nf_core_version": null,
+                    "nf_core_version": "4.0.2",
                     "plugins": [
                         "nf-schema@2.2.0",
                         "nf-co2footprint@1.0.0-beta",
@@ -33020,7 +33120,7 @@
                         ]
                     },
                     "nextflow_version": "!>=25.10.2",
-                    "nf_core_version": null,
+                    "nf_core_version": "3.5.1",
                     "plugins": [
                         "nf-schema@2.6.1"
                     ],
@@ -33039,9 +33139,9 @@
             "url": "https://api.github.com/repos/nf-core/nascent",
             "created_at": "2018-11-15T15:46:09Z",
             "updated_at": "2026-06-02T09:40:20Z",
-            "pushed_at": "2026-07-08T22:32:05Z",
+            "pushed_at": "2026-07-09T04:58:14Z",
             "homepage": "https://nf-co.re/nascent",
-            "size": 9447,
+            "size": 9448,
             "stargazers_count": 23,
             "watchers_count": 23,
             "language": "Nextflow",
@@ -33763,7 +33863,7 @@
             "last_release_vs_default_compare_url": "",
             "commits_to_dev": 30,
             "is_DSL2": true,
-            "has_nf_test": false,
+            "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
                 "nf-schema@2.5.1"
@@ -34094,7 +34194,7 @@
                     "tag_name": "dev",
                     "published_at": "2024-02-22T00:13:23Z",
                     "tag_sha": "f64a3c7867ffe159a0f347d3b07d11c99ade49fb",
-                    "has_schema": false,
+                    "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
                         "docs/usage.md"
@@ -34136,10 +34236,10 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 36,
+            "forks_count": 35,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 32,
+            "open_issues_count": 31,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -34161,8 +34261,8 @@
                 "wts"
             ],
             "visibility": "public",
-            "forks": 36,
-            "open_issues": 32,
+            "forks": 35,
+            "open_issues": 31,
             "watchers": 116,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -34204,7 +34304,7 @@
                     "status": "disabled"
                 }
             },
-            "network_count": 36,
+            "network_count": 35,
             "subscribers_count": 167,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
@@ -34233,7 +34333,7 @@
             "dev_branch_protection_enforce_admins": false,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 5,
+            "open_pr_count": 4,
             "repository_url": "https://github.com/nf-core/oncoanalyser",
             "contributors": [
                 {
@@ -36216,7 +36316,7 @@
             "last_release_vs_default_compare_url": "",
             "commits_to_dev": 30,
             "is_DSL2": true,
-            "has_nf_test": false,
+            "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
                 "nf-schema@2.2.0"
@@ -36639,7 +36739,7 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.6",
-                    "nf_core_version": null,
+                    "nf_core_version": "3.5.1",
                     "plugins": [
                         "nf-schema@2.5.1"
                     ],
@@ -37560,9 +37660,9 @@
             "url": "https://api.github.com/repos/nf-core/pixelator",
             "created_at": "2022-09-17T18:27:29Z",
             "updated_at": "2026-06-05T13:45:36Z",
-            "pushed_at": "2026-06-22T14:19:46Z",
+            "pushed_at": "2026-07-09T08:14:00Z",
             "homepage": "https://nf-co.re/pixelator",
-            "size": 6573,
+            "size": 6611,
             "stargazers_count": 14,
             "watchers_count": 14,
             "language": "Nextflow",
@@ -37575,7 +37675,7 @@
             "forks_count": 11,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 4,
+            "open_issues_count": 3,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -37591,7 +37691,7 @@
             ],
             "visibility": "public",
             "forks": 11,
-            "open_issues": 4,
+            "open_issues": 3,
             "watchers": 14,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -37660,7 +37760,7 @@
             "dev_branch_protection_enforce_admins": false,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 2,
+            "open_pr_count": 1,
             "repository_url": "https://github.com/nf-core/pixelator",
             "contributors": [
                 {
@@ -38201,8 +38301,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2026-06-22T14:19:46Z",
-                    "tag_sha": "a2470e2c5fd51970ca5735fe0ce8d03a1c80c4e3",
+                    "published_at": "2026-07-09T08:14:00Z",
+                    "tag_sha": "d1f9a45b9ae4b5480f1eed18020df566930eb0c4",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -39230,10 +39330,10 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 72,
+            "forks_count": 73,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 102,
+            "open_issues_count": 103,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -39249,8 +39349,8 @@
                 "protein-structure"
             ],
             "visibility": "public",
-            "forks": 72,
-            "open_issues": 102,
+            "forks": 73,
+            "open_issues": 103,
             "watchers": 108,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -39292,7 +39392,7 @@
                     "status": "disabled"
                 }
             },
-            "network_count": 72,
+            "network_count": 73,
             "subscribers_count": 157,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
@@ -39321,7 +39421,7 @@
             "dev_branch_protection_enforce_admins": false,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 11,
+            "open_pr_count": 12,
             "repository_url": "https://github.com/nf-core/proteinfold",
             "contributors": [
                 {
@@ -40995,8 +41095,12 @@
             "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
-            "master_nextflow_config_plugins": [],
-            "master_nextflow_config_manifest": {},
+            "master_nextflow_config_plugins": [
+                "nf-schema@2.1.1"
+            ],
+            "master_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "master_uses_params_block": false,
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.5.1"
@@ -41051,7 +41155,9 @@
                     },
                     "nextflow_version": "!>=25.10.4",
                     "nf_core_version": "4.0.2",
-                    "plugins": [],
+                    "plugins": [
+                        "nf-schema@2.1.1"
+                    ],
                     "co2footprint_files": null
                 }
             ]
@@ -41067,9 +41173,9 @@
             "url": "https://api.github.com/repos/nf-core/raredisease",
             "created_at": "2021-06-21T09:40:29Z",
             "updated_at": "2026-07-06T12:55:07Z",
-            "pushed_at": "2026-07-08T21:04:31Z",
+            "pushed_at": "2026-07-09T14:39:50Z",
             "homepage": "https://nf-co.re/raredisease",
-            "size": 200103,
+            "size": 200044,
             "stargazers_count": 121,
             "watchers_count": 121,
             "language": "Nextflow",
@@ -41082,7 +41188,7 @@
             "forks_count": 69,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 59,
+            "open_issues_count": 49,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -41100,7 +41206,7 @@
             ],
             "visibility": "public",
             "forks": 69,
-            "open_issues": 59,
+            "open_issues": 49,
             "watchers": 121,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -41173,7 +41279,7 @@
             "dev_branch_protection_enforce_admins": false,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 12,
+            "open_pr_count": 11,
             "repository_url": "https://github.com/nf-core/raredisease",
             "contributors": [
                 {
@@ -41359,7 +41465,7 @@
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": true,
-            "has_nf_test_dev": false,
+            "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
                 "nf-schema@2.5.1"
             ],
@@ -43177,8 +43283,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2026-07-08T12:25:57Z",
-                    "tag_sha": "a942e2311f05534ddea21eaaba4ef979ab5f7882",
+                    "published_at": "2026-07-09T07:00:24Z",
+                    "tag_sha": "66498ee8a0c57208cd5e434a3c3e70d24c9bdfbd",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -43689,7 +43795,7 @@
                     "tag_name": "dev",
                     "published_at": "2024-04-26T23:24:25Z",
                     "tag_sha": "0594160e22d147aed283553c4fc06839914fa036",
-                    "has_schema": false,
+                    "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
                         "docs/usage.md"
@@ -44002,7 +44108,7 @@
             "forks_count": 7,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 12,
+            "open_issues_count": 13,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -44013,7 +44119,7 @@
             ],
             "visibility": "public",
             "forks": 7,
-            "open_issues": 12,
+            "open_issues": 13,
             "watchers": 11,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -44090,7 +44196,7 @@
             "dev_branch_protection_enforce_admins": false,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 0,
+            "open_pr_count": 1,
             "repository_url": "https://github.com/nf-core/reportho",
             "contributors": [
                 {
@@ -44136,8 +44242,12 @@
                 "defaultBranch": "master"
             },
             "main_uses_params_block": false,
-            "dev_nextflow_config_plugins": [],
-            "dev_nextflow_config_manifest": {},
+            "dev_nextflow_config_plugins": [
+                "nf-schema@2.5.1"
+            ],
+            "dev_nextflow_config_manifest": {
+                "defaultBranch": "main"
+            },
             "dev_uses_params_block": false,
             "releases": [
                 {
@@ -44246,8 +44356,8 @@
                             "utils_nfschema_plugin"
                         ]
                     },
-                    "nextflow_version": null,
-                    "nf_core_version": null,
+                    "nextflow_version": "!>=25.10.4",
+                    "nf_core_version": "4.0.2",
                     "plugins": [
                         "nf-schema@2.5.1"
                     ],
@@ -44619,8 +44729,12 @@
                 "defaultBranch": "master"
             },
             "master_uses_params_block": false,
-            "dev_nextflow_config_plugins": [],
-            "dev_nextflow_config_manifest": {},
+            "dev_nextflow_config_plugins": [
+                "nf-schema@2.7.2"
+            ],
+            "dev_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "dev_uses_params_block": false,
             "releases": [
                 {
@@ -44908,7 +45022,7 @@
                     "tag_name": "dev",
                     "published_at": "2026-07-06T14:20:54Z",
                     "tag_sha": "68002f9b8da43389a23d8f9b4f6ac89dc9d95409",
-                    "has_schema": false,
+                    "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
                         "docs/usage.md"
@@ -45651,10 +45765,14 @@
             "last_release_vs_default_compare_url": "https://github.com/nf-core/rnafusion/compare/76ad76e7c39b2ba9edc35aa3602e3dc454d842ec...76ad76e7c39b2ba9edc35aa3602e3dc454d842ec",
             "commits_to_dev": 30,
             "is_DSL2": true,
-            "has_nf_test": false,
+            "has_nf_test": true,
             "has_nf_test_dev": true,
-            "master_nextflow_config_plugins": [],
-            "master_nextflow_config_manifest": {},
+            "master_nextflow_config_plugins": [
+                "nf-schema@2.5.1"
+            ],
+            "master_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "master_uses_params_block": false,
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.7.2"
@@ -46612,7 +46730,9 @@
                     },
                     "nextflow_version": "!>=26.04.0",
                     "nf_core_version": "4.0.2",
-                    "plugins": [],
+                    "plugins": [
+                        "nf-schema@2.5.1"
+                    ],
                     "co2footprint_files": null
                 }
             ]
@@ -46627,12 +46747,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/rnaseq",
             "created_at": "2018-03-29T13:10:58Z",
-            "updated_at": "2026-07-08T05:50:48Z",
+            "updated_at": "2026-07-09T06:38:16Z",
             "pushed_at": "2026-07-03T13:32:46Z",
             "homepage": "https://nf-co.re/rnaseq",
             "size": 86168,
-            "stargazers_count": 1331,
-            "watchers_count": 1331,
+            "stargazers_count": 1332,
+            "watchers_count": 1332,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -46656,7 +46776,7 @@
             "visibility": "public",
             "forks": 881,
             "open_issues": 29,
-            "watchers": 1331,
+            "watchers": 1332,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -47236,8 +47356,12 @@
             "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
-            "master_nextflow_config_plugins": [],
-            "master_nextflow_config_manifest": {},
+            "master_nextflow_config_plugins": [
+                "nf-schema@2.5.1"
+            ],
+            "master_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "master_uses_params_block": false,
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.7.2"
@@ -50198,7 +50322,9 @@
                     },
                     "nextflow_version": "!>=25.10.4",
                     "nf_core_version": "4.0.2",
-                    "plugins": [],
+                    "plugins": [
+                        "nf-schema@2.5.1"
+                    ],
                     "co2footprint_files": null
                 }
             ]
@@ -50229,7 +50355,7 @@
             "forks_count": 39,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 15,
+            "open_issues_count": 16,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -50243,7 +50369,7 @@
             ],
             "visibility": "public",
             "forks": 39,
-            "open_issues": 15,
+            "open_issues": 16,
             "watchers": 68,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -50365,7 +50491,7 @@
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": false,
-            "has_nf_test_dev": false,
+            "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
@@ -50854,10 +50980,15 @@
             "last_release_vs_default_compare_url": "https://github.com/nf-core/rnavar/compare/a0e4641409eb7aed4b325e543d20577f9c08e437...a0e4641409eb7aed4b325e543d20577f9c08e437",
             "commits_to_dev": 30,
             "is_DSL2": true,
-            "has_nf_test": false,
-            "has_nf_test_dev": false,
-            "master_nextflow_config_plugins": [],
-            "master_nextflow_config_manifest": {},
+            "has_nf_test": true,
+            "has_nf_test_dev": true,
+            "master_nextflow_config_plugins": [
+                "nf-core-utils@0.4.0",
+                "nf-schema@2.6.1"
+            ],
+            "master_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "master_uses_params_block": false,
             "dev_nextflow_config_plugins": [
                 "nf-core-utils@0.4.0",
@@ -51460,7 +51591,10 @@
                     },
                     "nextflow_version": "!>=25.10.4",
                     "nf_core_version": "4.0.2",
-                    "plugins": [],
+                    "plugins": [
+                        "nf-core-utils@0.4.0",
+                        "nf-schema@2.6.1"
+                    ],
                     "co2footprint_files": null
                 }
             ]
@@ -51476,9 +51610,9 @@
             "url": "https://api.github.com/repos/nf-core/sammyseq",
             "created_at": "2022-10-12T09:18:16Z",
             "updated_at": "2026-02-23T22:48:31Z",
-            "pushed_at": "2026-07-08T21:53:03Z",
+            "pushed_at": "2026-07-09T06:38:34Z",
             "homepage": "https://nf-co.re/sammyseq",
-            "size": 88859,
+            "size": 88874,
             "stargazers_count": 4,
             "watchers_count": 4,
             "language": "Nextflow",
@@ -51643,7 +51777,7 @@
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": true,
-            "has_nf_test_dev": false,
+            "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
                 "nf-validation"
             ],
@@ -51661,7 +51795,7 @@
                     "tag_name": "dev",
                     "published_at": "2025-11-06T11:39:40Z",
                     "tag_sha": "ff3da4b7c7e312e117427761cc388b694eca3ef5",
-                    "has_schema": false,
+                    "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
                         "docs/usage.md"
@@ -52234,11 +52368,25 @@
             "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
-            "master_nextflow_config_plugins": [],
-            "master_nextflow_config_manifest": {},
+            "master_nextflow_config_plugins": [
+                "nf-core-utils@0.4.0",
+                "nf-fgbio@1.0.0",
+                "nf-prov@1.7.0",
+                "nf-schema@2.7.2"
+            ],
+            "master_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "master_uses_params_block": false,
-            "dev_nextflow_config_plugins": [],
-            "dev_nextflow_config_manifest": {},
+            "dev_nextflow_config_plugins": [
+                "nf-core-utils@0.4.0",
+                "nf-fgbio@1.0.0",
+                "nf-prov@1.7.0",
+                "nf-schema@2.7.2"
+            ],
+            "dev_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "dev_uses_params_block": false,
             "releases": [
                 {
@@ -55700,9 +55848,14 @@
                             "vcf_annotate_snpeff"
                         ]
                     },
-                    "nextflow_version": null,
+                    "nextflow_version": "!>=25.10.2",
                     "nf_core_version": "3.5.1",
-                    "plugins": [],
+                    "plugins": [
+                        "nf-core-utils@0.4.0",
+                        "nf-fgbio@1.0.0",
+                        "nf-prov@1.7.0",
+                        "nf-schema@2.7.2"
+                    ],
                     "co2footprint_files": null
                 }
             ]
@@ -55962,8 +56115,13 @@
             ],
             "master_nextflow_config_manifest": {},
             "master_uses_params_block": false,
-            "dev_nextflow_config_plugins": [],
-            "dev_nextflow_config_manifest": {},
+            "dev_nextflow_config_plugins": [
+                "nf-schema@2.5.1",
+                "nf-anndata@0.3.2"
+            ],
+            "dev_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "dev_uses_params_block": false,
             "releases": [
                 {
@@ -56541,8 +56699,12 @@
                 "defaultBranch": "master"
             },
             "master_uses_params_block": false,
-            "dev_nextflow_config_plugins": [],
-            "dev_nextflow_config_manifest": {},
+            "dev_nextflow_config_plugins": [
+                "nf-schema@2.5.1"
+            ],
+            "dev_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "dev_uses_params_block": false,
             "releases": [
                 {
@@ -56845,7 +57007,7 @@
                     "tag_name": "dev",
                     "published_at": "2026-06-26T20:18:02Z",
                     "tag_sha": "c816bba584026d95df6078fa79f176795df9271a",
-                    "has_schema": false,
+                    "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
                         "docs/usage.md"
@@ -56908,12 +57070,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/scrnaseq",
             "created_at": "2019-04-08T13:12:00Z",
-            "updated_at": "2026-07-06T19:51:34Z",
-            "pushed_at": "2026-07-07T10:02:20Z",
+            "updated_at": "2026-07-09T06:39:36Z",
+            "pushed_at": "2026-07-09T09:52:43Z",
             "homepage": "https://nf-co.re/scrnaseq",
-            "size": 46129,
-            "stargazers_count": 337,
-            "watchers_count": 337,
+            "size": 46177,
+            "stargazers_count": 338,
+            "watchers_count": 338,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -56924,7 +57086,7 @@
             "forks_count": 223,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 72,
+            "open_issues_count": 69,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -56943,8 +57105,8 @@
             ],
             "visibility": "public",
             "forks": 223,
-            "open_issues": 72,
-            "watchers": 337,
+            "open_issues": 69,
+            "watchers": 338,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -57014,7 +57176,7 @@
             "dev_branch_protection_enforce_admins": false,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 11,
+            "open_pr_count": 9,
             "repository_url": "https://github.com/nf-core/scrnaseq",
             "contributors": [
                 {
@@ -57871,9 +58033,9 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2026-07-02T19:39:14Z",
-                    "tag_sha": "e57766bb985b61173614f98eef25d452c8451568",
-                    "has_schema": false,
+                    "published_at": "2026-07-09T09:41:58Z",
+                    "tag_sha": "40f076f916e71e9b94b1335ced72bda1aca2aab3",
+                    "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
                         "docs/usage.md"
@@ -57890,6 +58052,7 @@
                             "cellrangerarc_count",
                             "cellrangerarc_mkgtf",
                             "cellrangerarc_mkref",
+                            "custom_gtffilter",
                             "fastqc",
                             "gawk",
                             "gffread",
@@ -57911,7 +58074,7 @@
                         ]
                     },
                     "nextflow_version": "!>=25.10.4",
-                    "nf_core_version": null,
+                    "nf_core_version": "4.0.2",
                     "plugins": [
                         "nf-schema@2.5.1"
                     ],
@@ -57930,9 +58093,9 @@
             "url": "https://api.github.com/repos/nf-core/seqinspector",
             "created_at": "2024-03-14T10:40:33Z",
             "updated_at": "2026-06-25T13:48:12Z",
-            "pushed_at": "2026-07-06T09:17:36Z",
+            "pushed_at": "2026-07-09T15:00:50Z",
             "homepage": "https://nf-co.re/seqinspector",
-            "size": 7720,
+            "size": 8652,
             "stargazers_count": 25,
             "watchers_count": 25,
             "language": "Nextflow",
@@ -57945,7 +58108,7 @@
             "forks_count": 42,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 20,
+            "open_issues_count": 21,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -57957,7 +58120,7 @@
             ],
             "visibility": "public",
             "forks": 42,
-            "open_issues": 20,
+            "open_issues": 21,
             "watchers": 25,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -58030,7 +58193,7 @@
             "dev_branch_protection_enforce_admins": false,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 2,
+            "open_pr_count": 3,
             "repository_url": "https://github.com/nf-core/seqinspector",
             "contributors": [
                 {
@@ -58146,7 +58309,7 @@
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": true,
-            "has_nf_test_dev": false,
+            "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
                 "nf-core-utils@0.4.0",
                 "nf-schema@2.6.1"
@@ -58242,8 +58405,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2026-07-06T09:17:36Z",
-                    "tag_sha": "14b8b5ce857b63ea337a929d0c09d273e2b7a046",
+                    "published_at": "2026-07-09T14:10:57Z",
+                    "tag_sha": "abf4dc516602eacf6b1d599712a50d6f82235d92",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -58285,7 +58448,7 @@
                         ]
                     },
                     "nextflow_version": "!>=25.10.4",
-                    "nf_core_version": null,
+                    "nf_core_version": "4.0.2",
                     "plugins": [
                         "nf-core-utils@0.4.0",
                         "nf-schema@2.6.1"
@@ -58305,9 +58468,9 @@
             "url": "https://api.github.com/repos/nf-core/seqsubmit",
             "created_at": "2025-10-06T19:15:11Z",
             "updated_at": "2026-07-07T14:50:32Z",
-            "pushed_at": "2026-07-08T14:22:42Z",
+            "pushed_at": "2026-07-09T14:09:23Z",
             "homepage": "https://nf-co.re/seqsubmit",
-            "size": 5219,
+            "size": 6017,
             "stargazers_count": 7,
             "watchers_count": 7,
             "language": "Nextflow",
@@ -58320,7 +58483,7 @@
             "forks_count": 8,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 17,
+            "open_issues_count": 20,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -58329,7 +58492,7 @@
             "topics": [],
             "visibility": "public",
             "forks": 8,
-            "open_issues": 17,
+            "open_issues": 20,
             "watchers": 7,
             "default_branch": "dev",
             "temp_clone_token": "",
@@ -58402,7 +58565,7 @@
             "dev_uses_ruleset": true,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 4,
+            "open_pr_count": 5,
             "repository_url": "https://github.com/nf-core/seqsubmit",
             "contributors": [
                 {
@@ -58895,7 +59058,7 @@
                     "tag_name": "dev",
                     "published_at": "2021-04-26T13:04:00Z",
                     "tag_sha": "c21d0faee30707ffe134f77e0b37887a1610503f",
-                    "has_schema": false,
+                    "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
                         "docs/usage.md"
@@ -59571,8 +59734,12 @@
             "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
-            "master_nextflow_config_plugins": [],
-            "master_nextflow_config_manifest": {},
+            "master_nextflow_config_plugins": [
+                "nf-schema@2.5.1"
+            ],
+            "master_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "master_uses_params_block": false,
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.5.1"
@@ -59993,7 +60160,7 @@
                     "tag_name": "dev",
                     "published_at": "2026-06-03T08:36:32Z",
                     "tag_sha": "a4a3530919f1563e9fe8d6ed4ca071a2fd77f521",
-                    "has_schema": false,
+                    "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
                         "docs/usage.md"
@@ -60044,7 +60211,9 @@
                     },
                     "nextflow_version": "!>=25.10.4",
                     "nf_core_version": "4.0.2",
-                    "plugins": [],
+                    "plugins": [
+                        "nf-schema@2.5.1"
+                    ],
                     "co2footprint_files": null
                 }
             ]
@@ -60060,9 +60229,9 @@
             "url": "https://api.github.com/repos/nf-core/sopa",
             "created_at": "2025-02-27T12:56:57Z",
             "updated_at": "2026-06-01T10:36:17Z",
-            "pushed_at": "2026-07-08T12:11:19Z",
+            "pushed_at": "2026-07-09T12:46:05Z",
             "homepage": "https://nf-co.re/sopa/dev/",
-            "size": 785,
+            "size": 788,
             "stargazers_count": 18,
             "watchers_count": 18,
             "language": "Nextflow",
@@ -60388,7 +60557,7 @@
             "last_release_vs_default_compare_url": "https://github.com/nf-core/spatialaxe/compare/0ed4c69014015cddc1f64c8c6e15f28993fbb5ff...494cf02857bd24b2d065f938f7e96e523b5b7def",
             "commits_to_dev": 30,
             "is_DSL2": true,
-            "has_nf_test": false,
+            "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
                 "nf-schema@2.5.1"
@@ -60397,8 +60566,12 @@
                 "defaultBranch": "master"
             },
             "master_uses_params_block": false,
-            "dev_nextflow_config_plugins": [],
-            "dev_nextflow_config_manifest": {},
+            "dev_nextflow_config_plugins": [
+                "nf-schema@2.5.1"
+            ],
+            "dev_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "dev_uses_params_block": false,
             "releases": [
                 {
@@ -61189,9 +61362,9 @@
             "url": "https://api.github.com/repos/nf-core/taxprofiler",
             "created_at": "2022-02-18T06:56:10Z",
             "updated_at": "2026-06-15T12:44:17Z",
-            "pushed_at": "2026-07-08T15:54:33Z",
+            "pushed_at": "2026-07-09T08:49:52Z",
             "homepage": "https://nf-co.re/taxprofiler",
-            "size": 19516,
+            "size": 19542,
             "stargazers_count": 188,
             "watchers_count": 188,
             "language": "Nextflow",
@@ -63949,7 +64122,7 @@
             "last_release_vs_default_compare_url": "https://github.com/nf-core/variantbenchmarking/compare/8b21c01749c4447b285d242a198127736f3ffe51...8b21c01749c4447b285d242a198127736f3ffe51",
             "commits_to_dev": 30,
             "is_DSL2": true,
-            "has_nf_test": false,
+            "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
                 "nf-schema@2.5.1",
@@ -64510,7 +64683,7 @@
                     "tag_name": "dev",
                     "published_at": "2023-03-29T06:46:39Z",
                     "tag_sha": "46154522d37b22694edce7b2e75af11e1c28ca26",
-                    "has_schema": false,
+                    "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
                         "docs/usage.md"
@@ -64753,7 +64926,7 @@
                     "tag_name": "dev",
                     "published_at": "2026-06-03T07:01:19Z",
                     "tag_sha": "b3e275d2ec72773be2245ed14d871264deae057d",
-                    "has_schema": false,
+                    "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
                         "docs/usage.md"
@@ -65083,7 +65256,7 @@
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": true,
-            "has_nf_test_dev": false,
+            "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
                 "nf-validation"
             ],
@@ -65332,7 +65505,7 @@
             "last_release_vs_default_compare_url": "https://github.com/nf-core/viralmetagenome/compare/3d36a809a9b6f9617d686eb799feb49a598467e6...3d36a809a9b6f9617d686eb799feb49a598467e6",
             "commits_to_dev": 30,
             "is_DSL2": true,
-            "has_nf_test": false,
+            "has_nf_test": true,
             "has_nf_test_dev": true,
             "main_nextflow_config_plugins": [
                 "nf-schema@2.7.2"
@@ -65341,8 +65514,12 @@
                 "defaultBranch": "master"
             },
             "main_uses_params_block": false,
-            "dev_nextflow_config_plugins": [],
-            "dev_nextflow_config_manifest": {},
+            "dev_nextflow_config_plugins": [
+                "nf-schema@2.7.2"
+            ],
+            "dev_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "dev_uses_params_block": false,
             "releases": [
                 {
