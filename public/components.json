@@ -41422,7 +41422,28 @@
           "@muffato",
           "@jvhagey",
           "@gallvp"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/busco:6.1.0--6d1f7006d91892b3",
+              "build_id": "bd-6d1f7006d91892b3_1",
+              "scan_id": "sc-7ee408324c396471_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/busco:6.1.0--c7528d5825eb19b5",
+              "build_id": "bd-c7528d5825eb19b5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/96/963bad66c10646cf0adb1967cc462ad04d02789ddbfae4fbb94182291dbddf8c/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/busco/busco/.conda-lock/linux_amd64-bd-6d1f7006d91892b3_1.txt"
+            }
+          }
+        }
       },
       "pipelines": [
         {
@@ -41550,7 +41571,28 @@
         ],
         "maintainers": [
           "@zachary-foster"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/busco:6.1.0--6d1f7006d91892b3",
+              "build_id": "bd-6d1f7006d91892b3_1",
+              "scan_id": "sc-7ee408324c396471_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/busco:6.1.0--c7528d5825eb19b5",
+              "build_id": "bd-c7528d5825eb19b5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/96/963bad66c10646cf0adb1967cc462ad04d02789ddbfae4fbb94182291dbddf8c/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/busco/download/.conda-lock/linux_amd64-bd-6d1f7006d91892b3_1.txt"
+            }
+          }
+        }
       },
       "pipelines": [
         {
@@ -73465,7 +73507,41 @@
         ],
         "maintainers": [
           "@nictru"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/python:3.14.5--dc8358b3c5eeb927",
+              "build_id": "bd-dc8358b3c5eeb927_1",
+              "scan_id": "sc-d453bf85569b853d_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/python:3.14.5--bfcec33ce3c2e2f2",
+              "build_id": "bd-bfcec33ce3c2e2f2_6",
+              "scan_id": "sc-8b534d157943b8ec_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/python:3.14.5--d70899bea5a8b0b3",
+              "build_id": "bd-d70899bea5a8b0b3_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/70/70e6d8070f4e8e6fd67f3636a8460f334fb87aaf106748f2ebd215dbdfdf5856/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/python:3.14.5--b29a2f2e65e096bd",
+              "build_id": "bd-b29a2f2e65e096bd_10",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/18/1841daa69f98a0b0ffcb8f545070c8350a75febb167202136eab0990131d31c0/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/custom/gtffilter/.conda-lock/linux_amd64-bd-dc8358b3c5eeb927_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/custom/gtffilter/.conda-lock/linux_arm64-bd-bfcec33ce3c2e2f2_6.txt"
+            }
+          }
+        }
       },
       "pipelines": [
         {
@@ -268739,7 +268815,7 @@
               },
               {
                 "rgi main --version": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The version string returned by the command"
                 }
               }
@@ -268761,8 +268837,30 @@
               },
               {
                 "echo \\$DB_VERSION": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The CARD database version string"
+                }
+              }
+            ]
+          ],
+          "versions_kma": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "kma": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kma -v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -268785,8 +268883,8 @@
               },
               {
                 "rgi main --version": {
-                  "type": "string",
-                  "description": "Command used to collect the version"
+                  "type": "eval",
+                  "description": "The version string returned by the command"
                 }
               }
             ],
@@ -268805,8 +268903,28 @@
               },
               {
                 "echo \\$DB_VERSION": {
+                  "type": "eval",
+                  "description": "The CARD database version string"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
                   "type": "string",
-                  "description": "Command used to collect the version"
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "kma": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kma -v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -268818,7 +268936,41 @@
         "maintainers": [
           "@nickp60",
           "@vinisalazar"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/rgi_kma:e905ecb8305e2609",
+              "build_id": "bd-e905ecb8305e2609_1",
+              "scan_id": "sc-99ef62328a33452b_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/rgi_kma:fab5219836c1d880",
+              "build_id": "bd-fab5219836c1d880_1",
+              "scan_id": "sc-721854d12f10e7f7_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/rgi_kma:06c9375141c15d16",
+              "build_id": "bd-06c9375141c15d16_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/3f/3f452c8e124ee58ab6b26442d15401c57d471cb753f53921570dc484df4e7620/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/rgi_kma:a6eaadaaffbeaf85",
+              "build_id": "bd-a6eaadaaffbeaf85_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c8/c8e83b71b5dae10e1d771490c36f49d314718888c3cc8214350eb7f149090f0e/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/rgi/bwt/.conda-lock/linux_amd64-bd-e905ecb8305e2609_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/rgi/bwt/.conda-lock/linux_arm64-bd-fab5219836c1d880_1.txt"
+            }
+          }
+        }
       },
       "pipelines": [
         {
