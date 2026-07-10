@@ -69,8 +69,12 @@ allTabItems = tabItems
                 (url.includes(`/${pipeline}/${version}/docs/${file}`) ||
                     url.includes(`/${pipeline}/${version}/${file}`) ||
                     url.includes(`/${pipeline}/${file}`)) &&
-                (file.includes("usage") || file.includes("output")),
-            icon: tabItems.some((f) => f.startsWith(file + "/")) ? "fa-regular fa-books" : "",
+                (file.includes("usage") || file.includes("output") || file.toLowerCase().includes("contributing")),
+            icon: tabItems.some((f) => f.startsWith(file + "/"))
+                ? "fa-regular fa-books"
+                : file.toLowerCase().includes("contributing")
+                  ? "fa-regular fa-handshake"
+                  : "",
         };
     });
 
@@ -113,7 +117,7 @@ if (versions.filter((v) => v !== "dev").length > 0) {
         icon: "fa-regular fa-chart-line",
     });
 }
-const sortOrder = ["Introduction", "Usage", "Parameters", "Output", "Results", "Releases"];
+const sortOrder = ["Introduction", "Usage", "Parameters", "Output", "Results", "Releases", "Contributing"];
 allTabItems.sort((a, b) => sortOrder.indexOf(a.label) - sortOrder.indexOf(b.label));
 
 const gh_url = "https://github.com/nf-core/" + pipeline;
