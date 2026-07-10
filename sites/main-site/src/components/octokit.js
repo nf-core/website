@@ -188,7 +188,7 @@ export const getDocFiles = async (pipeline, version) => {
         } else if (
           file.type === "file" &&
           file.name.includes(".md") &&
-          (file.path.includes("output") || file.path.includes("usage"))
+          (file.path.includes("output") || file.path.includes("usage") || file.path.toLowerCase().includes("contributing"))
         ) {
           files.push(file.path);
         }

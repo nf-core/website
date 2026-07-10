@@ -266,12 +266,18 @@ section:before {
 .cursor-pointer {
   cursor: pointer;
 }
-// code
-code:not(pre code),
-.code:not(pre .code) {
+// code (skip code blocks and headings, which style their own code)
+code:not(pre code, :is(h1, h2, h3, h4, h5, h6) code),
+.code:not(pre .code, :is(h1, h2, h3, h4, h5, h6) .code) {
   background-color: rgba($gray-200, 0.75);
   border-radius: 3px;
   padding: 2px 6px;
+  color: inherit;
+}
+
+// code in headings gets no pill background, just the heading's color
+// (instead of Bootstrap's pink `code` default)
+:is(h1, h2, h3, h4, h5, h6) code {
   color: inherit;
 }
 
@@ -1171,24 +1177,25 @@ Launch Page
     margin-bottom: 0;
   }
 
-  .admonition-body .title svg {
-    width: 1.2rem;
-    height: 1.2rem;
-    fill: currentColor;
+  // `>` keeps this rule off Expressive Code frames, whose editor tab is also
+  // a `.title` (inside `figcaption.header`).
+  .admonition-body > .title {
+    border-radius: calc($border-radius-sm - 2px) calc($border-radius-sm - 2px) 0 0 !important;
+
+    svg {
+      width: 1.2rem;
+      height: 1.2rem;
+      fill: currentColor;
+    }
   }
-  // Special admonitions containing *only* a code block figure
-  .admonition-body-content:has(figure:first-child:last-child) {
+  // Special admonitions containing *only* a code block
+  .admonition-body-content:has(> .expressive-code:only-child) {
     padding: 0 !important;
-    code {
+    > .expressive-code :is(pre, figcaption.header) {
       border: none !important;
       border-top-left-radius: 0;
       border-top-right-radius: 0;
     }
-  }
-
-  .title {
-    border-radius: calc($border-radius-sm - 2px) calc($border-radius-sm - 2px) 0 0 !important;
-    margin-bottom: 0.9rem;
   }
   .admonition-collapse-button::after {
     display: inline-block;
@@ -1326,8 +1333,8 @@ div.mermaid {
     color: $gray-100 !important;
   }
 
-  code:not(pre code),
-  .code:not(pre .code) {
+  code:not(pre code, :is(h1, h2, h3, h4, h5, h6) code),
+  .code:not(pre .code, :is(h1, h2, h3, h4, h5, h6) .code) {
     background-color: $gray-800;
     color: $body-color-dark;
   }
