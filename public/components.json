@@ -41596,6 +41596,10 @@
       },
       "pipelines": [
         {
+          "name": "genomeqc",
+          "version": "dev"
+        },
+        {
           "name": "pathogensurveillance",
           "version": "1.1.0"
         }
@@ -41608,6 +41612,7 @@
       "meta": {
         "name": "busco_generateplot",
         "description": "BUSCO plot generation tool",
+        "deprecated": true,
         "keywords": [
           "genome",
           "fasta",
@@ -41839,6 +41844,139 @@
         "maintainers": [
           "@vagkaratzas"
         ]
+      }
+    },
+    {
+      "name": "busco_plot",
+      "path": "modules/nf-core/busco/plot/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "busco_plot",
+        "description": "BUSCO summary plot generation using the built-in 'busco --plot' command",
+        "keywords": [
+          "genome",
+          "fasta",
+          "annotation",
+          "busco",
+          "transcriptome",
+          "quality control"
+        ],
+        "tools": [
+          {
+            "busco": {
+              "description": "BUSCO provides measures for quantitative assessment of genome assembly, gene set, and transcriptome completeness based on evolutionarily informed expectations of gene content from near-universal single-copy orthologs selected from OrthoDB.",
+              "homepage": "https://busco.ezlab.org/",
+              "documentation": "https://busco.ezlab.org/busco_userguide.html",
+              "tool_dev_url": "https://gitlab.com/ezlab/busco",
+              "doi": "10.1007/978-1-4939-9173-0_14",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:busco"
+            }
+          }
+        ],
+        "input": [
+          {
+            "short_summary_json": {
+              "type": "file",
+              "description": "One or more short summary json files from BUSCO",
+              "pattern": "short_summary.*.json",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3750"
+                }
+              ]
+            }
+          }
+        ],
+        "output": {
+          "png": [
+            {
+              "*.png": {
+                "type": "file",
+                "description": "A summary plot in png format",
+                "pattern": "*.png",
+                "ontologies": []
+              }
+            }
+          ],
+          "versions_busco": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "busco": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "busco --version | sed 's/BUSCO //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "busco": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "busco --version | sed 's/BUSCO //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@GallVp",
+          "@dialvarezs"
+        ],
+        "maintainers": [
+          "@GallVp",
+          "@dialvarezs"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/busco:6.1.0--6d1f7006d91892b3",
+              "build_id": "bd-6d1f7006d91892b3_1",
+              "scan_id": "sc-7ee408324c396471_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/busco:6.1.0--c7528d5825eb19b5",
+              "build_id": "bd-c7528d5825eb19b5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/96/963bad66c10646cf0adb1967cc462ad04d02789ddbfae4fbb94182291dbddf8c/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/busco/plot/.conda-lock/linux_amd64-bd-6d1f7006d91892b3_1.txt"
+            }
+          }
+        }
       }
     },
     {
@@ -47425,6 +47563,10 @@
           "version": "3.1.0"
         },
         {
+          "name": "genomeqc",
+          "version": "dev"
+        },
+        {
           "name": "magmap",
           "version": "1.1.0"
         },
@@ -50036,6 +50178,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        },
         {
           "name": "viralmetagenome",
           "version": "1.1.3"
@@ -112079,6 +112225,155 @@
           "version": "1.1.0"
         }
       ]
+    },
+    {
+      "name": "fmhfunprofiler",
+      "path": "modules/nf-core/fmhfunprofiler/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fmhfunprofiler",
+        "description": "Functionally profile metagenomic samples using FracMinHash sketches against KEGG database references.",
+        "keywords": [
+          "metagenomics",
+          "functional profiling",
+          "FracMinHash",
+          "sourmash",
+          "kegg"
+        ],
+        "tools": [
+          {
+            "fmhfunprofiler": {
+              "description": "fmh-funprofiler is a pipeline that leverages FracMinHash (implemented in sourmash) to functionally profile metagenomic samples, offering a faster and more memory-efficient alternative to alignment-based methods.",
+              "homepage": "https://github.com/KoslickiLab/fmh-funprofiler",
+              "documentation": "https://github.com/KoslickiLab/fmh-funprofiler",
+              "tool_dev_url": "https://github.com/KoslickiLab/fmh-funprofiler",
+              "doi": "10.1093/bioinformatics/btae397",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Input metagenomic sequences in FASTA or FASTQ format (can be compressed)",
+                "pattern": "*.{fasta,fastq,fa,fq,fasta.gz,fastq.gz,fa.gz,fq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "ko_sketch": {
+              "type": "file",
+              "description": "Sourmash signature reference sketch or Sequence Bloom Tree (SBT) of KEGG KOs",
+              "pattern": "*.{sig,sig.zip,sbt.zip}",
+              "ontologies": []
+            }
+          },
+          {
+            "ksize": {
+              "type": "integer",
+              "description": "The k-mer size to use for the sketch (typically 7, 11, or 15)"
+            }
+          },
+          {
+            "scaled": {
+              "type": "integer",
+              "description": "The FracMinHash scale factor (e.g., 1000)"
+            }
+          }
+        ],
+        "output": {
+          "csv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.csv": {
+                  "type": "file",
+                  "description": "The main functional abundance profile matrix detailing KEGG Orthology (KO) counts",
+                  "pattern": "*.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_fmhfunprofiler": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fmh-funprofiler": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import importlib.metadata; print(importlib.metadata.version('fmh-funprofiler'))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fmh-funprofiler": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import importlib.metadata; print(importlib.metadata.version('fmh-funprofiler'))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@miraep8"
+        ],
+        "maintainers": [
+          "@miraep8"
+        ]
+      }
     },
     {
       "name": "foldcomp_compress",
@@ -194393,7 +194688,13 @@
         "maintainers": [
           "@GallVp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "medaka",
@@ -208430,7 +208731,13 @@
         "maintainers": [
           "@Joon-Klaps"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "mmseqs_easysearch",
@@ -268430,7 +268737,13 @@
             }
           }
         }
-      }
+      },
+      "pipelines": [
+        {
+          "name": "gwas",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "regenie_splitl0",
@@ -269497,7 +269810,13 @@
           "@kherronism",
           "@gallvp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "repeatmasker_rmouttogff3",
@@ -269669,7 +269988,13 @@
         "maintainers": [
           "@GallVp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "repeatmodeler_repeatmodeler",
@@ -269792,7 +270117,13 @@
         "maintainers": [
           "@GallVp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "resfinder_run",
@@ -273016,7 +273347,7 @@
       "type": "module",
       "meta": {
         "name": "riker_multi",
-        "description": "Run multiple riker collectors in a single BAM pass using riker multi. Specify\ntools via ext.args (e.g. '--tools alignment basic isize'). The wgs and gcbias\ntools require a reference FASTA; the hybcap tool requires baits and targets.\n",
+        "description": "Run multiple riker collectors in a single BAM pass using riker multi. Specify\ntools via ext.args (e.g. '--tools alignment basic isize'). The wgs, gcbias, and\nerror tools require a reference FASTA; the hybcap tool requires baits and targets.\n",
         "keywords": [
           "bam",
           "qc",
@@ -273092,7 +273423,7 @@
               "error_vcf_idx": {
                 "type": "file",
                 "description": "Index for the VCF file.",
-                "pattern": "*.vcf..gz.{tbi,csi}",
+                "pattern": "*.vcf.gz.{tbi,csi}",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_3616"
@@ -371576,7 +371907,7 @@
       "type": "subworkflow",
       "meta": {
         "name": "fasta_gxf_busco_plot",
-        "description": "Runs BUSCO for input assemblies and their annotations in GFF/GFF3/GTF format, and creates summary plots using `BUSCO/generate_plot.py` script\n",
+        "description": "Runs BUSCO for input assemblies and their annotations in GFF/GFF3/GTF format, and creates summary plots using `busco --plot`\n",
         "keywords": [
           "genome",
           "annotation",
@@ -371585,7 +371916,7 @@
         ],
         "components": [
           "busco/busco",
-          "busco/generateplot",
+          "busco/plot",
           "gffread"
         ],
         "input": [
@@ -371663,10 +371994,10 @@
             }
           },
           {
-            "assembly_plot_summary_txt": {
+            "assembly_plot_summary_json": {
               "type": "file",
-              "description": "Channel containing BUSCO short summaries corresponding to fasta files renamed to include lineage in sample id\nStructure: [ txt ]\n",
-              "pattern": "*.txt"
+              "description": "Channel containing BUSCO short summaries corresponding to fasta files renamed to include lineage in sample id\nStructure: [ json ]\n",
+              "pattern": "*.json"
             }
           },
           {
@@ -371704,10 +372035,10 @@
             }
           },
           {
-            "annotation_plot_summary_txt": {
+            "annotation_plot_summary_json": {
               "type": "file",
-              "description": "Channel containing BUSCO short summaries corresponding to annotation files renamed to include lineage in sample id\nStructure: [ txt ]\n",
-              "pattern": "*.txt"
+              "description": "Channel containing BUSCO short summaries corresponding to annotation files renamed to include lineage in sample id\nStructure: [ json ]\n",
+              "pattern": "*.json"
             }
           },
           {
