@@ -338,6 +338,321 @@
       }
     },
     {
+      "name": "aardvark_merge",
+      "path": "modules/nf-core/aardvark/merge/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "aardvark_merge",
+        "description": "A tool to evaluate and merge multiple variant calls into a consensus VCF.",
+        "keywords": [
+          "variant calling",
+          "vcf",
+          "comparison",
+          "consensus",
+          "merging"
+        ],
+        "tools": [
+          {
+            "aardvark": {
+              "description": "The aardvark merge command provides a method to merge variant calls. This functionality is helpful when multiple \nvariant callers or technologies are used for the same sample. Merging variant sets can be complex and Aardvark \nsimplifies this process by modeling the variants as haplotypes. This allows for different merge strategies for \nresolving conflicting variant sets.\n",
+              "homepage": "https://github.com/PacificBiosciences/aardvark",
+              "documentation": "https://github.com/PacificBiosciences/aardvark/blob/main/docs/methods.md#merge-strategies",
+              "tool_dev_url": "https://github.com/PacificBiosciences/aardvark",
+              "doi": "10.1101/2025.10.03.680257",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:aardvark"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "vcfs": {
+                "type": "file",
+                "description": "List of VCF files to be merged",
+                "pattern": "*.{vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            },
+            {
+              "indexes": {
+                "type": "file",
+                "description": "List of index files for the input VCF files",
+                "pattern": "*.{vcf.gz.tbi,vcf.gz.csi,tbi,csi}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference fasta information"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome fasta file",
+                "pattern": "*.{fasta,fa,fasta.gz,fa.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing bed information"
+              }
+            },
+            {
+              "bed": {
+                "type": "file",
+                "description": "Optional BED file containing genomic regions to restrict the merge operation",
+                "pattern": "*.{bed}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3586"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "summary": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.summary.tsv": {
+                  "type": "file",
+                  "description": "Global summary statistics of the variant merge",
+                  "pattern": "*.summary.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "passing_vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.passing.vcf.gz": {
+                  "type": "file",
+                  "description": "Merged VCF file containing passing variants",
+                  "pattern": "*.passing.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "passing_vcf_index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.passing.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "Index file for the merged passing VCF",
+                  "pattern": "*.passing.vcf.gz.tbi"
+                }
+              }
+            ]
+          ],
+          "passing_regions": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.regions.bed.gz": {
+                  "type": "file",
+                  "description": "BED file of regions containing passing variants",
+                  "pattern": "*.regions.bed.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3586"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "passing_regions_index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.regions.bed.gz.tbi": {
+                  "type": "file",
+                  "description": "Index file for the passing regions BED",
+                  "pattern": "*.regions.bed.gz.tbi"
+                }
+              }
+            ]
+          ],
+          "failed_regions": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.failed_regions.bed.gz": {
+                  "type": "file",
+                  "description": "BED file of regions that failed merging criteria",
+                  "pattern": "*.failed_regions.bed.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3586"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "failed_regions_index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.failed_regions.bed.gz.tbi": {
+                  "type": "file",
+                  "description": "Index file for the failed regions BED",
+                  "pattern": "*.failed_regions.bed.gz.tbi"
+                }
+              }
+            ]
+          ],
+          "runinfo": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.json": {
+                  "type": "file",
+                  "description": "JSON file containing parameter settings used during the run",
+                  "pattern": "*.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_aardvark": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "aardvark": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "aardvark merge --version 2>&1 | sed 's/aardvark-bio-merge //; s/-conda//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "aardvark": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "aardvark merge --version 2>&1 | sed 's/aardvark-bio-merge //; s/-conda//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@kubranarci"
+        ],
+        "maintainers": [
+          "@kubranarci"
+        ]
+      }
+    },
+    {
       "name": "abacas",
       "path": "modules/nf-core/abacas/meta.yml",
       "type": "module",
@@ -14007,7 +14322,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -36305,7 +36620,7 @@
                 }
               },
               {
-                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                "bismark --version 2>&1 | grep -Eo '[0-9]+\\.[0-9]+\\.[0-9]+'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -36329,7 +36644,7 @@
                 }
               },
               {
-                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                "bismark --version 2>&1 | grep -Eo '[0-9]+\\.[0-9]+\\.[0-9]+'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -36510,7 +36825,7 @@
                 }
               },
               {
-                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                "bismark --version 2>&1 | grep -Eo '[0-9]+\\.[0-9]+\\.[0-9]+'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -36534,7 +36849,7 @@
                 }
               },
               {
-                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                "bismark --version 2>&1 | grep -Eo '[0-9]+\\.[0-9]+\\.[0-9]+'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -36659,7 +36974,7 @@
                 }
               },
               {
-                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                "bismark --version 2>&1 | grep -Eo '[0-9]+\\.[0-9]+\\.[0-9]+'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -36683,7 +36998,7 @@
                 }
               },
               {
-                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                "bismark --version 2>&1 | grep -Eo '[0-9]+\\.[0-9]+\\.[0-9]+'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -36788,7 +37103,7 @@
                 }
               },
               {
-                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                "bismark --version 2>&1 | grep -Eo '[0-9]+\\.[0-9]+\\.[0-9]+'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -36812,7 +37127,7 @@
                 }
               },
               {
-                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                "bismark --version 2>&1 | grep -Eo '[0-9]+\\.[0-9]+\\.[0-9]+'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -37007,7 +37322,7 @@
                 }
               },
               {
-                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                "bismark --version 2>&1 | grep -Eo '[0-9]+\\.[0-9]+\\.[0-9]+'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -37031,7 +37346,7 @@
                 }
               },
               {
-                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                "bismark --version 2>&1 | grep -Eo '[0-9]+\\.[0-9]+\\.[0-9]+'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -37161,7 +37476,7 @@
                 }
               },
               {
-                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                "bismark --version 2>&1 | grep -Eo '[0-9]+\\.[0-9]+\\.[0-9]+'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -37185,7 +37500,7 @@
                 }
               },
               {
-                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                "bismark --version 2>&1 | grep -Eo '[0-9]+\\.[0-9]+\\.[0-9]+'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -37307,7 +37622,7 @@
                 }
               },
               {
-                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                "bismark --version 2>&1 | grep -Eo '[0-9]+\\.[0-9]+\\.[0-9]+'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -37331,7 +37646,7 @@
                 }
               },
               {
-                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                "bismark --version 2>&1 | grep -Eo '[0-9]+\\.[0-9]+\\.[0-9]+'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -139802,6 +140117,129 @@
       }
     },
     {
+      "name": "genometester4_glistmaker",
+      "path": "modules/nf-core/genometester4/glistmaker/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "genometester4_glistmaker",
+        "description": "Create and count k-mer lists from nucelotide sequences.",
+        "keywords": [
+          "kmer",
+          "sort",
+          "alignment-free"
+        ],
+        "tools": [
+          {
+            "genometester4": {
+              "description": "A toolkit for performing set operations - union, intersection and complement - on k-mer lists.",
+              "homepage": "https://github.com/bioinfo-ut/GenomeTester4",
+              "documentation": "https://github.com/bioinfo-ut/GenomeTester4",
+              "tool_dev_url": "https://github.com/bioinfo-ut/GenomeTester4",
+              "doi": "10.1186/s13742-015-0097-y",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "fasta file",
+                "pattern": "*.{fasta,fa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "list": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.list": {
+                  "type": "file",
+                  "description": "Compressed file containiing the list of observed k-mers and their counts.",
+                  "pattern": "*.list",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_genometester4": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "genometester4": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "glistmaker --version | sed -e 's/glistmaker v//g' ": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "genometester4": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "glistmaker --version | sed -e 's/glistmaker v//g' ": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@snunzi"
+        ],
+        "maintainers": [
+          "@snunzi"
+        ]
+      }
+    },
+    {
       "name": "genotyphi_parse",
       "path": "modules/nf-core/genotyphi/parse/meta.yml",
       "type": "module",
@@ -163982,7 +164420,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "rnadnavar",
@@ -180561,7 +180999,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -180727,7 +181165,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -180856,7 +181294,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "raredisease",
@@ -181076,7 +181514,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -181464,7 +181902,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -181624,9 +182062,410 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
+    },
+    {
+      "name": "ldak_kvikstep1",
+      "path": "modules/nf-core/ldak/kvikstep1/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ldak_kvikstep1",
+        "description": "Run LDAK-KVIK step 1 to fit the genome-wide model and emit the minimal prediction artifact tuple consumed by ldak/kvikstep2",
+        "keywords": [
+          "ldak",
+          "kvik",
+          "gwas",
+          "association"
+        ],
+        "tools": [
+          {
+            "ldak6": {
+              "description": "LDAK and LDAK-KVIK for mixed-model genome-wide association study (GWAS) and heritability analysis.",
+              "homepage": "https://dougspeed.com/ldak/",
+              "documentation": "https://dougspeed.com/ldak-kvik/",
+              "tool_dev_url": "https://github.com/dougspeed/LDAK"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing genotype information\nKeep only the genotype analysis identifier in this map\nThe PLINK bundle must already be staged with basename `prefix`\ne.g. `[ id:'merged_chr' ]`\n"
+              }
+            },
+            {
+              "bed": {
+                "type": "file",
+                "description": "PLINK BED genotype file passed to `--bfile`",
+                "pattern": "*.bed",
+                "ontologies": []
+              }
+            },
+            {
+              "bim": {
+                "type": "file",
+                "description": "PLINK BIM variant file paired with the BED input",
+                "pattern": "*.bim",
+                "ontologies": []
+              }
+            },
+            {
+              "fam": {
+                "type": "file",
+                "description": "PLINK FAM sample file paired with the BED input",
+                "pattern": "*.fam",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing phenotype information\nKeep `id` as the phenotype-specific analysis identifier used for the step 1 output prefix\nOptional phenotype selection such as `--mpheno 1` is supplied via `task.ext.args`\ne.g. `[ id:'Y1' ]`\n"
+              }
+            },
+            {
+              "phenotype_file": {
+                "type": "file",
+                "description": "Phenotype file passed to `--pheno`",
+                "pattern": "*.{txt,tsv,pheno,phe}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "is_binary": {
+                "type": "boolean",
+                "description": "Optional trait-type flag; pass `true` to add `--binary YES` for case-control traits"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing quantitative covariate information\ne.g. `[ id:'qcov' ]`\n"
+              }
+            },
+            {
+              "quant_covariates_file": {
+                "type": "file",
+                "optional": true,
+                "description": "Optional quantitative covariates file passed to `--covar`; provide `[]` when absent",
+                "pattern": "*.{txt,tsv,covar,cov}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing categorical covariate information\ne.g. `[ id:'ccov' ]`\n"
+              }
+            },
+            {
+              "cat_covariates_file": {
+                "type": "file",
+                "optional": true,
+                "description": "Optional categorical covariates file passed to `--factors`; provide `[]` when absent",
+                "pattern": "*.{txt,tsv,covar,cov}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "predictions": [
+            [
+              {
+                "meta2": {
+                  "type": "map",
+                  "description": "Groovy Map containing phenotype information\ne.g. `[ id:'Y1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.step1.root": {
+                  "type": "file",
+                  "description": "LDAK-KVIK step 1 root file",
+                  "pattern": "*.step1.root",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              },
+              {
+                "${prefix}.step1.loco.details": {
+                  "type": "file",
+                  "description": "LDAK-KVIK step 1 leave-one-chromosome-out (LOCO) details file",
+                  "pattern": "*.step1.loco.details",
+                  "ontologies": []
+                }
+              },
+              {
+                "${prefix}.step1.loco.prs": {
+                  "type": "file",
+                  "description": "LDAK-KVIK step 1 LOCO polygenic risk score (PRS) file. Together with the root and LOCO details files, this forms the direct `ldak/kvikstep2` handoff tuple; phenotype and covariate files remain explicit step 2 inputs.",
+                  "pattern": "*.step1.loco.prs",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "effects": [
+            [
+              {
+                "meta2": {
+                  "type": "map",
+                  "description": "Groovy Map containing phenotype information\ne.g. `[ id:'Y1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.step1.effects": {
+                  "type": "file",
+                  "description": "Optional LDAK-KVIK step 1 effects file produced for quantitative traits",
+                  "pattern": "*.step1.effects",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta2": {
+                  "type": "map",
+                  "description": "Groovy Map containing phenotype information\ne.g. `[ id:'Y1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.step1.log": {
+                  "type": "file",
+                  "description": "LDAK-KVIK step 1 log file",
+                  "pattern": "*.step1.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_ldak6": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "ldak6": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "ldak6 --version 2>&1 | grep -oP '(?<=^Version )[0-9.]+'": {
+                  "type": "eval",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "ldak6": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "ldak6 --version 2>&1 | grep -oP '(?<=^Version )[0-9.]+'": {
+                  "type": "eval",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@lyh970817"
+        ],
+        "maintainers": [
+          "@lyh970817"
+        ]
+      }
+    },
+    {
+      "name": "ldak_thinpredictors",
+      "path": "modules/nf-core/ldak/thinpredictors/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ldak_thinpredictors",
+        "description": "Run linkage disequilibrium (LD) pruning with linkage disequilibrium-adjusted kinship (LDAK) to create a thinned predictor list for weighted kinship workflows",
+        "keywords": [
+          "ldak",
+          "thinning",
+          "predictors",
+          "kinship"
+        ],
+        "tools": [
+          {
+            "ldak6": {
+              "description": "LDAK toolset for kinship, heritability, and association analyses",
+              "homepage": "https://dougspeed.com/ldak/",
+              "documentation": "https://dougspeed.com/ldak/"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing genotype-bundle metadata.\nExpected keys:\n  - id (string): Sample identifier used as thin output prefix (for example, 'plink_merged').\n"
+              }
+            },
+            {
+              "bed": {
+                "type": "file",
+                "description": "PLINK BED genotype file",
+                "ontologies": []
+              }
+            },
+            {
+              "bim": {
+                "type": "file",
+                "description": "PLINK BIM variant file",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3285"
+                  }
+                ]
+              }
+            },
+            {
+              "fam": {
+                "type": "file",
+                "description": "PLINK FAM sample file",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3286"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "window_prune": {
+              "type": "float",
+              "description": "Correlation squared (r²) threshold passed to LDAK `--window-prune` (for example, 0.98)"
+            }
+          },
+          {
+            "window_kb": {
+              "type": "integer",
+              "description": "Window size in kilobases passed to LDAK `--window-kb` (for example, 100)"
+            }
+          }
+        ],
+        "output": {
+          "thin_predictors": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Metadata map carried forward from input"
+                }
+              },
+              {
+                "${prefix}.in": {
+                  "type": "file",
+                  "description": "LDAK thinned predictor list emitted by `--thin`",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_ldak6": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ldak6": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "ldak6 --version 2>&1 | grep -oP '(?<=^Version )[0-9.]+'": {
+                  "type": "eval",
+                  "description": "The expression used to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ldak6": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "ldak6 --version 2>&1 | grep -oP '(?<=^Version )[0-9.]+'": {
+                  "type": "eval",
+                  "description": "The expression used to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@lyh970817"
+        ],
+        "maintainers": [
+          "@lyh970817"
+        ]
+      }
     },
     {
       "name": "leafcutter_clusterregtools",
@@ -213890,7 +214729,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "pangenome",
@@ -286701,7 +287540,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -286958,7 +287797,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "pangenome",
@@ -289211,7 +290050,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "phaseimpute",
@@ -305615,7 +306454,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -371035,7 +371874,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -379534,7 +380373,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "pangenome",
@@ -379991,7 +380830,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "pangenome",
@@ -380486,7 +381325,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "pangenome",
