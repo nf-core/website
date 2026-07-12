@@ -212056,19 +212056,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_motus": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "motus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "3.1.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "motus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "3.1.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -212131,18 +212163,6 @@
               "type": "directory",
               "description": "mOTUs database downloaded by `motus downloadDB`\npattern: \"db_mOTU/\"\n"
             }
-          },
-          {
-            "profile_version_yml": {
-              "type": "file",
-              "description": "A single versions.yml file output from motus/profile. motus/merge cannot reconstruct\nthis itself without having the motus database present and configured with the tool\nso here we take it from what is already reported by the upstream module.\n",
-              "pattern": "versions.yml",
-              "ontologies": [
-                {
-                  "edam": "http://edamontology.org/format_3750"
-                }
-              ]
-            }
           }
         ],
         "output": {
@@ -212190,19 +212210,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_motus": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "motus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "3.1.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "motus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "3.1.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -212298,19 +212350,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_motus": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "motus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "3.1.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "motus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "3.1.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -212456,19 +212540,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_motus": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "motus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "3.1.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "motus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "3.1.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
