@@ -118878,7 +118878,14 @@
                 ]
               }
             }
-          ]
+          ],
+          {
+            "db": {
+              "type": "directory",
+              "description": "Optional gapseq reference sequence database directory (from GAPSEQ_REQUESTDB).\nPassed to gapseq via -D. If not provided, gapseq downloads the database itself.\n",
+              "pattern": "gapseq_db"
+            }
+          }
         ],
         "output": {
           "model": [
@@ -118915,6 +118922,9 @@
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_2585"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2332"
                     }
                   ]
                 }
@@ -118991,7 +119001,7 @@
               },
               {
                 "gapseq -v 2>&1 | grep -oP \"\\d+\\.\\d+\\.\\d+\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
               }
@@ -119015,7 +119025,7 @@
               },
               {
                 "gapseq -v 2>&1 | grep -oP \"\\d+\\.\\d+\\.\\d+\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
               }
@@ -119167,6 +119177,9 @@
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_2585"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2332"
                     }
                   ]
                 }
@@ -119207,7 +119220,7 @@
               },
               {
                 "gapseq -v 2>&1 | grep -oP \"\\d+\\.\\d+\\.\\d+\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
               }
@@ -119231,7 +119244,7 @@
               },
               {
                 "gapseq -v 2>&1 | grep -oP \"\\d+\\.\\d+\\.\\d+\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
               }
@@ -119373,6 +119386,9 @@
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_2585"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2332"
                     }
                   ]
                 }
@@ -119413,7 +119429,7 @@
               },
               {
                 "gapseq -v 2>&1 | grep -oP \"\\d+\\.\\d+\\.\\d+\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
               }
@@ -119437,7 +119453,7 @@
               },
               {
                 "gapseq -v 2>&1 | grep -oP \"\\d+\\.\\d+\\.\\d+\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
               }
@@ -119534,7 +119550,14 @@
                 ]
               }
             }
-          ]
+          ],
+          {
+            "db": {
+              "type": "directory",
+              "description": "Optional gapseq reference sequence database directory (from GAPSEQ_REQUESTDB).\nPassed to gapseq via -D. If not provided, gapseq downloads the database itself.\n",
+              "pattern": "gapseq_db"
+            }
+          }
         ],
         "output": {
           "reactions": [
@@ -119625,7 +119648,7 @@
               },
               {
                 "gapseq -v 2>&1 | grep -oP \"\\d+\\.\\d+\\.\\d+\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
               }
@@ -119649,7 +119672,7 @@
               },
               {
                 "gapseq -v 2>&1 | grep -oP \"\\d+\\.\\d+\\.\\d+\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
               }
@@ -119819,7 +119842,7 @@
               },
               {
                 "gapseq -v 2>&1 | grep -oP \"\\d+\\.\\d+\\.\\d+\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
               }
@@ -119843,7 +119866,7 @@
               },
               {
                 "gapseq -v 2>&1 | grep -oP \"\\d+\\.\\d+\\.\\d+\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
               }
@@ -120076,6 +120099,109 @@
             }
           }
         }
+      }
+    },
+    {
+      "name": "gapseq_requestdb",
+      "path": "modules/nf-core/gapseq/requestdb/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gapseq_requestdb",
+        "description": "Download gapseq reference sequence database for metabolic pathway prediction",
+        "keywords": [
+          "database",
+          "reference sequences",
+          "metabolic model",
+          "bacteria",
+          "archaea"
+        ],
+        "tools": [
+          {
+            "gapseq": {
+              "description": "Informed prediction and analysis of bacterial metabolic pathways and genome-scale networks",
+              "homepage": "https://github.com/jotech/gapseq",
+              "documentation": "https://gapseq.readthedocs.io/",
+              "tool_dev_url": "https://github.com/jotech/gapseq",
+              "doi": "10.1186/s13059-021-02295-1",
+              "licence": [
+                "AGPL-3.0-only"
+              ],
+              "identifier": "biotools:gapseq"
+            }
+          }
+        ],
+        "input": [
+          {
+            "taxon": {
+              "type": "string",
+              "description": "Taxonomic group for database download (Bacteria or Archaea)",
+              "pattern": "Bacteria|Archaea"
+            }
+          }
+        ],
+        "output": {
+          "db": [
+            {
+              "gapseq_db": {
+                "type": "directory",
+                "description": "Directory containing gapseq reference sequence database",
+                "pattern": "gapseq_db"
+              }
+            }
+          ],
+          "versions_gapseq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gapseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gapseq -v 2>&1 | grep -oP \"\\d+\\.\\d+\\.\\d+\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gapseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gapseq -v 2>&1 | grep -oP \"\\d+\\.\\d+\\.\\d+\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@brovolia"
+        ],
+        "maintainers": [
+          "@brovolia"
+        ]
       }
     },
     {
@@ -254244,19 +254370,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_poolsnp": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "poolsnp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "poolsnp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -285312,7 +285470,7 @@
               }
             ]
           ],
-          "bai": [
+          "index": [
             [
               {
                 "meta": {
@@ -285321,46 +285479,10 @@
                 }
               },
               {
-                "${prefix}.bam.bai": {
+                "${prefix}.${file_type}.{crai,csi,bai}": {
                   "type": "file",
-                  "description": "BAM index file",
-                  "pattern": "${prefix}.bam.bai",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "csi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "${prefix}.bam.csi": {
-                  "type": "file",
-                  "description": "BAM CSI index file",
-                  "pattern": "${prefix}.bam.csi",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "crai": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "${prefix}.cram.crai": {
-                  "type": "file",
-                  "description": "CRAM index file",
-                  "pattern": "${prefix}.cram.crai",
+                  "description": "Index file for BAM/CRAM/SAM",
+                  "pattern": "${prefix}.${file_type}.{crai,csi,bai}",
                   "ontologies": []
                 }
               }
@@ -285417,7 +285539,8 @@
           "@sainsachiko"
         ],
         "maintainers": [
-          "@sainsachiko"
+          "@sainsachiko",
+          "@matthdsm"
         ]
       }
     },
@@ -285689,6 +285812,28 @@
                 }
               }
             ]
+          ],
+          "versions_bgzip": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bgzip": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bgzip --version | head -1 | sed \"s/bgzip (htslib) //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "topics": {
@@ -285708,6 +285853,26 @@
               },
               {
                 "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bgzip": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bgzip --version | head -1 | sed \"s/bgzip (htslib) //\"": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -287471,7 +287636,7 @@
         "input": [
           [
             {
-              "meta1": {
+              "meta": {
                 "type": "map",
                 "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
               }
@@ -287491,14 +287656,6 @@
                 "pattern": "*.{bai,crai}",
                 "ontologies": []
               }
-            }
-          ],
-          [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
-              }
             },
             {
               "intervals": {
@@ -287514,7 +287671,7 @@
           "tsv": [
             [
               {
-                "meta1": {
+                "meta": {
                   "type": "map",
                   "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
@@ -288527,6 +288684,32 @@
                     "edam": "http://edamontology.org/format_2573"
                   }
                 ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome FASTA file",
+                "pattern": "*.{fa,fasta,fna}",
+                "optional": true,
+                "ontologies": []
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Reference genome FASTA index file",
+                "pattern": "*.{fai}",
+                "optional": true,
+                "ontologies": []
               }
             }
           ]
@@ -308705,19 +308888,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_sexdeterrmine": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sexdeterrmine": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sexdeterrmine --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sexdeterrmine": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sexdeterrmine --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
