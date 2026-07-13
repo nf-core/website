@@ -335258,19 +335258,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_taxpasta": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "taxpasta": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "taxpasta --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "taxpasta": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "taxpasta --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -335387,19 +335419,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_taxpasta": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "taxpasta": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "taxpasta --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "taxpasta": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "taxpasta --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -355277,6 +355341,123 @@
         ],
         "maintainers": [
           "@Joon-Klaps"
+        ]
+      }
+    },
+    {
+      "name": "vcontact3_prepareddatabases",
+      "path": "modules/nf-core/vcontact3/prepareddatabases/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "vcontact3_prepareddatabases",
+        "description": "Prepare and format databases for vCONTACT3 viral taxonomic analysis",
+        "keywords": [
+          "virus",
+          "database",
+          "genomics",
+          "clustering",
+          "vcontact3"
+        ],
+        "tools": [
+          {
+            "vcontact3": {
+              "description": "Scalable and systematic hierarchical virus taxonomy with vCONTACT3",
+              "homepage": "https://bitbucket.org/MAVERICLab/vcontact3/src/master/README.md",
+              "documentation": "https://bitbucket.org/MAVERICLab/vcontact3/src/master/README.md",
+              "tool_dev_url": "https://vcontact3.readthedocs.io/en/latest/",
+              "doi": "10.1101/2025.11.06.686974",
+              "licence": [
+                "CC-BY-4.0"
+              ],
+              "identifier": "biotools:vcontact3"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "db_version": {
+                "type": "integer",
+                "description": "The database version number to download and prepare (e.g. 'latest')"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "database": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "${prefix}/": {
+                  "type": "directory",
+                  "description": "Directory containing the downloaded and formatted vConTACT3 databases"
+                }
+              }
+            ]
+          ],
+          "versions_vcontact3": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "vcontact3": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "vcontact3 version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "vcontact3": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "vcontact3 version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@olawal1001"
+        ],
+        "maintainers": [
+          "@olawal1001"
         ]
       }
     },
