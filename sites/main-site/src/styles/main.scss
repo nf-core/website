@@ -3,38 +3,6 @@
 .hide-light {
   display: none;
 }
-figure[data-rehype-pretty-code-figure] {
-  code[data-theme*=" "],
-  code[data-theme*=" "] span {
-    color: var(--shiki-light);
-    background-color: var(--shiki-light-bg);
-  }
-}
-
-span[data-rehype-pretty-code-figure] {
-  code[data-theme*=" "],
-  code[data-theme*=" "] span {
-    color: var(--shiki-light);
-  }
-}
-
-figure[data-rehype-pretty-code-figure] mark[data-highlighted-chars] {
-  border: none;
-  background-color: transparent;
-  padding: 0;
-  & span {
-    position: relative;
-    &::before {
-      content: attr(data-content);
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      opacity: 0.25;
-      background-color: var(--shiki-light);
-    }
-  }
-}
 
 body {
   font-feature-settings: "ss03"; // curved r https://rsms.me/inter/#features/ss03
@@ -95,13 +63,6 @@ blockquote {
   }
 }
 
-.main-content figure pre:has(+ figcaption) {
-  margin-bottom: 0;
-}
-.main-content figure pre:has(+ figcaption) code {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
 .main-content figure img:has(+ figcaption) {
   border: 1px solid $border-color;
   border-bottom: 0;
@@ -110,20 +71,41 @@ blockquote {
   border-top-right-radius: 3px;
 }
 
-.main-content figcaption {
+// Generic figure caption (images / standalone figures). Code blocks are rendered
+// by Expressive Code, which adds its own `figcaption.header` above the `<pre>`
+// (and a `figcaption.ec-caption` below) — exclude both so we don't override the
+// EC frame header styling.
+.main-content figcaption:not(.header):not(.ec-caption) {
   font-size: 0.9rem;
   color: $body-secondary-color;
   padding: 0.2rem 0.5rem;
 }
 
-.main-content pre figcaption {
-  border: 1px solid $border-color;
-  border-top: 0;
+// Caption rendered below a code block by pluginCaptions (`caption="..."`).
+// The caption is appended inside the EC `.frame`, so the frame's box-shadow
+// wraps around it — drop it on captioned frames for a flat caption look.
+.expressive-code .frame:has(figcaption.ec-caption) {
+  box-shadow: none;
 }
-.main-content pre figcaption:last-child {
-  margin-bottom: 1.5rem;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
+.expressive-code figcaption.ec-caption {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-style: italic;
+  text-align: center;
+  color: var(--bs-secondary-color);
+}
+// EC core resets every element inside the frame with `all: revert` (selector
+// `.expressive-code *:not(:is(svg, svg *))`, specificity 0,1,1), which strips
+// Font Awesome's element-level `font-family` off the runtime fallback file icon
+// in MarkdownWrapper.svelte — the `::before` glyph then inherits the page font
+// and renders as tofu. (file-icons-js icons survive because they set the icon
+// font on `::before` directly; SVGs survive because the reset excludes them.)
+// Re-apply FA here with higher specificity than the reset.
+.expressive-code figcaption .title i.fa-file-code {
+  font-family: "Font Awesome 6 Pro";
+  font-weight: 400;
+  font-style: normal;
+  display: inline-block;
 }
 
 mark,
@@ -293,103 +275,9 @@ code:not(pre code),
   color: inherit;
 }
 
-.main-content pre {
-  font-size: 14px;
-  code {
-    border-radius: 3px;
-    border: 1px solid $border-color;
-    display: flow-root;
-    overflow-x: auto;
-    padding-top: 0.75em;
-    padding-bottom: 0.75em;
-    &[data-line-numbers] {
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-    &:not([data-line-numbers]):not(.hljs) {
-      & > span {
-        padding-left: 1em;
-        padding-right: 1em;
-        &[data-highlighted-line] {
-          padding-left: calc(1em - 2px);
-        }
-      }
-    }
-    &[data-line-numbers] {
-      counter-reset: line;
-
-      & > [data-line]::before {
-        counter-increment: line;
-        content: counter(line);
-        display: inline-block;
-        width: 1.5rem;
-        margin-right: 1rem;
-        padding-right: 0.5rem;
-        text-align: right;
-        color: $gray-400;
-        border-right: 1px solid $gray-400;
-      }
-      & > [data-line]:first-child::before {
-        padding-top: 0.45rem;
-      }
-      & > [data-line]:last-child::before {
-        padding-bottom: 0.25rem;
-      }
-      & > [data-line][data-highlighted-line]::before {
-        color: $gray-600;
-      }
-      // handle offset for line numbers with more than 1 digit
-      &[data-line-numbers-max-digits="2"] > [data-line]::before {
-        width: 2.25rem;
-      }
-      &[data-line-numbers-max-digits="2"] > [data-highlighted-line][data-line]::before {
-        width: calc(2.25rem - 2px); // 2px for border offset
-      }
-
-      &[data-line-numbers-max-digits="3"] > [data-line]::before {
-        width: 3rem;
-      }
-      &[data-line-numbers-max-digits="3"] > [data-highlighted-line][data-line]::before {
-        width: calc(3rem - 2px); // 2px for border offset
-      }
-      &[data-line-numbers-max-digits="4"] > [data-line]::before {
-        width: 3.5rem;
-      }
-      &[data-line-numbers-max-digits="4"] > [data-highlighted-line][data-line]::before {
-        width: calc(3.5rem - 2px); // 2px for border offset
-      }
-    }
-  }
-}
-
-pre.has-diff .diff.add {
-  background-color: tint-color($success-text-emphasis-dark, 75%);
-  border-left: 2px solid $success-text-emphasis-dark;
-  span {
-    background-color: tint-color($success-text-emphasis-dark, 75%);
-  }
-}
-
-pre.has-diff .diff.add::before {
-  content: "+";
-  position: absolute;
-  left: 0.45em; /* Adjust as needed */
-  color: $success-text-emphasis-dark;
-}
-
-pre.has-diff .diff.remove {
-  background-color: tint-color($danger-text-emphasis-dark, 80%);
-  border-left: 2px solid $danger-text-emphasis-dark;
-  span {
-    background-color: tint-color($danger-text-emphasis-dark, 80%);
-  }
-}
-
-pre.has-diff .diff.remove::before {
-  content: "−";
-  position: absolute;
-  left: 0.5em;
-  color: $danger-text-emphasis-dark;
+// inline code highlighted by hast-inline-code.ts (`code{:lang}`)
+code[data-inline-code] span {
+  color: var(--shiki-light);
 }
 
 .sticky-top-under {
@@ -1323,59 +1211,6 @@ Launch Page
   }
 }
 
-figure[data-rehype-pretty-code-figure] [data-theme*=" "]:not([data-rehype-pretty-code-title]) {
-  [data-highlighted-line] {
-    background-color: tint-color($success-text-emphasis-dark, 80%);
-    border-left: 2px solid $success-text-emphasis-dark;
-    span {
-      background-color: tint-color($success-text-emphasis-dark, 80%);
-    }
-  }
-  [data-highlighted-chars] {
-    // background-color: tint-color($gray-500, 80%);
-  }
-}
-
-.main-content figure[data-rehype-pretty-code-figure] {
-  &:has([data-rehype-pretty-code-title]) pre {
-    code {
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-    }
-  }
-  pre .copy-code-button {
-    margin-top: 0.5rem;
-    margin-bottom: 0.75rem;
-    margin-right: 0.425rem;
-    &.single-line {
-      margin-top: 0.425rem;
-    }
-    &:hover {
-      opacity: 1 !important;
-    }
-  }
-  &:has(.single-line) code {
-    padding-top: 0.75rem;
-  }
-}
-
-[data-rehype-pretty-code-title] {
-  border: 1px solid $border-color;
-  padding: 0.4rem;
-  padding-left: 0.5rem;
-  margin-bottom: -1px;
-  font-size: 0.9rem;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-[data-rehype-pretty-code-title][data-theme*=" "] {
-  border: 1px solid $border-color;
-  background-color: $card-cap-bg;
-}
-
 div.mermaid {
   text-align: center;
   padding: 1rem 0 2rem;
@@ -1388,9 +1223,14 @@ div.mermaid {
   }
 }
 
+// give code blocks some breathing room below them
+.main-content .expressive-code {
+  margin-bottom: 1rem;
+}
+
 // add margin to codeblocks wedged in between ol/ul
-.main-content ol + figure,
-.main-content ul + figure {
+.main-content ol + .expressive-code,
+.main-content ul + .expressive-code {
   margin-bottom: 1rem;
   margin-left: 2rem;
   margin-right: 2rem;
@@ -1448,25 +1288,10 @@ div.mermaid {
     border-color: shade-color($nf-core-color-dark, 25%);
   }
 
-  figure[data-rehype-pretty-code-figure] {
-    code[data-theme*=" "],
-    code[data-theme*=" "] span {
-      color: var(--shiki-dark);
-      background-color: var(--shiki-dark-bg);
-    }
+  code[data-inline-code] span {
+    color: var(--shiki-dark);
   }
-  span[data-rehype-pretty-code-figure] {
-    code[data-theme*=" "],
-    code[data-theme*=" "] span {
-      color: var(--shiki-dark);
-    }
-  }
-  figure[data-rehype-pretty-code-figure] mark[data-highlighted-chars] span::before {
-    background-color: var(--shiki-dark);
-  }
-  [data-rehype-pretty-code-title][data-theme*=" "] {
-    border: 1px solid $border-color-dark;
-  }
+
   img:not([src$=".svg"]) {
     filter: brightness(0.8) contrast(1.2); // dim images a bit https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/
   }
@@ -1541,10 +1366,7 @@ div.mermaid {
     color: $white;
     font-weight: 400;
   }
-  .main-content pre code {
-    border: 1px solid $border-color-dark;
-  }
-  .main-content figcaption,
+  .main-content figcaption:not(.header):not(.ec-caption),
   .main-content figure img {
     border-color: $border-color-dark;
     color: $body-secondary-color-dark;
@@ -1571,53 +1393,6 @@ div.mermaid {
     background-color: $gray-800;
     color: $body-color-dark;
   }
-  .main-content pre code {
-    &[data-line-numbers] {
-      & > [data-line]::before {
-        border-color: $border-color-dark;
-        color: $border-color-dark;
-      }
-      & > [data-line][data-highlighted-line]::before {
-        color: $gray-500;
-      }
-    }
-  }
-
-  pre.has-diff .diff.add {
-    background-color: shade-color($success-text-emphasis-dark, 65%);
-    border-left: 2px solid shade-color($success-text-emphasis-dark, 25%);
-    span {
-      background-color: shade-color($success-text-emphasis-dark, 65%);
-    }
-  }
-
-  pre.has-diff .diff.add::before {
-    color: shade-color($success-text-emphasis-dark, 25%);
-  }
-
-  pre.has-diff .diff.remove {
-    background-color: shade-color($danger-text-emphasis-dark, 70%);
-    border-left: 2px solid shade-color($danger-text-emphasis-dark, 25%);
-    span {
-      background-color: shade-color($danger-text-emphasis-dark, 70%);
-    }
-  }
-
-  pre.has-diff .diff.remove::before {
-    color: shade-color($danger-text-emphasis-dark, 25%);
-  }
-
-  figure[data-rehype-pretty-code-figure] [data-theme*=" "] [data-highlighted-line] {
-    background-color: shade-color($success-text-emphasis-dark, 70%);
-    border-left: 2px solid shade-color($success-text-emphasis-dark, 25%);
-    span {
-      &:first-child {
-        padding-top: 0;
-      }
-      background-color: shade-color($success-text-emphasis-dark, 70%);
-    }
-  }
-
   .excalidraw svg {
     filter: invert(100%) hue-rotate(180deg);
   }

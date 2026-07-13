@@ -56,7 +56,3 @@ This enables the flexible syntax shown above.
   "minItems": 0
 },
 ```
-
-:::tip
-You can find a complete schema example in the [nf-core-test repository](https://github.com/nf-core/nf-core-test).
-:::

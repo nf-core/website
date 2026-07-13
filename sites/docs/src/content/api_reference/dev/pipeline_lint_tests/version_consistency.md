@@ -1,4 +1,4 @@
-# version_consistency
+# version\_consistency
 
 #### `PipelineLint.version_consistency(){:python}`
 

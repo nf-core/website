@@ -1,4 +1,4 @@
-# subworkflow_version
+# subworkflow\_version
 
 #### `SubworkflowLint.subworkflow_version(subworkflow){:python}`
 
@@ -10,6 +10,11 @@ newer version of the subworkflow available.
 
 The following checks are performed:
 
-- `git_sha`: The subworkflow must have a `git_sha` entry in `modules.json`.
-- `subworkflow_version`: The subworkflow version must match the latest commit
-  in the remote repository. A warning is issued if a newer version is available.
+## git\_sha
+
+The subworkflow must have a `git_sha` entry in `modules.json`.
+
+## subworkflow\_version
+
+The subworkflow version must match the latest commit
+in the remote repository. A warning is issued if a newer version is available.

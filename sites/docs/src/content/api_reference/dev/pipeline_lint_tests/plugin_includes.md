@@ -1,4 +1,4 @@
-# plugin_includes
+# plugin\_includes
 
 #### `PipelineLint.plugin_includes() → dict[str, list[str]]{:python}`
 

@@ -1,4 +1,4 @@
-# module_version
+# module\_version
 
 #### `ModuleLint.module_version(module: NFCoreComponent){:python}`
 
@@ -10,6 +10,11 @@ newer version of the module available.
 
 The following checks are performed:
 
-- `git_sha`: The module must have a `git_sha` entry in `modules.json`.
-- `module_version`: The module version must match the latest commit in the
-  remote repository. A warning is issued if a newer version is available.
+## git\_sha
+
+The module must have a `git_sha` entry in `modules.json`.
+
+## module\_version
+
+The module version must match the latest commit in the
+remote repository. A warning is issued if a newer version is available.

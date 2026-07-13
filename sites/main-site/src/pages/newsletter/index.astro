@@ -1,0 +1,74 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import NewsletterSignup from "@components/newsletter/NewsletterSignup.astro";
+import { getCollection } from "astro:content";
+import pipelines_json from "@public/pipelines.json";
+import { getPublishedNewsletterMonths, getMonthName } from "@utils/newsletter";
+
+const pipelines = pipelines_json.remote_workflows;
+const months = await getPublishedNewsletterMonths(getCollection, pipelines);
+
+// Group by year
+const byYear = new Map<number, { year: number; month: number }[]>();
+for (const m of months) {
+    if (!byYear.has(m.year)) byYear.set(m.year, []);
+    byYear.get(m.year)!.push(m);
+}
+const years = [...byYear.keys()].sort((a, b) => b - a);
+
+// Latest newsletter for redirect
+const latest = months[0];
+---
+
+<PageLayout
+    title="nf-core Newsletter"
+    meta_title="nf-core Newsletter"
+    subtitle="Monthly community newsletters from nf-core"
+    mainpage_container={true}
+    subfooter={false}
+>
+    <div class="card border-secondary mb-4">
+        <div class="card-body p-4">
+            <NewsletterSignup />
+            <p class="small text-body-secondary mt-3 mb-0">
+                If you prefer, you can read and subscribe to the newsletter on
+                <a
+                    href="https://www.linkedin.com/newsletters/nf-core-7474718981564706816/"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    <i class="fab fa-linkedin mx-1"></i>LinkedIn</a
+                >.
+            </p>
+        </div>
+    </div>
+
+    {
+        latest && (
+            <div class="alert alert-success mb-4">
+                <strong>Latest newsletter: </strong>
+                <a href={`/newsletter/${latest.year}/${String(latest.month).padStart(2, "0")}`}>
+                    {getMonthName(latest.month)} {latest.year}
+                </a>
+            </div>
+        )
+    }
+
+    {
+        years.map((year) => (
+            <div class="mb-4">
+                <h2>{year}</h2>
+                <div class="list-group">
+                    {byYear.get(year)!.map((m) => (
+                        <a
+                            href={`/newsletter/${m.year}/${String(m.month).padStart(2, "0")}`}
+                            class="list-group-item list-group-item-action"
+                        >
+                            {getMonthName(m.month)} {m.year}
+                        </a>
+                    ))}
+                </div>
+            </div>
+        ))
+    }
+</PageLayout>

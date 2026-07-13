@@ -1,4 +1,4 @@
-# nf_core.pipelines.list
+# nf\_core.pipelines.list
 
 Lists available nf-core pipelines and versions.
 
@@ -32,8 +32,8 @@ Is used to collect local and remote nf-core pipelines. Pipelines
 can be sorted, filtered and compared.
 
 - **Parameters:**
-  - **filter_by** (_list_) – A list of strings that can be used for filtering.
-  - **sort_by** (_str_) – workflows can be sorted by keywords. Keyword must be one of
+  - **filter\_by** (_list_) – A list of strings that can be used for filtering.
+  - **sort\_by** (_str_) – workflows can be sorted by keywords. Keyword must be one of
     release (default), name, stars.
 
 #### `compare_remote_local(){:python}`
@@ -101,10 +101,10 @@ Check if this workflow has a local copy and use nextflow to pull it if not
 Prints out a list of all nf-core workflows.
 
 - **Parameters:**
-  - **filter_by** (_list_) – A list of strings that can be used for filtering.
-  - **sort_by** (_str_) – workflows can be sorted by keywords. Keyword must be one of
+  - **filter\_by** (_list_) – A list of strings that can be used for filtering.
+  - **sort\_by** (_str_) – workflows can be sorted by keywords. Keyword must be one of
     release (default), name, stars.
-  - **as_json** (_boolean_) – Set to true, if the lists should be printed in JSON.
+  - **as\_json** (_boolean_) – Set to true, if the lists should be printed in JSON.
 
 ### `nf_core.pipelines.list.pretty_date(time){:python}`
 
