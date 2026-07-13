@@ -1,4 +1,5 @@
-import mdx from "@astrojs/mdx";
+import { resolve } from "node:path";
+import mdx from '@astrojs/mdx';
 import netlify from "@astrojs/netlify";
 import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
@@ -6,8 +7,10 @@ import svelte from "@astrojs/svelte";
 import yaml from "@rollup/plugin-yaml";
 import { envField, fontProviders, svgoOptimizer } from "astro/config";
 import markdownIntegration from "@mashehu/astropub-md";
+import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
-import { sharedMarkdownConfig } from "./bin/markdownConfig.ts";
+import { createEcConfig } from "./bin/satteri/hast-expressive-code.ts";
+import { createSatteriPluginSets, satteriSharedMarkdownConfig } from "./bin/satteri/markdownConfig.ts";
 
 /**
  * Base Astro configuration shared across all nf-core subsites.
@@ -87,8 +90,12 @@ export default {
                 forward: ["dataLayer.push"],
             },
         }),
+        expressiveCode(createEcConfig()),
         mdx(),
-        markdownIntegration(),
+        // The <Markdown> component renders through a standalone Sätteri call that
+        // reads only shared.markdownConfig (set by this integration) — it does NOT
+        // use Astro's `markdown` processor below.
+        markdownIntegration(createSatteriPluginSets()),
     ],
     build: {
         inlineStylesheets: "auto",
@@ -103,6 +110,9 @@ export default {
             preserveSymlinks: true,
             browser: true,
             noExternal: ["@popperjs/core", "svelte-exmarkdown", "svelte-confetti", "@mashehu/astropub-md"],
+            alias: {
+                "@styles": resolve(process.cwd(), "../main-site/src/styles"),
+            },
         },
         css: {
             preprocessorOptions: {
@@ -131,5 +141,5 @@ export default {
             entrypoint: "astro/assets/services/sharp",
         },
     },
-    markdown: sharedMarkdownConfig,
+    markdown: satteriSharedMarkdownConfig(),
 };

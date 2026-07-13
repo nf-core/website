@@ -1,4 +1,4 @@
-# nf_test_content
+# nf\_test\_content
 
 #### `PipelineLint.nf_test_content() → dict[str, list[str]]{:python}`
 

@@ -1,9 +1,18 @@
 ---
 import ListingLayout from "@layouts/ListingLayout.astro";
 import ComponentListing from "@components/component/ComponentListing.svelte";
+import { renderMarkdown } from "@root/bin/satteri/markdownConfig.ts";
 
 import components from "@public/components.json";
-const subworkflows = components.subworkflows;
+
+const subworkflows = await Promise.all(
+    components.subworkflows.map(async (subworkflow) => {
+        if (!subworkflow.meta.description) return subworkflow;
+        const { html } = await renderMarkdown(subworkflow.meta.description);
+        return { ...subworkflow, meta: { ...subworkflow.meta, description_rendered: html } };
+    }),
+);
+
 const title = "nf-core/subworkflows";
 const description =
     "Browse the " + subworkflows.length + " subworkflows that are currently available as part of nf-core.";

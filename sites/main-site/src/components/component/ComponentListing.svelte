@@ -12,6 +12,7 @@
         meta: {
             name: string;
             description: string;
+            description_rendered?: string;
             keywords: string[];
             components?: string[];
             input: {}[];
@@ -151,7 +152,11 @@
                                 </div>
                             </td>
                             <td class="text-small">
-                                {component.meta.description}
+                                {#if component.meta.description_rendered}
+                                    {@html component.meta.description_rendered}
+                                {:else}
+                                    {component.meta.description}
+                                {/if}
                             </td>
                             <td class="topics">
                                 <TagSection tags={component.meta.keywords} type="keywords" />

@@ -1,4 +1,4 @@
-# module_changes
+# module\_changes
 
 #### `ModuleLint.module_changes(module){:python}`
 
@@ -15,5 +15,7 @@ Only runs when linting a pipeline, not the modules repository
 
 The following checks are performed:
 
-- `check_local_copy`: Each module file must be identical to the corresponding
-  file in the remote repository at the pinned commit SHA.
+## check\_local\_copy
+
+Each module file must be identical to the corresponding
+file in the remote repository at the pinned commit SHA.

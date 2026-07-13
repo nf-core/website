@@ -1,0 +1,48 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import NewsletterSignup from "@components/newsletter/NewsletterSignup.astro";
+---
+
+<PageLayout
+    title="Subscribe to the nf-core newsletter"
+    meta_title="Subscribe to the nf-core newsletter"
+    subtitle="Monthly community news, pipeline releases, and events — straight to your inbox"
+    mainpage_container={true}
+    subfooter={false}
+>
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card border-secondary mb-4">
+                <div class="card-body p-4">
+                    <NewsletterSignup compact={true} />
+                    <p class="small text-body-secondary mt-3 mb-0">
+                        If you prefer, you can read and subscribe to the same newsletter on
+                        <a
+                            href="https://www.linkedin.com/newsletters/nf-core-7474718981564706816/"
+                            target="_blank"
+                            rel="noopener"><i class="fab fa-linkedin me-1"></i>LinkedIn</a
+                        >.
+                    </p>
+                </div>
+            </div>
+
+            <h2 class="h4">What you'll get</h2>
+            <ul>
+                <li>An automated monthly round-up of new blog posts and community highlights.</li>
+                <li>New pipeline releases and first releases.</li>
+                <li>Upcoming events, talks, and hackathons.</li>
+            </ul>
+
+            <h2 class="h4 mt-4">Privacy</h2>
+            <p>
+                We store only your email address and the date you subscribed, in order to send you the newsletter.
+                Contacts and delivery are managed with Amazon SES in the EU (eu-west-1). We never share your address,
+                and you can unsubscribe whenever you like.
+            </p>
+
+            <p class="mt-4">
+                <a href="/newsletter"><i class="fa-solid fa-cabinet-filing"></i> Browse past newsletters</a>
+            </p>
+        </div>
+    </div>
+</PageLayout>

@@ -6,7 +6,15 @@ repos:
         entry: prettier --experimental-cli --write --ignore-unknown
         # NOTE https://github.com/pre-commit/pre-commit/issues/3133
         additional_dependencies:
-          - prettier@3.8.3
+          - prettier@3.9.1
           - prettier-plugin-svelte@3.5.1
           - prettier-plugin-astro@0.14.1
         files: \.(astro|svelte|mdx|md|yml|yaml)$
+  - repo: local
+    hooks:
+      - id: check-api-catalog
+        name: Check api-catalog discovery files
+        entry: node bin/check-api-catalog.js
+        language: system
+        pass_filenames: false
+        files: ^(sites/main-site/(public/.*|netlify\.toml)|bin/check-api-catalog\.js)$

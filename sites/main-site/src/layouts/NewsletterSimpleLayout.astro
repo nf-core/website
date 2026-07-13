@@ -1,0 +1,240 @@
+---
+// Unstyled, semantic HTML rendering of a newsletter month. No CSS, no classes,
+// no inline styles — just plain markup. Images are included only for this
+// month's new blog posts (not older items / events).
+import {
+    advisoryUrl,
+    blogUrl,
+    eventDateRange,
+    eventTypeLabel,
+    eventUrl,
+    formatAdvisoryTypes,
+    formatDate,
+    imgSrc,
+    pipelineUrl,
+    sortByStatus,
+} from "@utils/newsletter-render";
+
+const { data } = Astro.props;
+const baseUrl = data.baseUrl;
+---
+
+<h1>nf-core/newsletter, {data.monthName} {data.year}</h1>
+<p>
+    <img
+        src={`/newsletter/${data.year}/${String(data.month).padStart(2, "0")}/header.png`}
+        alt={`nf-core newsletter — ${data.monthName} ${data.year}`}
+        width="800"
+    />
+</p>
+<p>{data.previewText}</p>
+<p><a href={data.newsletterUrl}>View on the nf-core website</a></p>
+
+{
+    data.thisMonthBlogPosts.length > 0 && (
+        <section>
+            <h2>Blog posts</h2>
+            <ul>
+                {data.thisMonthBlogPosts.map((post: any) => (
+                    <li>
+                        <a href={blogUrl(baseUrl, post.id)}>{post.data.title}</a> — {post.data.subtitle}
+                        <br />
+                        <small>
+                            {formatDate(post.data.pubDate)} · by {post.data.authors.join(", ")}
+                        </small>
+                        {data.blogImageSrcs.get(post.id) && (
+                            <p>
+                                <a href={blogUrl(baseUrl, post.id)}>
+                                    <img
+                                        src={imgSrc(data.blogImageSrcs.get(post.id))}
+                                        alt={post.data.title}
+                                        width="320"
+                                    />
+                                </a>
+                            </p>
+                        )}
+                    </li>
+                ))}
+            </ul>
+        </section>
+    )
+}
+
+{
+    data.monthAdvisories.length > 0 && (
+        <section>
+            <h2>Advisories</h2>
+            <ul>
+                {data.monthAdvisories.map((a: any) => (
+                    <li>
+                        <strong>{String(a.data.severity).toUpperCase()}</strong>{" "}
+                        <a href={advisoryUrl(baseUrl, a.id)}>{a.data.title}</a>
+                        {formatAdvisoryTypes(a.data.type).length > 0 && (
+                            <em> ({formatAdvisoryTypes(a.data.type).join(", ")})</em>
+                        )}
+                        {" — "}
+                        {a.data.subtitle}
+                    </li>
+                ))}
+            </ul>
+        </section>
+    )
+}
+
+{
+    data.firstReleases.length > 0 && (
+        <section>
+            <h2>New pipeline first releases 🎉</h2>
+            <p>These pipelines just had their very first release.</p>
+            <ul>
+                {data.firstReleases.map((r: any) => (
+                    <li>
+                        <a href={pipelineUrl(baseUrl, r.pipelineName)}>nf-core/{r.pipelineName}</a>{" "}
+                        {r.tagNames.map((t: string) => `v${t}`).join(", ")} — {r.description}
+                    </li>
+                ))}
+            </ul>
+        </section>
+    )
+}
+
+{
+    data.otherReleases.length > 0 && (
+        <section>
+            <h2>Pipeline releases</h2>
+            <ul>
+                {data.otherReleases.map((r: any) => (
+                    <li>
+                        <a href={pipelineUrl(baseUrl, r.pipelineName)}>nf-core/{r.pipelineName}</a>{" "}
+                        {r.tagNames.map((t: string) => `v${t}`).join(", ")} <small>({formatDate(r.publishedAt)})</small>
+                    </li>
+                ))}
+            </ul>
+        </section>
+    )
+}
+
+{
+    data.upcomingEvents.length > 0 && (
+        <section>
+            <h2>Upcoming events</h2>
+            <ul>
+                {data.upcomingEvents.map((e: any) => (
+                    <li>
+                        <strong>{eventTypeLabel[e.data.type] || e.data.type}</strong>{" "}
+                        <a href={eventUrl(baseUrl, e.id)}>{e.data.title}</a> —{" "}
+                        {eventDateRange(e.data.start, e.data.end)}
+                        {e.data.subtitle && (
+                            <>
+                                <br />
+                                <small>{e.data.subtitle}</small>
+                            </>
+                        )}
+                    </li>
+                ))}
+            </ul>
+        </section>
+    )
+}
+
+{
+    (data.recentEvents.length > 0 || data.olderBlogPosts.length > 0 || data.olderAdvisories.length > 0) && (
+        <section>
+            <h2>In case you missed it</h2>
+            {data.recentEvents.length > 0 && (
+                <>
+                    <h3>Recent events</h3>
+                    <ul>
+                        {data.recentEvents.map((e: any) => (
+                            <li>
+                                <a href={eventUrl(baseUrl, e.id)}>{e.data.title}</a> —{" "}
+                                {eventDateRange(e.data.start, e.data.end)} ({eventTypeLabel[e.data.type] || e.data.type}
+                                )
+                            </li>
+                        ))}
+                    </ul>
+                </>
+            )}
+            {data.olderBlogPosts.length > 0 && (
+                <>
+                    <h3>Earlier blog posts</h3>
+                    <ul>
+                        {data.olderBlogPosts.map((post: any) => (
+                            <li>
+                                <a href={blogUrl(baseUrl, post.id)}>{post.data.title}</a> —{" "}
+                                {formatDate(post.data.pubDate)}
+                            </li>
+                        ))}
+                    </ul>
+                </>
+            )}
+            {data.olderAdvisories.length > 0 && (
+                <>
+                    <h3>Earlier advisories</h3>
+                    <ul>
+                        {data.olderAdvisories.map((a: any) => (
+                            <li>
+                                <strong>{String(a.data.severity).toUpperCase()}</strong>{" "}
+                                <a href={advisoryUrl(baseUrl, a.id)}>{a.data.title}</a> —{" "}
+                                {formatDate(a.data.publishedDate)}
+                            </li>
+                        ))}
+                    </ul>
+                </>
+            )}
+        </section>
+    )
+}
+
+{
+    (data.newPipelines.length > 0 || data.pipelineProposals.length > 0 || data.otherProposals.length > 0) && (
+        <section>
+            <h2>New pipelines &amp; proposals</h2>
+            {data.newPipelines.length > 0 && (
+                <>
+                    <h3>New pipeline repositories</h3>
+                    <ul>
+                        {data.newPipelines.map((p: any) => (
+                            <li>
+                                <a href={pipelineUrl(baseUrl, p.name)}>nf-core/{p.name}</a>
+                                {p.isDevOnly && <em> (in development)</em>} — {p.description}
+                            </li>
+                        ))}
+                    </ul>
+                </>
+            )}
+            {data.pipelineProposals.length > 0 && (
+                <>
+                    <h3>Pipeline proposals</h3>
+                    <p>
+                        From <a href="https://github.com/nf-core/proposals/issues">nf-core/proposals</a>.
+                    </p>
+                    <ul>
+                        {[...data.pipelineProposals].sort(sortByStatus).map((p: any) => (
+                            <li>
+                                <a href={p.url}>{p.displayTitle}</a> — {p.status === "accepted" ? "Accepted" : "New"} (#
+                                {p.number})
+                            </li>
+                        ))}
+                    </ul>
+                </>
+            )}
+            {data.otherProposals.length > 0 && (
+                <>
+                    <h3>Other proposals</h3>
+                    <ul>
+                        {[...data.otherProposals].sort(sortByStatus).map((p: any) => (
+                            <li>
+                                <a href={p.url}>{p.displayTitle}</a> — {p.status === "accepted" ? "Accepted" : "New"} (#
+                                {p.number})
+                            </li>
+                        ))}
+                    </ul>
+                </>
+            )}
+        </section>
+    )
+}
+
+<hr />
+<p>This newsletter is brought to you by the <a href="https://nf-co.re">nf-core</a> community.</p>

@@ -1,4 +1,4 @@
-# subworkflow_todos
+# subworkflow\_todos
 
 #### `SubworkflowLint.subworkflow_todos(subworkflow){:python}`
 
@@ -29,5 +29,7 @@ started on your pipeline!
 
 The following checks are performed:
 
-- `subworkflow_todo`: Warns if any `TODO nf-core:` comment lines are found
-  in the subworkflow files.
+## subworkflow\_todo
+
+Warns if any `TODO nf-core:` comment lines are found
+in the subworkflow files.

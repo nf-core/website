@@ -1,0 +1,110 @@
+---
+// Reusable newsletter sign-up form. Posts { email } to the nf-core newsletter
+// service, which runs an Amazon SES double-opt-in flow (a confirmation email is
+// sent; the address is only subscribed after the recipient clicks confirm).
+//
+// Usage:
+//   <NewsletterSignup />                       full (heading + blurb)
+//   <NewsletterSignup compact={true} />        just the form (caller supplies copy)
+
+interface Props {
+    heading?: string;
+    description?: string;
+    compact?: boolean;
+}
+
+const {
+    heading = "Subscribe to the nf-core newsletter",
+    description = "One email a month with community news, pipeline releases, and events. Unsubscribe anytime.",
+    compact = false,
+} = Astro.props;
+
+// Live newsletter service /subscribe endpoint.
+// TODO: move behind a stable custom domain (e.g. api.nf-co.re) when one exists.
+const SUBSCRIBE_URL = "https://e5veor8z45.execute-api.eu-west-1.amazonaws.com/subscribe";
+---
+
+<div class="nl-signup">
+    {!compact && <h3 class="mb-2">{heading}</h3>}
+    {
+        !compact && (
+            <p class="text-body-secondary mb-3">
+                {description} <a href="/newsletter/subscribe">See details</a>.
+            </p>
+        )
+    }
+    <form class="nl-signup-form" data-endpoint={SUBSCRIBE_URL} novalidate>
+        <div class="input-group">
+            <input
+                type="email"
+                name="email"
+                class="form-control"
+                placeholder="you@example.com"
+                aria-label="Email address"
+                autocomplete="email"
+                required
+            />
+            <button class="btn btn-success" type="submit">
+                <i class="fas fa-envelope me-1"></i> Subscribe
+            </button>
+        </div>
+        <div class="nl-signup-status small mt-2" role="status" aria-live="polite"></div>
+    </form>
+</div>
+
+<script>
+    function initNewsletterSignup() {
+        document.querySelectorAll(".nl-signup-form").forEach((el) => {
+            const form = el as HTMLFormElement;
+            if (form.dataset.nlInit) return;
+            form.dataset.nlInit = "1";
+
+            const input = form.querySelector('input[name="email"]') as HTMLInputElement;
+            const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+            const status = form.querySelector(".nl-signup-status") as HTMLElement;
+
+            const setStatus = (message: string, kind: "success" | "danger" | "body-secondary") => {
+                status.textContent = message;
+                status.className = `nl-signup-status small mt-2 text-${kind}`;
+            };
+
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                if (!input.value || !input.checkValidity()) {
+                    setStatus("Please enter a valid email address.", "danger");
+                    return;
+                }
+                button.disabled = true;
+                setStatus("Subscribing…", "body-secondary");
+                try {
+                    const res = await fetch(form.dataset.endpoint as string, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ email: input.value.trim() }),
+                    });
+                    if (res.ok) {
+                        const data = await res.json().catch(() => ({}));
+                        setStatus(
+                            data.status === "already_subscribed"
+                                ? "You're already subscribed — thanks!"
+                                : "Almost there! Check your inbox to confirm your subscription.",
+                            "success",
+                        );
+                        form.reset();
+                    } else if (res.status === 400) {
+                        setStatus("Please enter a valid email address.", "danger");
+                    } else {
+                        setStatus("Something went wrong. Please try again later.", "danger");
+                    }
+                } catch {
+                    setStatus("Couldn't reach the server. Please try again later.", "danger");
+                } finally {
+                    button.disabled = false;
+                }
+            });
+        });
+    }
+
+    initNewsletterSignup();
+    document.addEventListener("astro:after-swap", initNewsletterSignup);
+</script>

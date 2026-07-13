@@ -1,4 +1,4 @@
-# subworkflow_if_empty_null
+# subworkflow\_if\_empty\_null
 
 #### `SubworkflowLint.subworkflow_if_empty_null(subworkflow){:python}`
 
@@ -13,5 +13,7 @@ This lint test throws warnings for those instances.
 
 The following checks are performed:
 
-- `subworkflow_if_empty_null`: Warns if any `ifEmpty(null)` usage is found
-  in the subworkflow files.
+## subworkflow\_if\_empty\_null
+
+Warns if any `ifEmpty(null)` usage is found
+in the subworkflow files.

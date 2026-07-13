@@ -104,7 +104,7 @@ The event will be spread across two days, with a mix of presentations and practi
 
 **Location**:  
 Quantitative Biology Center (QBiC), University of Tübingen  
- M3 Building, Otfried-Müller-Straße 37, 72076 Tübingen, Germany  
+M3 Building, Otfried-Müller-Straße 37, 72076 Tübingen, Germany  
 **Online Location**: [Gather Town](https://www.gather.town)
 
 ## Contact

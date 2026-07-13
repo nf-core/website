@@ -6,7 +6,31 @@ environment = { NODE_VERSION = "22" }
 command = "npm run build -w sites/main-site"
 [images]
 remote_images = ["https://raw.githubusercontent.com/.*", "https://images.unsplash.com/.*", "https://avatars.githubusercontent.com/.*"]
+# Cross-origin reads (Access-Control-Allow-Origin) are enabled only where browser JS genuinely
+# reads cross-origin, not site-wide:
+#   - /_astro/*  hashed JS/CSS modules, served from the netlify.app origin via assetsPrefix
+#   - / and /.well-known/api-catalog, so a browser-based agent can follow the Link header to
+#     the catalog and read it. The catalog is the single entry point; the individual resources
+#     it lists (llms.txt, the *.json catalogues) don't need their own CORS — they're served
+#     same-origin from every sub-site and crawlers read them server-side, where CORS is moot.
 [[headers]]
 for = "/_astro/*"
 [headers.values]
 Access-Control-Allow-Origin = "*"
+
+# Homepage: advertise machine-readable resources to agents/crawlers (RFC 8288 / RFC 9727).
+# Expose-Headers lets cross-origin browser JS read the Link header (it is not CORS-safelisted),
+# which in turn requires Access-Control-Allow-Origin on this same response.
+[[headers]]
+for = "/"
+[headers.values]
+Access-Control-Allow-Origin = "*"
+Access-Control-Expose-Headers = "Link"
+Link = '''</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </llms.txt>; rel="describedby"; type="text/plain", </docs/>; rel="service-doc"; type="text/html", </sitemap-index.xml>; rel="sitemap"; type="application/xml"'''
+
+# The catalog itself, fetched cross-origin by agents.
+[[headers]]
+for = "/.well-known/api-catalog"
+[headers.values]
+Access-Control-Allow-Origin = "*"
+Content-Type = "application/linkset+json"

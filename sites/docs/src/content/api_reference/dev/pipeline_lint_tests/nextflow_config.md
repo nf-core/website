@@ -1,4 +1,4 @@
-# nextflow_config
+# nextflow\_config
 
 #### `PipelineLint.nextflow_config() → dict[str, list[str]]{:python}`
 
@@ -96,7 +96,7 @@ lint:
 
 - A `test` configuration profile should exist.
 
-**The default values in \`\`nextflow.config\`\` should match the default values defined in the \`\`nextflow_schema.json\`\`.**
+**The default values in \`\`nextflow.config\`\` should match the default values defined in the \`\`nextflow\_schema.json\`\`.**
 
 :::note
 You can choose to ignore tests for the default value of an specific parameter

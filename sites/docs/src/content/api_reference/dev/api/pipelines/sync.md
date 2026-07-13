@@ -1,4 +1,4 @@
-# nf_core.pipelines.sync
+# nf\_core.pipelines.sync
 
 Synchronise a pipeline TEMPLATE branch with the template.
 
@@ -9,13 +9,13 @@ Bases: `object`
 Object to hold syncing information and results.
 
 - **Parameters:**
-  - **pipeline_dir** (_str_) – The path to the Nextflow pipeline root directory
-  - **from_branch** (_str_) – The branch to use to fetch config vars. If not set, will use current active branch
-  - **make_pr** (_bool_) – Set this to True to create a GitHub pull-request with the changes
-  - **gh_username** (_str_) – GitHub username
-  - **gh_repo** (_str_) – GitHub repository name
-  - **template_yaml_path** (_str_) – Path to template.yml file for pipeline creation settings. DEPRECATED
-  - **force_pr** (_bool_) – Force the creation of a pull request, even if there are no changes to the template
+  - **pipeline\_dir** (_str_) – The path to the Nextflow pipeline root directory
+  - **from\_branch** (_str_) – The branch to use to fetch config vars. If not set, will use current active branch
+  - **make\_pr** (_bool_) – Set this to True to create a GitHub pull-request with the changes
+  - **gh\_username** (_str_) – GitHub username
+  - **gh\_repo** (_str_) – GitHub repository name
+  - **template\_yaml\_path** (_str_) – Path to template.yml file for pipeline creation settings. DEPRECATED
+  - **force\_pr** (_bool_) – Force the creation of a pull request, even if there are no changes to the template
 
 #### `pipeline_dir{:python}`
 
@@ -54,10 +54,10 @@ Whether to try to automatically make a PR on GitHub.com
 
 #### `required_config_vars{:python}`
 
-List of nextflow variables required to make template pipeline
+Nextflow config variables required to make template pipeline, keyed by section
 
 - **Type:**
-  list
+  dict
 
 #### `gh_username{:python}`
 
@@ -98,7 +98,7 @@ Helper method to parse JSON response and create pretty-printed string.
 - **Parameters:**
   **response** – requests.Response object
 - **Returns:**
-  Tuple of (parsed_json, pretty_printed_str)
+  Tuple of (parsed\_json, pretty\_printed\_str)
 
 #### `checkout_template_branch(){:python}`
 

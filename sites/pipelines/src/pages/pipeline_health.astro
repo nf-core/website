@@ -168,6 +168,13 @@ const countTrue = (fn) => {
                             );
                         })
                     }
+                    <th
+                        colspan="2"
+                        class="small fw-normal text-center p-1 px-3"
+                        title="Root `main.nf` declares a `params {}` block"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Params block</th
+                    >
                 </tr>
             </thead>
             <tbody>
@@ -427,6 +434,18 @@ const countTrue = (fn) => {
                                         ),
                                     ],
                                 )}
+                                {/* Params block in main.nf */}
+                                {getCell(
+                                    pipeline[`${mainOrMasterBranch}_uses_params_block`],
+                                    pipeline.repository_url + `/blob/${mainOrMasterBranch}/main.nf`,
+                                    `root main.nf declares a \`params {}\` block in ${mainOrMasterBranch}`,
+                                    "border-start",
+                                )}
+                                {getCell(
+                                    pipeline["dev_uses_params_block"],
+                                    pipeline.repository_url + "/blob/dev/main.nf",
+                                    "root main.nf declares a `params {}` block in dev",
+                                )}
                             </tr>
                         );
                     })
@@ -457,8 +476,8 @@ const countTrue = (fn) => {
                                     p[(p.main_branch_exists ? "main" : "master") + "_nextflow_config_manifest"]
                                         ?.defaultBranch === p.default_branch,
                             )
-                        }</td
-                    >
+                        }
+                    </td>
                     <td class="text-center">{countTrue((p) => p.has_required_topics)}</td>
                     <td class="text-center">{countTrue((p) => p.description)}</td>
                     <td class="text-center"
@@ -525,6 +544,10 @@ const countTrue = (fn) => {
                             ],
                         )
                     }
+                    <td class="text-center border-start"
+                        >{countTrue((p) => p[(p.main_branch_exists ? "main" : "master") + "_uses_params_block"])}</td
+                    >
+                    <td class="text-center">{countTrue((p) => p["dev_uses_params_block"])}</td>
                 </tr>
             </tfoot>
         </table>

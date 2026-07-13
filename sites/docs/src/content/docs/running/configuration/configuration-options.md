@@ -54,7 +54,7 @@ nf-core provides these basic profiles for container engines:
 - `docker`: Uses [Docker](http://docker.com/) and pulls software from quay.io
 - `apptainer`: Uses [Singularity](https://apptainer.org/) and pulls software from quay.io
 - `podman`: Uses [Podman](https://podman.io/)
-- `shifter`: Uses [Shifter](https://www.nersc.gov/research-and-development/user-defined-images/)
+- `shifter`: Uses [Shifter](https://docs.nersc.gov/development/containers/shifter/how-to-use/)
 - `charliecloud`: Uses [Charliecloud](https://hpc.github.io/charliecloud/)
 - `conda`: Uses [Conda](https://conda.io/docs/) and pulls most software from [Bioconda](https://bioconda.github.io/)
 

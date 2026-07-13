@@ -1,0 +1,45 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://nf-co.re/",
+      "service-doc": [
+        {
+          "href": "https://nf-co.re/docs/",
+          "type": "text/html",
+          "title": "nf-core documentation"
+        }
+      ],
+      "describedby": [
+        {
+          "href": "https://nf-co.re/llms.txt",
+          "type": "text/plain",
+          "title": "LLM-friendly overview of nf-co.re (llms.txt)"
+        }
+      ],
+      "item": [
+        {
+          "href": "https://nf-co.re/pipelines.json",
+          "type": "application/json",
+          "title": "Pipelines catalogue (machine-readable)"
+        },
+        {
+          "href": "https://nf-co.re/components.json",
+          "type": "application/json",
+          "title": "Modules and subworkflows catalogue (machine-readable)"
+        },
+        {
+          "href": "https://nf-co.re/pipeline_names.json",
+          "type": "application/json",
+          "title": "Pipeline names list (machine-readable)"
+        }
+      ],
+      "sitemap": [
+        {
+          "href": "https://nf-co.re/sitemap-index.xml",
+          "type": "application/xml",
+          "title": "Sitemap index"
+        }
+      ]
+    }
+  ]
+}

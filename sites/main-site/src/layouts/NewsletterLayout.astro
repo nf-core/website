@@ -1,0 +1,760 @@
+---
+// Logos are served from public/ (stable URLs, usable from email) rather than
+// bundled assets. The light logo has a white background baked into the PNG so it
+// stays readable in email dark mode (where CSS logo-swapping doesn't apply).
+const logoLightUrl = "/images/logo/nf-core-newsletter-lightbg.png";
+const logoDarkUrl = "/images/logo/nf-core-newsletter-darkbg.png";
+
+// Shared formatting / URL helpers — same implementations used by the
+// /markdown and /simple renderings (newsletter-render.ts) so all variants stay
+// consistent. The URL helpers there take baseUrl as an argument; we bind it below.
+import {
+    blogUrl as blogUrlBase,
+    eventUrl as eventUrlBase,
+    advisoryUrl as advisoryUrlBase,
+    pipelineUrl as pipelineUrlBase,
+    imgSrc,
+    EVENT_TYPES,
+    eventTypeLabel,
+    formatDate,
+    formatAdvisoryTypes,
+    sortByStatus,
+} from "@utils/newsletter-render";
+
+interface Props {
+    data: {
+        year: number;
+        month: number;
+        monthName: string;
+        baseUrl: string;
+        newsletterUrl: string;
+        previewText: string;
+        thisMonthBlogPosts: any[];
+        olderBlogPosts: any[];
+        firstReleases: any[];
+        otherReleases: any[];
+        newPipelines: any[];
+        recentEvents: any[];
+        upcomingEvents: any[];
+        pipelineProposals: any[];
+        otherProposals: any[];
+        monthAdvisories: any[];
+        olderAdvisories: any[];
+        blogImageSrcs: Map<string, any>;
+        eventImageSrcs: Map<string, any>;
+    };
+    // When true (email build only), render the SES unsubscribe link in the footer.
+    email?: boolean;
+}
+
+const { data, email = false } = Astro.props;
+
+// SES replaces this placeholder with the hosted unsubscribe URL when the email
+// is sent with ListManagementOptions. Kept out of the public web page (email-only).
+const unsubscribeUrl = "{{amazonSESUnsubscribeUrl}}";
+const {
+    year,
+    month,
+    monthName,
+    baseUrl,
+    newsletterUrl,
+    previewText,
+    thisMonthBlogPosts,
+    olderBlogPosts,
+    firstReleases,
+    otherReleases,
+    newPipelines,
+    recentEvents,
+    upcomingEvents,
+    pipelineProposals,
+    otherProposals,
+    monthAdvisories,
+    olderAdvisories,
+    blogImageSrcs,
+    eventImageSrcs,
+} = data;
+
+// baseUrl-bound wrappers around the shared URL helpers (which take baseUrl).
+const blogUrl = (id: string): string => blogUrlBase(baseUrl, id);
+const eventUrl = (id: string): string => eventUrlBase(baseUrl, id);
+const advisoryUrl = (id: string): string => advisoryUrlBase(baseUrl, id);
+const pipelineUrl = (name: string): string => pipelineUrlBase(baseUrl, name);
+
+// Cropped thumbnails are relative (/.netlify/images?…); make them absolute for the
+// email build, since a mail client can't resolve a root-relative URL.
+const imageUrl = (src: string): string => (email && src?.startsWith("/") ? `${baseUrl}${src}` : src);
+
+const severityBackGroundColors: Record<string, string> = {
+    low: "#0d6efd",
+    medium: "#ffc107",
+    high: "#dc3545",
+    critical: "#842029",
+};
+const severityTextColors: Record<string, string> = {
+    low: "#fefefe",
+    medium: "#212529",
+    high: "#fefefe",
+    critical: "#fefefe",
+};
+
+function getAdvisoryBadgeColors(severity: string) {
+    return {
+        bg: severityBackGroundColors[severity] || "#6c757d",
+        text: severityTextColors[severity] || "#fefefe",
+    };
+}
+
+// Inline style for an advisory severity badge. `small` is the compact variant used
+// in the "in case you missed it" grid; the main Advisories list uses the larger one.
+function advisoryBadgeStyle(severity: string, small = false): string {
+    const { bg, text } = getAdvisoryBadgeColors(severity);
+    const [fontSize, padding, marginRight] = small ? ["10px", "2px 6px", "4px"] : ["11px", "2px 8px", "8px"];
+    return `display: inline-block; font-size: ${fontSize}; padding: ${padding}; border-radius: 3px; margin-right: ${marginRight}; color: ${text}; background-color: ${bg}; font-weight: 700; text-transform: uppercase;`;
+}
+
+// "In case you missed it" merges recent events, earlier blog posts and earlier
+// advisories into a single list, rendered as one grid so the two columns fill
+// row-by-row without leaving a gap when a group has an odd number of items.
+const icymiItems: { kind: "event" | "blog" | "advisory"; item: any }[] = [
+    ...recentEvents.map((item: any) => ({ kind: "event" as const, item })),
+    ...olderBlogPosts.map((item: any) => ({ kind: "blog" as const, item })),
+    ...olderAdvisories.map((item: any) => ({ kind: "advisory" as const, item })),
+];
+
+// "New pipelines & proposals" is one flat list. Rather than separate subheadings,
+// each row carries badge labels for its type (and, for proposals, its status).
+type Label = { text: string; bg: string; color: string };
+const TYPE_LABEL = { bg: "#f0f0f0", color: "#666666" };
+const statusLabel = (status: string): Label =>
+    status === "accepted"
+        ? { text: "Accepted", bg: "#22ae63", color: "#fefefe" }
+        : { text: "New", bg: "#0d6efd", color: "#fefefe" };
+
+// RFCs are titled "RFC: …" / "New RFC: …".
+const RFC_TITLE_PATTERN = /^\s*(new\s+)?rfc\b/i;
+
+const pipelinesAndProposals: { title: string; url: string; sub: string; labels: Label[] }[] = [
+    ...newPipelines.map((p: any) => ({
+        title: `nf-core/${p.name}`,
+        url: pipelineUrl(p.name),
+        sub: p.description,
+        labels: [{ text: "New repo", ...TYPE_LABEL }],
+    })),
+    ...[...pipelineProposals].sort(sortByStatus).map((p: any) => ({
+        title: p.displayTitle,
+        url: p.url,
+        sub: `Pipeline proposal #${p.number}`,
+        labels: [statusLabel(p.status)],
+    })),
+    ...[...otherProposals].sort(sortByStatus).map((p: any) => ({
+        title: p.displayTitle,
+        url: p.url,
+        sub: `${RFC_TITLE_PATTERN.test(p.title ?? "") ? "RFC proposal" : "Other proposal"} #${p.number}`,
+        labels: [statusLabel(p.status)],
+    })),
+];
+---
+
+<div id="newsletter-content">
+    {/* ----- EMAIL PREVIEW TEXT + VIEW IN BROWSER ----- */}
+    <p class="nl-muted" style="font-size: 12px; color: #bbbbbb; margin: 0 0 2px; text-align: center;">
+        {previewText}
+    </p>
+    <p class="nl-muted" style="font-size: 11px; margin: 0 0 16px; text-align: center;">
+        <a class="nl-muted" href={newsletterUrl} style="color: #bbbbbb; text-decoration: underline;">
+            View in browser
+        </a>
+    </p>
+
+    {/* ----- HEADER WITH LOGO ----- */}
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 24px;">
+        <tr>
+            <td style="text-align: center; padding: 20px 0;">
+                <img
+                    class="nl-logo-light"
+                    src={logoLightUrl}
+                    alt="nf-core newsletter logo"
+                    width="400"
+                    style="max-width: 100%; height: auto; display: block; margin: 0 auto;"
+                />
+                <img
+                    class="nl-logo-dark"
+                    src={logoDarkUrl}
+                    alt="nf-core newsletter logo"
+                    width="400"
+                    style="max-width: 100%; height: auto; display: none; margin: 0 auto;"
+                />
+                <p class="nl-muted" style="margin: 12px 0 0; font-size: 18px; color: #666666;">
+                    1st {monthName}
+                    {" "}{year}
+                </p>
+            </td>
+        </tr>
+    </table>
+
+    {/* ----- 1. BLOG POSTS THIS MONTH (primary, full width with images) ----- */}
+    {
+        thisMonthBlogPosts.length > 0 && (
+            <>
+                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
+                    Blog posts
+                </h2>
+                {thisMonthBlogPosts.map((post) => (
+                    <div style="font-size: 0; padding: 12px 0; border-bottom: 1px solid #eeeeee; margin-bottom: 16px;">
+                        <div
+                            class="nl-blog-text"
+                            style="display: inline-block; vertical-align: middle; width: 100%; max-width: calc(100% - 256px); font-size: 14px;"
+                        >
+                            <a
+                                href={blogUrl(post.id)}
+                                style="color: #333333; text-decoration: none; font-weight: 600; font-size: 16px;"
+                            >
+                                {post.data.title}
+                            </a>
+                            <br />
+                            <span class="nl-muted" style="font-size: 14px; color: #555555;">
+                                {post.data.subtitle}
+                            </span>
+                            <br />
+                            <span class="nl-muted" style="font-size: 13px; color: #888888;">
+                                {formatDate(post.data.pubDate)} &middot; by {post.data.authors.join(", ")}
+                            </span>
+                        </div>
+                        <div
+                            class="nl-blog-img"
+                            style="display: inline-block; vertical-align: middle; width: 100%; max-width: 240px; font-size: 14px; padding-top: 8px;"
+                        >
+                            <a href={blogUrl(post.id)} style="text-decoration: none;">
+                                <img
+                                    src={imageUrl(imgSrc(blogImageSrcs.get(post.id)))}
+                                    alt={post.data.headerImageAlt}
+                                    width="240"
+                                    height="135"
+                                    style="width: 100%; height: auto; display: block; border-radius: 6px; object-fit: cover;"
+                                />
+                            </a>
+                        </div>
+                    </div>
+                ))}
+            </>
+        )
+    }
+
+    {/* ----- ADVISORIES ----- */}
+    {
+        monthAdvisories.length > 0 && (
+            <>
+                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
+                    Advisories
+                </h2>
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                    {monthAdvisories.map((advisory) => (
+                        <tr>
+                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
+                                <span style={advisoryBadgeStyle(advisory.data.severity)}>{advisory.data.severity}</span>
+                                {formatAdvisoryTypes(advisory.data.type).map((label: string) => (
+                                    <span style="display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 4px; color: #666666; background-color: #f0f0f0;">
+                                        {label}
+                                    </span>
+                                ))}
+                                <br />
+                                <a
+                                    class="nl-green"
+                                    href={advisoryUrl(advisory.id)}
+                                    style="color: #22ae63; text-decoration: none; font-weight: 600; font-size: 16px;"
+                                >
+                                    {advisory.data.title}
+                                </a>
+                                <br />
+                                <span class="nl-muted" style="font-size: 13px; color: #666666; line-height: 1.4;">
+                                    {advisory.data.subtitle}
+                                </span>
+                            </td>
+                        </tr>
+                    ))}
+                </table>
+            </>
+        )
+    }
+
+    {/* ----- 2. FIRST PIPELINE RELEASES (primary, full width) ----- */}
+    {
+        firstReleases.length > 0 && (
+            <>
+                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
+                    New pipeline first releases! &#127881;
+                </h2>
+                <p class="nl-muted" style="font-size: 14px; color: #666666; margin-bottom: 12px;">
+                    These pipelines just had their very first release.
+                </p>
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                    {firstReleases.map((release) => (
+                        <tr>
+                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
+                                <a
+                                    class="nl-green"
+                                    href={pipelineUrl(release.pipelineName)}
+                                    style="color: #22ae63; text-decoration: none; font-weight: 700; font-size: 16px;"
+                                >
+                                    nf-core/{release.pipelineName}
+                                </a>
+                                {release.tagNames.map((tag: string) => (
+                                    <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #fefefe; background-color: #22ae63;">
+                                        v{tag}
+                                    </span>
+                                ))}
+                                <br />
+                                <span class="nl-muted" style="font-size: 14px; color: #555555;">
+                                    {release.description}
+                                </span>
+                            </td>
+                        </tr>
+                    ))}
+                </table>
+            </>
+        )
+    }
+
+    {/* ----- 3. OTHER PIPELINE RELEASES (secondary, 2-column) ----- */}
+    {
+        otherReleases.length > 0 && (
+            <>
+                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
+                    Pipeline releases
+                </h2>
+                <div class="nl-grid" style="font-size: 0; margin-bottom: 16px;">
+                    {otherReleases.map((release) => (
+                        <div
+                            class="nl-col"
+                            style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
+                        >
+                            <div style="padding: 10px 12px; border-bottom: 1px solid #eeeeee;">
+                                <a
+                                    href={pipelineUrl(release.pipelineName)}
+                                    style="color: #333333; text-decoration: none; font-weight: 600; font-size: 15px;"
+                                >
+                                    nf-core/{release.pipelineName}
+                                </a>
+                                <br />
+                                {release.tagNames.map((tag: string) => (
+                                    <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-right: 4px; margin-top: 4px; color: #fefefe; background-color: #6c757d;">
+                                        v{tag}
+                                    </span>
+                                ))}
+                                <span class="nl-muted" style="font-size: 13px; color: #888888; margin-left: 4px;">
+                                    {formatDate(new Date(release.publishedAt))}
+                                </span>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </>
+        )
+    }
+
+    {/* ----- 4. UPCOMING EVENTS (primary, full width with images) ----- */}
+    {
+        upcomingEvents.length > 0 && (
+            <>
+                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
+                    Upcoming events
+                </h2>
+                {upcomingEvents.map((event) => (
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 0;">
+                        <tr>
+                            {/* Row 1: tag + title + date right-aligned */}
+                            <td style="padding: 12px 0 0; vertical-align: middle;">
+                                <span
+                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 8px; color: ${EVENT_TYPES[event.data.type]?.textColor || "#fefefe"}; background-color: ${EVENT_TYPES[event.data.type]?.color || "#6c757d"};`}
+                                >
+                                    {eventTypeLabel[event.data.type] || event.data.type}
+                                </span>
+                                <a
+                                    href={eventUrl(event.id)}
+                                    style="color: #333333; text-decoration: none; font-weight: 600; font-size: 16px;"
+                                >
+                                    {event.data.title}
+                                </a>
+                            </td>
+                            <td
+                                class="nl-muted"
+                                style="padding: 12px 0 0; vertical-align: middle; text-align: right; white-space: nowrap; font-size: 13px; color: #666666; padding-left: 12px;"
+                            >
+                                {formatDate(event.data.start)}
+                                {event.data.start.toDateString() !== event.data.end.toDateString() && (
+                                    <> &ndash; {formatDate(event.data.end)}</>
+                                )}
+                            </td>
+                        </tr>
+                        {/* Row 2: subtitle */}
+                        {event.data.subtitle && (
+                            <tr>
+                                <td colspan={2} style="padding: 4px 0 8px;">
+                                    <span class="nl-muted" style="font-size: 14px; color: #555555;">
+                                        {event.data.subtitle}
+                                    </span>
+                                </td>
+                            </tr>
+                        )}
+                        {/* Row 3: image if present */}
+                        {event.data.headerImage && (
+                            <tr>
+                                <td colspan={2} style="padding: 8px 0 0;">
+                                    <a href={eventUrl(event.id)} style="text-decoration: none;">
+                                        <img
+                                            src={imageUrl(imgSrc(eventImageSrcs.get(event.id)))}
+                                            alt={event.data.title}
+                                            width="240"
+                                            height="135"
+                                            style="width: 240px; height: auto; display: block; border-radius: 6px;"
+                                        />
+                                    </a>
+                                </td>
+                            </tr>
+                        )}
+                        <tr>
+                            <td colspan={2} style="border-bottom: 1px solid #eeeeee;" />
+                        </tr>
+                    </table>
+                ))}
+            </>
+        )
+    }
+
+    {/* ----- 5. IN CASE YOU MISSED IT (recent events + older blog posts + older advisories) ----- */}
+    {
+        icymiItems.length > 0 && (
+            <>
+                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
+                    In case you missed it
+                </h2>
+                <div class="nl-grid" style="font-size: 0; margin-top: 16px; margin-bottom: 16px;">
+                    {icymiItems.map(({ kind, item }) => (
+                        <div
+                            class="nl-col"
+                            style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
+                        >
+                            <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
+                                {kind === "event" && (
+                                    <>
+                                        <a
+                                            href={eventUrl(item.id)}
+                                            style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                        >
+                                            {item.data.title}
+                                        </a>
+                                        <br />
+                                        <span class="nl-muted" style="font-size: 12px; color: #888888;">
+                                            {formatDate(item.data.start)}
+                                            {item.data.start.toDateString() !== item.data.end.toDateString() && (
+                                                <> &ndash; {formatDate(item.data.end)}</>
+                                            )}
+                                        </span>
+                                        <span
+                                            style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 4px; color: ${EVENT_TYPES[item.data.type]?.textColor || "#fefefe"}; background-color: ${EVENT_TYPES[item.data.type]?.color || "#6c757d"};`}
+                                        >
+                                            {eventTypeLabel[item.data.type] || item.data.type}
+                                        </span>
+                                    </>
+                                )}
+                                {kind === "blog" && (
+                                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td style="vertical-align: top; padding-right: 8px;">
+                                                <a
+                                                    href={blogUrl(item.id)}
+                                                    style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                                >
+                                                    {item.data.title}
+                                                </a>
+                                                <br />
+                                                <span class="nl-muted" style="font-size: 12px; color: #999999;">
+                                                    {formatDate(item.data.pubDate)}
+                                                </span>
+                                            </td>
+                                            <td style="vertical-align: middle; width: 80px;">
+                                                <a href={blogUrl(item.id)} style="text-decoration: none;">
+                                                    <img
+                                                        src={imageUrl(imgSrc(blogImageSrcs.get(item.id)))}
+                                                        alt={item.data.headerImageAlt}
+                                                        width="80"
+                                                        height="45"
+                                                        style="width: 80px; height: 45px; display: block; border-radius: 4px; object-fit: cover;"
+                                                    />
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                )}
+                                {kind === "advisory" && (
+                                    <>
+                                        <span style={advisoryBadgeStyle(item.data.severity, true)}>
+                                            {item.data.severity}
+                                        </span>
+                                        <a
+                                            href={advisoryUrl(item.id)}
+                                            style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                        >
+                                            {item.data.title}
+                                        </a>
+                                        <br />
+                                        <span class="nl-muted" style="font-size: 12px; color: #999999;">
+                                            {formatDate(item.data.publishedDate)}
+                                        </span>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </>
+        )
+    }
+
+    {/* ----- 7. NEW PIPELINES & PROPOSALS (single list; type shown via labels) ----- */}
+    {
+        pipelinesAndProposals.length > 0 && (
+            <>
+                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
+                    New pipelines &amp; proposals
+                </h2>
+                {(pipelineProposals.length > 0 || otherProposals.length > 0) && (
+                    <p class="nl-muted" style="font-size: 13px; color: #888888; margin: 8px 0 0;">
+                        Proposals from{" "}
+                        <a class="nl-green" href="https://github.com/nf-core/proposals/issues" style="color: #22ae63;">
+                            nf-core/proposals
+                        </a>
+                        .
+                    </p>
+                )}
+                <div class="nl-grid" style="font-size: 0; margin-top: 12px; margin-bottom: 16px;">
+                    {pipelinesAndProposals.map((item) => (
+                        <div
+                            class="nl-col"
+                            style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
+                        >
+                            <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
+                                <a
+                                    href={item.url}
+                                    style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                >
+                                    {item.title}
+                                </a>
+                                {item.labels.map((label) => (
+                                    <span
+                                        style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: ${label.color}; background-color: ${label.bg};`}
+                                    >
+                                        {label.text}
+                                    </span>
+                                ))}
+                                <br />
+                                <span class="nl-muted" style="font-size: 12px; color: #999999;">
+                                    {item.sub}
+                                </span>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </>
+        )
+    }
+
+    {/* ----- FOOTER ----- */}
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top: 32px;">
+        <tr>
+            <td style="border-bottom: 1px solid #eeeeee;"></td>
+        </tr>
+        <tr>
+            <td class="nl-green" style="text-align: center; padding: 24px 0;">
+                <p class="nl-muted" style="font-size: 14px; color: #666666; margin: 0;">
+                    This newsletter is brought to you by the <a
+                        href="https://nf-co.re"
+                        style="color: #22ae63; text-decoration: none; font-weight: 600;">nf-core</a
+                    > community.{
+                        email && (
+                            <Fragment>
+                                {" "}
+                                <a href={unsubscribeUrl} style="color: #22ae63;">
+                                    Unsubscribe here
+                                </a>
+                                .
+                            </Fragment>
+                        )
+                    }
+                </p>
+                <p class="nl-muted" style="font-size: 13px; color: #999999; margin: 8px 0 0;">
+                    <a href="https://nf-co.re/join" style="color: #22ae63;">Join us</a> &middot;
+                    <a href="https://nf-co.re/blog" style="color: #22ae63;">Blog</a> &middot;
+                    <a href="https://nf-co.re/events" style="color: #22ae63;">Events</a> &middot;
+                    <a href="https://github.com/nf-core" style="color: #22ae63;">GitHub</a>
+                </p>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<style lang="scss">
+    // Dark-mode palette, shared by the three dark blocks below (web theme toggle,
+    // email prefers-color-scheme, and Outlook-mobile [data-ogsc]).
+    $nl-dark-bg: #212529;
+    $nl-dark-text: #e0e0e0;
+    $nl-dark-green: #1a9655;
+    $nl-dark-h3: #cccccc;
+    $nl-dark-muted: #aaaaaa;
+    $nl-dark-border: #333344;
+
+    #newsletter-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 16px;
+        font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        /* Light mode base */
+        background-color: #fefefe;
+        color: #333333;
+        border-radius: 8px;
+    }
+    #newsletter-content table {
+        border-collapse: collapse;
+    }
+    #newsletter-content a:hover {
+        text-decoration: underline !important;
+    }
+
+    /* Responsive: stack 2-column cells on narrow screens */
+    @media screen and (max-width: 600px) {
+        #newsletter-content :global(.nl-col),
+        #newsletter-content :global(.nl-blog-text),
+        #newsletter-content :global(.nl-blog-img) {
+            max-width: 100% !important;
+            display: block !important;
+        }
+    }
+
+    /* On wider screens, lay the 2-column sections out as a real grid so each row
+     * is equal-height and the card dividers line up across both columns. The
+     * inline-block + max-width:50% inline styles remain the fallback for email
+     * clients that don't support grid (they keep the current behaviour). */
+    @media screen and (min-width: 601px) {
+        #newsletter-content :global(.nl-grid) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 16px;
+        }
+        #newsletter-content :global(.nl-grid) > :global(.nl-col) {
+            max-width: none !important;
+            padding-right: 0 !important;
+        }
+        /* Stretch each card to its row height so its bottom border aligns with
+         * the neighbouring column's. */
+        #newsletter-content :global(.nl-grid) > :global(.nl-col) > div {
+            height: 100%;
+            box-sizing: border-box;
+        }
+    }
+
+    /* Web dark mode: matches nf-core site theme toggle (data-bs-theme).
+     * Needs !important to beat inline styles on email-friendly elements. */
+    :global([data-bs-theme="dark"]) #newsletter-content {
+        background-color: $nl-dark-bg !important;
+        color: $nl-dark-text !important;
+    }
+    :global([data-bs-theme="dark"]) :global(.nl-logo-light) {
+        display: none !important;
+    }
+    :global([data-bs-theme="dark"]) :global(.nl-logo-dark) {
+        display: block !important;
+    }
+    :global([data-bs-theme="dark"]) #newsletter-content h2 {
+        color: $nl-dark-green !important;
+        border-bottom-color: $nl-dark-green !important;
+    }
+    :global([data-bs-theme="dark"]) #newsletter-content h3 {
+        color: $nl-dark-h3 !important;
+    }
+    :global([data-bs-theme="dark"]) #newsletter-content a {
+        color: $nl-dark-text !important;
+    }
+    :global([data-bs-theme="dark"]) #newsletter-content :global(.nl-green) a,
+    :global([data-bs-theme="dark"]) #newsletter-content a:global(.nl-green) {
+        color: $nl-dark-green !important;
+    }
+    :global([data-bs-theme="dark"]) #newsletter-content :global(.nl-muted) {
+        color: $nl-dark-muted !important;
+    }
+    :global([data-bs-theme="dark"]) #newsletter-content td,
+    :global([data-bs-theme="dark"]) #newsletter-content div {
+        border-bottom-color: $nl-dark-border !important;
+    }
+
+    /*
+     * Email dark mode: Apple Mail, Outlook Mac use prefers-color-scheme.
+     * Outlook iOS/Android use [data-ogsc].
+     * These only matter when the HTML is extracted and sent as email,
+     * not on the website (where data-bs-theme handles it above).
+     */
+    @media (prefers-color-scheme: dark) {
+        #newsletter-content {
+            background-color: $nl-dark-bg !important;
+            color: $nl-dark-text !important;
+        }
+        #newsletter-content .nl-logo-light {
+            display: none !important;
+        }
+        #newsletter-content .nl-logo-dark {
+            display: block !important;
+        }
+        #newsletter-content h2 {
+            color: $nl-dark-green !important;
+            border-bottom-color: $nl-dark-green !important;
+        }
+        #newsletter-content h3 {
+            color: $nl-dark-h3 !important;
+        }
+        #newsletter-content a {
+            color: $nl-dark-text !important;
+        }
+        #newsletter-content .nl-green a,
+        #newsletter-content a.nl-green {
+            color: $nl-dark-green !important;
+        }
+        #newsletter-content .nl-muted {
+            color: $nl-dark-muted !important;
+        }
+        #newsletter-content td,
+        #newsletter-content div {
+            border-bottom-color: $nl-dark-border !important;
+        }
+    }
+
+    [data-ogsc] #newsletter-content {
+        background-color: $nl-dark-bg !important;
+        color: $nl-dark-text !important;
+    }
+    [data-ogsc] #newsletter-content .nl-logo-light {
+        display: none !important;
+    }
+    [data-ogsc] #newsletter-content .nl-logo-dark {
+        display: block !important;
+    }
+    [data-ogsc] #newsletter-content h2 {
+        color: $nl-dark-green !important;
+        border-bottom-color: $nl-dark-green !important;
+    }
+    [data-ogsc] #newsletter-content h3 {
+        color: $nl-dark-h3 !important;
+    }
+    [data-ogsc] #newsletter-content a {
+        color: $nl-dark-text !important;
+    }
+    [data-ogsc] #newsletter-content .nl-green a,
+    [data-ogsc] #newsletter-content a.nl-green {
+        color: $nl-dark-green !important;
+    }
+    [data-ogsc] #newsletter-content .nl-muted {
+        color: $nl-dark-muted !important;
+    }
+    [data-ogsc] #newsletter-content td,
+    [data-ogsc] #newsletter-content div {
+        border-bottom-color: $nl-dark-border !important;
+    }
+</style>

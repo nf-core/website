@@ -1,4 +1,4 @@
-# module_todos
+# module\_todos
 
 #### `ModuleLint.module_todos(module){:python}`
 
@@ -21,8 +21,10 @@ They typically have the following format:
 This lint test runs through all files in the module and searches for these lines.
 If any are found they will throw a warning.
 
-- `module_todo`: A warning is issued for each TODO comment found in the
-  module files.
+## module\_todo
+
+A warning is issued for each TODO comment found in the
+module files.
 
 :::note
 Note that many GUI code editors have plugins to list all instances of _TODO_

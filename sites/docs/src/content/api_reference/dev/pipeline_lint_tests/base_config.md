@@ -1,4 +1,4 @@
-# base_config
+# base\_config
 
 #### `PipelineLint.base_config() → dict[str, list[str]]{:python}`
 

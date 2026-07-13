@@ -1,4 +1,4 @@
-# included_configs
+# included\_configs
 
 #### `PipelineLint.included_configs(){:python}`
 
@@ -11,4 +11,4 @@ If the include line is missing, the test warns.
 Can be skipped by adding the following to the .nf-core.yml file:
 lint:
 
-> included_configs: False
+> included\_configs: False

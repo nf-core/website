@@ -1,4 +1,4 @@
-# nf_core.pipelines.launch
+# nf\_core.pipelines.launch
 
 Launch a pipeline, interactively collecting params
 
@@ -41,12 +41,12 @@ Take the Nextflow flag schema and merge it with the pipeline schema
 Prompt for edits to a group of parameters (subschema in ‘definitions’)
 
 - **Parameters:**
-  - **group_id** – Parameter ID (string)
-  - **group_obj** – JSON Schema keys (dict)
+  - **group\_id** – Parameter ID (string)
+  - **group\_obj** – JSON Schema keys (dict)
 - **Returns:**
   val answers
 - **Return type:**
-  Dict of param_id
+  Dict of param\_id
 
 #### `prompt_param(param_id, param_obj, is_required, answers){:python}`
 
@@ -68,17 +68,17 @@ Use the functions defined in the cli wizard to convert to the correct types.
 #### `set_schema_inputs(){:python}`
 
 Take the loaded schema and set the defaults as the input parameters
-If a nf_params.json file is supplied, apply these over the top
+If a nf\_params.json file is supplied, apply these over the top
 
 #### `single_param_to_questionary(param_id, param_obj, answers=None, print_help=True){:python}`
 
 Convert a JSONSchema param to a Questionary question
 
 - **Parameters:**
-  - **param_id** – Parameter ID (string)
-  - **param_obj** – JSON Schema keys (dict)
+  - **param\_id** – Parameter ID (string)
+  - **param\_obj** – JSON Schema keys (dict)
   - **answers** – Optional preexisting answers (dict)
-  - **print_help** – If description and help_text should be printed (bool)
+  - **print\_help** – If description and help\_text should be printed (bool)
 - **Returns:**
   Single Questionary dict, to be appended to questions list
 
