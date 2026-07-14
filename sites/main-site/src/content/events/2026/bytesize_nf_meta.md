@@ -2,9 +2,9 @@
 title: "Bytesize: nf-meta"
 subtitle: Julian Flesch, QBiC
 type: talk
-startDate: "2026-07-14"
+startDate: "2026-08-11"
 startTime: "13:00+02:00"
-endDate: "2026-07-14"
+endDate: "2026-08-11"
 endTime: "13:30+02:00"
 locations:
   - name: Online
