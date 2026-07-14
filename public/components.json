@@ -21554,7 +21554,13 @@
         "maintainers": [
           "@tamuanand"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "seqinspector",
+          "version": "1.1.0"
+        }
+      ]
     },
     {
       "name": "bbmap_filterbyname",
@@ -44154,7 +44160,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "tbanalyzer",
@@ -44516,7 +44522,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "tbanalyzer",
@@ -46467,7 +46473,7 @@
                 }
               },
               {
-                "python -c \"import importlib.metadata as m; print(m.version('caddsv'))\"": {
+                "caddsv --version": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -46491,7 +46497,7 @@
                 }
               },
               {
-                "python -c \"import importlib.metadata as m; print(m.version('caddsv'))\"": {
+                "caddsv --version": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -46504,7 +46510,268 @@
         ],
         "maintainers": [
           "@manascripts"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/caddsv:2.0.1--1bd7ba3bc0ff7a4e",
+              "build_id": "bd-1bd7ba3bc0ff7a4e_1",
+              "scan_id": "sc-a80a8a0867715e11_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/caddsv:2.0.1--8b095cd201b87816",
+              "build_id": "bd-8b095cd201b87816_1",
+              "scan_id": "sc-46109ded670b8034_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/caddsv:2.0.1--9efe3879e39972cd",
+              "build_id": "bd-9efe3879e39972cd_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/75/7580fd97186cafd35f9b898de8ef33a503b42649c99b9b2a50d4cf4eada0bd0d/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/caddsv:2.0.1--5d1690fe0a583e13",
+              "build_id": "bd-5d1690fe0a583e13_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a0/a037066425311ccb9bd951b3027aea2bb4384cd137c3d74370403db0f11c9602/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/caddsv/get/.conda-lock/linux_amd64-bd-1bd7ba3bc0ff7a4e_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/caddsv/get/.conda-lock/linux_arm64-bd-8b095cd201b87816_1.txt"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "caddsv_run",
+      "path": "modules/nf-core/caddsv/run/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "caddsv_run",
+        "description": "Score structural variants with CADD-SV.",
+        "keywords": [
+          "caddsv",
+          "structural variants",
+          "deleteriousness",
+          "annotation",
+          "scoring"
+        ],
+        "tools": [
+          {
+            "caddsv": {
+              "description": "CADD-SV is a command-line tool for scoring structural variants (SVs)",
+              "homepage": "https://cadd-sv.bihealth.org",
+              "documentation": "https://github.com/kircherlab/CADD-SV",
+              "tool_dev_url": "https://github.com/kircherlab/CADD-SV",
+              "doi": "10.1101/gr.275995.121",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:cadd-sv"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+              }
+            },
+            {
+              "variants": {
+                "type": "file",
+                "description": "BED file for coordinate-based CADD-SV scoring, or TSV file for\nsequence-only scoring with `--seqonly`.\n",
+                "pattern": "*.{bed,bed.gz,tsv,tsv.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3615"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "annotations_dir": {
+              "type": "directory",
+              "description": "Directory containing CADD-SV annotation resources. This can be the\noutput of the `caddsv_get` module, or a directory containing the\nCADD-SV annotation bundle and/or SegmentNT model files.\n",
+              "pattern": "caddsv_annotations"
+            }
+          },
+          {
+            "config": {
+              "type": "file",
+              "description": "Optional YAML configuration file for CADD-SV scoring. If not provided,\ndefault scoring parameters will be used.\n",
+              "pattern": "*.{yml,yaml}",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3750"
+                }
+              ]
+            }
+          }
+        ],
+        "output": {
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "caddsv_results/scored/*.tsv": {
+                  "type": "file",
+                  "description": "CADD-SV output with variant scores.",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "results": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "caddsv_results": {
+                  "type": "directory",
+                  "description": "CADD-SV output directory containing input, intermediate, and scored results."
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "caddsv_run_*.log": {
+                  "type": "file",
+                  "description": "Optional runtime resource log created when `--check-time` is supplied.",
+                  "optional": true,
+                  "pattern": "caddsv_run_*.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_caddsv": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "caddsv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "caddsv --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "caddsv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "caddsv --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@manascripts"
+        ],
+        "maintainers": [
+          "@manascripts"
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/caddsv:2.0.1--8b095cd201b87816",
+              "build_id": "bd-8b095cd201b87816_1",
+              "scan_id": "sc-46109ded670b8034_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/caddsv:2.0.1--1bd7ba3bc0ff7a4e",
+              "build_id": "bd-1bd7ba3bc0ff7a4e_1",
+              "scan_id": "sc-a80a8a0867715e11_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/caddsv:2.0.1--9efe3879e39972cd",
+              "build_id": "bd-9efe3879e39972cd_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/75/7580fd97186cafd35f9b898de8ef33a503b42649c99b9b2a50d4cf4eada0bd0d/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/caddsv:2.0.1--5d1690fe0a583e13",
+              "build_id": "bd-5d1690fe0a583e13_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a0/a037066425311ccb9bd951b3027aea2bb4384cd137c3d74370403db0f11c9602/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/caddsv/run/.conda-lock/linux_amd64-bd-1bd7ba3bc0ff7a4e_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/caddsv/run/.conda-lock/linux_arm64-bd-8b095cd201b87816_1.txt"
+            }
+          }
+        }
       }
     },
     {
@@ -55800,6 +56067,10 @@
         {
           "name": "demultiplex",
           "version": "1.7.1"
+        },
+        {
+          "name": "seqinspector",
+          "version": "1.1.0"
         }
       ]
     },
@@ -102672,6 +102943,10 @@
           "version": "3.9.0"
         },
         {
+          "name": "seqinspector",
+          "version": "1.1.0"
+        },
+        {
           "name": "smrnaseq",
           "version": "2.4.1"
         },
@@ -103361,7 +103636,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "smrnaseq",
@@ -103692,7 +103967,13 @@
         "maintainers": [
           "@adamrtalbot"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "seqinspector",
+          "version": "1.1.0"
+        }
+      ]
     },
     {
       "name": "fastqscan",
@@ -104107,7 +104388,7 @@
       "pipelines": [
         {
           "name": "seqinspector",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -114251,6 +114532,10 @@
         {
           "name": "rnaseq",
           "version": "3.26.0"
+        },
+        {
+          "name": "seqinspector",
+          "version": "1.1.0"
         }
       ]
     },
@@ -179492,6 +179777,10 @@
           "version": "3.26.0"
         },
         {
+          "name": "seqinspector",
+          "version": "1.1.0"
+        },
+        {
           "name": "taxprofiler",
           "version": "2.0.1"
         },
@@ -180714,6 +181003,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "seqinspector",
+          "version": "1.1.0"
+        },
+        {
           "name": "taxprofiler",
           "version": "2.0.1"
         }
@@ -180963,6 +181256,10 @@
       "pipelines": [
         {
           "name": "hgtseq",
+          "version": "1.1.0"
+        },
+        {
+          "name": "seqinspector",
           "version": "1.1.0"
         }
       ]
@@ -208708,6 +209005,384 @@
       }
     },
     {
+      "name": "mm2plus_align",
+      "path": "modules/nf-core/mm2plus/align/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mm2plus_align",
+        "description": "A versatile pairwise aligner for genomic and spliced nucleotide sequences",
+        "keywords": [
+          "align",
+          "fasta",
+          "fastq",
+          "genome",
+          "paf",
+          "reference"
+        ],
+        "tools": [
+          {
+            "mm2plus": {
+              "description": "A versatile pairwise aligner for genomic and spliced nucleotide sequences.\n",
+              "homepage": "https://github.com/at-cg/mm2-plus",
+              "documentation": "https://github.com/at-cg/mm2-plus#readme_mm2",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "List of input BAM, or input FASTA or FASTQ files of size 1 and 2 for single-end\nand paired-end data, respectively.\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'test_ref']\n"
+              }
+            },
+            {
+              "reference": {
+                "type": "file",
+                "description": "Reference database in FASTA format.\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "bam_format": {
+              "type": "boolean",
+              "description": "Specify that output should be in BAM format"
+            }
+          },
+          {
+            "bam_index_extension": {
+              "type": "string",
+              "description": "BAM alignment index extension (e.g. \"bai\")"
+            }
+          },
+          {
+            "cigar_paf_format": {
+              "type": "boolean",
+              "description": "Specify that output CIGAR should be in PAF format"
+            }
+          },
+          {
+            "cigar_bam": {
+              "type": "boolean",
+              "description": "Write CIGAR with >65535 ops at the CG tag. This is recommended when\ndoing XYZ (https://github.com/lh3/minimap2#working-with-65535-cigar-operations)\n"
+            }
+          }
+        ],
+        "output": {
+          "paf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.paf": {
+                  "type": "file",
+                  "description": "Alignment in PAF format",
+                  "pattern": "*.paf",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bam": {
+                  "type": "file",
+                  "description": "Alignment in BAM format",
+                  "pattern": "*.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bam.${bam_index_extension}": {
+                  "type": "file",
+                  "description": "BAM alignment index",
+                  "pattern": "*.bam.*",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3327"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_mm2plus": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process name"
+                }
+              },
+              {
+                "mm2plus": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "mm2plus --version": {
+                  "type": "eval",
+                  "description": "The tool version"
+                }
+              }
+            ]
+          ],
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process name"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The tool version"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process name"
+                }
+              },
+              {
+                "mm2plus": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "mm2plus --version": {
+                  "type": "eval",
+                  "description": "The tool version"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process name"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The tool version"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@fellen31"
+        ],
+        "maintainers": [
+          "@fellen31"
+        ]
+      }
+    },
+    {
+      "name": "mm2plus_index",
+      "path": "modules/nf-core/mm2plus/index/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mm2plus_index",
+        "description": "Provides fasta index required by mm2plus alignment.",
+        "keywords": [
+          "index",
+          "fasta",
+          "reference"
+        ],
+        "tools": [
+          {
+            "mm2plus": {
+              "description": "A versatile pairwise aligner for genomic and spliced nucleotide sequences.\n",
+              "homepage": "https://github.com/at-cg/mm2-plus",
+              "documentation": "https://github.com/at-cg/mm2-plus#readme_mm2",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference database in FASTA format.\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.mmi": {
+                  "type": "file",
+                  "description": "mm2plus fasta index.",
+                  "pattern": "*.mmi",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_mm2plus": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mm2plus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mm2plus --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mm2plus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mm2plus --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@fellen31"
+        ],
+        "maintainers": [
+          "@fellen31"
+        ]
+      }
+    },
+    {
       "name": "mmseqs_cluster",
       "path": "modules/nf-core/mmseqs/cluster/meta.yml",
       "type": "module",
@@ -215087,7 +215762,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "seqsubmit",
@@ -215686,6 +216361,10 @@
         {
           "name": "demultiplex",
           "version": "1.7.1"
+        },
+        {
+          "name": "seqinspector",
+          "version": "1.1.0"
         }
       ]
     },
@@ -242753,7 +243432,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "variantcatalogue",
@@ -243100,7 +243779,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "ssds",
@@ -243796,7 +244475,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "variantbenchmarking",
@@ -275258,7 +275937,13 @@
           "@emmcauley",
           "@matthdsm"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "seqinspector",
+          "version": "1.1.0"
+        }
+      ]
     },
     {
       "name": "ripgrep",
@@ -288200,7 +288885,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "tfactivity",
@@ -289970,7 +290655,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "smrnaseq",
@@ -304062,7 +304747,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -306161,6 +306846,10 @@
         {
           "name": "rnaseq",
           "version": "3.26.0"
+        },
+        {
+          "name": "seqinspector",
+          "version": "1.1.0"
         }
       ]
     },
@@ -307227,7 +307916,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -307775,7 +308464,13 @@
           "@irliampa",
           "@DarkoCucin"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "seqinspector",
+          "version": "1.1.0"
+        }
+      ]
     },
     {
       "name": "sequencetools_pileupcaller",
@@ -315501,19 +316196,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_snippy_core": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "snippy-core": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "snippy-core --version 2>&1 | sed 's/snippy-core //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "snippy-core": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "snippy-core --version 2>&1 | sed 's/snippy-core //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -315901,19 +316628,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_snippy": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "snippy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "snippy --version 2>&1 | sed 's/snippy //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "snippy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "snippy --version 2>&1 | sed 's/snippy //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -316980,19 +317739,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_snpsift": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "snpsift": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SnpSift -version 2>&1 | grep -oE '[0-9]+\\.[0-9]+[a-z]?'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "snpsift": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SnpSift -version 2>&1 | grep -oE '[0-9]+\\.[0-9]+[a-z]?'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -317101,19 +317892,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_snpsift": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "snpsift": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SnpSift -version 2>&1 | grep -oE '[0-9]+\\.[0-9]+[a-z]?'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "snpsift": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SnpSift -version 2>&1 | grep -oE '[0-9]+\\.[0-9]+[a-z]?'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -341116,6 +341939,10 @@
         {
           "name": "scnanoseq",
           "version": "1.3.0"
+        },
+        {
+          "name": "seqinspector",
+          "version": "1.1.0"
         }
       ]
     },
@@ -348794,6 +349621,10 @@
           "version": "dev"
         },
         {
+          "name": "seqinspector",
+          "version": "1.1.0"
+        },
+        {
           "name": "seqsubmit",
           "version": "dev"
         },
@@ -356436,19 +357267,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_verifybamid": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "verifybamid": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.1.3": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "verifybamid": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.1.3": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -381067,7 +381930,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "seqsubmit",
@@ -381524,7 +382387,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "seqsubmit",
@@ -382015,7 +382878,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "seqsubmit",
