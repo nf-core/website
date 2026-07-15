@@ -40,6 +40,12 @@ const filter = [
     description={description}
     filter={filter}
     sortBy={["Last release", "Name", "Stars"]}
+    searchExamples={[
+        { query: "k:rna", label: "keyword/topic" },
+        { query: "n:sarek", label: "name" },
+        { query: "d:variant", label: "description" },
+        { query: 'k:"rna"', label: "exact keyword/topic" },
+    ]}
     displayStyle={[
         { name: "grid", icon: "fa-regular fa-grid-2" },
         { name: "table", icon: "fa-regular fa-bars" },

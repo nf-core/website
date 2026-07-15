@@ -6,9 +6,18 @@
         includes?: boolean;
         included?: boolean;
         inline?: boolean;
+        onTagClick?: (tag: string) => void;
     }
 
-    let { tags, maxShown = 0, type, inline = false, includes = false, included = false }: Props = $props();
+    let {
+        tags,
+        maxShown = 0,
+        type,
+        inline = false,
+        includes = false,
+        included = false,
+        onTagClick = undefined,
+    }: Props = $props();
     let expanded = $state(false);
 
     const typeSpecificClasses = $derived(
@@ -39,9 +48,20 @@
     {/if}
 
     {#each expanded || !maxShown ? tags : tags.slice(0, maxShown) as tag (tag)}
-        <a href={getHref(tag)} class="badge fw-normal me-2 text-decoration-none {typeSpecificClasses}">
-            {tag}
-        </a>
+        {#if onTagClick}
+            <button
+                type="button"
+                class="badge fw-normal me-2 border-0 tag-button {typeSpecificClasses}"
+                title={`Filter by ${type === "keywords" ? "keyword" : type.slice(0, -1)} "${tag}"`}
+                onclick={() => onTagClick(tag)}
+            >
+                {tag}
+            </button>
+        {:else}
+            <a href={getHref(tag)} class="badge fw-normal me-2 text-decoration-none {typeSpecificClasses}">
+                {tag}
+            </a>
+        {/if}
     {/each}
 
     {#if additionalTagsCount > 0 && maxShown}
@@ -65,3 +85,14 @@
         </span>
     {/if}
 </div>
+
+<style>
+    /* Bootstrap 5.3 dropped cursor utilities; buttons default to the arrow cursor. */
+    .tag-button {
+        cursor: pointer;
+    }
+    .tag-button:hover,
+    .tag-button:focus-visible {
+        text-decoration: underline;
+    }
+</style>

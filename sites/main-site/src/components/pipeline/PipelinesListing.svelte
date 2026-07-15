@@ -1,6 +1,7 @@
 <script lang="ts">
     import ListingTableHeader from "@components/ListingTableHeader.svelte";
     import PipelineCard from "@components/pipeline/PipelineCard.svelte";
+    import { parseSearchQuery, matchesSearch } from "@utils/search";
     import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from "@components/store";
     import { onMount } from "svelte";
 
@@ -28,21 +29,13 @@
     let sortBy = $derived($SortBy || "Last release");
     let sortInverse = $derived(sortBy.endsWith(";inverse"));
 
-    const searchPipelines = (pipeline: Pipeline) => {
-        if (searchQuery === "") {
-            return true;
-        }
-        if (pipeline.name.toLowerCase().includes(searchQuery.toLowerCase())) {
-            return true;
-        }
-        if (pipeline.description && pipeline.description.toLowerCase().includes(searchQuery.toLowerCase())) {
-            return true;
-        }
-        if (pipeline.topics.some((topic) => topic.toLowerCase().includes(searchQuery.toLowerCase()))) {
-            return true;
-        }
-        return false;
-    };
+    let searchTerms = $derived(parseSearchQuery(searchQuery));
+
+    const searchPipelines = (pipeline: Pipeline) =>
+        matchesSearch(
+            { name: pipeline.name, description: pipeline.description, keywords: pipeline.topics },
+            searchTerms,
+        );
 
     const filterPipelines = (pipeline: Pipeline) => {
         if (currentFilter.find((f) => f.name === "Released") && pipeline.releases.length > 1 && !pipeline.archived) {
