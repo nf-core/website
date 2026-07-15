@@ -2,6 +2,7 @@
     import ListingTableHeader from "@components/ListingTableHeader.svelte";
     import PaginationNav from "@components/PaginationNav.svelte";
     import TagSection from "@components/TagSection.svelte";
+    import { parseSearchQuery, matchesSearch, filterByKeyword } from "@utils/search";
     import ComponentCard from "@components/component/ComponentCard.svelte";
     import { SortBy, DisplayStyle, SearchQuery, currentPage } from "@components/store";
 
@@ -32,27 +33,17 @@
     let sortInverse = $derived(sortBy.endsWith(";inverse"));
     let currentPageValue = $derived($currentPage);
 
-    const searchComponents = (component: Component) => {
-        if (searchQuery === "") {
-            return true;
-        }
-        if (component.meta.name && component.meta.name.toLowerCase().includes(searchQuery.toLowerCase())) {
-            return true;
-        }
-        if (
-            component.meta.description &&
-            component.meta.description.toLowerCase().includes(searchQuery.toLowerCase())
-        ) {
-            return true;
-        }
-        if (
-            component.meta.keywords &&
-            component.meta.keywords.some((keyword) => keyword.toLowerCase().includes(searchQuery.toLowerCase()))
-        ) {
-            return true;
-        }
-        return false;
-    };
+    let searchTerms = $derived(parseSearchQuery(searchQuery));
+
+    const searchComponents = (component: Component) =>
+        matchesSearch(
+            {
+                name: component.meta.name || component.name,
+                description: component.meta.description,
+                keywords: component.meta.keywords,
+            },
+            searchTerms,
+        );
 
     const sortComponents = (a: Component, b: Component) => {
         if (sortBy.startsWith("Name")) {
@@ -159,7 +150,11 @@
                                 {/if}
                             </td>
                             <td class="topics">
-                                <TagSection tags={component.meta.keywords} type="keywords" />
+                                <TagSection
+                                    tags={component.meta.keywords}
+                                    type="keywords"
+                                    onTagClick={filterByKeyword}
+                                />
                             </td>
                             {#if component.type !== "module"}
                                 <td class="components">
