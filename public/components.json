@@ -36664,7 +36664,41 @@
         "maintainers": [
           "@phue",
           "@sateeshperi"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bismark:3.1.0--9557d6ab108a83e4",
+              "build_id": "bd-9557d6ab108a83e4_1",
+              "scan_id": "sc-8d2a54959fbc873b_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/bismark:3.1.0--f83bc6617fa3cadd",
+              "build_id": "bd-f83bc6617fa3cadd_1",
+              "scan_id": "sc-cf3a320dd51a3a24_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bismark:3.1.0--3abb485fce628c19",
+              "build_id": "bd-3abb485fce628c19_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/bd/bddea334e6ccbce005ce540214747acf822b040185d2198220dcfbb4b258c331/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/bismark:3.1.0--4c41a9578c1f2001",
+              "build_id": "bd-4c41a9578c1f2001_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9b/9b84d7ddbd3e0bb2240038ce3c9ff9979287d38bf09f2945256eaafba1450096/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/bismark/align/.conda-lock/linux_amd64-bd-9557d6ab108a83e4_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/bismark/align/.conda-lock/linux_arm64-bd-f83bc6617fa3cadd_1.txt"
+            }
+          }
+        }
       },
       "pipelines": [
         {
@@ -36869,7 +36903,41 @@
         "maintainers": [
           "@ewels",
           "@sateeshperi"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bismark:3.1.0--9557d6ab108a83e4",
+              "build_id": "bd-9557d6ab108a83e4_1",
+              "scan_id": "sc-8d2a54959fbc873b_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/bismark:3.1.0--f83bc6617fa3cadd",
+              "build_id": "bd-f83bc6617fa3cadd_1",
+              "scan_id": "sc-cf3a320dd51a3a24_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/bismark:3.1.0--4c41a9578c1f2001",
+              "build_id": "bd-4c41a9578c1f2001_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9b/9b84d7ddbd3e0bb2240038ce3c9ff9979287d38bf09f2945256eaafba1450096/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bismark:3.1.0--3abb485fce628c19",
+              "build_id": "bd-3abb485fce628c19_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/bd/bddea334e6ccbce005ce540214747acf822b040185d2198220dcfbb4b258c331/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/bismark/coverage2cytosine/.conda-lock/linux_amd64-bd-9557d6ab108a83e4_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/bismark/coverage2cytosine/.conda-lock/linux_arm64-bd-f83bc6617fa3cadd_1.txt"
+            }
+          }
+        }
       },
       "pipelines": [
         {
@@ -37018,7 +37086,41 @@
         "maintainers": [
           "@phue",
           "@sateeshperi"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/bismark:3.1.0--f83bc6617fa3cadd",
+              "build_id": "bd-f83bc6617fa3cadd_1",
+              "scan_id": "sc-cf3a320dd51a3a24_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bismark:3.1.0--9557d6ab108a83e4",
+              "build_id": "bd-9557d6ab108a83e4_1",
+              "scan_id": "sc-8d2a54959fbc873b_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/bismark:3.1.0--4c41a9578c1f2001",
+              "build_id": "bd-4c41a9578c1f2001_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9b/9b84d7ddbd3e0bb2240038ce3c9ff9979287d38bf09f2945256eaafba1450096/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bismark:3.1.0--3abb485fce628c19",
+              "build_id": "bd-3abb485fce628c19_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/bd/bddea334e6ccbce005ce540214747acf822b040185d2198220dcfbb4b258c331/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/bismark/deduplicate/.conda-lock/linux_amd64-bd-9557d6ab108a83e4_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/bismark/deduplicate/.conda-lock/linux_arm64-bd-f83bc6617fa3cadd_1.txt"
+            }
+          }
+        }
       },
       "pipelines": [
         {
@@ -37147,7 +37249,41 @@
         "maintainers": [
           "@phue",
           "@sateeshperi"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bismark:3.1.0--9557d6ab108a83e4",
+              "build_id": "bd-9557d6ab108a83e4_1",
+              "scan_id": "sc-8d2a54959fbc873b_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/bismark:3.1.0--f83bc6617fa3cadd",
+              "build_id": "bd-f83bc6617fa3cadd_1",
+              "scan_id": "sc-cf3a320dd51a3a24_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/bismark:3.1.0--4c41a9578c1f2001",
+              "build_id": "bd-4c41a9578c1f2001_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9b/9b84d7ddbd3e0bb2240038ce3c9ff9979287d38bf09f2945256eaafba1450096/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bismark:3.1.0--3abb485fce628c19",
+              "build_id": "bd-3abb485fce628c19_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/bd/bddea334e6ccbce005ce540214747acf822b040185d2198220dcfbb4b258c331/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/bismark/genomepreparation/.conda-lock/linux_amd64-bd-9557d6ab108a83e4_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/bismark/genomepreparation/.conda-lock/linux_arm64-bd-f83bc6617fa3cadd_1.txt"
+            }
+          }
+        }
       },
       "pipelines": [
         {
@@ -37366,7 +37502,41 @@
         "maintainers": [
           "@phue",
           "@sateeshperi"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/bismark:3.1.0--f83bc6617fa3cadd",
+              "build_id": "bd-f83bc6617fa3cadd_1",
+              "scan_id": "sc-cf3a320dd51a3a24_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bismark:3.1.0--9557d6ab108a83e4",
+              "build_id": "bd-9557d6ab108a83e4_1",
+              "scan_id": "sc-8d2a54959fbc873b_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bismark:3.1.0--3abb485fce628c19",
+              "build_id": "bd-3abb485fce628c19_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/bd/bddea334e6ccbce005ce540214747acf822b040185d2198220dcfbb4b258c331/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/bismark:3.1.0--4c41a9578c1f2001",
+              "build_id": "bd-4c41a9578c1f2001_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9b/9b84d7ddbd3e0bb2240038ce3c9ff9979287d38bf09f2945256eaafba1450096/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/bismark/methylationextractor/.conda-lock/linux_amd64-bd-9557d6ab108a83e4_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/bismark/methylationextractor/.conda-lock/linux_arm64-bd-f83bc6617fa3cadd_1.txt"
+            }
+          }
+        }
       },
       "pipelines": [
         {
@@ -37520,7 +37690,41 @@
         "maintainers": [
           "@phue",
           "@sateeshperi"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bismark:3.1.0--9557d6ab108a83e4",
+              "build_id": "bd-9557d6ab108a83e4_1",
+              "scan_id": "sc-8d2a54959fbc873b_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/bismark:3.1.0--f83bc6617fa3cadd",
+              "build_id": "bd-f83bc6617fa3cadd_1",
+              "scan_id": "sc-cf3a320dd51a3a24_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bismark:3.1.0--3abb485fce628c19",
+              "build_id": "bd-3abb485fce628c19_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/bd/bddea334e6ccbce005ce540214747acf822b040185d2198220dcfbb4b258c331/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/bismark:3.1.0--4c41a9578c1f2001",
+              "build_id": "bd-4c41a9578c1f2001_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9b/9b84d7ddbd3e0bb2240038ce3c9ff9979287d38bf09f2945256eaafba1450096/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/bismark/report/.conda-lock/linux_amd64-bd-9557d6ab108a83e4_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/bismark/report/.conda-lock/linux_arm64-bd-f83bc6617fa3cadd_1.txt"
+            }
+          }
+        }
       },
       "pipelines": [
         {
@@ -37666,7 +37870,41 @@
         "maintainers": [
           "@phue",
           "@sateeshperi"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/bismark:3.1.0--f83bc6617fa3cadd",
+              "build_id": "bd-f83bc6617fa3cadd_1",
+              "scan_id": "sc-cf3a320dd51a3a24_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bismark:3.1.0--9557d6ab108a83e4",
+              "build_id": "bd-9557d6ab108a83e4_1",
+              "scan_id": "sc-8d2a54959fbc873b_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/bismark:3.1.0--4c41a9578c1f2001",
+              "build_id": "bd-4c41a9578c1f2001_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9b/9b84d7ddbd3e0bb2240038ce3c9ff9979287d38bf09f2945256eaafba1450096/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bismark:3.1.0--3abb485fce628c19",
+              "build_id": "bd-3abb485fce628c19_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/bd/bddea334e6ccbce005ce540214747acf822b040185d2198220dcfbb4b258c331/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/bismark/summary/.conda-lock/linux_amd64-bd-9557d6ab108a83e4_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/bismark/summary/.conda-lock/linux_arm64-bd-f83bc6617fa3cadd_1.txt"
+            }
+          }
+        }
       },
       "pipelines": [
         {
@@ -269521,6 +269759,170 @@
           "version": "3.9.0"
         }
       ]
+    },
+    {
+      "name": "rclone_copy",
+      "path": "modules/nf-core/rclone/copy/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rclone_copy",
+        "description": "Copy files or directories between local and/or remote storage using Rclone",
+        "keywords": [
+          "rclone",
+          "copy",
+          "sync",
+          "data-transfer"
+        ],
+        "tools": [
+          {
+            "rclone": {
+              "description": "Rclone is a command line program to manage files on cloud storage",
+              "homepage": "https://rclone.org/",
+              "documentation": "https://rclone.org/docs/",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information.\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "source_path": {
+                "type": "string",
+                "description": "Source path to copy from. This should be a path understood by Rclone,\nsuch as a local path or a configured remote path.\nExamples: `data/input`, `s3:bucket/path`, `gs:bucket/path`,\n`remote:path/to/data`.\n"
+              }
+            },
+            {
+              "destination_path": {
+                "type": "string",
+                "description": "Destination path to copy to. This should be the fully resolved target\npath understood by Rclone, such as a local path or a configured remote\npath. The module does not append sample IDs, basenames, or modify this\npath internally.\nExamples: `results/output`, `s3:bucket/output`, `gs:bucket/output`,\n`remote:path/to/output`.\n"
+              }
+            }
+          ],
+          {
+            "rclone_config": {
+              "type": "file",
+              "description": "Rclone configuration file defining the remotes used by source_path and/or\ndestination_path. Authentication and remote-specific options should be\nconfigured in this file where possible.\n",
+              "pattern": "*.conf",
+              "ontologies": []
+            }
+          }
+        ],
+        "output": {
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "rclone-copy.log": {
+                  "type": "file",
+                  "description": "Rclone log file generated during the copy operation.",
+                  "pattern": "rclone-copy.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_rclone": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rclone": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rclone --version | sed -n '1s/^rclone v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rclone": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rclone --version | sed -n '1s/^rclone v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@antoniasaracco"
+        ],
+        "maintainers": [
+          "@antoniasaracco"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/rclone:1.65.0--ff88b2e0040147be",
+              "build_id": "bd-ff88b2e0040147be_1",
+              "scan_id": "sc-ff88b2e0040147be_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/rclone:1.65.0--ff88b2e0040147be",
+              "build_id": "bd-ff88b2e0040147be_1",
+              "scan_id": "sc-ff88b2e0040147be_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/rclone:1.65.0--ff88b2e0040147be",
+              "build_id": "bd-ff88b2e0040147be_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c9/c947c1a7171daf074310295417d0f0afe879275e1543fa5fc2a9711e7c2c72ab/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/rclone:1.65.0--ff88b2e0040147be",
+              "build_id": "bd-ff88b2e0040147be_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c9/c947c1a7171daf074310295417d0f0afe879275e1543fa5fc2a9711e7c2c72ab/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/rclone/copy/.conda-lock/linux_amd64-bd-ff88b2e0040147be_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/rclone/copy/.conda-lock/linux_arm64-bd-ff88b2e0040147be_1.txt"
+            }
+          }
+        }
+      }
     },
     {
       "name": "refsolver_compare",
