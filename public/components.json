@@ -234822,7 +234822,19 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information - tumor_id and normal_id must match read groups for the respective samples.\n[ id:'test', tumor_id:'tumor', normal_id:'normal' ]\n"
+                "description": "Groovy Map containing sample information.\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "tumor_name": {
+                "type": "string",
+                "description": "Sample name for the tumor BAM. Must match the read group sample name in the tumor BAM."
+              }
+            },
+            {
+              "normal_name": {
+                "type": "string",
+                "description": "(Optional) Sample name for the normal BAM. Must match the read group sample name in the normal BAM. Required only when a normal BAM is provided."
               }
             },
             {
@@ -235583,7 +235595,7 @@
           ],
           [
             {
-              "meta1": {
+              "meta2": {
                 "type": "map",
                 "description": "Groovy Map containing genome lib dir information\n"
               }
@@ -269922,6 +269934,578 @@
       ]
     },
     {
+      "name": "rclone_check",
+      "path": "modules/nf-core/rclone/check/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rclone_check",
+        "description": "Check that files in source and destination paths match",
+        "keywords": [
+          "check",
+          "checksum",
+          "cloud",
+          "sync"
+        ],
+        "tools": [
+          {
+            "rclone": {
+              "description": "Rclone is a command-line program to manage files on cloud storage.",
+              "homepage": "https://rclone.org/",
+              "documentation": "https://rclone.org/commands/rclone_check/",
+              "tool_dev_url": "https://github.com/rclone/rclone",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing source information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "source": {
+                "type": "file",
+                "description": "File or directory containing source files to compare.",
+                "pattern": "",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_0006"
+                  }
+                ]
+              }
+            },
+            {
+              "destination": {
+                "type": "file",
+                "description": "File or directory containing destination files to compare.",
+                "pattern": "",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_0006"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "combined": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing source information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.combined.txt": {
+                  "type": "file",
+                  "description": "Combined report of matching, missing, differing, and error paths.",
+                  "pattern": "*.combined.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "differ": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing source information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.differ.txt": {
+                  "type": "file",
+                  "description": "Report of paths present in both source and destination but different.",
+                  "pattern": "*.differ.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "missing_on_dst": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing source information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.missing_on_dst.txt": {
+                  "type": "file",
+                  "description": "Report of paths present in source but missing from destination.",
+                  "pattern": "*.missing_on_dst.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "missing_on_src": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing source information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.missing_on_src.txt": {
+                  "type": "file",
+                  "description": "Report of paths present in destination but missing from source.",
+                  "pattern": "*.missing_on_src.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "match": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing source information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.match.txt": {
+                  "type": "file",
+                  "description": "Report of matching paths.",
+                  "pattern": "*.match.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "error": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing source information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.error.txt": {
+                  "type": "file",
+                  "description": "Report of paths with read or hash errors.",
+                  "pattern": "*.error.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_rclone": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rclone": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rclone --version | sed -n '1s/^rclone v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rclone": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rclone --version | sed -n '1s/^rclone v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@atrigila"
+        ],
+        "maintainers": [
+          "@atrigila"
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/rclone:1.74.3--351f8e39202b129a",
+              "build_id": "bd-351f8e39202b129a_1",
+              "scan_id": "sc-0e6358c70409ff39_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/rclone:1.74.3--2ef33c5b9132aa97",
+              "build_id": "bd-2ef33c5b9132aa97_1",
+              "scan_id": "sc-2cbce8a89ac463aa_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/rclone:1.74.3--af6486c6ac506f82",
+              "build_id": "bd-af6486c6ac506f82_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/5d/5dfd28fd0090c69f57c9bd93ea3235d8df194e8f269b5cb3027b6b59bff567d5/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/rclone:1.74.3--49a53709aa05d28d",
+              "build_id": "bd-49a53709aa05d28d_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/de/de06d232599f015aa253f63b84ba2e257bb542810dc11714b88ca9b4045b80ea/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/rclone/check/.conda-lock/linux_amd64-bd-2ef33c5b9132aa97_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/rclone/check/.conda-lock/linux_arm64-bd-351f8e39202b129a_1.txt"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "rclone_checksum",
+      "path": "modules/nf-core/rclone/checksum/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rclone_checksum",
+        "description": "Check files in a destination path against a checksum SUM file",
+        "keywords": [
+          "checksum",
+          "md5",
+          "sha1",
+          "cloud",
+          "sync"
+        ],
+        "tools": [
+          {
+            "rclone": {
+              "description": "Rclone is a command-line program to manage files on cloud storage.",
+              "homepage": "https://rclone.org/",
+              "documentation": "https://rclone.org/commands/rclone_checksum/",
+              "tool_dev_url": "https://github.com/rclone/rclone",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing checksum source information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "sumfile": {
+                "type": "file",
+                "description": "Checksum SUM file containing hashes and destination paths to verify.",
+                "pattern": "*.{md5,sha1,sha256,sum,txt}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3671"
+                  }
+                ]
+              }
+            },
+            {
+              "hash": {
+                "type": "string",
+                "description": "Hash type to check, for example MD5, SHA1, or SHA256."
+              }
+            },
+            {
+              "destination": {
+                "type": "file",
+                "description": "File or directory containing destination files to check against the SUM file.",
+                "pattern": "",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_0006"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "combined": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing checksum source information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.combined.txt": {
+                  "type": "file",
+                  "description": "Combined report of matching, missing, differing, and error paths.",
+                  "pattern": "*.combined.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "differ": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing checksum source information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.differ.txt": {
+                  "type": "file",
+                  "description": "Report of paths present in both source SUM file and destination but different.",
+                  "pattern": "*.differ.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "missing_on_dst": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing checksum source information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.missing_on_dst.txt": {
+                  "type": "file",
+                  "description": "Report of paths present in the SUM file but missing from the destination.",
+                  "pattern": "*.missing_on_dst.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "missing_on_src": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing checksum source information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.missing_on_src.txt": {
+                  "type": "file",
+                  "description": "Report of paths present in the destination but missing from the SUM file.",
+                  "pattern": "*.missing_on_src.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "match": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing checksum source information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.match.txt": {
+                  "type": "file",
+                  "description": "Report of matching paths.",
+                  "pattern": "*.match.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "error": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing checksum source information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.error.txt": {
+                  "type": "file",
+                  "description": "Report of paths with read or hash errors.",
+                  "pattern": "*.error.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_rclone": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rclone": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rclone --version | sed -n '1s/^rclone v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rclone": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rclone --version | sed -n '1s/^rclone v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@atrigila"
+        ],
+        "maintainers": [
+          "@atrigila"
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/rclone:1.74.3--351f8e39202b129a",
+              "build_id": "bd-351f8e39202b129a_1",
+              "scan_id": "sc-0e6358c70409ff39_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/rclone:1.74.3--2ef33c5b9132aa97",
+              "build_id": "bd-2ef33c5b9132aa97_1",
+              "scan_id": "sc-2cbce8a89ac463aa_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/rclone:1.74.3--af6486c6ac506f82",
+              "build_id": "bd-af6486c6ac506f82_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/5d/5dfd28fd0090c69f57c9bd93ea3235d8df194e8f269b5cb3027b6b59bff567d5/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/rclone:1.74.3--49a53709aa05d28d",
+              "build_id": "bd-49a53709aa05d28d_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/de/de06d232599f015aa253f63b84ba2e257bb542810dc11714b88ca9b4045b80ea/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/rclone/checksum/.conda-lock/linux_amd64-bd-2ef33c5b9132aa97_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/rclone/checksum/.conda-lock/linux_arm64-bd-351f8e39202b129a_1.txt"
+            }
+          }
+        }
+      }
+    },
+    {
       "name": "rclone_copy",
       "path": "modules/nf-core/rclone/copy/meta.yml",
       "type": "module",
@@ -269987,10 +270571,10 @@
                 }
               },
               {
-                "rclone-copy.log": {
+                "*rclone-copy.log": {
                   "type": "file",
                   "description": "Rclone log file generated during the copy operation.",
-                  "pattern": "rclone-copy.log",
+                  "pattern": "*rclone-copy.log",
                   "ontologies": []
                 }
               }
@@ -291085,6 +291669,10 @@
           "version": "dev"
         },
         {
+          "name": "deepmutscan",
+          "version": "dev"
+        },
+        {
           "name": "drop",
           "version": "1.0.0"
         },
@@ -292856,6 +293444,10 @@
         },
         {
           "name": "dartseq",
+          "version": "dev"
+        },
+        {
+          "name": "deepmutscan",
           "version": "dev"
         },
         {
@@ -321247,7 +321839,7 @@
       "pipelines": [
         {
           "name": "sopa",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "spatialvi",
@@ -343548,6 +344140,154 @@
       }
     },
     {
+      "name": "treerecs",
+      "path": "modules/nf-core/treerecs/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "treerecs",
+        "description": "Treerecs is an open-source (species- and gene-) tree reconciliation software distributed under the GNU AGPL licence. It can correct, rearrange and (re-)root gene trees with regard to a given species tree. It was designed to be both efficient and easy to install and to use.",
+        "keywords": [
+          "tree reconciliation",
+          "species tree",
+          "gene tree"
+        ],
+        "tools": [
+          {
+            "treerecs": {
+              "description": "correct, rearrange and (re-)root gene trees with regard to a given species tree",
+              "homepage": "https://project.inria.fr/treerecs/",
+              "documentation": "https://project.inria.fr/treerecs/treerecs-options/",
+              "tool_dev_url": "https://gitlab.inria.fr/Phylophile/Treerecs",
+              "doi": "10.1093/bioinformatics/btaa615",
+              "licence": [
+                "AGPL"
+              ],
+              "identifier": "biotools:Treerecs"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "genetree": {
+                "type": "file",
+                "description": "Phylogenetic gene tree in text or xml format",
+                "pattern": "*.{tree, txt, nwk, newick, nhx, phyloxml, xml}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1910"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3159"
+                  }
+                ]
+              }
+            },
+            {
+              "speciestree": {
+                "type": "file",
+                "description": "Phylogenetic species tree in text or xml format",
+                "pattern": "*.{tree, txt, nwk, newick, nhx, phyloxml, xml}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1910"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3159"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "rectree": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.xml": {
+                  "type": "file",
+                  "description": "Reconciled phylogenetic tree",
+                  "pattern": "*.{tree, txt, nwk, newick, nhx, phyloxml, xml}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1910"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3159"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_treerecs": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "treerecs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "treerecs --version | sed -n 's/^Treerecs \\([0-9.]*\\)\\$/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "treerecs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "treerecs --version | sed -n 's/^Treerecs \\([0-9.]*\\)\\$/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@leapicard"
+        ],
+        "maintainers": [
+          "@leapicard"
+        ]
+      }
+    },
+    {
       "name": "trgt_genotype",
       "path": "modules/nf-core/trgt/genotype/meta.yml",
       "type": "module",
@@ -350549,7 +351289,7 @@
         },
         {
           "name": "sopa",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "spatialaxe",
@@ -382898,7 +383638,7 @@
         },
         {
           "name": "sopa",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "spatialaxe",
@@ -383355,7 +384095,7 @@
         },
         {
           "name": "sopa",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "spatialaxe",
@@ -383846,7 +384586,7 @@
         },
         {
           "name": "sopa",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "spatialaxe",
