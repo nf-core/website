@@ -7,34 +7,30 @@
 
     let { lastPage = 1 }: Props = $props();
 
-    let pages: number[] = $state([]);
-    let truncatedPages: number[] = $state([]);
-
     const maxPages = 7;
-    let truncated = $state(false);
+    let truncated = $derived(lastPage > maxPages);
 
-    function generatePages() {
-        pages = [];
-        truncatedPages = [];
-        truncated = lastPage > maxPages;
+    let pages = $derived.by(() => {
+        if (truncated) return [];
+        return Array.from({ length: lastPage }, (_, i) => i + 1);
+    });
 
-        if (truncated) {
-            const startIndex = Math.max($currentPage - Math.floor(maxPages / 2), 1);
-            const endIndex = Math.min(startIndex + maxPages - 1, lastPage);
+    let truncatedPages = $derived.by(() => {
+        if (!truncated) return [];
+        const startIndex = Math.max($currentPage - Math.floor(maxPages / 2), 1);
+        const endIndex = Math.min(startIndex + maxPages - 1, lastPage);
+        return Array.from({ length: endIndex - startIndex + 1 }, (_, i) => startIndex + i);
+    });
 
-            for (let i = startIndex; i <= endIndex; i++) {
-                truncatedPages.push(i);
-            }
-        } else {
-            for (let i = 1; i <= lastPage; i++) {
-                pages.push(i);
-            }
+    // Clamp current page if lastPage shrinks (e.g. after filtering search results)
+    $effect(() => {
+        if ($currentPage > lastPage) {
+            $currentPage = lastPage;
         }
-    }
+    });
 
     function handlePageChange(page) {
         $currentPage = page;
-        generatePages();
     }
 
     function handleKeydown(e, page) {
@@ -43,8 +39,6 @@
             handlePageChange(page);
         }
     }
-
-    generatePages();
 </script>
 
 <div class="d-flex justify-content-center mt-2">
