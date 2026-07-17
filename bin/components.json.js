@@ -48,10 +48,14 @@ export const writeComponentsJson = async () => {
     .then((response) => response.data.tree);
 
   // Pre-build a map from component root directory → all its file paths (O(n) single pass)
-  const moduleRoots = new Set(
-    tree
-      .filter((f) => /^(modules|subworkflows)\/nf-core\/.*\/meta\.yml$/.test(f.path))
-      .map((f) => f.path.replace('/meta.yml', '')),
+  const metaYmlFiles = tree.filter((f) => /^(modules|subworkflows)\/nf-core\/.*\/meta\.yml$/.test(f.path));
+  const moduleRoots = new Set(metaYmlFiles.map((f) => f.path.replace('/meta.yml', '')));
+  // blob SHAs of the meta.yml files, needed to fetch their content
+  const metaYmlShaByPath = new Map(metaYmlFiles.map((f) => [f.path, f.sha]));
+  // tree SHA of each component directory — changes when *any* file in the component changes,
+  // so it doubles as the cache key for meta/git_sha
+  const treeShaByRoot = new Map(
+    tree.filter((e) => e.type === 'tree' && moduleRoots.has(e.path)).map((e) => [e.path, e.sha]),
   );
   const filesByRoot = new Map();
   for (const entry of tree) {
@@ -77,7 +81,7 @@ export const writeComponentsJson = async () => {
       return {
         name: file.path.replace('modules/nf-core/', '').replace('/meta.yml', '').replace('/', '_'),
         path: file.path,
-        version: file.sha,
+        tree_sha: treeShaByRoot.get(moduleDir),
         files: filesByRoot.get(moduleDir) ?? [],
         type: 'module',
       };
@@ -89,7 +93,7 @@ export const writeComponentsJson = async () => {
   await Promise.all(
     modules.map(async (module) => {
       const existing = existingModulesMap.get(module.name);
-      if (existing?.version === module.version && existing?.meta) {
+      if (existing?.tree_sha === module.tree_sha && existing?.meta && existing?.git_sha) {
         module['meta'] = existing.meta;
         module['git_sha'] = existing.git_sha;
       } else {
@@ -98,7 +102,7 @@ export const writeComponentsJson = async () => {
             .request('GET /repos/{owner}/{repo}/git/blobs/{file_sha}', {
               owner: 'nf-core',
               repo: 'modules',
-              file_sha: module.version,
+              file_sha: metaYmlShaByPath.get(module.path),
             })
             .then((response) => parse(Buffer.from(response.data.content, 'base64').toString())),
           octokit
@@ -137,7 +141,7 @@ export const writeComponentsJson = async () => {
       return {
         name: file.path.replace('subworkflows/nf-core/', '').replace('/meta.yml', ''),
         path: file.path,
-        version: file.sha,
+        tree_sha: treeShaByRoot.get(swDir),
         files: filesByRoot.get(swDir) ?? [],
         type: 'subworkflow',
       };
@@ -150,7 +154,7 @@ export const writeComponentsJson = async () => {
   await Promise.all(
     subworkflows.map(async (subworkflow) => {
       const existing = existingSubworkflowsMap.get(subworkflow.name);
-      if (existing?.version === subworkflow.version && existing?.meta) {
+      if (existing?.tree_sha === subworkflow.tree_sha && existing?.meta && existing?.git_sha) {
         subworkflow['meta'] = existing.meta;
         subworkflow['git_sha'] = existing.git_sha;
       } else {
@@ -159,7 +163,7 @@ export const writeComponentsJson = async () => {
             .request('GET /repos/{owner}/{repo}/git/blobs/{file_sha}', {
               owner: 'nf-core',
               repo: 'modules',
-              file_sha: subworkflow.version,
+              file_sha: metaYmlShaByPath.get(subworkflow.path),
             })
             .then((response) => parse(Buffer.from(response.data.content, 'base64').toString())),
           octokit
