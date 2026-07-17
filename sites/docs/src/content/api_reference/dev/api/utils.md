@@ -12,365 +12,6 @@ Bases: `Enum`
 
 #### `SEQERA_SINGULARITY{:python}`_= 'community-cr-prod.seqera.io/docker/registry/v2'_
 
-### _`class{:python}`_`nf_core.utils.GitHubAPISession{:python}`
-
-Bases: `CachedSession`
-
-Class to provide a single session for interacting with the GitHub API for a run.
-Inherits the requests\_cache.CachedSession and adds additional functionality,
-such as automatically setting up GitHub authentication if we can.
-
-#### `auth_mode{:python}`_: str | None_
-
-#### `get(url, params=None, **kwargs){:python}`
-
-Initialise the session if we haven’t already, then call the superclass get method.
-
-#### `has_init{:python}`_: bool_
-
-#### `lazy_init() → None{:python}`
-
-Initialise the object.
-
-Only do this when it’s actually being used (due to global import)
-
-#### `log_content_headers(request, post_data=None){:python}`
-
-Try to dump everything to the console, useful when things go wrong.
-
-#### `request_retry(url, post_data=None){:python}`
-
-Try to fetch a URL, keep retrying if we get a certain return code.
-
-Used in nf-core pipelines sync code because we get 403 errors: too many simultaneous requests
-See <https://github.com/nf-core/tools/issues/911>
-
-#### `return_ok{:python}`_: list\[int]_
-
-#### `return_retry{:python}`_: list\[int]_
-
-#### `return_unauthorised{:python}`_: list\[int]_
-
-#### `safe_get(url){:python}`
-
-Run a GET request, raise a nice exception with lots of logging if it fails.
-
-#### `setup_github_auth(auth=None){:python}`
-
-Try to automatically set up GitHub authentication
-
-### _`class{:python}`_`nf_core.utils.NFCoreTemplateConfig(, org: str | None = None, name: str | None = None, description: str | None = None, author: str | None = None, version: str | None = None, force: bool | None = True, outdir: str | Path | None = None, skip_features: list | None = None, is_nfcore: bool | None = None){:python}`
-
-Bases: `BaseModel`
-
-Template configuration schema
-
-#### `_abc_impl{:python}`_= <\_abc.\_abc\_data object>_
-
-#### `author{:python}`_: str | None_
-
-Pipeline author
-
-#### `description{:python}`_: str | None_
-
-Pipeline description
-
-#### `force{:python}`_: bool | None_
-
-Force overwrite of existing files
-
-#### `get(item: str, default: Any = None) → Any{:python}`
-
-#### `is_nfcore{:python}`_: bool | None_
-
-Whether the pipeline is an nf-core pipeline.
-
-#### `model_config{:python}`_: ClassVar\[ConfigDict]_ _= {}_
-
-Configuration for the model, should be a dictionary conforming to \[ConfigDict]\[pydantic.config.ConfigDict].
-
-#### `name{:python}`_: str | None_
-
-Pipeline name
-
-#### `org{:python}`_: str | None_
-
-Organisation name
-
-#### `outdir{:python}`_: str | Path | None_
-
-Output directory
-
-#### _`classmethod{:python}`_`outdir_to_str(v: str | Path | None) → str | None{:python}`
-
-#### `skip_features{:python}`_: list | None_
-
-//nf-co.re/docs/nf-core-tools/pipelines/create for a list of features.
-
-- **Type:**
-  Skip features. See https
-
-#### `version{:python}`_: str | None_
-
-Pipeline version
-
-### _`class{:python}`_`nf_core.utils.NFCoreYamlConfig(, repository_type: Literal['pipeline', 'modules'] | None = None, nf_core_version: str | None = None, org_path: str | None = None, lint:{:python}`[`NFCoreYamlLintConfig{:python}`](#nf_core.utils.NFCoreYamlLintConfig)`| None = None, template:{:python}`[`NFCoreTemplateConfig{:python}`](#nf_core.utils.NFCoreTemplateConfig)`| None = None, bump_version: dict[str, bool] | None = None, update: dict[str, str | bool | dict[str, str | dict[str, str | bool]]] | None = None, container_registry: list[str] | None = None){:python}`
-
-Bases: `BaseModel`
-
-.nf-core.yml configuration file schema
-
-#### `_abc_impl{:python}`_= <\_abc.\_abc\_data object>_
-
-#### `bump_version{:python}`_: dict\[str, bool] | None_
-
-//nf-co.re/docs/nf-core-tools/modules/bump-versions for more information.
-
-- **Type:**
-  Disable bumping of the version for a module/subworkflow (when repository\_type is modules). See https
-
-#### `container_registry{:python}`_: list\[str] | None_
-
-Additional container registry prefixes allowed when linting container directives.
-
-#### `get(item: str, default: Any = None) → Any{:python}`
-
-#### `lint{:python}`_: [NFCoreYamlLintConfig](#nf_core.utils.NFCoreYamlLintConfig) | None_
-
-//nf-co.re/docs/nf-core-tools/pipelines/lint#linting-config for examples and documentation
-
-- **Type:**
-  Pipeline linting configuration, see https
-
-#### `model_config{:python}`_: ClassVar\[ConfigDict]_ _= {'populate\_by\_name': True, 'validate\_by\_alias': True, 'validate\_by\_name': True}_
-
-Configuration for the model, should be a dictionary conforming to \[ConfigDict]\[pydantic.config.ConfigDict].
-
-#### `model_dump(**kwargs) → dict[str, Any]{:python}`
-
-!!! abstract “Usage Documentation”
-: [model\_dump](../concepts/serialization#python-mode)
-
-Generate a dictionary representation of the model, optionally specifying which fields to include or exclude.
-
-- **Parameters:**
-  - **mode** – The mode in which to\_python should run.
-    If mode is ‘json’, the output will only contain JSON serializable types.
-    If mode is ‘python’, the output may contain non-JSON-serializable Python objects.
-  - **include** – A set of fields to include in the output.
-  - **exclude** – A set of fields to exclude from the output.
-  - **context** – Additional context to pass to the serializer.
-  - **by\_alias** – Whether to use the field’s alias in the dictionary key if defined.
-  - **exclude\_unset** – Whether to exclude fields that have not been explicitly set.
-  - **exclude\_defaults** – Whether to exclude fields that are set to their default value.
-  - **exclude\_none** – Whether to exclude fields that have a value of None.
-  - **exclude\_computed\_fields** – Whether to exclude computed fields.
-    While this can be useful for round-tripping, it is usually recommended to use the dedicated
-    round\_trip parameter instead.
-  - **round\_trip** – If True, dumped values should be valid as input for non-idempotent types such as Json\[T].
-  - **warnings** – How to handle serialization errors. False/”none” ignores them, True/”warn” logs errors,
-    “error” raises a \[PydanticSerializationError]\[pydantic\_core.PydanticSerializationError].
-  - **fallback** – A function to call when an unknown value is encountered. If not provided,
-    a \[PydanticSerializationError]\[pydantic\_core.PydanticSerializationError] error is raised.
-  - **serialize\_as\_any** – Whether to serialize fields with duck-typing serialization behavior.
-  - **polymorphic\_serialization** – Whether to use model and dataclass polymorphic serialization for this call.
-- **Returns:**
-  A dictionary representation of the model.
-
-#### `nf_core_version{:python}`_: str | None_
-
-Version of nf-core/tools used to create/update the pipeline
-
-#### `org_path{:python}`_: str | None_
-
-Path to the organisation’s modules repository (used for modules repo\_type only)
-
-#### `repository_type{:python}`_: Literal\['pipeline', 'modules'] | None_
-
-Type of repository
-
-#### `template{:python}`_: [NFCoreTemplateConfig](#nf_core.utils.NFCoreTemplateConfig) | None_
-
-Pipeline template configuration
-
-#### `update{:python}`_: dict\[str, str | bool | dict\[str, str | dict\[str, str | bool]]] | None_
-
-//nf-co.re/docs/nf-core-tools/modules/update for more information.
-
-- **Type:**
-  Disable updating specific modules/subworkflows (when repository\_type is pipeline). See https
-
-### _`class{:python}`_`nf_core.utils.NFCoreYamlLintConfig(, files_unchanged: bool | list[str] | None = None, modules_config: bool | list[str] | None = None, merge_markers: bool | list[str] | None = None, nextflow_config: bool | list[str | dict[str, list[str]]] | None = None, nf_test_content: bool | list[str] | None = None, multiqc_config: bool | list[str] | None = None, files_exist: bool | list[str] | None = None, template_strings: bool | list[str] | None = None, readme: bool | list[str] | None = None, nfcore_components: bool | None = None, actions_nf_test: bool | None = None, actions_awstest: bool | None = None, actions_awsfulltest: bool | None = None, pipeline_todos: bool | None = None, pipeline_if_empty_null: bool | None = None, plugin_includes: bool | None = None, pipeline_name_conventions: bool | None = None, schema_lint: bool | None = None, schema_params: bool | None = None, system_exit: bool | None = None, schema_description: bool | None = None, actions_schema_validation: bool | None = None, modules_json: bool | None = None, modules_structure: bool | None = None, base_config: bool | None = None, nfcore_yml: bool | None = None, version_consistency: bool | None = None, included_configs: bool | None = None, local_component_structure: bool | None = None, container_configs: bool | None = None, rocrate_readme_sync: bool | None = None){:python}`
-
-Bases: `BaseModel`
-
-schema for linting config in .nf-core.yml should cover:
-
-```yaml
-files_unchanged:
-  - .github/workflows/branch.yml
-modules_config: False
-modules_config:
-  - fastqc
-# merge_markers: False
-merge_markers:
-  - docs/my_pdf.pdf
-nextflow_config: False
-nextflow_config:
-  - manifest.name
-  - config_defaults:
-      - params.annotation_db
-      - params.multiqc_comment_headers
-      - params.custom_table_headers
-# multiqc_config: False
-multiqc_config:
-  - report_section_order
-  - report_comment
-files_exist:
-  - CITATIONS.md
-template_strings: False
-template_strings:
-  - docs/my_pdf.pdf
-nfcore_components: False
-# nf_test_content: False
-nf_test_content:
-  - tests/<test_name>.nf.test
-  - tests/nextflow.config
-  - nf-test.config
-```
-
-#### `_abc_impl{:python}`_= <\_abc.\_abc\_data object>_
-
-#### `actions_awsfulltest{:python}`_: bool | None_
-
-Lint all required files to run full tests on AWS
-
-#### `actions_awstest{:python}`_: bool | None_
-
-Lint all required files to run tests on AWS
-
-#### `actions_nf_test{:python}`_: bool | None_
-
-Lint all required files to use GitHub Actions CI
-
-#### `actions_schema_validation{:python}`_: bool | None_
-
-Lint GitHub Action workflow files with schema
-
-#### `base_config{:python}`_: bool | None_
-
-Lint base.config file
-
-#### `container_configs{:python}`_: bool | None_
-
-Lint that container configuration files in conf/ are up to date
-
-#### `files_exist{:python}`_: bool | list\[str] | None_
-
-List of files that can not exist
-
-#### `files_unchanged{:python}`_: bool | list\[str] | None_
-
-List of files that should not be changed
-
-#### `get(item: str, default: Any = None) → Any{:python}`
-
-#### `included_configs{:python}`_: bool | None_
-
-Lint for included configs
-
-#### `local_component_structure{:python}`_: bool | None_
-
-Lint local components use correct structure mirroring remote
-
-#### `merge_markers{:python}`_: bool | list\[str] | None_
-
-List of files that should not contain merge markers
-
-#### `model_config{:python}`_: ClassVar\[ConfigDict]_ _= {}_
-
-Configuration for the model, should be a dictionary conforming to \[ConfigDict]\[pydantic.config.ConfigDict].
-
-#### `modules_config{:python}`_: bool | list\[str] | None_
-
-List of modules that should not be changed
-
-#### `modules_json{:python}`_: bool | None_
-
-Lint modules.json file
-
-#### `modules_structure{:python}`_: bool | None_
-
-Lint modules structure
-
-#### `multiqc_config{:python}`_: bool | list\[str] | None_
-
-List of MultiQC config options that be changed
-
-#### `nextflow_config{:python}`_: bool | list\[str | dict\[str, list\[str]]] | None_
-
-List of Nextflow config files that should not be changed
-
-#### `nf_test_content{:python}`_: bool | list\[str] | None_
-
-List of nf-test content that should not be changed
-
-#### `nfcore_components{:python}`_: bool | None_
-
-Lint all required files to use nf-core modules and subworkflows
-
-#### `nfcore_yml{:python}`_: bool | None_
-
-Lint nf-core.yml
-
-#### `pipeline_if_empty_null{:python}`_: bool | None_
-
-Lint for ifEmpty(null) statements
-
-#### `pipeline_name_conventions{:python}`_: bool | None_
-
-Lint for pipeline name conventions
-
-#### `pipeline_todos{:python}`_: bool | None_
-
-Lint for TODOs statements
-
-#### `plugin_includes{:python}`_: bool | None_
-
-Lint for nextflow plugin
-
-#### `readme{:python}`_: bool | list\[str] | None_
-
-Lint the README.md file
-
-#### `rocrate_readme_sync{:python}`_: bool | None_
-
-Lint for README.md and rocrate.json sync
-
-#### `schema_description{:python}`_: bool | None_
-
-Check that every parameter in the schema has a description.
-
-#### `schema_lint{:python}`_: bool | None_
-
-Lint nextflow\_schema.json file
-
-#### `schema_params{:python}`_: bool | None_
-
-Lint schema for all params
-
-#### `system_exit{:python}`_: bool | None_
-
-Lint for System.exit calls in groovy/nextflow code
-
-#### `template_strings{:python}`_: bool | list\[str] | None_
-
-List of files that can contain template strings
-
-#### `version_consistency{:python}`_: bool | None_
-
-Lint for version consistency
-
 ### _`class{:python}`_`nf_core.utils.Pipeline(wf_path: Path){:python}`
 
 Bases: `object`
@@ -485,21 +126,15 @@ Once loaded, set a few convenience reference class attributes
 
 #### `schema_obj{:python}`_: [PipelineSchema](pipelines/schema#nf_core.pipelines.schema.PipelineSchema) | None_
 
-### _`class{:python}`_`nf_core.utils.SingularityCacheFilePathValidator{:python}`
+### `nf_core.utils._load_cached_remote_version() → str | None{:python}`
 
-Bases: `Validator`
+### `nf_core.utils._load_version_cache() → dict{:python}`
 
-Validator for file path specified as –singularity-cache-index argument in nf-core pipelines download
+### `nf_core.utils._nfcore_question_style(){:python}`
 
-#### `_abc_impl{:python}`_= <\_abc.\_abc\_data object>_
+### `nf_core.utils._spawn_remote_version_refresh(source_url: str) → None{:python}`
 
-#### `validate(document) → None{:python}`
-
-Validate the input.
-If invalid, this should raise a `ValidationError`.
-
-- **Parameters:**
-  **document** – `Document` instance.
+Kick off a detached background process to refresh the remote version cache.
 
 ### `nf_core.utils.anaconda_package(dep, dep_channels=None){:python}`
 
@@ -535,8 +170,6 @@ Check the version of Nextflow installed on the system.
 Overwrite default PyYAML output to make Prettier YAML linting happy
 
 ### `nf_core.utils.determine_base_dir(directory: Path | str = '.') → Path{:python}`
-
-### `nf_core.utils.fetch_remote_version(source_url){:python}`
 
 ### `nf_core.utils.fetch_wf_config(wf_path: Path, cache_config: bool = True) → dict{:python}`
 
@@ -636,7 +269,21 @@ Should mimic Path.is\_relative\_to which not available in Python < 3.9
 path1 (Path | str): The path that could be a subpath
 path2 (Path | str): The path the could be the superpath
 
-### `nf_core.utils.load_tools_config(directory: str | Path = '.') → tuple[Path | None,{:python}`[`NFCoreYamlConfig{:python}`](#nf_core.utils.NFCoreYamlConfig)`| None]{:python}`
+### `nf_core.utils.lazy_attrs(module_globals: dict, mapping: dict[str, str | Callable]){:python}`
+
+Build module-level `__getattr__` and `__dir__` for lazy attributes (PEP 562).
+
+Each attribute maps either to the dotted path of the module to import it
+from, or to a zero-argument callable that builds it. Resolved attributes
+are cached in the module’s globals, so the hook only fires once per name.
+
+Usage:
+
+```default
+__getattr__, __dir__ = lazy_attrs(globals(), {"PipelineCreateApp": "nf_core.pipelines.create"})
+```
+
+### `nf_core.utils.load_tools_config(directory: str | Path = '.') → tuple[Path | None,{:python}`[`NFCoreYamlConfig{:python}`](nf_core_yml#nf_core.utils.NFCoreYamlConfig)`| None]{:python}`
 
 Parse the nf-core.yml configuration file
 
@@ -757,15 +404,12 @@ the original working directory on exit (including exceptions).
 - **Parameters:**
   **base\_dir** – Directory in which to create the tempdir. Defaults to the system temp location.
 
-### `nf_core.utils.setup_nfcore_cachedir(cache_fn: str | Path) → Path{:python}`
+### `nf_core.utils.setup_nfcore_cachedir(cache_fn: str | Path | None = None) → Path{:python}`
 
 Sets up local caching for caching files between sessions.
 
-### `nf_core.utils.setup_nfcore_dir() → bool{:python}`
-
-Creates a directory for files that need to be kept between sessions
-
-Currently only used for keeping local copies of modules repos
+Creates and returns a subdirectory of the nf-core cache directory,
+or the cache directory itself if no subdirectory is given.
 
 ### `nf_core.utils.setup_requests_cachedir() → dict[str, Path | timedelta | str]{:python}`
 
