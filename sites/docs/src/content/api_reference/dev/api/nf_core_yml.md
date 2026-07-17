@@ -33,14 +33,14 @@ Bases: `BaseModel`
 .nf-core.yml configuration file schema
 
 - **Fields:**
-  - [`bump_version (dict[str, bool] | None)`](utils#nf_core.utils.NFCoreYamlConfig.bump_version)
-  - [`container_registry (list[str] | None)`](utils#nf_core.utils.NFCoreYamlConfig.container_registry)
-  - [`lint (nf_core.utils.NFCoreYamlLintConfig | None)`](utils#nf_core.utils.NFCoreYamlConfig.lint)
-  - [`nf_core_version (str | None)`](utils#nf_core.utils.NFCoreYamlConfig.nf_core_version)
-  - [`org_path (str | None)`](utils#nf_core.utils.NFCoreYamlConfig.org_path)
-  - [`repository_type (Literal['pipeline', 'modules'] | None)`](utils#nf_core.utils.NFCoreYamlConfig.repository_type)
-  - [`template (nf_core.utils.NFCoreTemplateConfig | None)`](utils#nf_core.utils.NFCoreYamlConfig.template)
-  - [`update (dict[str, str | bool | dict[str, str | dict[str, str | bool]]] | None)`](utils#nf_core.utils.NFCoreYamlConfig.update)
+  - `bump_version (dict[str, bool] | None)`
+  - `container_registry (list[str] | None)`
+  - `lint (nf_core.pydantic_models.NFCoreYamlLintConfig | None)`
+  - `nf_core_version (str | None)`
+  - `org_path (str | None)`
+  - `repository_type (Literal['pipeline', 'modules'] | None)`
+  - `template (nf_core.pydantic_models.NFCoreTemplateConfig | None)`
+  - `update (dict[str, str | bool | dict[str, str | dict[str, str | bool]]] | None)`
 
 #### _`field{:python}`_`bump_version{:python}`_: dict\[str, bool] | None_`{:python}`_= None_
 
@@ -50,7 +50,7 @@ Disable bumping of the version for a module/subworkflow (when repository\_type i
 
 Additional container registry prefixes allowed when linting container directives.
 
-#### _`field{:python}`_`lint{:python}`_: [NFCoreYamlLintConfig](utils#nf_core.utils.NFCoreYamlLintConfig) | None_`{:python}`_= None_
+#### _`field{:python}`_`lint{:python}`_: [NFCoreYamlLintConfig](#nf_core.utils.NFCoreYamlLintConfig) | None_`{:python}`_= None_
 
 Pipeline linting configuration, see <https://nf-co.re/docs/nf-core-tools/pipelines/lint#linting-config> for examples and documentation
 
@@ -66,7 +66,7 @@ Path to the organisation’s modules repository (used for modules repo\_type onl
 
 Type of repository
 
-#### _`field{:python}`_`template{:python}`_: [NFCoreTemplateConfig](utils#nf_core.utils.NFCoreTemplateConfig) | None_`{:python}`_= None_
+#### _`field{:python}`_`template{:python}`_: NFCoreTemplateConfig | None_`{:python}`_= None_
 
 Pipeline template configuration
 
@@ -116,37 +116,37 @@ nf_test_content:
 ```
 
 - **Fields:**
-  - [`actions_awsfulltest (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.actions_awsfulltest)
-  - [`actions_awstest (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.actions_awstest)
-  - [`actions_nf_test (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.actions_nf_test)
-  - [`actions_schema_validation (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.actions_schema_validation)
-  - [`base_config (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.base_config)
-  - [`container_configs (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.container_configs)
-  - [`files_exist (bool | list[str] | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.files_exist)
-  - [`files_unchanged (bool | list[str] | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.files_unchanged)
-  - [`included_configs (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.included_configs)
-  - [`local_component_structure (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.local_component_structure)
-  - [`merge_markers (bool | list[str] | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.merge_markers)
-  - [`modules_config (bool | list[str] | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.modules_config)
-  - [`modules_json (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.modules_json)
-  - [`modules_structure (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.modules_structure)
-  - [`multiqc_config (bool | list[str] | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.multiqc_config)
-  - [`nextflow_config (bool | list[str | dict[str, list[str]]] | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.nextflow_config)
-  - [`nf_test_content (bool | list[str] | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.nf_test_content)
-  - [`nfcore_components (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.nfcore_components)
-  - [`nfcore_yml (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.nfcore_yml)
-  - [`pipeline_if_empty_null (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.pipeline_if_empty_null)
-  - [`pipeline_name_conventions (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.pipeline_name_conventions)
-  - [`pipeline_todos (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.pipeline_todos)
-  - [`plugin_includes (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.plugin_includes)
-  - [`readme (bool | list[str] | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.readme)
-  - [`rocrate_readme_sync (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.rocrate_readme_sync)
-  - [`schema_description (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.schema_description)
-  - [`schema_lint (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.schema_lint)
-  - [`schema_params (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.schema_params)
-  - [`system_exit (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.system_exit)
-  - [`template_strings (bool | list[str] | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.template_strings)
-  - [`version_consistency (bool | None)`](utils#nf_core.utils.NFCoreYamlLintConfig.version_consistency)
+  - `actions_awsfulltest (bool | None)`
+  - `actions_awstest (bool | None)`
+  - `actions_nf_test (bool | None)`
+  - `actions_schema_validation (bool | None)`
+  - `base_config (bool | None)`
+  - `container_configs (bool | None)`
+  - `files_exist (bool | list[str] | None)`
+  - `files_unchanged (bool | list[str] | None)`
+  - `included_configs (bool | None)`
+  - `local_component_structure (bool | None)`
+  - `merge_markers (bool | list[str] | None)`
+  - `modules_config (bool | list[str] | None)`
+  - `modules_json (bool | None)`
+  - `modules_structure (bool | None)`
+  - `multiqc_config (bool | list[str] | None)`
+  - `nextflow_config (bool | list[str | dict[str, list[str]]] | None)`
+  - `nf_test_content (bool | list[str] | None)`
+  - `nfcore_components (bool | None)`
+  - `nfcore_yml (bool | None)`
+  - `pipeline_if_empty_null (bool | None)`
+  - `pipeline_name_conventions (bool | None)`
+  - `pipeline_todos (bool | None)`
+  - `plugin_includes (bool | None)`
+  - `readme (bool | list[str] | None)`
+  - `rocrate_readme_sync (bool | None)`
+  - `schema_description (bool | None)`
+  - `schema_lint (bool | None)`
+  - `schema_params (bool | None)`
+  - `system_exit (bool | None)`
+  - `template_strings (bool | list[str] | None)`
+  - `version_consistency (bool | None)`
 
 #### _`field{:python}`_`actions_awsfulltest{:python}`_: bool | None_`{:python}`_= None_
 
@@ -281,17 +281,17 @@ Bases: `BaseModel`
 Template configuration schema
 
 - **Fields:**
-  - [`author (str | None)`](utils#nf_core.utils.NFCoreTemplateConfig.author)
-  - [`description (str | None)`](utils#nf_core.utils.NFCoreTemplateConfig.description)
-  - [`force (bool | None)`](utils#nf_core.utils.NFCoreTemplateConfig.force)
-  - [`is_nfcore (bool | None)`](utils#nf_core.utils.NFCoreTemplateConfig.is_nfcore)
-  - [`name (str | None)`](utils#nf_core.utils.NFCoreTemplateConfig.name)
-  - [`org (str | None)`](utils#nf_core.utils.NFCoreTemplateConfig.org)
-  - [`outdir (str | pathlib.Path | None)`](utils#nf_core.utils.NFCoreTemplateConfig.outdir)
-  - [`skip_features (list | None)`](utils#nf_core.utils.NFCoreTemplateConfig.skip_features)
-  - [`version (str | None)`](utils#nf_core.utils.NFCoreTemplateConfig.version)
+  - `author (str | None)`
+  - `description (str | None)`
+  - `force (bool | None)`
+  - `is_nfcore (bool | None)`
+  - `name (str | None)`
+  - `org (str | None)`
+  - `outdir (str | pathlib.Path | None)`
+  - `skip_features (list | None)`
+  - `version (str | None)`
 - **Validators:**
-  - [`outdir_to_str`](utils#nf_core.utils.NFCoreTemplateConfig.outdir_to_str) » [`outdir`](utils#nf_core.utils.NFCoreTemplateConfig.outdir)
+  - `outdir_to_str` » `outdir`
 
 #### _`field{:python}`_`author{:python}`_: str | None_`{:python}`_= None_
 
@@ -322,7 +322,7 @@ Organisation name
 Output directory
 
 - **Validated by:**
-  - [`outdir_to_str`](utils#nf_core.utils.NFCoreTemplateConfig.outdir_to_str)
+  - `outdir_to_str`
 
 #### _`field{:python}`_`skip_features{:python}`_: list | None_`{:python}`_= None_
 
