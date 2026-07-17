@@ -19,7 +19,7 @@ Files that must be unchanged:
 .github/ISSUE_TEMPLATE/feature_request.yml
 .github/PULL_REQUEST_TEMPLATE.md
 .github/workflows/branch.yml
-.github/workflows/linting_comment.yml
+.github/workflows/pr-comment.yml
 .github/workflows/linting.yml
 assets/email_template.html
 assets/email_template.txt
