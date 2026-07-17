@@ -31,7 +31,7 @@ docs/CONTRIBUTING.md
 .github/workflows/nf-test.yml
 .github/actions/get-shards/action.yml
 .github/actions/nf-test/action.yml
-.github/workflows/linting_comment.yml
+.github/workflows/pr-comment.yml
 .github/workflows/linting.yml
 [LICENSE, LICENSE.md, LICENCE, LICENCE.md]  # NB: British / American spelling
 assets/email_template.html
