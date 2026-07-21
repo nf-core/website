@@ -126507,7 +126507,13 @@
           }
         }
       },
-      "git_sha": "f4b46ce19a6149a91545bafd521c0e59eba2f705"
+      "git_sha": "f4b46ce19a6149a91545bafd521c0e59eba2f705",
+      "pipelines": [
+        {
+          "name": "bacmodel",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gapseq_fill",
@@ -126726,7 +126732,13 @@
           }
         }
       },
-      "git_sha": "f4b46ce19a6149a91545bafd521c0e59eba2f705"
+      "git_sha": "f4b46ce19a6149a91545bafd521c0e59eba2f705",
+      "pipelines": [
+        {
+          "name": "bacmodel",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gapseq_find",
@@ -126955,7 +126967,13 @@
           }
         }
       },
-      "git_sha": "f4b46ce19a6149a91545bafd521c0e59eba2f705"
+      "git_sha": "f4b46ce19a6149a91545bafd521c0e59eba2f705",
+      "pipelines": [
+        {
+          "name": "bacmodel",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gapseq_findtransport",
@@ -127159,7 +127177,13 @@
           }
         }
       },
-      "git_sha": "f4b46ce19a6149a91545bafd521c0e59eba2f705"
+      "git_sha": "f4b46ce19a6149a91545bafd521c0e59eba2f705",
+      "pipelines": [
+        {
+          "name": "bacmodel",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gapseq_medium",
@@ -127355,7 +127379,13 @@
           }
         }
       },
-      "git_sha": "999a6e24abd9daf0ea946e750100bd8d33d65c91"
+      "git_sha": "999a6e24abd9daf0ea946e750100bd8d33d65c91",
+      "pipelines": [
+        {
+          "name": "bacmodel",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gapseq_requestdb",
@@ -127467,7 +127497,13 @@
           "@brovolia"
         ]
       },
-      "git_sha": "f4b46ce19a6149a91545bafd521c0e59eba2f705"
+      "git_sha": "f4b46ce19a6149a91545bafd521c0e59eba2f705",
+      "pipelines": [
+        {
+          "name": "bacmodel",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gatk4_addorreplacereadgroups",
@@ -184545,7 +184581,7 @@
     {
       "name": "kaiju_kaiju",
       "path": "modules/nf-core/kaiju/kaiju/meta.yml",
-      "tree_sha": "1f38247cb74ea32d0dae8b0c7452d9ce72a2a514",
+      "tree_sha": "1682bf92ae4ffed02a376da5929c97568a91bf83",
       "files": [
         "modules/nf-core/kaiju/kaiju/environment.yml",
         "modules/nf-core/kaiju/kaiju/main.nf",
@@ -184687,7 +184723,7 @@
           "@jfy133"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "5e510d0648e0d7fecd3b359fd2a7e59b36744b21",
       "pipelines": [
         {
           "name": "taxprofiler",
@@ -184702,7 +184738,7 @@
     {
       "name": "kaiju_kaiju2krona",
       "path": "modules/nf-core/kaiju/kaiju2krona/meta.yml",
-      "tree_sha": "9f0f886710397bf46ca4515b54a0d3c34f71b8de",
+      "tree_sha": "7c5c79788a9e9983e2ced36bf20d00f18ac97b50",
       "files": [
         "modules/nf-core/kaiju/kaiju2krona/environment.yml",
         "modules/nf-core/kaiju/kaiju2krona/main.nf",
@@ -184837,7 +184873,7 @@
           "@MillironX"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "5e510d0648e0d7fecd3b359fd2a7e59b36744b21",
       "pipelines": [
         {
           "name": "taxprofiler",
@@ -184852,7 +184888,7 @@
     {
       "name": "kaiju_kaiju2table",
       "path": "modules/nf-core/kaiju/kaiju2table/meta.yml",
-      "tree_sha": "3d9846a7dc5f535ab20fe14b7f50d20046550c5a",
+      "tree_sha": "9c4bcac68b1e9763c7f28fc7a928de0fec100107",
       "files": [
         "modules/nf-core/kaiju/kaiju2table/environment.yml",
         "modules/nf-core/kaiju/kaiju2table/main.nf",
@@ -184991,7 +185027,7 @@
           "@jfy133"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "5e510d0648e0d7fecd3b359fd2a7e59b36744b21",
       "pipelines": [
         {
           "name": "taxprofiler",
@@ -185006,7 +185042,7 @@
     {
       "name": "kaiju_mergeoutputs",
       "path": "modules/nf-core/kaiju/mergeoutputs/meta.yml",
-      "tree_sha": "6f7f3dffee5f4bae15e704df457c14b7023831a5",
+      "tree_sha": "8bc4a684021e579addc9f206699a76d06235b037",
       "files": [
         "modules/nf-core/kaiju/mergeoutputs/environment.yml",
         "modules/nf-core/kaiju/mergeoutputs/main.nf",
@@ -185153,7 +185189,7 @@
           "@Joon-Klaps"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "5e510d0648e0d7fecd3b359fd2a7e59b36744b21"
     },
     {
       "name": "kaiju_mkfmi",
@@ -230011,7 +230047,7 @@
     {
       "name": "muse_sump",
       "path": "modules/nf-core/muse/sump/meta.yml",
-      "tree_sha": "363cb1dc0d2fbf5ed7d667cd68c390ef2661dfeb",
+      "tree_sha": "67ac69e255c7f127a46d462f2c74c20a2ca5b1d2",
       "files": [
         "modules/nf-core/muse/sump/environment.yml",
         "modules/nf-core/muse/sump/main.nf",
@@ -230215,7 +230251,7 @@
           "@famosab"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "e8c96d814d65d575a840063c90905e44ac5ecc12",
       "pipelines": [
         {
           "name": "sarek",
@@ -329639,8 +329675,10 @@
     {
       "name": "shinyngs_app",
       "path": "modules/nf-core/shinyngs/app/meta.yml",
-      "tree_sha": "470a7bed932dcd6cb3c6c3791fc365d616c5edbd",
+      "tree_sha": "2814019f4c503fe59224a464244a33c40c751586",
       "files": [
+        "modules/nf-core/shinyngs/app/.conda-lock/linux_amd64-bd-b5595b301bfbfd4d_2.txt",
+        "modules/nf-core/shinyngs/app/.conda-lock/linux_arm64-bd-4d71a4d10942e43f_2.txt",
         "modules/nf-core/shinyngs/app/environment.yml",
         "modules/nf-core/shinyngs/app/main.nf",
         "modules/nf-core/shinyngs/app/meta.yml",
@@ -329819,9 +329857,43 @@
         ],
         "maintainers": [
           "@pinin4fjords"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/r-shinyngs:3.1.1--b5595b301bfbfd4d",
+              "build_id": "bd-b5595b301bfbfd4d_2",
+              "scan_id": "sc-73b4cbdd1930464e_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/r-shinyngs:3.1.1--4d71a4d10942e43f",
+              "build_id": "bd-4d71a4d10942e43f_2",
+              "scan_id": "sc-72596f6b93ff3200_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.1.1--791778d7e2758322",
+              "build_id": "bd-791778d7e2758322_2",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/8a/8acde9b0bc0374d51ca50f3e49fb0f26a6fb394d277b3af5e276de8bf1786610/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.1.1--60831a2d7cd7ae94",
+              "build_id": "bd-60831a2d7cd7ae94_2",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/6f/6fff209824ab2042c6f09b68d257d59ae4e0ea7410dad923089db9c5c0dbd683/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/shinyngs/app/.conda-lock/linux_amd64-bd-b5595b301bfbfd4d_2.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/shinyngs/app/.conda-lock/linux_arm64-bd-4d71a4d10942e43f_2.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "3ab831a4a83ddc053f8d2bd3a1e745eaff4043c2",
       "pipelines": [
         {
           "name": "differentialabundance",
@@ -329832,8 +329904,10 @@
     {
       "name": "shinyngs_staticdifferential",
       "path": "modules/nf-core/shinyngs/staticdifferential/meta.yml",
-      "tree_sha": "d4987d084007a35531ba802f302897f553baf92a",
+      "tree_sha": "e53fc3bc285f3cf449d6c8718c97451cb735cf73",
       "files": [
+        "modules/nf-core/shinyngs/staticdifferential/.conda-lock/linux_amd64-bd-b5595b301bfbfd4d_2.txt",
+        "modules/nf-core/shinyngs/staticdifferential/.conda-lock/linux_arm64-bd-4d71a4d10942e43f_2.txt",
         "modules/nf-core/shinyngs/staticdifferential/environment.yml",
         "modules/nf-core/shinyngs/staticdifferential/main.nf",
         "modules/nf-core/shinyngs/staticdifferential/meta.yml",
@@ -329998,9 +330072,43 @@
         ],
         "maintainers": [
           "@pinin4fjords"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/r-shinyngs:3.1.1--4d71a4d10942e43f",
+              "build_id": "bd-4d71a4d10942e43f_2",
+              "scan_id": "sc-72596f6b93ff3200_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/r-shinyngs:3.1.1--b5595b301bfbfd4d",
+              "build_id": "bd-b5595b301bfbfd4d_2",
+              "scan_id": "sc-73b4cbdd1930464e_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.1.1--60831a2d7cd7ae94",
+              "build_id": "bd-60831a2d7cd7ae94_2",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/6f/6fff209824ab2042c6f09b68d257d59ae4e0ea7410dad923089db9c5c0dbd683/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.1.1--791778d7e2758322",
+              "build_id": "bd-791778d7e2758322_2",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/8a/8acde9b0bc0374d51ca50f3e49fb0f26a6fb394d277b3af5e276de8bf1786610/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/shinyngs/staticdifferential/.conda-lock/linux_amd64-bd-b5595b301bfbfd4d_2.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/shinyngs/staticdifferential/.conda-lock/linux_arm64-bd-4d71a4d10942e43f_2.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "3ab831a4a83ddc053f8d2bd3a1e745eaff4043c2",
       "pipelines": [
         {
           "name": "differentialabundance",
@@ -330011,8 +330119,10 @@
     {
       "name": "shinyngs_staticexploratory",
       "path": "modules/nf-core/shinyngs/staticexploratory/meta.yml",
-      "tree_sha": "7b090ab348d32964a5fd5460b891e69c037b5a0b",
+      "tree_sha": "f3c11f551e7071aab4ae9e236e5166dc7e071ac1",
       "files": [
+        "modules/nf-core/shinyngs/staticexploratory/.conda-lock/linux_amd64-bd-b5595b301bfbfd4d_2.txt",
+        "modules/nf-core/shinyngs/staticexploratory/.conda-lock/linux_arm64-bd-4d71a4d10942e43f_2.txt",
         "modules/nf-core/shinyngs/staticexploratory/environment.yml",
         "modules/nf-core/shinyngs/staticexploratory/main.nf",
         "modules/nf-core/shinyngs/staticexploratory/meta.yml",
@@ -330336,9 +330446,43 @@
         ],
         "maintainers": [
           "@pinin4fjords"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/r-shinyngs:3.1.1--b5595b301bfbfd4d",
+              "build_id": "bd-b5595b301bfbfd4d_2",
+              "scan_id": "sc-73b4cbdd1930464e_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/r-shinyngs:3.1.1--4d71a4d10942e43f",
+              "build_id": "bd-4d71a4d10942e43f_2",
+              "scan_id": "sc-72596f6b93ff3200_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.1.1--60831a2d7cd7ae94",
+              "build_id": "bd-60831a2d7cd7ae94_2",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/6f/6fff209824ab2042c6f09b68d257d59ae4e0ea7410dad923089db9c5c0dbd683/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.1.1--791778d7e2758322",
+              "build_id": "bd-791778d7e2758322_2",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/8a/8acde9b0bc0374d51ca50f3e49fb0f26a6fb394d277b3af5e276de8bf1786610/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/shinyngs/staticexploratory/.conda-lock/linux_amd64-bd-b5595b301bfbfd4d_2.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/shinyngs/staticexploratory/.conda-lock/linux_arm64-bd-4d71a4d10942e43f_2.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "3ab831a4a83ddc053f8d2bd3a1e745eaff4043c2",
       "pipelines": [
         {
           "name": "differentialabundance",
@@ -330349,8 +330493,10 @@
     {
       "name": "shinyngs_validatefomcomponents",
       "path": "modules/nf-core/shinyngs/validatefomcomponents/meta.yml",
-      "tree_sha": "aab74f1ea29cfcc9fd07e5358c8c77abc52abe1b",
+      "tree_sha": "31c32cea70e0c340e5608d59366804716aff459b",
       "files": [
+        "modules/nf-core/shinyngs/validatefomcomponents/.conda-lock/linux_amd64-bd-b5595b301bfbfd4d_2.txt",
+        "modules/nf-core/shinyngs/validatefomcomponents/.conda-lock/linux_arm64-bd-4d71a4d10942e43f_2.txt",
         "modules/nf-core/shinyngs/validatefomcomponents/environment.yml",
         "modules/nf-core/shinyngs/validatefomcomponents/main.nf",
         "modules/nf-core/shinyngs/validatefomcomponents/meta.yml",
@@ -330578,9 +330724,43 @@
         ],
         "maintainers": [
           "@pinin4fjords"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/r-shinyngs:3.1.1--b5595b301bfbfd4d",
+              "build_id": "bd-b5595b301bfbfd4d_2",
+              "scan_id": "sc-73b4cbdd1930464e_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/r-shinyngs:3.1.1--4d71a4d10942e43f",
+              "build_id": "bd-4d71a4d10942e43f_2",
+              "scan_id": "sc-72596f6b93ff3200_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.1.1--60831a2d7cd7ae94",
+              "build_id": "bd-60831a2d7cd7ae94_2",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/6f/6fff209824ab2042c6f09b68d257d59ae4e0ea7410dad923089db9c5c0dbd683/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.1.1--791778d7e2758322",
+              "build_id": "bd-791778d7e2758322_2",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/8a/8acde9b0bc0374d51ca50f3e49fb0f26a6fb394d277b3af5e276de8bf1786610/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/shinyngs/validatefomcomponents/.conda-lock/linux_amd64-bd-b5595b301bfbfd4d_2.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/shinyngs/validatefomcomponents/.conda-lock/linux_arm64-bd-4d71a4d10942e43f_2.txt"
+            }
+          }
+        }
       },
-      "git_sha": "ccf39c6af37d0ede1091f4c4fd51b968ef8d87a3",
+      "git_sha": "3ab831a4a83ddc053f8d2bd3a1e745eaff4043c2",
       "pipelines": [
         {
           "name": "differentialabundance",
@@ -407720,6 +407900,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "bbf3773533b23cb2b2fac8e8a64df310d1523c82",
-  "updated_at": "2026-07-21T03:09:10.410Z"
+  "commit_sha": "e8c96d814d65d575a840063c90905e44ac5ecc12",
+  "updated_at": "2026-07-21T14:49:27.805Z"
 }
