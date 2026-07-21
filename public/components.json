@@ -326722,7 +326722,7 @@
     {
       "name": "sequencetools_pileupcaller",
       "path": "modules/nf-core/sequencetools/pileupcaller/meta.yml",
-      "tree_sha": "cb742960f3416dd1e6f191e58e15e61f06e80965",
+      "tree_sha": "34c20077a6d9cb6bfffbc3e040fe0a6fac46b6a4",
       "files": [
         "modules/nf-core/sequencetools/pileupcaller/environment.yml",
         "modules/nf-core/sequencetools/pileupcaller/main.nf",
@@ -326882,19 +326882,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_pileupcaller": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sequencetools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pileupCaller --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sequencetools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pileupCaller --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -326904,7 +326936,7 @@
           "@TCLamnidis"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "bbf3773533b23cb2b2fac8e8a64df310d1523c82"
     },
     {
       "name": "sequenzautils_bam2seqz",
@@ -407688,6 +407720,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "e5a841a89c93a4dfae13de26d884a4dd86cd1b8f",
-  "updated_at": "2026-07-20T14:54:44.967Z"
+  "commit_sha": "bbf3773533b23cb2b2fac8e8a64df310d1523c82",
+  "updated_at": "2026-07-21T03:09:10.410Z"
 }
