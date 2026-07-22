@@ -27,6 +27,8 @@ let latest_link = "";
 if (pipeline.length > 0) {
     latest_link = Astro.url.pathname.replace(pipeline + "/" + version, pipeline + "/" + latestVersion);
 }
+const hasStableRelease = latestVersion.length > 0 && latestVersion !== "dev";
+const latestVersionLabel = latestVersion.trim().startsWith("v") ? latestVersion.trim() : "v" + latestVersion.trim();
 let component_name = component;
 if (component_type === "modules" && component) {
     component_name = component.replace("_", "/");
@@ -42,7 +44,15 @@ const shaking = version === "dev" ? "3deg" : "1deg";
                 <div class="alert alert-warning p-1 p-md-3" role="alert">
                     <span>
                         {version === "dev" ? (
-                            <span>This is the development version of the pipeline.</span>
+                            <span>
+                                This is the development version of the pipeline.
+                                {hasStableRelease && (
+                                    <>
+                                        {" "}
+                                        <a href={latest_link}>View the latest {latestVersionLabel} release.</a>
+                                    </>
+                                )}
+                            </span>
                         ) : (
                             <span>
                                 These pages are for an old version of the pipeline (<code>{version}</code>). The latest
