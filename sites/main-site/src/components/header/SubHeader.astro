@@ -27,8 +27,6 @@ let latest_link = "";
 if (pipeline.length > 0) {
     latest_link = Astro.url.pathname.replace(pipeline + "/" + version, pipeline + "/" + latestVersion);
 }
-const hasStableRelease = latestVersion.length > 0 && latestVersion !== "dev";
-const latestVersionLabel = latestVersion.trim().startsWith("v") ? latestVersion.trim() : "v" + latestVersion.trim();
 let component_name = component;
 if (component_type === "modules" && component) {
     component_name = component.replace("_", "/");
@@ -46,10 +44,10 @@ const shaking = version === "dev" ? "3deg" : "1deg";
                         {version === "dev" ? (
                             <span>
                                 This is the development version of the pipeline.
-                                {hasStableRelease && (
+                                {latestVersion !== "dev" && (
                                     <>
                                         {" "}
-                                        <a href={latest_link}>View the latest {latestVersionLabel} release.</a>
+                                        <a href={latest_link}>View the latest v{latestVersion.trim()} release.</a>
                                     </>
                                 )}
                             </span>
