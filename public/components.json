@@ -160736,6 +160736,151 @@
       ]
     },
     {
+      "name": "hackgap_count",
+      "path": "modules/nf-core/hackgap/count/meta.yml",
+      "tree_sha": "8541077e16b7a7342b41fb5be7ca978f3b40f81e",
+      "files": [
+        "modules/nf-core/hackgap/count/environment.yml",
+        "modules/nf-core/hackgap/count/main.nf",
+        "modules/nf-core/hackgap/count/meta.yml",
+        "modules/nf-core/hackgap/count/tests/main.nf.test",
+        "modules/nf-core/hackgap/count/tests/main.nf.test.snap",
+        "modules/nf-core/hackgap/count/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "hackgap_count",
+        "description": "Fast, JIT-compiled k-mer counter supporting both contiguous and gapped k-mers using multi-way bucketed Cuckoo hash tables.",
+        "keywords": [
+          "k-mer",
+          "counting",
+          "gapped k-mer",
+          "genomics",
+          "hashing"
+        ],
+        "tools": [
+          {
+            "hackgap": {
+              "description": "hackgap (hash-based counting of k-mers with gaps) provides a fast jit-compiled k-kmer counter which supports gapped k-mers.",
+              "homepage": "https://gitlab.com/rahmannlab/hackgap",
+              "documentation": "https://gitlab.com/rahmannlab/hackgap",
+              "tool_dev_url": "https://gitlab.com/rahmannlab/hackgap",
+              "doi": "10.4230/LIPICS.WABI.2022.12",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Input genomic sequence files (FASTA/FASTQ), can be compressed (gzip, xz, bzip2).",
+                "pattern": "*.{fasta,fa,fastq,fq,gz,xz,bz2}"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "hash": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.hash": {
+                  "type": "file",
+                  "description": "Binary hash-table dump containing calculated k-mer integer encodings.",
+                  "pattern": "*.hash"
+                }
+              }
+            ]
+          ],
+          "info": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.info": {
+                  "type": "file",
+                  "description": "Contains metadata information on multi-way bucketed k-mer cuckoo hashing",
+                  "pattern": "*.info"
+                }
+              }
+            ]
+          ],
+          "versions_hackgap": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hackgap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hackgap --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hackgap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hackgap --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@LeonHornich"
+        ],
+        "maintainers": [
+          "@LeonHornich"
+        ]
+      },
+      "git_sha": "10c8c7af2bcd2acbd928fcfaa639b7fb6868eb90"
+    },
+    {
       "name": "hamronization_abricate",
       "path": "modules/nf-core/hamronization/abricate/meta.yml",
       "tree_sha": "d7c21661c5af5b9a04595ac3208c2bd7011f1dd6",
@@ -214268,7 +214413,7 @@
     {
       "name": "methurator_gtestimator",
       "path": "modules/nf-core/methurator/gtestimator/meta.yml",
-      "tree_sha": "21e0141d54b2ae51036e6bf5c77505522e758895",
+      "tree_sha": "77b8de2e0456a6a5416128b7ad22cf7359b76d3a",
       "files": [
         "modules/nf-core/methurator/gtestimator/environment.yml",
         "modules/nf-core/methurator/gtestimator/main.nf",
@@ -214434,12 +214579,12 @@
           "@edogiuili"
         ]
       },
-      "git_sha": "85a3650c949d1146cdb576f986640e84775b7743"
+      "git_sha": "2789ce924a0745bc3d8c8929dc2a6be8a11920e6"
     },
     {
       "name": "methurator_plot",
       "path": "modules/nf-core/methurator/plot/meta.yml",
-      "tree_sha": "1087170d2a49d5fb2f985b7f21a4883a41a2b081",
+      "tree_sha": "e666739eadc670433be813321df54a86c3b45662",
       "files": [
         "modules/nf-core/methurator/plot/environment.yml",
         "modules/nf-core/methurator/plot/main.nf",
@@ -214573,7 +214718,7 @@
           "@edogiuili"
         ]
       },
-      "git_sha": "85a3650c949d1146cdb576f986640e84775b7743"
+      "git_sha": "2789ce924a0745bc3d8c8929dc2a6be8a11920e6"
     },
     {
       "name": "methyldackel_extract",
@@ -237265,7 +237410,7 @@
     {
       "name": "numorph_3dunet",
       "path": "modules/nf-core/numorph/3dunet/meta.yml",
-      "tree_sha": "8648ae188a2ca2e5bddfc9e9de850f28ae8fb8fa",
+      "tree_sha": "bc1d532ba14051363963b9889a1fd593aeb180f6",
       "files": [
         "modules/nf-core/numorph/3dunet/Dockerfile",
         "modules/nf-core/numorph/3dunet/README.md",
@@ -237419,7 +237564,7 @@
           "@CaroAMN"
         ]
       },
-      "git_sha": "9707facbacc9c5c02ecf0b192f0604a29351b00a"
+      "git_sha": "80b85d7aec41a68ac6fc92b1a59e9d7caefedc2a"
     },
     {
       "name": "numorph_intensity",
@@ -348868,6 +349013,312 @@
       ]
     },
     {
+      "name": "suppa_diffsplice",
+      "path": "modules/nf-core/suppa/diffsplice/meta.yml",
+      "tree_sha": "5afeba39866c00b2fc83555d1c6f3cbfa63e0623",
+      "files": [
+        "modules/nf-core/suppa/diffsplice/environment.yml",
+        "modules/nf-core/suppa/diffsplice/main.nf",
+        "modules/nf-core/suppa/diffsplice/meta.yml",
+        "modules/nf-core/suppa/diffsplice/tests/main.nf.test",
+        "modules/nf-core/suppa/diffsplice/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "suppa_diffsplice",
+        "description": "Perform differential splicing analysis using SUPPA.",
+        "keywords": [
+          "alternative splicing",
+          "differential splicing",
+          "suppa",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "suppa": {
+              "description": "Fast, accurate, and uncertainty-aware differential splicing analysis across multiple conditions.",
+              "homepage": "https://github.com/comprna/SUPPA",
+              "documentation": "https://github.com/comprna/SUPPA",
+              "tool_dev_url": "https://github.com/comprna/SUPPA",
+              "doi": "10.1186/s13059-018-1417-1",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:suppa"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing genome information\ne.g. `[ id:'genome1' ]`\n"
+              }
+            },
+            {
+              "events": {
+                "type": "file",
+                "description": "Splicing events file (events per event or transcript)",
+                "pattern": "*.{ioe,ioi}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing samples information from condition 1\ne.g. `[ id:'samples1' ]`\n"
+              }
+            },
+            {
+              "condition1": {
+                "type": "string",
+                "description": "Condition 1 name",
+                "pattern": "*",
+                "ontologies": []
+              }
+            },
+            {
+              "expression1": {
+                "type": "file",
+                "description": "Expression file for condition 1 (in TPM units)",
+                "pattern": "*.txt",
+                "ontologies": []
+              }
+            },
+            {
+              "psi1": {
+                "type": "file",
+                "description": "PSI file for condition 1",
+                "pattern": "*.psi",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing samples information from condition 2\ne.g. `[ id:'samples2' ]`\n"
+              }
+            },
+            {
+              "condition2": {
+                "type": "string",
+                "description": "Condition 2 name",
+                "pattern": "*",
+                "ontologies": []
+              }
+            },
+            {
+              "expression2": {
+                "type": "file",
+                "description": "Expression file for condition 2 (in TPM units)",
+                "pattern": "*.txt",
+                "ontologies": []
+              }
+            },
+            {
+              "psi2": {
+                "type": "file",
+                "description": "PSI file for condition 2",
+                "pattern": "*.psi",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "method": {
+              "type": "string",
+              "description": "Method to use for differential splicing analysis. Options are \"empirical\" or \"classical\"."
+            }
+          },
+          {
+            "local_area": {
+              "type": "integer",
+              "description": "Number of points in the local area of the delta PSI - average TPM distribution.",
+              "default": 1000
+            }
+          },
+          {
+            "lower_bound_delta_psi": {
+              "type": "float",
+              "description": "Lower bound for the absolute delta PSI to test for significant. Events with less than this delta PSI will not be tested. Only valid for the \"empirical\" method.",
+              "default": 0
+            }
+          },
+          {
+            "is_paired": {
+              "type": "boolean",
+              "description": "Indicates if replicates across conditions are paired.",
+              "default": false
+            }
+          },
+          {
+            "gene_correction": {
+              "type": "boolean",
+              "description": "Correction of the p-values by gene.",
+              "default": false
+            }
+          },
+          {
+            "multi_testing_correction_alpha": {
+              "type": "float",
+              "description": "Family-wise error rate to use for the multiple testing correction.",
+              "default": 0.05
+            }
+          },
+          {
+            "save_tpm_events": {
+              "type": "boolean",
+              "description": "The average log TPM of the events will be saved in an external file.",
+              "default": false
+            }
+          },
+          {
+            "combination_analysis": {
+              "type": "boolean",
+              "description": "SUPPA will perform the analysis between all possible combinations of conditions.",
+              "default": false
+            }
+          },
+          {
+            "use_median_delta_psi": {
+              "type": "boolean",
+              "description": "SUPPA will use the median delta PSI, instead of the mean.",
+              "default": false
+            }
+          },
+          {
+            "tpm_threshold": {
+              "type": "float",
+              "description": "Minimum expression (calculated as average TPM value within-replicates and between-conditions) to be included in the analysis.",
+              "default": 0
+            }
+          },
+          {
+            "nan_tpm_threshold": {
+              "type": "float",
+              "description": "Proportion of samples with nan values allowed per condition to calculate a delta PSI.",
+              "default": 0
+            }
+          }
+        ],
+        "output": {
+          "dpsi": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing genome information\ne.g. `[ id:'genome1' ]`\n"
+                }
+              },
+              {
+                "*.dpsi": {
+                  "type": "file",
+                  "description": "Differential splicing analysis results file",
+                  "pattern": "*.dpsi",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "psivec": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing genome information\ne.g. `[ id:'genome1' ]`\n"
+                }
+              },
+              {
+                "*.psivec": {
+                  "type": "file",
+                  "description": "PSI values for all events in the analysis",
+                  "pattern": "*.psivec",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "tpm_events": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing genome information\ne.g. `[ id:'genome1' ]`\n"
+                }
+              },
+              {
+                "*.tab": {
+                  "type": "file",
+                  "description": "Average log TPM of the events",
+                  "pattern": "*.tab",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_suppa": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "suppa": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "suppa.py -v | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "suppa": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "suppa.py -v | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@lathikaa",
+          "@piplus2"
+        ],
+        "maintainers": [
+          "@piplus2"
+        ]
+      },
+      "git_sha": "3f2df8501fbed848b9ce51e906c021a56f1f51bc"
+    },
+    {
       "name": "suppa_generateevents",
       "path": "modules/nf-core/suppa/generateevents/meta.yml",
       "tree_sha": "ec12c2b015683d658851139de6b414055f20129a",
@@ -407900,6 +408351,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "e8c96d814d65d575a840063c90905e44ac5ecc12",
-  "updated_at": "2026-07-22T03:09:26.271Z"
+  "commit_sha": "3f2df8501fbed848b9ce51e906c021a56f1f51bc",
+  "updated_at": "2026-07-22T14:50:36.008Z"
 }
