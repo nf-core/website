@@ -9183,6 +9183,185 @@
       "git_sha": "05e66d91fd88db7e02d07d9b4d7469ea696d2aee"
     },
     {
+      "name": "angsd_soapsnpcalibration",
+      "path": "modules/nf-core/angsd/soapsnpcalibration/meta.yml",
+      "tree_sha": "31797a833ca37c01cb7b79b95a2047c5f60fbb5a",
+      "files": [
+        "modules/nf-core/angsd/soapsnpcalibration/environment.yml",
+        "modules/nf-core/angsd/soapsnpcalibration/main.nf",
+        "modules/nf-core/angsd/soapsnpcalibration/meta.yml",
+        "modules/nf-core/angsd/soapsnpcalibration/tests/main.nf.test",
+        "modules/nf-core/angsd/soapsnpcalibration/tests/main.nf.test.snap",
+        "modules/nf-core/angsd/soapsnpcalibration/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "angsd_soapsnpcalibration",
+        "description": "Generate ANGSD SOAPsnp genotype likelihood calibration files (counts/quality matrices) from BAM alignments.",
+        "keywords": [
+          "angsd",
+          "genotype likelihood",
+          "soapsnp calibration",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "angsd": {
+              "description": "ANGSD: Analysis of next generation Sequencing Data",
+              "homepage": "http://www.popgen.dk/angsd/",
+              "documentation": "http://www.popgen.dk/angsd/",
+              "tool_dev_url": "https://github.com/ANGSD/angsd",
+              "doi": "10.1186/s12859-014-0356-4",
+              "licence": [
+                "GPL v3",
+                "MIT"
+              ],
+              "identifier": "biotools:angsd"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing population information\ne.g. [ id:'test', population:'population id', samples:'sample IDs' ]\n"
+              }
+            },
+            {
+              "bams": {
+                "type": "file",
+                "description": "A list of BAM or CRAM files.",
+                "pattern": "*.{bam,cram}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
+              }
+            },
+            {
+              "bam_indices": {
+                "type": "file",
+                "description": "A list of BAM or CRAM indices.",
+                "pattern": "*.{bam.bai,cram.crai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "reference_fasta": {
+                "type": "file",
+                "description": "A reference genome in FASTA format.",
+                "pattern": "*.{fasta,fa,fasta.gz,fa.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "reference_fai": {
+                "type": "file",
+                "description": "Index of the reference genome FASTA file.",
+                "pattern": "*.{fasta,fa,fasta.gz,fa.gz}.fai",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "soapsnp_calibration": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing population information\ne.g. [ id:'test', population:'population id', samples:'sample IDs' ]\n"
+                }
+              },
+              {
+                "*_calibration_matrix": {
+                  "type": "directory",
+                  "description": "Directory containing per-individual ANGSD SOAPsnp calibration files (counts and quality matrices)",
+                  "pattern": "*_calibration_matrix",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_angsd": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "angsd": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "angsd 2>&1 | sed '1!d;s/.*version: //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "angsd": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "angsd 2>&1 | sed '1!d;s/.*version: //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@ASendellPrice"
+        ],
+        "maintainers": [
+          "@ASendellPrice"
+        ]
+      },
+      "git_sha": "988180a7b26d87986bfc8fbd95152275736b945a"
+    },
+    {
       "name": "anndata_barcodes",
       "path": "modules/nf-core/anndata/barcodes/meta.yml",
       "tree_sha": "f155e72547ee2e295826dd1ad0dc1249ba596305",
@@ -126015,7 +126194,7 @@
     {
       "name": "gapseq_doall",
       "path": "modules/nf-core/gapseq/doall/meta.yml",
-      "tree_sha": "fd6e85ce7874886c02791c8f03e91cdb452a220a",
+      "tree_sha": "d9d9d4569bc4f5a3949594f0a9d39c653f257043",
       "files": [
         "modules/nf-core/gapseq/doall/environment.yml",
         "modules/nf-core/gapseq/doall/main.nf",
@@ -126278,7 +126457,7 @@
           }
         }
       },
-      "git_sha": "f4b46ce19a6149a91545bafd521c0e59eba2f705",
+      "git_sha": "18bfb5668ba405d34f9931610d7aeb765e9b93a3",
       "pipelines": [
         {
           "name": "bacmodel",
@@ -215555,6 +215734,419 @@
       ]
     },
     {
+      "name": "mgnifam_generatefamilies",
+      "path": "modules/nf-core/mgnifam/generatefamilies/meta.yml",
+      "tree_sha": "ac0f13cd647d7b590ab72f53ddc315bb9c57dfea",
+      "files": [
+        "modules/nf-core/mgnifam/generatefamilies/environment.yml",
+        "modules/nf-core/mgnifam/generatefamilies/main.nf",
+        "modules/nf-core/mgnifam/generatefamilies/meta.yml",
+        "modules/nf-core/mgnifam/generatefamilies/tests/main.nf.test",
+        "modules/nf-core/mgnifam/generatefamilies/tests/main.nf.test.snap",
+        "modules/nf-core/mgnifam/generatefamilies/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "mgnifam_generatefamilies",
+        "description": "Iteratively builds protein family HMM profiles from MMseqs2 sequence clusters and expands them against a protein database",
+        "keywords": [
+          "protein families",
+          "hidden markov model",
+          "profile hmm",
+          "clustering",
+          "sequence alignment",
+          "proteomics"
+        ],
+        "tools": [
+          {
+            "mgnifam": {
+              "description": "Python package for iterative HMM-based protein family generation over large sequence databases, building an HMM from each cluster, recruiting new members, re-aligning, and either converging on a family or discarding the cluster",
+              "homepage": "https://github.com/vagkaratzas/mgnifam",
+              "documentation": "https://github.com/vagkaratzas/mgnifam",
+              "tool_dev_url": "https://github.com/vagkaratzas/mgnifam",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "clusters_chunk": {
+                "type": "file",
+                "description": "Headerless TSV file of MMseqs2 sequence clusters, one representative-member pair per line (representative<TAB>member)",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "fasta_file": {
+                "type": "file",
+                "description": "Uncompressed FASTA file of the protein sequence database, with unique sequence names, referenced by the cluster members",
+                "pattern": "*.{fa,fasta,fna,faa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "seed_msa": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/seed_msa/*.sto.gz": {
+                  "type": "file",
+                  "description": "Optional. Per-family seed multiple sequence alignment in gzipped Stockholm format",
+                  "pattern": "*/seed_msa/*.sto.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "full_msa": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/full_msa/*.sto.gz": {
+                  "type": "file",
+                  "description": "Optional. Per-family full multiple sequence alignment, including recruited members, in gzipped Stockholm format",
+                  "pattern": "*/full_msa/*.sto.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "hmm": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/hmm/*.hmm.gz": {
+                  "type": "file",
+                  "description": "Optional. Per-family profile HMM model in gzipped HMMER format",
+                  "pattern": "*/hmm/*.hmm.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "rf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/rf/*.txt": {
+                  "type": "file",
+                  "description": "Optional. Per-family reference annotation (RF) line, marking match-state columns of the seed alignment",
+                  "pattern": "*/rf/*.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_families.tsv": {
+                  "type": "file",
+                  "description": "Optional. Roster of the generated protein families",
+                  "pattern": "*/*_families.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "csv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_metadata.csv": {
+                  "type": "file",
+                  "description": "Optional. Metadata describing the generated protein families",
+                  "pattern": "*/*_metadata.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}.log": {
+                  "type": "file",
+                  "description": "Optional. Diagnostic log of the family generation run",
+                  "pattern": "*/*.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "reps_fasta": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_reps.fasta.gz": {
+                  "type": "file",
+                  "description": "Optional. Representative sequences of the generated families in gzipped FASTA format",
+                  "pattern": "*/*_reps.fasta.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "successful": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_successful.txt": {
+                  "type": "file",
+                  "description": "Optional. List of clusters that successfully converged into families",
+                  "pattern": "*/*_successful.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "discarded": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_discarded.csv": {
+                  "type": "file",
+                  "description": "Optional. Clusters discarded during family generation, with reasons",
+                  "pattern": "*/*_discarded.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "converged": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_converged.txt": {
+                  "type": "file",
+                  "description": "Optional. List of clusters that converged during family generation",
+                  "pattern": "*/*_converged.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_mgnifam": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mgnifam": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mgnifam --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_python": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "python": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python3 --version 2>&1 | sed 's/Python //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mgnifam": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mgnifam --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "python": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python3 --version 2>&1 | sed 's/Python //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      },
+      "git_sha": "dda8e6fd1b806b26b5b95055943e953c551302ce"
+    },
+    {
       "name": "midas_run",
       "path": "modules/nf-core/midas/run/meta.yml",
       "tree_sha": "696c5b0ca9d7eed028dc44fd0a0ebf7dfecd6e82",
@@ -255036,7 +255628,7 @@
     {
       "name": "phantompeakqualtools",
       "path": "modules/nf-core/phantompeakqualtools/meta.yml",
-      "tree_sha": "ec6b29ee85071dcf8635eda01ed7c5ed5838d225",
+      "tree_sha": "57b18a5a9afbf40f53fe4b713e05b4347b87fd0e",
       "files": [
         "modules/nf-core/phantompeakqualtools/environment.yml",
         "modules/nf-core/phantompeakqualtools/main.nf",
@@ -255140,19 +255732,93 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_r": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "R": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "R --version | sed \"1!d; s/.*version //; s/ .*//\"": {
+                  "type": "eval",
+                  "description": "The expression ot obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ],
+          "versions_phantompeakqualtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "phantompeakqualtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.2.2": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "R": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "R --version | sed \"1!d; s/.*version //; s/ .*//\"": {
+                  "type": "eval",
+                  "description": "The expression ot obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "phantompeakqualtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.2.2": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -255166,7 +255832,7 @@
           "@JoseEspinosa"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "afd8b415b67d972a6ac0d4c0a7830e3666871335",
       "pipelines": [
         {
           "name": "chipseq",
@@ -319110,7 +319776,7 @@
     {
       "name": "sentieon_qualcal",
       "path": "modules/nf-core/sentieon/qualcal/meta.yml",
-      "tree_sha": "ca07d816be40e8dd33c1022262b2b99daebb76a1",
+      "tree_sha": "cee0e0673ca2dd0690129871f0d2f88c3c82d9ab",
       "files": [
         "modules/nf-core/sentieon/qualcal/environment.yml",
         "modules/nf-core/sentieon/qualcal/main.nf",
@@ -319403,7 +320069,7 @@
           ]
         }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "075c037ecc41597b7b9aea81a2eb55a3445b9ce3"
     },
     {
       "name": "sentieon_readwriter",
@@ -329864,10 +330530,10 @@
     {
       "name": "shinyngs_app",
       "path": "modules/nf-core/shinyngs/app/meta.yml",
-      "tree_sha": "2814019f4c503fe59224a464244a33c40c751586",
+      "tree_sha": "480c5b0925ac584b3bd69ef79b70bbc25697b304",
       "files": [
-        "modules/nf-core/shinyngs/app/.conda-lock/linux_amd64-bd-b5595b301bfbfd4d_2.txt",
-        "modules/nf-core/shinyngs/app/.conda-lock/linux_arm64-bd-4d71a4d10942e43f_2.txt",
+        "modules/nf-core/shinyngs/app/.conda-lock/linux_amd64-bd-19cca4636e20b0f7_1.txt",
+        "modules/nf-core/shinyngs/app/.conda-lock/linux_arm64-bd-71dbb9a6ee95bc28_1.txt",
         "modules/nf-core/shinyngs/app/environment.yml",
         "modules/nf-core/shinyngs/app/main.nf",
         "modules/nf-core/shinyngs/app/meta.yml",
@@ -329955,6 +330621,21 @@
             "contrast_stats_assay": {
               "type": "file",
               "description": "contrast statistics",
+              "ontologies": []
+            }
+          },
+          {
+            "gene_sets": {
+              "type": "file",
+              "description": "Optional: GMT-format gene set files used for enrichment, referenced in the\napp via the shinyngs `--enrichment_gene_sets` argument.\n",
+              "pattern": "*.{gmt}",
+              "ontologies": []
+            }
+          },
+          {
+            "enrichment_results": {
+              "type": "file",
+              "description": "Optional: per-contrast enrichment result tables (e.g. GSEA output), matched\nto contrasts in the app via the shinyngs `--enrichment_filename_template` argument.\n",
               "ontologies": []
             }
           }
@@ -330050,39 +330731,39 @@
         "containers": {
           "docker": {
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/r-shinyngs:3.1.1--b5595b301bfbfd4d",
-              "build_id": "bd-b5595b301bfbfd4d_2",
-              "scan_id": "sc-73b4cbdd1930464e_1"
+              "name": "community.wave.seqera.io/library/r-shinyngs:3.2.0--19cca4636e20b0f7",
+              "build_id": "bd-19cca4636e20b0f7_1",
+              "scan_id": "sc-501add0467d2f061_1"
             },
             "linux/arm64": {
-              "name": "community.wave.seqera.io/library/r-shinyngs:3.1.1--4d71a4d10942e43f",
-              "build_id": "bd-4d71a4d10942e43f_2",
-              "scan_id": "sc-72596f6b93ff3200_1"
+              "name": "community.wave.seqera.io/library/r-shinyngs:3.2.0--71dbb9a6ee95bc28",
+              "build_id": "bd-71dbb9a6ee95bc28_1",
+              "scan_id": "sc-0b57ec15282cc0fe_1"
             }
           },
           "singularity": {
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.1.1--791778d7e2758322",
-              "build_id": "bd-791778d7e2758322_2",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/8a/8acde9b0bc0374d51ca50f3e49fb0f26a6fb394d277b3af5e276de8bf1786610/data"
+              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.2.0--c8c7c602b7ecaf69",
+              "build_id": "bd-c8c7c602b7ecaf69_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/41/41759558393509662940440e609bd5e89e4ec0d4b02c09421923fa0270926666/data"
             },
             "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.1.1--60831a2d7cd7ae94",
-              "build_id": "bd-60831a2d7cd7ae94_2",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/6f/6fff209824ab2042c6f09b68d257d59ae4e0ea7410dad923089db9c5c0dbd683/data"
+              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.2.0--537d87067431146d",
+              "build_id": "bd-537d87067431146d_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a0/a0bd003b3b7ca7b4081291d4b2cf34b41afb8cf1dd18ffb6f3c7134aaa00c7df/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/shinyngs/app/.conda-lock/linux_amd64-bd-b5595b301bfbfd4d_2.txt"
+              "lock_file": "modules/nf-core/shinyngs/app/.conda-lock/linux_amd64-bd-19cca4636e20b0f7_1.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/shinyngs/app/.conda-lock/linux_arm64-bd-4d71a4d10942e43f_2.txt"
+              "lock_file": "modules/nf-core/shinyngs/app/.conda-lock/linux_arm64-bd-71dbb9a6ee95bc28_1.txt"
             }
           }
         }
       },
-      "git_sha": "3ab831a4a83ddc053f8d2bd3a1e745eaff4043c2",
+      "git_sha": "d8408710409cc90f666e044771b9c749afdd5caf",
       "pipelines": [
         {
           "name": "differentialabundance",
@@ -330093,10 +330774,10 @@
     {
       "name": "shinyngs_staticdifferential",
       "path": "modules/nf-core/shinyngs/staticdifferential/meta.yml",
-      "tree_sha": "e53fc3bc285f3cf449d6c8718c97451cb735cf73",
+      "tree_sha": "5b2a831da82d73dd1e5e1482d9b36d0fbf580567",
       "files": [
-        "modules/nf-core/shinyngs/staticdifferential/.conda-lock/linux_amd64-bd-b5595b301bfbfd4d_2.txt",
-        "modules/nf-core/shinyngs/staticdifferential/.conda-lock/linux_arm64-bd-4d71a4d10942e43f_2.txt",
+        "modules/nf-core/shinyngs/staticdifferential/.conda-lock/linux_amd64-bd-19cca4636e20b0f7_1.txt",
+        "modules/nf-core/shinyngs/staticdifferential/.conda-lock/linux_arm64-bd-71dbb9a6ee95bc28_1.txt",
         "modules/nf-core/shinyngs/staticdifferential/environment.yml",
         "modules/nf-core/shinyngs/staticdifferential/main.nf",
         "modules/nf-core/shinyngs/staticdifferential/meta.yml",
@@ -330265,39 +330946,39 @@
         "containers": {
           "docker": {
             "linux/arm64": {
-              "name": "community.wave.seqera.io/library/r-shinyngs:3.1.1--4d71a4d10942e43f",
-              "build_id": "bd-4d71a4d10942e43f_2",
-              "scan_id": "sc-72596f6b93ff3200_1"
+              "name": "community.wave.seqera.io/library/r-shinyngs:3.2.0--71dbb9a6ee95bc28",
+              "build_id": "bd-71dbb9a6ee95bc28_1",
+              "scan_id": "sc-0b57ec15282cc0fe_1"
             },
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/r-shinyngs:3.1.1--b5595b301bfbfd4d",
-              "build_id": "bd-b5595b301bfbfd4d_2",
-              "scan_id": "sc-73b4cbdd1930464e_1"
+              "name": "community.wave.seqera.io/library/r-shinyngs:3.2.0--19cca4636e20b0f7",
+              "build_id": "bd-19cca4636e20b0f7_1",
+              "scan_id": "sc-501add0467d2f061_1"
             }
           },
           "singularity": {
-            "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.1.1--60831a2d7cd7ae94",
-              "build_id": "bd-60831a2d7cd7ae94_2",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/6f/6fff209824ab2042c6f09b68d257d59ae4e0ea7410dad923089db9c5c0dbd683/data"
-            },
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.1.1--791778d7e2758322",
-              "build_id": "bd-791778d7e2758322_2",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/8a/8acde9b0bc0374d51ca50f3e49fb0f26a6fb394d277b3af5e276de8bf1786610/data"
+              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.2.0--c8c7c602b7ecaf69",
+              "build_id": "bd-c8c7c602b7ecaf69_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/41/41759558393509662940440e609bd5e89e4ec0d4b02c09421923fa0270926666/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.2.0--537d87067431146d",
+              "build_id": "bd-537d87067431146d_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a0/a0bd003b3b7ca7b4081291d4b2cf34b41afb8cf1dd18ffb6f3c7134aaa00c7df/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/shinyngs/staticdifferential/.conda-lock/linux_amd64-bd-b5595b301bfbfd4d_2.txt"
+              "lock_file": "modules/nf-core/shinyngs/staticdifferential/.conda-lock/linux_amd64-bd-19cca4636e20b0f7_1.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/shinyngs/staticdifferential/.conda-lock/linux_arm64-bd-4d71a4d10942e43f_2.txt"
+              "lock_file": "modules/nf-core/shinyngs/staticdifferential/.conda-lock/linux_arm64-bd-71dbb9a6ee95bc28_1.txt"
             }
           }
         }
       },
-      "git_sha": "3ab831a4a83ddc053f8d2bd3a1e745eaff4043c2",
+      "git_sha": "d5a02772e0516c103ccf76a6cc8cdf1b68d35a8b",
       "pipelines": [
         {
           "name": "differentialabundance",
@@ -330308,10 +330989,10 @@
     {
       "name": "shinyngs_staticexploratory",
       "path": "modules/nf-core/shinyngs/staticexploratory/meta.yml",
-      "tree_sha": "f3c11f551e7071aab4ae9e236e5166dc7e071ac1",
+      "tree_sha": "c6250bb1c0e389594611d5fcf67d9429bf729a43",
       "files": [
-        "modules/nf-core/shinyngs/staticexploratory/.conda-lock/linux_amd64-bd-b5595b301bfbfd4d_2.txt",
-        "modules/nf-core/shinyngs/staticexploratory/.conda-lock/linux_arm64-bd-4d71a4d10942e43f_2.txt",
+        "modules/nf-core/shinyngs/staticexploratory/.conda-lock/linux_amd64-bd-19cca4636e20b0f7_1.txt",
+        "modules/nf-core/shinyngs/staticexploratory/.conda-lock/linux_arm64-bd-71dbb9a6ee95bc28_1.txt",
         "modules/nf-core/shinyngs/staticexploratory/environment.yml",
         "modules/nf-core/shinyngs/staticexploratory/main.nf",
         "modules/nf-core/shinyngs/staticexploratory/meta.yml",
@@ -330639,39 +331320,39 @@
         "containers": {
           "docker": {
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/r-shinyngs:3.1.1--b5595b301bfbfd4d",
-              "build_id": "bd-b5595b301bfbfd4d_2",
-              "scan_id": "sc-73b4cbdd1930464e_1"
+              "name": "community.wave.seqera.io/library/r-shinyngs:3.2.0--19cca4636e20b0f7",
+              "build_id": "bd-19cca4636e20b0f7_1",
+              "scan_id": "sc-501add0467d2f061_1"
             },
             "linux/arm64": {
-              "name": "community.wave.seqera.io/library/r-shinyngs:3.1.1--4d71a4d10942e43f",
-              "build_id": "bd-4d71a4d10942e43f_2",
-              "scan_id": "sc-72596f6b93ff3200_1"
+              "name": "community.wave.seqera.io/library/r-shinyngs:3.2.0--71dbb9a6ee95bc28",
+              "build_id": "bd-71dbb9a6ee95bc28_1",
+              "scan_id": "sc-0b57ec15282cc0fe_1"
             }
           },
           "singularity": {
-            "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.1.1--60831a2d7cd7ae94",
-              "build_id": "bd-60831a2d7cd7ae94_2",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/6f/6fff209824ab2042c6f09b68d257d59ae4e0ea7410dad923089db9c5c0dbd683/data"
-            },
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.1.1--791778d7e2758322",
-              "build_id": "bd-791778d7e2758322_2",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/8a/8acde9b0bc0374d51ca50f3e49fb0f26a6fb394d277b3af5e276de8bf1786610/data"
+              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.2.0--c8c7c602b7ecaf69",
+              "build_id": "bd-c8c7c602b7ecaf69_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/41/41759558393509662940440e609bd5e89e4ec0d4b02c09421923fa0270926666/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.2.0--537d87067431146d",
+              "build_id": "bd-537d87067431146d_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a0/a0bd003b3b7ca7b4081291d4b2cf34b41afb8cf1dd18ffb6f3c7134aaa00c7df/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/shinyngs/staticexploratory/.conda-lock/linux_amd64-bd-b5595b301bfbfd4d_2.txt"
+              "lock_file": "modules/nf-core/shinyngs/staticexploratory/.conda-lock/linux_amd64-bd-19cca4636e20b0f7_1.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/shinyngs/staticexploratory/.conda-lock/linux_arm64-bd-4d71a4d10942e43f_2.txt"
+              "lock_file": "modules/nf-core/shinyngs/staticexploratory/.conda-lock/linux_arm64-bd-71dbb9a6ee95bc28_1.txt"
             }
           }
         }
       },
-      "git_sha": "3ab831a4a83ddc053f8d2bd3a1e745eaff4043c2",
+      "git_sha": "d5a02772e0516c103ccf76a6cc8cdf1b68d35a8b",
       "pipelines": [
         {
           "name": "differentialabundance",
@@ -330682,10 +331363,10 @@
     {
       "name": "shinyngs_validatefomcomponents",
       "path": "modules/nf-core/shinyngs/validatefomcomponents/meta.yml",
-      "tree_sha": "31c32cea70e0c340e5608d59366804716aff459b",
+      "tree_sha": "809f24d15712422a72891d14012d2c2e2a243584",
       "files": [
-        "modules/nf-core/shinyngs/validatefomcomponents/.conda-lock/linux_amd64-bd-b5595b301bfbfd4d_2.txt",
-        "modules/nf-core/shinyngs/validatefomcomponents/.conda-lock/linux_arm64-bd-4d71a4d10942e43f_2.txt",
+        "modules/nf-core/shinyngs/validatefomcomponents/.conda-lock/linux_amd64-bd-19cca4636e20b0f7_1.txt",
+        "modules/nf-core/shinyngs/validatefomcomponents/.conda-lock/linux_arm64-bd-71dbb9a6ee95bc28_1.txt",
         "modules/nf-core/shinyngs/validatefomcomponents/environment.yml",
         "modules/nf-core/shinyngs/validatefomcomponents/main.nf",
         "modules/nf-core/shinyngs/validatefomcomponents/meta.yml",
@@ -330917,39 +331598,39 @@
         "containers": {
           "docker": {
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/r-shinyngs:3.1.1--b5595b301bfbfd4d",
-              "build_id": "bd-b5595b301bfbfd4d_2",
-              "scan_id": "sc-73b4cbdd1930464e_1"
+              "name": "community.wave.seqera.io/library/r-shinyngs:3.2.0--19cca4636e20b0f7",
+              "build_id": "bd-19cca4636e20b0f7_1",
+              "scan_id": "sc-501add0467d2f061_1"
             },
             "linux/arm64": {
-              "name": "community.wave.seqera.io/library/r-shinyngs:3.1.1--4d71a4d10942e43f",
-              "build_id": "bd-4d71a4d10942e43f_2",
-              "scan_id": "sc-72596f6b93ff3200_1"
+              "name": "community.wave.seqera.io/library/r-shinyngs:3.2.0--71dbb9a6ee95bc28",
+              "build_id": "bd-71dbb9a6ee95bc28_1",
+              "scan_id": "sc-0b57ec15282cc0fe_1"
             }
           },
           "singularity": {
-            "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.1.1--60831a2d7cd7ae94",
-              "build_id": "bd-60831a2d7cd7ae94_2",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/6f/6fff209824ab2042c6f09b68d257d59ae4e0ea7410dad923089db9c5c0dbd683/data"
-            },
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.1.1--791778d7e2758322",
-              "build_id": "bd-791778d7e2758322_2",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/8a/8acde9b0bc0374d51ca50f3e49fb0f26a6fb394d277b3af5e276de8bf1786610/data"
+              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.2.0--c8c7c602b7ecaf69",
+              "build_id": "bd-c8c7c602b7ecaf69_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/41/41759558393509662940440e609bd5e89e4ec0d4b02c09421923fa0270926666/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/r-shinyngs:3.2.0--537d87067431146d",
+              "build_id": "bd-537d87067431146d_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a0/a0bd003b3b7ca7b4081291d4b2cf34b41afb8cf1dd18ffb6f3c7134aaa00c7df/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/shinyngs/validatefomcomponents/.conda-lock/linux_amd64-bd-b5595b301bfbfd4d_2.txt"
+              "lock_file": "modules/nf-core/shinyngs/validatefomcomponents/.conda-lock/linux_amd64-bd-19cca4636e20b0f7_1.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/shinyngs/validatefomcomponents/.conda-lock/linux_arm64-bd-4d71a4d10942e43f_2.txt"
+              "lock_file": "modules/nf-core/shinyngs/validatefomcomponents/.conda-lock/linux_arm64-bd-71dbb9a6ee95bc28_1.txt"
             }
           }
         }
       },
-      "git_sha": "3ab831a4a83ddc053f8d2bd3a1e745eaff4043c2",
+      "git_sha": "d5a02772e0516c103ccf76a6cc8cdf1b68d35a8b",
       "pipelines": [
         {
           "name": "differentialabundance",
@@ -349055,6 +349736,197 @@
           "version": "3.26.0"
         }
       ]
+    },
+    {
+      "name": "suppa_clusterevents",
+      "path": "modules/nf-core/suppa/clusterevents/meta.yml",
+      "tree_sha": "cdd0b33477980434f6eaef67934fa5b4b34e5c08",
+      "files": [
+        "modules/nf-core/suppa/clusterevents/environment.yml",
+        "modules/nf-core/suppa/clusterevents/main.nf",
+        "modules/nf-core/suppa/clusterevents/meta.yml",
+        "modules/nf-core/suppa/clusterevents/tests/main.nf.test",
+        "modules/nf-core/suppa/clusterevents/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "suppa_clusterevents",
+        "description": "Cluster events based on PSI values and significantly differentially spliced events using SUPPA2.",
+        "keywords": [
+          "alternative splicing",
+          "clustering",
+          "suppa",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "suppa": {
+              "description": "Fast, accurate, and uncertainty-aware differential splicing analysis across multiple conditions.",
+              "homepage": "https://github.com/comprna/SUPPA",
+              "documentation": "https://github.com/comprna/SUPPA",
+              "tool_dev_url": "https://github.com/comprna/SUPPA",
+              "doi": "10.1186/s13059-018-1417-1",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:suppa"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing differential splicing analysis information\ne.g. `[ id:'diffsplice1' ]`\n"
+              }
+            },
+            {
+              "dpsi": {
+                "type": "file",
+                "description": "Differentially spliced events file",
+                "pattern": "*.{dpsi}",
+                "ontologies": []
+              }
+            },
+            {
+              "psivec": {
+                "type": "file",
+                "description": "PSI values for all events across all samples",
+                "pattern": "*.{psivec}",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "significance_threshold": {
+              "type": "float",
+              "description": "P-value threshold to consider an event significant from the dpsi file"
+            }
+          },
+          {
+            "dpsi_threshold": {
+              "type": "float",
+              "description": "Lower-bound for the absolute delta PSI value to cluster",
+              "default": 0.05
+            }
+          },
+          {
+            "maximum_distance": {
+              "type": "float",
+              "description": "Maximum distance (between 0 and 1) to consider two events as members of the same cluster",
+              "default": 0.05
+            }
+          },
+          {
+            "metric": {
+              "type": "string",
+              "description": "Distance metric. (allowed values are euclidean, manhattan, cosine)",
+              "default": "euclidean"
+            }
+          },
+          {
+            "separation": {
+              "type": "float",
+              "description": "Maximum distance in PSI space of an event to a cluster (only for OPTICS)"
+            }
+          },
+          {
+            "min_number_events": {
+              "type": "integer",
+              "description": "Minimum number of events required per cluster",
+              "default": 20
+            }
+          },
+          {
+            "groups": {
+              "type": "string",
+              "description": "Ranges of column numbers specifying the replicates per condition. Column numbers have to be continuous, with no overlapping or missing columns between them (e.g. 1-2,3-4)"
+            }
+          },
+          {
+            "clustering_method": {
+              "type": "string",
+              "description": "Clustering method to use (allowed values are DBSCAN, OPTICS)",
+              "default": "DBSCAN"
+            }
+          }
+        ],
+        "output": {
+          "clustvec": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing differential splicing analysis information\ne.g. `[ id:'diffsplice1' ]`\n"
+                }
+              },
+              {
+                "*.clustvec": {
+                  "type": "file",
+                  "description": "Clustered events file",
+                  "pattern": "*.{clustvec}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_suppa": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "suppa": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "suppa.py -v | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "suppa": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "suppa.py -v | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@lathikaa",
+          "@piplus2"
+        ],
+        "maintainers": [
+          "@piplus2"
+        ]
+      },
+      "git_sha": "88b9d0d95d7e3bc5dbac82c2b3da8a3259f9f51c"
     },
     {
       "name": "suppa_diffsplice",
@@ -408395,6 +409267,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "a554e54c63c3f03f91c88a18ece7b89eca5a5212",
-  "updated_at": "2026-07-23T03:09:14.093Z"
+  "commit_sha": "d8408710409cc90f666e044771b9c749afdd5caf",
+  "updated_at": "2026-07-23T14:54:25.703Z"
 }
