@@ -100499,7 +100499,7 @@
     {
       "name": "eigenstratdatabasetools_eigenstratsnpcoverage",
       "path": "modules/nf-core/eigenstratdatabasetools/eigenstratsnpcoverage/meta.yml",
-      "tree_sha": "8f844a0e4312cfd90e72ed92a463cdaed70d5e4b",
+      "tree_sha": "180fabfc5c92f409c30f3eada353c3f4e266e20c",
       "files": [
         "modules/nf-core/eigenstratdatabasetools/eigenstratsnpcoverage/environment.yml",
         "modules/nf-core/eigenstratdatabasetools/eigenstratsnpcoverage/main.nf",
@@ -100665,7 +100665,7 @@
           "@TCLamnidis"
         ]
       },
-      "git_sha": "06090a777cacb4f17e954db637d39ee906e0014d"
+      "git_sha": "e11776e4efbe563d1067c87b812d78cd5ea7ba20"
     },
     {
       "name": "eklipse",
@@ -119719,7 +119719,13 @@
           "@miraep8"
         ]
       },
-      "git_sha": "da290c59a571dbc2fddcd9b87b69b7517cad6a94"
+      "git_sha": "da290c59a571dbc2fddcd9b87b69b7517cad6a94",
+      "pipelines": [
+        {
+          "name": "funcprofiler",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "foldcomp_compress",
@@ -119973,6 +119979,328 @@
         ]
       },
       "git_sha": "d87c77f4662cb70ee1a7da8d00804b33ec2c057f"
+    },
+    {
+      "name": "folddisco_index",
+      "path": "modules/nf-core/folddisco/index/meta.yml",
+      "tree_sha": "3e7c396d035e600828d63a9665fe394db5fdcf63",
+      "files": [
+        "modules/nf-core/folddisco/index/environment.yml",
+        "modules/nf-core/folddisco/index/main.nf",
+        "modules/nf-core/folddisco/index/meta.yml",
+        "modules/nf-core/folddisco/index/tests/main.nf.test",
+        "modules/nf-core/folddisco/index/tests/main.nf.test.snap",
+        "modules/nf-core/folddisco/index/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "folddisco_index",
+        "description": "Build a geometric-hashing index of discontinuous structural motifs from a directory of protein structure files",
+        "keywords": [
+          "protein structure",
+          "structural motif",
+          "motif search",
+          "geometric hashing",
+          "indexing",
+          "pdb",
+          "mmcif"
+        ],
+        "tools": [
+          {
+            "folddisco": {
+              "description": "Fast indexing and search of discontinuous motifs in protein structures.",
+              "homepage": "https://github.com/steineggerlab/folddisco",
+              "documentation": "https://github.com/steineggerlab/folddisco",
+              "tool_dev_url": "https://github.com/steineggerlab/folddisco",
+              "doi": "10.1038/s41587-026-03162-9",
+              "licence": [
+                "GPL-3.0-or-later"
+              ],
+              "identifier": "biotools:folddisco",
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "structures": {
+                "type": "file",
+                "description": "Mandatory. One or more protein structure files (PDB or mmCIF) — staged into a directory that folddisco indexes.",
+                "pattern": "*.{pdb,cif,mmcif}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1476"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1477"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}": {
+                  "type": "directory",
+                  "description": "Directory containing the folddisco geometric-hashing index files (${prefix}, ${prefix}.offset, ${prefix}.lookup, ${prefix}.type).",
+                  "pattern": "${prefix}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_folddisco": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "folddisco": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "folddisco version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "folddisco": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "folddisco version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      },
+      "git_sha": "5975103e86fba78c5fc7b253565f7470fa44e20c"
+    },
+    {
+      "name": "folddisco_query",
+      "path": "modules/nf-core/folddisco/query/meta.yml",
+      "tree_sha": "ca6377d9b93cfbfc37ca0ec979c06cfa5bb88346",
+      "files": [
+        "modules/nf-core/folddisco/query/environment.yml",
+        "modules/nf-core/folddisco/query/main.nf",
+        "modules/nf-core/folddisco/query/meta.yml",
+        "modules/nf-core/folddisco/query/tests/main.nf.test",
+        "modules/nf-core/folddisco/query/tests/main.nf.test.snap",
+        "modules/nf-core/folddisco/query/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "folddisco_query",
+        "description": "Search a prebuilt folddisco index for a discontinuous residue motif in a query protein structure",
+        "keywords": [
+          "protein structure",
+          "structural motif",
+          "motif search",
+          "geometric hashing",
+          "query",
+          "pdb"
+        ],
+        "tools": [
+          {
+            "folddisco": {
+              "description": "Fast indexing and search of discontinuous motifs in protein structures.",
+              "homepage": "https://github.com/steineggerlab/folddisco",
+              "documentation": "https://github.com/steineggerlab/folddisco",
+              "tool_dev_url": "https://github.com/steineggerlab/folddisco",
+              "doi": "10.1038/s41587-026-03162-9",
+              "licence": [
+                "GPL-3.0-or-later"
+              ],
+              "identifier": "biotools:folddisco",
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "pdb": {
+                "type": "file",
+                "description": "Query protein structure file the motif residues are read from.",
+                "pattern": "*.{pdb,cif,mmcif}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1476"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1477"
+                  }
+                ]
+              }
+            },
+            {
+              "query": {
+                "type": "string",
+                "description": "Comma-separated chain+residue motif specifiers to search for, e.g. 'A13,A95,A167'. Individual specifiers may include an amino-acid substitution after a colon (e.g. 'A13:S') or a residue range with a dash (e.g. 'A13-20')."
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "index": {
+                "type": "directory",
+                "description": "Folddisco geometric-hashing index directory produced by the folddisco/index module.",
+                "pattern": "*",
+                "ontologies": []
+              }
+            },
+            {
+              "structures": {
+                "type": "file",
+                "description": "Optional. The same protein structure files (PDB or mmCIF) originally passed to folddisco/index to build the index. A folddisco index is not self-contained — it records the paths of the structures it indexed, and folddisco query re-reads those files to compute RMSD and matching residues. Omit (pass `[]`) only when `--skip-match` is set in `ext.args`, which skips the PDB re-read and emits no RMSD or matching residues; otherwise omitting it fails with `Failed to read PDB file`.",
+                "pattern": "*.{pdb,cif,mmcif}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1476"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1477"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "results": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.tsv": {
+                  "type": "file",
+                  "description": "TSV of matching structures/motifs found in the index. Columns are configurable via `--format-output` in ext.args; the default columns include tid, node_count, idf, rmsd, matching_residues and query_residues.",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_folddisco": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "folddisco": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "folddisco version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "folddisco": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "folddisco version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      },
+      "git_sha": "02f6f8e838a6b94d290ffa9faedabb4890384b9f"
     },
     {
       "name": "foldmason_createdb",
@@ -171277,7 +171605,7 @@
     {
       "name": "hmmer_hmmsearch",
       "path": "modules/nf-core/hmmer/hmmsearch/meta.yml",
-      "tree_sha": "44dd31c2aca1423e914a0cdc9e34b5aaa5131956",
+      "tree_sha": "2fd692a5d574d91b16a617f92f55458913cb7dc0",
       "files": [
         "modules/nf-core/hmmer/hmmsearch/environment.yml",
         "modules/nf-core/hmmer/hmmsearch/main.nf",
@@ -171306,7 +171634,8 @@
               "licence": [
                 "BSD"
               ],
-              "identifier": ""
+              "identifier": "biotools:hmmer",
+              "args_id": "$args"
             }
           }
         ],
@@ -171323,7 +171652,14 @@
                 "type": "file",
                 "description": "One or more HMM profiles created with hmmbuild",
                 "pattern": "*.{hmm,hmm.gz}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_1364"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
               }
             },
             {
@@ -171331,7 +171667,14 @@
                 "type": "file",
                 "description": "Database of sequences in FASTA format",
                 "pattern": "*.{fasta,fna,faa,fa,fasta.gz,fna.gz,faa.gz,fa.gz}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
               }
             },
             {
@@ -171368,7 +171711,14 @@
                   "type": "file",
                   "description": "Human readable output summarizing hmmsearch results",
                   "pattern": "*.{txt.gz}",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -171386,7 +171736,14 @@
                   "type": "file",
                   "description": "Optional multiple sequence alignment (MSA) in Stockholm format",
                   "pattern": "*.{sto.gz}",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1961"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -171404,7 +171761,11 @@
                   "type": "file",
                   "description": "Optional tabular (space-delimited) summary of per-target output",
                   "pattern": "*.{tbl.gz}",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -171422,7 +171783,11 @@
                   "type": "file",
                   "description": "Optional tabular (space-delimited) summary of per-domain output",
                   "pattern": "*.{domtbl.gz}",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -171481,7 +171846,7 @@
           "@Midnighter"
         ]
       },
-      "git_sha": "f2bed902e13076698e7d59d1fedf5c083f6f17c0",
+      "git_sha": "3a42d4fbb69436f53e0f06d2fe65b48f9d0085cc",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -255628,7 +255993,7 @@
     {
       "name": "phantompeakqualtools",
       "path": "modules/nf-core/phantompeakqualtools/meta.yml",
-      "tree_sha": "57b18a5a9afbf40f53fe4b713e05b4347b87fd0e",
+      "tree_sha": "b1e0e080f6425e85e1a539ac0e0265f6ed0c37bc",
       "files": [
         "modules/nf-core/phantompeakqualtools/environment.yml",
         "modules/nf-core/phantompeakqualtools/main.nf",
@@ -255832,7 +256197,7 @@
           "@JoseEspinosa"
         ]
       },
-      "git_sha": "afd8b415b67d972a6ac0d4c0a7830e3666871335",
+      "git_sha": "003c45ac19e684cae37402d54a56e85b0e626b90",
       "pipelines": [
         {
           "name": "chipseq",
@@ -409416,6 +409781,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "620983b7f0c876448d4599052fb90e40848b1d7d",
-  "updated_at": "2026-07-24T03:10:46.543Z"
+  "commit_sha": "e11776e4efbe563d1067c87b812d78cd5ea7ba20",
+  "updated_at": "2026-07-24T14:43:13.904Z"
 }
