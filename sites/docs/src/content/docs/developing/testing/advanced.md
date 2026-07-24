@@ -2,7 +2,7 @@
 title: Advanced techniques
 subtitle: Write complex assertions
 shortTitle: Advanced assertions
-weight: 3
+weight: 4
 ---
 
 Advanced assertion patterns handle complex testing scenarios where standard snapshots are insufficient.
