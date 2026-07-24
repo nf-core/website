@@ -21,7 +21,7 @@ Pipelines are coded to configure tools to use available resources when possible 
 Not all tools support dynamic resource configuration.
 :::
 
-Most nf-core pipelines use process labels to define resource requirements for each module, as shown in this base configuration example:
+Most nf-core pipelines use process labels to define resource requirements for each module. Newer pipelines (built from the nf-core template that ships axis-decomposed labels) split the requirement across three independent axes - CPU, memory and time - so each can be tuned independently:
 
 ```groovy
 process {
@@ -30,23 +30,37 @@ process {
     memory: 256.GB,
     time: 24.h
   ]
-  withLabel:process_low {
-    cpus   = { 2 * task.attempt }
-    memory = { 14.GB * task.attempt }
-    time   = { 6.h  * task.attempt }
+  withLabel:process_cpus_low {
+    cpus   = { 2  * task.attempt }
   }
-  withLabel:process_medium {
+  withLabel:process_cpus_medium {
     cpus   = { 6  * task.attempt }
-    memory = { 42.GB * task.attempt }
-    time   = { 8.h * task.attempt }
   }
-  withLabel:process_high {
+  withLabel:process_cpus_high {
     cpus   = { 12 * task.attempt }
-    memory = { 84.GB * task.attempt }
-    time   = { 10.h * task.attempt }
+  }
+  withLabel:process_mem_low {
+    memory = { 1.GB  * task.attempt }
+  }
+  withLabel:process_mem_medium {
+    memory = { 12.GB * task.attempt }
+  }
+  withLabel:process_mem_high {
+    memory = { 72.GB * task.attempt }
+  }
+  withLabel:process_time_short {
+    time   = { 1.h  * task.attempt }
+  }
+  withLabel:process_time_medium {
+    time   = { 8.h  * task.attempt }
+  }
+  withLabel:process_time_long {
+    time   = { 20.h * task.attempt }
   }
 }
 ```
+
+Older pipelines use bundled labels (`process_low`, `process_medium`, `process_high`) that set all three axes at once. The bundled labels remain functional but are scheduled for deprecation; see the [resource labels migration guide](/docs/developing/migration-guides/process-axis-labels).
 
 The `resourceLimits` list sets the absolute maximum resources any pipeline job can request (typically matching your machine's maximum available resources).
 The label blocks define the initial default resources each pipeline job requests.
@@ -58,15 +72,17 @@ When a job runs out of memory, most nf-core pipelines will attempt to retry the 
 Copy only the labels you want to change into your custom configuration file, not all labels.
 :::
 
-To set a fixed memory allocation for all large tasks across most nf-core pipelines (without increases during retries), add this to a custom Nextflow configuration file:
+To set a fixed memory allocation for all memory-intensive tasks across most nf-core pipelines (without increases during retries), add this to a custom Nextflow configuration file:
 
 ```groovy
 process {
-  withLabel:process_high {
+  withLabel:process_mem_high {
     memory = 200.GB
   }
 }
 ```
+
+For pipelines that still use bundled labels, target `process_high` instead.
 
 :::tip
 To find the default labels and resources of the pipeline you want to optimise, go to its GitHub repository and look at the file `conf/base.config`.
