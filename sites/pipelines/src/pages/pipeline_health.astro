@@ -175,6 +175,13 @@ const countTrue = (fn) => {
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">Params block</th
                     >
+                    <th
+                        colspan="2"
+                        class="small fw-normal text-center p-1 px-3"
+                        title="Uses the secure pr-comment.yml workflow (nf-core/tools >= 4.0.3)"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">PR-comment workflow</th
+                    >
                 </tr>
             </thead>
             <tbody>
@@ -446,6 +453,19 @@ const countTrue = (fn) => {
                                     pipeline.repository_url + "/blob/dev/main.nf",
                                     "root main.nf declares a `params {}` block in dev",
                                 )}
+                                {/* Secure pr-comment.yml workflow */}
+                                {getCell(
+                                    pipeline[`${mainOrMasterBranch}_has_pr_comment_workflow`],
+                                    pipeline.repository_url +
+                                        `/blob/${mainOrMasterBranch}/.github/workflows/pr-comment.yml`,
+                                    `uses the secure pr-comment.yml workflow in ${mainOrMasterBranch}`,
+                                    "border-start",
+                                )}
+                                {getCell(
+                                    pipeline["dev_has_pr_comment_workflow"],
+                                    pipeline.repository_url + "/blob/dev/.github/workflows/pr-comment.yml",
+                                    "uses the secure pr-comment.yml workflow in dev",
+                                )}
                             </tr>
                         );
                     })
@@ -548,6 +568,12 @@ const countTrue = (fn) => {
                         >{countTrue((p) => p[(p.main_branch_exists ? "main" : "master") + "_uses_params_block"])}</td
                     >
                     <td class="text-center">{countTrue((p) => p["dev_uses_params_block"])}</td>
+                    <td class="text-center border-start"
+                        >{
+                            countTrue((p) => p[(p.main_branch_exists ? "main" : "master") + "_has_pr_comment_workflow"])
+                        }</td
+                    >
+                    <td class="text-center">{countTrue((p) => p["dev_has_pr_comment_workflow"])}</td>
                 </tr>
             </tfoot>
         </table>
