@@ -156360,6 +156360,218 @@
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
     },
     {
+      "name": "gridss_assemble",
+      "path": "modules/nf-core/gridss/assemble/meta.yml",
+      "tree_sha": "960efd59c35f39c62f30b85d34b7e298b0322cc2",
+      "files": [
+        "modules/nf-core/gridss/assemble/environment.yml",
+        "modules/nf-core/gridss/assemble/main.nf",
+        "modules/nf-core/gridss/assemble/meta.yml",
+        "modules/nf-core/gridss/assemble/tests/main.nf.test",
+        "modules/nf-core/gridss/assemble/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "gridss_assemble",
+        "description": "Assemble breakend contigs for GRIDSS structural variant calling",
+        "keywords": [
+          "bam",
+          "assembly",
+          "structural variants",
+          "gridss",
+          "breakend",
+          "variant calling"
+        ],
+        "tools": [
+          {
+            "gridss": {
+              "description": "GRIDSS: the Genomic Rearrangement IDentification Software Suite",
+              "homepage": "https://github.com/PapenfussLab/gridss",
+              "documentation": "https://github.com/PapenfussLab/gridss/wiki/GRIDSS-Documentation",
+              "tool_dev_url": "https://github.com/PapenfussLab/gridss",
+              "doi": "10.1186/s13059-021-02423-x",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:gridss"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Input BAM file(s)",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file(s)",
+                "pattern": "*.bam.bai",
+                "ontologies": []
+              }
+            },
+            {
+              "preprocess_dir": {
+                "type": "directory",
+                "description": "GRIDSS preprocessing working directories from the GRIDSS_PREPROCESS step",
+                "pattern": "*.gridss.working/"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference genome information\ne.g. `[ id:'genome' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome FASTA file",
+                "pattern": "*.{fasta,fa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "fasta_fai": {
+                "type": "file",
+                "description": "Reference genome FASTA index file",
+                "pattern": "*.fai",
+                "ontologies": []
+              }
+            },
+            {
+              "bwa_index": {
+                "type": "directory",
+                "description": "Directory containing the GRIDSS/BWA index files for the reference genome",
+                "pattern": "*"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing GRIDSS configuration information\ne.g. `[ id:'gridss_config' ]`\n"
+              }
+            },
+            {
+              "gridss_config": {
+                "type": "file",
+                "description": "Optional GRIDSS configuration file",
+                "pattern": "*.{properties,config}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "assemble_dir": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.gridss.working": {
+                  "type": "directory",
+                  "description": "GRIDSS assembly working directory containing assembled breakend contigs",
+                  "pattern": "*.gridss.working"
+                }
+              },
+              {
+                "*.sv.assembly.bam": {
+                  "type": "file",
+                  "description": "BAM file containing the assembled breakend contigs",
+                  "pattern": "*.sv.assembly.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_gridss": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process"
+                }
+              },
+              {
+                "gridss": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "CallVariants --version 2>&1 | sed 's/-gridss//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process"
+                }
+              },
+              {
+                "gridss": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "CallVariants --version 2>&1 | sed 's/-gridss//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@imsarath"
+        ],
+        "maintainers": [
+          "@imsarath"
+        ]
+      },
+      "git_sha": "dba388cb6d87d390543f2c108bb8684c4c36c644"
+    },
+    {
       "name": "gridss_generateponbedpe",
       "path": "modules/nf-core/gridss/generateponbedpe/meta.yml",
       "tree_sha": "ad3f961df151d5cd5ef7698e81c0078394628b50",
@@ -233227,7 +233439,7 @@
     {
       "name": "nanomonsv_get",
       "path": "modules/nf-core/nanomonsv/get/meta.yml",
-      "tree_sha": "0b333d5aac0db63e7e4c74f36888a584ec322636",
+      "tree_sha": "316195c29a71f92c2d31e64f88e3b49478850ff4",
       "files": [
         "modules/nf-core/nanomonsv/get/environment.yml",
         "modules/nf-core/nanomonsv/get/main.nf",
@@ -233338,7 +233550,7 @@
             {
               "control_parse_files": {
                 "type": "file",
-                "description": "Control nanomonsv parse outputs in order:\ninsertion, insertion index, deletion, deletion index,\nrearrangement, rearrangement index, bp_info, bp_info index.\nThe parse prefix defaults to `meta2.id` and can be overridden with\n`task.ext.prefix2`.\n",
+                "description": "Optional control sample nanomonsv parse outputs in order:\ninsertion, insertion index, deletion, deletion index,\nrearrangement, rearrangement index, bp_info, bp_info index.\nThe parse prefix defaults to `meta2.id` and can be overridden with\n`task.ext.prefix2`.\n",
                 "pattern": "*.{bed.gz,bed.gz.tbi,bedpe.gz,bedpe.gz.tbi}",
                 "ontologies": [
                   {
@@ -233589,7 +233801,7 @@
           "@manascripts"
         ]
       },
-      "git_sha": "baf8b4ce0375adef1e00d705a91d4d4447ef0d97"
+      "git_sha": "27099c0661915a86959a464ac0baa187f8bacacb"
     },
     {
       "name": "nanomonsv_parse",
@@ -235679,7 +235891,7 @@
     {
       "name": "ngmaster",
       "path": "modules/nf-core/ngmaster/meta.yml",
-      "tree_sha": "e1c3ea4dc78c912694c3599310e9cde78d8c0b90",
+      "tree_sha": "a2a304ceb7915a2e6b331db6e22bfb8bff4cd096",
       "files": [
         "modules/nf-core/ngmaster/environment.yml",
         "modules/nf-core/ngmaster/main.nf",
@@ -235752,19 +235964,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_ngmaster": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ngmaster": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ngmaster --version 2>&1 | sed -n '\\\\$s/^ngmaster //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ngmaster": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ngmaster --version 2>&1 | sed -n '\\\\$s/^ngmaster //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -235774,7 +236018,7 @@
           "@rpetit3"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "bea6686141b037fa1cf775e8a4bc8abda2948636"
     },
     {
       "name": "ngmerge",
@@ -409775,6 +410019,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "18756aea6cac39a78a7ca8cd51bb9ee53d4e7ba4",
-  "updated_at": "2026-07-26T14:39:53.200Z"
+  "commit_sha": "dba388cb6d87d390543f2c108bb8684c4c36c644",
+  "updated_at": "2026-07-27T03:11:00.848Z"
 }
