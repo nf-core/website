@@ -80059,7 +80059,7 @@
     {
       "name": "custom_orfnormalise",
       "path": "modules/nf-core/custom/orfnormalise/meta.yml",
-      "tree_sha": "ca7f52042901b70861b19dfad9c2f3da4c0c8253",
+      "tree_sha": "089b7ed90be109357de568850a6fa44b1cac8150",
       "files": [
         "modules/nf-core/custom/orfnormalise/environment.yml",
         "modules/nf-core/custom/orfnormalise/main.nf",
@@ -80072,7 +80072,7 @@
       "type": "module",
       "meta": {
         "name": "custom_orfnormalise",
-        "description": "Convert one ORF caller's per-sample output table into a unified BED12 plus a\nsidecar metadata TSV, ready for cross-caller merging.\n\nAn \"ORF caller\" is a tool that scans ribosome-profiling (Ribo-seq) data and\npredicts which open reading frames are being translated. Each caller writes\nits own table format and uses its own location encoding, classification\nvocabulary, and confidence score. This module reconciles five callers into\none harmonised schema. The `caller` val input selects the parser;\nsupported values:\n\n  - ribocode    (RiboCode predicted ORF table; transcript-coord input,\n                 lifted to genomic blocks against the GTF)\n  - ribotish    (Ribo-TISH predict output; GenomePos + optional Blocks)\n  - ribotricer  (Ribotricer detect-orfs translating ORFs TSV; ORF span\n                 parsed from ORF_ID, multi-exon blocks recovered by\n                 intersecting with host-transcript exon structure from\n                 the GTF)\n  - rpbp        (Rp-Bp predicted-orfs BED12 with extra columns)\n  - price       (PRICE orfs.tsv; Gedi-style Location field, already genomic)\n\nOutput BED12 column order:\n  chrom start end name score strand thickStart thickEnd itemRgb\n  blockCount blockSizes blockStarts\nThe BED `name` column carries `<caller>|<caller-native-id>`. The BED `score`\ncolumn is the caller's native score rescaled to 0-1000 (higher == more\nconfident regardless of native direction).\n\nOutput sidecar TSV columns:\n  orf_id caller sample_id chrom start end strand gene_id transcript_id\n  orf_class aa_length score\n\nHarmonised `orf_class` vocabulary written into the sidecar TSV:\n\n  - canonical_cds: ORF maps to an annotated CDS (including truncated /\n                   extended variants of one).\n  - uORF:          upstream ORF (5'UTR-resident).\n  - dORF:          downstream ORF (3'UTR-resident).\n  - novel_u:       novel / intergenic ORF not assigned to an annotated CDS.\n  - smORF:         small ORF (aa_length <= 100); promoted regardless of\n                   location-based class so downstream tools can treat\n                   smORFs uniformly.\n  - other:         internal / overlap / frame variants and anything else.\n\nPer-caller mapping notes (lossy collapses):\n\n  - PRICE `iORF` (internal ORF), `intronic`, and `orphan` map to `other`.\n    Cross-caller catalogue tracking still flags these via\n    `called_by_price`, but the specific PRICE sub-type is not preserved.\n  - Rp-Bp's predicted-orfs BED carries no ORF-type column; this module\n    defaults every Rp-Bp call to `canonical_cds` (the post-\n    selectfinalpredictionset curated set is dominated by canonical\n    CDSs). uORF/dORF/novel calls present in Rp-Bp's separate\n    `.tab.gz` / `extracted-orfs.bed.gz` files are not propagated here.\n\nEach caller's native confidence score has a \"direction\" - some are\nlower-is-better (p-values), some are higher-is-better (Bayes factors,\nphase scores):\n\n  ribocode:   min  (combined p-value)\n  ribotish:   min  (combined p-value)\n  ribotricer: max  (phase_score)\n  rpbp:       max  (Bayes factor mean)\n  price:      min  (p-value)\n\nDownstream merging uses this to pick the best per-ORF call.\n",
+        "description": "Convert one ORF caller's per-sample output table into a unified BED12 plus a\nsidecar metadata TSV, ready for cross-caller merging.\n\nAn \"ORF caller\" is a tool that scans ribosome-profiling (Ribo-seq) data and\npredicts which open reading frames are being translated. Each caller writes\nits own table format and uses its own location encoding, classification\nvocabulary, and confidence score. This module reconciles five callers into\none harmonised schema. The `caller` val input selects the parser;\nsupported values:\n\n  - ribocode    (RiboCode predicted ORF table; transcript-coord input,\n                 lifted to genomic blocks against the GTF)\n  - ribotish    (Ribo-TISH predict output; GenomePos + optional Blocks)\n  - ribotricer  (Ribotricer detect-orfs translating ORFs TSV; ORF span\n                 parsed from ORF_ID, multi-exon blocks recovered by\n                 intersecting with host-transcript exon structure from\n                 the GTF)\n  - rpbp        (Rp-Bp predicted-orfs BED12 with extra columns)\n  - price       (PRICE orfs.tsv; Gedi-style Location field, already genomic)\n\nOutput BED12 column order:\n  chrom start end name score strand thickStart thickEnd itemRgb\n  blockCount blockSizes blockStarts\nThe BED `name` column carries `<caller>|<caller-native-id>`. The BED `score`\ncolumn is the caller's native score rescaled to 0-1000 (higher == more\nconfident regardless of native direction).\n\nOutput sidecar TSV columns:\n  orf_id caller sample_id chrom start end strand gene_id transcript_id\n  orf_class aa_length score\n\nHarmonised `orf_class` vocabulary written into the sidecar TSV:\n\n  - canonical_cds: ORF maps to an annotated CDS (including truncated /\n                   extended variants of one).\n  - uORF:          upstream ORF (5'UTR-resident).\n  - dORF:          downstream ORF (3'UTR-resident).\n  - novel_u:       novel / intergenic ORF not assigned to an annotated CDS.\n  - smORF:         small ORF (aa_length <= 100); promoted regardless of\n                   location-based class so downstream tools can treat\n                   smORFs uniformly.\n  - other:         internal / overlap / frame variants and anything else.\n\nPer-caller mapping notes (lossy collapses):\n\n  - PRICE's `Gene` column concatenates every gene overlapping an ORF's\n    genomic span, so `gene_id` is resolved from the GTF via the ORF's\n    transcript id; the `Gene` column is used only for transcripts absent\n    from the annotation, and can then carry a multi-gene value.\n  - PRICE `iORF` (internal ORF), `intronic`, and `orphan` map to `other`.\n    Cross-caller catalogue tracking still flags these via\n    `called_by_price`, but the specific PRICE sub-type is not preserved.\n  - Rp-Bp's predicted-orfs BED carries no ORF-type column; this module\n    defaults every Rp-Bp call to `canonical_cds` (the post-\n    selectfinalpredictionset curated set is dominated by canonical\n    CDSs). uORF/dORF/novel calls present in Rp-Bp's separate\n    `.tab.gz` / `extracted-orfs.bed.gz` files are not propagated here.\n\nEach caller's native confidence score has a \"direction\" - some are\nlower-is-better (p-values), some are higher-is-better (Bayes factors,\nphase scores):\n\n  ribocode:   min  (combined p-value)\n  ribotish:   min  (combined p-value)\n  ribotricer: max  (phase_score)\n  rpbp:       max  (Bayes factor mean)\n  price:      min  (p-value)\n\nDownstream merging uses this to pick the best per-ORF call.\n",
         "keywords": [
           "orf",
           "ribo-seq",
@@ -80279,7 +80279,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "edbcc72a8def5a4439106a26e554056121facaf1"
+      "git_sha": "c13f18dbfc4910d9287d9d3fff7b83124e108907"
     },
     {
       "name": "custom_pcaclustering",
@@ -235836,7 +235836,7 @@
     {
       "name": "nextgenmap",
       "path": "modules/nf-core/nextgenmap/meta.yml",
-      "tree_sha": "6e9a2092a1940295df86b032bcdd1f3afdbadf9a",
+      "tree_sha": "16d38025d876211cddf2428def22405d1634c19d",
       "files": [
         "modules/nf-core/nextgenmap/environment.yml",
         "modules/nf-core/nextgenmap/main.nf",
@@ -235915,19 +235915,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_nextgenmap": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "nextgenmap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ngm --version 2>&1 | sed -n '1s/^.*NextGenMap //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "nextgenmap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ngm --version 2>&1 | sed -n '1s/^.*NextGenMap //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -235937,7 +235969,7 @@
           "@cmatkhan"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "b793f7a2b9687eebaf9d8ce27ac59322811a193d"
     },
     {
       "name": "ngmaster",
@@ -292356,7 +292388,7 @@
     {
       "name": "ribotish_predict",
       "path": "modules/nf-core/ribotish/predict/meta.yml",
-      "tree_sha": "13e35cda1c775fdceea19ab20c03116f43c73c32",
+      "tree_sha": "728f080f920284ab0aea4151a9e44a4964e57514",
       "files": [
         "modules/nf-core/ribotish/predict/environment.yml",
         "modules/nf-core/ribotish/predict/main.nf",
@@ -292647,7 +292679,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "e832be52c6e9843c408e69c4e4cc1a327b7e3609",
+      "git_sha": "a8e13eeab3b80443afaa64e82b255d429b0fb9d5",
       "pipelines": [
         {
           "name": "riboseq",
@@ -406276,7 +406308,7 @@
     {
       "name": "orftable_fasta_gtf_buildorfcatalogue",
       "path": "subworkflows/nf-core/orftable_fasta_gtf_buildorfcatalogue/meta.yml",
-      "tree_sha": "52dba253f9d6e692ac4b50427a918a0f698ff42e",
+      "tree_sha": "53b44aa2a9fcf1d39595530f3e2209309e19cbb4",
       "files": [
         "subworkflows/nf-core/orftable_fasta_gtf_buildorfcatalogue/main.nf",
         "subworkflows/nf-core/orftable_fasta_gtf_buildorfcatalogue/meta.yml",
@@ -406374,7 +406406,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "edbcc72a8def5a4439106a26e554056121facaf1"
+      "git_sha": "23ca2b32dacbfc86c23af4ea6413ce96a022ea85"
     },
     {
       "name": "quant_tximport_summarizedexperiment",
@@ -410310,6 +410342,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "8742a1eaf23f51f8940e5afc2e216bda1246615d",
-  "updated_at": "2026-07-27T15:08:59.079Z"
+  "commit_sha": "a8e13eeab3b80443afaa64e82b255d429b0fb9d5",
+  "updated_at": "2026-07-27T20:33:50.445Z"
 }
