@@ -180802,7 +180802,7 @@
     {
       "name": "iqtree",
       "path": "modules/nf-core/iqtree/meta.yml",
-      "tree_sha": "af27be6b28afef90549188d0394bbf198ae16826",
+      "tree_sha": "fc1dd93d35a7fd2126b9ec1f33bbeffe63209dda",
       "files": [
         "modules/nf-core/iqtree/environment.yml",
         "modules/nf-core/iqtree/main.nf",
@@ -181156,6 +181156,24 @@
               }
             ]
           ],
+          "best_scheme": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.best_scheme": {
+                  "type": "file",
+                  "description": "File containing the best-fit partitioning scheme selected by\nModelFinder partition merging (-m MFP+MERGE/TESTMERGE)\n",
+                  "pattern": "*.{best_scheme}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
           "splits": [
             [
               {
@@ -181291,7 +181309,7 @@
                 }
               },
               {
-                "*.rate  ": {
+                "*.rate": {
                   "type": "file",
                   "description": "File containing inferred site-specific\nevolutionary rates (-wsr)\n",
                   "pattern": "*.{rate}",
@@ -181369,7 +181387,7 @@
                 }
               },
               {
-                "iqtree -version 2>&1 | head -n1 | sed 's/^IQ-TREE multicore version //;s/ .*//'": {
+                "iqtree -version 2>&1 | grep -oE '[0-9]+[.][0-9]+[.][0-9]+' | head -n1": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -181393,7 +181411,7 @@
                 }
               },
               {
-                "iqtree -version 2>&1 | head -n1 | sed 's/^IQ-TREE multicore version //;s/ .*//'": {
+                "iqtree -version 2>&1 | grep -oE '[0-9]+[.][0-9]+[.][0-9]+' | head -n1": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -181407,10 +181425,11 @@
         ],
         "maintainers": [
           "@avantonder",
-          "@aunderwo"
+          "@aunderwo",
+          "@chriswyatt1"
         ]
       },
-      "git_sha": "55ca0738629246b23a84394e94cf50a542f6d72d",
+      "git_sha": "fb60d28393f3c278daecbd276e7d8cd502689a8b",
       "pipelines": [
         {
           "name": "pathogensurveillance",
@@ -233308,7 +233327,7 @@
     {
       "name": "nanolyse",
       "path": "modules/nf-core/nanolyse/meta.yml",
-      "tree_sha": "7776e71d142e36a9445e374df7bebafc23267152",
+      "tree_sha": "5d25625b15da09e477f014ad37c523a12f6e2e1f",
       "files": [
         "modules/nf-core/nanolyse/environment.yml",
         "modules/nf-core/nanolyse/main.nf",
@@ -233402,19 +233421,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_nanolyse": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "nanolyse": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "NanoLyse --version 2>&1 | sed -e \"s/NanoLyse //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "nanolyse": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "NanoLyse --version 2>&1 | sed -e \"s/NanoLyse //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -233424,7 +233475,7 @@
           "@yuukiiwa"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "8742a1eaf23f51f8940e5afc2e216bda1246615d",
       "pipelines": [
         {
           "name": "mag",
@@ -236023,7 +236074,7 @@
     {
       "name": "ngmerge",
       "path": "modules/nf-core/ngmerge/meta.yml",
-      "tree_sha": "5dc993784a04877af30b8ed4e659058a3f3dcbba",
+      "tree_sha": "2ded35f671bdd162168fe4f650932811c88aad04",
       "files": [
         "modules/nf-core/ngmerge/environment.yml",
         "modules/nf-core/ngmerge/main.nf",
@@ -236144,19 +236195,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_ngmerge": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ngmerge": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "NGmerge --version 2>&1 | sed -n '1s/^NGmerge, version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ngmerge": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "NGmerge --version 2>&1 | sed -n '1s/^NGmerge, version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -236168,7 +236251,7 @@
           "@jsh58"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "695c01ca9d4e8d3f0ae473fa3efd8fcebad3a570"
     },
     {
       "name": "ngsbits_bedannotategc",
@@ -274261,8 +274344,10 @@
     {
       "name": "prodigal",
       "path": "modules/nf-core/prodigal/meta.yml",
-      "tree_sha": "8e817769e60265b82eebbae37279d72ec1583fa7",
+      "tree_sha": "6e2f7e8c933ea1023f93f3bf307efd5467f41000",
       "files": [
+        "modules/nf-core/prodigal/.conda-lock/linux_amd64-bd-27b5cdb2d516f347_1.txt",
+        "modules/nf-core/prodigal/.conda-lock/linux_arm64-bd-8f955ee5391535ca_1.txt",
         "modules/nf-core/prodigal/environment.yml",
         "modules/nf-core/prodigal/main.nf",
         "modules/nf-core/prodigal/meta.yml",
@@ -274441,9 +274526,43 @@
         ],
         "maintainers": [
           "@grst"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/prodigal_pigz:27b5cdb2d516f347",
+              "build_id": "bd-27b5cdb2d516f347_1",
+              "scan_id": "sc-0f8e4b331138fcc6_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/prodigal_pigz:8f955ee5391535ca",
+              "build_id": "bd-8f955ee5391535ca_1",
+              "scan_id": "sc-3ba39ec5347b1408_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/prodigal_pigz:0f538b4630f0a3a8",
+              "build_id": "bd-0f538b4630f0a3a8_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/50/50ed887c619464b235c905712471593120bc6821d6dc5949b5dae4bf688374fa/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/prodigal_pigz:91d31a94f3a16dca",
+              "build_id": "bd-91d31a94f3a16dca_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/10/1002f40f4e92c0ba2997f63be327489c8593ba96e6d470679d5857c467bd180d/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/prodigal/.conda-lock/linux_amd64-bd-27b5cdb2d516f347_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/prodigal/.conda-lock/linux_arm64-bd-8f955ee5391535ca_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9552f5a69a8149332b248ec9b1a7f1a2a292ec4c",
+      "git_sha": "04adc8db7363044250f2acb95a785df40b27ea40",
       "pipelines": [
         {
           "name": "funcscan",
@@ -274466,8 +274585,10 @@
     {
       "name": "prokka",
       "path": "modules/nf-core/prokka/meta.yml",
-      "tree_sha": "9141eb86aa2861bd3988a8ae9aaeaa33cf670a9a",
+      "tree_sha": "608abea2da102e294957d24dd63ab93658ae4422",
       "files": [
+        "modules/nf-core/prokka/.conda-lock/linux_amd64-bd-f21b98bcef4c3579_1.txt",
+        "modules/nf-core/prokka/.conda-lock/linux_arm64-bd-2b8a3d67cd9e777a_1.txt",
         "modules/nf-core/prokka/environment.yml",
         "modules/nf-core/prokka/main.nf",
         "modules/nf-core/prokka/meta.yml",
@@ -274800,9 +274921,43 @@
         ],
         "maintainers": [
           "@rpetit3"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/prokka_openjdk_parallel:f21b98bcef4c3579",
+              "build_id": "bd-f21b98bcef4c3579_1",
+              "scan_id": "sc-f6c02317325ec0c7_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/prokka_openjdk_parallel:2b8a3d67cd9e777a",
+              "build_id": "bd-2b8a3d67cd9e777a_1",
+              "scan_id": "sc-0457a5c5f64824d3_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/prokka_openjdk_parallel:f9c80fd1fb3dcd19",
+              "build_id": "bd-f9c80fd1fb3dcd19_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/7b/7bc89d4083c0a4baaaca0ef9ac0ba65e0feaebd8d88fe1c16c47041cbc67f360/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/prokka_openjdk_parallel:da4872acb14bdec7",
+              "build_id": "bd-da4872acb14bdec7_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e9/e9240123660eb1d166ae9919c463b77183a2dd63a4c43bbcecd73ffd7a5fa471/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/prokka/.conda-lock/linux_amd64-bd-f21b98bcef4c3579_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/prokka/.conda-lock/linux_arm64-bd-2b8a3d67cd9e777a_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "2dc23692bd1c3a23a12cfd959808a8fe7e3c6557",
+      "git_sha": "a0fe96944016c6cb69d8b64ffc635c71b76310ae",
       "pipelines": [
         {
           "name": "bacass",
@@ -279556,8 +279711,10 @@
     {
       "name": "pydamage_analyze",
       "path": "modules/nf-core/pydamage/analyze/meta.yml",
-      "tree_sha": "9add50dc23a71058b5fbacda5cc188dfb83b4749",
+      "tree_sha": "64aaf802875593b05d6a3176fd0063173eeee331",
       "files": [
+        "modules/nf-core/pydamage/analyze/.conda-lock/linux_amd64-bd-1c195c7c48e87ebb_1.txt",
+        "modules/nf-core/pydamage/analyze/.conda-lock/linux_arm64-bd-f34ec9a9a17b6a3f_1.txt",
         "modules/nf-core/pydamage/analyze/environment.yml",
         "modules/nf-core/pydamage/analyze/main.nf",
         "modules/nf-core/pydamage/analyze/meta.yml",
@@ -279645,19 +279802,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_pydamage": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pydamage": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "NUMBA_CACHE_DIR=./tmp pydamage --version | sed -n 's/pydamage, version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pydamage": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "NUMBA_CACHE_DIR=./tmp pydamage --version | sed -n 's/pydamage, version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -279665,9 +279854,43 @@
         ],
         "maintainers": [
           "@maxibor"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/pydamage:1.0--1c195c7c48e87ebb",
+              "build_id": "bd-1c195c7c48e87ebb_1",
+              "scan_id": "sc-510b8d0d2be9820a_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/pydamage:1.0--f34ec9a9a17b6a3f",
+              "build_id": "bd-f34ec9a9a17b6a3f_1",
+              "scan_id": "sc-e08d4ecbb9773f21_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/pydamage:1.0--a216f9aef981c5d6",
+              "build_id": "bd-a216f9aef981c5d6_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/5b/5b5b5289345c54b75f42a54d300d222b9c0de8de5a60ecbe9ad829b6b85f1abd/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/pydamage:1.0--ecc649418d55b511",
+              "build_id": "bd-ecc649418d55b511_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/99/997ea943a81a9f008fc556b4f8722fb8900ac0bb234593aa011974018f8ac32e/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/pydamage/analyze/.conda-lock/linux_amd64-bd-1c195c7c48e87ebb_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/pydamage/analyze/.conda-lock/linux_arm64-bd-f34ec9a9a17b6a3f_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "7b2348502f383f54b2b3107eab8d63f15554900c",
       "pipelines": [
         {
           "name": "coproid",
@@ -279682,8 +279905,10 @@
     {
       "name": "pydamage_filter",
       "path": "modules/nf-core/pydamage/filter/meta.yml",
-      "tree_sha": "e2b074042cea2f06d5af6b475158b1a2ec53a58f",
+      "tree_sha": "ed4b38916db8d74102781d103ad8351639b60d52",
       "files": [
+        "modules/nf-core/pydamage/filter/.conda-lock/linux_amd64-bd-1c195c7c48e87ebb_1.txt",
+        "modules/nf-core/pydamage/filter/.conda-lock/linux_arm64-bd-f34ec9a9a17b6a3f_1.txt",
         "modules/nf-core/pydamage/filter/environment.yml",
         "modules/nf-core/pydamage/filter/main.nf",
         "modules/nf-core/pydamage/filter/meta.yml",
@@ -279767,19 +279992,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_pydamage": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pydamage": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "NUMBA_CACHE_DIR=./tmp pydamage --version | sed -n 's/pydamage, version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pydamage": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "NUMBA_CACHE_DIR=./tmp pydamage --version | sed -n 's/pydamage, version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -279787,9 +280044,43 @@
         ],
         "maintainers": [
           "@maxibor"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/pydamage:1.0--f34ec9a9a17b6a3f",
+              "build_id": "bd-f34ec9a9a17b6a3f_1",
+              "scan_id": "sc-e08d4ecbb9773f21_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/pydamage:1.0--1c195c7c48e87ebb",
+              "build_id": "bd-1c195c7c48e87ebb_1",
+              "scan_id": "sc-510b8d0d2be9820a_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/pydamage:1.0--a216f9aef981c5d6",
+              "build_id": "bd-a216f9aef981c5d6_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/5b/5b5b5289345c54b75f42a54d300d222b9c0de8de5a60ecbe9ad829b6b85f1abd/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/pydamage:1.0--ecc649418d55b511",
+              "build_id": "bd-ecc649418d55b511_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/99/997ea943a81a9f008fc556b4f8722fb8900ac0bb234593aa011974018f8ac32e/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/pydamage/filter/.conda-lock/linux_amd64-bd-1c195c7c48e87ebb_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/pydamage/filter/.conda-lock/linux_arm64-bd-f34ec9a9a17b6a3f_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "7b2348502f383f54b2b3107eab8d63f15554900c",
       "pipelines": [
         {
           "name": "mag",
@@ -404135,7 +404426,7 @@
     {
       "name": "fastq_remove_rrna",
       "path": "subworkflows/nf-core/fastq_remove_rrna/meta.yml",
-      "tree_sha": "5ed3076201d7a089e8fe4a36a54d6dd27c7d6ce6",
+      "tree_sha": "0cc6a8898440f59269560f4b47d9b271226ba442",
       "files": [
         "subworkflows/nf-core/fastq_remove_rrna/main.nf",
         "subworkflows/nf-core/fastq_remove_rrna/meta.yml",
@@ -404318,7 +404609,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "d07a945f421a4a91ce4e5a22db63e0e7f8741607",
+      "git_sha": "6b6373229f00bf18285f1bee78ecc10db7dba68b",
       "pipelines": [
         {
           "name": "rnaseq",
@@ -405297,7 +405588,7 @@
     {
       "name": "gtf_hybridmerge_gffcompare",
       "path": "subworkflows/nf-core/gtf_hybridmerge_gffcompare/meta.yml",
-      "tree_sha": "c2cd2e7f8609c1e3e0821c16e4ed1b1bfa61ac8a",
+      "tree_sha": "1ed97ee5d682abbb350115dee5d2bfea0a8aa1e6",
       "files": [
         "subworkflows/nf-core/gtf_hybridmerge_gffcompare/awk/concat.awk",
         "subworkflows/nf-core/gtf_hybridmerge_gffcompare/awk/filter.awk",
@@ -405403,7 +405694,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "bf60969a3abb40d294cffd5105f574637bfa6260"
+      "git_sha": "5ca7e22642f230ed5fbc6684857421cf6ccd7393"
     },
     {
       "name": "h5ad_removebackground_barcodes_cellbender_anndata",
@@ -410019,6 +410310,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "dba388cb6d87d390543f2c108bb8684c4c36c644",
-  "updated_at": "2026-07-27T03:11:00.848Z"
+  "commit_sha": "8742a1eaf23f51f8940e5afc2e216bda1246615d",
+  "updated_at": "2026-07-27T15:08:59.079Z"
 }
