@@ -3,7 +3,7 @@
     {
       "name": "aardvark_compare",
       "path": "modules/nf-core/aardvark/compare/meta.yml",
-      "tree_sha": "b09a088611fc00356e48a5d70bb42c9929b8caaf",
+      "tree_sha": "90a03619028446190051c924568d671266f8fd40",
       "files": [
         "modules/nf-core/aardvark/compare/environment.yml",
         "modules/nf-core/aardvark/compare/main.nf",
@@ -25,7 +25,7 @@
         "tools": [
           {
             "aardvark": {
-              "description": "A benchmarking tool that constructs haplotype sequences and it enables basepair-level\ncomparisons that work across all variant types. The program evaluates genotypes using traditional,\nstrict exact-match scoring, while also allowing for implicit partial credit when variant calls are an\ninexact but close match.      \n",
+              "description": "A benchmarking tool that constructs haplotype sequences and it enables basepair-level\ncomparisons that work across all variant types. The program evaluates genotypes using traditional,\nstrict exact-match scoring, while also allowing for implicit partial credit when variant calls are an\ninexact but close match.\n",
               "homepage": "https://github.com/PacificBiosciences/aardvark",
               "documentation": "https://github.com/PacificBiosciences/aardvark/blob/main/docs/methods.md#compare-command",
               "tool_dev_url": "https://github.com/PacificBiosciences/aardvark",
@@ -344,12 +344,12 @@
           "@kubranarci"
         ]
       },
-      "git_sha": "5b47f16db0d7e7f73acdf30d0f152dad98c735f9"
+      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec"
     },
     {
       "name": "aardvark_merge",
       "path": "modules/nf-core/aardvark/merge/meta.yml",
-      "tree_sha": "1c91720e009758a4ca8ac0c8d9240925c9394ece",
+      "tree_sha": "6f9576340d679429f7a5795afe9caa4052e20b67",
       "files": [
         "modules/nf-core/aardvark/merge/environment.yml",
         "modules/nf-core/aardvark/merge/main.nf",
@@ -372,7 +372,7 @@
         "tools": [
           {
             "aardvark": {
-              "description": "The aardvark merge command provides a method to merge variant calls. This functionality is helpful when multiple \nvariant callers or technologies are used for the same sample. Merging variant sets can be complex and Aardvark \nsimplifies this process by modeling the variants as haplotypes. This allows for different merge strategies for \nresolving conflicting variant sets.\n",
+              "description": "The aardvark merge command provides a method to merge variant calls. This functionality is helpful when multiple\nvariant callers or technologies are used for the same sample. Merging variant sets can be complex and Aardvark\nsimplifies this process by modeling the variants as haplotypes. This allows for different merge strategies for\nresolving conflicting variant sets.\n",
               "homepage": "https://github.com/PacificBiosciences/aardvark",
               "documentation": "https://github.com/PacificBiosciences/aardvark/blob/main/docs/methods.md#merge-strategies",
               "tool_dev_url": "https://github.com/PacificBiosciences/aardvark",
@@ -669,7 +669,7 @@
           "@kubranarci"
         ]
       },
-      "git_sha": "91a2e490f9a94561307d32600ea4a5d65ab6f4ce"
+      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec"
     },
     {
       "name": "abacas",
@@ -9185,7 +9185,7 @@
     {
       "name": "angsd_soapsnpcalibration",
       "path": "modules/nf-core/angsd/soapsnpcalibration/meta.yml",
-      "tree_sha": "31797a833ca37c01cb7b79b95a2047c5f60fbb5a",
+      "tree_sha": "7a886b319b32f941b495d60dcf1ccc7bff28fcbb",
       "files": [
         "modules/nf-core/angsd/soapsnpcalibration/environment.yml",
         "modules/nf-core/angsd/soapsnpcalibration/main.nf",
@@ -9359,7 +9359,7 @@
           "@ASendellPrice"
         ]
       },
-      "git_sha": "988180a7b26d87986bfc8fbd95152275736b945a"
+      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec"
     },
     {
       "name": "anndata_barcodes",
@@ -18141,7 +18141,7 @@
     {
       "name": "bakta_bakta",
       "path": "modules/nf-core/bakta/bakta/meta.yml",
-      "tree_sha": "d989a0cb0d6976efcfb9bddfcd6c5d193bc1e08e",
+      "tree_sha": "5a861e9a810bdcf7f2de095c1e7b1a85c78fd516",
       "files": [
         "modules/nf-core/bakta/bakta/environment.yml",
         "modules/nf-core/bakta/bakta/main.nf",
@@ -18487,7 +18487,7 @@
               {
                 "${prefix}.json": {
                   "type": "file",
-                  "description": "Machine-readable genome annotation output in JSON format,\nincluding genome metadata, annotated genomic features,          \n",
+                  "description": "Machine-readable genome annotation output in JSON format,\nincluding genome metadata, annotated genomic features,\n",
                   "pattern": "*.json",
                   "ontologies": [
                     {
@@ -18556,7 +18556,7 @@
           "@jfy133"
         ]
       },
-      "git_sha": "302a84316b0f12eae37bb53e43a88dc4f491a08c",
+      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec",
       "pipelines": [
         {
           "name": "bacass",
@@ -22077,6 +22077,10 @@
         {
           "name": "metatdenovo",
           "version": "1.4.0"
+        },
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
         },
         {
           "name": "taxprofiler",
@@ -41970,7 +41974,7 @@
     {
       "name": "bowtie2_align",
       "path": "modules/nf-core/bowtie2/align/meta.yml",
-      "tree_sha": "c7d1e57019e5250448fa3a325c7063e76a564358",
+      "tree_sha": "6f6b8dd87579d009eabecb40c218f27b51007ebb",
       "files": [
         "modules/nf-core/bowtie2/align/environment.yml",
         "modules/nf-core/bowtie2/align/main.nf",
@@ -42346,7 +42350,7 @@
           "@drpatelh"
         ]
       },
-      "git_sha": "0cd85f32cf1a1828205b16e4267277ba9457570b",
+      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec",
       "pipelines": [
         {
           "name": "atacseq",
@@ -47760,7 +47764,13 @@
           "@nh13"
         ]
       },
-      "git_sha": "cab334f632708de2679161f713dd969bfa491a25"
+      "git_sha": "cab334f632708de2679161f713dd969bfa491a25",
+      "pipelines": [
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bwameme_index",
@@ -62613,6 +62623,10 @@
         {
           "name": "pacsomatic",
           "version": "dev"
+        },
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
         }
       ]
     },
@@ -62836,7 +62850,7 @@
     {
       "name": "cleanifier_download",
       "path": "modules/nf-core/cleanifier/download/meta.yml",
-      "tree_sha": "14c81a14164153550a5173260ef2a18fe5d5acb9",
+      "tree_sha": "64e4d2c52d7eabfcbd268024c525a55c84bf3bfb",
       "files": [
         "modules/nf-core/cleanifier/download/environment.yml",
         "modules/nf-core/cleanifier/download/main.nf",
@@ -62881,7 +62895,7 @@
             {
               "version": {
                 "type": "string",
-                "description": "The version of the index to download. \nOptions: 'probabilistic' (default) or 'exact'\n"
+                "description": "The version of the index to download.\nOptions: 'probabilistic' (default) or 'exact'\n"
               }
             }
           ]
@@ -62977,12 +62991,12 @@
           "@LeonHornich"
         ]
       },
-      "git_sha": "49e05468deaf5bff938e39bbbc61266df7c47ff4"
+      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec"
     },
     {
       "name": "cleanifier_filter",
       "path": "modules/nf-core/cleanifier/filter/meta.yml",
-      "tree_sha": "256dd09f4e722c65d9edcc389ecc877b39eef7b9",
+      "tree_sha": "e21f8530d061538a3d7f7cf48c5be13d6397eb75",
       "files": [
         "modules/nf-core/cleanifier/filter/environment.yml",
         "modules/nf-core/cleanifier/filter/main.nf",
@@ -63144,12 +63158,12 @@
           "@LeonHornich"
         ]
       },
-      "git_sha": "49e05468deaf5bff938e39bbbc61266df7c47ff4"
+      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec"
     },
     {
       "name": "cleanifier_index",
       "path": "modules/nf-core/cleanifier/index/meta.yml",
-      "tree_sha": "a086d20834e46d35daa9bbfb1bf9d78c41c66975",
+      "tree_sha": "1509482219a92b678db84ba4b07b1ccc87127453",
       "files": [
         "modules/nf-core/cleanifier/index/environment.yml",
         "modules/nf-core/cleanifier/index/main.nf",
@@ -63296,7 +63310,7 @@
           "@LeonHornich"
         ]
       },
-      "git_sha": "49e05468deaf5bff938e39bbbc61266df7c47ff4"
+      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec"
     },
     {
       "name": "clipkit",
@@ -64943,7 +64957,7 @@
     {
       "name": "cnaqc",
       "path": "modules/nf-core/cnaqc/meta.yml",
-      "tree_sha": "07c9ecd4e58d69a4e004ad8dd70abdfe1029bb49",
+      "tree_sha": "061ce1bd7406784dc0aec985a0c4f1746be3afc8",
       "files": [
         "modules/nf-core/cnaqc/environment.yml",
         "modules/nf-core/cnaqc/main.nf",
@@ -65144,7 +65158,7 @@
           "@vvvirgy"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec",
       "pipelines": [
         {
           "name": "tumourevo",
@@ -109777,6 +109791,10 @@
           "version": "dev"
         },
         {
+          "name": "pathogenepidemiology",
+          "version": "dev"
+        },
+        {
           "name": "pathogensurveillance",
           "version": "1.1.0"
         },
@@ -129150,6 +129168,10 @@
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
         {
+          "name": "pathogenepidemiology",
+          "version": "dev"
+        },
+        {
           "name": "sarek",
           "version": "3.9.0"
         },
@@ -134560,6 +134582,10 @@
           "version": "dev"
         },
         {
+          "name": "pathogenepidemiology",
+          "version": "dev"
+        },
+        {
           "name": "sarek",
           "version": "3.9.0"
         }
@@ -135263,6 +135289,10 @@
         {
           "name": "pacvar",
           "version": "1.1.0"
+        },
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
         },
         {
           "name": "rnavar",
@@ -136307,6 +136337,10 @@
         {
           "name": "oncoanalyser",
           "version": "2.3.0"
+        },
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -140894,6 +140928,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
+        },
         {
           "name": "rnadnavar",
           "version": "1.0.0"
@@ -161451,7 +161489,7 @@
     {
       "name": "hackgap_count",
       "path": "modules/nf-core/hackgap/count/meta.yml",
-      "tree_sha": "8541077e16b7a7342b41fb5be7ca978f3b40f81e",
+      "tree_sha": "95606ece85da61cc3dc58de3ab30e546d6093dcd",
       "files": [
         "modules/nf-core/hackgap/count/environment.yml",
         "modules/nf-core/hackgap/count/main.nf",
@@ -161591,7 +161629,7 @@
           "@LeonHornich"
         ]
       },
-      "git_sha": "10c8c7af2bcd2acbd928fcfaa639b7fb6868eb90"
+      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec"
     },
     {
       "name": "hamronization_abricate",
@@ -207935,7 +207973,7 @@
     {
       "name": "medaka",
       "path": "modules/nf-core/medaka/meta.yml",
-      "tree_sha": "c6f6cad22ada8838b65a955a614ef46e5897dfb8",
+      "tree_sha": "a8b3cf98897e93fee7ba530bd2fb35b0caa71e3a",
       "files": [
         "modules/nf-core/medaka/environment.yml",
         "modules/nf-core/medaka/main.nf",
@@ -208073,7 +208111,7 @@
           "@avantonder"
         ]
       },
-      "git_sha": "13c499c244bf0e46ec222ae4fcb4074cf5eef1fe",
+      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec",
       "pipelines": [
         {
           "name": "crisprseq",
@@ -218765,6 +218803,10 @@
           "version": "2.0.0"
         },
         {
+          "name": "pathogenepidemiology",
+          "version": "dev"
+        },
+        {
           "name": "radseq",
           "version": "dev"
         },
@@ -218924,6 +218966,10 @@
         {
           "name": "mag",
           "version": "5.4.2"
+        },
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
         },
         {
           "name": "radseq",
@@ -224743,6 +224789,290 @@
       "git_sha": "95868cc6a5a108bda21f045e95f5fb1aa2258ede"
     },
     {
+      "name": "mobsuite_typer",
+      "path": "modules/nf-core/mobsuite/typer/meta.yml",
+      "tree_sha": "7c7facd09594efd620ced0b53cf0e73fd7b6cdf6",
+      "files": [
+        "modules/nf-core/mobsuite/typer/environment.yml",
+        "modules/nf-core/mobsuite/typer/main.nf",
+        "modules/nf-core/mobsuite/typer/meta.yml",
+        "modules/nf-core/mobsuite/typer/tests/main.nf.test",
+        "modules/nf-core/mobsuite/typer/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "mobsuite_typer",
+        "description": "Bacterial plasmid typing and mobility prediction",
+        "keywords": [
+          "bacteria",
+          "plasmid",
+          "typing",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "mobsuite": {
+              "description": "MOB-suite is a set of tools for finding, typing and reconstruction of plasmids from draft and complete genome assemblies.",
+              "homepage": "https://github.com/phac-nml/mob-suite/blob/master/README.md",
+              "documentation": "https://github.com/phac-nml/mob-suite/blob/master/README.md",
+              "tool_dev_url": "https://github.com/phac-nml/mob-suite",
+              "doi": "10.1099/mgen.0.000435",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": "biotools:mob_suite"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "A bacterial genome assembly in FASTA format",
+                "pattern": "*.{fasta,fa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "db": {
+              "type": "directory",
+              "description": "Optional local copy of MOB-suite database directory",
+              "pattern": "databases/"
+            }
+          },
+          {
+            "plasmid_mash_db": {
+              "type": "file",
+              "description": "Optional Companion Mash database of reference database.\nIf not supplied, default internal `ncbi_plasmid_full_seqs.fas.msh` is used.\n",
+              "pattern": "*.msh",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3911"
+                }
+              ]
+            }
+          },
+          {
+            "plasmid_meta_txt": {
+              "type": "file",
+              "description": "Optional MOB-cluster plasmid cluster formatted file matched to the reference\nplasmid db.\nIf not supplied, default internal `clusters.txt` is used.\n",
+              "pattern": "*.txt",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3671"
+                }
+              ]
+            }
+          },
+          {
+            "plasmid_replicons_fas": {
+              "type": "file",
+              "description": "Optional nucleotide FASTA file of plasmid replicons\nIf not supplied, default internal `rep.dna.fas` is used.\n",
+              "pattern": "*.{fasta,fna,fa,fas}",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_1929"
+                }
+              ]
+            }
+          },
+          {
+            "repetitive_mask_fas": {
+              "type": "file",
+              "description": "Optional nucleotide FASTA file of known repetitive elements\nIf not supplied, default internal `repetitive.dna.fas` is used.\n",
+              "pattern": "*.{fasta,fna,fa,fas}",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_1929"
+                }
+              ]
+            }
+          },
+          {
+            "plasmid_mob_faa": {
+              "type": "file",
+              "description": "Optional protein FASTA file of plasmid mobility proteins\nIf not supplied, default internal `mob.proteins.faa` is used.\n",
+              "pattern": "*.{fasta,faa,fa,fas}",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_1929"
+                }
+              ]
+            }
+          },
+          {
+            "plasmid_mpf_faa": {
+              "type": "file",
+              "description": "Optional protein FASTA file of plasmid mating pair formation proteins\nIf not supplied, default internal `mpf.proteins.faa` is used.\n",
+              "pattern": "*.{fasta,faa,fa,fas}",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_1929"
+                }
+              ]
+            }
+          },
+          {
+            "plasmid_orit_fas": {
+              "type": "file",
+              "description": "Optional nucleotide FASTA file of known plasmid oriT dna sequences\nIf not supplied, default internal `orit.fas` is used.\n",
+              "pattern": "*.{fasta,fna,fa,fas}",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_1929"
+                }
+              ]
+            }
+          },
+          {
+            "generate_biomarker_report": {
+              "type": "boolean",
+              "description": "Whether to generate a biomarker report file"
+            }
+          },
+          {
+            "generate_mge_report": {
+              "type": "boolean",
+              "description": "Whether to generate a mobile genetic element (MGE) report file"
+            }
+          }
+        ],
+        "output": {
+          "report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "MOB-suite typer report file",
+                  "pattern": "*.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "biomarker_report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_biomarker_report.txt": {
+                  "type": "file",
+                  "description": "MOB-suite biomarker report file",
+                  "pattern": "*_biomarker_report.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "mge_report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_mge_report.txt": {
+                  "type": "file",
+                  "description": "MOB-suite mobile genetic element (MGE) report file",
+                  "pattern": "*_mge_report.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_mobsuite": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mobsuite": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mob_typer --version | sed 's/mob_typer //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mobsuite": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mob_typer --version | sed 's/mob_typer //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@jfy133"
+        ],
+        "maintainers": [
+          "@jfy133"
+        ]
+      },
+      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec"
+    },
+    {
       "name": "modkit_bedmethyltobigwig",
       "path": "modules/nf-core/modkit/bedmethyltobigwig/meta.yml",
       "tree_sha": "ca75e7891f99b8136536e4cba12382cf17df7125",
@@ -226195,7 +226525,7 @@
     {
       "name": "motus_merge",
       "path": "modules/nf-core/motus/merge/meta.yml",
-      "tree_sha": "382b831fdacae55a1b22e6f3fd415d1cc2da0b5a",
+      "tree_sha": "4c5594b34029bbcb637d2831c2cd3c7471bced06",
       "files": [
         "modules/nf-core/motus/merge/environment.yml",
         "modules/nf-core/motus/merge/main.nf",
@@ -226353,7 +226683,7 @@
           "@jfy133"
         ]
       },
-      "git_sha": "6ac134c0ce95cbd173066257d03a8a4718cf7c68",
+      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec",
       "pipelines": [
         {
           "name": "taxprofiler",
@@ -226364,7 +226694,7 @@
     {
       "name": "motus_preplong",
       "path": "modules/nf-core/motus/preplong/meta.yml",
-      "tree_sha": "4dfb141b31921f5860c52058a3a8efc1ae805a83",
+      "tree_sha": "849b100132873d3fd457deea895e9b6c90a9c217",
       "files": [
         "modules/nf-core/motus/preplong/environment.yml",
         "modules/nf-core/motus/preplong/main.nf",
@@ -226502,7 +226832,7 @@
           "@sofstam"
         ]
       },
-      "git_sha": "6ac134c0ce95cbd173066257d03a8a4718cf7c68",
+      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec",
       "pipelines": [
         {
           "name": "taxprofiler",
@@ -226513,7 +226843,7 @@
     {
       "name": "motus_profile",
       "path": "modules/nf-core/motus/profile/meta.yml",
-      "tree_sha": "008aa103598f05a3c11be95e7876496e40d4eb5f",
+      "tree_sha": "56c011ddba37b9b31766fe7d0da64f4f176fe7b5",
       "files": [
         "modules/nf-core/motus/profile/environment.yml",
         "modules/nf-core/motus/profile/main.nf",
@@ -226701,7 +227031,7 @@
           "@jianhong"
         ]
       },
-      "git_sha": "6ac134c0ce95cbd173066257d03a8a4718cf7c68",
+      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec",
       "pipelines": [
         {
           "name": "taxprofiler",
@@ -229211,6 +229541,10 @@
         },
         {
           "name": "panoramaseq",
+          "version": "dev"
+        },
+        {
+          "name": "pathogenepidemiology",
           "version": "dev"
         },
         {
@@ -256346,7 +256680,7 @@
     {
       "name": "phantompeakqualtools",
       "path": "modules/nf-core/phantompeakqualtools/meta.yml",
-      "tree_sha": "b1e0e080f6425e85e1a539ac0e0265f6ed0c37bc",
+      "tree_sha": "7dc562579252e4cb0f2ef1fc1820ee269a3b6f2f",
       "files": [
         "modules/nf-core/phantompeakqualtools/environment.yml",
         "modules/nf-core/phantompeakqualtools/main.nf",
@@ -256550,7 +256884,7 @@
           "@JoseEspinosa"
         ]
       },
-      "git_sha": "003c45ac19e684cae37402d54a56e85b0e626b90",
+      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec",
       "pipelines": [
         {
           "name": "chipseq",
@@ -312135,6 +312469,10 @@
           "version": "dev"
         },
         {
+          "name": "pathogenepidemiology",
+          "version": "dev"
+        },
+        {
           "name": "phageannotator",
           "version": "dev"
         },
@@ -344993,7 +345331,7 @@
     {
       "name": "staphscan",
       "path": "modules/nf-core/staphscan/meta.yml",
-      "tree_sha": "f1ba96f8c16500dac3e889a42b951ad693a7106d",
+      "tree_sha": "fa13b0e72504e720143f0dcd6a3d259074f3f253",
       "files": [
         "modules/nf-core/staphscan/environment.yml",
         "modules/nf-core/staphscan/main.nf",
@@ -345120,7 +345458,7 @@
           "@riccabolla"
         ]
       },
-      "git_sha": "e7f4f620ec9f166e9d6fa699feedac2a6d96ec11"
+      "git_sha": "442fa7deb3d398a8bc39ceb8be2b151cb92f7f1d"
     },
     {
       "name": "star_align",
@@ -350666,7 +351004,7 @@
     {
       "name": "suppa_clusterevents",
       "path": "modules/nf-core/suppa/clusterevents/meta.yml",
-      "tree_sha": "cdd0b33477980434f6eaef67934fa5b4b34e5c08",
+      "tree_sha": "bc2d0171138db29e90f4a37c2d2446255daf47cd",
       "files": [
         "modules/nf-core/suppa/clusterevents/environment.yml",
         "modules/nf-core/suppa/clusterevents/main.nf",
@@ -350852,7 +351190,7 @@
           "@piplus2"
         ]
       },
-      "git_sha": "88b9d0d95d7e3bc5dbac82c2b3da8a3259f9f51c"
+      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec"
     },
     {
       "name": "suppa_diffsplice",
@@ -351163,7 +351501,7 @@
     {
       "name": "suppa_generateevents",
       "path": "modules/nf-core/suppa/generateevents/meta.yml",
-      "tree_sha": "ec12c2b015683d658851139de6b414055f20129a",
+      "tree_sha": "2303bcf6054fa45b952dd53f15e951ac92ddaff9",
       "files": [
         "modules/nf-core/suppa/generateevents/environment.yml",
         "modules/nf-core/suppa/generateevents/main.nf",
@@ -351348,7 +351686,7 @@
           "@piplus2"
         ]
       },
-      "git_sha": "760d460250049331d41480fbf32343a386e695c0"
+      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec"
     },
     {
       "name": "suppa_psiperevent",
@@ -366004,7 +366342,7 @@
     {
       "name": "treerecs",
       "path": "modules/nf-core/treerecs/meta.yml",
-      "tree_sha": "a8baace0a4532a2b01b0c40e92e64cf3b635de9b",
+      "tree_sha": "f1d27cdb506ae5d6ce9bc2fcc89428768fec9394",
       "files": [
         "modules/nf-core/treerecs/environment.yml",
         "modules/nf-core/treerecs/main.nf",
@@ -366156,7 +366494,7 @@
           "@leapicard"
         ]
       },
-      "git_sha": "f478a9020729f849b44cfb3a68b49dba212d1218"
+      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec"
     },
     {
       "name": "trgt_genotype",
@@ -390364,8 +390702,231 @@
         {
           "name": "spatialaxe",
           "version": "1.0.0"
+        },
+        {
+          "name": "spatialaxe",
+          "version": "1.0.0"
         }
       ]
+    },
+    {
+      "name": "xeniumranger_importsegmentation",
+      "path": "modules/nf-core/xeniumranger/importsegmentation/meta.yml",
+      "tree_sha": "129126b80160887e6f3a4cc27071fe9f2d381940",
+      "files": [
+        "modules/nf-core/xeniumranger/importsegmentation/main.nf",
+        "modules/nf-core/xeniumranger/importsegmentation/meta.yml",
+        "modules/nf-core/xeniumranger/importsegmentation/tests/main.nf.test",
+        "modules/nf-core/xeniumranger/importsegmentation/tests/main.nf.test.snap",
+        "modules/nf-core/xeniumranger/importsegmentation/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "XENIUMRANGER_IMPORTSEGMENTATION",
+        "description": "The xeniumranger importsegmentation module runs `xeniumranger import-segmentation`\nto recompute Xenium Onboard Analysis outputs using external segmentation results.\nIt supports two execution modes mirroring the Xenium Ranger CLI: an image-based\nmode that accepts nuclei and/or cell masks (TIFF/NPY) or GeoJSON polygons together\nwith optional coordinate transforms and unit definitions, and a transcript-based\nmode that ingests Baysor-style transcript assignment CSV files plus visualization\npolygons. Use the image-based inputs when providing label masks or polygons, or\nswitch to the transcript-based inputs when supplying transcript-level assignments\nso the appropriate command-line arguments are passed to Xenium Ranger.\n",
+        "keywords": [
+          "spatial",
+          "segmentation",
+          "import segmentation",
+          "nuclear segmentation",
+          "cell segmentation",
+          "xeniumranger",
+          "imaging"
+        ],
+        "tools": [
+          {
+            "xeniumranger": {
+              "description": "Xenium Ranger is a set of analysis pipelines that process Xenium In Situ Gene Expression data to relabel, resegment, or import new segmentation results from community-developed tools. Xenium Ranger provides flexible off-instrument reanalysis of Xenium In Situ data. Relabel transcripts, resegment cells with the latest 10x segmentation algorithms, or import your own segmentation data to assign transcripts to cells.\n",
+              "homepage": "https://www.10xgenomics.com/support/software/xenium-ranger/latest",
+              "documentation": "https://www.10xgenomics.com/support/software/xenium-ranger/latest/getting-started",
+              "tool_dev_url": "https://www.10xgenomics.com/support/software/xenium-ranger/latest/analysis",
+              "licence": [
+                "10x Genomics EULA"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing run information\ne.g. [ id:'xenium_sample' ]\n"
+              }
+            },
+            {
+              "xenium_bundle": {
+                "type": "directory",
+                "description": "Path to the Xenium output bundle generated by the Xenium Onboard Analysis pipeline"
+              }
+            },
+            {
+              "transcript_assignment": {
+                "type": "file",
+                "optional": true,
+                "description": "Transcript assignment CSV with cell assignment, such as from Baysor v0.6, (transcript-based mode).\nMutually exclusive with image-based inputs (`nuclei`, `cells`). Required when using\ntranscript-based mode. Passed to `--transcript-assignment`.\n",
+                "pattern": "*.csv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
+              }
+            },
+            {
+              "viz_polygons": {
+                "type": "file",
+                "optional": true,
+                "description": "Cell boundary polygons (GeoJSON) for visualization, such as from Baysor v0.6 (transcript-based mode).\nMutually exclusive with image-based inputs (`nuclei`, `cells`). Required when using\n`transcript_assignment`. Passed to `--viz-polygons`.\n",
+                "pattern": "*.{json,geojson}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3464"
+                  }
+                ]
+              }
+            },
+            {
+              "nuclei": {
+                "type": "file",
+                "optional": true,
+                "description": "Nucleus segmentation input as label mask (TIFF/NPY), polygons (GeoJSON), or Xenium Onboard\nAnalysis cells.zarr.zip (image-based mode).\nMutually exclusive with transcript-based inputs\n(`transcript_assignment`, `viz_polygons`). Passed to `--nuclei`.\n",
+                "pattern": "*.{tif,tiff,npy,json,geojson,zarr.zip}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_4003"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3464"
+                  }
+                ]
+              }
+            },
+            {
+              "cells": {
+                "type": "file",
+                "optional": true,
+                "description": "Cell segmentation input as label mask (TIFF/NPY), polygons (GeoJSON), or Xenium Onboard\nAnalysis cells.zarr.zip (image-based mode).\nMutually exclusive with transcript-based inputs\n(`transcript_assignment`, `viz_polygons`). Passed to `--cells`.\n",
+                "pattern": "*.{tif,tiff,npy,json,geojson,zarr.zip}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_4003"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3464"
+                  }
+                ]
+              }
+            },
+            {
+              "coordinate_transform": {
+                "type": "file",
+                "optional": true,
+                "description": "Image alignment file containing similarity transform matrix (e.g., `_imagealignment.csv` from\nXenium Explorer). Only used with image-based mode inputs (`nuclei`, `cells`). `units` will be automatically set to \"microns\". Passed to `--coordinate-transform`.\n",
+                "pattern": "*.csv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
+              }
+            },
+            {
+              "units": {
+                "type": "string",
+                "optional": true,
+                "description": "Units for segmentation results. Must be one of two options: \"microns\" (physical space) or\n\"pixels\" (pixel space). Can be used with both image-based and transcript-based modes.\nDefault: \"pixels\". Must be \"microns\" if `coordinate_transform` is used. For Baysor v0.6\ninputs, must be \"microns\". Passed to `--units`.\n",
+                "enum": [
+                  "microns",
+                  "pixels"
+                ]
+              }
+            },
+            {
+              "expansion_distance": {
+                "type": "integer",
+                "optional": true,
+                "description": "Distance (in microns) to expand nuclei outward into cell boundaries. Only valid for\nnuclei-based imports (`nuclei` must be set); xeniumranger rejects it for\ntranscript-assignment imports and cells-only imports. Default: 5. Range: 0-100.\n"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "outs": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information e.g. [ id:'test' ]"
+                }
+              },
+              {
+                "${prefix}": {
+                  "type": "directory",
+                  "description": "Directory containing the output xenium bundle of Xenium Ranger",
+                  "pattern": "${prefix}"
+                }
+              }
+            ]
+          ],
+          "versions_xeniumranger": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "xeniumranger": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "xeniumranger -V | sed -e 's/.*xenium-//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "xeniumranger": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "xeniumranger -V | sed -e 's/.*xenium-//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@khersameesh24",
+          "@dongzehe"
+        ],
+        "maintainers": [
+          "@khersameesh24",
+          "@dongzehe"
+        ]
+      },
+      "git_sha": "1fa9ed32cfd532e7d2191b5ffdcc86c783878fb0"
     },
     {
       "name": "xeniumranger_relabel",
@@ -407688,6 +408249,10 @@
           "version": "dev"
         },
         {
+          "name": "pathogenepidemiology",
+          "version": "dev"
+        },
+        {
           "name": "pathogensurveillance",
           "version": "1.1.0"
         },
@@ -408161,6 +408726,10 @@
         },
         {
           "name": "panoramaseq",
+          "version": "dev"
+        },
+        {
+          "name": "pathogenepidemiology",
           "version": "dev"
         },
         {
@@ -408673,6 +409242,10 @@
         },
         {
           "name": "panoramaseq",
+          "version": "dev"
+        },
+        {
+          "name": "pathogenepidemiology",
           "version": "dev"
         },
         {
@@ -410342,6 +410915,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "a8e13eeab3b80443afaa64e82b255d429b0fb9d5",
-  "updated_at": "2026-07-28T03:10:28.866Z"
+  "commit_sha": "2080397432fcb0d079121dbacf22ce42ef175cec",
+  "updated_at": "2026-07-28T14:10:31.924Z"
 }
