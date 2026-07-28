@@ -55,6 +55,10 @@ jobs:
           echo "matrix=$(cat pipeline_names.json)" >> $GITHUB_OUTPUT
 
   sync:
+    # Only run syncs from the main and dev branches.
+    if: |
+      github.ref == 'refs/heads/main' ||
+      github.ref == 'refs/heads/dev'
     runs-on: 'ubuntu-latest'
     needs: get-pipelines
     strategy:
