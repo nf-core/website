@@ -98,9 +98,15 @@ xychart-beta
 To keep track that we don't move backwards again with this, we added [Codspeed benchmarks](https://app.codspeed.io/nf-core/tools) to our GitHub workflow.
 With this we will also look into squeezing out more time improvements from more complex commands.
 
-## pre-commit hook to avoid large files in your pipeline repos
+## Miscellaneous
+
+### pre-commit hook to avoid large files in your pipeline repos
 
 [@MatthiasZepper](https://github.com/MatthiasZepper) noticed that pipeline run outputs kept accidentally ending up in repositories, so he added a new pre-commit hook that stops large files from being committed to your pipeline repo.
+
+### direct links to lint test documentation
+
+We restructured out [module and subworkflow lint documentation](https://nf-co.re/docs/nf-core-tools/api_reference/4.1.0/module_lint_tests/environment_yml), so that you can click on the test names in the CLI log and directly get to the lint documentation for the specific test.
 
 # Changelog
 
