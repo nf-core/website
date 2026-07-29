@@ -43,7 +43,6 @@ Just joking.
 
 Turns out, we wasted a lot of CPU time on loading unneeded modules and similar things with every command.
 By moving things around cleverly, we got an ~7x speedup for the initial CLI startup (just running any commands with `--help`).
-Additionally, we also improved the startup time for
 
 <div class="d-flex gap-4 justify-content-center font-monospace">
     <span>
@@ -95,6 +94,9 @@ xychart-beta
 
 ```
 
+To keep track that we don't move backwards again with this, we added [Codspeed benchmarks](https://app.codspeed.io/nf-core/tools) to our GitHub workflow.
+With this we will also look into squeezing out more time improvements from more complex commands.
+
 # Changelog
 
-You can find the complete changelog and technical details [on GitHub](https://github.com/nf-core/tools/releases/tag/4.0.0).
+You can find the complete changelog and technical details [on GitHub](https://github.com/nf-core/tools/releases/tag/4.1.0).
