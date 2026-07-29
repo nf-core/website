@@ -38653,7 +38653,7 @@
     {
       "name": "bismark_align",
       "path": "modules/nf-core/bismark/align/meta.yml",
-      "tree_sha": "62080be8ecc142f3949c7ba8a32d4cfdf0b8d86d",
+      "tree_sha": "8247834fba5f027438915b49d982d4e9aeac12b9",
       "files": [
         "modules/nf-core/bismark/align/.conda-lock/linux_amd64-bd-9557d6ab108a83e4_1.txt",
         "modules/nf-core/bismark/align/.conda-lock/linux_arm64-bd-f83bc6617fa3cadd_1.txt",
@@ -38884,7 +38884,7 @@
           }
         }
       },
-      "git_sha": "7d264419ee98edd5a0886d3782fb87553628272b",
+      "git_sha": "1976cfb7f315a29658046728e071d9f60f3e1fe9",
       "pipelines": [
         {
           "name": "methylseq",
@@ -47496,7 +47496,13 @@
           "@nh13"
         ]
       },
-      "git_sha": "cab334f632708de2679161f713dd969bfa491a25"
+      "git_sha": "cab334f632708de2679161f713dd969bfa491a25",
+      "pipelines": [
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bwamem3_mem",
@@ -145693,7 +145699,7 @@
     {
       "name": "gedi_indexgenome",
       "path": "modules/nf-core/gedi/indexgenome/meta.yml",
-      "tree_sha": "0d19f285d0b9ac9181efe7debaaa0c049d912b40",
+      "tree_sha": "7ee9dcf48c417209d036425223d511d17d70c5f1",
       "files": [
         "modules/nf-core/gedi/indexgenome/environment.yml",
         "modules/nf-core/gedi/indexgenome/main.nf",
@@ -145834,12 +145840,12 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "51af5cb84874647aa4733742b86142025705b042"
+      "git_sha": "c570cd6a7cf355afca7a795cf202bbc3a75df997"
     },
     {
       "name": "gedi_price",
       "path": "modules/nf-core/gedi/price/meta.yml",
-      "tree_sha": "8df929550a8fdd5a1b3ff36b824e7ecfe5fb2c21",
+      "tree_sha": "56d6259b7673bfd18416965f40d9182491563be3",
       "files": [
         "modules/nf-core/gedi/price/environment.yml",
         "modules/nf-core/gedi/price/main.nf",
@@ -146112,7 +146118,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "51af5cb84874647aa4733742b86142025705b042"
+      "git_sha": "c570cd6a7cf355afca7a795cf202bbc3a75df997"
     },
     {
       "name": "gem2_gem2bedmappability",
@@ -213114,7 +213120,7 @@
     {
       "name": "metamaps_classify",
       "path": "modules/nf-core/metamaps/classify/meta.yml",
-      "tree_sha": "bc9dc28ac39f5233db64c9f5bcc4bcb1aa09da39",
+      "tree_sha": "9547084182fdb497132d1b00b3666e5c3eb0ede5",
       "files": [
         "modules/nf-core/metamaps/classify/environment.yml",
         "modules/nf-core/metamaps/classify/main.nf",
@@ -213324,19 +213330,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_metamaps": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "metamaps": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "metamaps | sed -n 's/.*MetaMaps v //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "metamaps": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "metamaps | sed -n 's/.*MetaMaps v //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -213344,12 +213382,12 @@
           "@sofstam"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "3423467b7626396cab65463fa56ebd854951868a"
     },
     {
       "name": "metamaps_mapdirectly",
       "path": "modules/nf-core/metamaps/mapdirectly/meta.yml",
-      "tree_sha": "8d0900429963eaa150046413350bd74a191df9d6",
+      "tree_sha": "df13b45d90db34e57e5a100eda91743289179ad8",
       "files": [
         "modules/nf-core/metamaps/mapdirectly/environment.yml",
         "modules/nf-core/metamaps/mapdirectly/main.nf",
@@ -213486,19 +213524,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_metamaps": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "metamaps": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "metamaps | sed -n 's/.*MetaMaps v //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "metamaps": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "metamaps | sed -n 's/.*MetaMaps v //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -213509,7 +213579,7 @@
           "@sofstam"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "3423467b7626396cab65463fa56ebd854951868a"
     },
     {
       "name": "metamdbg_asm",
@@ -214448,7 +214518,7 @@
     {
       "name": "metaspace_converter",
       "path": "modules/nf-core/metaspace/converter/meta.yml",
-      "tree_sha": "d1669136ff35b805c21083ca5a6d5542d14c848b",
+      "tree_sha": "408c6edc533e14976d6e3ccaad2db46c58e09aaa",
       "files": [
         "modules/nf-core/metaspace/converter/environment.yml",
         "modules/nf-core/metaspace/converter/main.nf",
@@ -214556,6 +214626,22 @@
             }
           ]
         },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
         "authors": [
           "@bisho2122"
         ],
@@ -214563,12 +214649,12 @@
           "@bisho2122"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "c902936ce6852c764bdc3da2491afd8bc84b5ec3"
     },
     {
       "name": "metaspace_download",
       "path": "modules/nf-core/metaspace/download/meta.yml",
-      "tree_sha": "abbb295c84f8fd8ed3b087b4ec030b29b27083f5",
+      "tree_sha": "f3dea4c7f91a07d74a683ca7d693146546acd298",
       "files": [
         "modules/nf-core/metaspace/download/environment.yml",
         "modules/nf-core/metaspace/download/main.nf",
@@ -214635,9 +214721,6 @@
                 "pattern": "*.csv",
                 "ontologies": [
                   {
-                    "edam": "http://edamontology.org/format_3752:latest"
-                  },
-                  {
                     "edam": "http://edamontology.org/format_3752"
                   }
                 ]
@@ -214646,7 +214729,7 @@
           ],
           "log": [
             {
-              "emit:": {
+              "emit: log": {
                 "type": "string",
                 "description": "The standard output (stdout) of the script, containing log messages.\nYou can print the last log to see the download progress of all the datasets.\nExample:\n  METASPACE_DOWNLOAD.out.log.view { \"${it.split('\\n').last().trim()}\" }\nIt will print the last log message of the script.\nFor Example:\n  \"❌ {dataset_id} Dataset not found or inaccessible. Skipping this dataset.\"\n  \"❌ {dataset_id} could not find database: {database}\"\n  \"❌ {dataset_id} has no annotation data in database: {database}.\"\n  \"⚠️ {dataset_id} has multiple {database} version. All the version saved to {filename}\"\n  \"✅ {dataset_id} with {database} database are saved to {filename}\"\n  \"✅ {dataset_id} with all database are saved to {filename}\"\n"
               }
@@ -214656,12 +214739,25 @@
             {
               "versions.yml": {
                 "type": "file",
-                "description": "YAML file containing the versions of the tools used in the pipeline.\nThis file is automatically generated by the pipeline and should not be modified.\n",
+                "description": "File containing software versions",
                 "pattern": "versions.yml",
                 "ontologies": [
                   {
-                    "edam": "http://edamontology.org/format_3475"
-                  },
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_3750"
                   }
@@ -214677,7 +214773,7 @@
           "@Dewey-Wang"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "c902936ce6852c764bdc3da2491afd8bc84b5ec3"
     },
     {
       "name": "metator_pipeline",
@@ -287782,7 +287878,7 @@
     {
       "name": "rclone_copy",
       "path": "modules/nf-core/rclone/copy/meta.yml",
-      "tree_sha": "9e25672fe4950c57d001ffb2633eb250ed4eb82c",
+      "tree_sha": "2f41e1afdef92f49b75edb60fa97b6700a661494",
       "files": [
         "modules/nf-core/rclone/copy/environment.yml",
         "modules/nf-core/rclone/copy/main.nf",
@@ -287832,6 +287928,12 @@
               "destination_path": {
                 "type": "string",
                 "description": "Destination path to copy to. This should be the fully resolved target\npath understood by Rclone, such as a local path or a configured remote\npath. The module does not append sample IDs, basenames, or modify this\npath internally.\nExamples: `results/output`, `s3:bucket/output`, `gs:bucket/output`,\n`remote:path/to/output`.\n"
+              }
+            },
+            {
+              "filter_file": {
+                "type": "file",
+                "description": "Optional plain text file containing one file path or pattern per line to be\npassed to Rclone copy as a filter list (e.g. via `--files-from` or\n`--include-from`). This input is only used when the corresponding rclone\nfiltering option is enabled through the module configuration.\n"
               }
             }
           ],
@@ -287951,7 +288053,7 @@
           }
         }
       },
-      "git_sha": "a554e54c63c3f03f91c88a18ece7b89eca5a5212",
+      "git_sha": "b34acd9d361bb226be8f0cf446b8b3a20ad0e3da",
       "pipelines": [
         {
           "name": "datasync",
@@ -308251,6 +308353,10 @@
         {
           "name": "pangenome",
           "version": "1.1.3"
+        },
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
         },
         {
           "name": "pathogensurveillance",
@@ -390714,6 +390820,10 @@
         {
           "name": "spatialaxe",
           "version": "1.0.0"
+        },
+        {
+          "name": "spatialaxe",
+          "version": "1.0.0"
         }
       ]
     },
@@ -410923,6 +411033,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "2080397432fcb0d079121dbacf22ce42ef175cec",
-  "updated_at": "2026-07-29T03:11:00.264Z"
+  "commit_sha": "c570cd6a7cf355afca7a795cf202bbc3a75df997",
+  "updated_at": "2026-07-29T09:28:53.385Z"
 }
