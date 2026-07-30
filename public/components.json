@@ -158715,7 +158715,7 @@
     {
       "name": "gstama_polyacleanup",
       "path": "modules/nf-core/gstama/polyacleanup/meta.yml",
-      "tree_sha": "6ee7901db873a72593b43d1451617f60b5e0e13e",
+      "tree_sha": "6e88b75ef616a51f091ebd5da34322c413c25313",
       "files": [
         "modules/nf-core/gstama/polyacleanup/environment.yml",
         "modules/nf-core/gstama/polyacleanup/main.nf",
@@ -158779,7 +158779,7 @@
                 }
               },
               {
-                "*.fa.gz": {
+                "${prefix}.fa.gz": {
                   "type": "file",
                   "description": "The Full Length Non Chimeric reads cleaned from remaining polyA tails. The sequences are in FASTA format compressed with gzip.",
                   "pattern": "*.fa.gz",
@@ -158801,7 +158801,7 @@
                 }
               },
               {
-                "*_polya_flnc_report.txt.gz": {
+                "${prefix}_polya_flnc_report.txt.gz": {
                   "type": "file",
                   "description": "A text file describing the number of polyA tails removed and their length. Compressed with gzip.",
                   "pattern": "*_polya_flnc_report.txt.gz",
@@ -158823,7 +158823,7 @@
                 }
               },
               {
-                "*_tails.fa.gz": {
+                "${prefix}_tails.fa.gz": {
                   "type": "file",
                   "description": "A gzip compressed FASTA file of trimmed polyA tails.",
                   "pattern": "*_tails.fa.gz",
@@ -158890,7 +158890,7 @@
           "@sguizard"
         ]
       },
-      "git_sha": "ecace0debef350b6636ea603824ae16c1bb29a54",
+      "git_sha": "82450e2e06bc03df52e8adbe8886de25adb402ee",
       "pipelines": [
         {
           "name": "isoseq",
@@ -390991,6 +390991,10 @@
         {
           "name": "spatialaxe",
           "version": "1.0.0"
+        },
+        {
+          "name": "spatialaxe",
+          "version": "1.0.0"
         }
       ]
     },
@@ -411200,6 +411204,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "53f022f42ab86a63b3a5072194d026d9fd9c8c6d",
-  "updated_at": "2026-07-29T14:56:05.403Z"
+  "commit_sha": "a3b787358fa965b5f242b2408d52e8d0a28aaca2",
+  "updated_at": "2026-07-30T03:08:43.970Z"
 }
