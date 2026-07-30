@@ -8978,6 +8978,270 @@
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
     },
     {
+      "name": "angsd_dosaf",
+      "path": "modules/nf-core/angsd/dosaf/meta.yml",
+      "tree_sha": "f75de27415f355266338c62d7221591b98ef226d",
+      "files": [
+        "modules/nf-core/angsd/dosaf/environment.yml",
+        "modules/nf-core/angsd/dosaf/main.nf",
+        "modules/nf-core/angsd/dosaf/meta.yml",
+        "modules/nf-core/angsd/dosaf/tests/main.nf.test",
+        "modules/nf-core/angsd/dosaf/tests/main.nf.test.snap",
+        "modules/nf-core/angsd/dosaf/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "angsd_dosaf",
+        "description": "Estimate site allele frequencies from BAM files.",
+        "keywords": [
+          "angsd",
+          "genotype likelihood",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "angsd": {
+              "description": "ANGSD: Analysis of next generation Sequencing Data",
+              "homepage": "http://www.popgen.dk/angsd/",
+              "documentation": "http://www.popgen.dk/angsd/",
+              "tool_dev_url": "https://github.com/ANGSD/angsd",
+              "doi": "10.1186/s12859-014-0356-4",
+              "licence": [
+                "GPL v3",
+                "MIT"
+              ],
+              "identifier": "biotools:angsd"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing population information\ne.g. [ id:'test', population:'population id', samples:'sample IDs' ]\n"
+              }
+            },
+            {
+              "bams": {
+                "type": "file",
+                "description": "A list of BAM or CRAM files.",
+                "pattern": "*.{bam,cram}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
+              }
+            },
+            {
+              "bam_indices": {
+                "type": "file",
+                "description": "A list of BAM or CRAM indices.",
+                "pattern": "*.{bam.bai,cram.crai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "reference_fasta": {
+                "type": "file",
+                "description": "A reference genome in FASTA format.",
+                "pattern": "*.{fasta,fa,fasta.gz,fa.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "reference_fai": {
+                "type": "file",
+                "description": "Index of the reference genome FASTA file.",
+                "pattern": "*.{fasta,fa,fasta.gz,fa.gz}.fai",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "ancestral_fasta": {
+                "type": "file",
+                "description": "An ancestral state genome in FASTA format.",
+                "pattern": "*.{fasta,fa,fasta.gz,fa.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "ancestral_fai": {
+                "type": "file",
+                "description": "Index of the ancestral state genome FASTA file.",
+                "pattern": "*.{fasta,fa,fasta.gz,fa.gz}.fai",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "error_file": {
+              "type": "file",
+              "description": "A file containing per-base substitution error rates for use with the Sykes genotype likelihood model (-GL 4).",
+              "pattern": "*.errors",
+              "ontologies": []
+            }
+          },
+          {
+            "inbreeding_coefficients": {
+              "type": "file",
+              "description": "A file containing estimates of individual inbreeding coefficients.",
+              "pattern": "*.indF",
+              "ontologies": []
+            }
+          },
+          {
+            "soapsnp_calibration": {
+              "type": "directory",
+              "description": "Directory of soapSNP calibration files. Required for use with the SOAPsnp\ngenotype likelihood model (-GL 3), passed to ANGSD via -tmpdir.\nContains (per sample), a *.counts* file of per-position base/allele\ncounts and a *.qual* file of recalibrated quality score information.\n",
+              "pattern": "*_calibration_matrix",
+              "ontologies": []
+            }
+          },
+          {
+            "gl_model": {
+              "type": "integer",
+              "description": "Genotype likelihood model to use (angsd -GL). 1=SAMtools, 2=GATK, 3=SOAPsnp, 4=SYK.\n"
+            }
+          },
+          {
+            "dosaf_mode": {
+              "type": "integer",
+              "description": "Site allele frequency likelihood estimation mode (angsd -doSAF). 1=standard, 2=inbreeding-aware (requires indF).\n"
+            }
+          }
+        ],
+        "output": {
+          "saf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing population information. e.g. `[ id:'test', population:'population id', samples:'sample IDs' ]`"
+                }
+              },
+              {
+                "*.saf.idx": {
+                  "type": "file",
+                  "description": "ANGSD site allele frequency index file",
+                  "pattern": "*.saf.idx",
+                  "ontologies": []
+                }
+              },
+              {
+                "*.saf.pos.gz": {
+                  "type": "file",
+                  "description": "Gzipped file containing genomic positions of sites in the SAF",
+                  "pattern": "*.saf.pos.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              },
+              {
+                "*.saf.gz": {
+                  "type": "file",
+                  "description": "Gzipped binary file containing per-site sample allele frequency likelihoods",
+                  "pattern": "*.saf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_angsd": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "angsd": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "angsd 2>&1 | sed '1!d;s/.*version: //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "angsd": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "angsd 2>&1 | sed '1!d;s/.*version: //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@ASendellPrice"
+        ],
+        "maintainers": [
+          "@ASendellPrice"
+        ]
+      },
+      "git_sha": "04b4e82738d536388aea64c61939ec41f74b24c4"
+    },
+    {
       "name": "angsd_gl",
       "path": "modules/nf-core/angsd/gl/meta.yml",
       "tree_sha": "790a394bf8149bc644f8ead93c4a09af4d743db2",
@@ -114127,7 +114391,7 @@
     {
       "name": "fgumi_clip",
       "path": "modules/nf-core/fgumi/clip/meta.yml",
-      "tree_sha": "9c8aaa3c1b105bd2a1f385f84e2431a06ea15fdf",
+      "tree_sha": "f80afa5edf93fb0ce66c10736df287314010efaf",
       "files": [
         "modules/nf-core/fgumi/clip/environment.yml",
         "modules/nf-core/fgumi/clip/main.nf",
@@ -114300,12 +114564,12 @@
           "@nh13"
         ]
       },
-      "git_sha": "c3e04783b2ac99ffc011745ec092614a7bef86ca"
+      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
     },
     {
       "name": "fgumi_codec",
       "path": "modules/nf-core/fgumi/codec/meta.yml",
-      "tree_sha": "061f1d2da0d205537411c40de452a033fc3e25b7",
+      "tree_sha": "334ef62918407c5ab9bcba2919e66a324777436a",
       "files": [
         "modules/nf-core/fgumi/codec/environment.yml",
         "modules/nf-core/fgumi/codec/main.nf",
@@ -114483,12 +114747,12 @@
           "@nh13"
         ]
       },
-      "git_sha": "c3e04783b2ac99ffc011745ec092614a7bef86ca"
+      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
     },
     {
       "name": "fgumi_correct",
       "path": "modules/nf-core/fgumi/correct/meta.yml",
-      "tree_sha": "d117b753e870848fa9aa4f1b6ca332be72b1bdf9",
+      "tree_sha": "595b495c47a082e38434f35e2d903023e01e5fb6",
       "files": [
         "modules/nf-core/fgumi/correct/environment.yml",
         "modules/nf-core/fgumi/correct/main.nf",
@@ -114679,12 +114943,12 @@
           "@nh13"
         ]
       },
-      "git_sha": "c3e04783b2ac99ffc011745ec092614a7bef86ca"
+      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
     },
     {
       "name": "fgumi_dedup",
       "path": "modules/nf-core/fgumi/dedup/meta.yml",
-      "tree_sha": "4cc7d74ecbadc3a0a4b089b3f2947fb9759edd54",
+      "tree_sha": "a7f59b18a482fa67934d4175f823d5469e76cc19",
       "files": [
         "modules/nf-core/fgumi/dedup/environment.yml",
         "modules/nf-core/fgumi/dedup/main.nf",
@@ -114852,12 +115116,12 @@
           "@nh13"
         ]
       },
-      "git_sha": "c3e04783b2ac99ffc011745ec092614a7bef86ca"
+      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
     },
     {
       "name": "fgumi_downsample",
       "path": "modules/nf-core/fgumi/downsample/meta.yml",
-      "tree_sha": "1b63331fc6226519b940944b80ddcc98211a8ef0",
+      "tree_sha": "b990b2f03d564117a48638848698f644a5910c0e",
       "files": [
         "modules/nf-core/fgumi/downsample/environment.yml",
         "modules/nf-core/fgumi/downsample/main.nf",
@@ -115059,12 +115323,12 @@
           "@nh13"
         ]
       },
-      "git_sha": "c3e04783b2ac99ffc011745ec092614a7bef86ca"
+      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
     },
     {
       "name": "fgumi_duplex",
       "path": "modules/nf-core/fgumi/duplex/meta.yml",
-      "tree_sha": "54d883220a4fae657b98341ef2162f744d2f96af",
+      "tree_sha": "af2f0c9d094c7ed960ea8986b4866b01db16a667",
       "files": [
         "modules/nf-core/fgumi/duplex/environment.yml",
         "modules/nf-core/fgumi/duplex/main.nf",
@@ -115247,12 +115511,12 @@
           "@sppearce"
         ]
       },
-      "git_sha": "c3e04783b2ac99ffc011745ec092614a7bef86ca"
+      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
     },
     {
       "name": "fgumi_duplexmetrics",
       "path": "modules/nf-core/fgumi/duplexmetrics/meta.yml",
-      "tree_sha": "d6b72a934bc4bec4956fc77cabb9a51388e43ea1",
+      "tree_sha": "861e5c0f238322b773c9373697f2a0d06b14a748",
       "files": [
         "modules/nf-core/fgumi/duplexmetrics/environment.yml",
         "modules/nf-core/fgumi/duplexmetrics/main.nf",
@@ -115479,12 +115743,12 @@
           "@nf-core"
         ]
       },
-      "git_sha": "c3e04783b2ac99ffc011745ec092614a7bef86ca"
+      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
     },
     {
       "name": "fgumi_extract",
       "path": "modules/nf-core/fgumi/extract/meta.yml",
-      "tree_sha": "a99155037926a141634ac201825ec2e50a8a36ef",
+      "tree_sha": "ccceac1bf654916d9001be04f060fb077f5763da",
       "files": [
         "modules/nf-core/fgumi/extract/environment.yml",
         "modules/nf-core/fgumi/extract/main.nf",
@@ -115618,12 +115882,12 @@
           "@atrigila"
         ]
       },
-      "git_sha": "c3e04783b2ac99ffc011745ec092614a7bef86ca"
+      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
     },
     {
       "name": "fgumi_fastq",
       "path": "modules/nf-core/fgumi/fastq/meta.yml",
-      "tree_sha": "9d100a755c762870d3f2a63d232befd7092fde17",
+      "tree_sha": "dc1ba50456ef0320ca963ecbc5fed379a348afa6",
       "files": [
         "modules/nf-core/fgumi/fastq/environment.yml",
         "modules/nf-core/fgumi/fastq/main.nf",
@@ -115724,6 +115988,28 @@
                 }
               }
             ]
+          ],
+          "versions_gzip": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gzip": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gzip --version 2>&1 | sed '1!d;s/gzip //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "topics": {
@@ -115747,6 +116033,26 @@
                   "description": "The expression to obtain the version of the tool"
                 }
               }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gzip": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gzip --version 2>&1 | sed '1!d;s/gzip //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
             ]
           ]
         },
@@ -115757,12 +116063,12 @@
           "@nh13"
         ]
       },
-      "git_sha": "c3e04783b2ac99ffc011745ec092614a7bef86ca"
+      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
     },
     {
       "name": "fgumi_filter",
       "path": "modules/nf-core/fgumi/filter/meta.yml",
-      "tree_sha": "4211687d54ddda1c33c9ea3e284ba466cb8c5200",
+      "tree_sha": "09dc44fc08036fe1f57b6a131258757401f361d5",
       "files": [
         "modules/nf-core/fgumi/filter/environment.yml",
         "modules/nf-core/fgumi/filter/main.nf",
@@ -115966,12 +116272,12 @@
           "@sppearce"
         ]
       },
-      "git_sha": "c3e04783b2ac99ffc011745ec092614a7bef86ca"
+      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
     },
     {
       "name": "fgumi_group",
       "path": "modules/nf-core/fgumi/group/meta.yml",
-      "tree_sha": "efd8859b5d36056b588f4a0ec1b17ba00e2117f6",
+      "tree_sha": "1ab42c518e69d0fa976a6d026f7e6feacc8c8535",
       "files": [
         "modules/nf-core/fgumi/group/environment.yml",
         "modules/nf-core/fgumi/group/main.nf",
@@ -116148,12 +116454,12 @@
           "@sppearce"
         ]
       },
-      "git_sha": "c3e04783b2ac99ffc011745ec092614a7bef86ca"
+      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
     },
     {
       "name": "fgumi_merge",
       "path": "modules/nf-core/fgumi/merge/meta.yml",
-      "tree_sha": "23753d4cdcd5cce846a9984b6d85dba94db2bac1",
+      "tree_sha": "1a795c4ccdfb229f95920f613b1889bfd9fc5638",
       "files": [
         "modules/nf-core/fgumi/merge/environment.yml",
         "modules/nf-core/fgumi/merge/main.nf",
@@ -116285,12 +116591,12 @@
           "@sppearce"
         ]
       },
-      "git_sha": "9707facbacc9c5c02ecf0b192f0604a29351b00a"
+      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
     },
     {
       "name": "fgumi_simplex",
       "path": "modules/nf-core/fgumi/simplex/meta.yml",
-      "tree_sha": "6d2e00bed032cefedb9b9ffc5222ae5ab54241e4",
+      "tree_sha": "f4b283e41f298cd484350ca2e728416a2b9ee24a",
       "files": [
         "modules/nf-core/fgumi/simplex/environment.yml",
         "modules/nf-core/fgumi/simplex/main.nf",
@@ -116473,12 +116779,12 @@
           "@sppearce"
         ]
       },
-      "git_sha": "c3e04783b2ac99ffc011745ec092614a7bef86ca"
+      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
     },
     {
       "name": "fgumi_simplexmetrics",
       "path": "modules/nf-core/fgumi/simplexmetrics/meta.yml",
-      "tree_sha": "0c6b53b85ee601a8dc0c9fa3d53e0febc30f3dc5",
+      "tree_sha": "b7f5ebdec5c5f227f7728359e13d6b1f996ef0a6",
       "files": [
         "modules/nf-core/fgumi/simplexmetrics/environment.yml",
         "modules/nf-core/fgumi/simplexmetrics/main.nf",
@@ -116668,12 +116974,12 @@
           "@nh13"
         ]
       },
-      "git_sha": "c3e04783b2ac99ffc011745ec092614a7bef86ca"
+      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
     },
     {
       "name": "fgumi_sort",
       "path": "modules/nf-core/fgumi/sort/meta.yml",
-      "tree_sha": "68628156edd50413b320a1cd47f8de67bc92f625",
+      "tree_sha": "0cf066625d3d8251f69844e666dba3bade929025",
       "files": [
         "modules/nf-core/fgumi/sort/environment.yml",
         "modules/nf-core/fgumi/sort/main.nf",
@@ -116826,12 +117132,12 @@
           "@sppearce"
         ]
       },
-      "git_sha": "c3e04783b2ac99ffc011745ec092614a7bef86ca"
+      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
     },
     {
       "name": "fgumi_zipper",
       "path": "modules/nf-core/fgumi/zipper/meta.yml",
-      "tree_sha": "cb13eb496b6cf2fa975f3533e83055c750e841ce",
+      "tree_sha": "974d1e7fcebed91c3023510070bda82ca2d1b7c8",
       "files": [
         "modules/nf-core/fgumi/zipper/environment.yml",
         "modules/nf-core/fgumi/zipper/main.nf",
@@ -117015,7 +117321,7 @@
           "@nh13"
         ]
       },
-      "git_sha": "c3e04783b2ac99ffc011745ec092614a7bef86ca"
+      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
     },
     {
       "name": "fibertoolsrs_addnucleosomes",
@@ -170946,6 +171252,427 @@
           "version": "2.0.1"
         }
       ]
+    },
+    {
+      "name": "hmmer_eslsfetch",
+      "path": "modules/nf-core/hmmer/eslsfetch/meta.yml",
+      "tree_sha": "799c30b40482fe422a86d0f5f70762d2b6bb3272",
+      "files": [
+        "modules/nf-core/hmmer/eslsfetch/environment.yml",
+        "modules/nf-core/hmmer/eslsfetch/main.nf",
+        "modules/nf-core/hmmer/eslsfetch/meta.yml",
+        "modules/nf-core/hmmer/eslsfetch/tests/main.nf.test",
+        "modules/nf-core/hmmer/eslsfetch/tests/main.nf.test.snap",
+        "modules/nf-core/hmmer/eslsfetch/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "hmmer_eslsfetch",
+        "description": "Retrieves one or more complete sequences or subsequences from a sequence\nfile using its pre-built SSI index. The esl-sfetch utility is an Easel\nminiapp bundled with the HMMER package. This module only fetches: the SSI\nindex must be produced beforehand by the sibling module\n`hmmer/eslsfetchindex`. The keyfile is used to fetch the named sequences\n(-f), or, with ext.args = '-C', parsed as a subsequence coordinate file\n(-Cf) to extract and rename subsequences.\n",
+        "keywords": [
+          "hmmer",
+          "easel",
+          "sequence retrieval",
+          "subsequence extraction",
+          "fasta"
+        ],
+        "tools": [
+          {
+            "hmmer": {
+              "description": "Biosequence analysis using profile hidden Markov models. The\nesl-sfetch utility is an Easel miniapp bundled with the HMMER\npackage, used here to retrieve sequences or subsequences from an\nSSI-indexed sequence file.\n",
+              "homepage": "http://hmmer.org/",
+              "documentation": "http://eddylab.org/software/hmmer/Userguide.pdf",
+              "tool_dev_url": "https://github.com/EddyRivasLab/hmmer",
+              "doi": "10.1371/journal.pcbi.1002195",
+              "licence": [
+                "BSD-3-Clause"
+              ],
+              "identifier": "biotools:hmmer",
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "seqfile": {
+                "type": "file",
+                "description": "Sequence file, in any format supported by esl-sfetch (fasta, embl,\ngenbank, stockholm, a2m, afa, psiblast, clustal, phylip). Must NOT\nbe gzip-compressed.\n",
+                "pattern": "*",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1927"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1936"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1961"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1982"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1997"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1984"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2554"
+                  }
+                ]
+              }
+            },
+            {
+              "ssi": {
+                "type": "file",
+                "description": "SSI index of seqfile, as produced by the\n`hmmer/eslsfetchindex` module. The index is\nrequired in every fetch mode: without a correctly matched index,\nesl-sfetch exits with \"Failed to open SSI index\".\n",
+                "pattern": "*.ssi",
+                "ontologies": []
+              }
+            },
+            {
+              "keyfile": {
+                "type": "file",
+                "description": "A plain-text list of sequence names/accessions to\nretrieve, one name/accession per line. With `ext.args = '-C'`\n(i.e. -Cf), instead parsed as a subsequence coordinate file:\ntab-separated columns `newname start end origname`, one\nsubsequence per line. Coordinates are 1-based and inclusive; a\nstart larger than the end (e.g. `myseq 200 100 chr1`) fetches the\nreverse complement of that region.\n",
+                "pattern": "*",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3671"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "sequences": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "${prefix}.fasta": {
+                  "type": "file",
+                  "description": "Retrieved sequences or subsequences in FASTA format.\n",
+                  "pattern": "*.fasta",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_hmmer": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hmmer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hmmsearch -h | sed '2!d;s/^# HMMER *//;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_easel": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "easel": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "esl-sfetch -h | sed '2!d;s/^# Easel *//;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hmmer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hmmsearch -h | sed '2!d;s/^# HMMER *//;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "easel": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "esl-sfetch -h | sed '2!d;s/^# Easel *//;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      },
+      "git_sha": "d3d8e0c6c33925e69f96f44fc6204302841f3562"
+    },
+    {
+      "name": "hmmer_eslsfetchindex",
+      "path": "modules/nf-core/hmmer/eslsfetchindex/meta.yml",
+      "tree_sha": "739ef73ebb42809da033ddb4c176c4b06f5d3107",
+      "files": [
+        "modules/nf-core/hmmer/eslsfetchindex/environment.yml",
+        "modules/nf-core/hmmer/eslsfetchindex/main.nf",
+        "modules/nf-core/hmmer/eslsfetchindex/meta.yml",
+        "modules/nf-core/hmmer/eslsfetchindex/tests/main.nf.test",
+        "modules/nf-core/hmmer/eslsfetchindex/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "hmmer_eslsfetchindex",
+        "description": "Builds an SSI (sequence/subsequence index) file for a sequence file,\nusing the esl-sfetch utility, an Easel miniapp bundled with the HMMER\npackage (esl-sfetch --index). The resulting index lets esl-sfetch\nretrieve sequences from the file in constant time. This module is the\nindexing half of a pair: hmmer/eslsfetchindex builds the SSI index,\nhmmer/eslsfetch consumes it (or an equivalent one) to fetch sequences\nor subsequences.\n",
+        "keywords": [
+          "hmmer",
+          "easel",
+          "indexing",
+          "sequence retrieval",
+          "ssi index",
+          "fasta"
+        ],
+        "tools": [
+          {
+            "hmmer": {
+              "description": "Biosequence analysis using profile hidden Markov models. The\nesl-sfetch utility is an Easel miniapp bundled with the HMMER\npackage, used here to build an SSI index of a sequence file.\n",
+              "homepage": "http://hmmer.org/",
+              "documentation": "http://eddylab.org/software/hmmer/Userguide.pdf",
+              "tool_dev_url": "https://github.com/EddyRivasLab/hmmer",
+              "doi": "10.1371/journal.pcbi.1002195",
+              "licence": [
+                "BSD-3-Clause"
+              ],
+              "identifier": "biotools:hmmer"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "seqfile": {
+                "type": "file",
+                "description": "Sequence file, in any format supported by esl-sfetch (fasta, embl,\ngenbank, stockholm, a2m, afa, psiblast, clustal, phylip). Must NOT\nbe gzip-compressed: esl-sfetch --index cannot index a .gz file.\n",
+                "pattern": "*",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1927"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1936"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1961"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1982"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1997"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1984"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2554"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "ssi": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "${seqfile}.ssi": {
+                  "type": "file",
+                  "description": "SSI index built by `esl-sfetch --index`. The filename is dictated\nby the tool: it is always the input seqfile's filename with\n`.ssi` appended (not a `${prefix}`-based name), so downstream\nconsumers such as hmmer/eslsfetch see an index basename that\nstill matches the seqfile after staging.\n",
+                  "pattern": "*.ssi",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_hmmer": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hmmer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hmmsearch -h | sed '2!d;s/^# HMMER *//;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_easel": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "easel": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "esl-sfetch -h | sed '2!d;s/^# Easel *//;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hmmer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hmmsearch -h | sed '2!d;s/^# HMMER *//;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "easel": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "esl-sfetch -h | sed '2!d;s/^# Easel *//;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      },
+      "git_sha": "d3d8e0c6c33925e69f96f44fc6204302841f3562"
     },
     {
       "name": "hmmer_hmmalign",
@@ -359246,7 +359973,7 @@
     {
       "name": "tar",
       "path": "modules/nf-core/tar/meta.yml",
-      "tree_sha": "9580911db784cda56cf1a3c37c05514179f3f148",
+      "tree_sha": "4768c9e73121dc803dcb024079fae73adda8577b",
       "files": [
         "modules/nf-core/tar/environment.yml",
         "modules/nf-core/tar/main.nf",
@@ -359350,19 +360077,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_tar": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "tar": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "tar --version | sed -n \"s/.*tar)//p\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "tar": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "tar --version | sed -n \"s/.*tar)//p\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -359372,7 +360131,7 @@
           "@jfy133"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "03cb040e9ed50a0e9c1e8cdbffc5f7cba6ecb3ca"
     },
     {
       "name": "taxonkit_lineage",
@@ -374181,7 +374940,7 @@
     {
       "name": "untarfiles",
       "path": "modules/nf-core/untarfiles/meta.yml",
-      "tree_sha": "d7bed3bf3d335d045a8bd2ea3209b99cd977ad2c",
+      "tree_sha": "e33b427c2311ea1e1b6332826ef6c3829cf4ad64",
       "files": [
         "modules/nf-core/untarfiles/environment.yml",
         "modules/nf-core/untarfiles/main.nf",
@@ -374254,19 +375013,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_tar": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "tar": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "tar --version 2>&1 | sed '1s/^.*(GNU tar) //;q'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "tar": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "tar --version 2>&1 | sed '1s/^.*(GNU tar) //;q'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -374284,7 +375075,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "eac429d4c67ac5114ce7d4287d460d8f05fd9fab",
+      "git_sha": "84dbadc244a493f88a22b2841d8cf3f74ba763ff",
       "pipelines": [
         {
           "name": "chipseq",
@@ -390995,6 +391786,10 @@
         {
           "name": "spatialaxe",
           "version": "1.0.0"
+        },
+        {
+          "name": "spatialaxe",
+          "version": "1.0.0"
         }
       ]
     },
@@ -394009,7 +394804,7 @@
     {
       "name": "bam_dedup_umi",
       "path": "subworkflows/nf-core/bam_dedup_umi/meta.yml",
-      "tree_sha": "79e3974ab841f4b5f6fcf8b37557af1967e16a4b",
+      "tree_sha": "778a30b34001bcc4954abdcfc284bf32fc76fa5a",
       "files": [
         "subworkflows/nf-core/bam_dedup_umi/main.nf",
         "subworkflows/nf-core/bam_dedup_umi/meta.yml",
@@ -394417,6 +395212,12 @@
               "description": "Channel containing files for MultiQC",
               "structure": [
                 {
+                  "meta": {
+                    "type": "map",
+                    "description": "Metadata map"
+                  }
+                },
+                {
                   "file": {
                     "type": "file",
                     "description": "File for MultiQC"
@@ -394467,7 +395268,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "42f1a6b3cc7ffd8f2aff1b22c7e4671aeb1c50a6",
       "pipelines": [
         {
           "name": "lncpipe",
@@ -407158,7 +407959,7 @@
     {
       "name": "orftable_fasta_gtf_buildorfcatalogue",
       "path": "subworkflows/nf-core/orftable_fasta_gtf_buildorfcatalogue/meta.yml",
-      "tree_sha": "53b44aa2a9fcf1d39595530f3e2209309e19cbb4",
+      "tree_sha": "6d2032f1c19b1b13c43b0daa97af2f9300066eb1",
       "files": [
         "subworkflows/nf-core/orftable_fasta_gtf_buildorfcatalogue/main.nf",
         "subworkflows/nf-core/orftable_fasta_gtf_buildorfcatalogue/meta.yml",
@@ -407198,7 +407999,7 @@
           },
           {
             "ch_gtf": {
-              "description": "Reference annotation GTF. Used by the ribocode and ribotish\nnormalisers to lift transcript coordinates to genomic blocks;\nignored by callers that already emit genomic coordinates\n(ribotricer, rpbp, price). Pass `[ [:], [] ]` if no GTF is\navailable (caller subset must then exclude ribocode and ribotish).\nStructure: [ val(meta), path(gtf) ]\n"
+              "description": "Reference annotation GTF. The ribocode and ribotish normalisers use\nit to lift transcript coordinates to genomic blocks; rpbp and price\nresolve gene ids from it, and rpbp has no fallback, so its ORFs get\nan empty gene_id without it. Only ribotricer ignores it. Pass\n`[ [:], [] ]` only when the caller subset is limited to ribotricer.\nStructure: [ val(meta), path(gtf) ]\n"
             }
           },
           {
@@ -407256,7 +408057,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "23ca2b32dacbfc86c23af4ea6413ce96a022ea85"
+      "git_sha": "42f1a6b3cc7ffd8f2aff1b22c7e4671aeb1c50a6"
     },
     {
       "name": "quant_tximport_summarizedexperiment",
@@ -411204,6 +412005,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "a3b787358fa965b5f242b2408d52e8d0a28aaca2",
-  "updated_at": "2026-07-30T03:08:43.970Z"
+  "commit_sha": "42f1a6b3cc7ffd8f2aff1b22c7e4671aeb1c50a6",
+  "updated_at": "2026-07-30T14:56:02.215Z"
 }
