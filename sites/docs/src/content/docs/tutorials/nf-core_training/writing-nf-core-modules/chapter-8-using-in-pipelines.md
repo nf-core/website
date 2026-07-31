@@ -68,7 +68,7 @@ You can invoke the module as you would with any Nextflow module:
 SAMTOOLS_FASTA (ch_input_for_samtoolsfasta, val_interleave)
 ```
 
-However, you may need to make some additional additional tweaks to your existing pipeline logic and files to make the module work correctly. These changes are described in the remaining sections of this chapter.
+However, you may need to make some additional tweaks to your existing pipeline logic and files to make the module work correctly. These changes are described in the remaining sections of this chapter.
 
 ### Module channel structures
 

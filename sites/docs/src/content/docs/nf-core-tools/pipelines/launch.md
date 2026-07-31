@@ -5,7 +5,7 @@ shortTitle: launch
 weight: 20
 ---
 
-Some nextflow pipelines have a considerable number of command line flags that can be used.
+Some Nextflow pipelines have a considerable number of command line flags that can be used.
 To help with this, you can use the `nf-core pipelines launch` command.
 You can choose between a web-based graphical interface or an interactive command-line wizard tool to enter the pipeline parameters for your run.
 Both interfaces show documentation alongside each parameter and validate your inputs.
@@ -13,7 +13,7 @@ Both interfaces show documentation alongside each parameter and validate your in
 The tool uses the `nextflow_schema.json` file from a pipeline to give parameter descriptions, defaults and grouping.
 If no file for the pipeline is found, one will be automatically generated at runtime.
 
-Nextflow `params` variables are saved in to a JSON file called `nf-params.json` and used by nextflow with the `-params-file` flag.
+Nextflow `params` variables are saved in to a JSON file called `nf-params.json` and used by Nextflow with the `-params-file` flag.
 This makes it easier to reuse these in the future.
 
 The command takes one argument - either the name of an nf-core pipeline which will be pulled automatically,
@@ -42,7 +42,7 @@ Do you want to run this command now?  [y/n]:
 - `-i`, `--id`
   - You can use the web GUI for nf-core pipelines by clicking _"Launch"_ on the website. Once filled in you will be given an ID to use with this command which is used to retrieve your inputs.
 - `-c`, `--command-only`
-  - If you prefer not to save your inputs in a JSON file and use `-params-file`, this option will specify all entered params directly in the nextflow command.
+  - If you prefer not to save your inputs in a JSON file and use `-params-file`, this option will specify all entered params directly in the Nextflow command.
 - `-p`, `--params-in PATH`
   - To use values entered in a previous pipeline run, you can supply the `nf-params.json` file previously generated.
   - This will overwrite the pipeline schema defaults before the wizard is launched.

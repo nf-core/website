@@ -14,7 +14,7 @@ label:
 embedHeaderImage: false
 ---
 
-import { YouTube } from "@astro-community/astro-embed-youtube";
+import { YouTube } from "@Astro-community/Astro-embed-youtube";
 
 import butwhy from "@assets/images/blog/seqera-containers-part-1/simone-secci-49uySSA678U-unsplash.jpg";
 import mulled from "@assets/images/blog/seqera-containers-part-1/hannah-pemberton-bXi4eg4jyuU-unsplash.jpg";
@@ -22,7 +22,7 @@ import disks from "@assets/images/blog/seqera-containers-part-1/behnam-norouzi-8
 import wave_logs from "@assets/images/blog/seqera-containers-part-1/logs_screenshot.png";
 import leaves from "@assets/images/blog/seqera-containers-part-1/providence-doucet-mE5MBZX5sko-unsplash.jpg";
 
-import { Image } from "astro:assets";
+import { Image } from "Astro:assets";
 
 ## Introduction
 
@@ -34,16 +34,16 @@ When using containers, all software requirements for a specific Nextflow process
 The process tasks run in isolation in the host environment, and the end user doesn't need to worry about installing software dependencies for the pipeline.
 The software builds are locked in time, making results highly reproducible over many years.
 
-To ensure maximum compatibility across different environments, nf-core pipelines ship with the full range of options: conda environments as well as Docker and Singularity images.
+To ensure maximum compatibility across different environments, nf-core pipelines ship with the full range of options: Conda environments as well as Docker and Singularity images.
 These are typically built using [Bioconda](https://bioconda.github.io/) and [BioContainers](https://biocontainers.pro/).
-The Bioconda and BioContainer projects have been invaluable to nf-core's success.
+The BioConda and BioContainer projects have been invaluable to nf-core's success.
 We're hugely grateful to all contributors for their work, as well as to Anaconda, Quay.io and the Galaxy project for hosting these resources.
 
 ## Change is on the breeze
 
 <Image class="d-block ms-3 mb-3 float-end rounded w-25 shadow" src={butwhy} alt="Photo by Simone Secci on Unsplash." />
 
-Bioconda and BioContainers have worked very well for nf-core.
+BioConda and BioContainers have worked very well for nf-core.
 However, we are now looking to migrate to a new system: Seqera Containers.
 
 The motivation comes down to a few key reasons:
@@ -64,7 +64,7 @@ With the new Seqera Containers setup we should be able to address these problems
 A detailed description of the proposed mechanism will come in part 2 of this blog post.
 Here are the key points:
 
-- Developers will _only_ need to edit the conda `environment.yml` (no process `container`)
+- Developers will _only_ need to edit the Conda `environment.yml` (no process `container`)
 - Container images will be built by Wave and stored in Seqera Containers
 - Build logs and source files will be shown on the nf-core website module pages
 - Conda lock-files will be used for Conda users and CI tests
@@ -103,9 +103,9 @@ Note that images from Seqera Containers can already be used in nf-core/modules, 
 
 ## BioContainers and Seqera Containers
 
-Nearly all nf-core modules are bundled with a conda `environment.yml`, listing software package dependencies from [Bioconda](https://bioconda.github.io/) (eg. [FastQC](https://github.com/nf-core/modules/blob/f768b283dbd8fc79d0d92b0f68665d7bed94cabc/modules/nf-core/fastqc/environment.yml)).
-The [BioContainers project](https://biocontainers.pro/) conveniently builds Docker and Singularity images for all tools on Bioconda automatically, hosting the images publicly on [quay.io](quay.io) and the Galaxy FTP servers, respectively.
-This means that the nf-core module developer can find the matching [BioContainer](https://biocontainers.pro/) images for their Bioconda package, and then add the image URLs into the module's `main.nf` script (see [FastQC example](https://github.com/nf-core/modules/blob/f768b283dbd8fc79d0d92b0f68665d7bed94cabc/modules/nf-core/fastqc/main.nf#L6-L8)).
+Nearly all nf-core modules are bundled with a Conda `environment.yml`, listing software package dependencies from [Bioconda](https://bioconda.github.io/) (eg. [FastQC](https://github.com/nf-core/modules/blob/f768b283dbd8fc79d0d92b0f68665d7bed94cabc/modules/nf-core/fastqc/environment.yml)).
+The [BioContainers project](https://biocontainers.pro/) conveniently builds Docker and Singularity images for all tools on BioConda automatically, hosting the images publicly on [quay.io](quay.io) and the Galaxy FTP servers, respectively.
+This means that the nf-core module developer can find the matching [BioContainer](https://biocontainers.pro/) images for their BioConda package, and then add the image URLs into the module's `main.nf` script (see [FastQC example](https://github.com/nf-core/modules/blob/f768b283dbd8fc79d0d92b0f68665d7bed94cabc/modules/nf-core/fastqc/main.nf#L6-L8)).
 The nf-core pipeline user then pulls the container images from quay.io or the Galaxy FTP server when they run the pipeline.
 
 <YouTube
@@ -151,13 +151,13 @@ Here's a brief comparison of the features:
     </thead>
     <tbody>
         <tr>
-            <td>Support Bioconda packages</td>
+            <td>Support BioConda packages</td>
             <td>✅</td>
             <td>✅</td>
             <td>✅</td>
         </tr>
         <tr>
-            <td>Support all conda channels</td>
+            <td>Support all Conda channels</td>
             <td>❌</td>
             <td>✅</td>
             <td>✅</td>
@@ -217,7 +217,7 @@ Here's a brief comparison of the features:
             <td>✅ *</td>
         </tr>
         <tr>
-            <td>Pull delay for conda packages</td>
+            <td>Pull delay for Conda packages</td>
             <td>✅ instant</td>
             <td>❌ ~2-3 minutes for build on first request</td>
             <td>✅ instant</td>
@@ -241,7 +241,7 @@ Here's a brief comparison of the features:
             <td>✅</td>
         </tr>
         <tr>
-            <td>Guaranteed identical conda builds in future image pulls</td>
+            <td>Guaranteed identical Conda builds in future image pulls</td>
             <td>✅</td>
             <td>❌</td>
             <td>✅</td>
@@ -268,7 +268,7 @@ Here's a brief comparison of the features:
 
 BioContainers is primarily set up to have a 1:1 relationship with Bioconda.
 This is great for bioinformatics tools as an image is created every time a package is published.
-This works well until you need to use more than one tool in a single process, particularly when the tools are from elsewhere in the conda ecosystem.
+This works well until you need to use more than one tool in a single process, particularly when the tools are from elsewhere in the Conda ecosystem.
 For example, many bioinformatics tools leverage [samtools](https://www.htslib.org/) to convert file formats or sort reads on the fly.
 Others may pipe output to compression tools like [pigz](https://zlib.net/pigz/).
 To resolve this, BioContainers has the concept of “mulled” images (as in [mulled wine](https://en.wikipedia.org/wiki/Mulled_wine)).
@@ -283,7 +283,7 @@ Galaxy also has [documentation on the topic](https://docs.galaxyproject.org/en/m
 
 In short, to request an image, you need to scroll to the bottom of a large
 [CSV file full of hashes](https://github.com/BioContainers/multi-package-containers/blob/master/combinations/hash.tsv)
-and add a line with your requested conda packages.
+and add a line with your requested Conda packages.
 Once edited, the images are built on CI.
 The container then becomes available after a review and merge.
 
@@ -293,7 +293,7 @@ However, [Moriz E. Beber](https://github.com/Midnighter) from the nf-core commun
 the process of finding the name of your container and how to update a container if you want to bump the software versions.
 
 Once the image is built and you know its address, the final step is to go to nf-core/modules,
-create a pull-request with the updated containers, and bump the versions in the conda `environment.yml`.
+create a pull-request with the updated containers, and bump the versions in the Conda `environment.yml`.
 :::
 
 This system works and, despite its complexity, is now a familiar process to many nf-core developers.
@@ -305,7 +305,7 @@ It seems likely that this puts some people off from contributing to nf-core.
 
 Migrating nf-core to use Seqera Containers will make provisioning multi-package containers easier.
 The module developer will only need to edit the module `environment.yml` file and everything else will be fully automated and made available almost immediately.
-Packages can be used minutes after their release on Bioconda and we will have automation in place to bump the Conda + Seqera Containers packages when a tool is updated.
+Packages can be used minutes after their release on BioConda and we will have automation in place to bump the Conda + Seqera Containers packages when a tool is updated.
 
 ### Time to Singularity image
 
@@ -318,7 +318,7 @@ Once a new version of a tool is released, they have to wait for the Singularity 
 In practice, this often means that module updates get stuck in limbo for days until the developer has time to come back and check if the image is available.
 
 Singularity images are generated on the fly with Seqera Containers.
-Developers will be able update the nf-core module minutes after the Bioconda package is released.
+Developers will be able update the nf-core module minutes after the BioConda package is released.
 
 ### BioContainers API
 
@@ -352,14 +352,14 @@ Even if new builds of the same software are created in the future using Wave (fo
 
 As container URIs will be stored in the module-level `meta.yml` file, any pipelines using the same shared nf-core/module will also be using the exact same container images.
 
-We will further improve reproducibility at the conda level by adopting the use of conda lock-files.
+We will further improve reproducibility at the Conda level by adopting the use of Conda lock-files.
 These pin the exact dependency stack used by the build, not just the top-level primary tool being requested.
-This effectively removes the need for conda to solve the build and also ships md5 hashes for every package.
-This will greatly improve the reproducibility of the software environments for conda users and the reliability of Conda CI tests.
+This effectively removes the need for Conda to solve the build and also ships md5 hashes for every package.
+This will greatly improve the reproducibility of the software environments for Conda users and the reliability of Conda CI tests.
 
 ```yaml
 # This file may be used to create an environment using:
-# $ conda create --name <env> --file <this file>
+# $ Conda create --name <env> --file <this file>
 # platform: linux-64
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
@@ -402,10 +402,10 @@ Wave build details page for the MultiQC v1.24.1 image: `community.wave.seqera.io
 The final part is the hash - from this we can infer the Wave Build ID and retrieve the build details: [https://wave.seqera.io/view/builds/789bc3917c8666da_1](https://wave.seqera.io/view/builds/789bc3917c8666da_1)
 :::
 
-The new conda lock files also allow enhanced reproducibility for Conda users and more stable CI tests - we'll come back to these in a future blog post / bytesize.
+The new Conda lock files also allow enhanced reproducibility for Conda users and more stable CI tests - we'll come back to these in a future blog post / bytesize.
 
 Finally, the image creation will happen automatically on GitHub Actions when an `environment.yml` file is edited.
-This means that the entire flow from conda file through to final containers will be entirely transparent, as the request to Wave itself and its response will be available in the GitHub Actions logs.
+This means that the entire flow from Conda file through to final containers will be entirely transparent, as the request to Wave itself and its response will be available in the GitHub Actions logs.
 
 ### No lock-in
 

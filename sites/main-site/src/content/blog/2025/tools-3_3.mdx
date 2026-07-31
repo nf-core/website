@@ -12,7 +12,7 @@ label:
 maxHeadingDepth: 3
 ---
 
-import { YouTube } from "@astro-community/astro-embed-youtube";
+import { YouTube } from "@Astro-community/Astro-embed-youtube";
 
 This release brings exciting new features focused on nf-test integration, test dataset management and modules from different repositories in subworkflows. As always, if you have any problems or run into any bugs, reach out on the [#tools slack channel](https://nfcore.slack.com/archives/CE5LG7WMB).
 
@@ -42,7 +42,7 @@ nf-test.config       # The pipeline-level nf-test configuration file
 tests/
 ├── .nftignore       # ignored files for nf-test
 ├── default.nf.test  # The default test for the pipeline, mirroring the setup in config/test.config
-└── nextflow.config  # The nextflow configuration for the pipeline tests
+└── nextflow.config  # The Nextflow configuration for the pipeline tests
 ```
 
 Additionally, we changed the CI setup to use nf-tests with [sharding](https://www.nf-test.com/docs/cli/test/#sharding) to speed up the testing process.
@@ -54,7 +54,7 @@ The initial nf-test CI run will fail, because the pipeline repository doesn't ha
 To fix this, generate a snapshot with:
 
 ```bash
-nf-test test tests/ --profile=+<docker/singularity/conda etc.>
+nf-test test tests/ --profile=+<Docker/Singularity/Conda etc.>
 ```
 
 The `=+` notation is to extend the Nextflow `-profile test` option, and not overwrite it.
@@ -70,7 +70,7 @@ skip_features:
     - "nf-test"
 ```
 
-Additionally, to ignore the linting checks for nf-test, add add the following to the `.nf-core.yml` file:
+Additionally, to ignore the linting checks for nf-test, add the following to the `.nf-core.yml` file:
 
 ```yaml
 lint:
@@ -229,9 +229,9 @@ Accept the changes.
 
 ## GitHub Actions
 
-In the Github Action `download_pipeline.yml` we have removed the `pull_request_target` and added a step to upload the `nextflow.log` file.
+In the GitHub Action `download_pipeline.yml` we have removed the `pull_request_target` and added a step to upload the `nextflow.log` file.
 
-In all Github Actions (files inside `.github/workflows`) you will see several version updates.
+In all GitHub Actions (files inside `.github/workflows`) you will see several version updates.
 
 #### Resolution
 

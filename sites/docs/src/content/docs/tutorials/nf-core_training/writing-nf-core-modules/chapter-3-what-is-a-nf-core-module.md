@@ -16,7 +16,7 @@ This chapter describes what an nf-core module is, and what makes them different 
 For each 'wrapper', nf-core modules usually follow the rule of one tool command, or one tool with a single subcommand, per wrapper.
 
 :::info{collapse title="Comparison with Nextflow modules"}
-A Nextflow process or module has no restrictions on the the number of tools or subcommands it can execute.
+A Nextflow process or module has no restrictions on the number of tools or subcommands it can execute.
 
 An nf-core module strictly aims to have a single 'analysis' command per module for simplicity and lego-block like construction of pipelines.
 While this atomic nature is not always the most resource efficient, it makes modules easier to understand, share, and test.

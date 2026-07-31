@@ -13,7 +13,7 @@ label:
 maxHeadingDepth: 3
 ---
 
-import { Image } from "astro:assets";
+import { Image } from "Astro:assets";
 
 import old_nf_version from "@assets/images/blog/pipeline-download-refactor/nf-old-demo.gif";
 import docker_download_in_action from "@assets/images/blog/pipeline-download-refactor/bamtofastq-in-action.gif";
@@ -73,7 +73,7 @@ Until then, you can either voluntarily update the Nextflow version of your pipel
 
 The download command has also been extended to support Docker containers,
 in addition to Singularity containers which was the only container system previously supported.
-The container system to use can be selected via the `--container-system` flag of the command, which now accepts the options `singularity`, `docker` and `none`.
+The container system to use can be selected via the `--container-system` flag of the command, which now accepts the options `Singularity`, `Docker` and `none`.
 Alternatively, the container system can be selected via the interactive CLI prompts.
 
 The change means that `nf-core` pipelines now can be run on offline HPCs which support only Docker or Podman containers, making it easy to run `nf-core` pipelines in even more compute environments!

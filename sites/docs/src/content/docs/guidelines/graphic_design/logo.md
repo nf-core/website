@@ -32,7 +32,7 @@ You can also quickly generate a PNG logo yourself by visiting [https://nf-co.re/
 
 Some developers may want to further add branding to their own pipelines by extending the default nf-core logo to include their own mark.
 
-If any any point you want advice, feel free to ask on the nf-core slack under [#graphics](https://nfcore.slack.com/archives/C021QHJRJE8).
+If at any point you want advice, feel free to ask on the nf-core slack under [#graphics](https://nfcore.slack.com/archives/C021QHJRJE8).
 
 If you wish to do so, please use the following guidelines when creating your mark:
 

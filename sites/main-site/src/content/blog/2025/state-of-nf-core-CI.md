@@ -69,7 +69,7 @@ We kept running into user-permission errors, because the terraform setup came on
 As our manual runners become more problematic, we started to search for yet another solution.
 This time both [Edmund](https://github.com/edmundmiller) and me stumbled upon [runsOn](https://runs-on.com/).
 This service provides an AWS CloudFormation template to create a self-hosted runner in your own AWS account. So it is basically doing what we did before, but without the terraform setup and comes with really good documentation.
-We switched switched the CI tests for [nf-core/modules](https://github.com/nf-core/modules/pull/7840) to this new solution a week before the March 2025 hackathon and it worked like a charm.
+We switched the CI tests for [nf-core/modules](https://github.com/nf-core/modules/pull/7840) to this new solution a week before the March 2025 hackathon and it worked like a charm.
 It was so smooth I had to check several times that the tests are actually running on the self-hosted runners.
 
 Switching to the new solution was as simple as changing:
