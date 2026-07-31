@@ -33,7 +33,7 @@ See also \[the Screen.SUB_TITLE attribute]\[textual.screen.Screen.SUB_TITLE].
 
 #### `TEMPLATE_CONFIG{:python}`_= CreateConfig(org=None, name=None, description=None, author=None, version=None, force=True, outdir=None, skip_features=None, is_nfcore=None)_
 
-#### `TITLE{:python}`_: str | None_ _= 'nf-core create'_
+#### `TITLE{:python}`_: str | None_ _= 'nf-core pipelines create'_
 
 A class variable to set the _default_ title for the application.
 
