@@ -98321,7 +98321,7 @@
     {
       "name": "duckdb_table2parquet",
       "path": "modules/nf-core/duckdb/table2parquet/meta.yml",
-      "tree_sha": "44bae496bc712c557ea2c77691627d433c139a67",
+      "tree_sha": "debc02f3ac0e8171c778c57709b80ceefd3525b8",
       "files": [
         "modules/nf-core/duckdb/table2parquet/.conda-lock/linux_amd64-bd-9c6d18d9f687a45d_1.txt",
         "modules/nf-core/duckdb/table2parquet/environment.yml",
@@ -98483,7 +98483,7 @@
           }
         }
       },
-      "git_sha": "a28c71fc6491b345ad8e77d6a15e9fc93b5a98a1"
+      "git_sha": "a01390acb6fb8c7539c8d9126b16df24092db83c"
     },
     {
       "name": "dupblaster",
@@ -109234,7 +109234,7 @@
     {
       "name": "fastp",
       "path": "modules/nf-core/fastp/meta.yml",
-      "tree_sha": "b7441c10248d68c56a26d8c02c64bcc1766cec58",
+      "tree_sha": "2fffc347743e62d515bf247cf97ce4f781094a1c",
       "files": [
         "modules/nf-core/fastp/environment.yml",
         "modules/nf-core/fastp/main.nf",
@@ -109259,6 +109259,12 @@
               "description": "A tool designed to provide fast all-in-one preprocessing for FastQ files. This tool is developed in C++ with multithreading supported to afford high performance.\n",
               "documentation": "https://github.com/OpenGene/fastp",
               "doi": "10.1093/bioinformatics/bty560",
+              "publication": {
+                "author": "Chen S., Zhou Y., Chen Y. & Gu J.",
+                "year": 2018,
+                "title": "fastp: an ultra-fast all-in-one FASTQ preprocessor",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -109493,7 +109499,7 @@
           "@kevinmenden"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "358aabf0066dadcc4c1531f22b27c673c32b4229",
       "pipelines": [
         {
           "name": "airrflow",
@@ -157089,6 +157095,224 @@
       "git_sha": "dba388cb6d87d390543f2c108bb8684c4c36c644"
     },
     {
+      "name": "gridss_call",
+      "path": "modules/nf-core/gridss/call/meta.yml",
+      "tree_sha": "e58f9c238ce875dc67a8b6792708d336e14336bc",
+      "files": [
+        "modules/nf-core/gridss/call/environment.yml",
+        "modules/nf-core/gridss/call/main.nf",
+        "modules/nf-core/gridss/call/meta.yml",
+        "modules/nf-core/gridss/call/tests/main.nf.test",
+        "modules/nf-core/gridss/call/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "gridss_call",
+        "description": "Run the GRIDSS variant calling step to identify structural variants from pre-processed and assembled alignments.",
+        "keywords": [
+          "gridss",
+          "structural variants",
+          "variant calling",
+          "bam",
+          "vcf"
+        ],
+        "tools": [
+          {
+            "gridss": {
+              "description": "GRIDSS: the Genomic Rearrangement IDentification Software Suite",
+              "homepage": "https://github.com/PapenfussLab/gridss/wiki/GRIDSS-Documentation",
+              "documentation": "https://github.com/PapenfussLab/gridss/wiki/GRIDSS-Documentation",
+              "tool_dev_url": "https://github.com/PapenfussLab/gridss",
+              "doi": "10.1186/s13059-021-02423-x",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:gridss"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Input BAM file(s)",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file(s)",
+                "pattern": "*.bam.bai",
+                "ontologies": []
+              }
+            },
+            {
+              "preprocess_dir": {
+                "type": "directory",
+                "description": "Working directory containing the output of the GRIDSS preprocess step preprocess step"
+              }
+            },
+            {
+              "assemble_dir": {
+                "type": "directory",
+                "description": "Working directory containing the output of the GRIDSS assemble step assemble step"
+              }
+            },
+            {
+              "assemble_bam": {
+                "type": "file",
+                "description": "The assembly BAM file created by the GRIDSS assemble step",
+                "pattern": "*.{bam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_1383"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'genome' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "The reference fasta",
+                "pattern": "*.{fa,fna,fasta}",
+                "ontologies": []
+              }
+            },
+            {
+              "fasta_fai": {
+                "type": "file",
+                "description": "The index of the reference fasta",
+                "pattern": "*.fai",
+                "ontologies": []
+              }
+            },
+            {
+              "bwa_index": {
+                "type": "directory",
+                "description": "The BWA index created from the reference fasta"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "gridss_config": {
+                "type": "file",
+                "description": "OPTIONAL - A GRIDSS configuration file (Java .properties format). See the default config for available settings, https://github.com/PapenfussLab/gridss/blob/825bc8e1bb092e9bb2ccb0c1c51dc6e7e1a922dd/src/main/resources/gridss.properties",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*.sv.gridss.vcf.gz": {
+                  "type": "file",
+                  "description": "The called VCF file created by the GRIDSS call step",
+                  "pattern": "*.sv.gridss.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_gridss": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gridss": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "CallVariants --version 2>&1 | sed 's/-gridss\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gridss": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "CallVariants --version 2>&1 | sed 's/-gridss\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@imsarath"
+        ],
+        "maintainers": [
+          "@imsarath"
+        ]
+      },
+      "git_sha": "26550158a8b044f1c390ea8dbb54ea4a6cd251b2"
+    },
+    {
       "name": "gridss_generateponbedpe",
       "path": "modules/nf-core/gridss/generateponbedpe/meta.yml",
       "tree_sha": "ad3f961df151d5cd5ef7698e81c0078394628b50",
@@ -167288,7 +167512,7 @@
     {
       "name": "hifitrimmer_filterbam",
       "path": "modules/nf-core/hifitrimmer/filterbam/meta.yml",
-      "tree_sha": "f487e0dda1e29b0117a462b57973992ba533baa9",
+      "tree_sha": "774b8fc9982bcdc1950f4616868570136474b654",
       "files": [
         "modules/nf-core/hifitrimmer/filterbam/environment.yml",
         "modules/nf-core/hifitrimmer/filterbam/main.nf",
@@ -167301,6 +167525,7 @@
       "meta": {
         "name": "hifitrimmer_filterbam",
         "description": "Run hifi_trimmer filter_bam to filter and trim adapter hits from PacBio HiFi reads (BAM/FASTA/FASTQ) using BLAST against\nadapter sequences. Primary output is filtered FASTA/FASTQ.\n",
+        "deprecated": true,
         "keywords": [
           "pacbio",
           "bam",
@@ -167481,12 +167706,12 @@
           "@sainsachiko"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "8a90603f7591995c51e6eb6bac31d4694aa3ee83"
     },
     {
       "name": "hifitrimmer_processblast",
       "path": "modules/nf-core/hifitrimmer/processblast/meta.yml",
-      "tree_sha": "f05530d2150353210486be0a53f20e938b7b1bcc",
+      "tree_sha": "a42d8a860eedac3df3ad92b01b669ebf23e2a6e2",
       "files": [
         "modules/nf-core/hifitrimmer/processblast/environment.yml",
         "modules/nf-core/hifitrimmer/processblast/main.nf",
@@ -167509,7 +167734,7 @@
         ],
         "tools": [
           {
-            "hifi_trimmer": {
+            "hifi-trimmer": {
               "description": "hifi_trimmer: tools for processing HiFi read BLAST results and filtering/trimming\nBAM files to output processed FASTA/FASTQ and accompanying summary and hit (optional) files.\n",
               "homepage": "https://github.com/sanger-tol/hifi-trimmer",
               "documentation": "https://github.com/sanger-tol/hifi-trimmer",
@@ -167531,13 +167756,13 @@
               "blast": {
                 "type": "file",
                 "description": "BLAST TSV output file used by hifi_trimmer (e.g. .blast, .out). Must be generated using \"blastn -query <reads> -db <adapter_db> -outfmt '6 std qlen'\".",
-                "pattern": "*.blast"
+                "pattern": "*.{blast,out}"
               }
             }
           ],
           [
             {
-              "meta1": {
+              "meta2": {
                 "type": "map",
                 "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
               }
@@ -167630,13 +167855,13 @@
                 }
               },
               {
-                "hifi_trimmer": {
+                "hifi-trimmer": {
                   "type": "string",
                   "description": "The name of the tool"
                 }
               },
               {
-                "hifi_trimmer --version | cut -d' ' -f3": {
+                "hifi-trimmer --version | cut -d' ' -f3": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -167654,13 +167879,13 @@
                 }
               },
               {
-                "hifi_trimmer": {
+                "hifi-trimmer": {
                   "type": "string",
                   "description": "The name of the tool"
                 }
               },
               {
-                "hifi_trimmer --version | cut -d' ' -f3": {
+                "hifi-trimmer --version | cut -d' ' -f3": {
                   "type": "eval",
                   "description": "The expression to obtain the version"
                 }
@@ -167675,7 +167900,246 @@
           "@sainsachiko"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "8a90603f7591995c51e6eb6bac31d4694aa3ee83"
+    },
+    {
+      "name": "hifitrimmer_trim",
+      "path": "modules/nf-core/hifitrimmer/trim/meta.yml",
+      "tree_sha": "d79b7d2e39a9d1750c4e43d2c40dfaa2bc54b4a2",
+      "files": [
+        "modules/nf-core/hifitrimmer/trim/environment.yml",
+        "modules/nf-core/hifitrimmer/trim/main.nf",
+        "modules/nf-core/hifitrimmer/trim/meta.yml",
+        "modules/nf-core/hifitrimmer/trim/tests/main.nf.test",
+        "modules/nf-core/hifitrimmer/trim/tests/main.nf.test.snap",
+        "modules/nf-core/hifitrimmer/trim/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "hifitrimmer_trim",
+        "description": "Run hifi-trimmer trim to filter and trim adapter-hit regions from PacBio HiFi reads.\nSupports BAM/CRAM/FASTA/FASTQ input and emits SAM/BAM/CRAM according to the selected output format.\n",
+        "keywords": [
+          "pacbio",
+          "bam",
+          "fasta",
+          "hifi_trimmer",
+          "filtering",
+          "trimming",
+          "quality control",
+          "adapter removal"
+        ],
+        "tools": [
+          {
+            "hifi-trimmer": {
+              "description": "hifi-trimmer: tools for processing HiFi read BLAST results and filtering/trimming read files.\n",
+              "homepage": "https://github.com/sanger-tol/hifi-trimmer",
+              "documentation": "https://github.com/sanger-tol/hifi-trimmer",
+              "licence": [
+                "MIT"
+              ]
+            }
+          },
+          {
+            "samtools": {
+              "description": "SAMtools is a set of utilities for interacting with and post-processing\nshort DNA sequence read alignments in the SAM, BAM and CRAM formats, written by Heng Li.\nThese files are generated as output by short read aligners like BWA.\n",
+              "homepage": "http://www.htslib.org/",
+              "documentation": "http://www.htslib.org/doc/samtools.html",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:samtools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "input": {
+                "type": "file",
+                "description": "Input BAM/CRAM/FASTA/FASTQ file to filter and trim",
+                "pattern": "*.{bam,cram,fa,fasta,fa.gz,fasta.gz,fastq,fq,fastq.gz,fq.gz}"
+              }
+            },
+            {
+              "bed": {
+                "type": "file",
+                "description": "Input gzipped bed file contains regions to filter/trim",
+                "pattern": "*.bed.gz"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "sam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.sam": {
+                  "type": "file",
+                  "description": "SAM output from hifi-trimmer when `-f sam` is selected",
+                  "pattern": "*.sam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2573"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.bam": {
+                  "type": "file",
+                  "description": "BAM output from hifi-trimmer (default format)",
+                  "pattern": "*.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "cram": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.cram": {
+                  "type": "file",
+                  "description": "CRAM output from hifi-trimmer when `-f cram` is selected",
+                  "pattern": "*.cram",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3462"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_hifitrimmer": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hifi-trimmer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hifi-trimmer --version | cut -d' ' -f3": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "Name of the tool"
+                }
+              },
+              {
+                "samtools --version | head -1 | sed -e \"s/samtools //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hifi-trimmer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hifi-trimmer --version | cut -d' ' -f3": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "Name of the tool"
+                }
+              },
+              {
+                "samtools --version | head -1 | sed -e \"s/samtools //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@sainsachiko"
+        ],
+        "maintainers": [
+          "@sainsachiko"
+        ]
+      },
+      "git_sha": "8a90603f7591995c51e6eb6bac31d4694aa3ee83"
     },
     {
       "name": "hiphase",
@@ -254818,13 +255282,14 @@
     {
       "name": "pbmm2_align",
       "path": "modules/nf-core/pbmm2/align/meta.yml",
-      "tree_sha": "cfa4dbc1b8e34e8fb72b4294a80826815807aa4f",
+      "tree_sha": "53ef7678c89c427df4e5a5537e7ec2844b86f885",
       "files": [
         "modules/nf-core/pbmm2/align/environment.yml",
         "modules/nf-core/pbmm2/align/main.nf",
         "modules/nf-core/pbmm2/align/meta.yml",
         "modules/nf-core/pbmm2/align/tests/main.nf.test",
-        "modules/nf-core/pbmm2/align/tests/main.nf.test.snap"
+        "modules/nf-core/pbmm2/align/tests/main.nf.test.snap",
+        "modules/nf-core/pbmm2/align/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
@@ -254862,7 +255327,17 @@
                 "type": "file",
                 "description": "Sorted BAM/CRAM/SAM file",
                 "pattern": "*.{bam,cram,sam}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2573"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
               }
             }
           ],
@@ -254878,7 +255353,11 @@
                 "type": "file",
                 "description": "fasta file to align bam to",
                 "pattern": "*.{fasta}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ]
@@ -254906,6 +255385,28 @@
                     },
                     {
                       "edam": "http://edamontology.org/format_3462"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.{bai,csi}": {
+                  "type": "file",
+                  "description": "BAM index file",
+                  "pattern": "*.{bai,csi}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3327"
                     }
                   ]
                 }
@@ -254966,7 +255467,7 @@
           "@tanyasarkjain"
         ]
       },
-      "git_sha": "4c0a7271c05babd2226ce94c502d75a73228aa06",
+      "git_sha": "e6d1cb8b814c1d0deda51e3d317273901d7e975a",
       "pipelines": [
         {
           "name": "methylong",
@@ -367531,6 +368032,200 @@
       "git_sha": "f9b05e226409f21226a46d95d2d26c58d68958e6"
     },
     {
+      "name": "transrate",
+      "path": "modules/nf-core/transrate/meta.yml",
+      "tree_sha": "88c500ed9c7603b8b0214fb0997a53c563064a87",
+      "files": [
+        "modules/nf-core/transrate/.conda-lock/linux_amd64-bd-092d9b5f119b9733_1.txt",
+        "modules/nf-core/transrate/environment.yml",
+        "modules/nf-core/transrate/main.nf",
+        "modules/nf-core/transrate/meta.yml",
+        "modules/nf-core/transrate/tests/main.nf.test",
+        "modules/nf-core/transrate/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "transrate",
+        "description": "Reference-free and reference-based quality assessment of de novo transcriptome\nassemblies. Only sequence-based (--assembly) and reference-based (--reference) metrics\nare supported. Read-based metrics (--left/--right) are not: they hard-require the\n`bam-read` binary, which isn't published on any conda channel, and their aligner\n(snap-aligner, pinned to an old dev build) segfaults building an index for at least\nsmall test genomes.\n",
+        "keywords": [
+          "transcriptome",
+          "assembly",
+          "quality control",
+          "qc",
+          "de novo"
+        ],
+        "tools": [
+          {
+            "transrate": {
+              "description": "Reference free quality assessment of de-novo transcriptome assemblies",
+              "homepage": "https://github.com/blahah/transrate/",
+              "documentation": "http://hibberdlab.com/transrate/",
+              "tool_dev_url": "https://github.com/blahah/transrate/",
+              "doi": "10.1101/gr.196469.115",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "assembly": {
+                "type": "file",
+                "description": "Transcriptome assembly FASTA file to be evaluated",
+                "pattern": "*.{fasta,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "reference": {
+                "type": "file",
+                "description": "Optional reference proteome or transcriptome FASTA file, to enable reference-based comparative metrics. Pass `[]` to skip.",
+                "pattern": "*.{fasta,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "assemblies": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.assemblies.csv": {
+                  "type": "file",
+                  "description": "One-row-per-assembly summary of quality metrics",
+                  "pattern": "*.assemblies.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "contigs": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.contigs.csv": {
+                  "type": "file",
+                  "description": "Per-contig quality metrics",
+                  "pattern": "*.contigs.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_transrate": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "transrate": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "transrate --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "transrate": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "transrate --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@erikrikarddaniel"
+        ],
+        "maintainers": [
+          "@erikrikarddaniel"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/transrate_blast:092d9b5f119b9733",
+              "build_id": "bd-092d9b5f119b9733_1",
+              "scan_id": "sc-86f86f9ce18504a2_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/transrate_blast:682e9a1225c61a61",
+              "build_id": "bd-682e9a1225c61a61_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c3/c3f7b24e30eab0cde846c0d31556293afc7818492d016e6770a1fef561042405/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/transrate/.conda-lock/linux_amd64-bd-092d9b5f119b9733_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "e7ee4ca0f1117ef440fe65a5038eecfd8fe5810e"
+    },
+    {
       "name": "treerecs",
       "path": "modules/nf-core/treerecs/meta.yml",
       "tree_sha": "f1d27cdb506ae5d6ce9bc2fcc89428768fec9394",
@@ -391957,6 +392652,10 @@
         {
           "name": "spatialaxe",
           "version": "1.0.0"
+        },
+        {
+          "name": "spatialaxe",
+          "version": "1.0.0"
         }
       ]
     },
@@ -412172,6 +412871,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "1a6d192f85a35f260ca5b70195f87536d78b4717",
-  "updated_at": "2026-07-31T03:09:15.347Z"
+  "commit_sha": "358aabf0066dadcc4c1531f22b27c673c32b4229",
+  "updated_at": "2026-07-31T15:42:13.372Z"
 }
