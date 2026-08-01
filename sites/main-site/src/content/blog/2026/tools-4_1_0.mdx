@@ -28,15 +28,14 @@ As always, if you have any problems or run into any bugs, reach out on the [#too
 
 Following in the path outlined in [the blog post about migrating modules to Seqera containers](https://nf-co.re/blog/2024/seqera-containers-part-2), we added a new set of sub-sub-commands:
 
-
 | Command                            | Subcommand          | Aliases | Description                                                                                                                                     |
 | ---------------------------------- | ------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `nf-core modules container{:bash}`                                   | `create{:bash}`     | `c`     | Build docker and singularity container files for linux/arm64 and linux/amd64 with wave from `environment.yml` and create container config file. |
+| `nf-core modules container{:bash}` | `create{:bash}`     | `c`     | Build docker and singularity container files for linux/arm64 and linux/amd64 with wave from `environment.yml` and create container config file. |
 |                                    | `list{:bash}`       | `ls`    | Print containers defined in a module `meta.yml`.                                                                                                |
-|  | `conda-lock{:bash}` |         | Build a Docker linux/arm64 container and fetch the conda lock file for a module.                                                                |
+|                                    | `conda-lock{:bash}` |         | Build a Docker linux/arm64 container and fetch the conda lock file for a module.                                                                |
 
-All the create command needs is a valid `environment.yml`. Using [wave](https://seqera.io/wave/) it then tries to create a docker and singularity containers in parallel, both for amd64 and arm64. 
-Additionally it will add the conda lock file to the module for increased reproducability even with conda. 
+All the create command needs is a valid `environment.yml`. Using [wave](https://seqera.io/wave/) it then tries to create a docker and singularity containers in parallel, both for amd64 and arm64.
+Additionally it will add the conda lock file to the module for increased reproducability even with conda.
 The command also updates the `main.nf` accordingly and adds all the container information to the `meta.yml`, so that the auto-generated pipeline container configs released with nf-core/tools 4.0.0 pick them up correctly.
 
 This logic is also included in `nf-core modules bump-version`, which now bumps the version of the tool in the `environment.yml` and then goes through the same steps as above to make sure all is in sync and you don't need to fiddle with any CLI or web GUI to get all the right URLs for your container definitions.
