@@ -267238,7 +267238,7 @@
     {
       "name": "plink2_extract",
       "path": "modules/nf-core/plink2/extract/meta.yml",
-      "tree_sha": "5301f022ff50d60923735f7fdbcb6c1449a3f508",
+      "tree_sha": "5135150fff5a07a8ec24c2891d8ef69c1a89dcde",
       "files": [
         "modules/nf-core/plink2/extract/environment.yml",
         "modules/nf-core/plink2/extract/main.nf",
@@ -267367,19 +267367,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_plink2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//; s/ 64.*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//; s/ 64.*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -267389,12 +267421,12 @@
           "@nebfield"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "8db8df5109b3133db8ef72dc6604a552a2eb1bd9"
     },
     {
       "name": "plink2_filter",
       "path": "modules/nf-core/plink2/filter/meta.yml",
-      "tree_sha": "2e84a8f02663188910fd3ab57c4877a711165d78",
+      "tree_sha": "a03eb85d4237fb13ba584f4e27e1fef480da1624",
       "files": [
         "modules/nf-core/plink2/filter/environment.yml",
         "modules/nf-core/plink2/filter/main.nf",
@@ -267584,19 +267616,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_plink2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//; s/ 64.*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//; s/ 64.*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -267606,12 +267670,12 @@
           "@jodennehy"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "8db8df5109b3133db8ef72dc6604a552a2eb1bd9"
     },
     {
       "name": "plink2_het",
       "path": "modules/nf-core/plink2/het/meta.yml",
-      "tree_sha": "d83c33d2e7c9ab9158778061010001c9bd0734cb",
+      "tree_sha": "a6d09d3b14a21768d7d37fe9eac7b1da068a8290",
       "files": [
         "modules/nf-core/plink2/het/environment.yml",
         "modules/nf-core/plink2/het/main.nf",
@@ -267698,19 +267762,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_plink2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//; s/ 64.*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//; s/ 64.*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -267720,7 +267816,7 @@
           "@RuthEberhardt"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "8db8df5109b3133db8ef72dc6604a552a2eb1bd9"
     },
     {
       "name": "plink2_hwe",
@@ -267936,7 +268032,7 @@
     {
       "name": "plink2_indeppairwise",
       "path": "modules/nf-core/plink2/indeppairwise/meta.yml",
-      "tree_sha": "f0b45581b40e6d8751c836428200a19a441c68bc",
+      "tree_sha": "275b30799c79c172e1920ea837b69c8e9f239c22",
       "files": [
         "modules/nf-core/plink2/indeppairwise/environment.yml",
         "modules/nf-core/plink2/indeppairwise/main.nf",
@@ -268063,19 +268159,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_plink2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//; s/ 64.*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//; s/ 64.*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -268085,20 +268213,18 @@
           "@tdkaliki"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "8db8df5109b3133db8ef72dc6604a552a2eb1bd9"
     },
     {
       "name": "plink2_pca",
       "path": "modules/nf-core/plink2/pca/meta.yml",
-      "tree_sha": "dce97cd72444ac58ab12236ac473e5f449e4de9a",
+      "tree_sha": "100b8dc7ffd2c4377e0c3dc44dc065ef04f0c666",
       "files": [
         "modules/nf-core/plink2/pca/environment.yml",
         "modules/nf-core/plink2/pca/main.nf",
         "modules/nf-core/plink2/pca/meta.yml",
         "modules/nf-core/plink2/pca/tests/main.nf.test",
-        "modules/nf-core/plink2/pca/tests/main.nf.test.snap",
-        "modules/nf-core/plink2/pca/tests/nextflow.config",
-        "modules/nf-core/plink2/pca/tests/tags.yml"
+        "modules/nf-core/plink2/pca/tests/main.nf.test.snap"
       ],
       "type": "module",
       "meta": {
@@ -268224,19 +268350,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing the version of the program\n",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_plink2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//; s/ 64.*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//; s/ 64.*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -268246,7 +268404,7 @@
           "@bruno-ariano"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "8db8df5109b3133db8ef72dc6604a552a2eb1bd9"
     },
     {
       "name": "plink2_pmerge",
@@ -268465,7 +268623,7 @@
     {
       "name": "plink2_remove",
       "path": "modules/nf-core/plink2/remove/meta.yml",
-      "tree_sha": "3f2641c04bb9aa8293f5470f1728d0686ad77793",
+      "tree_sha": "5f5da0f426d35b6a9fd6572814513802bfce54e8",
       "files": [
         "modules/nf-core/plink2/remove/environment.yml",
         "modules/nf-core/plink2/remove/main.nf",
@@ -268650,19 +268808,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_plink2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//; s/ 64.*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//; s/ 64.*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -268672,12 +268862,12 @@
           "@RuthEberhardt"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "8db8df5109b3133db8ef72dc6604a552a2eb1bd9"
     },
     {
       "name": "plink2_score",
       "path": "modules/nf-core/plink2/score/meta.yml",
-      "tree_sha": "c605b17618e9adf0831309d376010303a94252fb",
+      "tree_sha": "63dca6a33bb063eb28b5a2e6127006cb9dd7966e",
       "files": [
         "modules/nf-core/plink2/score/environment.yml",
         "modules/nf-core/plink2/score/main.nf",
@@ -268770,19 +268960,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_plink2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//; s/ 64.*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//; s/ 64.*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -268792,12 +269014,12 @@
           "@nebfield"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "8db8df5109b3133db8ef72dc6604a552a2eb1bd9"
     },
     {
       "name": "plink2_vcf",
       "path": "modules/nf-core/plink2/vcf/meta.yml",
-      "tree_sha": "39bafdcbf4cf4b77bb7525e70b3211aaeec2cbeb",
+      "tree_sha": "14495c8c7bd9db2ae2b6351421af1ce9217c2903",
       "files": [
         "modules/nf-core/plink2/vcf/environment.yml",
         "modules/nf-core/plink2/vcf/main.nf",
@@ -268923,19 +269145,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_plink2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//; s/ 64.*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//; s/ 64.*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -268945,20 +269199,19 @@
           "@nebfield"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "8db8df5109b3133db8ef72dc6604a552a2eb1bd9"
     },
     {
       "name": "plink2_vcf2bgen",
       "path": "modules/nf-core/plink2/vcf2bgen/meta.yml",
-      "tree_sha": "2f22e0475acb2dbdb2f009ea82d96c0fbcc49ffc",
+      "tree_sha": "cddf69728efaa313e3b260ff41bc55c45b9befd9",
       "files": [
         "modules/nf-core/plink2/vcf2bgen/environment.yml",
         "modules/nf-core/plink2/vcf2bgen/main.nf",
         "modules/nf-core/plink2/vcf2bgen/meta.yml",
         "modules/nf-core/plink2/vcf2bgen/tests/main.nf.test",
         "modules/nf-core/plink2/vcf2bgen/tests/main.nf.test.snap",
-        "modules/nf-core/plink2/vcf2bgen/tests/nextflow.config",
-        "modules/nf-core/plink2/vcf2bgen/tests/tags.yml"
+        "modules/nf-core/plink2/vcf2bgen/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
@@ -269075,19 +269328,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_plink2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//; s/ 64.*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//; s/ 64.*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -269097,7 +269382,7 @@
           "@edg1983"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "8db8df5109b3133db8ef72dc6604a552a2eb1bd9"
     },
     {
       "name": "plink_bcf",
@@ -284286,14 +284571,13 @@
     {
       "name": "quantmsutils_diann2mztab",
       "path": "modules/nf-core/quantmsutils/diann2mztab/meta.yml",
-      "tree_sha": "f5c6a3158dc2786382e738619961bbbbd6f5360b",
+      "tree_sha": "e575abd6d9b364ad1b7b93fe55a1805ffcdd3e91",
       "files": [
         "modules/nf-core/quantmsutils/diann2mztab/environment.yml",
         "modules/nf-core/quantmsutils/diann2mztab/main.nf",
         "modules/nf-core/quantmsutils/diann2mztab/meta.yml",
         "modules/nf-core/quantmsutils/diann2mztab/tests/main.nf.test",
-        "modules/nf-core/quantmsutils/diann2mztab/tests/main.nf.test.snap",
-        "modules/nf-core/quantmsutils/diann2mztab/tests/nextflow.config"
+        "modules/nf-core/quantmsutils/diann2mztab/tests/main.nf.test.snap"
       ],
       "type": "module",
       "meta": {
@@ -284482,19 +284766,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_quantmsutils": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "quantms-utils": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "quantmsutilsc --version 2>&1 | sed -n 's/quantmsutils //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "quantms-utils": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "quantmsutilsc --version 2>&1 | sed -n 's/quantmsutils //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -284507,19 +284823,18 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "ad17321fcad18434230692f3f8a9c95a7dde4bfe"
     },
     {
       "name": "quantmsutils_dianncfg",
       "path": "modules/nf-core/quantmsutils/dianncfg/meta.yml",
-      "tree_sha": "e19446e00f332355b736ffc324abf4fab8bed85a",
+      "tree_sha": "043430a3a56809262a26661b314113999c8b2f7e",
       "files": [
         "modules/nf-core/quantmsutils/dianncfg/environment.yml",
         "modules/nf-core/quantmsutils/dianncfg/main.nf",
         "modules/nf-core/quantmsutils/dianncfg/meta.yml",
         "modules/nf-core/quantmsutils/dianncfg/tests/main.nf.test",
-        "modules/nf-core/quantmsutils/dianncfg/tests/main.nf.test.snap",
-        "modules/nf-core/quantmsutils/dianncfg/tests/nextflow.config"
+        "modules/nf-core/quantmsutils/dianncfg/tests/main.nf.test.snap"
       ],
       "type": "module",
       "meta": {
@@ -284590,7 +284905,12 @@
                 "diann_config.cfg": {
                   "type": "file",
                   "description": "DIA-NN configuration file containing command-line arguments",
-                  "pattern": "diann_config.cfg"
+                  "pattern": "diann_config.cfg",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_4005"
+                    }
+                  ]
                 }
               }
             ]
@@ -284600,23 +284920,56 @@
               "*.log": {
                 "type": "file",
                 "description": "Log file from configuration generation",
-                "pattern": "*.log"
+                "pattern": "*.log",
+                "ontologies": []
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_quantmsutils": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "quantms-utils": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "quantmsutilsc --version 2>&1 | sed -n 's/quantmsutils //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "quantms-utils": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "quantmsutilsc --version 2>&1 | sed -n 's/quantmsutils //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -284628,12 +284981,12 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "ad17321fcad18434230692f3f8a9c95a7dde4bfe"
     },
     {
       "name": "quantmsutils_mzmlstatistics",
       "path": "modules/nf-core/quantmsutils/mzmlstatistics/meta.yml",
-      "tree_sha": "3cbe6d993e81473a9ec5b742028571a7fba86bb0",
+      "tree_sha": "94eb7719a49a4de28a5d9779f0161bc12c4270a3",
       "files": [
         "modules/nf-core/quantmsutils/mzmlstatistics/environment.yml",
         "modules/nf-core/quantmsutils/mzmlstatistics/main.nf",
@@ -284756,20 +285109,6 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
-              }
-            }
-          ],
           "log": [
             [
               {
@@ -284791,6 +285130,52 @@
                 }
               }
             ]
+          ],
+          "versions_quantmsutils": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "quantms-utils": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "quantmsutilsc --version 2>&1 | sed -n 's/quantmsutils //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "quantms-utils": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "quantmsutilsc --version 2>&1 | sed -n 's/quantmsutils //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -284803,7 +285188,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "ad17321fcad18434230692f3f8a9c95a7dde4bfe"
     },
     {
       "name": "quartonotebook",
@@ -368656,7 +369041,7 @@
     {
       "name": "trgt_merge",
       "path": "modules/nf-core/trgt/merge/meta.yml",
-      "tree_sha": "b29dc762ab5f2270de7306937a22cb75ce48c660",
+      "tree_sha": "83312fbcaa850c2cf2318c3b11eb4ecff3bf16d0",
       "files": [
         "modules/nf-core/trgt/merge/environment.yml",
         "modules/nf-core/trgt/merge/main.nf",
@@ -368837,7 +369222,7 @@
           "@Schmytzi"
         ]
       },
-      "git_sha": "59c333e6055653470e4fffbd32551c5fd745eb6c"
+      "git_sha": "e765e4c738991a22f7d0dc2a13f102bfa6d9568f"
     },
     {
       "name": "trgt_plot",
@@ -392716,6 +393101,10 @@
         {
           "name": "spatialaxe",
           "version": "1.0.0"
+        },
+        {
+          "name": "spatialaxe",
+          "version": "1.0.0"
         }
       ]
     },
@@ -400349,7 +400738,7 @@
     {
       "name": "dia_proteomics_analysis",
       "path": "subworkflows/nf-core/dia_proteomics_analysis/meta.yml",
-      "tree_sha": "db07a861df135ddc66f2ec095f08b131afc8643b",
+      "tree_sha": "a8e564c79270ed1b5b37ed9fe73d245612b2721a",
       "files": [
         "subworkflows/nf-core/dia_proteomics_analysis/main.nf",
         "subworkflows/nf-core/dia_proteomics_analysis/meta.yml",
@@ -400485,20 +400874,6 @@
         ],
         "output": [
           {
-            "versions": {
-              "description": "File containing software versions",
-              "structure": [
-                {
-                  "versions": {
-                    "type": "file",
-                    "description": "File containing software versions",
-                    "pattern": "versions.yml"
-                  }
-                }
-              ]
-            }
-          },
-          {
             "diann_report": {
               "description": "Main DIA-NN report in TSV format containing quantification results",
               "structure": [
@@ -400631,7 +401006,7 @@
           "@DongzeHE"
         ]
       },
-      "git_sha": "05ec81fd69f81d13058677c015d58adfa72bd926"
+      "git_sha": "ad17321fcad18434230692f3f8a9c95a7dde4bfe"
     },
     {
       "name": "differential_functional_enrichment",
@@ -412931,6 +413306,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "826a9b28d6da61097d60e1923bb8a2e51de3c5b4",
-  "updated_at": "2026-08-02T14:38:44.778Z"
+  "commit_sha": "e765e4c738991a22f7d0dc2a13f102bfa6d9568f",
+  "updated_at": "2026-08-03T03:09:36.579Z"
 }
