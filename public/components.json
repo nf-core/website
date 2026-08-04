@@ -157632,6 +157632,172 @@
       "git_sha": "26550158a8b044f1c390ea8dbb54ea4a6cd251b2"
     },
     {
+      "name": "gridss_extractoverlappingfragments",
+      "path": "modules/nf-core/gridss/extractoverlappingfragments/meta.yml",
+      "tree_sha": "b7b722e1d6c7181450a3858a501c7c11efc3957a",
+      "files": [
+        "modules/nf-core/gridss/extractoverlappingfragments/environment.yml",
+        "modules/nf-core/gridss/extractoverlappingfragments/main.nf",
+        "modules/nf-core/gridss/extractoverlappingfragments/meta.yml",
+        "modules/nf-core/gridss/extractoverlappingfragments/tests/main.nf.test",
+        "modules/nf-core/gridss/extractoverlappingfragments/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "gridss_extractoverlappingfragments",
+        "description": "Extract read fragments from a BAM file whose reads overlap a set of target regions, producing a subset BAM for targeted GRIDSS structural variant calling.",
+        "keywords": [
+          "gridss",
+          "bam",
+          "subset",
+          "target",
+          "structural variants"
+        ],
+        "tools": [
+          {
+            "gridss": {
+              "description": "GRIDSS: the Genomic Rearrangement IDentification Software Suite",
+              "homepage": "https://github.com/PapenfussLab/gridss",
+              "documentation": "https://github.com/PapenfussLab/gridss/wiki/GRIDSS-Documentation",
+              "tool_dev_url": "https://github.com/PapenfussLab/gridss",
+              "doi": "10.1186/s13059-021-02423-x",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:gridss"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Input BAM file",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "Index of the input BAM file",
+                "pattern": "*.{bai,csi}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing target region information\ne.g. `[ id:'targets' ]`\n"
+              }
+            },
+            {
+              "target_bed": {
+                "type": "file",
+                "description": "BED file describing the target regions used to select overlapping read fragments",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.bam": {
+                  "type": "file",
+                  "description": "BAM file containing read fragments overlapping the target regions",
+                  "pattern": "*.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_gridss": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gridss": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "CallVariants --version 2>&1 | sed 's/-gridss//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gridss": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "CallVariants --version 2>&1 | sed 's/-gridss//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@imsarath"
+        ],
+        "maintainers": [
+          "@imsarath"
+        ]
+      },
+      "git_sha": "cf0584a6e02ebb94bdb64f54dca4beddb128f986"
+    },
+    {
       "name": "gridss_generateponbedpe",
       "path": "modules/nf-core/gridss/generateponbedpe/meta.yml",
       "tree_sha": "ad3f961df151d5cd5ef7698e81c0078394628b50",
@@ -178868,7 +179034,7 @@
     {
       "name": "icountmini_metagene",
       "path": "modules/nf-core/icountmini/metagene/meta.yml",
-      "tree_sha": "53951997de8011a225d830261281164e5865d5cb",
+      "tree_sha": "f7fceaa9939145c56b534248ed8985c3d5f80091",
       "files": [
         "modules/nf-core/icountmini/metagene/environment.yml",
         "modules/nf-core/icountmini/metagene/main.nf",
@@ -179004,12 +179170,12 @@
           "@charlotteanne"
         ]
       },
-      "git_sha": "fbbad55c412cbf3be6bbb43930cb2ac8ad815e19"
+      "git_sha": "8781434953b2a1486ed1ac7979d05a284bc9440a"
     },
     {
       "name": "icountmini_peaks",
       "path": "modules/nf-core/icountmini/peaks/meta.yml",
-      "tree_sha": "7346120d9dcf1b1a168b556240634f0e6520eaa9",
+      "tree_sha": "b614249115e195aff99c3e5bd37b293593d07c0d",
       "files": [
         "modules/nf-core/icountmini/peaks/environment.yml",
         "modules/nf-core/icountmini/peaks/main.nf",
@@ -179148,12 +179314,12 @@
           "@charlotteanne"
         ]
       },
-      "git_sha": "fbbad55c412cbf3be6bbb43930cb2ac8ad815e19"
+      "git_sha": "8781434953b2a1486ed1ac7979d05a284bc9440a"
     },
     {
       "name": "icountmini_segment",
       "path": "modules/nf-core/icountmini/segment/meta.yml",
-      "tree_sha": "2dcb0f6f74ba6df01fab08d8dd803d4d52c50d65",
+      "tree_sha": "c36293b667d68f93702e2c79955a04886a739ede",
       "files": [
         "modules/nf-core/icountmini/segment/environment.yml",
         "modules/nf-core/icountmini/segment/main.nf",
@@ -179306,12 +179472,12 @@
           "@charlotteanne"
         ]
       },
-      "git_sha": "fbbad55c412cbf3be6bbb43930cb2ac8ad815e19"
+      "git_sha": "8781434953b2a1486ed1ac7979d05a284bc9440a"
     },
     {
       "name": "icountmini_sigxls",
       "path": "modules/nf-core/icountmini/sigxls/meta.yml",
-      "tree_sha": "cded7aa9d24bf6a76968b979ecd86c7a43c8262b",
+      "tree_sha": "f8aec504c201ea2fed9753e9fa3cd60b580262ef",
       "files": [
         "modules/nf-core/icountmini/sigxls/environment.yml",
         "modules/nf-core/icountmini/sigxls/main.nf",
@@ -179469,12 +179635,12 @@
           "@charlotteanne"
         ]
       },
-      "git_sha": "fbbad55c412cbf3be6bbb43930cb2ac8ad815e19"
+      "git_sha": "8781434953b2a1486ed1ac7979d05a284bc9440a"
     },
     {
       "name": "icountmini_summary",
       "path": "modules/nf-core/icountmini/summary/meta.yml",
-      "tree_sha": "d67140228be03eab1f4300435fed543b80604934",
+      "tree_sha": "98d3f83e7b29b35ca1d9d5756bc7a246c8905e8f",
       "files": [
         "modules/nf-core/icountmini/summary/environment.yml",
         "modules/nf-core/icountmini/summary/main.nf",
@@ -179654,7 +179820,7 @@
           "@charlotteanne"
         ]
       },
-      "git_sha": "fbbad55c412cbf3be6bbb43930cb2ac8ad815e19"
+      "git_sha": "8781434953b2a1486ed1ac7979d05a284bc9440a"
     },
     {
       "name": "idemux",
@@ -218137,7 +218303,7 @@
     {
       "name": "mgnifam_generatefamilies",
       "path": "modules/nf-core/mgnifam/generatefamilies/meta.yml",
-      "tree_sha": "ac0f13cd647d7b590ab72f53ddc315bb9c57dfea",
+      "tree_sha": "f9a4fa52493888e99215f07771760111562e7e1b",
       "files": [
         "modules/nf-core/mgnifam/generatefamilies/environment.yml",
         "modules/nf-core/mgnifam/generatefamilies/main.nf",
@@ -218168,7 +218334,8 @@
               "licence": [
                 "MIT"
               ],
-              "identifier": ""
+              "args_id": "$args",
+              "identifier": "biotools:mgnifam"
             }
           }
         ],
@@ -218181,7 +218348,7 @@
               }
             },
             {
-              "clusters_chunk": {
+              "clustering": {
                 "type": "file",
                 "description": "Headerless TSV file of MMseqs2 sequence clusters, one representative-member pair per line (representative<TAB>member)",
                 "pattern": "*.tsv",
@@ -218202,6 +218369,14 @@
                     "edam": "http://edamontology.org/format_1929"
                   }
                 ]
+              }
+            },
+            {
+              "fasta_index": {
+                "type": "file",
+                "description": "Optional. Precomputed Easel SSI index of the FASTA file, e.g. from `esl-sfetch --index` (hmmer/eslsfetchindex). Used as given and never rebuilt, so parallel chunk tasks can share one read-only index. Built automatically when omitted",
+                "pattern": "*.ssi",
+                "ontologies": []
               }
             }
           ]
@@ -218470,28 +218645,6 @@
                 }
               }
             ]
-          ],
-          "versions_python": [
-            [
-              {
-                "${task.process}": {
-                  "type": "string",
-                  "description": "The name of the process"
-                }
-              },
-              {
-                "python": {
-                  "type": "string",
-                  "description": "The name of the tool"
-                }
-              },
-              {
-                "python3 --version 2>&1 | sed 's/Python //'": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
-                }
-              }
-            ]
           ]
         },
         "topics": {
@@ -218515,26 +218668,6 @@
                   "description": "The expression to obtain the version of the tool"
                 }
               }
-            ],
-            [
-              {
-                "${task.process}": {
-                  "type": "string",
-                  "description": "The name of the process"
-                }
-              },
-              {
-                "python": {
-                  "type": "string",
-                  "description": "The name of the tool"
-                }
-              },
-              {
-                "python3 --version 2>&1 | sed 's/Python //'": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
-                }
-              }
             ]
           ]
         },
@@ -218545,7 +218678,7 @@
           "@vagkaratzas"
         ]
       },
-      "git_sha": "dda8e6fd1b806b26b5b95055943e953c551302ce"
+      "git_sha": "acdf5174c3bebdb1ac86858845a18015b5ee9bdb"
     },
     {
       "name": "midas_run",
@@ -241010,7 +241143,7 @@
     {
       "name": "nucmer",
       "path": "modules/nf-core/nucmer/meta.yml",
-      "tree_sha": "3a724f3f55c280c1b9a2d9101fa8dc9d707b41ce",
+      "tree_sha": "aabe013d62581fe349514754908244c844c7f2a5",
       "files": [
         "modules/nf-core/nucmer/environment.yml",
         "modules/nf-core/nucmer/main.nf",
@@ -241104,19 +241237,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_nucmer": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "nucmer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "nucmer --version 2>&1  | sed -n 's/NUCmer (NUCleotide MUMmer) version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "nucmer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "nucmer --version 2>&1  | sed -n 's/NUCmer (NUCleotide MUMmer) version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -241128,7 +241293,7 @@
           "@mjcipriano"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "a4a52457f2a2a46e8cb391839153304feb729c10"
     },
     {
       "name": "numorph_3dunet",
@@ -241997,7 +242162,7 @@
     {
       "name": "octopusv_clean",
       "path": "modules/nf-core/octopusv/clean/meta.yml",
-      "tree_sha": "2ac145aa3e26094fd5a440e28ed876de61a900b9",
+      "tree_sha": "a5d64f9918ccb44a8230c304b1bdbf78e43f7d75",
       "files": [
         "modules/nf-core/octopusv/clean/environment.yml",
         "modules/nf-core/octopusv/clean/main.nf",
@@ -242149,12 +242314,12 @@
           "@manascripts"
         ]
       },
-      "git_sha": "ebf221fc09a0cfc42832bc3a644bb7638c33d901"
+      "git_sha": "77ac074b2ba982e853c0ec17205367a56740412f"
     },
     {
       "name": "octopusv_correct",
       "path": "modules/nf-core/octopusv/correct/meta.yml",
-      "tree_sha": "703f7842257677adbac126fa14d9cc24737ca70e",
+      "tree_sha": "d83af9ff6d1935301b05351e4d8aa0c97aa14008",
       "files": [
         "modules/nf-core/octopusv/correct/environment.yml",
         "modules/nf-core/octopusv/correct/main.nf",
@@ -242287,12 +242452,12 @@
           "@manascripts"
         ]
       },
-      "git_sha": "4ade92bfb506b1137085777374598b6006afe549"
+      "git_sha": "77ac074b2ba982e853c0ec17205367a56740412f"
     },
     {
       "name": "octopusv_merge",
       "path": "modules/nf-core/octopusv/merge/meta.yml",
-      "tree_sha": "12185a366cdd12959fd03afe0cf14bdd93853b08",
+      "tree_sha": "927d87edef9b55e35dc0618d35b3e8fd538e876d",
       "files": [
         "modules/nf-core/octopusv/merge/environment.yml",
         "modules/nf-core/octopusv/merge/main.nf",
@@ -242452,12 +242617,12 @@
           "@manascripts"
         ]
       },
-      "git_sha": "d5584f1a12e1a3cc0e38bf525a7b3ed881cab734"
+      "git_sha": "77ac074b2ba982e853c0ec17205367a56740412f"
     },
     {
       "name": "octopusv_plot",
       "path": "modules/nf-core/octopusv/plot/meta.yml",
-      "tree_sha": "75701d070b9cf6e0c2e345f47c0999ff0e90dffe",
+      "tree_sha": "dc6d4007c289e9876b4dbda27ea36f65380f902c",
       "files": [
         "modules/nf-core/octopusv/plot/environment.yml",
         "modules/nf-core/octopusv/plot/main.nf",
@@ -242499,11 +242664,14 @@
               }
             },
             {
-              "txt": {
+              "stats": {
                 "type": "file",
-                "description": "OctopuSV stats text input",
-                "pattern": "*.txt",
+                "description": "OctopuSV stats text input; JSON is preferred and legacy TXT is supported",
+                "pattern": "*.{json,txt}",
                 "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3464"
+                  },
                   {
                     "edam": "http://edamontology.org/format_2330"
                   }
@@ -242699,12 +242867,12 @@
           "@manascripts"
         ]
       },
-      "git_sha": "69017e77fd733fb1d8db5add7ca34570223151b5"
+      "git_sha": "77ac074b2ba982e853c0ec17205367a56740412f"
     },
     {
       "name": "octopusv_plotcircos",
       "path": "modules/nf-core/octopusv/plotcircos/meta.yml",
-      "tree_sha": "895499899ad467e9201774a3eb06fe4906848bdb",
+      "tree_sha": "5965cf4c3b63794789a284b85b4edcc4d05fab7e",
       "files": [
         "modules/nf-core/octopusv/plotcircos/environment.yml",
         "modules/nf-core/octopusv/plotcircos/main.nf",
@@ -242883,12 +243051,12 @@
           "@manascripts"
         ]
       },
-      "git_sha": "4cc75f63f1929a23ad511df2e8d59cb1bed96161"
+      "git_sha": "77ac074b2ba982e853c0ec17205367a56740412f"
     },
     {
       "name": "octopusv_stat",
       "path": "modules/nf-core/octopusv/stat/meta.yml",
-      "tree_sha": "c5f7e3921dcf92df5dfbaec8ecd66a01e6f2da15",
+      "tree_sha": "4cf3b132cec6d84d61038eaf8f4e0aa658cad9df",
       "files": [
         "modules/nf-core/octopusv/stat/environment.yml",
         "modules/nf-core/octopusv/stat/main.nf",
@@ -242944,6 +243112,28 @@
           ]
         ],
         "output": {
+          "json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.json": {
+                  "type": "file",
+                  "description": "A JSON file containing the statistics of the structural variants in the input VCF",
+                  "pattern": "*.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "txt": [
             [
               {
@@ -242955,7 +243145,7 @@
               {
                 "*.txt": {
                   "type": "file",
-                  "description": "A TXT file containing the statistics of the structural variants in the input VCF",
+                  "description": "Legacy text file containing structural variant statistics",
                   "pattern": "*.txt",
                   "ontologies": [
                     {
@@ -243042,12 +243232,12 @@
           "@manascripts"
         ]
       },
-      "git_sha": "65ee96d5a547e2810f8ccfebd42d14e68850fb08"
+      "git_sha": "77ac074b2ba982e853c0ec17205367a56740412f"
     },
     {
       "name": "octopusv_svcf2bed",
       "path": "modules/nf-core/octopusv/svcf2bed/meta.yml",
-      "tree_sha": "d05cb3cb1234c94f0293207898df889f3483826f",
+      "tree_sha": "f449774ecf33bba0fb76ad64c64882975e5d0c1a",
       "files": [
         "modules/nf-core/octopusv/svcf2bed/environment.yml",
         "modules/nf-core/octopusv/svcf2bed/main.nf",
@@ -243180,12 +243370,12 @@
           "@manascripts"
         ]
       },
-      "git_sha": "280b1700c4687b8520d694f2cc1a5fac3829e9df"
+      "git_sha": "77ac074b2ba982e853c0ec17205367a56740412f"
     },
     {
       "name": "octopusv_svcf2vcf",
       "path": "modules/nf-core/octopusv/svcf2vcf/meta.yml",
-      "tree_sha": "7f177cf8e52ec0c0d3709e3598b146a5d1fd6155",
+      "tree_sha": "4157de8a2cb901a3519dec6ba73ab67defaa4de2",
       "files": [
         "modules/nf-core/octopusv/svcf2vcf/environment.yml",
         "modules/nf-core/octopusv/svcf2vcf/main.nf",
@@ -243317,7 +243507,7 @@
           "@manascripts"
         ]
       },
-      "git_sha": "291e84292b236667b65ba15fd67d706d951b9314"
+      "git_sha": "77ac074b2ba982e853c0ec17205367a56740412f"
     },
     {
       "name": "odgi_build",
@@ -244630,7 +244820,7 @@
     {
       "name": "oncocnv",
       "path": "modules/nf-core/oncocnv/meta.yml",
-      "tree_sha": "91011072488ec8821956b9b3ebd8382529081e16",
+      "tree_sha": "5fcee9c8883f792db6c86bbf67e0b74b3f51a8ac",
       "files": [
         "modules/nf-core/oncocnv/environment.yml",
         "modules/nf-core/oncocnv/main.nf",
@@ -244781,19 +244971,135 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_oncocnv": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "oncocnv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "7.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ],
+          "versions_perl": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "perl": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "perl --version | sed '2!d;s/.*v//;s/).*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_r_base": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "r-base": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "R --version | sed '1!d; s/.*version //; s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "oncocnv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "7.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "perl": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "perl --version | sed '2!d;s/.*v//;s/).*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "r-base": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "R --version | sed '1!d; s/.*version //; s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -244803,7 +245109,7 @@
           "@marrip"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "3b16e263bab5afe01652b7b8a0af7dc7ced70db3"
     },
     {
       "name": "openms_decoydatabase",
@@ -247685,7 +247991,7 @@
     {
       "name": "osfclient_fetch",
       "path": "modules/nf-core/osfclient/fetch/meta.yml",
-      "tree_sha": "36aeb2a2f0a5dcad2d715897a105356826b68704",
+      "tree_sha": "7295bf437bf42b7b72f029224042a1ae34874d68",
       "files": [
         "modules/nf-core/osfclient/fetch/environment.yml",
         "modules/nf-core/osfclient/fetch/main.nf",
@@ -247757,26 +248063,58 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_osfclient": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "osfclient": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "osf --version | sed 's/osf //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "osfclient": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "osf --version | sed 's/osf //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
           "@JacquelineAldridge"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "2d75d03687dcbb30ec65ab896e4d5e1131480ee0"
     },
     {
       "name": "paftools_sam2paf",
@@ -249347,13 +249685,14 @@
     {
       "name": "panacus_histgrowth",
       "path": "modules/nf-core/panacus/histgrowth/meta.yml",
-      "tree_sha": "05a91cef75dfaacccd420379afc1b25650103bf4",
+      "tree_sha": "3b2a71f39097b4d7275346ce116e164cedd595dd",
       "files": [
         "modules/nf-core/panacus/histgrowth/environment.yml",
         "modules/nf-core/panacus/histgrowth/main.nf",
         "modules/nf-core/panacus/histgrowth/meta.yml",
         "modules/nf-core/panacus/histgrowth/tests/main.nf.test",
-        "modules/nf-core/panacus/histgrowth/tests/main.nf.test.snap"
+        "modules/nf-core/panacus/histgrowth/tests/main.nf.test.snap",
+        "modules/nf-core/panacus/histgrowth/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
@@ -249435,7 +249774,7 @@
                 }
               },
               {
-                "*.{tsv, html}": {
+                "*.{tsv,html}": {
                   "type": "file",
                   "description": "TSV file containing the statistics. Alternatively, the HTML file can be the output",
                   "pattern": "*.tsv",
@@ -249448,19 +249787,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_panacus": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "panacus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "panacus --version | sed 's/panacus //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "panacus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "panacus --version | sed 's/panacus //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -249471,17 +249842,18 @@
           "@subwaystation"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "9f14d2d13ee8aea67602f587e75b57f7806b9c62"
     },
     {
       "name": "panacus_visualize",
       "path": "modules/nf-core/panacus/visualize/meta.yml",
-      "tree_sha": "ebf0791e6a0fa4ccb4fbc7476984154214ba623f",
+      "tree_sha": "8d2436844ba72f976ad749457e1fcba91dc6b7e5",
       "files": [
         "modules/nf-core/panacus/visualize/environment.yml",
         "modules/nf-core/panacus/visualize/main.nf",
         "modules/nf-core/panacus/visualize/meta.yml",
         "modules/nf-core/panacus/visualize/tests/main.nf.test",
+        "modules/nf-core/panacus/visualize/tests/main.nf.test.snap",
         "modules/nf-core/panacus/visualize/tests/nextflow.config"
       ],
       "type": "module",
@@ -249550,19 +249922,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_panacus": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "panacus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "panacus --version | sed 's/panacus //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "panacus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "panacus --version | sed 's/panacus //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -249573,12 +249977,12 @@
           "@subwaystation"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "9f14d2d13ee8aea67602f587e75b57f7806b9c62"
     },
     {
       "name": "panaroo_run",
       "path": "modules/nf-core/panaroo/run/meta.yml",
-      "tree_sha": "ba02d8eead59a386f2896fca8793eb023ab27492",
+      "tree_sha": "cdfc17b435ade68678cd425f85a7e7de03b32366",
       "files": [
         "modules/nf-core/panaroo/run/environment.yml",
         "modules/nf-core/panaroo/run/main.nf",
@@ -249639,7 +250043,7 @@
                 }
               },
               {
-                "results/*": {
+                "${prefix}/*": {
                   "type": "directory",
                   "description": "Directory containing Panaroo result files",
                   "pattern": "*/*"
@@ -249656,7 +250060,7 @@
                 }
               },
               {
-                "results/core_gene_alignment.aln": {
+                "${prefix}/core_gene_alignment.aln": {
                   "type": "file",
                   "description": "Core-genome alignment produced by Panaroo (Optional)",
                   "pattern": "*.{fasta}",
@@ -249665,19 +250069,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_panaroo": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "panaroo": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "panaroo --version 2>&1 | sed 's/^.*panaroo //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "panaroo": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "panaroo --version 2>&1 | sed 's/^.*panaroo //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -249687,7 +250123,7 @@
           "@rpetit3"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "7669540746cb75401a93ed4595f17b57c76e89b4"
     },
     {
       "name": "pangolin_run",
@@ -253147,7 +253583,7 @@
     {
       "name": "paraclu",
       "path": "modules/nf-core/paraclu/meta.yml",
-      "tree_sha": "aa5e13692bc0dcf3168d4d465ac8cf08f36dcce2",
+      "tree_sha": "b7f6de9a37dd03a1ba8a6266844c2d406f3cc775",
       "files": [
         "modules/nf-core/paraclu/environment.yml",
         "modules/nf-core/paraclu/main.nf",
@@ -253222,19 +253658,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_paraclu": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "paraclu": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "10": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "paraclu": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "10": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -253244,7 +253712,7 @@
           "@mashehu"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "725cdde59374e46e2175c6cbd4f6fcdc5e5f4c36"
     },
     {
       "name": "paragraph_idxdepth",
@@ -254950,7 +255418,7 @@
     {
       "name": "pasty",
       "path": "modules/nf-core/pasty/meta.yml",
-      "tree_sha": "ca5f07b58aa8319c6b1e8714baad27b5c91cbc97",
+      "tree_sha": "afebfbab70b3fb584fe4e1d0586ceae85f5435e1",
       "files": [
         "modules/nf-core/pasty/environment.yml",
         "modules/nf-core/pasty/main.nf",
@@ -255067,19 +255535,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_pasty": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pasty": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pasty --version 2>&1 | sed 's/^.*pasty, version //;'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pasty": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pasty --version 2>&1 | sed 's/^.*pasty, version //;'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -255089,7 +255589,7 @@
           "@rpetit3"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "09b4c35662c582c808d45190f6e24db01ccd5161"
     },
     {
       "name": "pbbam_pbmerge",
@@ -255209,7 +255709,7 @@
     {
       "name": "pbccs",
       "path": "modules/nf-core/pbccs/meta.yml",
-      "tree_sha": "41150906ddbaae595e3de4a76dcd3d81a1417bc8",
+      "tree_sha": "29cb29596edd87a660d61949b0370e4b5f352b4e",
       "files": [
         "modules/nf-core/pbccs/environment.yml",
         "modules/nf-core/pbccs/main.nf",
@@ -255383,19 +255883,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_pbccs": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pbccs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ccs --version 2>&1 | sed '1!d;s/^.*ccs //; s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pbccs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ccs --version 2>&1 | sed '1!d;s/^.*ccs //; s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -255405,7 +255937,7 @@
           "@sguizard"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "14fc45a90d03d4820e3f08fce68970b4499bba22",
       "pipelines": [
         {
           "name": "isoseq",
@@ -256249,7 +256781,7 @@
     {
       "name": "pbptyper",
       "path": "modules/nf-core/pbptyper/meta.yml",
-      "tree_sha": "ee6e99004ec10e980edd803ac86ca461cd59d7b2",
+      "tree_sha": "4056271a5d0789dbe3a1378ae30efedfd4b447ed",
       "files": [
         "modules/nf-core/pbptyper/environment.yml",
         "modules/nf-core/pbptyper/main.nf",
@@ -256352,19 +256884,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_pbptyper": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pbptyper": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pbptyper --version 2>&1 | sed 's/^.*pbptyper, version //;'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pbptyper": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pbptyper --version 2>&1 | sed 's/^.*pbptyper, version //;'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -256374,12 +256938,12 @@
           "@rpetit3"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "59dd1ab095c93f07800a4febe7056d0e8549c562"
     },
     {
       "name": "pbsv_call",
       "path": "modules/nf-core/pbsv/call/meta.yml",
-      "tree_sha": "3e8cf9d084df112ea32f159e66835cbcf7810e91",
+      "tree_sha": "3c176e85ce51146c383f44d5e353c494a3ffc691",
       "files": [
         "modules/nf-core/pbsv/call/environment.yml",
         "modules/nf-core/pbsv/call/main.nf",
@@ -256460,19 +257024,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_pbsv": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pbsv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pbsv --version |& sed 's/pbsv //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pbsv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pbsv --version |& sed 's/pbsv //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -256482,7 +257078,7 @@
           "@tanyasarkjain"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "6bb7aa3175b1f98d613cdcefe7a7efacb7960d8a",
       "pipelines": [
         {
           "name": "pacvar",
@@ -256493,7 +257089,7 @@
     {
       "name": "pbsv_discover",
       "path": "modules/nf-core/pbsv/discover/meta.yml",
-      "tree_sha": "0dbf8acee1d24a466d8931bb4d99fa6f91aa191d",
+      "tree_sha": "6cdfd238054d91690d38592ad3c289859431524c",
       "files": [
         "modules/nf-core/pbsv/discover/environment.yml",
         "modules/nf-core/pbsv/discover/main.nf",
@@ -256582,19 +257178,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_pbsv": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pbsv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pbsv --version |& sed 's/pbsv //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pbsv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pbsv --version |& sed 's/pbsv //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -256604,7 +257232,7 @@
           "@tanyasarkjain"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "6bb7aa3175b1f98d613cdcefe7a7efacb7960d8a",
       "pipelines": [
         {
           "name": "pacvar",
@@ -258210,7 +258838,7 @@
     {
       "name": "peka",
       "path": "modules/nf-core/peka/meta.yml",
-      "tree_sha": "8bbb808cd6f420d8d5d4877dd7a8b9a0e9593fbe",
+      "tree_sha": "e6ad01382f343fff9cc18e6f2ca11e815860e60a",
       "files": [
         "modules/nf-core/peka/environment.yml",
         "modules/nf-core/peka/main.nf",
@@ -258278,22 +258906,30 @@
               }
             }
           ],
-          {
-            "fasta": {
-              "type": "file",
-              "description": "Genome reference sequence used",
-              "pattern": "*.{fa,fasta}",
-              "ontologies": []
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing genome information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Genome reference sequence used",
+                "pattern": "*.{fa,fasta}",
+                "ontologies": []
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "FAI file corresponding to the reference sequence",
+                "pattern": "*.{fai}",
+                "ontologies": []
+              }
             }
-          },
-          {
-            "fai": {
-              "type": "file",
-              "description": "FAI file corresponding to the reference sequence",
-              "pattern": "*.{fai}",
-              "ontologies": []
-            }
-          },
+          ],
           {
             "gtf": {
               "type": "file",
@@ -258492,19 +259128,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_peka": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "peka": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.2": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "peka": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.2": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -258520,7 +259188,7 @@
           "@charlotteanne"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "e33e6fbce065596d5865ed413ae116e19379ad44"
     },
     {
       "name": "perbase",
@@ -278706,15 +279374,15 @@
     {
       "name": "propr_grea",
       "path": "modules/nf-core/propr/grea/meta.yml",
-      "tree_sha": "64944cb6fb2a4f2a1909ff527d72bfde31d1b628",
+      "tree_sha": "710173b94bfc46636711f82fd1219cc681be5276",
       "files": [
         "modules/nf-core/propr/grea/environment.yml",
         "modules/nf-core/propr/grea/main.nf",
         "modules/nf-core/propr/grea/meta.yml",
         "modules/nf-core/propr/grea/templates/grea.R",
-        "modules/nf-core/propr/grea/tests/grea_test.config",
         "modules/nf-core/propr/grea/tests/main.nf.test",
-        "modules/nf-core/propr/grea/tests/main.nf.test.snap"
+        "modules/nf-core/propr/grea/tests/main.nf.test.snap",
+        "modules/nf-core/propr/grea/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
@@ -278833,6 +279501,16 @@
             }
           ]
         },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
+              }
+            }
+          ]
+        },
         "authors": [
           "@caraiz2001",
           "@suzannejin"
@@ -278842,7 +279520,7 @@
           "@suzannejin"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "fb20013a471459b87427ea3e85af64d11198870b",
       "pipelines": [
         {
           "name": "differentialabundance",
@@ -278853,7 +279531,7 @@
     {
       "name": "propr_logratio",
       "path": "modules/nf-core/propr/logratio/meta.yml",
-      "tree_sha": "70dfe35d55443053e0d1249c15d061ea2350f638",
+      "tree_sha": "714f7c25e98d6e3859deee5779f0715ffbcc090c",
       "files": [
         "modules/nf-core/propr/logratio/environment.yml",
         "modules/nf-core/propr/logratio/main.nf",
@@ -278971,6 +279649,16 @@
             }
           ]
         },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
+              }
+            }
+          ]
+        },
         "authors": [
           "@suzannejin",
           "@oprana22"
@@ -278980,23 +279668,20 @@
           "@oprana22"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "fb20013a471459b87427ea3e85af64d11198870b"
     },
     {
       "name": "propr_propd",
       "path": "modules/nf-core/propr/propd/meta.yml",
-      "tree_sha": "eadc867fda96ffae4feb567fda31a447a493dfe4",
+      "tree_sha": "e1fe970b5cf200056a039d6efde33053fca00362",
       "files": [
         "modules/nf-core/propr/propd/environment.yml",
         "modules/nf-core/propr/propd/main.nf",
         "modules/nf-core/propr/propd/meta.yml",
         "modules/nf-core/propr/propd/templates/propd.R",
-        "modules/nf-core/propr/propd/tests/boxcox.config",
-        "modules/nf-core/propr/propd/tests/default.config",
         "modules/nf-core/propr/propd/tests/main.nf.test",
         "modules/nf-core/propr/propd/tests/main.nf.test.snap",
-        "modules/nf-core/propr/propd/tests/permutation.config",
-        "modules/nf-core/propr/propd/tests/save_all.config"
+        "modules/nf-core/propr/propd/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
@@ -279307,7 +279992,7 @@
           "@suzannejin"
         ]
       },
-      "git_sha": "ff147c37ffff4b7d1a446acee2ec3daead3af97f",
+      "git_sha": "fb20013a471459b87427ea3e85af64d11198870b",
       "pipelines": [
         {
           "name": "differentialabundance",
@@ -279318,7 +280003,7 @@
     {
       "name": "propr_propr",
       "path": "modules/nf-core/propr/propr/meta.yml",
-      "tree_sha": "e769edc48e67d743b82d52276fe0f204bcf2947d",
+      "tree_sha": "e0a3e69ecd121bebaabb178659c656212b4cd061",
       "files": [
         "modules/nf-core/propr/propr/environment.yml",
         "modules/nf-core/propr/propr/main.nf",
@@ -279520,11 +280205,21 @@
             }
           ]
         },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
+              }
+            }
+          ]
+        },
         "authors": [
           "@suzannejin"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "fb20013a471459b87427ea3e85af64d11198870b"
     },
     {
       "name": "proseg_proseg",
@@ -293253,7 +293948,7 @@
     {
       "name": "regtools_junctionsextract",
       "path": "modules/nf-core/regtools/junctionsextract/meta.yml",
-      "tree_sha": "b22bcbc4db481b8d961b773933434c074642cfef",
+      "tree_sha": "3e77cb433ada8eb59e2916508490b877dd697c15",
       "files": [
         "modules/nf-core/regtools/junctionsextract/environment.yml",
         "modules/nf-core/regtools/junctionsextract/main.nf",
@@ -293341,19 +294036,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_repeatmasker": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "regtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "regtools --version 2>&1 | sed -n 's/Version:\t//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "regtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "regtools --version 2>&1 | sed -n 's/Version:\t//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -293363,7 +294090,7 @@
           "@abartlett004"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "54379c667f30af11bef477160796ad4a991e98b3"
     },
     {
       "name": "repeatmasker_repeatmasker",
@@ -331498,7 +332225,7 @@
     {
       "name": "seqtk_sample",
       "path": "modules/nf-core/seqtk/sample/meta.yml",
-      "tree_sha": "b451a34dd4f50fc8890f6bc9421f4491a0874b9a",
+      "tree_sha": "1ef464075499ba866007f2a584b657cf0e69e3dd",
       "files": [
         "modules/nf-core/seqtk/sample/environment.yml",
         "modules/nf-core/seqtk/sample/main.nf",
@@ -331631,7 +332358,7 @@
           "@adamrtalbot"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "d672aca9cdef89ee649b340c08877ae40a19d5c0",
       "pipelines": [
         {
           "name": "demultiplex",
@@ -350813,7 +351540,7 @@
     {
       "name": "stare",
       "path": "modules/nf-core/stare/meta.yml",
-      "tree_sha": "ec0ce434f6c9ac6f4ba1464180c4b103ceb0734a",
+      "tree_sha": "f7e4aded2e67d1992888f32ce02ea7df5c41655c",
       "files": [
         "modules/nf-core/stare/environment.yml",
         "modules/nf-core/stare/main.nf",
@@ -351007,19 +351734,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_stare": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "stare": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "STARE.sh --version | cut -f3 -d\" \"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "stare": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "STARE.sh --version | cut -f3 -d\" \"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -351029,7 +351788,7 @@
           "@LeonHafner"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "e3f62ad0762d32402d7f9ba56041a0e6090be1a8",
       "pipelines": [
         {
           "name": "tfactivity",
@@ -375887,7 +376646,7 @@
     {
       "name": "ultraplex",
       "path": "modules/nf-core/ultraplex/meta.yml",
-      "tree_sha": "78e98c8a01405a6024954af121037f6a417d3737",
+      "tree_sha": "4710e45f0e4df1faafc1e427879dc8ac136f6189",
       "files": [
         "modules/nf-core/ultraplex/environment.yml",
         "modules/nf-core/ultraplex/main.nf",
@@ -375991,19 +376750,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_ultraplex": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ultraplex": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.2.9": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ultraplex": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.2.9": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -376023,7 +376814,7 @@
           "@samirelanduk"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "8c95492fd356b26b0aa32ed2cd03528198c9778b"
     },
     {
       "name": "umicollapse",
@@ -394716,6 +395507,10 @@
         {
           "name": "spatialaxe",
           "version": "1.0.0"
+        },
+        {
+          "name": "spatialaxe",
+          "version": "1.0.0"
         }
       ]
     },
@@ -396689,7 +397484,7 @@
     {
       "name": "abundance_differential_filter",
       "path": "subworkflows/nf-core/abundance_differential_filter/meta.yml",
-      "tree_sha": "e03aa85e423c37058aca9f2fb195d4a3818971a0",
+      "tree_sha": "8fe16ff61c767b1ccfe28dd4eaa2b6a4991fb67e",
       "files": [
         "subworkflows/nf-core/abundance_differential_filter/main.nf",
         "subworkflows/nf-core/abundance_differential_filter/meta.yml",
@@ -397055,7 +397850,7 @@
           "@suzannejin"
         ]
       },
-      "git_sha": "95a5fb210d019a00acef7ce1febde2e448e0508e",
+      "git_sha": "fb20013a471459b87427ea3e85af64d11198870b",
       "pipelines": [
         {
           "name": "differentialabundance",
@@ -402622,7 +403417,7 @@
     {
       "name": "differential_functional_enrichment",
       "path": "subworkflows/nf-core/differential_functional_enrichment/meta.yml",
-      "tree_sha": "604d9670cdd9343715c1eea42ab856104950a280",
+      "tree_sha": "f8526dbd33723a655ac5a9efcdb96b611e00fba7",
       "files": [
         "subworkflows/nf-core/differential_functional_enrichment/main.nf",
         "subworkflows/nf-core/differential_functional_enrichment/meta.yml",
@@ -402795,13 +403590,6 @@
           }
         ],
         "output": [
-          {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
-              "pattern": "versions.yml"
-            }
-          },
           {
             "gprofiler2_all_enrich": {
               "description": "Channel containing the main enrichment table output from gprofiler2",
@@ -403020,7 +403808,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "1bf1444fa67dc2934f6899a228a2e2034a0a354d",
+      "git_sha": "fb20013a471459b87427ea3e85af64d11198870b",
       "pipelines": [
         {
           "name": "differentialabundance",
@@ -414917,6 +415705,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "a3b737266567e58d0d2edf43f37f5cab95f47041",
-  "updated_at": "2026-08-04T03:08:31.120Z"
+  "commit_sha": "acdf5174c3bebdb1ac86858845a18015b5ee9bdb",
+  "updated_at": "2026-08-04T15:12:03.454Z"
 }
