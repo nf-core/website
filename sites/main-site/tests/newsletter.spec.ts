@@ -129,12 +129,12 @@ test("getProposalsForMonth categorises and assigns status", () => {
             stateReason: null,
             createdAt: "2025-06-10",
         },
-        // Closed as completed this month (opened earlier) -> accepted, non-pipeline.
+        // Closed this month with the "accepted" label (opened earlier) -> accepted, non-pipeline.
         {
             title: "RFC: governance",
             url: "u2",
             number: 2,
-            labels: [],
+            labels: ["accepted"],
             closedAt: "2025-06-20",
             stateReason: "completed",
             createdAt: "2025-01-01",
@@ -149,6 +149,17 @@ test("getProposalsForMonth categorises and assigns status", () => {
             stateReason: "not_planned",
             createdAt: "2025-06-05",
         },
+        // Closed as "completed" this month but WITHOUT the "accepted" label (rejected /
+        // withdrawn), and opened earlier -> must not appear at all (not accepted, not new).
+        {
+            title: "New pipeline: dragenlike",
+            url: "u4",
+            number: 4,
+            labels: ["proposed"],
+            closedAt: "2025-06-22",
+            stateReason: "completed",
+            createdAt: "2025-01-15",
+        },
     ];
     const result = getProposalsForMonth(proposals, 2025, 6);
     const byNumber = Object.fromEntries(result.map((p) => [p.number, p]));
@@ -156,4 +167,6 @@ test("getProposalsForMonth categorises and assigns status", () => {
     expect(byNumber[1]).toMatchObject({ category: "pipeline", displayTitle: "foobar", status: "new" });
     expect(byNumber[2]).toMatchObject({ category: "other", displayTitle: "RFC: governance", status: "accepted" });
     expect(byNumber[3]).toMatchObject({ category: "pipeline", displayTitle: "rejected", status: "new" });
+    // Closed as "completed" without the "accepted" label and not opened this month -> excluded.
+    expect(byNumber[4]).toBeUndefined();
 });
