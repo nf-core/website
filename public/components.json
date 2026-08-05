@@ -56163,11 +56163,10 @@
     {
       "name": "cellranger_multi",
       "path": "modules/nf-core/cellranger/multi/meta.yml",
-      "tree_sha": "caa2bc9b95f4c5dcf6242fe3a66d34c0b260a4d1",
+      "tree_sha": "f866c42e9003714a36894434e6579523ee4154b2",
       "files": [
         "modules/nf-core/cellranger/multi/main.nf",
         "modules/nf-core/cellranger/multi/meta.yml",
-        "modules/nf-core/cellranger/multi/templates/cellranger_multi.py",
         "modules/nf-core/cellranger/multi/tests/main.nf.test",
         "modules/nf-core/cellranger/multi/tests/main.nf.test.snap",
         "modules/nf-core/cellranger/multi/tests/nextflow.config"
@@ -56230,7 +56229,7 @@
             {
               "gex_options": {
                 "type": "map",
-                "description": "Optional Cell Ranger gene expression section options.\nSupported keys include chemistry, expect-cells, and create-bam.\n"
+                "description": "Optional Cell Ranger gene expression section options as a Map.\nSupported keys: filter-probes, r1-length, r2-length, chemistry, expect-cells,\nforce-cells, no-secondary, check-library-compatibility, no-target-umi-filter,\ninclude-introns, create-bam (defaults to true if not set).\n"
               }
             }
           ],
@@ -56252,6 +56251,12 @@
                   }
                 ]
               }
+            },
+            {
+              "vdj_options": {
+                "type": "map",
+                "description": "Optional Cell Ranger VDJ section options as a Map.\nSupported keys: r1-length, r2-length.\n"
+              }
             }
           ],
           [
@@ -56271,6 +56276,12 @@
                     "edam": "http://edamontology.org/format_3989"
                   }
                 ]
+              }
+            },
+            {
+              "ab_options": {
+                "type": "map",
+                "description": "Optional Cell Ranger feature section options for Antibody Capture as a Map.\nPass null to disable this modality. Supported keys: r1-length, r2-length.\n"
               }
             }
           ],
@@ -56292,6 +56303,12 @@
                   }
                 ]
               }
+            },
+            {
+              "beam_options": {
+                "type": "map",
+                "description": "Optional Cell Ranger BEAM section options as a Map. Reserved for future use.\n"
+              }
             }
           ],
           [
@@ -56311,6 +56328,12 @@
                     "edam": "http://edamontology.org/format_3989"
                   }
                 ]
+              }
+            },
+            {
+              "cmo_options": {
+                "type": "map",
+                "description": "Optional Cell Ranger CMO section options as a Map.\nSupported keys: min-assignment-confidence.\n"
               }
             }
           ],
@@ -56332,6 +56355,12 @@
                   }
                 ]
               }
+            },
+            {
+              "crispr_options": {
+                "type": "map",
+                "description": "Optional Cell Ranger feature section options for CRISPR Guide Capture as a Map.\nPass null to disable this modality. Supported keys: r1-length, r2-length.\n"
+              }
             }
           ],
           [
@@ -56344,8 +56373,7 @@
             {
               "gex_reference": {
                 "type": "directory",
-                "description": "Folder containing Cellranger gene expression reference. Can also be a gzipped tarball",
-                "pattern": "*.tar.gz"
+                "description": "Folder containing Cellranger gene expression reference"
               }
             }
           ],
@@ -56376,8 +56404,7 @@
           {
             "vdj_reference": {
               "type": "directory",
-              "description": "Folder containing Cellranger V(D)J reference. Can also be a gzipped tarball",
-              "pattern": "*.tar.gz"
+              "description": "Folder containing Cellranger V(D)J reference"
             }
           },
           {
@@ -56590,7 +56617,7 @@
           "@klkeys"
         ]
       },
-      "git_sha": "c8dedc22e3d32b7213aac563e04c969b34b496fc",
+      "git_sha": "52b9c754194548fd87773e8372131f60d5d863ea",
       "pipelines": [
         {
           "name": "scrnaseq",
@@ -85643,7 +85670,7 @@
     {
       "name": "deepmased_features",
       "path": "modules/nf-core/deepmased/features/meta.yml",
-      "tree_sha": "3d093da959ff3616acbf0c6f3891c434c069979b",
+      "tree_sha": "9bcc966411c6b1ae335289b8a48204d1c22ace9e",
       "files": [
         "modules/nf-core/deepmased/features/environment.yml",
         "modules/nf-core/deepmased/features/main.nf",
@@ -85756,10 +85783,10 @@
                 }
               },
               {
-                "*_feats.tsv": {
+                "*_feats.tsv{,.gz}": {
                   "type": "file",
-                  "description": "Per-contig feature tables (one per parallel bin)",
-                  "pattern": "*_feats.tsv",
+                  "description": "Per-contig feature tables (one per parallel processing bin), gzipped if `--gzip` is set",
+                  "pattern": "*_feats.tsv{,.gz}",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3475"
@@ -85865,12 +85892,12 @@
           "@SkyLexS"
         ]
       },
-      "git_sha": "8eb801777f42fb9e3e1f6e0402e7f571c59e431c"
+      "git_sha": "9ec0c1b5f6621757449ce2b47c991d5056dfb88a"
     },
     {
       "name": "deepmased_predict",
       "path": "modules/nf-core/deepmased/predict/meta.yml",
-      "tree_sha": "76d9ae89fd30945bb161d7a812adb454d5e83c8d",
+      "tree_sha": "780c23eadc09afa80638f227d6c111ddbd6327bc",
       "files": [
         "modules/nf-core/deepmased/predict/environment.yml",
         "modules/nf-core/deepmased/predict/main.nf",
@@ -85929,7 +85956,7 @@
               "feature_files": {
                 "type": "file",
                 "description": "Per-contig feature table files (output of deepmased/features)",
-                "pattern": "*_feats.tsv",
+                "pattern": "*_feats.tsv{,.gz}",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_3475"
@@ -86058,7 +86085,7 @@
           "@SkyLexS"
         ]
       },
-      "git_sha": "8eb801777f42fb9e3e1f6e0402e7f571c59e431c"
+      "git_sha": "9ec0c1b5f6621757449ce2b47c991d5056dfb88a"
     },
     {
       "name": "deepsomatic",
@@ -196310,6 +196337,162 @@
       "git_sha": "5909fc046b4b2062e4b4173808aacd2424e0866a"
     },
     {
+      "name": "leafcutter_differentialsplicing",
+      "path": "modules/nf-core/leafcutter/differentialsplicing/meta.yml",
+      "tree_sha": "be1c89b7ca674501f62feb4324193d60daac17a7",
+      "files": [
+        "modules/nf-core/leafcutter/differentialsplicing/environment.yml",
+        "modules/nf-core/leafcutter/differentialsplicing/main.nf",
+        "modules/nf-core/leafcutter/differentialsplicing/meta.yml",
+        "modules/nf-core/leafcutter/differentialsplicing/tests/main.nf.test",
+        "modules/nf-core/leafcutter/differentialsplicing/tests/main.nf.test.snap",
+        "modules/nf-core/leafcutter/differentialsplicing/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "leafcutter_differentialsplicing",
+        "description": "Perform differential splicing analysis to identify junctions with significant changes in splicing between conditions",
+        "keywords": [
+          "alternative splicing",
+          "differential splicing",
+          "RNA-seq",
+          "intron usage"
+        ],
+        "tools": [
+          {
+            "leafcutter": {
+              "description": "Annotation-free quantification of RNA splicing from RNA-seq data",
+              "homepage": "https://leafcutter2.github.io/leafcutter-ds/",
+              "documentation": "https://leafcutter2.github.io/leafcutter-ds/tutorials/differential-splicing/",
+              "tool_dev_url": "https://github.com/leafcutter2/leafcutter-ds",
+              "doi": "10.1038/s41588-017-0004-9",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": "biotools:leafcutter",
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "counts": {
+                "type": "file",
+                "description": "Intron usage counts file from leafcutter-cluster (either perind.counts.gz or perind_numers.counts.gz)",
+                "pattern": "*.counts.gz"
+              }
+            },
+            {
+              "groups": {
+                "type": "file",
+                "description": "Tab-delimited file with sample names in column 1 and sample group/phenotype assignments in column 2",
+                "pattern": "*.txt"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "cluster_significance": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*_cluster_significance.txt": {
+                  "type": "file",
+                  "description": "Cluster-level differential splicing statistics including p-values and test status",
+                  "pattern": "*_cluster_significance.txt"
+                }
+              }
+            ]
+          ],
+          "effect_sizes": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*_effect_sizes.txt": {
+                  "type": "file",
+                  "description": "Per-intron junction effect sizes, PSI values, and delta PSI for each condition",
+                  "pattern": "*_effect_sizes.txt"
+                }
+              }
+            ]
+          ],
+          "versions_leafcutter": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "leafcutter": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "2.0.3": {
+                  "type": "string",
+                  "description": "The version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "leafcutter": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "2.0.3": {
+                  "type": "string",
+                  "description": "The version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@JTL-lab"
+        ],
+        "maintainers": [
+          "@JTL-lab"
+        ],
+        "notes": [
+          "This module uses PyTorch for statistical analysis. Environment variables are automatically set in the module for container compatibility (`USER` defaults to 'nobody' if unset to prevent Pytorch cache initialization errors, `PYTHONHASHSEED=0` is set for reproducibility)."
+        ]
+      },
+      "git_sha": "8a83112b05d958d74cd714dedb4b425a0ef9f9f9"
+    },
+    {
       "name": "learnmsa_align",
       "path": "modules/nf-core/learnmsa/align/meta.yml",
       "tree_sha": "9a85c614f47d5dae6f732f8158e05c7d354a3db9",
@@ -226293,7 +226476,7 @@
     {
       "name": "mobster",
       "path": "modules/nf-core/mobster/meta.yml",
-      "tree_sha": "13b78f8fb016936648f18efb864e2f4942768dc3",
+      "tree_sha": "b05728a140a301f7a6f0462f35bab5bde96edcba",
       "files": [
         "modules/nf-core/mobster/environment.yml",
         "modules/nf-core/mobster/main.nf",
@@ -226504,7 +226687,7 @@
           "@elena-buscaroli"
         ]
       },
-      "git_sha": "e65bff46035a56cc8fc3d21fb8af8d988ef02cfe",
+      "git_sha": "f0335e8881b08bf42faba2f6fa47f78a853e3cff",
       "pipelines": [
         {
           "name": "tumourevo",
@@ -283712,7 +283895,7 @@
     {
       "name": "pyclonevi",
       "path": "modules/nf-core/pyclonevi/meta.yml",
-      "tree_sha": "a508eed0494b73ffab6c108b7235e6c9e20cb3d4",
+      "tree_sha": "7ff32dc3d8620d348bc627ba6768fc6eaf04f7fc",
       "files": [
         "modules/nf-core/pyclonevi/environment.yml",
         "modules/nf-core/pyclonevi/main.nf",
@@ -283889,7 +284072,7 @@
           "@elena-buscaroli"
         ]
       },
-      "git_sha": "60cd0533736e031a9e15b16ccc3459183abcef4b",
+      "git_sha": "6579da34bf64dbb4736c9a34108177c1d6363430",
       "pipelines": [
         {
           "name": "tumourevo",
@@ -387498,7 +387681,7 @@
     {
       "name": "viber",
       "path": "modules/nf-core/viber/meta.yml",
-      "tree_sha": "69041287230ff990cc82e3c9101f9b7c5b35759d",
+      "tree_sha": "fed18e7f6a607e381355add278e7cb78fa4aa86a",
       "files": [
         "modules/nf-core/viber/environment.yml",
         "modules/nf-core/viber/main.nf",
@@ -387725,7 +387908,7 @@
           "@giorgiagandolfi"
         ]
       },
-      "git_sha": "92502f57f03d9e3557253d1513f2dc9fc7e1f29f",
+      "git_sha": "48c74fe5b0ea96833674e794d563da282e55aab2",
       "pipelines": [
         {
           "name": "tumourevo",
@@ -395537,6 +395720,10 @@
       },
       "git_sha": "1c43a7e22f04cf19c9f9d3de7e7e5a3addd9382a",
       "pipelines": [
+        {
+          "name": "spatialaxe",
+          "version": "1.0.0"
+        },
         {
           "name": "spatialaxe",
           "version": "1.0.0"
@@ -415806,6 +415993,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "08d31674d8ab1f85e54573e62dc112022790a305",
-  "updated_at": "2026-08-05T03:08:46.719Z"
+  "commit_sha": "6579da34bf64dbb4736c9a34108177c1d6363430",
+  "updated_at": "2026-08-05T14:56:05.361Z"
 }
