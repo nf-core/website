@@ -21090,7 +21090,7 @@
       "pipelines": [
         {
           "name": "seqsubmit",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -52181,7 +52181,7 @@
         },
         {
           "name": "seqsubmit",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -52522,7 +52522,7 @@
         },
         {
           "name": "seqsubmit",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -52857,7 +52857,7 @@
         },
         {
           "name": "seqsubmit",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -53087,7 +53087,7 @@
         },
         {
           "name": "seqsubmit",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -53295,7 +53295,7 @@
         },
         {
           "name": "seqsubmit",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -54095,7 +54095,7 @@
         },
         {
           "name": "seqsubmit",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -59286,7 +59286,7 @@
         },
         {
           "name": "seqsubmit",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -59461,7 +59461,7 @@
         },
         {
           "name": "seqsubmit",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -74490,7 +74490,7 @@
       "pipelines": [
         {
           "name": "seqsubmit",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -74704,7 +74704,7 @@
       "pipelines": [
         {
           "name": "seqsubmit",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -106669,7 +106669,7 @@
       "pipelines": [
         {
           "name": "seqsubmit",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -119747,7 +119747,7 @@
         },
         {
           "name": "seqsubmit",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -231567,7 +231567,7 @@
         },
         {
           "name": "seqsubmit",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "smrnaseq",
@@ -266282,7 +266282,7 @@
     {
       "name": "picrust2_pipeline",
       "path": "modules/nf-core/picrust2/pipeline/meta.yml",
-      "tree_sha": "e03a5b8e59943c33f6ac4120639e4d278b3ee1e5",
+      "tree_sha": "21ed1ac08353d6ede06a47fd8b9993f6767e9cdf",
       "files": [
         "modules/nf-core/picrust2/pipeline/environment.yml",
         "modules/nf-core/picrust2/pipeline/main.nf",
@@ -266428,19 +266428,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_picrust2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "picrust2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "picrust2_pipeline.py --version | sed 's/PICRUSt2 //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "picrust2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "picrust2_pipeline.py --version | sed 's/PICRUSt2 //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -266450,7 +266482,7 @@
           "@dialvarezs"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "8ba9d43504a3719c689d32ce3ea8e2f66e5ab2a3"
     },
     {
       "name": "pigz_compress",
@@ -266997,7 +267029,7 @@
     {
       "name": "pindel_pindel",
       "path": "modules/nf-core/pindel/pindel/meta.yml",
-      "tree_sha": "aa48aaee3861e5c5d85116c98110e30d49d03831",
+      "tree_sha": "4f614b58bc1ef4ae0cb354d4a270df5424a2e826",
       "files": [
         "modules/nf-core/pindel/pindel/environment.yml",
         "modules/nf-core/pindel/pindel/main.nf",
@@ -267255,19 +267287,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_pindel": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pindel": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pindel | grep '^Pindel version' | uniq | sed 's/Pindel version //; s/, [0-9]\\+.//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pindel": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pindel | grep '^Pindel version' | uniq | sed 's/Pindel version //; s/, [0-9]\\+.//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -267277,7 +267341,7 @@
           "@marrip"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "08d31674d8ab1f85e54573e62dc112022790a305"
     },
     {
       "name": "pints_caller",
@@ -291158,7 +291222,7 @@
     {
       "name": "rclone_check",
       "path": "modules/nf-core/rclone/check/meta.yml",
-      "tree_sha": "93654a404a119664b3b8ffc650dec6bae0adb182",
+      "tree_sha": "2a11131c5653ef70b7a7c26a0793d9786ffb554a",
       "files": [
         "modules/nf-core/rclone/check/.conda-lock/linux_amd64-bd-2ef33c5b9132aa97_1.txt",
         "modules/nf-core/rclone/check/.conda-lock/linux_arm64-bd-351f8e39202b129a_1.txt",
@@ -291465,7 +291529,7 @@
           }
         }
       },
-      "git_sha": "a554e54c63c3f03f91c88a18ece7b89eca5a5212",
+      "git_sha": "fef5b8209601b7746f9705f63e5856cd2b5be708",
       "pipelines": [
         {
           "name": "datasync",
@@ -291476,7 +291540,7 @@
     {
       "name": "rclone_checksum",
       "path": "modules/nf-core/rclone/checksum/meta.yml",
-      "tree_sha": "d2c1cc4122921bb8fdc58a7ddf8947e5c2bb0de2",
+      "tree_sha": "47d614b717780923878b73f31e430b1cbf353d8d",
       "files": [
         "modules/nf-core/rclone/checksum/environment.yml",
         "modules/nf-core/rclone/checksum/main.nf",
@@ -291795,7 +291859,7 @@
           }
         }
       },
-      "git_sha": "a554e54c63c3f03f91c88a18ece7b89eca5a5212",
+      "git_sha": "fef5b8209601b7746f9705f63e5856cd2b5be708",
       "pipelines": [
         {
           "name": "datasync",
@@ -372757,7 +372821,7 @@
       "pipelines": [
         {
           "name": "seqsubmit",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -373166,7 +373230,7 @@
     {
       "name": "trust4",
       "path": "modules/nf-core/trust4/meta.yml",
-      "tree_sha": "5769fe84f6562b1beee0a2dc0b9a83800addc285",
+      "tree_sha": "2d60eefe2c6207c3e9c45c659781433b3beeda87",
       "files": [
         "modules/nf-core/trust4/environment.yml",
         "modules/nf-core/trust4/main.nf",
@@ -373316,7 +373380,7 @@
                 }
               },
               {
-                "${meta.id}_airr.tsv": {
+                "${prefix}_airr.tsv": {
                   "type": "file",
                   "description": "TRUST4 results in AIRR format",
                   "pattern": "*_airr.tsv",
@@ -373420,35 +373484,68 @@
               {
                 "**": {
                   "type": "file",
-                  "description": "outputt files",
+                  "description": "output files",
                   "ontologies": []
                 }
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_trust4": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "trust4": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "run-trust4 2>&1 | sed '/^TRUST4/!d; s/.*TRUST4 v//; s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "trust4": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "run-trust4 2>&1 | sed '/^TRUST4/!d; s/.*TRUST4 v//; s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
-          "@mapo9, @Joaodemeirelles"
+          "@mapo9",
+          "@Joaodemeirelles"
         ],
         "maintainers": [
           "@mapo9"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "b79860840699496a3c0d6abf163221498e9bed9f",
       "pipelines": [
         {
           "name": "airrflow",
@@ -378448,7 +378545,7 @@
         },
         {
           "name": "seqsubmit",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "smrnaseq",
@@ -395511,6 +395608,10 @@
         {
           "name": "spatialaxe",
           "version": "1.0.0"
+        },
+        {
+          "name": "spatialaxe",
+          "version": "1.0.0"
         }
       ]
     },
@@ -404472,7 +404573,7 @@
       "pipelines": [
         {
           "name": "seqsubmit",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -413148,7 +413249,7 @@
         },
         {
           "name": "seqsubmit",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "smrnaseq",
@@ -413628,7 +413729,7 @@
         },
         {
           "name": "seqsubmit",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "smrnaseq",
@@ -414140,7 +414241,7 @@
         },
         {
           "name": "seqsubmit",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "smrnaseq",
@@ -415705,6 +415806,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "acdf5174c3bebdb1ac86858845a18015b5ee9bdb",
-  "updated_at": "2026-08-04T15:12:03.454Z"
+  "commit_sha": "08d31674d8ab1f85e54573e62dc112022790a305",
+  "updated_at": "2026-08-05T03:08:46.719Z"
 }
