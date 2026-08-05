@@ -18,7 +18,7 @@ facilita a manutenção de pipelines e fortalece o ecossistema colaborativo do n
 
 Recursos:
 
-- [Guia oficial para criação de módulos](https://nf-co.re/docs/contributing/modules)
+- [Guia oficial para criação de módulos](https://nf-co.re/docs/contributing/contribute-components)
 - [Repositório nf-core/modules](https://github.com/nf-core/modules)
 - [Hello nf-core](https://training.nextflow.io/latest/hello_nf-core/)
 
@@ -53,11 +53,11 @@ Cada novo módulo deve estar vinculado a uma issue no repositório.
 
 ### Criar um novo módulo no nf-core/modules
 
-1. Escolha uma ferramenta de bioinformática que ainda não tenha módulo no [nf-core/modules](https://github.com/nf-core/modules).
+1. Escolha uma ferramenta de bioinformática que ainda não tenha módulo no [nf-core/modules](https://nf-co.re/modules).
 
 2. Abra uma issue (ou assuma uma issue existente) para evitar trabalho duplicado.
 
-3. Siga as diretrizes do [guia oficial de contribuição de módulos](https://nf-co.re/docs/contributing/modules).
+3. Siga as diretrizes do [guia oficial de contribuição de módulos](https://nf-co.re/docs/contributing/contribute-components).
 
 4. Implemente o módulo incluindo:
    - Script/module file com entradas e saídas padronizadas
