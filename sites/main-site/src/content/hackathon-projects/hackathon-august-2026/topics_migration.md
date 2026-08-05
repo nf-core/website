@@ -2,6 +2,7 @@
 title: nf-core/modules topics migration
 category: components
 slack: https://nfcore.slack.com/archives/C09LJTQQ3EY
+location: UFRN
 leaders:
   mribeirodantas:
     name: Marcel Ribeiro-Dantas
