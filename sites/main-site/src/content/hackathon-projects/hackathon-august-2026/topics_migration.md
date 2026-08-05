@@ -9,77 +9,77 @@ leaders:
     slack: https://nfcore.slack.com/team/U03932BSX1V
 ---
 
-This hackathon project focuses on updating
-[nf-core/modules](https://github.com/nf-core/modules) to use modern Nextflow
-features, specifically **topic channels**.
+Este projeto de hackathon tem como foco atualizar
+[módulos do nf-core](https://github.com/nf-core/modules) para usar recursos modernos
+do Nextflow, especificamente **topic channels**.
 
-Topic channels simplify version collection across modules,
-and are becoming the standard approach within nf-core.
+_Topic channels_ simplificam a coleta de versões entre módulos
+e estão se tornando a abordagem padrão dentro do nf-core.
 
-Resources:
+Recursos:
 
-- [nf-core migration to topics tutorial](https://nf-co.re/docs/tutorials/migrate_to_topics/update_modules)
-- [Topic channels in Nextflow documentation](https://nextflow.io/docs/latest/reference/channel.html#topic)
-- [Topic channels in nf-core adoption statistics dashboard](https://nf-core-stats.netlify.app/code/container_conversion/#version-topics-adoption-over-time)
-
----
-
-## Goal
-
-Migrate all nf-core modules to use topic channels.
-
-This work is organized so each participant updates one module at a time,
-making it suitable as a beginner-friendly contribution.
+- [Tutorial de migração para topics do nf-core](https://nf-co.re/docs/tutorials/migrate_to_topics/update_modules)
+- [Topic channels na documentação do Nextflow](https://nextflow.io/docs/latest/reference/channel.html#topic)
+- [Topic channels no dashboard de estatísticas de adoção do nf-core](https://nf-core-stats.netlify.app/code/container_conversion/#version-topics-adoption-over-time)
 
 ---
 
-## What participants will do
+## Objetivo
 
-Each contributor will:
+Migrar todos os módulos do nf-core para usar topic channels.
 
-1. Pick one module that has not yet been migrated.
-2. Update it to use topic channels following official guidelines.
-3. Run tests and lint checks locally.
-4. Open a Pull Request for review.
-
-Each migration corresponds to one issue in the modules repository.
+Este trabalho está organizado para que cada participante atualize um módulo por vez,
+o que o torna uma contribuição amigável para iniciantes.
 
 ---
 
-## Tasks
+## O que os participantes farão
 
-### Migrate a module to topic channels
+Cada colaborador irá:
 
-1. Choose an available module from the [migration tracker](https://github.com/nf-core/modules/issues/9978)
+1. Escolher um módulo que ainda não tenha sido migrado.
+2. Atualizá-lo para usar topic channels seguindo as diretrizes oficiais.
+3. Executar testes e verificações de lint localmente.
+4. Abrir um Pull Request para revisão.
 
-2. Assign the issue to yourself to avoid duplicate work.
-
-3. Follow the [official migration guide](https://nf-co.re/docs/tutorials/migrate_to_topics/update_modules)
-
-4. Update the module by:
-   - Replacing legacy version collection logic
-   - Using topic channels for version reporting
-   - Updating tests if necessary
-
-5. Run module tests and lint checks locally.
-
-6. Open a Pull Request referencing the migration issue.
-
-7. Address CI or review feedback until merged.
-
-After finishing, contributors are encouraged to migrate additional modules.
+Cada migração corresponde a uma issue no repositório de módulos.
 
 ---
 
-## Recommended preparation
+## Tarefas
 
-Participants should ideally have:
+### Migrar um módulo para topic channels
 
-- Basic familiarity with Git and GitHub (forking repositories, creating branches, and opening pull requests)
-- Basic knowledge of Nextflow
-- Familiarity with nf-core modules
+1. Escolha um módulo disponível no [rastreador de migração](https://github.com/nf-core/modules/issues/9978)
 
-The following training material is recommended:
+2. Atribua a issue a você para evitar trabalho duplicado.
+
+3. Siga o [guia oficial de migração](https://nf-co.re/docs/tutorials/migrate_to_topics/update_modules). Estatísticas [aqui](https://nf-co.re/stats/code/container_conversion/).
+
+4. Atualize o módulo:
+  - Substituindo a lógica legada de coleta de versões
+  - Usando topic channels para reporte de versões
+  - Atualizando os testes, se necessário
+
+5. Execute os testes do módulo e as verificações de lint localmente.
+
+6. Abra um Pull Request referenciando a issue de migração.
+
+7. Trate feedback de CI ou de revisão até a mesclagem.
+
+Após concluir, os colaboradores são encorajados a migrar módulos adicionais.
+
+---
+
+## Preparação recomendada
+
+Idealmente, os participantes devem ter:
+
+- Familiaridade básica com Git e GitHub (fazer fork de repositórios, criar branches e abrir pull requests)
+- Conhecimento básico de Nextflow
+- Familiaridade com módulos nf-core
+
+O seguinte material de treinamento é recomendado:
 
 - [Hello nextflow](https://training.nextflow.io/latest/hello_nextflow/)
 - [Hello nf-core](https://training.nextflow.io/latest/hello_nf-core/)
