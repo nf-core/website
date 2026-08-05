@@ -57,9 +57,10 @@ Cada migração corresponde a uma issue no repositório de módulos.
 3. Siga o [guia oficial de migração](https://nf-co.re/docs/tutorials/migrate_to_topics/update_modules). Estatísticas [aqui](https://nf-co.re/stats/code/container_conversion/).
 
 4. Atualize o módulo:
-  - Substituindo a lógica legada de coleta de versões
-  - Usando topic channels para reporte de versões
-  - Atualizando os testes, se necessário
+
+- Substituindo a lógica legada de coleta de versões
+- Usando topic channels para reporte de versões
+- Atualizando os testes, se necessário
 
 5. Execute os testes do módulo e as verificações de lint localmente.
 
