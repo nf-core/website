@@ -55325,7 +55325,7 @@
         },
         {
           "name": "spatialaxe",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -80208,19 +80208,20 @@
     {
       "name": "custom_orfcollapse",
       "path": "modules/nf-core/custom/orfcollapse/meta.yml",
-      "tree_sha": "79de1230b9488e24a6dfa7dba5dea7245ba3ee56",
+      "tree_sha": "47fc8da2a6acf24844b9c31b8e47c313ad782a03",
       "files": [
         "modules/nf-core/custom/orfcollapse/environment.yml",
         "modules/nf-core/custom/orfcollapse/main.nf",
         "modules/nf-core/custom/orfcollapse/meta.yml",
         "modules/nf-core/custom/orfcollapse/templates/orfcollapse.py",
         "modules/nf-core/custom/orfcollapse/tests/main.nf.test",
-        "modules/nf-core/custom/orfcollapse/tests/main.nf.test.snap"
+        "modules/nf-core/custom/orfcollapse/tests/main.nf.test.snap",
+        "modules/nf-core/custom/orfcollapse/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
         "name": "custom_orfcollapse",
-        "description": "Collapse small ORFs that share an amino-acid sequence cluster into a single\ncatalogue entry. Pair with `custom/orfmerge` (coordinate-based catalogue),\n`bedtools/getfasta` + `seqkit/translate` (AA FASTA keyed by orf_id), and\n`mmseqs/easycluster` (AA clusters) upstream.\n\nThe coordinate-based merge in `custom/orfmerge` only groups ORFs that overlap\non the genome, so the same micropeptide encoded at several distinct,\nnon-overlapping loci (typically repetitive regions) survives as separate rows.\nThis adopts the peptide-level deduplication and 0.9 amino-acid-similarity\nthreshold of the GENCODE Ribo-seq ORF consolidation (Mudge et al. 2022,\nNat Biotechnol, doi:10.1038/s41587-022-01369-0; gencode-riboseqORFs\ncollapse_cutoff 0.9), implemented here with MMseqs2 sequence-identity\nclustering rather than that tool's longest-shared-string / P-site-overlap\nmetric. Small ORFs (orf_class \"smORF\", i.e. aa_length <= 100) are clustered by\namino-acid identity upstream and this module folds each multi-member cluster\ndown to one representative.\n\nOnly smORF rows are collapsed; larger ORFs and transcript-anchored classes are\npassed through untouched. Among the smORF members of a cluster the\nrepresentative is chosen by longest aa_length (ties broken by orf_id), so the\nresult does not depend on which sequence MMseqs2 labelled the cluster\nrepresentative. Catalogue row order is preserved; dropped members fold their\n`called_by_<caller>` / `score_<caller>` evidence, `n_samples` / `samples`\nrecurrence and gene mappings into the survivor.\n",
+        "description": "Collapse small ORFs that share an amino-acid sequence cluster into a single\ncatalogue entry. Pair with `custom/orfmerge` (coordinate-based catalogue),\n`bedtools/getfasta` + `seqkit/translate` (AA FASTA keyed by orf_id), and\n`mmseqs/easycluster` (AA clusters) upstream.\n\nThe coordinate-based merge in `custom/orfmerge` only groups ORFs that overlap\non the genome, so the same micropeptide encoded at several distinct,\nnon-overlapping loci (typically repetitive regions) survives as separate rows.\nThis adopts the peptide-level deduplication and 0.9 amino-acid-similarity\nthreshold of the GENCODE Ribo-seq ORF consolidation (Mudge et al. 2022,\nNat Biotechnol, doi:10.1038/s41587-022-01369-0; gencode-riboseqORFs\ncollapse_cutoff 0.9), implemented here with MMseqs2 sequence-identity\nclustering rather than that tool's longest-shared-string / P-site-overlap\nmetric. Small ORFs (`aa_length` <= `--smorf-max-aa`, default 100) are clustered by\namino-acid identity upstream and this module folds each multi-member cluster\ndown to one representative.\n\nOnly small ORFs are collapsed; larger ORFs are passed through untouched.\nEligibility is the catalogue's `is_smorf` flag, independent of `orf_class`, so\na short uORF and a short novel ORF are both candidates; `--smorf-max-aa`\nre-derives the flag and aborts on disagreement. Among the members of a cluster\nthe representative is chosen by class specificity, then longest aa_length,\nthen orf_id, so the result does not depend on which sequence MMseqs2 labelled\nthe cluster representative. Catalogue row order is preserved; dropped members fold their\n`called_by_<caller>` / `score_<caller>` evidence, `n_samples` / `samples`\nrecurrence and gene mappings into the survivor.\n",
         "keywords": [
           "orf",
           "ribo-seq",
@@ -80519,12 +80520,12 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "76e959312e636388810442416972071734c4144a"
+      "git_sha": "c804473fd6f5dcffaf3ed5fd9a832b403808f3ef"
     },
     {
       "name": "custom_orfmerge",
       "path": "modules/nf-core/custom/orfmerge/meta.yml",
-      "tree_sha": "79f0a23ff960cf0f9f27b5166d4afc7dade7f899",
+      "tree_sha": "0eb4d067105cb68ce86cb0f18cd93a600a6674f4",
       "files": [
         "modules/nf-core/custom/orfmerge/environment.yml",
         "modules/nf-core/custom/orfmerge/main.nf",
@@ -80538,7 +80539,7 @@
       "type": "module",
       "meta": {
         "name": "custom_orfmerge",
-        "description": "Cluster normalised per-sample, per-caller ORF predictions into a single\ncohort-level catalogue. Pair with `custom/orfnormalise` upstream and\n(typically) `bedtools/getfasta` + `seqkit/translate` downstream to obtain\nthe AA FASTA.\n\nStrategy is class-aware (operating on the harmonised `orf_class` written\nby `custom/orfnormalise`):\n\n  - canonical_cds:        collapse by (transcript_id, strand). One\n                          canonical CDS per transcript by definition.\n  - uORF, dORF, other:    collapse by (transcript_id, strand, start,\n                          end). A single transcript can host multiple\n                          distinct uORFs / dORFs / internal ORFs, so\n                          keying on the outer span keeps them in\n                          separate clusters while still merging\n                          cross-caller calls that agree on coordinates.\n  - novel_u, smORF:       greedy reciprocal-overlap clustering on the\n                          outer genomic span at `--reciprocal-overlap`\n                          (default 0.8). Catches fuzzy cross-caller\n                          matches and exact-coordinate collapses in\n                          one pass. Order-dependent at the boundary:\n                          a chain A-B-C where A-B and B-C overlap at\n                          ~0.85 but A-C only at ~0.75 may cluster as\n                          {A,B,C} or {A,B}+{C} depending on iteration\n                          order. Rare in practice at 0.8.\n\nCross-caller consensus is recorded in two column families on the\ncatalogue TSV:\n\n  - `called_by_<caller>`: 0/1 indicator per supported caller\n                          (ribotish, ribocode, ribotricer, rpbp, price).\n  - `score_<caller>`:     best score from that caller within the cluster.\n                          Score direction is per-caller (p-values are\n                          minimised; Bayes factors / phase scores are\n                          maximised).\n\nCross-sample recurrence is recorded in two further columns:\n\n  - `n_samples`:          number of distinct samples contributing to the\n                          cluster (a cohort recurrence metric).\n  - `samples`:            sorted, comma-separated list of those sample ids.\n\nEmits a small MultiQC custom-content TSV (per-class counts) for\ninclusion in downstream MultiQC reports.\n\nAlongside the full catalogue, emits a consensus view (`*.consensus.*`)\nfiltered to ORFs supported by at least `--min-callers` distinct callers\nand recurring in at least `--min-samples` samples (both default 1, i.e.\nno filtering, so the consensus view equals the full catalogue). Raising\neither threshold yields a higher-confidence catalogue without altering\nthe full one.\n",
+        "description": "Cluster normalised per-sample, per-caller ORF predictions into a single\ncohort-level catalogue. Pair with `custom/orfnormalise` upstream and\n(typically) `bedtools/getfasta` + `seqkit/translate` downstream to obtain\nthe AA FASTA.\n\nRows sharing an identical exon structure are grouped first and clustered as a\nsingle proxy chosen by class specificity, then the members are restored. Class\nselects the strategy, so without this an ORF that two callers class differently\nwould be split across strategies and could never merge.\n\nProxies are then partitioned by clustering strategy. The harmonised `orf_class`\nwritten by `custom/orfnormalise` selects the strategy but is never part of a\ngrouping key, because callers disagree on class for the same ORF (Ribo-TISH\nreports `5'UTR` for both uORFs and CDS-overlapping uORFs) and keying on it\nwould emit one catalogue row per disagreeing caller:\n\n  - canonical_cds:        grouped by (transcript_id, strand), then\n                          reciprocal-overlap clustered within the\n                          transcript so a short truncated variant is\n                          not folded into the full-length CDS.\n  - uORF, uoORF, dORF,    collapse by (transcript_id, strand, start,\n    doORF, intORF, other: end). A single transcript can host multiple\n                          distinct uORFs / dORFs / internal ORFs, so\n                          keying on the outer span keeps them in\n                          separate clusters while still merging\n                          cross-caller calls that agree on coordinates.\n  - novel_u:              greedy reciprocal-overlap clustering on summed\n                          exon-block intersection at `--reciprocal-overlap`\n                          (default 0.8). Catches fuzzy cross-caller\n                          matches and exact-coordinate collapses in\n                          one pass. Order-dependent at the boundary:\n                          a chain A-B-C where A-B and B-C overlap at\n                          ~0.85 but A-C only at ~0.75 may cluster as\n                          {A,B,C} or {A,B}+{C} depending on iteration\n                          order. Rare in practice at 0.8.\n\nCross-caller consensus is recorded in two column families on the\ncatalogue TSV:\n\n  - `called_by_<caller>`: 0/1 indicator per supported caller\n                          (ribotish, ribocode, ribotricer, rpbp, price).\n  - `score_<caller>`:     best score from that caller within the cluster.\n                          Score direction is per-caller (p-values are\n                          minimised; Bayes factors / phase scores are\n                          maximised).\n\nCross-sample recurrence is recorded in two further columns:\n\n  - `n_samples`:          number of distinct samples contributing to the\n                          cluster (a cohort recurrence metric).\n  - `samples`:            sorted, comma-separated list of those sample ids.\n\nEmits a small MultiQC custom-content TSV (per-class counts) for\ninclusion in downstream MultiQC reports.\n\nAlongside the full catalogue, emits a consensus view (`*.consensus.*`)\nfiltered to ORFs supported by at least `--min-callers` distinct callers\nand recurring in at least `--min-samples` samples (both default 1, i.e.\nno filtering, so the consensus view equals the full catalogue). Raising\neither threshold yields a higher-confidence catalogue without altering\nthe full one.\n",
         "keywords": [
           "orf",
           "ribo-seq",
@@ -80626,7 +80627,7 @@
               {
                 "${prefix}.tsv": {
                   "type": "file",
-                  "description": "Per-ORF table with `called_by_<caller>` and `score_<caller>`\ncolumns for each supported caller, `n_samples` / `samples`\ncross-sample recurrence columns, plus orf_class, aa_length,\nand host gene_id / transcript_id.\n",
+                  "description": "Per-ORF table with `called_by_<caller>` and `score_<caller>`\ncolumns for each supported caller, `n_samples` / `samples`\ncross-sample recurrence columns, plus orf_class, aa_length,\nhost gene_id / transcript_id, `orf_type_native` listing every\ncaller-native ORF-type label in the cluster, and the\n`is_smorf` length flag.\n",
                   "pattern": "*.tsv",
                   "ontologies": [
                     {
@@ -80779,12 +80780,12 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "7da5d5a5210c56a53718513db0b6a8b12a15df48"
+      "git_sha": "c804473fd6f5dcffaf3ed5fd9a832b403808f3ef"
     },
     {
       "name": "custom_orfnormalise",
       "path": "modules/nf-core/custom/orfnormalise/meta.yml",
-      "tree_sha": "089b7ed90be109357de568850a6fa44b1cac8150",
+      "tree_sha": "7c79f1cfdbf91ae7c1d990bc63e5efdb96c397b6",
       "files": [
         "modules/nf-core/custom/orfnormalise/environment.yml",
         "modules/nf-core/custom/orfnormalise/main.nf",
@@ -80792,12 +80793,12 @@
         "modules/nf-core/custom/orfnormalise/templates/orfnormalise.py",
         "modules/nf-core/custom/orfnormalise/tests/main.nf.test",
         "modules/nf-core/custom/orfnormalise/tests/main.nf.test.snap",
-        "modules/nf-core/custom/orfnormalise/tests/score_override.config"
+        "modules/nf-core/custom/orfnormalise/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
         "name": "custom_orfnormalise",
-        "description": "Convert one ORF caller's per-sample output table into a unified BED12 plus a\nsidecar metadata TSV, ready for cross-caller merging.\n\nAn \"ORF caller\" is a tool that scans ribosome-profiling (Ribo-seq) data and\npredicts which open reading frames are being translated. Each caller writes\nits own table format and uses its own location encoding, classification\nvocabulary, and confidence score. This module reconciles five callers into\none harmonised schema. The `caller` val input selects the parser;\nsupported values:\n\n  - ribocode    (RiboCode predicted ORF table; transcript-coord input,\n                 lifted to genomic blocks against the GTF)\n  - ribotish    (Ribo-TISH predict output; GenomePos + optional Blocks)\n  - ribotricer  (Ribotricer detect-orfs translating ORFs TSV; ORF span\n                 parsed from ORF_ID, multi-exon blocks recovered by\n                 intersecting with host-transcript exon structure from\n                 the GTF)\n  - rpbp        (Rp-Bp predicted-orfs BED12 with extra columns)\n  - price       (PRICE orfs.tsv; Gedi-style Location field, already genomic)\n\nOutput BED12 column order:\n  chrom start end name score strand thickStart thickEnd itemRgb\n  blockCount blockSizes blockStarts\nThe BED `name` column carries `<caller>|<caller-native-id>`. The BED `score`\ncolumn is the caller's native score rescaled to 0-1000 (higher == more\nconfident regardless of native direction).\n\nOutput sidecar TSV columns:\n  orf_id caller sample_id chrom start end strand gene_id transcript_id\n  orf_class aa_length score\n\nHarmonised `orf_class` vocabulary written into the sidecar TSV:\n\n  - canonical_cds: ORF maps to an annotated CDS (including truncated /\n                   extended variants of one).\n  - uORF:          upstream ORF (5'UTR-resident).\n  - dORF:          downstream ORF (3'UTR-resident).\n  - novel_u:       novel / intergenic ORF not assigned to an annotated CDS.\n  - smORF:         small ORF (aa_length <= 100); promoted regardless of\n                   location-based class so downstream tools can treat\n                   smORFs uniformly.\n  - other:         internal / overlap / frame variants and anything else.\n\nPer-caller mapping notes (lossy collapses):\n\n  - PRICE's `Gene` column concatenates every gene overlapping an ORF's\n    genomic span, so `gene_id` is resolved from the GTF via the ORF's\n    transcript id; the `Gene` column is used only for transcripts absent\n    from the annotation, and can then carry a multi-gene value.\n  - PRICE `iORF` (internal ORF), `intronic`, and `orphan` map to `other`.\n    Cross-caller catalogue tracking still flags these via\n    `called_by_price`, but the specific PRICE sub-type is not preserved.\n  - Rp-Bp's predicted-orfs BED carries no ORF-type column; this module\n    defaults every Rp-Bp call to `canonical_cds` (the post-\n    selectfinalpredictionset curated set is dominated by canonical\n    CDSs). uORF/dORF/novel calls present in Rp-Bp's separate\n    `.tab.gz` / `extracted-orfs.bed.gz` files are not propagated here.\n\nEach caller's native confidence score has a \"direction\" - some are\nlower-is-better (p-values), some are higher-is-better (Bayes factors,\nphase scores):\n\n  ribocode:   min  (combined p-value)\n  ribotish:   min  (combined p-value)\n  ribotricer: max  (phase_score)\n  rpbp:       max  (Bayes factor mean)\n  price:      min  (p-value)\n\nDownstream merging uses this to pick the best per-ORF call.\n",
+        "description": "Convert one ORF caller's per-sample output table into a unified BED12 plus a\nsidecar metadata TSV, ready for cross-caller merging.\n\nAn \"ORF caller\" is a tool that scans ribosome-profiling (Ribo-seq) data and\npredicts which open reading frames are being translated. Each caller writes\nits own table format and uses its own location encoding, classification\nvocabulary, and confidence score. This module reconciles five callers into\none harmonised schema. The `caller` val input selects the parser;\nsupported values:\n\n  - ribocode    (RiboCode predicted ORF table; transcript-coord input,\n                 lifted to genomic blocks against the GTF)\n  - ribotish    (Ribo-TISH predict output; GenomePos + optional Blocks)\n  - ribotricer  (Ribotricer detect-orfs translating ORFs TSV; ORF span\n                 parsed from ORF_ID, multi-exon blocks recovered by\n                 intersecting with host-transcript exon structure from\n                 the GTF)\n  - rpbp        (Rp-Bp predicted-orfs BED12 with extra columns)\n  - price       (PRICE orfs.tsv; Gedi-style Location field, already genomic)\n\nOutput BED12 column order:\n  chrom start end name score strand thickStart thickEnd itemRgb\n  blockCount blockSizes blockStarts\nThe BED `name` column carries `<caller>|<caller-native-id>`. The BED `score`\ncolumn is the caller's native score rescaled to 0-1000 (higher == more\nconfident regardless of native direction).\n\nOutput sidecar TSV columns:\n  orf_id caller sample_id chrom start end strand gene_id transcript_id\n  orf_class aa_length score orf_type_native is_smorf\n\n`orf_type_native` carries the caller's own ORF-type label verbatim, so every\nharmonisation decision below stays auditable without re-running the caller.\nORF-type tokens are matched exactly (casefolded) against each caller's closed\nvocabulary. Tokens matching no entry cause the process to fail; successful\noutputs report `unmapped_orf_type=0` on the `# parser_columns:` provenance line.\n\n`orf_class` is purely positional: it records where the ORF sits relative to\nthe annotated CDS and never encodes its length. Select small ORFs with the\n`is_smorf` column (`aa_length` <= `--smorf-max-aa`, default 100).\n\n`aa_length` is derived as `(nucleotide_length - 3) // 3` for every caller\nexcept Ribo-TISH, whose `AALen` column is taken verbatim. If `AALen` counts\nthe stop codon, `is_smorf` is caller-dependent by one residue exactly at the\n`--smorf-max-aa` boundary. Not reconciled: it needs a Ribo-TISH run whose\nnucleotide lengths can be compared against `AALen` directly.\n\nHarmonised `orf_class` vocabulary written into the sidecar TSV:\n\n  - canonical_cds: ORF maps to an annotated CDS (including truncated /\n                   extended variants of one).\n  - uORF:          upstream ORF, not overlapping the CDS.\n  - uoORF:         upstream ORF overlapping the CDS out of frame.\n  - dORF:          downstream ORF, not overlapping the CDS.\n  - doORF:         downstream ORF overlapping the CDS out of frame.\n  - intORF:        ORF contained within the CDS, out of frame.\n  - novel_u:       novel / intergenic ORF not assigned to an annotated CDS.\n  - other:         anything a caller cannot place.\n\nNot every caller can report every class, so the absence of a class for one\ncaller is a tool limitation rather than evidence about the ORF:\n\n  - Ribo-TISH's `5'UTR` covers both uORF and uoORF, and `3'UTR` both dORF\n    and doORF: `tisType()` tests only the start position.\n  - PRICE's vocabulary has no doORF.\n  - ribotricer's `internal` is the terminal fall-through of\n    `check_orf_type()` rather than a positive out-of-frame call, so it maps\n    to `other`; mapping it to intORF would assert a frame relationship\n    ribotricer never tested.\n\nPer-caller mapping notes (lossy collapses):\n\n  - PRICE's `Gene` column concatenates every gene overlapping an ORF's\n    genomic span, so `gene_id` is resolved from the GTF via the ORF's\n    transcript id; the `Gene` column is used only for transcripts absent\n    from the annotation, and can then carry a multi-gene value.\n  - PRICE `iORF` maps to `intORF` and `orphan` to `novel_u` (it is both the\n    not-transcript-consistent label and PRICE's fall-through). `intronic`\n    has no positional equivalent and maps to `other`. The exact PRICE\n    sub-type is preserved in `orf_type_native`.\n  - Rp-Bp's predicted-orfs BED carries no ORF-type column; this module\n    defaults every Rp-Bp call to `canonical_cds` (the post-\n    selectfinalpredictionset curated set is dominated by canonical\n    CDSs). uORF/dORF/novel calls present in Rp-Bp's separate\n    `.tab.gz` / `extracted-orfs.bed.gz` files are not propagated here.\n\nEach caller's native confidence score has a \"direction\" - some are\nlower-is-better (p-values), some are higher-is-better (Bayes factors,\nphase scores):\n\n  ribocode:   min  (combined p-value)\n  ribotish:   min  (combined p-value)\n  ribotricer: max  (phase_score)\n  rpbp:       max  (Bayes factor mean)\n  price:      min  (p-value)\n\nDownstream merging uses this to pick the best per-ORF call.\n",
         "keywords": [
           "orf",
           "ribo-seq",
@@ -80961,7 +80962,7 @@
               {
                 "${prefix}.tsv": {
                   "type": "file",
-                  "description": "Per-ORF metadata sidecar with columns: orf_id, caller,\nsample_id, chrom, start, end, strand, gene_id, transcript_id,\norf_class, aa_length, score (native).\n",
+                  "description": "Per-ORF metadata sidecar with columns: orf_id, caller,\nsample_id, chrom, start, end, strand, gene_id, transcript_id,\norf_class, aa_length, score (native), orf_type_native\n(the caller's own ORF-type label), is_smorf.\n",
                   "pattern": "*.tsv",
                   "ontologies": [
                     {
@@ -81004,7 +81005,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "c13f18dbfc4910d9287d9d3fff7b83124e108907"
+      "git_sha": "c804473fd6f5dcffaf3ed5fd9a832b403808f3ef"
     },
     {
       "name": "custom_pcaclustering",
@@ -231891,7 +231892,7 @@
         },
         {
           "name": "spatialaxe",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "spatialvi",
@@ -247500,7 +247501,7 @@
       "pipelines": [
         {
           "name": "spatialaxe",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -247673,7 +247674,7 @@
       "pipelines": [
         {
           "name": "spatialaxe",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -247837,7 +247838,7 @@
       "pipelines": [
         {
           "name": "spatialaxe",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -300690,7 +300691,7 @@
     {
       "name": "rpbp_preparegenome",
       "path": "modules/nf-core/rpbp/preparegenome/meta.yml",
-      "tree_sha": "71c586f1ed0193fc33eb0731c5637ad1ed1924d3",
+      "tree_sha": "5e9201b042d9d1432a50b9f1fbbeaf6bf3ea62f7",
       "files": [
         "modules/nf-core/rpbp/preparegenome/environment.yml",
         "modules/nf-core/rpbp/preparegenome/main.nf",
@@ -300808,6 +300809,24 @@
               }
             ]
           ],
+          "orfs_labels": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map inherited from input meta."
+                }
+              },
+              {
+                "${prefix}.orfs-labels.annotated.tab.gz": {
+                  "type": "file",
+                  "description": "Per-ORF positional labels from `label-orfs`; columns orf_num, id, orf_type, transcripts.",
+                  "pattern": "*.orfs-labels.annotated.tab.gz",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
           "versions_rpbp": [
             {
               "versions.yml": {
@@ -300846,7 +300865,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "50b83e9601f411ef670b67b205db78e707a88f01"
+      "git_sha": "d1b9e85e27384110d29e3e178540516990c49886"
     },
     {
       "name": "rpbp_selectfinalpredictionset",
@@ -351913,7 +351932,7 @@
         },
         {
           "name": "spatialaxe",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -378873,7 +378892,7 @@
         },
         {
           "name": "spatialaxe",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "spatialvi",
@@ -379224,7 +379243,7 @@
         },
         {
           "name": "spatialaxe",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -396156,7 +396175,13 @@
           "@dongzehe"
         ]
       },
-      "git_sha": "1fa9ed32cfd532e7d2191b5ffdcc86c783878fb0"
+      "git_sha": "1fa9ed32cfd532e7d2191b5ffdcc86c783878fb0",
+      "pipelines": [
+        {
+          "name": "spatialaxe",
+          "version": "1.0.1"
+        }
+      ]
     },
     {
       "name": "xeniumranger_relabel",
@@ -396299,7 +396324,7 @@
       "pipelines": [
         {
           "name": "spatialaxe",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -396571,7 +396596,7 @@
       "pipelines": [
         {
           "name": "spatialaxe",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -409698,7 +409723,7 @@
     {
       "name": "fastq_qc_trim_filter_setstrandedness",
       "path": "subworkflows/nf-core/fastq_qc_trim_filter_setstrandedness/meta.yml",
-      "tree_sha": "d1db8548770c4b1ff47e6ad9f224681be579aee7",
+      "tree_sha": "7dcfdb4f9b5f70f560fae2f178f686f3cc4169c2",
       "files": [
         "subworkflows/nf-core/fastq_qc_trim_filter_setstrandedness/main.nf",
         "subworkflows/nf-core/fastq_qc_trim_filter_setstrandedness/meta.yml",
@@ -410215,7 +410240,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "2e0ae2fa5d14f045f2e1360928a5d003fa5d903d",
+      "git_sha": "125dd56462de94a3172255b4912dbc4efadd6421",
       "pipelines": [
         {
           "name": "lncpipe",
@@ -412084,7 +412109,7 @@
     {
       "name": "orftable_fasta_gtf_buildorfcatalogue",
       "path": "subworkflows/nf-core/orftable_fasta_gtf_buildorfcatalogue/meta.yml",
-      "tree_sha": "6d2032f1c19b1b13c43b0daa97af2f9300066eb1",
+      "tree_sha": "7616dd9b8ece44647862728ab714144c67d25778",
       "files": [
         "subworkflows/nf-core/orftable_fasta_gtf_buildorfcatalogue/main.nf",
         "subworkflows/nf-core/orftable_fasta_gtf_buildorfcatalogue/meta.yml",
@@ -412182,7 +412207,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "42f1a6b3cc7ffd8f2aff1b22c7e4671aeb1c50a6"
+      "git_sha": "c804473fd6f5dcffaf3ed5fd9a832b403808f3ef"
     },
     {
       "name": "quant_tximport_summarizedexperiment",
@@ -413585,7 +413610,7 @@
         },
         {
           "name": "spatialaxe",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "spatialvi",
@@ -414065,7 +414090,7 @@
         },
         {
           "name": "spatialaxe",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "spatialvi",
@@ -414577,7 +414602,7 @@
         },
         {
           "name": "spatialaxe",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "spatialvi",
@@ -416130,6 +416155,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "4ed18339abcf50b8fd841f63606a0fc0cf2cf1e2",
-  "updated_at": "2026-08-06T03:09:02.764Z"
+  "commit_sha": "d1b9e85e27384110d29e3e178540516990c49886",
+  "updated_at": "2026-08-06T14:55:33.041Z"
 }
