@@ -74865,6 +74865,139 @@
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
     },
     {
+      "name": "cpc2",
+      "path": "modules/nf-core/cpc2/meta.yml",
+      "tree_sha": "43299f1f1101645add8e2626e602f9b40de0bede",
+      "files": [
+        "modules/nf-core/cpc2/environment.yml",
+        "modules/nf-core/cpc2/main.nf",
+        "modules/nf-core/cpc2/meta.yml",
+        "modules/nf-core/cpc2/tests/main.nf.test",
+        "modules/nf-core/cpc2/tests/main.nf.test.snap",
+        "modules/nf-core/cpc2/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "cpc2",
+        "description": "Coding Potential Calculator 2",
+        "keywords": [
+          "coding potential",
+          "genomics",
+          "transcriptomics"
+        ],
+        "tools": [
+          {
+            "cpc2": {
+              "description": "Coding Potential Calculator 2 (CPC2)",
+              "homepage": "https://github.com/gao-lab/CPC2_standalone",
+              "documentation": "https://github.com/gao-lab/CPC2_standalone",
+              "tool_dev_url": "https://github.com/gao-lab/CPC2_standalone",
+              "doi": "10.1093/nar/gkx428",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:cpc2"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input FASTA file containing nucleotide sequences",
+                "pattern": "*.{fasta,fa}",
+                "ontologies": [
+                  {
+                    "EDAM": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "txt": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "CPC2 output file",
+                  "pattern": "*.{txt}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_cpc2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "CPC2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "CPC2.py --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "CPC2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "CPC2.py --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@razmia02"
+        ],
+        "maintainers": [
+          "@razmia02"
+        ]
+      },
+      "git_sha": "4ed18339abcf50b8fd841f63606a0fc0cf2cf1e2"
+    },
+    {
       "name": "crabs_import",
       "path": "modules/nf-core/crabs/import/meta.yml",
       "tree_sha": "edbf7cdc8622b1aff379dc32f0a50a580f531b21",
@@ -395799,6 +395932,10 @@
         {
           "name": "spatialaxe",
           "version": "1.0.0"
+        },
+        {
+          "name": "spatialaxe",
+          "version": "1.0.0"
         }
       ]
     },
@@ -415993,6 +416130,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "6579da34bf64dbb4736c9a34108177c1d6363430",
-  "updated_at": "2026-08-05T14:56:05.361Z"
+  "commit_sha": "4ed18339abcf50b8fd841f63606a0fc0cf2cf1e2",
+  "updated_at": "2026-08-06T03:09:02.764Z"
 }
