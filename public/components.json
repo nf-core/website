@@ -65535,7 +65535,7 @@
     {
       "name": "cnaqc",
       "path": "modules/nf-core/cnaqc/meta.yml",
-      "tree_sha": "061ce1bd7406784dc0aec985a0c4f1746be3afc8",
+      "tree_sha": "12bff3af59bcd88b87b6984a175fb8eedf4030c5",
       "files": [
         "modules/nf-core/cnaqc/environment.yml",
         "modules/nf-core/cnaqc/main.nf",
@@ -65708,6 +65708,64 @@
               }
             ]
           ],
+          "qc_by_chr_rds": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', tumour_sample:'tumour_sample1_name' ]`\n"
+                }
+              },
+              {
+                "*_qc_by_chr.rds": {
+                  "type": "file",
+                  "description": "R object containing results of the quality control by chromosomes for the sample",
+                  "patten": "*{_qc_by_chr.rds}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "plot_qc_by_chr": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', tumour_sample:'tumour_sample1_name' ]`\n"
+                }
+              },
+              {
+                "*_qc_by_chr_plot.rds": {
+                  "type": "file",
+                  "description": "R object containing plots of the quality control results by chromosomes for the sample",
+                  "patten": "*{_qc_by_chr_plot.rds}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "plot_pdf_qc_by_chr": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', tumour_sample:'tumour_sample1_name' ]`\n"
+                }
+              },
+              {
+                "*_qc_by_chr.pdf": {
+                  "type": "file",
+                  "description": "plots of the quality control results by chromosomes for the sample",
+                  "patten": "*{_qc_by_chr.pdf}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3508"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "versions": [
             {
               "versions.yml": {
@@ -65736,7 +65794,7 @@
           "@vvvirgy"
         ]
       },
-      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec",
+      "git_sha": "0041db49284f44eaeba5b861acdb7d076771d244",
       "pipelines": [
         {
           "name": "tumourevo",
@@ -416155,6 +416213,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "d1b9e85e27384110d29e3e178540516990c49886",
-  "updated_at": "2026-08-06T14:55:33.041Z"
+  "commit_sha": "0041db49284f44eaeba5b861acdb7d076771d244",
+  "updated_at": "2026-08-07T03:07:53.230Z"
 }
