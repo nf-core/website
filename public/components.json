@@ -267903,7 +267903,7 @@
     {
       "name": "pirate",
       "path": "modules/nf-core/pirate/meta.yml",
-      "tree_sha": "928cfec81d6b6dd8ca432a29f7d879bdae043fae",
+      "tree_sha": "c5b5a500871ccf0332ebf3148d3e58cb56fb39ec",
       "files": [
         "modules/nf-core/pirate/environment.yml",
         "modules/nf-core/pirate/main.nf",
@@ -267989,19 +267989,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_pirate": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pirate": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "PIRATE --version 2>&1 | sed 's/PIRATE //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pirate": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "PIRATE --version 2>&1 | sed 's/PIRATE //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -268012,7 +268044,7 @@
           "@rpetit3"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "382d2a24afe87ba02a14b687f6c5cfde0518305c",
       "pipelines": [
         {
           "name": "pathogensurveillance",
@@ -269349,7 +269381,7 @@
     {
       "name": "platypus",
       "path": "modules/nf-core/platypus/meta.yml",
-      "tree_sha": "05f12f73e761e49e084959b90816731ef77aabd1",
+      "tree_sha": "1821c26a3995daba057467af6b3e0aa000b96ee4",
       "files": [
         "modules/nf-core/platypus/environment.yml",
         "modules/nf-core/platypus/main.nf",
@@ -269511,15 +269543,51 @@
               }
             ]
           ],
-          "version": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software version",
-                "pattern": "*.{version.txt}",
-                "ontologies": []
+          "versions_platypus": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "platypus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "0.8.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "platypus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "0.8.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -269529,7 +269597,7 @@
           "@kubranarci"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "064dc68ae81fee9a4cada7535f5c36ec5084ea47"
     },
     {
       "name": "plink2_extract",
@@ -275043,7 +275111,7 @@
     {
       "name": "plotsr",
       "path": "modules/nf-core/plotsr/meta.yml",
-      "tree_sha": "bf52253a5af425730e025b17addd568c3b836047",
+      "tree_sha": "a39f33e59867edeb36f9f484af9d680df3cc6653",
       "files": [
         "modules/nf-core/plotsr/environment.yml",
         "modules/nf-core/plotsr/main.nf",
@@ -275224,19 +275292,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_plotsr": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plotsr": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plotsr --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plotsr": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plotsr --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -275246,7 +275346,7 @@
           "@GallVp"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "7ef64d745e157c6ac4b53c6f41f14407a7320269"
     },
     {
       "name": "pmdtools_filter",
@@ -354393,7 +354493,7 @@
     {
       "name": "stringtie_merge",
       "path": "modules/nf-core/stringtie/merge/meta.yml",
-      "tree_sha": "04994cc3059322487225d589df4e2db88b03d17c",
+      "tree_sha": "9ead535e68cbab79d1873afca5527488fdeb1834",
       "files": [
         "modules/nf-core/stringtie/merge/environment.yml",
         "modules/nf-core/stringtie/merge/main.nf",
@@ -354545,7 +354645,7 @@
           "@yuukiiwa"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "3608e17edf8ad0a09b5eede8ef486729de703c28",
       "pipelines": [
         {
           "name": "lncpipe",
@@ -354568,14 +354668,13 @@
     {
       "name": "stringtie_stringtie",
       "path": "modules/nf-core/stringtie/stringtie/meta.yml",
-      "tree_sha": "7fdabfe3bcb83a300a3e856eb0ff2ea38dc0bd1a",
+      "tree_sha": "3592f3d841e683d337099161342584d487b2837b",
       "files": [
         "modules/nf-core/stringtie/stringtie/environment.yml",
         "modules/nf-core/stringtie/stringtie/main.nf",
         "modules/nf-core/stringtie/stringtie/meta.yml",
         "modules/nf-core/stringtie/stringtie/tests/main.nf.test",
-        "modules/nf-core/stringtie/stringtie/tests/main.nf.test.snap",
-        "modules/nf-core/stringtie/stringtie/tests/nextflow.config"
+        "modules/nf-core/stringtie/stringtie/tests/main.nf.test.snap"
       ],
       "type": "module",
       "meta": {
@@ -354605,21 +354704,43 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', strandedness:'forward' ]\n"
               }
             },
             {
-              "bam": {
+              "srbam": {
                 "type": "file",
-                "description": "Stringtie transcript gtf output(s).\n",
+                "description": "Sorted and indexed bam file from short-read alignment.\n",
+                "pattern": ".bam",
+                "ontologies": []
+              }
+            },
+            {
+              "lrbam": {
+                "type": "file",
+                "description": "Sorted and indexed bam file from long-read alignment.\n",
+                "pattern": ".bam",
                 "ontologies": []
               }
             }
           ],
           {
+            "mode": {
+              "type": "string",
+              "description": "StringTie mode (long-read-assembly, mix-read-assembly, expression-estimation, nascent-aware-assembly).\n",
+              "enum": [
+                "long-read-assembly",
+                "mix-read-assembly",
+                "expression-estimation",
+                "nascent-aware-assembly"
+              ]
+            }
+          },
+          {
             "annotation_gtf": {
               "type": "file",
               "description": "Annotation gtf file (optional).\n",
+              "pattern": ".gtf",
               "ontologies": []
             }
           }
@@ -354630,14 +354751,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', strandedness:'forward' ]\n"
                 }
               },
               {
-                "*.transcripts.gtf": {
+                "${prefix}.transcripts.gtf": {
                   "type": "file",
-                  "description": "transcript gtf",
-                  "pattern": "*.{transcripts.gtf}",
+                  "description": "Output assembly (transcriptome)\n",
+                  "pattern": ".gtf",
                   "ontologies": []
                 }
               }
@@ -354648,14 +354769,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', strandedness:'forward' ]\n"
                 }
               },
               {
-                "*.abundance.txt": {
+                "${prefix}.gene.abundance.txt": {
                   "type": "file",
-                  "description": "abundance",
-                  "pattern": "*.{abundance.txt}",
+                  "description": "Abundance for non-redundand set of transcripts\n",
+                  "pattern": ".txt",
                   "ontologies": []
                 }
               }
@@ -354666,14 +354787,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', strandedness:'forward' ]\n"
                 }
               },
               {
-                "*.coverage.gtf": {
+                "${prefix}.coverage.gtf": {
                   "type": "file",
-                  "description": "coverage gtf",
-                  "pattern": "*.{coverage.gtf}",
+                  "description": "Coverage for the sample\n",
+                  "pattern": ".gtf",
                   "ontologies": []
                 }
               }
@@ -354684,14 +354805,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', strandedness:'forward' ]\n"
                 }
               },
               {
-                "*.ballgown": {
+                "${prefix}.ballgown/*.ctab": {
                   "type": "file",
-                  "description": "for running ballgown",
-                  "pattern": "*.{ballgown}",
+                  "description": "Ballgown output for the sample\n",
+                  "pattern": ".ctab",
                   "ontologies": []
                 }
               }
@@ -354745,13 +354866,15 @@
           ]
         },
         "authors": [
-          "@drpatelh"
+          "@drpatelh",
+          "@khersameesh24"
         ],
         "maintainers": [
-          "@drpatelh"
+          "@drpatelh",
+          "@khersameesh24"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "3608e17edf8ad0a09b5eede8ef486729de703c28",
       "pipelines": [
         {
           "name": "circrna",
@@ -401873,7 +401996,7 @@
     {
       "name": "bam_stringtie_merge",
       "path": "subworkflows/nf-core/bam_stringtie_merge/meta.yml",
-      "tree_sha": "e696da11fa5e55ee3dffcf199034e8086e864e1a",
+      "tree_sha": "bc40c4e466bd6cf35026b0816535973c50321153",
       "files": [
         "subworkflows/nf-core/bam_stringtie_merge/main.nf",
         "subworkflows/nf-core/bam_stringtie_merge/meta.yml",
@@ -401909,6 +402032,17 @@
               "description": "Reference gene annotation (GTF) for guided assembly and merge.\nStructure: [ val(meta), path(gtf) ]\n",
               "pattern": "*.gtf"
             }
+          },
+          {
+            "ch_mode": {
+              "type": "string",
+              "description": "Mode in which to run StringTie\n",
+              "enum": [
+                "long-reads-assembly",
+                "mix-reads-assembly",
+                "expression-estimation"
+              ]
+            }
           }
         ],
         "output": [
@@ -401938,7 +402072,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "2fc6aef2691483864904e31973ccafd2ed68fd56",
+      "git_sha": "3608e17edf8ad0a09b5eede8ef486729de703c28",
       "pipelines": [
         {
           "name": "rnafusion",
@@ -416213,6 +416347,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "0041db49284f44eaeba5b861acdb7d076771d244",
-  "updated_at": "2026-08-07T03:07:53.230Z"
+  "commit_sha": "3608e17edf8ad0a09b5eede8ef486729de703c28",
+  "updated_at": "2026-08-07T14:30:07.005Z"
 }
