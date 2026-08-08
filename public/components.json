@@ -29471,7 +29471,7 @@
       "pipelines": [
         {
           "name": "epitopeprediction",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "genomicrelatedness",
@@ -47908,7 +47908,7 @@
     {
       "name": "bwamem3_index",
       "path": "modules/nf-core/bwamem3/index/meta.yml",
-      "tree_sha": "ea04a2e242893cc870512131c9f7a56891755294",
+      "tree_sha": "d6855c060d521d50fd243925347673a0ea1d1c5f",
       "files": [
         "modules/nf-core/bwamem3/index/environment.yml",
         "modules/nf-core/bwamem3/index/main.nf",
@@ -48041,7 +48041,7 @@
           "@nh13"
         ]
       },
-      "git_sha": "cab334f632708de2679161f713dd969bfa491a25",
+      "git_sha": "d38f40ca73e22a520ad4bb56eed2906219696ccc",
       "pipelines": [
         {
           "name": "pathogenepidemiology",
@@ -48052,7 +48052,7 @@
     {
       "name": "bwamem3_mem",
       "path": "modules/nf-core/bwamem3/mem/meta.yml",
-      "tree_sha": "dcf77e4f6c4ff7bce7e825ee9d1786d0f4d1d617",
+      "tree_sha": "2b6bf551f70b1eafc40ee585af030fcd7fbf1848",
       "files": [
         "modules/nf-core/bwamem3/mem/environment.yml",
         "modules/nf-core/bwamem3/mem/main.nf",
@@ -48315,7 +48315,7 @@
           "@nh13"
         ]
       },
-      "git_sha": "cab334f632708de2679161f713dd969bfa491a25",
+      "git_sha": "d38f40ca73e22a520ad4bb56eed2906219696ccc",
       "pipelines": [
         {
           "name": "pathogenepidemiology",
@@ -51691,7 +51691,7 @@
         },
         {
           "name": "epitopeprediction",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "genomeqc",
@@ -162465,7 +162465,7 @@
         },
         {
           "name": "epitopeprediction",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "evexplorer",
@@ -179253,7 +179253,7 @@
     {
       "name": "icountmini_metagene",
       "path": "modules/nf-core/icountmini/metagene/meta.yml",
-      "tree_sha": "f7fceaa9939145c56b534248ed8985c3d5f80091",
+      "tree_sha": "279a1aa47b5b7663f6ebe27029dc7f92220a7a20",
       "files": [
         "modules/nf-core/icountmini/metagene/environment.yml",
         "modules/nf-core/icountmini/metagene/main.nf",
@@ -179331,6 +179331,28 @@
               }
             ]
           ],
+          "png": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "metagene_*/*.png": {
+                  "type": "file",
+                  "description": "Metagene graph",
+                  "pattern": "*.png",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3603"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "versions_icount_mini": [
             [
               {
@@ -179389,7 +179411,7 @@
           "@charlotteanne"
         ]
       },
-      "git_sha": "8781434953b2a1486ed1ac7979d05a284bc9440a"
+      "git_sha": "aaedc8e6b81abbee1c0b1d4c924925864323de6a"
     },
     {
       "name": "icountmini_peaks",
@@ -226668,7 +226690,7 @@
     {
       "name": "mobster",
       "path": "modules/nf-core/mobster/meta.yml",
-      "tree_sha": "b05728a140a301f7a6f0462f35bab5bde96edcba",
+      "tree_sha": "f70faceed040452d49c0022626b982db33a09ea0",
       "files": [
         "modules/nf-core/mobster/environment.yml",
         "modules/nf-core/mobster/main.nf",
@@ -226879,7 +226901,7 @@
           "@elena-buscaroli"
         ]
       },
-      "git_sha": "f0335e8881b08bf42faba2f6fa47f78a853e3cff",
+      "git_sha": "a31e49804d5ef8b9babb0afb64d655132247cd34",
       "pipelines": [
         {
           "name": "tumourevo",
@@ -231654,7 +231676,7 @@
         },
         {
           "name": "epitopeprediction",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "evexplorer",
@@ -343969,7 +343991,7 @@
       "pipelines": [
         {
           "name": "epitopeprediction",
-          "version": "3.1.0"
+          "version": "3.1.1"
         }
       ]
     },
@@ -413518,7 +413540,7 @@
         },
         {
           "name": "epitopeprediction",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "evexplorer",
@@ -413998,7 +414020,7 @@
         },
         {
           "name": "epitopeprediction",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "evexplorer",
@@ -414530,7 +414552,7 @@
         },
         {
           "name": "epitopeprediction",
-          "version": "3.1.0"
+          "version": "3.1.1"
         },
         {
           "name": "evexplorer",
@@ -416347,6 +416369,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "3608e17edf8ad0a09b5eede8ef486729de703c28",
-  "updated_at": "2026-08-07T14:30:07.005Z"
+  "commit_sha": "aaedc8e6b81abbee1c0b1d4c924925864323de6a",
+  "updated_at": "2026-08-08T02:45:24.323Z"
 }
