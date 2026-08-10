@@ -103459,7 +103459,7 @@
     {
       "name": "ensemblvep_download",
       "path": "modules/nf-core/ensemblvep/download/meta.yml",
-      "tree_sha": "1edef0c80dbcc59e2f0a7e9dbe2f52a41a2f9c88",
+      "tree_sha": "bf3435e4914587c2d7d478d70bc53ba211f7465d",
       "files": [
         "modules/nf-core/ensemblvep/download/environment.yml",
         "modules/nf-core/ensemblvep/download/main.nf",
@@ -103641,7 +103641,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "db055f5f8c726a924bf51dadce3978da3bbdad7e",
+      "git_sha": "e308fe14c49cf664228866a2f17f175efae6bf88",
       "pipelines": [
         {
           "name": "pacsomatic",
@@ -103672,7 +103672,7 @@
     {
       "name": "ensemblvep_filtervep",
       "path": "modules/nf-core/ensemblvep/filtervep/meta.yml",
-      "tree_sha": "769223661cecf3300357f3b132696eecee7ac563",
+      "tree_sha": "bf79c8c67c72f425697085d88b2ec055fa80ace2",
       "files": [
         "modules/nf-core/ensemblvep/filtervep/environment.yml",
         "modules/nf-core/ensemblvep/filtervep/main.nf",
@@ -103860,12 +103860,12 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "db055f5f8c726a924bf51dadce3978da3bbdad7e"
+      "git_sha": "e308fe14c49cf664228866a2f17f175efae6bf88"
     },
     {
       "name": "ensemblvep_vep",
       "path": "modules/nf-core/ensemblvep/vep/meta.yml",
-      "tree_sha": "4339ec98f2498cde89424b5c7f5f1e33cd975a52",
+      "tree_sha": "38e81d8f419274428b0aacda949f741ad3873c76",
       "files": [
         "modules/nf-core/ensemblvep/vep/environment.yml",
         "modules/nf-core/ensemblvep/vep/main.nf",
@@ -104266,7 +104266,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "db055f5f8c726a924bf51dadce3978da3bbdad7e",
+      "git_sha": "e308fe14c49cf664228866a2f17f175efae6bf88",
       "pipelines": [
         {
           "name": "pacsomatic",
@@ -234548,8 +234548,9 @@
     {
       "name": "myloasm",
       "path": "modules/nf-core/myloasm/meta.yml",
-      "tree_sha": "ab4c27cc763c83d04928463ff73d7265f6b63fcf",
+      "tree_sha": "7a87c18dac53fa82ee868fd4167bf6ec69167582",
       "files": [
+        "modules/nf-core/myloasm/.conda-lock/linux_amd64-bd-4ee38265ad9e0a04_1.txt",
         "modules/nf-core/myloasm/environment.yml",
         "modules/nf-core/myloasm/main.nf",
         "modules/nf-core/myloasm/meta.yml",
@@ -234810,9 +234811,30 @@
         ],
         "maintainers": [
           "@vagkaratzas"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/myloasm:0.6.0--4ee38265ad9e0a04",
+              "build_id": "bd-4ee38265ad9e0a04_1",
+              "scan_id": "sc-82f6692d18a76843_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/myloasm:0.6.0--90ec28ab9f040682",
+              "build_id": "bd-90ec28ab9f040682_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/83/8369a41d8a2d92487caa26e8604015f6b2cfd48a78fbe732e891f7c5cd1f1861/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/myloasm/.conda-lock/linux_amd64-bd-4ee38265ad9e0a04_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "14cc9eccb1a8a20c3ae969a0070e9585ba960945"
     },
     {
       "name": "nacho_normalize",
@@ -242194,6 +242216,1034 @@
           "version": "1.0.2"
         }
       ]
+    },
+    {
+      "name": "oarfish_alignmentmode",
+      "path": "modules/nf-core/oarfish/alignmentmode/meta.yml",
+      "tree_sha": "76cd438bce85cee00bf4a9e314a31797c22e2d9c",
+      "files": [
+        "modules/nf-core/oarfish/alignmentmode/environment.yml",
+        "modules/nf-core/oarfish/alignmentmode/main.nf",
+        "modules/nf-core/oarfish/alignmentmode/meta.yml",
+        "modules/nf-core/oarfish/alignmentmode/tests/main.nf.test",
+        "modules/nf-core/oarfish/alignmentmode/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "oarfish_alignmentmode",
+        "description": "oarfish is a program for quantifying transcript-level expression from long-read sequencing technologies. Quantify pre-computed alignments of reads to the transcriptome (a name-sorted BAM, e.g. from minimap2/pbmm2).",
+        "keywords": [
+          "bam",
+          "transcript",
+          "quantification",
+          "alignment-mode"
+        ],
+        "tools": [
+          {
+            "oarfish": {
+              "description": "oarfish is a tool for fast, accurate and versatile transcript quantification from long-read RNA-seq data",
+              "homepage": "https://github.com/COMBINE-lab/oarfish",
+              "documentation": "https://github.com/COMBINE-lab/oarfish",
+              "tool_dev_url": "https://github.com/COMBINE-lab/oarfish",
+              "doi": "10.1101/2024.02.28.582591v1",
+              "licence": [
+                "BSD-3-clause"
+              ],
+              "identifier": "biotools:oarfish"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM/CRAM/SAM file from long-read RNA-seq data",
+                "pattern": "*.{bam,cram,sam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "quant": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.quant": {
+                  "type": "file",
+                  "description": "Quantification results in TSV format",
+                  "pattern": "${prefix}.quant",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "meta_info": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.meta_info.json": {
+                  "type": "file",
+                  "description": "Meta information in JSON format",
+                  "pattern": "${prefix}.meta_info.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "ambig_info": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.ambig_info.tsv": {
+                  "type": "file",
+                  "description": "Ambiguity information in TSV format",
+                  "pattern": "${prefix}.ambig_info.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "infreps": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.infreps.pq": {
+                  "type": "file",
+                  "description": "Estimated counts in Parquet format",
+                  "pattern": "${prefix}.infreps.pq",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3940"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "prob": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.prob.lz4": {
+                  "type": "file",
+                  "description": "Assignment probabilities in LZ4-compressed format",
+                  "pattern": "${prefix}.prob.lz4",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_oarfish": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "oarfish": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "oarfish --version | sed 's/oarfish //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "oarfish": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "oarfish --version | sed 's/oarfish //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      },
+      "git_sha": "3e5bd5116428ac7a285a31e3edc4110cfaa27d2f"
+    },
+    {
+      "name": "oarfish_alignmentprojectionmode",
+      "path": "modules/nf-core/oarfish/alignmentprojectionmode/meta.yml",
+      "tree_sha": "9c8241c0797e06ffc2bdbc9f0f11b81c2605f9e1",
+      "files": [
+        "modules/nf-core/oarfish/alignmentprojectionmode/environment.yml",
+        "modules/nf-core/oarfish/alignmentprojectionmode/main.nf",
+        "modules/nf-core/oarfish/alignmentprojectionmode/meta.yml",
+        "modules/nf-core/oarfish/alignmentprojectionmode/tests/main.nf.test",
+        "modules/nf-core/oarfish/alignmentprojectionmode/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "oarfish_alignmentprojectionmode",
+        "description": "oarfish is a program for quantifying transcript-level expression from long-read sequencing technologies. Project an existing spliced genome BAM (e.g. from minimap2 -ax splice) onto the annotated transcripts, then quantify.",
+        "keywords": [
+          "fastq",
+          "transcript",
+          "quantification",
+          "read-mode"
+        ],
+        "tools": [
+          {
+            "oarfish": {
+              "description": "oarfish is a tool for fast, accurate and versatile transcript quantification from long-read RNA-seq data",
+              "homepage": "https://github.com/COMBINE-lab/oarfish",
+              "documentation": "https://github.com/COMBINE-lab/oarfish",
+              "tool_dev_url": "https://github.com/COMBINE-lab/oarfish",
+              "doi": "10.1101/2024.02.28.582591v1",
+              "licence": [
+                "BSD-3-clause"
+              ],
+              "identifier": "biotools:oarfish"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sequencing reads in BAM format",
+                "pattern": "*.{bam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "annotation": {
+                "type": "file",
+                "description": "Annotation file in GTF format",
+                "pattern": "*.{gtf,gff,gff3}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3603"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome in FASTA format",
+                "pattern": "*.{fasta,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "quant": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.quant": {
+                  "type": "file",
+                  "description": "Quantification results in TSV format",
+                  "pattern": "${prefix}.quant",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "meta_info": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.meta_info.json": {
+                  "type": "file",
+                  "description": "Meta information in JSON format",
+                  "pattern": "${prefix}.meta_info.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "ambig_info": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.ambig_info.tsv": {
+                  "type": "file",
+                  "description": "Ambiguity information in TSV format",
+                  "pattern": "${prefix}.ambig_info.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "infreps": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.infreps.pq": {
+                  "type": "file",
+                  "description": "Estimated counts in Parquet format",
+                  "pattern": "${prefix}.infreps.pq",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3940"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "prob": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.prob.lz4": {
+                  "type": "file",
+                  "description": "Assignment probabilities in LZ4-compressed format",
+                  "pattern": "${prefix}.prob.lz4",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_oarfish": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "oarfish": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "oarfish --version | sed 's/oarfish //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "oarfish": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "oarfish --version | sed 's/oarfish //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      },
+      "git_sha": "3e5bd5116428ac7a285a31e3edc4110cfaa27d2f"
+    },
+    {
+      "name": "oarfish_readmode",
+      "path": "modules/nf-core/oarfish/readmode/meta.yml",
+      "tree_sha": "0d53d199a2a77b7dc29dc6da5242f86c53140439",
+      "files": [
+        "modules/nf-core/oarfish/readmode/environment.yml",
+        "modules/nf-core/oarfish/readmode/main.nf",
+        "modules/nf-core/oarfish/readmode/meta.yml",
+        "modules/nf-core/oarfish/readmode/tests/main.nf.test",
+        "modules/nf-core/oarfish/readmode/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "oarfish_readmode",
+        "description": "oarfish is a program for quantifying transcript-level expression from long-read sequencing technologies. Map raw reads to the transcriptome internally with the built-in rammap mapper, then quantify.",
+        "keywords": [
+          "fastq",
+          "transcript",
+          "quantification",
+          "read-mode"
+        ],
+        "tools": [
+          {
+            "oarfish": {
+              "description": "oarfish is a tool for fast, accurate and versatile transcript quantification from long-read RNA-seq data",
+              "homepage": "https://github.com/COMBINE-lab/oarfish",
+              "documentation": "https://github.com/COMBINE-lab/oarfish",
+              "tool_dev_url": "https://github.com/COMBINE-lab/oarfish",
+              "doi": "10.1101/2024.02.28.582591v1",
+              "licence": [
+                "BSD-3-clause"
+              ],
+              "identifier": "biotools:oarfish"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Sequencing reads in FASTQ format",
+                "pattern": "*.{fastq,fq,fastq.gz,fq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            },
+            {
+              "seq_tech": {
+                "type": "string",
+                "description": "Sequencing technology used for the reads (e.g. ont-cdna, ont-drna, pac-bio, pac-bio-hifi)",
+                "enum": [
+                  "ont-cdna",
+                  "ont-drna",
+                  "pac-bio",
+                  "pac-bio-hifi"
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference transcriptome in FASTA format",
+                "pattern": "*.{fasta,fna,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "novel": {
+                "type": "file",
+                "description": "Novel transcripts in FASTA format",
+                "pattern": "*.{fasta,fna,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "quant": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.quant": {
+                  "type": "file",
+                  "description": "Quantification results in TSV format",
+                  "pattern": "${prefix}.quant",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "meta_info": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.meta_info.json": {
+                  "type": "file",
+                  "description": "Meta information in JSON format",
+                  "pattern": "${prefix}.meta_info.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "ambig_info": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.ambig_info.tsv": {
+                  "type": "file",
+                  "description": "Ambiguity information in TSV format",
+                  "pattern": "${prefix}.ambig_info.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "infreps": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.infreps.pq": {
+                  "type": "file",
+                  "description": "Estimated counts in Parquet format",
+                  "pattern": "${prefix}.infreps.pq",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3940"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "prob": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.prob.lz4": {
+                  "type": "file",
+                  "description": "Assignment probabilities in LZ4-compressed format",
+                  "pattern": "${prefix}.prob.lz4",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_oarfish": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "oarfish": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "oarfish --version | sed 's/oarfish //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "oarfish": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "oarfish --version | sed 's/oarfish //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      },
+      "git_sha": "3e5bd5116428ac7a285a31e3edc4110cfaa27d2f"
+    },
+    {
+      "name": "oarfish_readprojectionmode",
+      "path": "modules/nf-core/oarfish/readprojectionmode/meta.yml",
+      "tree_sha": "5be9ec8e9f62a0e574e309a0a9b90377863d6a91",
+      "files": [
+        "modules/nf-core/oarfish/readprojectionmode/environment.yml",
+        "modules/nf-core/oarfish/readprojectionmode/main.nf",
+        "modules/nf-core/oarfish/readprojectionmode/meta.yml",
+        "modules/nf-core/oarfish/readprojectionmode/tests/main.nf.test",
+        "modules/nf-core/oarfish/readprojectionmode/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "oarfish_readprojectionmode",
+        "description": "oarfish is a program for quantifying transcript-level expression from long-read sequencing technologies. Spliced-align raw reads to the genome, project each read's genomic alignments onto the annotated transcripts via bramble, then quantify.",
+        "keywords": [
+          "fastq",
+          "transcript",
+          "quantification",
+          "read-mode"
+        ],
+        "tools": [
+          {
+            "oarfish": {
+              "description": "oarfish is a tool for fast, accurate and versatile transcript quantification from long-read RNA-seq data",
+              "homepage": "https://github.com/COMBINE-lab/oarfish",
+              "documentation": "https://github.com/COMBINE-lab/oarfish",
+              "tool_dev_url": "https://github.com/COMBINE-lab/oarfish",
+              "doi": "10.1101/2024.02.28.582591v1",
+              "licence": [
+                "BSD-3-clause"
+              ],
+              "identifier": "biotools:oarfish"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Sequencing reads in FASTQ format",
+                "pattern": "*.{fastq,fq,fastq.gz,fq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            },
+            {
+              "seq_tech": {
+                "type": "string",
+                "description": "Sequencing technology used for the reads (e.g. ont-cdna, ont-drna, pac-bio, pac-bio-hifi)",
+                "enum": [
+                  "ont-cdna",
+                  "ont-drna",
+                  "pac-bio",
+                  "pac-bio-hifi"
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference transcriptome in FASTA format",
+                "pattern": "*.{fasta,fna,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "annotation": {
+                "type": "file",
+                "description": "Annotation file in GTF format",
+                "pattern": "*.{gtf,gff,gff3}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3603"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "quant": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.quant": {
+                  "type": "file",
+                  "description": "Quantification results in TSV format",
+                  "pattern": "${prefix}.quant",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "meta_info": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.meta_info.json": {
+                  "type": "file",
+                  "description": "Meta information in JSON format",
+                  "pattern": "${prefix}.meta_info.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "ambig_info": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.ambig_info.tsv": {
+                  "type": "file",
+                  "description": "Ambiguity information in TSV format",
+                  "pattern": "${prefix}.ambig_info.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "infreps": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.infreps.pq": {
+                  "type": "file",
+                  "description": "Estimated counts in Parquet format",
+                  "pattern": "${prefix}.infreps.pq",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3940"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "prob": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.prob.lz4": {
+                  "type": "file",
+                  "description": "Assignment probabilities in LZ4-compressed format",
+                  "pattern": "${prefix}.prob.lz4",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_oarfish": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "oarfish": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "oarfish --version | sed 's/oarfish //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "oarfish": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "oarfish --version | sed 's/oarfish //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      },
+      "git_sha": "3e5bd5116428ac7a285a31e3edc4110cfaa27d2f"
     },
     {
       "name": "oatk",
@@ -286365,7 +287415,7 @@
     {
       "name": "qcat",
       "path": "modules/nf-core/qcat/meta.yml",
-      "tree_sha": "a9c3c2bfad426392013210eadf23a7f88ae6a254",
+      "tree_sha": "87cc2eaab5eb2942d5588ce566346fb6f88e644d",
       "files": [
         "modules/nf-core/qcat/environment.yml",
         "modules/nf-core/qcat/main.nf",
@@ -286441,19 +287491,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_qcat": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "qcat": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "qcat --version | sed 's/.*qcat //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "qcat": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "qcat --version | sed 's/.*qcat //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -286465,7 +287547,7 @@
           "@drpatelh"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "35ee063520cf7d6fbd68e331d81bafee1a41757c"
     },
     {
       "name": "qcatch",
@@ -416369,6 +417451,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "aaedc8e6b81abbee1c0b1d4c924925864323de6a",
-  "updated_at": "2026-08-10T02:52:40.864Z"
+  "commit_sha": "35ee063520cf7d6fbd68e331d81bafee1a41757c",
+  "updated_at": "2026-08-10T14:33:59.858Z"
 }
