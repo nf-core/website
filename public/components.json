@@ -18835,6 +18835,10 @@
           "version": "4.0.0"
         },
         {
+          "name": "magmap",
+          "version": "1.2.0"
+        },
+        {
           "name": "pathogensurveillance",
           "version": "1.1.0"
         }
@@ -18959,6 +18963,10 @@
         {
           "name": "funcscan",
           "version": "4.0.0"
+        },
+        {
+          "name": "magmap",
+          "version": "1.2.0"
         },
         {
           "name": "pathogensurveillance",
@@ -22166,7 +22174,7 @@
       "pipelines": [
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "metatdenovo",
@@ -22336,7 +22344,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "metatdenovo",
@@ -23401,7 +23409,7 @@
       "pipelines": [
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "metatdenovo",
@@ -35348,7 +35356,7 @@
     {
       "name": "binette",
       "path": "modules/nf-core/binette/meta.yml",
-      "tree_sha": "d7ed4eaf6a75d13ec66664c1e3c28b5481d90bbe",
+      "tree_sha": "8fbda069828a8349af1cf3799dce8acc913d4ae6",
       "files": [
         "modules/nf-core/binette/.conda-lock/linux_amd64-bd-3dad8d26ac1fc14c_1.txt",
         "modules/nf-core/binette/environment.yml",
@@ -35624,7 +35632,7 @@
           }
         }
       },
-      "git_sha": "405f6842591aaa1ca095104d9cb52aeabbda9331"
+      "git_sha": "37067b1a7b2fbac52c87b937556cd4df3f31c2e4"
     },
     {
       "name": "bio2zarr_vcf2zarrconvert",
@@ -51699,7 +51707,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "marsseq",
@@ -51936,7 +51944,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "metatdenovo",
@@ -62693,6 +62701,291 @@
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
     },
     {
+      "name": "ciri2",
+      "path": "modules/nf-core/ciri2/meta.yml",
+      "tree_sha": "62a86e058a35f7eab148d605f1efdbb8f5ddebb9",
+      "files": [
+        "modules/nf-core/ciri2/environment.yml",
+        "modules/nf-core/ciri2/main.nf",
+        "modules/nf-core/ciri2/meta.yml",
+        "modules/nf-core/ciri2/tests/main.nf.test",
+        "modules/nf-core/ciri2/tests/main.nf.test.snap",
+        "modules/nf-core/ciri2/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "ciri2",
+        "description": "Circular RNA identification based on multiple seed matching",
+        "keywords": [
+          "circRNA",
+          "detection",
+          "genomics",
+          "transcriptomics"
+        ],
+        "tools": [
+          {
+            "ciri2": {
+              "description": "CIRI2: Circular RNA identification based on multiple seed matching",
+              "homepage": "https://ciri-cookbook.readthedocs.io/en/latest/CIRI2.html",
+              "documentation": "https://ciri-cookbook.readthedocs.io/en/latest/CIRI2.html",
+              "tool_dev_url": "https://github.com/bioinfo-biols/CIRI-full/tree/master/bin/CIRI_v2.0.6",
+              "doi": "10.1093/bib/bbx014",
+              "licence": [
+                "GPL-2.0-only"
+              ],
+              "identifier": "biotools:ciri2"
+            }
+          },
+          {
+            "samtools": {
+              "description": "Samtools: Utilities for the Sequence Alignment/Map (SAM) format",
+              "homepage": "http://www.htslib.org/",
+              "documentation": "http://www.htslib.org/doc/samtools.html",
+              "tool_dev_url": "http://www.htslib.org/",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "GPL-3.0-only"
+              ],
+              "identifier": "biotools:samtools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "input": {
+                "type": "file",
+                "description": "Alignment file (SAM, BAM, or CRAM)",
+                "pattern": "*.{sam,bam,cram}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2573"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing fasta file information\ne.g. `[ id:'fasta' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Fasta file for reference sequence",
+                "pattern": "*.{fasta,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing annotation file information\ne.g. `[ id:'annotation' ]`\n"
+              }
+            },
+            {
+              "annotation": {
+                "type": "file",
+                "description": "GTF or GFF3 annotation file",
+                "pattern": "*.{gtf,gff,gff3}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2305"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing reference directory information\ne.g. `[ id:'ref_dir' ]`\n"
+              }
+            },
+            {
+              "ref_dir": {
+                "type": "directory",
+                "description": "Directory containing reference files"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "circrna": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "Output file containing circRNA list",
+                  "pattern": "*.{txt}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.txt.log": {
+                  "type": "file",
+                  "description": "Output log file",
+                  "pattern": "*.{txt.log}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "error_log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "CIRIerror.log": {
+                  "type": "file",
+                  "description": "Output error log file",
+                  "pattern": "CIRIerror.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_ciri2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "CIRI2.pl": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "CIRI2.pl --help | sed -n 's/^Version:\\s*//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "Name of the tool"
+                }
+              },
+              {
+                "samtools --version | sed \"1!d;s/.* //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "CIRI2.pl": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "CIRI2.pl --help | sed -n 's/^Version:\\s*//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "Name of the tool"
+                }
+              },
+              {
+                "samtools --version | sed \"1!d;s/.* //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@razmia02"
+        ],
+        "maintainers": [
+          "@razmia02"
+        ]
+      },
+      "git_sha": "ccaea62d10f8457f1166ada25671ef6f51929f29"
+    },
+    {
       "name": "civicpy_annotate",
       "path": "modules/nf-core/civicpy/annotate/meta.yml",
       "tree_sha": "96544137aeb73e330baeb900eb4367f035665dca",
@@ -64145,7 +64438,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -65370,7 +65663,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -79102,7 +79395,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "marsseq",
@@ -98983,7 +99276,13 @@
           }
         }
       },
-      "git_sha": "a01390acb6fb8c7539c8d9126b16df24092db83c"
+      "git_sha": "a01390acb6fb8c7539c8d9126b16df24092db83c",
+      "pipelines": [
+        {
+          "name": "magmap",
+          "version": "1.2.0"
+        }
+      ]
     },
     {
       "name": "dupblaster",
@@ -107072,7 +107371,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -110660,10 +110959,6 @@
           "version": "2.0.0"
         },
         {
-          "name": "funcprofiler",
-          "version": "dev"
-        },
-        {
           "name": "genomeannotator",
           "version": "dev"
         },
@@ -110713,7 +111008,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "marsseq",
@@ -119962,7 +120257,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "seqsubmit",
@@ -142197,14 +142492,13 @@
     {
       "name": "gatk4spark_applybqsr",
       "path": "modules/nf-core/gatk4spark/applybqsr/meta.yml",
-      "tree_sha": "a3f472623071de25caf4090237c6f4cb8aad4735",
+      "tree_sha": "32d45deea41fd404aac0129cb4ecd74b17e74e4c",
       "files": [
         "modules/nf-core/gatk4spark/applybqsr/environment.yml",
         "modules/nf-core/gatk4spark/applybqsr/main.nf",
         "modules/nf-core/gatk4spark/applybqsr/meta.yml",
         "modules/nf-core/gatk4spark/applybqsr/tests/main.nf.test",
-        "modules/nf-core/gatk4spark/applybqsr/tests/main.nf.test.snap",
-        "modules/nf-core/gatk4spark/applybqsr/tests/nextflow.config"
+        "modules/nf-core/gatk4spark/applybqsr/tests/main.nf.test.snap"
       ],
       "type": "module",
       "meta": {
@@ -142292,6 +142586,12 @@
               "description": "GATK sequence dictionary",
               "pattern": "*.dict",
               "ontologies": []
+            }
+          },
+          {
+            "output_suffix": {
+              "type": "string",
+              "description": "Output file format, either \"bam\" or \"cram\" (cram is the default)"
             }
           }
         ],
@@ -142408,7 +142708,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "fe846231249fc7ccec12bec2d670137a875d9638",
       "pipelines": [
         {
           "name": "sarek",
@@ -142419,14 +142719,13 @@
     {
       "name": "gatk4spark_baserecalibrator",
       "path": "modules/nf-core/gatk4spark/baserecalibrator/meta.yml",
-      "tree_sha": "fb4d4d92c76b7c61314fd733f4e6b81fa7d840dc",
+      "tree_sha": "530136823e15f94cf03d4eb49438d3e1a943cb03",
       "files": [
         "modules/nf-core/gatk4spark/baserecalibrator/environment.yml",
         "modules/nf-core/gatk4spark/baserecalibrator/main.nf",
         "modules/nf-core/gatk4spark/baserecalibrator/meta.yml",
         "modules/nf-core/gatk4spark/baserecalibrator/tests/main.nf.test",
-        "modules/nf-core/gatk4spark/baserecalibrator/tests/main.nf.test.snap",
-        "modules/nf-core/gatk4spark/baserecalibrator/tests/nextflow.config"
+        "modules/nf-core/gatk4spark/baserecalibrator/tests/main.nf.test.snap"
       ],
       "type": "module",
       "meta": {
@@ -142607,7 +142906,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "fe846231249fc7ccec12bec2d670137a875d9638",
       "pipelines": [
         {
           "name": "sarek",
@@ -142618,7 +142917,7 @@
     {
       "name": "gatk4spark_markduplicates",
       "path": "modules/nf-core/gatk4spark/markduplicates/meta.yml",
-      "tree_sha": "9e4caac10bd1cbf7bfb17c158fa9f36c2b43d015",
+      "tree_sha": "abbdf17625461f217e1b54f4ddc11340ba53d983",
       "files": [
         "modules/nf-core/gatk4spark/markduplicates/environment.yml",
         "modules/nf-core/gatk4spark/markduplicates/main.nf",
@@ -142627,8 +142926,7 @@
         "modules/nf-core/gatk4spark/markduplicates/tests/cram.config",
         "modules/nf-core/gatk4spark/markduplicates/tests/main.nf.test",
         "modules/nf-core/gatk4spark/markduplicates/tests/main.nf.test.snap",
-        "modules/nf-core/gatk4spark/markduplicates/tests/metrics.config",
-        "modules/nf-core/gatk4spark/markduplicates/tests/nextflow.config"
+        "modules/nf-core/gatk4spark/markduplicates/tests/metrics.config"
       ],
       "type": "module",
       "meta": {
@@ -142812,7 +143110,7 @@
           "@SusiJo"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "fe846231249fc7ccec12bec2d670137a875d9638",
       "pipelines": [
         {
           "name": "sarek",
@@ -162556,6 +162854,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "proteinfamilies",
+          "version": "2.5.0"
+        },
+        {
           "name": "proteinfold",
           "version": "2.0.0"
         },
@@ -166896,7 +167198,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -172840,7 +173142,13 @@
           "@vagkaratzas"
         ]
       },
-      "git_sha": "d3d8e0c6c33925e69f96f44fc6204302841f3562"
+      "git_sha": "d3d8e0c6c33925e69f96f44fc6204302841f3562",
+      "pipelines": [
+        {
+          "name": "proteinfamilies",
+          "version": "2.5.0"
+        }
+      ]
     },
     {
       "name": "hmmer_hmmalign",
@@ -173000,7 +173308,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -173174,7 +173482,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -174182,7 +174490,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -204123,7 +204431,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "viralmetagenome",
@@ -219075,7 +219383,13 @@
           "@vagkaratzas"
         ]
       },
-      "git_sha": "acdf5174c3bebdb1ac86858845a18015b5ee9bdb"
+      "git_sha": "acdf5174c3bebdb1ac86858845a18015b5ee9bdb",
+      "pipelines": [
+        {
+          "name": "proteinfamilies",
+          "version": "2.5.0"
+        }
+      ]
     },
     {
       "name": "midas_run",
@@ -224929,7 +225243,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "viralmetagenome",
@@ -225077,7 +225391,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "viralmetagenome",
@@ -225550,7 +225864,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "viralmetagenome",
@@ -226147,7 +226461,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "viralmetagenome",
@@ -231756,7 +232070,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "marsseq",
@@ -231872,7 +232186,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "proteinfold",
@@ -268169,7 +268483,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "metatdenovo",
@@ -281191,7 +281505,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "metatdenovo",
@@ -292807,7 +293121,7 @@
     {
       "name": "rattle_cluster",
       "path": "modules/nf-core/rattle/cluster/meta.yml",
-      "tree_sha": "9c10837dac7cdb1f7925356ce0a103b41ccf2c11",
+      "tree_sha": "cbfd2177e595b151d16f84f2459ba1c98bce592c",
       "files": [
         "modules/nf-core/rattle/cluster/environment.yml",
         "modules/nf-core/rattle/cluster/main.nf",
@@ -292851,7 +293165,12 @@
               "reads": {
                 "type": "file",
                 "description": "Input file in FASTA/FASTQ format.",
-                "pattern": "*.{fasta,fastq,fasta.gz,fastq.gz,fa,fq,fa.gz,fq.gz}"
+                "pattern": "*.{fasta,fastq,fasta.gz,fastq.gz,fa,fq,fa.gz,fq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
               }
             }
           ]
@@ -292869,19 +293188,57 @@
                 "clusters.out": {
                   "type": "file",
                   "description": "Output clusters in binary format.",
-                  "pattern": "clusters.out"
+                  "pattern": "clusters.out",
+                  "ontologies": []
                 }
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml"
+          "versions_rattle": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rattle": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rattle": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -292893,7 +293250,7 @@
           "@srisarya"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "dbee7347468deab38d0f412de1b9867883b4d791"
     },
     {
       "name": "raven",
@@ -301835,7 +302192,7 @@
     {
       "name": "roary",
       "path": "modules/nf-core/roary/meta.yml",
-      "tree_sha": "d80d2e7f4b85a4bb9fbedef986754953e1ea22a9",
+      "tree_sha": "9bbb101d114818bb22e845933de932b4a67d04fc",
       "files": [
         "modules/nf-core/roary/environment.yml",
         "modules/nf-core/roary/main.nf",
@@ -301895,7 +302252,7 @@
                 }
               },
               {
-                "results/*": {
+                "${prefix}/*": {
                   "type": "directory",
                   "description": "Directory containing Roary result files",
                   "pattern": "*/*"
@@ -301912,7 +302269,7 @@
                 }
               },
               {
-                "results/*.aln": {
+                "${prefix}/*.aln": {
                   "type": "file",
                   "description": "Core-genome alignment produced by Roary (Optional)",
                   "pattern": "*.{aln}",
@@ -301921,19 +302278,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_roary": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "roary": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "roary --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "roary": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "roary --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -301943,7 +302332,7 @@
           "@rpetit3"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "0e47391380832c5612d53a2cdb524e15a90f3f5e"
     },
     {
       "name": "rpbp_estimatemetagenebayesfactors",
@@ -315667,7 +316056,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "metatdenovo",
@@ -316064,7 +316453,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "metatdenovo",
@@ -316549,7 +316938,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "metatdenovo",
@@ -318407,7 +318796,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "metatdenovo",
@@ -318924,7 +319313,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "metatdenovo",
@@ -331366,7 +331755,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "seqinspector",
@@ -332408,7 +332797,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnaseq",
@@ -332582,7 +332971,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -333036,7 +333425,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -347751,7 +348140,7 @@
       "pipelines": [
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -347898,7 +348287,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -348207,7 +348596,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "pathogensurveillance",
@@ -357489,7 +357878,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "metatdenovo",
@@ -374465,7 +374854,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "metatdenovo",
@@ -380832,7 +381221,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "proteinfold",
@@ -394636,7 +395025,7 @@
       "pipelines": [
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -403443,7 +403832,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "methylseq",
@@ -403748,7 +404137,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "metatdenovo",
@@ -406358,7 +406747,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -413962,7 +414351,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "viralmetagenome",
@@ -415413,7 +415802,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "mcmicro",
@@ -415529,7 +415918,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "proteinfold",
@@ -415893,7 +416282,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "mcmicro",
@@ -416009,7 +416398,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "proteinfold",
@@ -416417,7 +416806,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "mcmicro",
@@ -416525,7 +416914,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "proteinfold",
@@ -418170,6 +418559,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "473747a1ba2887a65a3e88873732d28038777800",
-  "updated_at": "2026-08-11T02:49:58.660Z"
+  "commit_sha": "ccaea62d10f8457f1166ada25671ef6f51929f29",
+  "updated_at": "2026-08-11T14:34:13.395Z"
 }
