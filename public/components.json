@@ -9447,6 +9447,184 @@
       "git_sha": "05e66d91fd88db7e02d07d9b4d7469ea696d2aee"
     },
     {
+      "name": "angsd_realsfs",
+      "path": "modules/nf-core/angsd/realsfs/meta.yml",
+      "tree_sha": "2abf47630cbcd1a8441d9631c88216dc8445a9d8",
+      "files": [
+        "modules/nf-core/angsd/realsfs/environment.yml",
+        "modules/nf-core/angsd/realsfs/main.nf",
+        "modules/nf-core/angsd/realsfs/meta.yml",
+        "modules/nf-core/angsd/realsfs/tests/main.nf.test",
+        "modules/nf-core/angsd/realsfs/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "angsd_realsfs",
+        "description": "Estimate site frequency spectrum from site allele frequencies",
+        "keywords": [
+          "angsd",
+          "genotype likelihood",
+          "genomics",
+          "site frequency spectrum"
+        ],
+        "tools": [
+          {
+            "angsd": {
+              "description": "ANGSD: Analysis of next generation Sequencing Data",
+              "homepage": "http://www.popgen.dk/angsd/",
+              "documentation": "http://www.popgen.dk/angsd/",
+              "tool_dev_url": "https://github.com/ANGSD/angsd",
+              "doi": "10.1186/s12859-014-0356-4",
+              "licence": [
+                "GPL v3",
+                "MIT"
+              ],
+              "identifier": "biotools:angsd"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing population id for population 1\ne.g. [ id:'population 1 ID']\n"
+              }
+            },
+            {
+              "pop1_saf_idx": {
+                "type": "file",
+                "description": "ANGSD site allele frequency index file",
+                "pattern": "*.saf.idx",
+                "ontologies": []
+              }
+            },
+            {
+              "pop1_saf_pos": {
+                "type": "file",
+                "description": "ANGSD site allele frequency position file",
+                "pattern": "*.saf.pos.gz",
+                "ontologies": []
+              }
+            },
+            {
+              "pop1_saf": {
+                "type": "file",
+                "description": "ANGSD site allele frequency file",
+                "pattern": "*.saf.gz",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing population id for an optional population 2\ne.g. [ id:'population 2 ID']\n"
+              }
+            },
+            {
+              "pop2_saf_idx": {
+                "type": "file",
+                "description": "ANGSD site allele frequency index file",
+                "pattern": "*.saf.idx",
+                "ontologies": []
+              }
+            },
+            {
+              "pop2_saf_pos": {
+                "type": "file",
+                "description": "ANGSD site allele frequency position file",
+                "pattern": "*.saf.pos.gz",
+                "ontologies": []
+              }
+            },
+            {
+              "pop2_saf": {
+                "type": "file",
+                "description": "ANGSD site allele frequency file",
+                "pattern": "*.saf.gz",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "sfs": [
+            [
+              {
+                "meta3": {
+                  "type": "map",
+                  "description": "Groovy Map containing population ids for the output SFS"
+                }
+              },
+              {
+                "*.sfs": {
+                  "type": "file",
+                  "description": "Site frequency spectrum file",
+                  "pattern": "*.sfs",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_angsd": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "angsd": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "angsd 2>&1 | sed '1!d;s/.*version: //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "angsd": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "angsd 2>&1 | sed '1!d;s/.*version: //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@ASendellPrice"
+        ],
+        "maintainers": [
+          "@ASendellPrice"
+        ]
+      },
+      "git_sha": "f0fd65736c0f9fa7ff26fad4375e4fab198efd0e"
+    },
+    {
       "name": "angsd_soapsnpcalibration",
       "path": "modules/nf-core/angsd/soapsnpcalibration/meta.yml",
       "tree_sha": "7a886b319b32f941b495d60dcf1ccc7bff28fcbb",
@@ -12433,6 +12611,247 @@
         ]
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+    },
+    {
+      "name": "arcane_filter",
+      "path": "modules/nf-core/arcane/filter/meta.yml",
+      "tree_sha": "ef9f1dcac64c1c5affe8a0d7e85126e7e264994c",
+      "files": [
+        "modules/nf-core/arcane/filter/environment.yml",
+        "modules/nf-core/arcane/filter/main.nf",
+        "modules/nf-core/arcane/filter/meta.yml",
+        "modules/nf-core/arcane/filter/tests/main.nf.test",
+        "modules/nf-core/arcane/filter/tests/main.nf.test.snap",
+        "modules/nf-core/arcane/filter/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "arcane_filter",
+        "description": "Filter GTF annotations and genome sequence for alignment-free single-cell RNA-seq quantification with Arcane",
+        "keywords": [
+          "single-cell",
+          "rnaseq",
+          "filter",
+          "gtf",
+          "fasta",
+          "transcriptomics"
+        ],
+        "tools": [
+          {
+            "arcane": {
+              "description": "Arcane: Alignment-free single cell RNA-seq gene expression estimation",
+              "homepage": "https://gitlab.com/rahmannlab/arcane",
+              "documentation": "https://gitlab.com/rahmannlab/arcane",
+              "tool_dev_url": "https://gitlab.com/rahmannlab/arcane",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing reference genome metadata\ne.g. `[ id:'human' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome FASTA file",
+                "pattern": "*.{fa,fasta,fa.gz,fasta.gz}",
+                "ontology": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing annotation metadata\ne.g. `[ id:'human_annotation' ]`\n"
+              }
+            },
+            {
+              "gtf": {
+                "type": "file",
+                "description": "Genome annotation GTF file",
+                "pattern": "*.{gtf,gtf.gz}",
+                "ontology": [
+                  {
+                    "edam": "http://edamontology.org/format_2306"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "genes": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*/*_genes.txt": {
+                  "type": "file",
+                  "description": "Gene IDs, one per line, in gene_number order",
+                  "pattern": "*/*_genes.txt",
+                  "ontology": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "pickle": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*/*_mapping_gene_ids.pickle": {
+                  "type": "file",
+                  "description": "Python pickle object mapping gene_number to gene_id",
+                  "pattern": "*/*_mapping_gene_ids.pickle"
+                }
+              }
+            ]
+          ],
+          "csv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*/*_new_id_to_original.csv": {
+                  "type": "file",
+                  "description": "CSV file mapping internal gene numbers to original annotation gene IDs and coordinates",
+                  "pattern": "*/*_new_id_to_original.csv",
+                  "ontology": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "reference": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*/*_ref.fa.gz": {
+                  "type": "file",
+                  "description": "Filtered sequence reference FASTA file ready for indexing",
+                  "pattern": "*/*_ref.fa.gz",
+                  "ontology": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "extracted_genes": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*/*_extracted_genes.fa.gz": {
+                  "type": "file",
+                  "description": "FASTA file containing each gene from start to end including introns.\nOnly produced when `--extract_genes` is provided in `task.ext.args`.\n",
+                  "pattern": "*/*_extracted_genes.fa.gz",
+                  "ontology": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_arcane": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "arcane": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "arcane --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "arcane": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "arcane --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@LeonHornich"
+        ],
+        "maintainers": [
+          "@LeonHornich"
+        ]
+      },
+      "git_sha": "50f30abb06caadcf794e59c5d9d94a2a6d1b5a2b"
     },
     {
       "name": "arcashla_extract",
@@ -23127,7 +23546,7 @@
       "pipelines": [
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -47530,7 +47949,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "tbanalyzer",
@@ -47901,7 +48320,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "tbanalyzer",
@@ -51700,10 +52119,6 @@
         {
           "name": "epitopeprediction",
           "version": "3.1.1"
-        },
-        {
-          "name": "genomeqc",
-          "version": "dev"
         },
         {
           "name": "magmap",
@@ -60036,7 +60451,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -60729,7 +61144,13 @@
           "@emmcauley"
         ]
       },
-      "git_sha": "0819fb5b80a4b86b31f35bf96e53a9d65e160520"
+      "git_sha": "0819fb5b80a4b86b31f35bf96e53a9d65e160520",
+      "pipelines": [
+        {
+          "name": "seqinspector",
+          "version": "1.1.1"
+        }
+      ]
     },
     {
       "name": "chewbbaca_allelecall",
@@ -76807,7 +77228,7 @@
     {
       "name": "csvtk_join",
       "path": "modules/nf-core/csvtk/join/meta.yml",
-      "tree_sha": "e8e07e7c765a4c5591f315c4b971eb4fced8e9e0",
+      "tree_sha": "8fe909fd09655d2362828bac3e52c2aa107be0d8",
       "files": [
         "modules/nf-core/csvtk/join/environment.yml",
         "modules/nf-core/csvtk/join/main.nf",
@@ -76865,7 +77286,7 @@
           ]
         ],
         "output": {
-          "csv": [
+          "out_file": [
             [
               {
                 "meta": {
@@ -76944,7 +77365,7 @@
           "@anoronh4"
         ]
       },
-      "git_sha": "2f74af306499775ab48db1ed4077d2fa5aecf9c4",
+      "git_sha": "b5803eb47964c7fa2c455b6c1e60d408ead4f2b3",
       "pipelines": [
         {
           "name": "circrna",
@@ -79228,6 +79649,199 @@
         ]
       },
       "git_sha": "2599d25d757e0d966a103b53a7304385df112be2"
+    },
+    {
+      "name": "custom_collectstats",
+      "path": "modules/nf-core/custom/collectstats/meta.yml",
+      "tree_sha": "37ff0dea6d55211c9dc4b1d548e72f3bc663f191",
+      "files": [
+        "modules/nf-core/custom/collectstats/.conda-lock/linux_amd64-bd-c1f477e6251c36bb_1.txt",
+        "modules/nf-core/custom/collectstats/.conda-lock/linux_arm64-bd-a98d93b78fdd37b9_1.txt",
+        "modules/nf-core/custom/collectstats/environment.yml",
+        "modules/nf-core/custom/collectstats/main.nf",
+        "modules/nf-core/custom/collectstats/meta.yml",
+        "modules/nf-core/custom/collectstats/tests/main.nf.test",
+        "modules/nf-core/custom/collectstats/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "custom_collectstats",
+        "description": "Collects per-sample read-processing statistics (trimming, decontamination, alignment,\nfeature counting, and optionally taxonomy/function summaries) from a set of\nheterogeneous log/table files into a single overall-stats table per run.\n",
+        "keywords": [
+          "stats",
+          "collect",
+          "summary",
+          "qc"
+        ],
+        "tools": [
+          {
+            "collectstats": {
+              "description": "In-house R script that joins per-sample read-processing statistics from\nseveral upstream tools into a single wide table.\n",
+              "tool_dev_url": "https://github.com/nf-core/modules/blob/master/modules/nf-core/custom/collectstats/main.nf",
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing run-level information\ne.g. `[ id:'run' ]`\n"
+              }
+            },
+            {
+              "samples_meta": {
+                "type": "list",
+                "description": "List of per-sample meta maps for every sample included in the run, each with\nat least `id` and `single_end`\ne.g. `[ [ id:'sample1', single_end:false ], [ id:'sample2', single_end:true ] ]`\n"
+              }
+            },
+            {
+              "trimlogs": {
+                "type": "file",
+                "description": "Trim Galore trimming report(s), one (single-end) or two (paired-end, only the\nR1 report is read) per sample. Pass an empty list to skip trimming stats.\n",
+                "pattern": "*_trimming_report.txt",
+                "ontologies": []
+              }
+            },
+            {
+              "bblogs": {
+                "type": "file",
+                "description": "BBDuk log file(s), one per decontaminated sample. Pass an empty list to skip\ndecontamination stats.\n",
+                "pattern": "*.bbduk.log",
+                "ontologies": []
+              }
+            },
+            {
+              "idxstats": {
+                "type": "file",
+                "description": "One samtools idxstats output file per sample.",
+                "pattern": "*.idxstats",
+                "ontologies": []
+              }
+            },
+            {
+              "fcs": {
+                "type": "file",
+                "description": "One or more featureCounts-derived long-format count tables (as produced e.g.\nby a \"collect featurecounts\"-style step), each with at minimum `sample` and\n`count` columns. Aggregated per input file, keyed by a feature-type label\nparsed from each file's name (the text between the first and second `.`).\n",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "mergetab": {
+                "type": "file",
+                "description": "Optional wide-format per-sample summary table (e.g. taxonomy/function\nclassification counts) to left-join into the output alongside the other\nstatistics. Pass an empty list to skip.\n",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "overall_stats": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing run-level information\ne.g. `[ id:'run' ]`\n"
+                }
+              },
+              {
+                "${outfile}": {
+                  "type": "file",
+                  "description": "One row per sample, columns from every input source left-joined together.",
+                  "pattern": "*.overall_stats.tsv.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@erikrikarddaniel"
+        ],
+        "maintainers": [
+          "@erikrikarddaniel"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/custom_collectstats:c1f477e6251c36bb",
+              "build_id": "bd-c1f477e6251c36bb_1",
+              "scan_id": "sc-b838afdb854a848f_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/custom_collectstats:a98d93b78fdd37b9",
+              "build_id": "bd-a98d93b78fdd37b9_1",
+              "scan_id": "sc-c0f8f9b47818500b_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/custom_collectstats:45b9f247facbfda0",
+              "build_id": "bd-45b9f247facbfda0_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9d/9d1a8065dcebe35c513db5eb4a5237795aa4bae4756086f3c4319a820a8a647c/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/custom_collectstats:8fc2c1667001d110",
+              "build_id": "bd-8fc2c1667001d110_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e3/e34aa7be0b16814f54d24c73317d6755a15fa039bbe99e44bd469a753f46a287/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/custom/collectstats/.conda-lock/linux_amd64-bd-c1f477e6251c36bb_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/custom/collectstats/.conda-lock/linux_arm64-bd-a98d93b78fdd37b9_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "23e432f42c1f2aea64898b48839ebf7b925e4e8a"
     },
     {
       "name": "custom_dumpsoftwareversions",
@@ -103971,7 +104585,7 @@
     {
       "name": "ensemblvep_filtervep",
       "path": "modules/nf-core/ensemblvep/filtervep/meta.yml",
-      "tree_sha": "bf79c8c67c72f425697085d88b2ec055fa80ace2",
+      "tree_sha": "be66bb3172c6ee939a9743fabc9f8a7c9a1b8c54",
       "files": [
         "modules/nf-core/ensemblvep/filtervep/environment.yml",
         "modules/nf-core/ensemblvep/filtervep/main.nf",
@@ -104159,12 +104773,12 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "e308fe14c49cf664228866a2f17f175efae6bf88"
+      "git_sha": "7047ebe92547d7f029fa6e71d2c893d5fb131938"
     },
     {
       "name": "ensemblvep_vep",
       "path": "modules/nf-core/ensemblvep/vep/meta.yml",
-      "tree_sha": "38e81d8f419274428b0aacda949f741ad3873c76",
+      "tree_sha": "c69ee406da6df1781595cccbe60bcb1825b6759b",
       "files": [
         "modules/nf-core/ensemblvep/vep/environment.yml",
         "modules/nf-core/ensemblvep/vep/main.nf",
@@ -104276,7 +104890,25 @@
               "description": "path to file(s) needed for plugins  (optional)\n",
               "ontologies": []
             }
-          }
+          },
+          [
+            {
+              "gtf": {
+                "type": "file",
+                "description": "sorted, bgzipped GTF file to annotate with instead of a cache (optional).\nMutually exclusive with `cache`.\n",
+                "pattern": "*.gtf.gz",
+                "ontologies": []
+              }
+            },
+            {
+              "gtf_tbi": {
+                "type": "file",
+                "description": "tabix index of the GTF file (optional)\n",
+                "pattern": "*.gtf.gz.tbi",
+                "ontologies": []
+              }
+            }
+          ]
         ],
         "output": {
           "vcf": [
@@ -104565,7 +105197,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "e308fe14c49cf664228866a2f17f175efae6bf88",
+      "git_sha": "7047ebe92547d7f029fa6e71d2c893d5fb131938",
       "pipelines": [
         {
           "name": "pacsomatic",
@@ -110416,7 +111048,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "smrnaseq",
@@ -111132,7 +111764,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "smrnaseq",
@@ -111485,7 +112117,7 @@
       "pipelines": [
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -111930,7 +112562,7 @@
       "pipelines": [
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -120248,6 +120880,10 @@
           "version": "3.1.0"
         },
         {
+          "name": "genomeqc",
+          "version": "dev"
+        },
+        {
           "name": "mag",
           "version": "5.5.0"
         },
@@ -123044,7 +123680,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -193350,7 +193986,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "taxprofiler",
@@ -194659,7 +195295,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "taxprofiler",
@@ -194933,7 +195569,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -232274,7 +232910,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "seqsubmit",
@@ -232888,7 +233524,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -259446,6 +260082,134 @@
       ]
     },
     {
+      "name": "pcangsd_inbreeding",
+      "path": "modules/nf-core/pcangsd/inbreeding/meta.yml",
+      "tree_sha": "02fcfd5262c15309629adf07005892cb8d87303e",
+      "files": [
+        "modules/nf-core/pcangsd/inbreeding/environment.yml",
+        "modules/nf-core/pcangsd/inbreeding/main.nf",
+        "modules/nf-core/pcangsd/inbreeding/meta.yml",
+        "modules/nf-core/pcangsd/inbreeding/tests/main.nf.test",
+        "modules/nf-core/pcangsd/inbreeding/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "pcangsd_inbreeding",
+        "description": "Estimate per-sample inbreeding coefficients from genotype likelihoods",
+        "keywords": [
+          "pcangsd",
+          "inbreeding coefficients",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "pcangsd": {
+              "description": "Framework for analyzing low-depth next-generation sequencing (NGS) data in heterogeneous/structured populations using principal component analysis (PCA).",
+              "homepage": "https://github.com/Rosemeis/pcangsd",
+              "documentation": "https://github.com/Rosemeis/pcangsd",
+              "tool_dev_url": "https://github.com/Rosemeis/pcangsd",
+              "doi": "10.1534/genetics.118.301336",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing population information\ne.g. [ id:'test', population:'population id', samples:'sample IDs' ]\n"
+              }
+            },
+            {
+              "beagle_file": {
+                "type": "file",
+                "description": "Beagle genotype likelihood file produced by ANGSD",
+                "pattern": "*.beagle.gz",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "inbreeding_coefficients": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing population information\ne.g. [ id:'test', population:'population id', samples:'sample IDs' ]\n"
+                }
+              },
+              {
+                "*.inbreed.samples": {
+                  "type": "file",
+                  "description": "Per-sample inbreeding coefficients file produced by pcangsd",
+                  "pattern": "*.inbreed.samples",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_pcangsd": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pcangsd": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pcangsd --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pcangsd": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pcangsd --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@ASendellPrice"
+        ],
+        "maintainers": [
+          "@ASendellPrice"
+        ]
+      },
+      "git_sha": "2b9ca5c012c5eb45f03af3c43c39fadd4c684eaf"
+    },
+    {
       "name": "pcgr_getref",
       "path": "modules/nf-core/pcgr/getref/meta.yml",
       "tree_sha": "f20e1d45a3fd4c05e313c9a8d0aad7a89cace15b",
@@ -260248,14 +261012,15 @@
     {
       "name": "peddy",
       "path": "modules/nf-core/peddy/meta.yml",
-      "tree_sha": "68d142d6b651882d397fb2b3fb8a6d269fb31dfc",
+      "tree_sha": "6c75509739ca9ca6c8ac0dd406880aa6e58bdb45",
       "files": [
         "modules/nf-core/peddy/environment.yml",
         "modules/nf-core/peddy/main.nf",
         "modules/nf-core/peddy/meta.yml",
         "modules/nf-core/peddy/tests/main.nf.test",
         "modules/nf-core/peddy/tests/main.nf.test.snap",
-        "modules/nf-core/peddy/tests/nextflow.config"
+        "modules/nf-core/peddy/tests/nextflow.config",
+        "modules/nf-core/peddy/tests/nextflow.plot.config"
       ],
       "type": "module",
       "meta": {
@@ -260594,7 +261359,7 @@
           "@rannick"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "a66627f24220a7a3ca7a83bd840f1a37c5083327",
       "pipelines": [
         {
           "name": "raredisease",
@@ -264322,7 +265087,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "variantcatalogue",
@@ -264687,7 +265452,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "ssds",
@@ -265420,7 +266185,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "variantbenchmarking",
@@ -301481,7 +302246,7 @@
       "pipelines": [
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -315173,7 +315938,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "tfactivity",
@@ -317038,7 +317803,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "smrnaseq",
@@ -331759,7 +332524,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -334005,7 +334770,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -335147,7 +335912,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -335737,7 +336502,7 @@
       "pipelines": [
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -372730,7 +373495,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -381269,7 +382034,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "seqsubmit",
@@ -404208,7 +404973,7 @@
     {
       "name": "bam_stringtie_merge",
       "path": "subworkflows/nf-core/bam_stringtie_merge/meta.yml",
-      "tree_sha": "bc40c4e466bd6cf35026b0816535973c50321153",
+      "tree_sha": "f8c8ad9af9a3f377f87fdbf45c9adf77208a71c0",
       "files": [
         "subworkflows/nf-core/bam_stringtie_merge/main.nf",
         "subworkflows/nf-core/bam_stringtie_merge/meta.yml",
@@ -404284,7 +405049,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "3608e17edf8ad0a09b5eede8ef486729de703c28",
+      "git_sha": "313ab80d1e02131b8ab3ed502dc1b684ae08c6dc",
       "pipelines": [
         {
           "name": "rnafusion",
@@ -416002,7 +416767,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "seqsubmit",
@@ -416486,7 +417251,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "seqsubmit",
@@ -417002,7 +417767,7 @@
         },
         {
           "name": "seqinspector",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "seqsubmit",
@@ -417205,7 +417970,7 @@
     {
       "name": "vcf_annotate_ensemblvep",
       "path": "subworkflows/nf-core/vcf_annotate_ensemblvep/meta.yml",
-      "tree_sha": "dab94ab0c0530512955aa335c07d407e1ed0bd14",
+      "tree_sha": "858e208c99babdc2f699255f054f114014e8ed5b",
       "files": [
         "subworkflows/nf-core/vcf_annotate_ensemblvep/main.nf",
         "subworkflows/nf-core/vcf_annotate_ensemblvep/meta.yml",
@@ -417264,6 +418029,11 @@
             "ch_extra_files": {
               "description": "any extra files needed by plugins for ensemblvep (optional)\nStructure: [ path(file1), path(file2)... ]\n"
             }
+          },
+          {
+            "ch_gtf": {
+              "description": "sorted, bgzipped GTF file (+ tabix index) to annotate with instead of a cache (optional).\nMutually exclusive with ch_cache.\nStructure: [ path(gtf), path(gtf_tbi) ]\n"
+            }
           }
         ],
         "output": [
@@ -417308,7 +418078,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "251885fdb29eca03523d326aca5c827d1f6bdfeb",
+      "git_sha": "7047ebe92547d7f029fa6e71d2c893d5fb131938",
       "pipelines": [
         {
           "name": "pacvar",
@@ -417327,7 +418097,7 @@
     {
       "name": "vcf_annotate_ensemblvep_snpeff",
       "path": "subworkflows/nf-core/vcf_annotate_ensemblvep_snpeff/meta.yml",
-      "tree_sha": "61722e6a6f29058903267d940e70f2f04e2cad86",
+      "tree_sha": "c98188fd0e2442d80e6f8cb0fa7ba142981fffaf",
       "files": [
         "subworkflows/nf-core/vcf_annotate_ensemblvep_snpeff/main.nf",
         "subworkflows/nf-core/vcf_annotate_ensemblvep_snpeff/meta.yml",
@@ -417416,6 +418186,11 @@
               "type": "integer",
               "description": "The amount of variants per scattered VCF.\nSet this value to `null`, `[]` or `false` to disable scattering.\n"
             }
+          },
+          {
+            "ch_vep_gtf": {
+              "description": "sorted, bgzipped GTF file (+ tabix index) to annotate with instead of a cache for ensemblvep (optional).\nMutually exclusive with ch_vep_cache.\nStructure: [ path(gtf), path(gtf_tbi) ]\n"
+            }
           }
         ],
         "output": [
@@ -417458,7 +418233,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "1c43a7e22f04cf19c9f9d3de7e7e5a3addd9382a"
+      "git_sha": "7047ebe92547d7f029fa6e71d2c893d5fb131938"
     },
     {
       "name": "vcf_annotate_snpeff",
@@ -418571,6 +419346,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "ccaea62d10f8457f1166ada25671ef6f51929f29",
-  "updated_at": "2026-08-12T02:59:16.317Z"
+  "commit_sha": "313ab80d1e02131b8ab3ed502dc1b684ae08c6dc",
+  "updated_at": "2026-08-12T14:34:10.127Z"
 }
