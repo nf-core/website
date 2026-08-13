@@ -1,6 +1,7 @@
 <script lang="ts">
     import ListingCard from "@components/ListingCard.svelte";
     import TagSection from "@components/TagSection.svelte";
+    import { filterByKeyword } from "@utils/search";
 
     interface Props {
         component: {
@@ -50,7 +51,7 @@
                 {/if}
             </div>
             {#if component.meta.keywords}
-                <TagSection tags={component.meta.keywords} type="keywords" />
+                <TagSection tags={component.meta.keywords} type="keywords" onTagClick={filterByKeyword} />
             {/if}
             {#if pipelineNames}
                 <TagSection tags={pipelineNames} type="pipelines" maxShown={3} included inline />

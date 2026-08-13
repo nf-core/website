@@ -23,6 +23,12 @@ const description =
     description={description}
     filter={[]}
     sortBy={["Name", "# Pipeline integrations"]}
+    searchExamples={[
+        { query: "k:STR", label: "keywords" },
+        { query: "n:samtools", label: "name" },
+        { query: "d:cluster", label: "description" },
+        { query: 'k:"STR"', label: "exact keyword" },
+    ]}
     displayStyle={[
         { name: "grid", icon: "fa-regular fa-grid-2" },
         { name: "table", icon: "fa-regular fa-bars" },

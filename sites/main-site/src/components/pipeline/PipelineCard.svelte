@@ -1,6 +1,7 @@
 <script lang="ts">
     import ListingCard from "@components/ListingCard.svelte";
     import TagSection from "@components/TagSection.svelte";
+    import { filterByKeyword } from "@utils/search";
     import { formatDistanceToNow, add } from "date-fns";
     import { Confetti } from "svelte-confetti";
 
@@ -83,7 +84,7 @@
             {/if}
 
             <div class="mb-2">
-                <TagSection tags={topics} type="keywords" />
+                <TagSection tags={topics} type="keywords" onTagClick={filterByKeyword} />
             </div>
 
             {#if released}

@@ -1,10 +1,9 @@
 #! /usr/bin/env node
-import { octokit, getCurrentRateLimitRemaining } from '../sites/main-site/src/components/octokit.js';
-import { readFileSync, writeFileSync, existsSync } from 'fs';
-import path, { join } from 'path';
-import ProgressBar from 'progress';
-import { parse } from 'yaml';
-
+import { octokit, getCurrentRateLimitRemaining, getGitHubFile } from "../sites/main-site/src/components/octokit.js";
+import { readFileSync, writeFileSync, existsSync } from "fs";
+import path, { join } from "path";
+import ProgressBar from "progress";
+import { parse } from "yaml";
 
 // get current path
 const __dirname = path.resolve();
@@ -13,119 +12,186 @@ const __dirname = path.resolve();
 const args = process.argv.slice(2);
 const singlePipelineName = args[0] || null;
 
+// cap concurrent GitHub requests; a cold cache would otherwise fire thousands at once
+// and trip GitHub's secondary rate limits
+const createLimiter = (max) => {
+  let active = 0;
+  const queue = [];
+  const next = () => {
+    active--;
+    if (queue.length > 0) {
+      queue.shift()();
+    }
+  };
+  return (task) =>
+    new Promise((resolve, reject) => {
+      const run = () => {
+        active++;
+        task().then(resolve, reject).finally(next);
+      };
+      if (active < max) {
+        run();
+      } else {
+        queue.push(run);
+      }
+    });
+};
+const limit = createLimiter(15);
+
 console.log(await getCurrentRateLimitRemaining());
 // write the components.json file
 export const writeComponentsJson = async () => {
   //check if components.json exists
-  if (!existsSync(join(__dirname, '/public/components.json'))) {
+  if (!existsSync(join(__dirname, "/public/components.json"))) {
     // create empty components.json with empty modules and subworkflos array
     const components = { modules: [], subworkflows: [] };
     const json = JSON.stringify(components, null, 4);
-    await writeFileSync(path.join(__dirname, '/public/components.json'), json, 'utf8');
+    await writeFileSync(path.join(__dirname, "/public/components.json"), json, "utf8");
   }
-  const componentsJson = readFileSync(path.join(__dirname, '/public/components.json'));
+  const componentsJson = readFileSync(path.join(__dirname, "/public/components.json"));
   const components = JSON.parse(componentsJson);
 
-  const pipelinesJson = readFileSync(path.join(__dirname, '/public/pipelines.json'));
+  const pipelinesJson = readFileSync(path.join(__dirname, "/public/pipelines.json"));
   const pipelines = JSON.parse(pipelinesJson);
+
+  // get the commit SHA of master HEAD — pins the tree listing, raw-content fetches,
+  // and the emitted commit_sha to one consistent snapshot
+  const commitSha = await octokit.rest.repos
+    .listCommits({
+      owner: "nf-core",
+      repo: "modules",
+      sha: "master",
+      per_page: 1,
+    })
+    .then((response) => response.data[0].sha);
 
   // get meta.yml from nf-core/modules using octokit and git trees
   const tree = await octokit
-    .request('GET /repos/{owner}/{repo}/git/trees/{tree_sha}', {
-      owner: 'nf-core',
-      repo: 'modules',
-      tree_sha: 'master',
-      recursive: 'true',
+    .request("GET /repos/{owner}/{repo}/git/trees/{tree_sha}", {
+      owner: "nf-core",
+      repo: "modules",
+      tree_sha: commitSha,
+      recursive: "true",
     })
     .then((response) => response.data.tree);
 
-  let modules = tree
-    .filter((file) => file.path.includes('meta.yml') && !file.path.includes('subworkflows/'))
-    .map((file) => ({
-      name: file.path.replace('modules/nf-core/', '').replace('/meta.yml', '').replace('/', '_'),
-      path: file.path,
-      type: 'module',
-    }));
+  const metaYmlFiles = tree.filter((f) => /^(modules|subworkflows)\/nf-core\/.*\/meta\.yml$/.test(f.path));
+  const componentRoots = new Set(metaYmlFiles.map((f) => f.path.replace("/meta.yml", "")));
+  // tree SHA of each component directory — changes when *any* file in the component changes,
+  // so it doubles as the cache key for meta/git_sha
+  const treeShaByRoot = new Map(
+    tree.filter((e) => e.type === "tree" && componentRoots.has(e.path)).map((e) => [e.path, e.sha]),
+  );
 
-  let bar = new ProgressBar('  fetching module meta.ymls [:bar] :percent :etas', { total: modules.length });
-
-  // Fetch content for modules concurrently
-  for (const module of modules) {
-    const content = await octokit
-      .request('GET /repos/{owner}/{repo}/contents/{path}', {
-        owner: 'nf-core',
-        repo: 'modules',
-        path: module.path,
-      })
-      .then((response) => parse(Buffer.from(response.data.content, 'base64').toString()));
-
-    module['meta'] = content;
-
-    const index = components.modules.findIndex((m) => m.name === module.name);
-    if (index > -1) {
-      components.modules[index] = module;
-    } else {
-      components.modules.push(module);
+  // Pre-build a map from component root directory → all its file paths (O(n) single pass)
+  const filesByRoot = new Map();
+  for (const entry of tree) {
+    if (entry.type !== "blob") continue;
+    const parts = entry.path.split("/");
+    // walk up from the deepest ancestor directory until we hit a component root
+    // (roots are never shallower than modules/nf-core/<tool>)
+    for (let depth = parts.length - 1; depth >= 3; depth--) {
+      const candidate = parts.slice(0, depth).join("/");
+      if (componentRoots.has(candidate)) {
+        if (!filesByRoot.has(candidate)) filesByRoot.set(candidate, []);
+        filesByRoot.get(candidate).push(entry.path);
+        break;
+      }
     }
-    bar.tick();
   }
 
-  // Fetch subworkflows concurrently
-  const subworkflows = tree
-    .filter(
-      (file) =>
-        file.path.includes('meta.yml') && file.path.includes('subworkflows/') && !file.path.includes('homer/groseq'),
-    )
-    .map((file) => ({
-      name: file.path.replace('subworkflows/nf-core/', '').replace('/meta.yml', ''),
+  const buildComponent = (file, type) => {
+    const root = file.path.replace("/meta.yml", "");
+    const name =
+      type === "module"
+        ? root.replace("modules/nf-core/", "").replace("/", "_")
+        : root.replace("subworkflows/nf-core/", "");
+    return {
+      name,
       path: file.path,
-      type: 'subworkflow',
-    }));
+      tree_sha: treeShaByRoot.get(root),
+      files: filesByRoot.get(root) ?? [],
+      type,
+    };
+  };
 
-  bar = new ProgressBar('  fetching subworkflow meta.ymls [:bar] :percent :etas', { total: subworkflows.length });
+  // fill in meta (parsed meta.yml) and git_sha (last commit touching the component),
+  // reusing the existing entry when the component directory is unchanged
+  const enrichComponent = (component, existing, bar) =>
+    limit(async () => {
+      if (existing?.tree_sha === component.tree_sha && existing?.meta && existing?.git_sha) {
+        component.meta = existing.meta;
+        component.git_sha = existing.git_sha;
+      } else {
+        const [metaYml, commits] = await Promise.all([
+          getGitHubFile("modules", component.path, commitSha),
+          octokit.rest.repos.listCommits({
+            owner: "nf-core",
+            repo: "modules",
+            path: component.path.replace("/meta.yml", ""),
+            per_page: 1,
+          }),
+        ]);
+        component.meta = metaYml ? parse(metaYml) : undefined;
+        component.git_sha = commits.data[0]?.sha;
+      }
+      bar.tick();
+    });
 
+  // upsert items into target, replacing entries with the same name
+  const mergeByName = (target, items) => {
+    const indexByName = new Map(target.map((c, i) => [c.name, i]));
+    for (const item of items) {
+      const index = indexByName.get(item.name);
+      if (index !== undefined) {
+        target[index] = item;
+      } else {
+        target.push(item);
+      }
+    }
+  };
+
+  const modules = metaYmlFiles.filter((f) => f.path.startsWith("modules/")).map((f) => buildComponent(f, "module"));
+
+  const existingModulesMap = new Map(components.modules.map((m) => [m.name, m]));
+  let bar = new ProgressBar("  fetching module meta.ymls [:bar] :percent :etas", { total: modules.length });
+  await Promise.all(modules.map((module) => enrichComponent(module, existingModulesMap.get(module.name), bar)));
+  mergeByName(components.modules, modules);
+
+  const subworkflows = metaYmlFiles
+    .filter((f) => f.path.startsWith("subworkflows/") && !f.path.includes("homer/groseq"))
+    .map((f) => buildComponent(f, "subworkflow"));
+
+  const existingSubworkflowsMap = new Map((components.subworkflows ?? []).map((m) => [m.name, m]));
+  bar = new ProgressBar("  fetching subworkflow meta.ymls [:bar] :percent :etas", { total: subworkflows.length });
+  await Promise.all(
+    subworkflows.map((subworkflow) => enrichComponent(subworkflow, existingSubworkflowsMap.get(subworkflow.name), bar)),
+  );
+
+  if (!components.subworkflows) {
+    components.subworkflows = [];
+  }
+  mergeByName(components.subworkflows, subworkflows);
+
+  // cross-reference: record on each (merged) module which subworkflows include it
+  const modulesByName = new Map(components.modules.map((m) => [m.name, m]));
   for (const subworkflow of subworkflows) {
-    const content = await octokit
-      .request('GET /repos/{owner}/{repo}/contents/{path}', {
-        owner: 'nf-core',
-        repo: 'modules',
-        path: subworkflow.path,
-      })
-      .then((response) => parse(Buffer.from(response.data.content, 'base64').toString()));
-
-    subworkflow['meta'] = content;
-
-    if (!components.subworkflows) {
-      components.subworkflows = [];
-    }
-    const index = components.subworkflows.findIndex((m) => m.name === subworkflow.name);
-    if (index > -1) {
-      components.subworkflows[index] = subworkflow;
-    } else {
-      components.subworkflows.push(subworkflow);
-    }
-
-    if (content.modules) {
-      for (const module of content.modules) {
-        const index = components.modules.findIndex((m) => m.name === module);
-        if (index > -1) {
-          const entry = subworkflow.name;
-          if (components.modules[index].subworkflows) {
-            components.modules[index].subworkflows.push(entry);
-          } else {
-            components.modules[index].subworkflows = [entry];
-          }
+    for (const module of subworkflow.meta?.modules ?? []) {
+      const existing = modulesByName.get(module);
+      if (existing) {
+        if (existing.subworkflows) {
+          existing.subworkflows.push(subworkflow.name);
+        } else {
+          existing.subworkflows = [subworkflow.name];
         }
       }
     }
-
-    bar.tick();
   }
   // Update pipelines that use modules and subworkflows
   let pipelinesToProcess = pipelines.remote_workflows;
 
   if (singlePipelineName) {
-    pipelinesToProcess = pipelines.remote_workflows.filter(pipeline => pipeline.name === singlePipelineName);
+    pipelinesToProcess = pipelines.remote_workflows.filter((pipeline) => pipeline.name === singlePipelineName);
     if (pipelinesToProcess.length === 0) {
       console.error(`Pipeline ${singlePipelineName} not found in pipelines.json`);
       process.exit(1);
@@ -133,18 +199,18 @@ export const writeComponentsJson = async () => {
     console.log(`Processing components for single pipeline: ${singlePipelineName}`);
 
     // Clean up existing pipeline references for this specific pipeline
-    components.modules.forEach(module => {
+    components.modules.forEach((module) => {
       if (module.pipelines) {
-        module.pipelines = module.pipelines.filter(p => p.name !== singlePipelineName);
+        module.pipelines = module.pipelines.filter((p) => p.name !== singlePipelineName);
         if (module.pipelines.length === 0) {
           delete module.pipelines;
         }
       }
     });
 
-    components.subworkflows.forEach(subworkflow => {
+    components.subworkflows.forEach((subworkflow) => {
       if (subworkflow.pipelines) {
-        subworkflow.pipelines = subworkflow.pipelines.filter(p => p.name !== singlePipelineName);
+        subworkflow.pipelines = subworkflow.pipelines.filter((p) => p.name !== singlePipelineName);
         if (subworkflow.pipelines.length === 0) {
           delete subworkflow.pipelines;
         }
@@ -179,7 +245,11 @@ export const writeComponentsJson = async () => {
             const entry = { name: pipeline.name, version: release.tag_name };
             if (components.subworkflows[index].pipelines) {
               // check if the pipeline is already in the array
-              if (!components.subworkflows[index].pipelines.some(e => e.name === entry.name && e.version === entry.version)) {
+              if (
+                !components.subworkflows[index].pipelines.some(
+                  (e) => e.name === entry.name && e.version === entry.version,
+                )
+              ) {
                 components.subworkflows[index].pipelines.push(entry);
               }
             } else {
@@ -205,9 +275,10 @@ export const writeComponentsJson = async () => {
       return 1;
     }
   });
-  console.log('  writing components.json');
-  // write the components.json file
-  writeFileSync(path.join(__dirname, '/public/components.json'), JSON.stringify(components, null, 2));
+  components.commit_sha = commitSha;
+  components.updated_at = new Date().toISOString();
+  console.log("  writing components.json");
+  writeFileSync(path.join(__dirname, "/public/components.json"), JSON.stringify(components, null, 2));
 };
 
 writeComponentsJson();
