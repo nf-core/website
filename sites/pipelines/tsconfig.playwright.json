@@ -1,0 +1,35 @@
+{
+    "//": "Playwright-only tsconfig (used via the --tsconfig flag in package.json). Self-contained path aliases with no astro/tsconfigs/base extends: Playwright 1.62's config loader can't resolve that package specifier when astro is hoisted to the workspace-root node_modules, which aborts the run before any test executes. Playwright only needs these aliases; the shared tsconfig.json stays untouched for astro/editors.",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@assets/*": [
+                "../main-site/src/assets/*"
+            ],
+            "@components/*": [
+                "../main-site/src/components/*"
+            ],
+            "@layouts/*": [
+                "../main-site/src/layouts/*"
+            ],
+            "@content/*": [
+                "src/content/*"
+            ],
+            "@public/*": [
+                "public/*"
+            ],
+            "@styles/*": [
+                "../main-site/src/styles/*"
+            ],
+            "@root/*": [
+                "../../*"
+            ],
+            "@main-site/*": [
+                "../main-site/src/*"
+            ],
+            "@utils/*": [
+                "../main-site/utils/*"
+            ]
+        }
+    }
+}
