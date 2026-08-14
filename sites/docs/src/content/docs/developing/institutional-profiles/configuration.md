@@ -147,10 +147,10 @@ Other useful directives for the process scope:
 
 ### GPU resource requests
 
-nf-core pipelines tag GPU-capable processes with `label 'process_gpu'{:groovy}` and set Nextflow's 
-[`accelerator{:groovy}` directive](https://docs.seqera.io/nextflow/reference/process#accelerator) when a GPU is 
+nf-core pipelines tag GPU-capable processes with `label 'process_gpu'{:groovy}` and set Nextflow's
+[`accelerator{:groovy}` directive](https://docs.seqera.io/nextflow/reference/process#accelerator) when a GPU is
 requested (see [GPU-capable modules](/docs/developing/components/gpu-modules)).
-Your institutional profile only needs to translate that into your scheduler's own GPU request syntax, and scope the 
+Your institutional profile only needs to translate that into your scheduler's own GPU request syntax, and scope the
 container runtime's GPU flag to the same processes:
 
 ```groovy
@@ -168,7 +168,7 @@ process {
 }
 ```
 
-Using a closure that reads `task.accelerator{:groovy}` (rather than hardcoding a fixed `--gres=gpu:1`) keeps the request count under the pipeline/user's 
+Using a closure that reads `task.accelerator{:groovy}` (rather than hardcoding a fixed `--gres=gpu:1`) keeps the request count under the pipeline/user's
 control and avoids reserving a GPU for jobs that never asked for one.
 Adjust the scheduler flag for your system: SLURM uses `--gres=gpu:N`, LSF uses `-gpu num=N`, and PBS Pro uses `-l select=1:ngpus=N`.
 
@@ -321,13 +321,13 @@ profiles {
         time: 72.h
       ]
       queue = 'gpu'
-      clusterOptions = { 
+      clusterOptions = {
         if(task.accelerator){
           def gpu_type = task.accelerator.type?: params.default_gpu_type
           "--gpus=${gpu_type}:${task.accelerator.request}"
         } else {
           null
-        } 
+        }
       }
     }
   }

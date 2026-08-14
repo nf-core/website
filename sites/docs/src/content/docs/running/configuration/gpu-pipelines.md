@@ -4,10 +4,10 @@ subtitle: Enable and configure GPU acceleration for supported pipeline steps
 shortTitle: GPU pipelines
 ---
 
-Some nf-core pipelines can run specific steps on a GPU instead of a CPU, for example, 
+Some nf-core pipelines can run specific steps on a GPU instead of a CPU, for example,
 tools like NVIDIA Parabricks, GPU-accelerated basecallers, or machine-learning-based classifiers.
-GPU support is opt-in and pipeline-specific: there is no single flag that turns on GPU acceleration 
-across all of nf-core. Always check the pipeline's own `docs/usage.md` for the exact parameter names 
+GPU support is opt-in and pipeline-specific: there is no single flag that turns on GPU acceleration
+across all of nf-core. Always check the pipeline's own `docs/usage.md` for the exact parameter names
 before you run.
 
 This page assumes you're already comfortable with `-profile` and custom configuration files — see [Configuration options](./configuration-options) first if not.
@@ -80,7 +80,7 @@ nextflow run nf-core/sarek --aligner parabricks -profile gpu,<institution>
 Check [nf-core/configs](https://github.com/nf-core/configs) to see if your cluster already has a profile, and read its `docs/<institution>.md` page — most include a copy-paste command for GPU runs on that system.
 
 :::note{title="Why profile order usually isn't a problem here"}
-`-profile a,b,c` order decides which profile's setting wins when two profiles assign the same config key — but that assignment happens once, when Nextflow loads your config. Most GPU-related settings (`clusterOptions`, `containerOptions`, `accelerator` inside a `withLabel:` block) are written as `{ }` closures, so what actually gets decided at load time is *which closure* is in charge — that closure still runs fresh for every task, using that task's real values, not something baked in early. By convention, a pipeline's own `gpu` profile only sets `accelerator.request` (the GPU count); an institutional profile is responsible for `accelerator.type` (which GPU model) — so the two aren't fighting over the same setting.
+`-profile a,b,c` order decides which profile's setting wins when two profiles assign the same config key — but that assignment happens once, when Nextflow loads your config. Most GPU-related settings (`clusterOptions`, `containerOptions`, `accelerator` inside a `withLabel:` block) are written as `{ }` closures, so what actually gets decided at load time is _which closure_ is in charge — that closure still runs fresh for every task, using that task's real values, not something baked in early. By convention, a pipeline's own `gpu` profile only sets `accelerator.request` (the GPU count); an institutional profile is responsible for `accelerator.type` (which GPU model) — so the two aren't fighting over the same setting.
 
 The one place order still genuinely matters is a container engine's global `runOptions` (`docker.runOptions`, `singularity.runOptions`, etc.). Unlike `containerOptions` on a process, `runOptions` has no per-process scoping and can't be written as a closure on `task.accelerator` — it applies to every container the engine runs, full stop. That's also why the "applies to the whole run" caution above exists: older Pattern 2 pipelines like sarek set the GPU flag via `runOptions` rather than a process-scoped `containerOptions`. If your institutional profile also sets `runOptions` (for example, to add a bind mount), whichever profile is listed last fully replaces the other's value rather than combining with it — so you could silently lose either the GPU flag or the bind mount. This is specifically a `runOptions` problem: `containerOptions`, as used in the [institutional profile examples](../../developing/institutional-profiles/configuration#gpu-resource-requests), doesn't have it, since it's scoped per-process and only applies where you attach it. Check your institution's own `docs/<institution>.md` for the profile order it recommends for GPU runs.
 :::
