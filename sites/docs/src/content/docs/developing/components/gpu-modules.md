@@ -16,6 +16,13 @@ For the normative requirements, see the [resource requirements](/docs/specificat
 Modules detect whether a GPU has been requested with `task.accelerator{:groovy}`.
 A module never sets the `accelerator` directive itself; the pipeline controls GPU allocation by setting `accelerator = 1{:groovy}` in its process config (for example, via a `process_gpu` label or a `withName` block).
 
+:::note{title="accelerator is a map"}
+The [`accelerator{:groovy}` directive](https://docs.seqera.io/nextflow/reference/process#accelerator) is a map with `request` and `type` keys.
+`accelerator = 1{:groovy}` is shorthand for `accelerator = [request: 1]{:groovy}`.
+Modules only ever need `task.accelerator.request{:groovy}` — the GPU count, the same role `task.cpus{:groovy}` plays for cores.
+`task.accelerator.type{:groovy}` (the GPU model, e.g. `'nvidia-tesla-a100'`) is infrastructure-specific: it is set by an institutional profile or a user's local config, never hardcoded by a pipeline or module.
+:::
+
 :::info{title="Why detection lives in the module, not a label"}
 Placing GPU allocation in the pipeline config lets users control it through their pipeline config or profiles.
 A label-only alternative (e.g., requiring a `process_gpu` label) would not work for modules that support both CPU and GPU modes, such as [`ribodetector`](https://github.com/nf-core/modules/tree/master/modules/nf-core/ribodetector), so the choice is left to the pipeline author.
@@ -23,6 +30,19 @@ A label-only alternative (e.g., requiring a `process_gpu` label) would not work 
 
 Pipelines also set GPU container flags via `containerOptions` in their process config.
 Use `containerOptions` (not global `docker.runOptions`) to scope GPU flags to GPU processes only.
+
+## How a GPU request reaches the scheduler
+
+A module only ever reads `task.accelerator`; it never decides when a GPU is actually available.
+That decision flows through several configuration layers before it reaches the module:
+
+1. **The module** checks `task.accelerator` to pick a container/binary and reads `task.accelerator.request` for the GPU count (this page).
+2. **The pipeline's `conf/base.config`** tags the process with `label 'process_gpu'{:groovy}` (or targets it with `withName`).
+3. **The pipeline's `conf/modules.config`** sets the default allocation, typically `accelerator = 1{:groovy}`, on that label or process name — often behind a pipeline parameter (for example, `accelerator = { params.use_gpu_ribodetector ? 1 : null }{:groovy}`) so users can opt in without needing a separate profile.
+4. **An institutional profile** (from [nf-core/configs](https://github.com/nf-core/configs)) intercepts `task.accelerator` inside a `clusterOptions` closure and translates it into the local scheduler's syntax, for example `--gres=gpu:${task.accelerator.request}{:groovy}` on SLURM. This is also where a site defines `task.accelerator.type{:groovy}` (which GPU model a request maps to on that cluster) and where `containerOptions` gets the runtime-specific flag (`--nv`, `--gpus all`) scoped to the same label. See [Writing process configuration](/docs/developing/institutional-profiles/configuration#process-scope) for the pattern institutional profiles use.
+5. **The user** can override the request count or target specific hardware for a single run with a `-c local.config` that targets the process by name.
+
+Steps 2-5 are outside a module's control — see [Running GPU-accelerated pipelines](/docs/running/configuration/gpu-pipelines) for how this looks from a pipeline user's side, including the two activation patterns (a standalone parameter, or a parameter combined with `-profile gpu`) that pipelines currently use.
 
 ## Choosing a container approach
 

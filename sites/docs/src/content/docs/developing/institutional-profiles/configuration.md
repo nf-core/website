@@ -145,6 +145,43 @@ Other useful directives for the process scope:
 - `beforeScript`: Load modules or set environment variables before job execution
 - `scratch`: Specify temporary directory for intermediate files
 
+### GPU resource requests
+
+nf-core pipelines tag GPU-capable processes with `label 'process_gpu'{:groovy}` and set Nextflow's 
+[`accelerator{:groovy}` directive](https://docs.seqera.io/nextflow/reference/process#accelerator) when a GPU is 
+requested (see [GPU-capable modules](/docs/developing/components/gpu-modules)).
+Your institutional profile only needs to translate that into your scheduler's own GPU request syntax, and scope the 
+container runtime's GPU flag to the same processes:
+
+```groovy
+process {
+  withLabel: process_gpu {
+    queue = 'gpu'
+    clusterOptions = { task.accelerator ? "--gres=gpu:${task.accelerator.request}" : null }
+    containerOptions = {
+        if (!task.accelerator) { return null }
+        if (workflow.containerEngine == 'docker') { return '--gpus all' }
+        if (workflow.containerEngine in ['singularity', 'apptainer']) { return '--nv' }
+        return null
+    }
+  }
+}
+```
+
+Using a closure that reads `task.accelerator{:groovy}` (rather than hardcoding a fixed `--gres=gpu:1`) keeps the request count under the pipeline/user's 
+control and avoids reserving a GPU for jobs that never asked for one.
+Adjust the scheduler flag for your system: SLURM uses `--gres=gpu:N`, LSF uses `-gpu num=N`, and PBS Pro uses `-l select=1:ngpus=N`.
+
+:::note{title="SLURM: --gres vs --gpus"}
+SLURM has two separate flags for requesting a GPU, and they are not interchangeable once a specific GPU type is involved.
+
+- `--gres=<name>[:type][:count]` is the generic resource mechanism. `<name>` is whatever your site's own `gres.conf` registers GPUs as — often `gpu`, but not always — so a `type` here only works if your site defined one under that name.
+- `--gpus=[type:]<count>` is a dedicated GPU flag with the same syntax on every SLURM site, no `gres.conf` lookup required.
+
+A plain count works identically either way (`--gres=gpu:1{:bash}` or `--gpus=1{:bash}`), which is why the example above can use either.
+Once you need a specific GPU model, prefer `--gpus=type:count` — see the typed example in [profiles scope](#profiles-scope) below, and [UPPMAX's Pelle profile](https://github.com/nf-core/configs/blob/master/conf/uppmax/pelle.config) for a real one.
+:::
+
 ### Example process scope
 
 ```groovy
@@ -274,6 +311,9 @@ profiles {
   }
 
   gpu {
+    params {
+      default_gpu_type = 'h100'
+    }
     process {
       resourceLimits = [
         cpus: 32,
@@ -281,11 +321,24 @@ profiles {
         time: 72.h
       ]
       queue = 'gpu'
-      clusterOptions = '--gres=gpu:1'
+      clusterOptions = { 
+        if(task.accelerator){
+          def gpu_type = task.accelerator.type?: params.default_gpu_type
+          "--gpus=${gpu_type}:${task.accelerator.request}"
+        } else {
+          null
+        } 
+      }
     }
   }
 }
 ```
+
+The `gpu` sub-profile above only routes jobs to the GPU partition; it still uses a closure that reads `task.accelerator{:groovy}` for the scheduler flag rather than hardcoding a fixed GPU count, for the same reason described in [GPU resource requests](#gpu-resource-requests).
+
+:::note
+This uses `--gpus`, not `--gres`, because it requests a specific GPU type — see [SLURM: --gres vs --gpus](#gpu-resource-requests) above for why that distinction matters.
+:::
 
 Users can access sub-profiles by combining them with your main profile:
 
