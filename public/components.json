@@ -83771,7 +83771,7 @@
     {
       "name": "cutesv",
       "path": "modules/nf-core/cutesv/meta.yml",
-      "tree_sha": "2531890765d2cdf61ec434383514a4ec5c2dfa94",
+      "tree_sha": "4360184f8b959ce008211e9b8ba2d2292c2c9815",
       "files": [
         "modules/nf-core/cutesv/environment.yml",
         "modules/nf-core/cutesv/main.nf",
@@ -83918,7 +83918,7 @@
           "@yuukiiwa"
         ]
       },
-      "git_sha": "54a59758f9960c54c2db165b8af26ec898dfd13f",
+      "git_sha": "064bed7b66c2bbf4d0c70bdd5b2e4497a62a6c52",
       "pipelines": [
         {
           "name": "longraredisease",
@@ -169709,7 +169709,7 @@
     {
       "name": "hifitrimmer_processblast",
       "path": "modules/nf-core/hifitrimmer/processblast/meta.yml",
-      "tree_sha": "a42d8a860eedac3df3ad92b01b669ebf23e2a6e2",
+      "tree_sha": "88c527ad18fa80ba50be56bc2c156afb12c8aa82",
       "files": [
         "modules/nf-core/hifitrimmer/processblast/environment.yml",
         "modules/nf-core/hifitrimmer/processblast/main.nf",
@@ -169898,12 +169898,12 @@
           "@sainsachiko"
         ]
       },
-      "git_sha": "8a90603f7591995c51e6eb6bac31d4694aa3ee83"
+      "git_sha": "9ecb0724f4cf9c3bfabef1ace14ff336a65fc6b6"
     },
     {
       "name": "hifitrimmer_trim",
       "path": "modules/nf-core/hifitrimmer/trim/meta.yml",
-      "tree_sha": "d79b7d2e39a9d1750c4e43d2c40dfaa2bc54b4a2",
+      "tree_sha": "7344b8b0ac8658225383fc864e6887e417ac3380",
       "files": [
         "modules/nf-core/hifitrimmer/trim/environment.yml",
         "modules/nf-core/hifitrimmer/trim/main.nf",
@@ -169915,11 +169915,12 @@
       "type": "module",
       "meta": {
         "name": "hifitrimmer_trim",
-        "description": "Run hifi-trimmer trim to filter and trim adapter-hit regions from PacBio HiFi reads.\nSupports BAM/CRAM/FASTA/FASTQ input and emits SAM/BAM/CRAM according to the selected output format.\n",
+        "description": "Run hifi-trimmer trim to filter and trim adapter-hit regions from PacBio HiFi reads.\nSupports BAM/CRAM/FASTA/FASTQ input and emits gzip-compressed FASTA (default) or FASTQ, or SAM, BAM, or CRAM according to the selected output format.\n",
         "keywords": [
           "pacbio",
           "bam",
           "fasta",
+          "fastq",
           "hifi_trimmer",
           "filtering",
           "trimming",
@@ -169975,6 +169976,50 @@
           ]
         ],
         "output": {
+          "fasta": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.fasta.gz": {
+                  "type": "file",
+                  "description": "Gzip-compressed FASTA output from hifi-trimmer (default format)",
+                  "pattern": "*.fasta.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "fastq": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.fastq.gz": {
+                  "type": "file",
+                  "description": "Gzip-compressed FASTQ output from hifi-trimmer when `-f fastq` is selected",
+                  "pattern": "*.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "sam": [
             [
               {
@@ -170137,7 +170182,7 @@
           "@sainsachiko"
         ]
       },
-      "git_sha": "8a90603f7591995c51e6eb6bac31d4694aa3ee83"
+      "git_sha": "9ecb0724f4cf9c3bfabef1ace14ff336a65fc6b6"
     },
     {
       "name": "hiphase",
@@ -419975,6 +420020,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "8e4cc14bb069daefdcb5e7c44736cefddecad4c0",
-  "updated_at": "2026-08-14T03:00:18.644Z"
+  "commit_sha": "9ecb0724f4cf9c3bfabef1ace14ff336a65fc6b6",
+  "updated_at": "2026-08-14T14:30:30.808Z"
 }
