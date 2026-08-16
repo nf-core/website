@@ -35291,6 +35291,166 @@
       ]
     },
     {
+      "name": "bigscape_bigscape",
+      "path": "modules/nf-core/bigscape/bigscape/meta.yml",
+      "tree_sha": "9297c09da78e08187bec576ec8a7be7bd316c15e",
+      "files": [
+        "modules/nf-core/bigscape/bigscape/environment.yml",
+        "modules/nf-core/bigscape/bigscape/main.nf",
+        "modules/nf-core/bigscape/bigscape/meta.yml",
+        "modules/nf-core/bigscape/bigscape/tests/main.nf.test",
+        "modules/nf-core/bigscape/bigscape/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "bigscape_bigscape",
+        "description": "BiG-SCAPE (Biosynthetic Gene Similarity Clustering and Prospecting Engine) clusters\nbiosynthetic gene clusters (BGCs) into gene cluster families (GCFs) based on sequence\nsimilarity networks. It takes antiSMASH-annotated GenBank files and a Pfam database as\ninput, and produces similarity networks and clustering results.\n",
+        "keywords": [
+          "biosynthetic gene clusters",
+          "BGC",
+          "clustering",
+          "similarity network",
+          "antiSMASH",
+          "gene cluster families",
+          "secondary metabolites",
+          "natural products"
+        ],
+        "tools": [
+          {
+            "bigscape": {
+              "description": "Biosynthetic Gene Similarity Clustering and Prospecting Engine for clustering BGCs into gene cluster families using similarity networks",
+              "homepage": "https://github.com/medema-group/BiG-SCAPE",
+              "documentation": "https://bigscape-corason.secondarymetabolites.org/BiG-SCAPE/",
+              "tool_dev_url": "https://github.com/medema-group/BiG-SCAPE",
+              "doi": "10.1038/s41589-019-0400-9",
+              "licence": [
+                "AGPL v3-or-later"
+              ],
+              "identifier": "biotools:BiG-SCAPE"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "gbk_dir": {
+                "type": "directory",
+                "description": "Directory containing antiSMASH-annotated GenBank (.gbk) files representing\nbiosynthetic gene cluster regions. This is typically the output directory from\nan antiSMASH run.\n",
+                "pattern": "*",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "pfam_hmm": {
+              "type": "file",
+              "description": "Path to a Pfam HMM database file (e.g. Pfam-A.hmm or Pfam-A.hmm.gz).\nBiG-SCAPE will run `hmmpress` if needed. Can be obtained from the\nPfam FTP site.\n",
+              "pattern": "*.{hmm,hmm.gz}",
+              "ontologies": []
+            }
+          }
+        ],
+        "output": {
+          "output": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "${prefix}": {
+                  "type": "directory",
+                  "description": "BiG-SCAPE output directory containing similarity network files,\nclustering results, and HTML visualisation content.\n",
+                  "pattern": "${prefix}"
+                }
+              }
+            ]
+          ],
+          "versions_bigscape": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bigscape": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bigscape --version | sed 's/BiG-SCAPE //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bigscape": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bigscape --version | sed 's/BiG-SCAPE //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "containers": {
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/bigscape/bigscape/.conda-lock/linux_amd64-bd-aed310da2cd1ca1d_1.txt"
+            }
+          },
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bigscape:2.0.3--aed310da2cd1ca1d",
+              "build_id": "bd-aed310da2cd1ca1d_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bigscape:2.0.3--aed310da2cd1ca1d",
+              "build_id": "bd-aed310da2cd1ca1d_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/ac/acb20daff43670baa2f5599e97ef0d96f3eeeaaaeb31e7dfa7a23066c908b44a/data"
+            }
+          }
+        },
+        "authors": [
+          "@jvfe"
+        ],
+        "maintainers": [
+          "@jvfe"
+        ]
+      },
+      "git_sha": "f131a66b54a85daf431871eb060d386ec8eb8f03"
+    },
+    {
       "name": "bigslice",
       "path": "modules/nf-core/bigslice/meta.yml",
       "type": "module",
@@ -298675,7 +298835,7 @@
     {
       "name": "resfinder_run",
       "path": "modules/nf-core/resfinder/run/meta.yml",
-      "tree_sha": "a1ed5f261d24cc27dd3f4c9080101320ad5365a7",
+      "tree_sha": "de88b439c16c6386a0427f20a01b6a19ba9c7ae4",
       "files": [
         "modules/nf-core/resfinder/run/environment.yml",
         "modules/nf-core/resfinder/run/main.nf",
@@ -299031,19 +299191,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_resfinder": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "resfinder": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "run_resfinder.py -v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "resfinder": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "run_resfinder.py -v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -299053,7 +299245,7 @@
           "@marrip"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "1765c297334f83a042ad4e3890628678a79b21b6"
     },
     {
       "name": "rgi_bwt",
@@ -301338,15 +301530,14 @@
     {
       "name": "ribotricer_detectorfs",
       "path": "modules/nf-core/ribotricer/detectorfs/meta.yml",
-      "tree_sha": "418b8ffe8b789f822be4707760d22fb3691da8f7",
+      "tree_sha": "978638cd625ea1de0eac214c267f4b9cb2ee0546",
       "files": [
         "modules/nf-core/ribotricer/detectorfs/environment.yml",
         "modules/nf-core/ribotricer/detectorfs/main.nf",
         "modules/nf-core/ribotricer/detectorfs/meta.yml",
         "modules/nf-core/ribotricer/detectorfs/tests/main.nf.test",
         "modules/nf-core/ribotricer/detectorfs/tests/main.nf.test.snap",
-        "modules/nf-core/ribotricer/detectorfs/tests/nextflow.all.config",
-        "modules/nf-core/ribotricer/detectorfs/tests/nextflow.filtered.config"
+        "modules/nf-core/ribotricer/detectorfs/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
@@ -301393,6 +301584,13 @@
                 "type": "file",
                 "description": "Index for sorted BAM/CRAM/SAM file",
                 "pattern": "*.{bai}",
+                "ontologies": []
+              }
+            },
+            {
+              "strandedness": {
+                "type": "string",
+                "description": "Strandedness of the data",
                 "ontologies": []
               }
             }
@@ -301611,19 +301809,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_ribotricer": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ribotricer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ribotricer --version 2>&1 | sed -n 's/^ribotricer, version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ribotricer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ribotricer --version 2>&1 | sed -n 's/^ribotricer, version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -301633,7 +301863,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "277a5577e6d79196792122049f87173e2142c90d",
       "pipelines": [
         {
           "name": "riboseq",
@@ -301644,7 +301874,7 @@
     {
       "name": "ribotricer_prepareorfs",
       "path": "modules/nf-core/ribotricer/prepareorfs/meta.yml",
-      "tree_sha": "ae3b7bb15655cb6596502121a65e3688c9e7bb19",
+      "tree_sha": "ab9e00576f950294ea8e79790f29e6f663a81359",
       "files": [
         "modules/nf-core/ribotricer/prepareorfs/environment.yml",
         "modules/nf-core/ribotricer/prepareorfs/main.nf",
@@ -301725,19 +301955,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_ribotricer": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ribotricer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ribotricer --version 2>&1 | sed -n 's/^ribotricer, version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ribotricer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ribotricer --version 2>&1 | sed -n 's/^ribotricer, version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -301747,7 +302009,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "277a5577e6d79196792122049f87173e2142c90d",
       "pipelines": [
         {
           "name": "riboseq",
@@ -310489,7 +310751,7 @@
     {
       "name": "s4pred_runmodel",
       "path": "modules/nf-core/s4pred/runmodel/meta.yml",
-      "tree_sha": "7b90f8495ef9331b7b7eed8e4a87551ff8097433",
+      "tree_sha": "efc0404c29f32fad9a3264502f3fe706cb289931",
       "files": [
         "modules/nf-core/s4pred/runmodel/environment.yml",
         "modules/nf-core/s4pred/runmodel/main.nf",
@@ -310561,19 +310823,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_s4pred": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "s4pred": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.2.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "s4pred": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.2.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -310583,7 +310877,7 @@
           "@vagkaratzas"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "5aec38f88fcc09d05e4315b51eb2f7a1f94b5a28",
       "pipelines": [
         {
           "name": "proteinannotator",
@@ -310594,7 +310888,7 @@
     {
       "name": "sageproteomics_sage",
       "path": "modules/nf-core/sageproteomics/sage/meta.yml",
-      "tree_sha": "a429fae7382f304ab3aab81f2dc1643b1ae3a48f",
+      "tree_sha": "0e139018ceb4d90f3e031890e340ad6c06b4fba6",
       "files": [
         "modules/nf-core/sageproteomics/sage/environment.yml",
         "modules/nf-core/sageproteomics/sage/main.nf",
@@ -310751,19 +311045,32 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_sageproteomics": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sageproteomics": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sage --version |& sed '1!d ; s/sage //'": {
+                  "type": "eval",
+                  "description": "The version of the tool",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_0953"
+                    }
+                  ]
+                }
               }
-            }
+            ]
           ],
           "tmt_tsv": [
             [
@@ -310810,6 +311117,35 @@
             ]
           ]
         },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sageproteomics": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sage --version |& sed '1!d ; s/sage //'": {
+                  "type": "eval",
+                  "description": "The version of the tool",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_0953"
+                    }
+                  ]
+                }
+              }
+            ]
+          ]
+        },
         "authors": [
           "@dgemperline-lilly"
         ],
@@ -310817,7 +311153,7 @@
           "@dgemperline-lilly"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "2f9e9b3368a56c8f9c93f34f722d59e64580adfb"
     },
     {
       "name": "salmon_index",
@@ -325747,7 +326083,7 @@
     {
       "name": "segemehl_align",
       "path": "modules/nf-core/segemehl/align/meta.yml",
-      "tree_sha": "6d9137fd7154a88d1c9675b8a8f17be020472f78",
+      "tree_sha": "86b5247a06b14f064a1f03bc60983dcccacaaa04",
       "files": [
         "modules/nf-core/segemehl/align/environment.yml",
         "modules/nf-core/segemehl/align/main.nf",
@@ -325891,19 +326227,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_segemehl": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "segemehl": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "segemehl.x 2>&1 | grep -A1 VERSION | tail -1 | sed \"s/^ *//;s/ .*//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "segemehl": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "segemehl.x 2>&1 | grep -A1 VERSION | tail -1 | sed \"s/^ *//;s/ .*//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -325914,7 +326282,7 @@
           "@nictru"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "c39748b7ba61f4da0350533fb646314dd276ae07",
       "pipelines": [
         {
           "name": "circrna",
@@ -351542,7 +351910,7 @@
     {
       "name": "spotiflow",
       "path": "modules/nf-core/spotiflow/meta.yml",
-      "tree_sha": "cbb69b47b70552cc7324ee2c7dcf9d2516d5eee5",
+      "tree_sha": "258246a52e83ec0316ec92a58b1afbb6d8936b2b",
       "files": [
         "modules/nf-core/spotiflow/main.nf",
         "modules/nf-core/spotiflow/meta.yml",
@@ -351619,19 +351987,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_spotiflow": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "spotiflow": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -m pip show spotiflow | grep 'Version' | sed -e 's/Version: //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "spotiflow": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -m pip show spotiflow | grep 'Version' | sed -e 's/Version: //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -351641,7 +352041,7 @@
           "@migueLib"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "4e982bc6da7f9a2f74744c7b40baa3ac1c3463db"
     },
     {
       "name": "spring_compress",
@@ -355049,7 +355449,7 @@
     {
       "name": "star_starsolo",
       "path": "modules/nf-core/star/starsolo/meta.yml",
-      "tree_sha": "652199c103db021d7162e132cd6a11d2691618ce",
+      "tree_sha": "e33fcba4de1cee20d7ebdc6204b3e72f3e0739f3",
       "files": [
         "modules/nf-core/star/starsolo/environment.yml",
         "modules/nf-core/star/starsolo/main.nf",
@@ -355060,7 +355460,7 @@
       ],
       "type": "module",
       "meta": {
-        "name": "starsolo",
+        "name": "star_starsolo",
         "description": "Create a counts matrix for single-cell data using STARSolo, handling cell barcodes and UMI information.",
         "keywords": [
           "align",
@@ -355222,19 +355622,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_star": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "star": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "STAR --version | sed -e \"s/STAR_//g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "star": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "STAR --version | sed -e \"s/STAR_//g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -355260,7 +355692,7 @@
           "@joaodemeirelles"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "d28b8b9497c367a9af632d643fa48b4e03e3eb2b"
     },
     {
       "name": "staramr_search",
@@ -420222,6 +420654,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "117c1c65e1ecd4ee9cfdcd6e3630200998932503",
-  "updated_at": "2026-08-16T02:36:18.887Z"
+  "commit_sha": "d28b8b9497c367a9af632d643fa48b4e03e3eb2b",
+  "updated_at": "2026-08-16T14:13:19.007Z"
 }
