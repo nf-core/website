@@ -154,15 +154,17 @@ container runtime's GPU flag to the same processes:
 
 ```groovy
 process {
-  withLabel: process_gpu {
-    queue = 'gpu'
-    clusterOptions = { task.accelerator ? "--gres=gpu:${task.accelerator.request}" : null }
-    containerOptions = {
-        if (!task.accelerator) { return null }
-        if (workflow.containerEngine == 'docker') { return '--gpus all' }
-        if (workflow.containerEngine in ['singularity', 'apptainer']) { return '--nv' }
-        return null
+  queue = { task.accelerator ? 'gpu' : null }
+  clusterOptions = { task.accelerator ? "--gres=gpu:${task.accelerator.request}" : null }
+  containerOptions = {
+    if (task.accelerator) {
+      if (workflow.containerEngine == 'docker') { 
+        return '--gpus all' 
+      } else if (workflow.containerEngine in ['singularity', 'apptainer']) { 
+        return '--nv' 
+      }
     }
+    return null
   }
 }
 ```

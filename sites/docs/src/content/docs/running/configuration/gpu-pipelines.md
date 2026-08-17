@@ -35,7 +35,6 @@ Here, `--use_gpu_ribodetector` is enough on its own — `-profile docker` (or `s
 The GPU container flags (`--gpus all` for Docker, `--nv` for Singularity/Apptainer) are applied automatically, and only to the GPU-enabled step.
 Other steps in the same run are unaffected and continue to run normally on CPU-only nodes, which matters on a shared or mixed cluster.
 
-
 ### Pattern 2: a feature parameter combined with `-profile gpu`
 
 Other GPU integrations instead require you to add a `gpu` profile alongside a feature parameter that selects the GPU-based tool.
@@ -80,12 +79,6 @@ nextflow run nf-core/sarek --aligner parabricks -profile gpu,<institution>
 
 Check [nf-core/configs](https://github.com/nf-core/configs) to see if your cluster already has a profile, and read its `docs/<institution>.md` page — most include a copy-paste command for GPU runs on that system.
 
-:::note{title="Why profile order usually isn't a problem here"}
-`-profile a,b,c` order decides which profile's setting wins when two profiles assign the same config key — but that assignment happens once, when Nextflow loads your config. Most GPU-related settings (`clusterOptions`, `containerOptions`, `accelerator` inside a `withLabel:` block) are written as `{ }` closures, so what actually gets decided at load time is _which closure_ is in charge — that closure still runs fresh for every task, using that task's real values, not something baked in early. By convention, a pipeline's own `gpu` profile only sets `accelerator.request` (the GPU count); an institutional profile is responsible for `accelerator.type` (which GPU model) — so the two aren't fighting over the same setting.
-
-The one place order still genuinely matters is a container engine's global `runOptions` (`docker.runOptions`, `singularity.runOptions`, etc.). Unlike `containerOptions` on a process, `runOptions` has no per-process scoping and can't be written as a closure on `task.accelerator` — it applies to every container the engine runs, full stop. That's also why the "applies to the whole run" caution above exists: older Pattern 2 pipelines like sarek set the GPU flag via `runOptions` rather than a process-scoped `containerOptions`. If your institutional profile also sets `runOptions` (for example, to add a bind mount), whichever profile is listed last fully replaces the other's value rather than combining with it — so you could silently lose either the GPU flag or the bind mount. This is specifically a `runOptions` problem: `containerOptions`, as used in the [institutional profile examples](../../developing/institutional-profiles/configuration#gpu-resource-requests), doesn't have it, since it's scoped per-process and only applies where you attach it. Check your institution's own `docs/<institution>.md` for the profile order it recommends for GPU runs.
-:::
-
 ## Overriding GPU settings for a single run
 
 To request more GPUs or target specific hardware for one run, add a custom config with [`-c`](./configuration-options#custom-configuration-files) that targets the process by name:
@@ -97,8 +90,6 @@ process {
     }
 }
 ```
-
-
 
 Only set `clusterOptions` yourself if there's no institutional profile doing this translation, or its `clusterOptions` hardcodes a flag instead of reading `task.accelerator`:
 

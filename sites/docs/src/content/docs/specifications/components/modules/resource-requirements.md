@@ -29,8 +29,6 @@ If the tool does not support multi-threading, consider `process_single` unless l
 
 ## GPU acceleration
 
-The [`accelerator{:groovy}` directive](https://docs.seqera.io/nextflow/reference/process#accelerator) is a map with `request` and `type` keys; the integer shorthand `accelerator = 1{:groovy}` is equivalent to `accelerator = [request: 1]{:groovy}`.
-
 Modules that support GPU acceleration SHOULD use `task.accelerator{:groovy}` to detect whether a GPU has been requested.
 The module SHOULD NOT set the `accelerator` directive itself; pipelines control GPU allocation by setting `accelerator = 1{:groovy}` in their process config.
 

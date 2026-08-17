@@ -23,26 +23,31 @@ Modules only ever need `task.accelerator.request{:groovy}` (the GPU count). In a
 `task.accelerator.type{:groovy}` (the GPU model, e.g. `'nvidia-tesla-a100'`) is infrastructure-specific: it is set by an institutional profile or a user's local config, never hardcoded by a pipeline or module.
 :::
 
-:::info{title="Why detection lives in the module, not a label"}
-Placing GPU allocation in the pipeline config lets users control it through their pipeline config or profiles.
-A label-only alternative (e.g., requiring a `process_gpu` label) would not work for modules that support both CPU and GPU modes, such as [`ribodetector`](https://github.com/nf-core/modules/tree/master/modules/nf-core/ribodetector), so the choice is left to the pipeline author.
+:::info{title="Why modules check task.accelerator directly" collapse}
+A module reads `task.accelerator{:groovy}` itself so one implementation can serve both CPU and GPU
+execution paths — switching container, binary, or command arguments per task, as
+[`ribodetector`](https://github.com/nf-core/modules/tree/master/modules/nf-core/ribodetector) does.
+
+This is only about *how* detection happens, not *whether* GPU use is on by default — that's the
+pipeline's decision. Some pipelines opt users in under a `gpu` profile; others require an explicit parameter.
 :::
 
 Pipelines also set GPU container flags via `containerOptions` in their process config.
 Use `containerOptions` (not global `docker.runOptions`) to scope GPU flags to GPU processes only.
 
-## How a GPU request reaches the scheduler
+:::note{title="How a GPU request reaches the scheduler" collapse}
 
 A module only ever reads `task.accelerator`; it never decides when a GPU is actually available.
 That decision flows through several configuration layers before it reaches the module:
 
 1. **The module** checks `task.accelerator` to pick a container/binary and reads `task.accelerator.request` for the GPU count (this page).
-2. **The pipeline's `conf/base.config`** tags the process with `label 'process_gpu'{:groovy}` (or targets it with `withName`).
-3. **The pipeline's `conf/modules.config`** sets the default allocation, typically `accelerator = 1{:groovy}`, on that label or process name — often behind a pipeline parameter (for example, `accelerator = { params.use_gpu_ribodetector ? 1 : null }{:groovy}`) so users can opt in without needing a separate profile.
+2. **The pipeline's `conf/base.config`** assigns a global default to the processes with `label 'process_gpu'{:groovy}`.
+3. **The pipeline's `conf/modules.config`** sets the default allocation using `withName{:groovy}`, typically `accelerator = 1{:groovy}` — often behind a pipeline parameter (for example, `accelerator = { params.use_gpu_ribodetector ? 1 : null }{:groovy}`) so users can opt in without needing a separate profile.
 4. **An institutional profile** (from [nf-core/configs](https://github.com/nf-core/configs)) intercepts `task.accelerator` and applies it to the resources requested - e.g. a `slurm` executor would typically use a `clusterOptions` closure to translate the request into the local scheduler's syntax (including considering `task.accelerator.type` if appropriate) and `containerOptions` to provide needed runtime options, whereas  for example a Kubernetes setup should use `accelerator` automatically and e.g. a cloud VM executor might use the machine type to supply the needed resources. See [Writing process configuration](/docs/developing/institutional-profiles/configuration#process-scope) for the pattern institutional profiles use.
 5. **The user** can override the request count or target specific hardware for a single run with a `-c local.config` that targets the process by name.
 
 Steps 2-5 are outside a module's control — see [Running GPU-accelerated pipelines](/docs/running/configuration/gpu-pipelines) for how this looks from a pipeline user's side, including the two activation patterns (a standalone parameter, or a parameter combined with `-profile gpu`) that pipelines currently use.
+:::
 
 ## Choosing a container approach
 
