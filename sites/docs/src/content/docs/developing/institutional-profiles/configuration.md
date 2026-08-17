@@ -158,10 +158,10 @@ process {
   clusterOptions = { task.accelerator ? "--gres=gpu:${task.accelerator.request}" : null }
   containerOptions = {
     if (task.accelerator) {
-      if (workflow.containerEngine == 'docker') { 
-        return '--gpus all' 
-      } else if (workflow.containerEngine in ['singularity', 'apptainer']) { 
-        return '--nv' 
+      if (workflow.containerEngine == 'docker') {
+        return '--gpus all'
+      } else if (workflow.containerEngine in ['singularity', 'apptainer']) {
+        return '--nv'
       }
     }
     return null
