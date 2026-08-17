@@ -312292,7 +312292,7 @@
     {
       "name": "sam2lca_analyze",
       "path": "modules/nf-core/sam2lca/analyze/meta.yml",
-      "tree_sha": "1f8e09e71456e9d441c025d440d5f6ab340fe23b",
+      "tree_sha": "125ac3d66fd9e25d8199f33663f7758cf61ca5da",
       "files": [
         "modules/nf-core/sam2lca/analyze/environment.yml",
         "modules/nf-core/sam2lca/analyze/main.nf",
@@ -312424,19 +312424,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_sam2lca": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sam2lca": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sam2lca --version | sed 's/.*version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sam2lca": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sam2lca --version | sed 's/.*version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -312446,7 +312478,7 @@
           "@maxibor"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "1f7f3ee45071798ae6ea064c93e878cc94a4fdd6",
       "pipelines": [
         {
           "name": "coproid",
@@ -372284,7 +372316,7 @@
     {
       "name": "tesorter",
       "path": "modules/nf-core/tesorter/meta.yml",
-      "tree_sha": "8edfa0a930c0b5a0094cc2d1d179d101dc308f74",
+      "tree_sha": "cf68093a16cd11dc2372a184284d90d1d03c321e",
       "files": [
         "modules/nf-core/tesorter/environment.yml",
         "modules/nf-core/tesorter/main.nf",
@@ -372496,19 +372528,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_tesorter": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "TEsorter": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "TEsorter -v": {
+                  "type": "eval",
+                  "description": "The version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "TEsorter": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "TEsorter -v": {
+                  "type": "eval",
+                  "description": "The version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -372518,7 +372582,7 @@
           "@GallVp"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "912f9af0cffa715a126b452db2d724703c4c213b"
     },
     {
       "name": "tetranscripts",
@@ -420654,6 +420718,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "d28b8b9497c367a9af632d643fa48b4e03e3eb2b",
-  "updated_at": "2026-08-16T14:13:19.007Z"
+  "commit_sha": "1f7f3ee45071798ae6ea064c93e878cc94a4fdd6",
+  "updated_at": "2026-08-17T02:34:11.237Z"
 }
