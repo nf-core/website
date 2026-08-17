@@ -337,10 +337,6 @@ profiles {
 
 The `gpu` sub-profile above only routes jobs to the GPU partition; it still uses a closure that reads `task.accelerator{:groovy}` for the scheduler flag rather than hardcoding a fixed GPU count, for the same reason described in [GPU resource requests](#gpu-resource-requests).
 
-:::note
-This uses `--gpus`, not `--gres`, because it requests a specific GPU type — see [SLURM: --gres vs --gpus](#gpu-resource-requests) above for why that distinction matters.
-:::
-
 Users can access sub-profiles by combining them with your main profile:
 
 ```bash
