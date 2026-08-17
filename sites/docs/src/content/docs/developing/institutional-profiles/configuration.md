@@ -147,8 +147,7 @@ Other useful directives for the process scope:
 
 ### GPU resource requests
 
-nf-core pipelines tag GPU-capable processes with `label 'process_gpu'{:groovy}` and set Nextflow's
-[`accelerator{:groovy}` directive](https://docs.seqera.io/nextflow/reference/process#accelerator) when a GPU is
+nf-core pipelines ensure GPU-capable processes have the [`accelerator{:groovy}` directive](https://docs.seqera.io/nextflow/reference/process#accelerator) set, (e.g. through `label 'process_gpu'{:groovy}` or directly using `withName` selectors) when
 requested (see [GPU-capable modules](/docs/developing/components/gpu-modules)).
 Your institutional profile only needs to translate that into your scheduler's own GPU request syntax, and scope the
 container runtime's GPU flag to the same processes:
@@ -172,7 +171,7 @@ Using a closure that reads `task.accelerator{:groovy}` (rather than hardcoding a
 control and avoids reserving a GPU for jobs that never asked for one.
 Adjust the scheduler flag for your system: SLURM uses `--gres=gpu:N`, LSF uses `-gpu num=N`, and PBS Pro uses `-l select=1:ngpus=N`.
 
-:::note{title="SLURM: --gres vs --gpus"}
+:::note{title="SLURM: --gres vs --gpus" collapse}
 SLURM has two separate flags for requesting a GPU, and they are not interchangeable once a specific GPU type is involved.
 
 - `--gres=<name>[:type][:count]` is the generic resource mechanism. `<name>` is whatever your site's own `gres.conf` registers GPUs as — often `gpu`, but not always — so a `type` here only works if your site defined one under that name.

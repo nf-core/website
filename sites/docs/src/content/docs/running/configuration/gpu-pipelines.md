@@ -10,6 +10,8 @@ GPU support is opt-in and pipeline-specific: there is no single flag that turns 
 across all of nf-core. Always check the pipeline's own `docs/usage.md` for the exact parameter names
 before you run.
 
+Currently, GPU acceleration typically assumes you have Nvidia/CUDA capable cards (e.g. AMD GPUs are unfortunately currently not supported).
+
 This page assumes you're already comfortable with `-profile` and custom configuration files — see [Configuration options](./configuration-options) first if not.
 
 ## How pipelines expose GPU support
@@ -33,7 +35,6 @@ Here, `--use_gpu_ribodetector` is enough on its own — `-profile docker` (or `s
 The GPU container flags (`--gpus all` for Docker, `--nv` for Singularity/Apptainer) are applied automatically, and only to the GPU-enabled step.
 Other steps in the same run are unaffected and continue to run normally on CPU-only nodes, which matters on a shared or mixed cluster.
 
-Pipelines using this pattern often also expose an override parameter (for example, `--gpu_container_options`) so you can replace the auto-selected container flag if your site needs something different (a specific device index, a bind mount, etc.).
 
 ### Pattern 2: a feature parameter combined with `-profile gpu`
 
@@ -60,7 +61,7 @@ nextflow run nf-core/methylseq \
 :::caution{title="`-profile gpu` applies to the whole run"}
 In this pattern, the `gpu` profile might set the container engine's GPU flags globally (`docker.runOptions`, `singularity.runOptions`, etc.), so every process in the run gets them — not just the GPU-accelerated one - check the pipeline configuration.
 
-Avoid combining `-profile gpu` with `conda`/`mamba` (most GPU tools don't support it), and check the pipeline's usage docs for whether you also need to set the `accelerator` directive yourself in a custom config — some pipelines only set it automatically on cloud/Kubernetes executors (`awsbatch`, `google-batch`, `k8s`, `hq`), leaving it up to you elsewhere.
+Check the pipeline's usage docs for whether you also need to set the `accelerator` directive yourself in a custom config — some pipelines only set it automatically on cloud/Kubernetes executors (`awsbatch`, `google-batch`, `k8s`, `hq`), leaving it up to you elsewhere.
 :::
 
 ## Running on a shared cluster (HPC)
@@ -97,9 +98,7 @@ process {
 }
 ```
 
-`accelerator{:groovy}` takes a map — `request` is the GPU count (`accelerator = 2{:groovy}` is shorthand for `accelerator = [request: 2]{:groovy}`), and `type` names a specific GPU model where your cluster or cloud executor supports it.
 
-If your institution has a profile from [nf-core/configs](https://github.com/nf-core/configs), setting `accelerator` here is usually enough on its own: its `clusterOptions` is typically already written as a closure that reads `task.accelerator` and builds the scheduler flag for you (see [GPU resource requests](../../developing/institutional-profiles/configuration#gpu-resource-requests) for the pattern institutional profiles use, including why the flag is `--gpus`, not `--gres`, once a `type` is involved).
 
 Only set `clusterOptions` yourself if there's no institutional profile doing this translation, or its `clusterOptions` hardcodes a flag instead of reading `task.accelerator`:
 
