@@ -90457,7 +90457,7 @@
     {
       "name": "deepvariant",
       "path": "modules/nf-core/deepvariant/meta.yml",
-      "tree_sha": "35e17c9ddb75efa6a8a0c333d1078f4560204543",
+      "tree_sha": "2c8b140382385dc90977c72c85b14b3e73b044bc",
       "files": [
         "modules/nf-core/deepvariant/README.md",
         "modules/nf-core/deepvariant/main.nf",
@@ -90691,7 +90691,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "29031bf70ae8117b235400aca32796a433c733f2",
+      "git_sha": "4a4ccce52d5a280b0b136ff3ac841607debed92b",
       "pipelines": [
         {
           "name": "pacvar",
@@ -90706,7 +90706,7 @@
     {
       "name": "deepvariant_callvariants",
       "path": "modules/nf-core/deepvariant/callvariants/meta.yml",
-      "tree_sha": "0e0692bd287d967ec18c7eb711ba5d99d76acc0c",
+      "tree_sha": "cdca3beaee4a4a6eec24bbc5b33a80f6b12ab190",
       "files": [
         "modules/nf-core/deepvariant/callvariants/main.nf",
         "modules/nf-core/deepvariant/callvariants/meta.yml",
@@ -90834,7 +90834,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "29031bf70ae8117b235400aca32796a433c733f2",
+      "git_sha": "4a4ccce52d5a280b0b136ff3ac841607debed92b",
       "pipelines": [
         {
           "name": "pacvar",
@@ -90845,243 +90845,17 @@
     {
       "name": "deepvariant_makeexamples",
       "path": "modules/nf-core/deepvariant/makeexamples/meta.yml",
-      "tree_sha": "095a5e65fab6ce4307d083f35a9624f098aa1e35",
+      "tree_sha": "082e2f441a8c5feba44eb625f302a7747bdc42b9",
       "files": [
         "modules/nf-core/deepvariant/makeexamples/main.nf",
         "modules/nf-core/deepvariant/makeexamples/meta.yml",
         "modules/nf-core/deepvariant/makeexamples/tests/main.nf.test",
         "modules/nf-core/deepvariant/makeexamples/tests/main.nf.test.snap",
-        "modules/nf-core/deepvariant/makeexamples/tests/nextflow.config"
+        "modules/nf-core/deepvariant/makeexamples/tests/nextflow.config",
+        "modules/nf-core/deepvariant/makeexamples/tests/pacbio_profile.config"
       ],
       "type": "module",
-      "meta": {
-        "name": "deepvariant_makeexamples",
-        "description": "Transforms the input alignments to a format suitable for the deep neural network variant caller",
-        "keywords": [
-          "variant calling",
-          "machine learning",
-          "neural network"
-        ],
-        "tools": [
-          {
-            "deepvariant": {
-              "description": "DeepVariant is an analysis pipeline that uses a deep neural network to call genetic variants from next-generation DNA sequencing data",
-              "homepage": "https://github.com/google/deepvariant",
-              "documentation": "https://github.com/google/deepvariant",
-              "tool_dev_url": "https://github.com/google/deepvariant",
-              "doi": "10.1038/nbt.4235",
-              "licence": [
-                "BSD-3-clause"
-              ],
-              "identifier": "biotools:deepvariant"
-            }
-          }
-        ],
-        "input": [
-          [
-            {
-              "meta": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-              }
-            },
-            {
-              "input": {
-                "type": "file",
-                "description": "BAM/CRAM file",
-                "pattern": "*.bam/cram",
-                "ontologies": []
-              }
-            },
-            {
-              "index": {
-                "type": "file",
-                "description": "Index of BAM/CRAM file",
-                "pattern": "*.bai/crai",
-                "ontologies": []
-              }
-            },
-            {
-              "intervals": {
-                "type": "file",
-                "description": "Interval file for targeted regions",
-                "pattern": "*.bed",
-                "ontologies": []
-              }
-            }
-          ],
-          [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
-              }
-            },
-            {
-              "fasta": {
-                "type": "file",
-                "description": "The reference fasta file",
-                "pattern": "*.fasta",
-                "ontologies": []
-              }
-            }
-          ],
-          [
-            {
-              "meta3": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
-              }
-            },
-            {
-              "fai": {
-                "type": "file",
-                "description": "Index of reference fasta file",
-                "pattern": "*.fai",
-                "ontologies": []
-              }
-            }
-          ],
-          [
-            {
-              "meta4": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
-              }
-            },
-            {
-              "gzi": {
-                "type": "file",
-                "description": "GZI index of reference fasta file",
-                "ontologies": []
-              }
-            }
-          ],
-          [
-            {
-              "meta5": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n",
-                "pattern": "*.gzi"
-              }
-            },
-            {
-              "par_bed": {
-                "type": "file",
-                "description": "BED file containing PAR regions",
-                "pattern": "*.bed",
-                "ontologies": []
-              }
-            }
-          ]
-        ],
-        "output": {
-          "examples": [
-            [
-              {
-                "meta": {
-                  "type": "list",
-                  "description": "Tuple containing sample metadata and examples that can be used for calling\n"
-                }
-              },
-              {
-                "${prefix}.examples.tfrecord-*-of-*.gz{,.example_info.json}": {
-                  "type": "list",
-                  "description": "Tuple containing sample metadata and examples that can be used for calling\n"
-                }
-              }
-            ]
-          ],
-          "gvcf": [
-            [
-              {
-                "meta": {
-                  "type": "list",
-                  "description": "Tuple containing sample metadata and examples that can be used for calling\n"
-                }
-              },
-              {
-                "${prefix}.gvcf.tfrecord-*-of-*.gz": {
-                  "type": "list",
-                  "description": "Tuple containing sample metadata and the GVCF data in tfrecord format\n"
-                }
-              }
-            ]
-          ],
-          "small_model_calls": [
-            [
-              {
-                "meta": {
-                  "type": "list",
-                  "description": "Tuple containing sample metadata and examples that can be used for calling\n"
-                }
-              },
-              {
-                "${prefix}_call_variant_outputs.examples.tfrecord-*-of-*.gz": {
-                  "type": "list",
-                  "description": "Optional variant calls from the small model, if enabled, in tfrecord format\n"
-                }
-              }
-            ]
-          ],
-          "versions_deepvariant": [
-            [
-              {
-                "${task.process}": {
-                  "type": "string",
-                  "description": "The process the versions were collected from"
-                }
-              },
-              {
-                "deepvariant": {
-                  "type": "string",
-                  "description": "The tool name"
-                }
-              },
-              {
-                "/opt/deepvariant/bin/run_deepvariant --version | sed 's/^.*version //'": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
-                }
-              }
-            ]
-          ]
-        },
-        "topics": {
-          "versions": [
-            [
-              {
-                "${task.process}": {
-                  "type": "string",
-                  "description": "The process the versions were collected from"
-                }
-              },
-              {
-                "deepvariant": {
-                  "type": "string",
-                  "description": "The tool name"
-                }
-              },
-              {
-                "/opt/deepvariant/bin/run_deepvariant --version | sed 's/^.*version //'": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
-                }
-              }
-            ]
-          ]
-        },
-        "authors": [
-          "@abhi18av",
-          "@ramprasadn",
-          "@fa2k"
-        ],
-        "maintainers": [
-          "@abhi18av",
-          "@ramprasadn"
-        ]
-      },
-      "git_sha": "29031bf70ae8117b235400aca32796a433c733f2",
+      "git_sha": "4a4ccce52d5a280b0b136ff3ac841607debed92b",
       "pipelines": [
         {
           "name": "pacvar",
@@ -91092,7 +90866,7 @@
     {
       "name": "deepvariant_postprocessvariants",
       "path": "modules/nf-core/deepvariant/postprocessvariants/meta.yml",
-      "tree_sha": "373ea210f267be9de38d99971c755a26152d025a",
+      "tree_sha": "43c4aea49d3d7a85c844ee5811717492a25c1929",
       "files": [
         "modules/nf-core/deepvariant/postprocessvariants/main.nf",
         "modules/nf-core/deepvariant/postprocessvariants/meta.yml",
@@ -91101,270 +90875,7 @@
         "modules/nf-core/deepvariant/postprocessvariants/tests/nextflow.config"
       ],
       "type": "module",
-      "meta": {
-        "name": "deepvariant_postprocessvariants",
-        "description": "DeepVariant is an analysis pipeline that uses a deep neural network to call genetic variants from next-generation DNA sequencing data",
-        "keywords": [
-          "variant calling",
-          "machine learning",
-          "neural network"
-        ],
-        "tools": [
-          {
-            "deepvariant": {
-              "description": "DeepVariant is an analysis pipeline that uses a deep neural network to call genetic variants from next-generation DNA sequencing data",
-              "homepage": "https://github.com/google/deepvariant",
-              "documentation": "https://github.com/google/deepvariant",
-              "tool_dev_url": "https://github.com/google/deepvariant",
-              "doi": "10.1038/nbt.4235",
-              "licence": [
-                "BSD-3-clause"
-              ],
-              "identifier": "biotools:deepvariant"
-            }
-          }
-        ],
-        "input": [
-          [
-            {
-              "meta": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-              }
-            },
-            {
-              "variant_calls_tfrecord_files": {
-                "type": "file",
-                "description": "One or more data files containing variant calls from DEEPVARIANT_CALLVARIANTS\n",
-                "pattern": "*.tfrecord.gz",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3989"
-                  }
-                ]
-              }
-            },
-            {
-              "gvcf_tfrecords": {
-                "type": "file",
-                "description": "Sharded tfrecord file from DEEPVARIANT_MAKEEXAMPLES with the coverage information used for GVCF output\n",
-                "pattern": "*.gz",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3989"
-                  }
-                ]
-              }
-            },
-            {
-              "small_model_calls": {
-                "type": "file",
-                "description": "Sharded tfrecord file from DEEPVARIANT_MAKEEXAMPLES with variant calls from the small model\n",
-                "pattern": "*.gz",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3989"
-                  }
-                ]
-              }
-            },
-            {
-              "intervals": {
-                "type": "file",
-                "description": "Interval file for targeted regions",
-                "pattern": "*.bed",
-                "ontologies": []
-              }
-            }
-          ],
-          [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
-              }
-            },
-            {
-              "fasta": {
-                "type": "file",
-                "description": "The reference fasta file",
-                "pattern": "*.fasta",
-                "ontologies": []
-              }
-            }
-          ],
-          [
-            {
-              "meta3": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
-              }
-            },
-            {
-              "fai": {
-                "type": "file",
-                "description": "Index of reference fasta file",
-                "pattern": "*.fai",
-                "ontologies": []
-              }
-            }
-          ],
-          [
-            {
-              "meta4": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
-              }
-            },
-            {
-              "gzi": {
-                "type": "file",
-                "description": "GZI index of reference fasta file",
-                "pattern": "*.gzi",
-                "ontologies": []
-              }
-            }
-          ]
-        ],
-        "output": {
-          "vcf": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "${prefix}.vcf.gz": {
-                  "type": "file",
-                  "description": "Compressed VCF file",
-                  "pattern": "*.vcf.gz",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3989"
-                    }
-                  ]
-                }
-              }
-            ]
-          ],
-          "vcf_index": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "${prefix}.vcf.gz.{tbi,csi}": {
-                  "type": "file",
-                  "description": "Index for VCF",
-                  "pattern": "$*.vcf.gz.{tbi,csi}",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "gvcf": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "${prefix}.g.vcf.gz": {
-                  "type": "file",
-                  "description": "Compressed GVCF file",
-                  "pattern": "*.g.vcf.gz",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3989"
-                    }
-                  ]
-                }
-              }
-            ]
-          ],
-          "gvcf_index": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "${prefix}.g.vcf.gz.{tbi,csi}": {
-                  "type": "file",
-                  "description": "Index for GVCF",
-                  "pattern": "*.g.vcf.gz.{tbi,csi}",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "versions_deepvariant": [
-            [
-              {
-                "${task.process}": {
-                  "type": "string",
-                  "description": "The process the versions were collected from"
-                }
-              },
-              {
-                "deepvariant": {
-                  "type": "string",
-                  "description": "The tool name"
-                }
-              },
-              {
-                "/opt/deepvariant/bin/run_deepvariant --version | sed 's/^.*version //'": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
-                }
-              }
-            ]
-          ]
-        },
-        "topics": {
-          "versions": [
-            [
-              {
-                "${task.process}": {
-                  "type": "string",
-                  "description": "The process the versions were collected from"
-                }
-              },
-              {
-                "deepvariant": {
-                  "type": "string",
-                  "description": "The tool name"
-                }
-              },
-              {
-                "/opt/deepvariant/bin/run_deepvariant --version | sed 's/^.*version //'": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
-                }
-              }
-            ]
-          ]
-        },
-        "authors": [
-          "@abhi18av",
-          "@ramprasadn",
-          "@fa2k"
-        ],
-        "maintainers": [
-          "@abhi18av",
-          "@ramprasadn"
-        ]
-      },
-      "git_sha": "29031bf70ae8117b235400aca32796a433c733f2",
+      "git_sha": "4a4ccce52d5a280b0b136ff3ac841607debed92b",
       "pipelines": [
         {
           "name": "pacvar",
@@ -214691,8 +214202,10 @@
     {
       "name": "merquryfk_merquryfk",
       "path": "modules/nf-core/merquryfk/merquryfk/meta.yml",
-      "tree_sha": "ae57ceb0f1b0a96c32317316b0d3afa7e6dc964b",
+      "tree_sha": "20f15ce8537e31cd66f3968daaaa458ddfaa686e",
       "files": [
+        "modules/nf-core/merquryfk/merquryfk/.conda-lock/linux_amd64-bd-5ac50fb470d146e0_1.txt",
+        "modules/nf-core/merquryfk/merquryfk/.conda-lock/linux_arm64-bd-1e5626c171d2dfe9_1.txt",
         "modules/nf-core/merquryfk/merquryfk/environment.yml",
         "modules/nf-core/merquryfk/merquryfk/main.nf",
         "modules/nf-core/merquryfk/merquryfk/meta.yml",
@@ -214733,7 +214246,7 @@
             {
               "fastk_hist": {
                 "type": "file",
-                "description": "A histogram files from the program FastK",
+                "description": "A histogram file from the program FastK",
                 "pattern": "*.hist",
                 "ontologies": []
               }
@@ -214749,16 +214262,16 @@
             {
               "assembly": {
                 "type": "file",
-                "description": "Genome (primary) assembly files (fasta format)",
-                "pattern": ".fasta",
+                "description": "FASTA file containing a single primary haplotype",
+                "pattern": "*.{fasta.gz,fasta}",
                 "ontologies": []
               }
             },
             {
               "haplotigs": {
                 "type": "file",
-                "description": "Assembly haplotigs (fasta format)",
-                "pattern": ".fasta",
+                "description": "FASTA file, or list of FASTA files, containing an alternate haplotype or set of haplotypes",
+                "pattern": "*.{fasta.gz,fasta}",
                 "ontologies": []
               }
             }
@@ -215092,9 +214605,43 @@
         "maintainers": [
           "@mahesh-panchal",
           "@yumisims"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/merquryfk:1.2--5ac50fb470d146e0",
+              "build_id": "bd-5ac50fb470d146e0_1",
+              "scan_id": "sc-68bfb8fb0f296829_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/merquryfk:1.2--1e5626c171d2dfe9",
+              "build_id": "bd-1e5626c171d2dfe9_1",
+              "scan_id": "sc-201842fa3258d31c_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/merquryfk:1.2--273c5808a585c7dc",
+              "build_id": "bd-273c5808a585c7dc_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/fb/fb9dbdf098779f2b84401de5e6e8569dd9120018a47b92126876260a0bb621a6/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/merquryfk:1.2--2810c9cbc10a5bb6",
+              "build_id": "bd-2810c9cbc10a5bb6_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/b9/b9d3a76b0ab12d4ea8b331912232557ab4797ff4ef336f46680ae92941afdb30/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/merquryfk/merquryfk/.conda-lock/linux_amd64-bd-5ac50fb470d146e0_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/merquryfk/merquryfk/.conda-lock/linux_arm64-bd-1e5626c171d2dfe9_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "89ddac6065d90fe246fa7f86bfec311023c9424f"
     },
     {
       "name": "merquryfk_ploidyplot",
@@ -295097,7 +294644,7 @@
     {
       "name": "raxmlng",
       "path": "modules/nf-core/raxmlng/meta.yml",
-      "tree_sha": "8ad2a1da2fd441ca08fdc0b7991ddacbaa6bd68b",
+      "tree_sha": "f23de78316f8425f28fce897bd8ec35b288d7085",
       "files": [
         "modules/nf-core/raxmlng/environment.yml",
         "modules/nf-core/raxmlng/main.nf",
@@ -295194,19 +294741,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_raxmlng": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "raxmlng": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "raxml-ng --version 2>&1 | sed '/RAxML-NG v/!d;s/.*v. //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "raxmlng": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "raxml-ng --version 2>&1 | sed '/RAxML-NG v/!d;s/.*v. //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -295218,7 +294797,7 @@
           "@aunderwo"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "c2244f084072141a61e0571a52a4be98c55f3cc0"
     },
     {
       "name": "rbt_vcfsplit",
@@ -324723,7 +324302,7 @@
     {
       "name": "scanpy_scrublet",
       "path": "modules/nf-core/scanpy/scrublet/meta.yml",
-      "tree_sha": "698f20ea32ff4cf1a3d78f7f16c7c4bb47e2a618",
+      "tree_sha": "b14e0bbbe71d76b051229d91cd285ac5f57ca4f9",
       "files": [
         "modules/nf-core/scanpy/scrublet/environment.yml",
         "modules/nf-core/scanpy/scrublet/main.nf",
@@ -324733,126 +324312,7 @@
         "modules/nf-core/scanpy/scrublet/tests/main.nf.test.snap"
       ],
       "type": "module",
-      "meta": {
-        "name": "scanpy_scrublet",
-        "description": "Detect doublets in single-cell RNA-seq data using Scrublet via Scanpy",
-        "keywords": [
-          "scrublet",
-          "doublet-detection",
-          "scanpy",
-          "single-cell"
-        ],
-        "tools": [
-          {
-            "scanpy": {
-              "description": "Single-Cell Analysis in Python",
-              "homepage": "https://scanpy.readthedocs.io",
-              "documentation": "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pp.scrublet.html",
-              "tool_dev_url": "https://github.com/scverse/scanpy",
-              "doi": "10.1186/s13059-017-1382-0",
-              "licence": [
-                "BSD-3-Clause"
-              ],
-              "identifier": "biotools:scanpy"
-            }
-          }
-        ],
-        "input": [
-          [
-            {
-              "meta": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
-              }
-            },
-            {
-              "h5ad": {
-                "type": "file",
-                "description": "AnnData object in h5ad format",
-                "pattern": "*.{h5ad}",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3590"
-                  }
-                ]
-              }
-            }
-          ],
-          {
-            "batch_col": {
-              "type": "string",
-              "description": "Optional column name in adata.obs containing batch information\nIf provided and contains multiple batches, will be used as batch_key parameter\n"
-            }
-          }
-        ],
-        "output": {
-          "h5ad": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
-                }
-              },
-              {
-                "*.h5ad": {
-                  "type": "file",
-                  "description": "AnnData object with doublets removed",
-                  "pattern": "*.h5ad",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3590"
-                    }
-                  ]
-                }
-              }
-            ]
-          ],
-          "predictions": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
-                }
-              },
-              {
-                "*.pkl": {
-                  "type": "file",
-                  "description": "Pickle file containing doublet predictions",
-                  "pattern": "*.pkl",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3553"
-                    }
-                  ]
-                }
-              }
-            ]
-          ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
-              }
-            }
-          ]
-        },
-        "authors": [
-          "@nictru"
-        ],
-        "maintainers": [
-          "@nictru"
-        ]
-      },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "fa506994bc44f45c9b76f42b6b021973a9f343f1",
       "pipelines": [
         {
           "name": "scdownstream",
@@ -324982,7 +324442,7 @@
     {
       "name": "scimap_mcmicro",
       "path": "modules/nf-core/scimap/mcmicro/meta.yml",
-      "tree_sha": "d6b281b24feee7271f9acba64442b2e932037c93",
+      "tree_sha": "56806e8fb6e714c399863bf7a6e2fadd3062d032",
       "files": [
         "modules/nf-core/scimap/mcmicro/main.nf",
         "modules/nf-core/scimap/mcmicro/meta.yml",
@@ -324990,114 +324450,7 @@
         "modules/nf-core/scimap/mcmicro/tests/main.nf.test.snap"
       ],
       "type": "module",
-      "meta": {
-        "name": "scimap_mcmicro",
-        "description": "SCIMAP is a suite of tools that enables spatial single-cell analyses",
-        "keywords": [
-          "sort",
-          "spatial",
-          "single cell"
-        ],
-        "tools": [
-          {
-            "scimap": {
-              "description": "Scimap is a scalable toolkit for analyzing spatial molecular data.",
-              "homepage": "https://scimap.xyz/",
-              "documentation": "https://scimap.xyz/",
-              "tool_dev_url": "https://github.com/labsyspharm/scimap",
-              "licence": [
-                "MIT License"
-              ],
-              "identifier": "biotools:SCIMAP"
-            }
-          }
-        ],
-        "input": [
-          [
-            {
-              "meta": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-              }
-            },
-            {
-              "cellbyfeature": {
-                "type": "file",
-                "description": "CSV file with cell by feature table",
-                "pattern": "*.{csv}",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3752"
-                  }
-                ]
-              }
-            }
-          ]
-        ],
-        "output": {
-          "csv": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.csv": {
-                  "type": "file",
-                  "description": "Sorted CSV file",
-                  "pattern": "*.{csv}",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3752"
-                    }
-                  ]
-                }
-              }
-            ]
-          ],
-          "h5ad": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.h5ad": {
-                  "type": "file",
-                  "description": "Sorted H5AD file",
-                  "pattern": "*.{h5ad}",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
-              }
-            }
-          ]
-        },
-        "authors": [
-          "@luiskuhn"
-        ],
-        "maintainers": [
-          "@luiskuhn"
-        ]
-      },
-      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
+      "git_sha": "28150ec1302a1a54f0061d163bebc2ec34518a1a",
       "pipelines": [
         {
           "name": "mcmicro",
@@ -325108,7 +324461,7 @@
     {
       "name": "scimap_spatiallda",
       "path": "modules/nf-core/scimap/spatiallda/meta.yml",
-      "tree_sha": "42675f0dcac4ebf4a432e88b4036db1b0a44d4b2",
+      "tree_sha": "3bd2a58081fdc6ccfba36a0e5d6f4171b6da6a30",
       "files": [
         "modules/nf-core/scimap/spatiallda/main.nf",
         "modules/nf-core/scimap/spatiallda/meta.yml",
@@ -325221,19 +324574,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_scimap": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "scimap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python /scimap/scripts/spatialLDA.py --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "scimap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python /scimap/scripts/spatialLDA.py --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -325245,7 +324630,7 @@
           "@chiarasch"
         ]
       },
-      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
+      "git_sha": "69e6f6fa1d89cbc2256cc59baf04def783202064"
     },
     {
       "name": "scoary",
@@ -325406,7 +324791,7 @@
     {
       "name": "scramble_clusteranalysis",
       "path": "modules/nf-core/scramble/clusteranalysis/meta.yml",
-      "tree_sha": "e98c41f81ca10751b5936d29aa1435ee5e58a7ff",
+      "tree_sha": "a90e4b4d54905290583a889b90182ae76b34358e",
       "files": [
         "modules/nf-core/scramble/clusteranalysis/environment.yml",
         "modules/nf-core/scramble/clusteranalysis/main.nf",
@@ -325536,19 +324921,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_scramble": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "scramble": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "1.0.2": {
+                  "type": "string",
+                  "description": "The version of the tool (hardcoded, not available via CLI)"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "scramble": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "1.0.2": {
+                  "type": "string",
+                  "description": "The version of the tool (hardcoded, not available via CLI)"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -325558,7 +324975,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "a28d5c5bb9de7f7e01a97f072dac2be993c539b6"
     },
     {
       "name": "scramble_clusteridentifier",
@@ -408023,7 +407440,7 @@
     {
       "name": "deepvariant",
       "path": "subworkflows/nf-core/deepvariant/meta.yml",
-      "tree_sha": "1f22a4952aa5b4ead92249cb733cbd22c3758fe3",
+      "tree_sha": "a459fa5b0591e93a4ed27d3311478e5a141913e4",
       "files": [
         "subworkflows/nf-core/deepvariant/README.md",
         "subworkflows/nf-core/deepvariant/main.nf",
@@ -408033,104 +407450,11 @@
         "subworkflows/nf-core/deepvariant/tests/equality.nf.test",
         "subworkflows/nf-core/deepvariant/tests/main.nf.test",
         "subworkflows/nf-core/deepvariant/tests/main.nf.test.snap",
-        "subworkflows/nf-core/deepvariant/tests/nextflow.config"
+        "subworkflows/nf-core/deepvariant/tests/nextflow.config",
+        "subworkflows/nf-core/deepvariant/tests/pacbio_profile.config"
       ],
       "type": "subworkflow",
-      "meta": {
-        "name": "deepvariant",
-        "description": "DeepVariant is an analysis pipeline that uses a deep neural network to call genetic variants from next-generation DNA sequencing data",
-        "keywords": [
-          "variant calling",
-          "machine learning",
-          "neural network"
-        ],
-        "components": [
-          "deepvariant/makeexamples",
-          "deepvariant/callvariants",
-          "deepvariant/postprocessvariants"
-        ],
-        "input": [
-          {
-            "ch_input": {
-              "type": "list",
-              "description": "Input aligned reads in bam or cram format, with index, and optional intervals BED file\nStructure: [ val(meta), path(bam_or_cram), path(bai_or_crai), path(intervals_bed) ]\n"
-            }
-          },
-          {
-            "ch_fasta": {
-              "type": "file",
-              "description": "Reference genome\nStructure: [ val(meta2), path(fasta) ]\n"
-            }
-          },
-          {
-            "ch_fai": {
-              "type": "string",
-              "description": "Reference genome index in fai format\nStructure: [ val(meta3), path(fai) ]\n"
-            }
-          },
-          {
-            "ch_gzi": {
-              "type": "string",
-              "description": "Reference genome index in gzi format (either gzi or fai should be used)\nStructure: [ val(meta4), val(gzi) ]\n"
-            }
-          },
-          {
-            "ch_par_bed": {
-              "type": "string",
-              "description": "bed file of pseudoautosomal regions (optional)\nStructure: [ val(meta5), val(par_bed) ]\n",
-              "pattern": "*.bed"
-            }
-          }
-        ],
-        "output": [
-          {
-            "vcf": {
-              "type": "file",
-              "description": "Variant calls\nStructure: [ val(meta), path(vcf) ]\n",
-              "pattern": "*.vcf.gz"
-            }
-          },
-          {
-            "vcf_tbi": {
-              "type": "file",
-              "description": "Index for variant call file\nStructure: [ val(meta), path(vcf_tbi) ]\n",
-              "pattern": "*.tbi"
-            }
-          },
-          {
-            "gvcf": {
-              "type": "file",
-              "description": "Variant call file with genomic coverage information\nStructure: [ val(meta), path(gvcf) ]\n",
-              "pattern": "*.g.vcf.gz"
-            }
-          },
-          {
-            "gvcf_tbi": {
-              "type": "file",
-              "description": "Index for the GVCF.\nStructure: [ val(meta), path(gvcf_tbi) ]\n",
-              "pattern": "*.tbi"
-            }
-          },
-          {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions\nStructure: path(versions.yml)\n",
-              "pattern": "versions.yml"
-            }
-          }
-        ],
-        "authors": [
-          "@abhi18av",
-          "@ramprasadn",
-          "@fa2k"
-        ],
-        "maintainers": [
-          "@abhi18av",
-          "@ramprasadn",
-          "@fa2k"
-        ]
-      },
-      "git_sha": "29031bf70ae8117b235400aca32796a433c733f2"
+      "git_sha": "4a4ccce52d5a280b0b136ff3ac841607debed92b"
     },
     {
       "name": "dia_proteomics_analysis",
@@ -420718,6 +420042,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "1f7f3ee45071798ae6ea064c93e878cc94a4fdd6",
-  "updated_at": "2026-08-17T02:34:11.237Z"
+  "commit_sha": "c2244f084072141a61e0571a52a4be98c55f3cc0",
+  "updated_at": "2026-08-17T15:24:26.961Z"
 }
