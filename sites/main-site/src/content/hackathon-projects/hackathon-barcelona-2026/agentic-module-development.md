@@ -23,12 +23,12 @@ The group generates modules, and then trades and reviews them.
 
 **Track A — generation.** Pick an open wishlist issue and hand it to an agent using exactly **one** of four setups:
 
-| Method | Context given to the agent                                                                    |
-| ------ | --------------------------------------------------------------------------------------------- |
-| (i)    | The [`nf-core-module-dev`](https://github.com/vagkaratzas/nf-core-module-dev) plugin only        |
-| (ii)   | The `AGENTS.md` of nf-core/modules only                                                         |
-| (iii)  | Both the plugin and `AGENTS.md`                                                                 |
-| (iv)   | Neither — a bare agent with only the issue text                                                 |
+| Method | Context given to the agent                                                                |
+| ------ | ----------------------------------------------------------------------------------------- |
+| (i)    | The [`nf-core-module-dev`](https://github.com/vagkaratzas/nf-core-module-dev) plugin only |
+| (ii)   | The `AGENTS.md` of nf-core/modules only                                                   |
+| (iii)  | Both the plugin and `AGENTS.md`                                                           |
+| (iv)   | Neither — a bare agent with only the issue text                                           |
 
 The agent is allowed to open the PR itself once it judges the issue is solved.
 **No manual fixes, no "just one quick edit" before submitting** — a nudged PR is a contaminated data point.
