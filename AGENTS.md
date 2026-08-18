@@ -2,7 +2,7 @@
 
 This file provides guidance to AI coding agents (Claude Code and others) when working with code in this repository.
 
-The source for **https://nf-co.re** — the nf-core community website. Built with **Astro** (static site generation), **Svelte** (interactive components) and **Bootstrap** (CSS), managed as **npm workspaces** with **Node 22**.
+The source for **https://nf-co.re** — the nf-core community website. Built with **Astro 6** (static site generation), **Svelte 5** (interactive components) and **Bootstrap 5.3** (CSS), managed as **npm workspaces** with **Node 22**.
 
 ## Architecture
 
