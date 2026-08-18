@@ -1,7 +1,7 @@
 ---
 title: Suporte para Apple container
 category: components
-slack: https://nfcore.slack.com/archives/C09LJTQQ3EY
+slack: ''
 location: UFRN
 leaders:
   mribeirodantas:
