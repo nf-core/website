@@ -4,7 +4,7 @@ category: community
 slack: https://nfcore.slack.com/archives/C0BE3SJB9HV
 location: UFRN
 leaders:
-  Gleison Azevedo:
+  gleisonm:
     name: Gleison Azevedo
     slack: https://nfcore.slack.com/team/U050CAL7Q59
 ---

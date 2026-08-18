@@ -4,7 +4,7 @@ category: pipelines
 slack: https://nfcore.slack.com/archives/C0BE3SJB9HV
 location: UFRN
 leaders:
-  Diego Marques Coelho:
+  diegomscoelho:
     name: Diego Marques Coelho
     slack: https://nfcore.slack.com/team/U05A4TL4YVD
 ---
