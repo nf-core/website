@@ -4,9 +4,9 @@ category: components
 slack: https://nfcore.slack.com/archives/C09LJTQQ3EY
 location: UFRN
 leaders:
-  mribeirodantas:
-    name: Marcel Ribeiro-Dantas
-    slack: https://nfcore.slack.com/team/U03932BSX1V
+  João Vitor Cavalcante:
+    name: João Vitor Cavalcante
+    slack: https://nfcore.slack.com/team/U044E439ABX
 ---
 
 Este projeto de hackathon tem como foco criar
