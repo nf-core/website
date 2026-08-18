@@ -1,7 +1,7 @@
 ---
 title: Workshop de treinamento do Nextflow
 category: community
-slack: ""
+slack: https://nfcore.slack.com/archives/C0BE3SJB9HV
 location: UFRN
 leaders:
   Gleison Azevedo:

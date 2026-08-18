@@ -1,7 +1,7 @@
 ---
 title: NetPerturb
 category: pipelines
-slack: ''
+slack: https://nfcore.slack.com/archives/C0BE3SJB9HV
 location: UFRN
 leaders:
   Diego Marques Coelho:
