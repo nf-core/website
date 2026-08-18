@@ -4,7 +4,7 @@ category: components
 slack: https://nfcore.slack.com/archives/C09LJTQQ3EY
 location: UFRN
 leaders:
-  João Vitor Cavalcante:
+  jvfe:
     name: João Vitor Cavalcante
     slack: https://nfcore.slack.com/team/U044E439ABX
 ---
