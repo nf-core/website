@@ -13664,7 +13664,7 @@
     {
       "name": "arriba_arriba",
       "path": "modules/nf-core/arriba/arriba/meta.yml",
-      "tree_sha": "5bf4d6f7944cbeaf567187bd895ec92414599f9f",
+      "tree_sha": "5630bf7219227e719e3d3b011a70d24f62e0da90",
       "files": [
         "modules/nf-core/arriba/arriba/environment.yml",
         "modules/nf-core/arriba/arriba/main.nf",
@@ -13688,7 +13688,7 @@
             "arriba": {
               "description": "Fast and accurate gene fusion detection from RNA-Seq data",
               "homepage": "https://github.com/suhrig/arriba",
-              "documentation": "https://arriba.readthedocs.io/en/latest/",
+              "documentation": "https://github.com/suhrig/arriba",
               "tool_dev_url": "https://github.com/suhrig/arriba",
               "doi": "10.1101/gr.257246.119",
               "licence": [
@@ -13885,7 +13885,7 @@
           "@rannick"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "rnafusion",
@@ -13896,7 +13896,7 @@
     {
       "name": "arriba_download",
       "path": "modules/nf-core/arriba/download/meta.yml",
-      "tree_sha": "8500587beda623548178b8015fbe3f1c30c0f901",
+      "tree_sha": "ea2e8beb5adc568e4bcd0ad1a21caa8f494967df",
       "files": [
         "modules/nf-core/arriba/download/environment.yml",
         "modules/nf-core/arriba/download/main.nf",
@@ -13918,7 +13918,7 @@
             "arriba": {
               "description": "Fast and accurate gene fusion detection from RNA-Seq data",
               "homepage": "https://github.com/suhrig/arriba",
-              "documentation": "https://arriba.readthedocs.io/en/latest/",
+              "documentation": "https://github.com/suhrig/arriba",
               "tool_dev_url": "https://github.com/suhrig/arriba",
               "doi": "10.1101/gr.257246.119",
               "licence": [
@@ -14035,12 +14035,12 @@
           "@peterpru"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "arriba_visualisation",
       "path": "modules/nf-core/arriba/visualisation/meta.yml",
-      "tree_sha": "74af4208649425fa07ce64066bf848f53826ab1f",
+      "tree_sha": "a77fec9d36128924d43dbc6f40a163efec38ca4b",
       "files": [
         "modules/nf-core/arriba/visualisation/environment.yml",
         "modules/nf-core/arriba/visualisation/main.nf",
@@ -14064,7 +14064,7 @@
             "arriba": {
               "description": "Fast and accurate gene fusion detection from RNA-Seq data",
               "homepage": "https://github.com/suhrig/arriba",
-              "documentation": "https://arriba.readthedocs.io/en/latest/",
+              "documentation": "https://github.com/suhrig/arriba",
               "tool_dev_url": "https://github.com/suhrig/arriba",
               "doi": "10.1101/gr.257246.119",
               "licence": [
@@ -14260,7 +14260,7 @@
           "@rannick"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "rnafusion",
@@ -34975,7 +34975,7 @@
     {
       "name": "bff",
       "path": "modules/nf-core/bff/meta.yml",
-      "tree_sha": "cbb4ca546fb5b2272f23453465e21b74a5525f3e",
+      "tree_sha": "dc0e9593c535bb6ae9d63c9c2c46226c5bcfaf95",
       "files": [
         "modules/nf-core/bff/environment.yml",
         "modules/nf-core/bff/main.nf",
@@ -34998,8 +34998,8 @@
           {
             "bff": {
               "description": "A toolkit for quality control, analysis, and exploration of single cell RNA sequencing data. 'Seurat' aims to enable users to identify and interpret sources of heterogeneity from single cell transcriptomic measurements, and to integrate diverse types of single cell data. See Satija R, Farrell J, Gennert D, et al (2015) <doi:10.1038/nbt.3192>, Macosko E, Basu A, Satija R, et al (2015) <doi:10.1016/j.cell.2015.05.002>, and Butler A and Satija R (2017) <doi:10.1101/164889> for more details.",
-              "homepage": "https://rdrr.io/github/BimberLab/cellhashR/man/GenerateCellHashingCalls.html",
-              "documentation": "https://rdrr.io/github/BimberLab/cellhashR/man/GenerateCellHashingCalls.html",
+              "homepage": "https://github.com/BimberLab/cellhashR",
+              "documentation": "https://github.com/BimberLab/cellhashR",
               "tool_dev_url": "https://github.com/BimberLab/cellhashR",
               "doi": "10.5281/zenodo.6402477",
               "licence": [
@@ -35150,7 +35150,7 @@
           "@LuisHeinzlmeier"
         ]
       },
-      "git_sha": "5549501d6db037a4872d207635ce329878714408"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "bftools_showinf",
@@ -35289,6 +35289,166 @@
           "version": "2.0.0"
         }
       ]
+    },
+    {
+      "name": "bigscape_bigscape",
+      "path": "modules/nf-core/bigscape/bigscape/meta.yml",
+      "tree_sha": "9297c09da78e08187bec576ec8a7be7bd316c15e",
+      "files": [
+        "modules/nf-core/bigscape/bigscape/environment.yml",
+        "modules/nf-core/bigscape/bigscape/main.nf",
+        "modules/nf-core/bigscape/bigscape/meta.yml",
+        "modules/nf-core/bigscape/bigscape/tests/main.nf.test",
+        "modules/nf-core/bigscape/bigscape/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "bigscape_bigscape",
+        "description": "BiG-SCAPE (Biosynthetic Gene Similarity Clustering and Prospecting Engine) clusters\nbiosynthetic gene clusters (BGCs) into gene cluster families (GCFs) based on sequence\nsimilarity networks. It takes antiSMASH-annotated GenBank files and a Pfam database as\ninput, and produces similarity networks and clustering results.\n",
+        "keywords": [
+          "biosynthetic gene clusters",
+          "BGC",
+          "clustering",
+          "similarity network",
+          "antiSMASH",
+          "gene cluster families",
+          "secondary metabolites",
+          "natural products"
+        ],
+        "tools": [
+          {
+            "bigscape": {
+              "description": "Biosynthetic Gene Similarity Clustering and Prospecting Engine for clustering BGCs into gene cluster families using similarity networks",
+              "homepage": "https://github.com/medema-group/BiG-SCAPE",
+              "documentation": "https://bigscape-corason.secondarymetabolites.org/BiG-SCAPE/",
+              "tool_dev_url": "https://github.com/medema-group/BiG-SCAPE",
+              "doi": "10.1038/s41589-019-0400-9",
+              "licence": [
+                "AGPL v3-or-later"
+              ],
+              "identifier": "biotools:BiG-SCAPE"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "gbk_dir": {
+                "type": "directory",
+                "description": "Directory containing antiSMASH-annotated GenBank (.gbk) files representing\nbiosynthetic gene cluster regions. This is typically the output directory from\nan antiSMASH run.\n",
+                "pattern": "*",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "pfam_hmm": {
+              "type": "file",
+              "description": "Path to a Pfam HMM database file (e.g. Pfam-A.hmm or Pfam-A.hmm.gz).\nBiG-SCAPE will run `hmmpress` if needed. Can be obtained from the\nPfam FTP site.\n",
+              "pattern": "*.{hmm,hmm.gz}",
+              "ontologies": []
+            }
+          }
+        ],
+        "output": {
+          "output": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "${prefix}": {
+                  "type": "directory",
+                  "description": "BiG-SCAPE output directory containing similarity network files,\nclustering results, and HTML visualisation content.\n",
+                  "pattern": "${prefix}"
+                }
+              }
+            ]
+          ],
+          "versions_bigscape": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bigscape": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bigscape --version | sed 's/BiG-SCAPE //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bigscape": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bigscape --version | sed 's/BiG-SCAPE //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "containers": {
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/bigscape/bigscape/.conda-lock/linux_amd64-bd-aed310da2cd1ca1d_1.txt"
+            }
+          },
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bigscape:2.0.3--aed310da2cd1ca1d",
+              "build_id": "bd-aed310da2cd1ca1d_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bigscape:2.0.3--aed310da2cd1ca1d",
+              "build_id": "bd-aed310da2cd1ca1d_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/ac/acb20daff43670baa2f5599e97ef0d96f3eeeaaaeb31e7dfa7a23066c908b44a/data"
+            }
+          }
+        },
+        "authors": [
+          "@jvfe"
+        ],
+        "maintainers": [
+          "@jvfe"
+        ]
+      },
+      "git_sha": "f131a66b54a85daf431871eb060d386ec8eb8f03"
     },
     {
       "name": "bigslice",
@@ -38029,7 +38189,7 @@
     {
       "name": "biscuit_biscuitblaster",
       "path": "modules/nf-core/biscuit/biscuitblaster/meta.yml",
-      "tree_sha": "bbcbde3cec0752543b57cdc2abe20b1920062cc2",
+      "tree_sha": "74f7a1c8fe666413f75006315f855dd18ccb4d69",
       "files": [
         "modules/nf-core/biscuit/biscuitblaster/environment.yml",
         "modules/nf-core/biscuit/biscuitblaster/main.nf",
@@ -38055,7 +38215,7 @@
             "biscuit": {
               "description": "A utility for analyzing sodium bisulfite conversion-based DNA methylation/modification data",
               "homepage": "https://huishenlab.github.io/biscuit/",
-              "documentation": "https://huishenlab.github.io/biscuit/biscuitblaster/",
+              "documentation": "https://huishenlab.github.io/biscuit/",
               "tool_dev_url": "https://github.com/huishenlab/biscuit",
               "licence": [
                 "MIT"
@@ -38310,12 +38470,12 @@
           "@sateeshperi"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "biscuit_bsconv",
       "path": "modules/nf-core/biscuit/bsconv/meta.yml",
-      "tree_sha": "78e3f2bc2a4309dd6b75365e76a113a92f97aca0",
+      "tree_sha": "188f81fcba7e7fff47c029e8ada87ddd8dab6629",
       "files": [
         "modules/nf-core/biscuit/bsconv/environment.yml",
         "modules/nf-core/biscuit/bsconv/main.nf",
@@ -38342,7 +38502,7 @@
             "biscuit": {
               "description": "A utility for analyzing sodium bisulfite conversion-based DNA methylation/modification data",
               "homepage": "https://huishenlab.github.io/biscuit/",
-              "documentation": "https://huishenlab.github.io/biscuit/docs/subcommand_help.html#biscuit-bsconv",
+              "documentation": "https://huishenlab.github.io/biscuit/",
               "tool_dev_url": "https://github.com/huishenlab/biscuit",
               "licence": [
                 "MIT"
@@ -38486,12 +38646,12 @@
           "@sateeshperi"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "biscuit_epiread",
       "path": "modules/nf-core/biscuit/epiread/meta.yml",
-      "tree_sha": "c7445d14d5a7650491d719d0486190fb42f48f59",
+      "tree_sha": "612a6e33025380f7ecb2a9392efae1bee38d16c6",
       "files": [
         "modules/nf-core/biscuit/epiread/environment.yml",
         "modules/nf-core/biscuit/epiread/main.nf",
@@ -38517,7 +38677,7 @@
             "biscuit": {
               "description": "A utility for analyzing sodium bisulfite conversion-based DNA methylation/modification data",
               "homepage": "https://huishenlab.github.io/biscuit/",
-              "documentation": "https://huishenlab.github.io/biscuit/epiread_format/",
+              "documentation": "https://huishenlab.github.io/biscuit/",
               "tool_dev_url": "https://github.com/huishenlab/biscuit",
               "licence": [
                 "MIT"
@@ -38718,7 +38878,7 @@
           "@sateeshperi"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "biscuit_index",
@@ -39289,7 +39449,7 @@
     {
       "name": "biscuit_qc",
       "path": "modules/nf-core/biscuit/qc/meta.yml",
-      "tree_sha": "ba6937f30090d3f958953dfaf6f9665ad22eef8e",
+      "tree_sha": "6f62681cbf74a346db334e77c3e2e918fa99496d",
       "files": [
         "modules/nf-core/biscuit/qc/environment.yml",
         "modules/nf-core/biscuit/qc/main.nf",
@@ -39316,7 +39476,7 @@
             "biscuit": {
               "description": "A utility for analyzing sodium bisulfite conversion-based DNA methylation/modification data",
               "homepage": "https://huishenlab.github.io/biscuit/",
-              "documentation": "https://huishenlab.github.io/biscuit/docs/subcommand_help.html#biscuit-qc",
+              "documentation": "https://huishenlab.github.io/biscuit/",
               "tool_dev_url": "https://github.com/huishenlab/biscuit",
               "licence": [
                 "MIT"
@@ -39447,7 +39607,7 @@
           "@sateeshperi"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "biscuit_vcf2bed",
@@ -39625,7 +39785,7 @@
     {
       "name": "bismark_align",
       "path": "modules/nf-core/bismark/align/meta.yml",
-      "tree_sha": "8247834fba5f027438915b49d982d4e9aeac12b9",
+      "tree_sha": "cdb05f6f5d1056ec0eaf47f35bdc00fe464926a3",
       "files": [
         "modules/nf-core/bismark/align/.conda-lock/linux_amd64-bd-9557d6ab108a83e4_1.txt",
         "modules/nf-core/bismark/align/.conda-lock/linux_arm64-bd-f83bc6617fa3cadd_1.txt",
@@ -39656,7 +39816,7 @@
             "bismark": {
               "description": "Bismark is a tool to map bisulfite treated sequencing reads\nand perform methylation calling in a quick and easy-to-use fashion.\n",
               "homepage": "https://github.com/FelixKrueger/Bismark",
-              "documentation": "https://github.com/FelixKrueger/Bismark/tree/master/Docs",
+              "documentation": "https://github.com/FelixKrueger/Bismark/tree/master/docs",
               "doi": "10.1093/bioinformatics/btr167",
               "licence": [
                 "GPL-3.0-or-later"
@@ -39856,7 +40016,7 @@
           }
         }
       },
-      "git_sha": "1976cfb7f315a29658046728e071d9f60f3e1fe9",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "methylseq",
@@ -39867,7 +40027,7 @@
     {
       "name": "bismark_coverage2cytosine",
       "path": "modules/nf-core/bismark/coverage2cytosine/meta.yml",
-      "tree_sha": "7b1650cf82cd7c9d69f42a74eead3ef3f9c7dc28",
+      "tree_sha": "b9ec65f878d3b167115504c340f6ab8309fa84b3",
       "files": [
         "modules/nf-core/bismark/coverage2cytosine/.conda-lock/linux_amd64-bd-9557d6ab108a83e4_1.txt",
         "modules/nf-core/bismark/coverage2cytosine/.conda-lock/linux_arm64-bd-f83bc6617fa3cadd_1.txt",
@@ -39898,7 +40058,7 @@
             "bismark": {
               "description": "Bismark is a tool to map bisulfite treated sequencing reads\nand perform methylation calling in a quick and easy-to-use fashion.\n",
               "homepage": "https://github.com/FelixKrueger/Bismark",
-              "documentation": "https://github.com/FelixKrueger/Bismark/tree/master/Docs",
+              "documentation": "https://github.com/FelixKrueger/Bismark/tree/master/docs",
               "doi": "10.1093/bioinformatics/btr167",
               "licence": [
                 "GPL-3.0-or-later"
@@ -40106,7 +40266,7 @@
           }
         }
       },
-      "git_sha": "7d264419ee98edd5a0886d3782fb87553628272b",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "methylseq",
@@ -40117,7 +40277,7 @@
     {
       "name": "bismark_deduplicate",
       "path": "modules/nf-core/bismark/deduplicate/meta.yml",
-      "tree_sha": "9cab39786ac371398afb4f231bff0f14d3a1010a",
+      "tree_sha": "fedb8c3f2b86634eb8a113e4d8016062278da647",
       "files": [
         "modules/nf-core/bismark/deduplicate/.conda-lock/linux_amd64-bd-9557d6ab108a83e4_1.txt",
         "modules/nf-core/bismark/deduplicate/.conda-lock/linux_arm64-bd-f83bc6617fa3cadd_1.txt",
@@ -40147,7 +40307,7 @@
             "bismark": {
               "description": "Bismark is a tool to map bisulfite treated sequencing reads\nand perform methylation calling in a quick and easy-to-use fashion.\n",
               "homepage": "https://github.com/FelixKrueger/Bismark",
-              "documentation": "https://github.com/FelixKrueger/Bismark/tree/master/Docs",
+              "documentation": "https://github.com/FelixKrueger/Bismark/tree/master/docs",
               "doi": "10.1093/bioinformatics/btr167",
               "licence": [
                 "GPL-3.0-or-later"
@@ -40300,7 +40460,7 @@
           }
         }
       },
-      "git_sha": "7d264419ee98edd5a0886d3782fb87553628272b",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "methylseq",
@@ -40311,7 +40471,7 @@
     {
       "name": "bismark_genomepreparation",
       "path": "modules/nf-core/bismark/genomepreparation/meta.yml",
-      "tree_sha": "76808e28a6355dac55029e33b2bc0d56671873f0",
+      "tree_sha": "9e87bce65511e959450f658b187ef46d1a858606",
       "files": [
         "modules/nf-core/bismark/genomepreparation/.conda-lock/linux_amd64-bd-9557d6ab108a83e4_1.txt",
         "modules/nf-core/bismark/genomepreparation/.conda-lock/linux_arm64-bd-f83bc6617fa3cadd_1.txt",
@@ -40341,7 +40501,7 @@
             "bismark": {
               "description": "Bismark is a tool to map bisulfite treated sequencing reads\nand perform methylation calling in a quick and easy-to-use fashion.\n",
               "homepage": "https://github.com/FelixKrueger/Bismark",
-              "documentation": "https://github.com/FelixKrueger/Bismark/tree/master/Docs",
+              "documentation": "https://github.com/FelixKrueger/Bismark/tree/master/docs",
               "doi": "10.1093/bioinformatics/btr167",
               "licence": [
                 "GPL-3.0-or-later"
@@ -40474,7 +40634,7 @@
           }
         }
       },
-      "git_sha": "7d264419ee98edd5a0886d3782fb87553628272b",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "methylseq",
@@ -40485,7 +40645,7 @@
     {
       "name": "bismark_methylationextractor",
       "path": "modules/nf-core/bismark/methylationextractor/meta.yml",
-      "tree_sha": "2dc908d019ddbd17bde088bfac3870476f090b51",
+      "tree_sha": "a19a6fb928fe019335a7d78f53cb56cc1ce57a04",
       "files": [
         "modules/nf-core/bismark/methylationextractor/.conda-lock/linux_amd64-bd-9557d6ab108a83e4_1.txt",
         "modules/nf-core/bismark/methylationextractor/.conda-lock/linux_arm64-bd-f83bc6617fa3cadd_1.txt",
@@ -40516,7 +40676,7 @@
             "bismark": {
               "description": "Bismark is a tool to map bisulfite treated sequencing reads\nand perform methylation calling in a quick and easy-to-use fashion.\n",
               "homepage": "https://github.com/FelixKrueger/Bismark",
-              "documentation": "https://github.com/FelixKrueger/Bismark/tree/master/Docs",
+              "documentation": "https://github.com/FelixKrueger/Bismark/tree/master/docs",
               "doi": "10.1093/bioinformatics/btr167",
               "licence": [
                 "GPL-3.0-or-later"
@@ -40738,7 +40898,7 @@
           }
         }
       },
-      "git_sha": "7d264419ee98edd5a0886d3782fb87553628272b",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "methylseq",
@@ -40749,7 +40909,7 @@
     {
       "name": "bismark_report",
       "path": "modules/nf-core/bismark/report/meta.yml",
-      "tree_sha": "eaacc4aac932c317b86e05803ea1d989244c8842",
+      "tree_sha": "3a74d2351d4296a015375cee05e23ad82942f916",
       "files": [
         "modules/nf-core/bismark/report/.conda-lock/linux_amd64-bd-9557d6ab108a83e4_1.txt",
         "modules/nf-core/bismark/report/.conda-lock/linux_arm64-bd-f83bc6617fa3cadd_1.txt",
@@ -40778,7 +40938,7 @@
             "bismark": {
               "description": "Bismark is a tool to map bisulfite treated sequencing reads\nand perform methylation calling in a quick and easy-to-use fashion.\n",
               "homepage": "https://github.com/FelixKrueger/Bismark",
-              "documentation": "https://github.com/FelixKrueger/Bismark/tree/master/Docs",
+              "documentation": "https://github.com/FelixKrueger/Bismark/tree/master/docs",
               "doi": "10.1093/bioinformatics/btr167",
               "licence": [
                 "GPL-3.0-or-later"
@@ -40937,7 +41097,7 @@
           }
         }
       },
-      "git_sha": "7d264419ee98edd5a0886d3782fb87553628272b",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "methylseq",
@@ -40948,7 +41108,7 @@
     {
       "name": "bismark_summary",
       "path": "modules/nf-core/bismark/summary/meta.yml",
-      "tree_sha": "bdc7e441615679d858924cc9bd68ef169ca61280",
+      "tree_sha": "31cc3d756a9dbeef834084a20155dc1dff0b4c1d",
       "files": [
         "modules/nf-core/bismark/summary/.conda-lock/linux_amd64-bd-9557d6ab108a83e4_1.txt",
         "modules/nf-core/bismark/summary/.conda-lock/linux_arm64-bd-f83bc6617fa3cadd_1.txt",
@@ -40978,7 +41138,7 @@
             "bismark": {
               "description": "Bismark is a tool to map bisulfite treated sequencing reads\nand perform methylation calling in a quick and easy-to-use fashion.\n",
               "homepage": "https://github.com/FelixKrueger/Bismark",
-              "documentation": "https://github.com/FelixKrueger/Bismark/tree/master/Docs",
+              "documentation": "https://github.com/FelixKrueger/Bismark/tree/master/docs",
               "doi": "10.1093/bioinformatics/btr167",
               "licence": [
                 "GPL-3.0-or-later"
@@ -41128,7 +41288,7 @@
           }
         }
       },
-      "git_sha": "7d264419ee98edd5a0886d3782fb87553628272b",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "methylseq",
@@ -55180,7 +55340,7 @@
     {
       "name": "cellbender_removebackground",
       "path": "modules/nf-core/cellbender/removebackground/meta.yml",
-      "tree_sha": "1debf4db668d48d09d068e75dfa40c6429cc0a91",
+      "tree_sha": "7459c3ccd988307c99395a918f4c3d88e84546ce",
       "files": [
         "modules/nf-core/cellbender/removebackground/environment.yml",
         "modules/nf-core/cellbender/removebackground/main.nf",
@@ -55456,7 +55616,7 @@
           "@nictru"
         ]
       },
-      "git_sha": "ffbf6a031bcef2f2bc6b55009e177c814e2faa01",
+      "git_sha": "416bcdbf15649b918f1c38d3921f3182e97af530",
       "pipelines": [
         {
           "name": "scdownstream",
@@ -83771,7 +83931,7 @@
     {
       "name": "cutesv",
       "path": "modules/nf-core/cutesv/meta.yml",
-      "tree_sha": "2531890765d2cdf61ec434383514a4ec5c2dfa94",
+      "tree_sha": "4360184f8b959ce008211e9b8ba2d2292c2c9815",
       "files": [
         "modules/nf-core/cutesv/environment.yml",
         "modules/nf-core/cutesv/main.nf",
@@ -83918,7 +84078,7 @@
           "@yuukiiwa"
         ]
       },
-      "git_sha": "54a59758f9960c54c2db165b8af26ec898dfd13f",
+      "git_sha": "064bed7b66c2bbf4d0c70bdd5b2e4497a62a6c52",
       "pipelines": [
         {
           "name": "longraredisease",
@@ -85648,7 +85808,7 @@
     {
       "name": "decoupler_decoupler",
       "path": "modules/nf-core/decoupler/decoupler/meta.yml",
-      "tree_sha": "57d5727e2bd2fb4b50f154cc63dc66b8e1ca4e37",
+      "tree_sha": "10958ca71b516d2d5b436fcc25879b70987ae125",
       "files": [
         "modules/nf-core/decoupler/decoupler/environment.yml",
         "modules/nf-core/decoupler/decoupler/main.nf",
@@ -85674,7 +85834,7 @@
             "decoupler": {
               "description": "Ensemble of methods to infer biological activities from omics data",
               "homepage": "https://github.com/saezlab/decoupler-py",
-              "documentation": "https://decoupler-py.readthedocs.io/en/latest/api.html",
+              "documentation": "https://decoupler-py.readthedocs.io/en/latest/",
               "tool_dev_url": "https://decoupler-py.readthedocs.io",
               "doi": "10.1093/bioadv/vbac016",
               "licence": [
@@ -85849,7 +86009,7 @@
           "@Nic-Nic"
         ]
       },
-      "git_sha": "95a5fb210d019a00acef7ce1febde2e448e0508e",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "differentialabundance",
@@ -90297,7 +90457,7 @@
     {
       "name": "deepvariant",
       "path": "modules/nf-core/deepvariant/meta.yml",
-      "tree_sha": "35e17c9ddb75efa6a8a0c333d1078f4560204543",
+      "tree_sha": "2c8b140382385dc90977c72c85b14b3e73b044bc",
       "files": [
         "modules/nf-core/deepvariant/README.md",
         "modules/nf-core/deepvariant/main.nf",
@@ -90531,7 +90691,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "29031bf70ae8117b235400aca32796a433c733f2",
+      "git_sha": "4a4ccce52d5a280b0b136ff3ac841607debed92b",
       "pipelines": [
         {
           "name": "pacvar",
@@ -90546,7 +90706,7 @@
     {
       "name": "deepvariant_callvariants",
       "path": "modules/nf-core/deepvariant/callvariants/meta.yml",
-      "tree_sha": "0e0692bd287d967ec18c7eb711ba5d99d76acc0c",
+      "tree_sha": "cdca3beaee4a4a6eec24bbc5b33a80f6b12ab190",
       "files": [
         "modules/nf-core/deepvariant/callvariants/main.nf",
         "modules/nf-core/deepvariant/callvariants/meta.yml",
@@ -90674,7 +90834,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "29031bf70ae8117b235400aca32796a433c733f2",
+      "git_sha": "4a4ccce52d5a280b0b136ff3ac841607debed92b",
       "pipelines": [
         {
           "name": "pacvar",
@@ -90685,13 +90845,14 @@
     {
       "name": "deepvariant_makeexamples",
       "path": "modules/nf-core/deepvariant/makeexamples/meta.yml",
-      "tree_sha": "095a5e65fab6ce4307d083f35a9624f098aa1e35",
+      "tree_sha": "082e2f441a8c5feba44eb625f302a7747bdc42b9",
       "files": [
         "modules/nf-core/deepvariant/makeexamples/main.nf",
         "modules/nf-core/deepvariant/makeexamples/meta.yml",
         "modules/nf-core/deepvariant/makeexamples/tests/main.nf.test",
         "modules/nf-core/deepvariant/makeexamples/tests/main.nf.test.snap",
-        "modules/nf-core/deepvariant/makeexamples/tests/nextflow.config"
+        "modules/nf-core/deepvariant/makeexamples/tests/nextflow.config",
+        "modules/nf-core/deepvariant/makeexamples/tests/pacbio_profile.config"
       ],
       "type": "module",
       "meta": {
@@ -90813,20 +90974,26 @@
                 "ontologies": []
               }
             }
-          ]
+          ],
+          {
+            "with_phasing": {
+              "type": "boolean",
+              "description": "Whether to generate and capture the phased read inputs for use downstream"
+            }
+          }
         ],
         "output": {
           "examples": [
             [
               {
                 "meta": {
-                  "type": "list",
+                  "type": "map",
                   "description": "Tuple containing sample metadata and examples that can be used for calling\n"
                 }
               },
               {
                 "${prefix}.examples.tfrecord-*-of-*.gz{,.example_info.json}": {
-                  "type": "list",
+                  "type": "file",
                   "description": "Tuple containing sample metadata and examples that can be used for calling\n"
                 }
               }
@@ -90836,13 +91003,13 @@
             [
               {
                 "meta": {
-                  "type": "list",
+                  "type": "map",
                   "description": "Tuple containing sample metadata and examples that can be used for calling\n"
                 }
               },
               {
                 "${prefix}.gvcf.tfrecord-*-of-*.gz": {
-                  "type": "list",
+                  "type": "file",
                   "description": "Tuple containing sample metadata and the GVCF data in tfrecord format\n"
                 }
               }
@@ -90852,14 +91019,30 @@
             [
               {
                 "meta": {
-                  "type": "list",
-                  "description": "Tuple containing sample metadata and examples that can be used for calling\n"
+                  "type": "map",
+                  "description": "Tuple containing sample metadata and small model calls that can be used for calling\n"
                 }
               },
               {
-                "${prefix}_call_variant_outputs.examples.tfrecord-*-of-*.gz": {
-                  "type": "list",
-                  "description": "Optional variant calls from the small model, if enabled, in tfrecord format\n"
+                "${small_model_filename}": {
+                  "type": "file",
+                  "description": "Tuple containing sample metadata and small model calls that can be used for calling\n"
+                }
+              }
+            ]
+          ],
+          "read_phase_inputs": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Tuple containing sample metadata and phased read inputs that can be used for calling\n"
+                }
+              },
+              {
+                "${prefix}-read-phasing_debug-*of-*.tsv": {
+                  "type": "file",
+                  "description": "Tuple containing sample metadata and phased read inputs that can be used for calling\n"
                 }
               }
             ]
@@ -90921,7 +91104,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "29031bf70ae8117b235400aca32796a433c733f2",
+      "git_sha": "4a4ccce52d5a280b0b136ff3ac841607debed92b",
       "pipelines": [
         {
           "name": "pacvar",
@@ -90932,7 +91115,7 @@
     {
       "name": "deepvariant_postprocessvariants",
       "path": "modules/nf-core/deepvariant/postprocessvariants/meta.yml",
-      "tree_sha": "373ea210f267be9de38d99971c755a26152d025a",
+      "tree_sha": "43c4aea49d3d7a85c844ee5811717492a25c1929",
       "files": [
         "modules/nf-core/deepvariant/postprocessvariants/main.nf",
         "modules/nf-core/deepvariant/postprocessvariants/meta.yml",
@@ -91006,6 +91189,14 @@
                     "edam": "http://edamontology.org/format_3989"
                   }
                 ]
+              }
+            },
+            {
+              "phase_inputs": {
+                "type": "file",
+                "description": "Sharded phased read inputs tsv file from DEEPVARIANT_MAKEEXAMPLES\n",
+                "pattern": "*.tsv",
+                "ontologies": []
               }
             },
             {
@@ -91204,7 +91395,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "29031bf70ae8117b235400aca32796a433c733f2",
+      "git_sha": "4a4ccce52d5a280b0b136ff3ac841607debed92b",
       "pipelines": [
         {
           "name": "pacvar",
@@ -102709,7 +102900,7 @@
     {
       "name": "eigenstratdatabasetools_eigenstratsnpcoverage",
       "path": "modules/nf-core/eigenstratdatabasetools/eigenstratsnpcoverage/meta.yml",
-      "tree_sha": "180fabfc5c92f409c30f3eada353c3f4e266e20c",
+      "tree_sha": "83d87386c6e1c18eb3f27af2481f74e255a1172f",
       "files": [
         "modules/nf-core/eigenstratdatabasetools/eigenstratsnpcoverage/environment.yml",
         "modules/nf-core/eigenstratdatabasetools/eigenstratsnpcoverage/main.nf",
@@ -102733,7 +102924,7 @@
           {
             "eigenstratdatabasetools": {
               "description": "A set of tools to compare and manipulate the contents of EingenStrat databases, and to calculate SNP coverage statistics in such databases.",
-              "documentation": "https://github.com/TCLamnidis/EigenStratDatabaseTools/README.md",
+              "documentation": "https://github.com/TCLamnidis/EigenStratDatabaseTools",
               "tool_dev_url": "https://github.com/TCLamnidis/EigenStratDatabaseTools",
               "licence": [
                 "GPL v3"
@@ -102875,7 +103066,7 @@
           "@TCLamnidis"
         ]
       },
-      "git_sha": "e11776e4efbe563d1067c87b812d78cd5ea7ba20"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "eklipse",
@@ -119794,7 +119985,7 @@
     {
       "name": "finaletoolkit_adjustwps",
       "path": "modules/nf-core/finaletoolkit/adjustwps/meta.yml",
-      "tree_sha": "67229fcf82bad29d5502bc62ff68e243503ed8ef",
+      "tree_sha": "5fb9d9d9bb27205ee439c79f0ebc23b1aacc90af",
       "files": [
         "modules/nf-core/finaletoolkit/adjustwps/environment.yml",
         "modules/nf-core/finaletoolkit/adjustwps/main.nf",
@@ -119817,7 +120008,7 @@
             "finaletoolkit": {
               "description": "Extract cfDNA fragmentation features from sequencing data.",
               "homepage": "https://epifluidlab.github.io/FinaleToolkit/",
-              "documentation": "https://epifluidlab.github.io/FinaleToolkit/documentation/index.html",
+              "documentation": "https://epifluidlab.github.io/FinaleToolkit/",
               "tool_dev_url": "https://github.com/epifluidlab/FinaleToolkit",
               "doi": "10.1093/bioadv/vbaf236",
               "licence": [
@@ -119966,12 +120157,12 @@
           "@lbeltrame"
         ]
       },
-      "git_sha": "1804314813687d9ba75f11d099aefb5d3d1812d7"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "finaletoolkit_aggbw",
       "path": "modules/nf-core/finaletoolkit/aggbw/meta.yml",
-      "tree_sha": "e1d3fa57ed2e6763dcd5307c829787a8140db6c3",
+      "tree_sha": "2328767c2c28083199a4b66cb0d0e049386093bd",
       "files": [
         "modules/nf-core/finaletoolkit/aggbw/environment.yml",
         "modules/nf-core/finaletoolkit/aggbw/main.nf",
@@ -119994,7 +120185,7 @@
             "finaletoolkit": {
               "description": "Extract cfDNA fragmentation features from sequencing data.",
               "homepage": "https://epifluidlab.github.io/FinaleToolkit/",
-              "documentation": "https://epifluidlab.github.io/FinaleToolkit/documentation/index.html",
+              "documentation": "https://epifluidlab.github.io/FinaleToolkit/",
               "tool_dev_url": "https://github.com/epifluidlab/FinaleToolkit",
               "doi": "10.1093/bioadv/vbaf236",
               "licence": [
@@ -120123,12 +120314,12 @@
           "@lbeltrame"
         ]
       },
-      "git_sha": "457a7a80c86b03eb0be940bb4ab1e210fbd9dee3"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "finaletoolkit_delfi",
       "path": "modules/nf-core/finaletoolkit/delfi/meta.yml",
-      "tree_sha": "bf098ec9f5ec3176821535fd5dd8c1ce64c097bd",
+      "tree_sha": "10f43bff3409ef13b6e0efcca33ff512d5cc3b21",
       "files": [
         "modules/nf-core/finaletoolkit/delfi/environment.yml",
         "modules/nf-core/finaletoolkit/delfi/main.nf",
@@ -120151,7 +120342,7 @@
             "finaletoolkit": {
               "description": "Extract cfDNA fragmentation features from sequencing data.",
               "homepage": "https://epifluidlab.github.io/FinaleToolkit/",
-              "documentation": "https://epifluidlab.github.io/FinaleToolkit/documentation/index.html",
+              "documentation": "https://epifluidlab.github.io/FinaleToolkit/",
               "tool_dev_url": "https://github.com/epifluidlab/FinaleToolkit",
               "doi": "10.1093/bioadv/vbaf236",
               "licence": [
@@ -120332,12 +120523,12 @@
           "@lbeltrame"
         ]
       },
-      "git_sha": "eefcf6583d262648922e1d69f9856b2e2b06f6c1"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "finaletoolkit_endmotifs",
       "path": "modules/nf-core/finaletoolkit/endmotifs/meta.yml",
-      "tree_sha": "fea209e51c3f7cb0adccaab1a30a19a107d077e4",
+      "tree_sha": "86726b8746f5dd79ea74b083bffb7b57b86acd7e",
       "files": [
         "modules/nf-core/finaletoolkit/endmotifs/environment.yml",
         "modules/nf-core/finaletoolkit/endmotifs/main.nf",
@@ -120359,7 +120550,7 @@
             "finaletoolkit": {
               "description": "Extract cfDNA fragmentation features from sequencing data.",
               "homepage": "https://epifluidlab.github.io/FinaleToolkit/",
-              "documentation": "https://epifluidlab.github.io/FinaleToolkit/documentation/index.html",
+              "documentation": "https://epifluidlab.github.io/FinaleToolkit/",
               "tool_dev_url": "https://github.com/epifluidlab/FinaleToolkit",
               "doi": "10.1093/bioadv/vbaf236",
               "licence": [
@@ -120503,12 +120694,12 @@
           "@lbeltrame"
         ]
       },
-      "git_sha": "f59052690fc9e6aab007191851bd4e7da67d74a6"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "finaletoolkit_fraglengthbins",
       "path": "modules/nf-core/finaletoolkit/fraglengthbins/meta.yml",
-      "tree_sha": "aa0cabb6d304693217f1992f780d5b66862b2538",
+      "tree_sha": "1cf12d633a33d654ff527b262834184e7502be70",
       "files": [
         "modules/nf-core/finaletoolkit/fraglengthbins/environment.yml",
         "modules/nf-core/finaletoolkit/fraglengthbins/main.nf",
@@ -120530,7 +120721,7 @@
             "finaletoolkit": {
               "description": "Extract cfDNA fragmentation features from sequencing data.",
               "homepage": "https://epifluidlab.github.io/FinaleToolkit/",
-              "documentation": "https://epifluidlab.github.io/FinaleToolkit/documentation/index.html",
+              "documentation": "https://epifluidlab.github.io/FinaleToolkit/",
               "tool_dev_url": "https://github.com/epifluidlab/FinaleToolkit",
               "doi": "10.1093/bioadv/vbaf236",
               "licence": [
@@ -120673,12 +120864,12 @@
           "@lbeltrame"
         ]
       },
-      "git_sha": "3192806b0dc66df8d62956fcf2e2ca63c5dd296f"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "finaletoolkit_mds",
       "path": "modules/nf-core/finaletoolkit/mds/meta.yml",
-      "tree_sha": "29659cea8e422ef282f25de2bed1c02176aed0d1",
+      "tree_sha": "628ce1db18fbdf4f7d7fee3359f7c58eb85e0b84",
       "files": [
         "modules/nf-core/finaletoolkit/mds/environment.yml",
         "modules/nf-core/finaletoolkit/mds/main.nf",
@@ -120700,7 +120891,7 @@
             "finaletoolkit": {
               "description": "Extract cfDNA fragmentation features from sequencing data.",
               "homepage": "https://epifluidlab.github.io/FinaleToolkit/",
-              "documentation": "https://epifluidlab.github.io/FinaleToolkit/documentation/index.html",
+              "documentation": "https://epifluidlab.github.io/FinaleToolkit/",
               "tool_dev_url": "https://github.com/epifluidlab/FinaleToolkit",
               "doi": "10.1093/bioadv/vbaf236",
               "licence": [
@@ -120809,12 +121000,12 @@
           "@lbeltrame"
         ]
       },
-      "git_sha": "ce1d07dfca1c82aa1b236d67cb299103466390c9"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "finaletoolkit_wps",
       "path": "modules/nf-core/finaletoolkit/wps/meta.yml",
-      "tree_sha": "6cb9013a4469cb7ea69e13647a4d94306d8a8043",
+      "tree_sha": "a5a0209a1bdc8cdf5d5c90bea0d6f21613f2a719",
       "files": [
         "modules/nf-core/finaletoolkit/wps/environment.yml",
         "modules/nf-core/finaletoolkit/wps/main.nf",
@@ -120837,7 +121028,7 @@
             "finaletoolkit": {
               "description": "Extract cfDNA fragmentation features from sequencing data.",
               "homepage": "https://epifluidlab.github.io/FinaleToolkit/",
-              "documentation": "https://epifluidlab.github.io/FinaleToolkit/documentation/index.html",
+              "documentation": "https://epifluidlab.github.io/FinaleToolkit/",
               "tool_dev_url": "https://github.com/epifluidlab/FinaleToolkit",
               "doi": "10.1093/bioadv/vbaf236",
               "licence": [
@@ -120998,7 +121189,7 @@
           "@lbeltrame"
         ]
       },
-      "git_sha": "a8fd998893007801bad3b0abcb352545557502e9"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "find_concatenate",
@@ -126543,7 +126734,7 @@
     {
       "name": "fusionreport_detect",
       "path": "modules/nf-core/fusionreport/detect/meta.yml",
-      "tree_sha": "7712312555442437f4a346f8d01247072dd78233",
+      "tree_sha": "bf4e12d6976c9df26593dd8f41129a0e571c6256",
       "files": [
         "modules/nf-core/fusionreport/detect/environment.yml",
         "modules/nf-core/fusionreport/detect/main.nf",
@@ -126567,7 +126758,7 @@
             "fusionreport": {
               "description": "Tool for parsing outputs from fusion detection tools",
               "homepage": "https://github.com/Clinical-Genomics/fusion-report",
-              "documentation": "https://matq007.github.io/fusion-report/#/",
+              "documentation": "https://github.com/Clinical-Genomics/fusion-report",
               "doi": "10.1101/011650",
               "licence": [
                 "GPL v3"
@@ -126828,7 +127019,7 @@
           "@rannick"
         ]
       },
-      "git_sha": "969d923eeb55fc9e82f5907a7dcfa23152cc6e84",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "rnafusion",
@@ -151895,7 +152086,7 @@
     {
       "name": "gens_preparecovandbaf",
       "path": "modules/nf-core/gens/preparecovandbaf/meta.yml",
-      "tree_sha": "c5e37b6bb735a876ed4a920c1dbf95f4963469dd",
+      "tree_sha": "198d6d79ea1df3d057d2108a1ce823af7451b278",
       "files": [
         "modules/nf-core/gens/preparecovandbaf/environment.yml",
         "modules/nf-core/gens/preparecovandbaf/main.nf",
@@ -151920,7 +152111,7 @@
             "gens": {
               "description": "Scripts for preparing input data to Gens",
               "homepage": "https://github.com/SMD-Bioinformatics-Lund/Prepare-Gens-input-data",
-              "documentation": "https://github.com/SMD-Bioinformatics-Lund/Prepare-Gens-input-data/README.md",
+              "documentation": "https://github.com/SMD-Bioinformatics-Lund/Prepare-Gens-input-data",
               "tool_dev_url": "https://github.com/SMD-Bioinformatics-Lund/Prepare-Gens-input-data",
               "licence": [
                 "MIT"
@@ -152102,7 +152293,7 @@
           "@jakob37"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "raredisease",
@@ -154041,7 +154232,7 @@
     {
       "name": "glimpse2_chunk",
       "path": "modules/nf-core/glimpse2/chunk/meta.yml",
-      "tree_sha": "b390b0b85cfc8045dd7e8eb846df8769aadce6be",
+      "tree_sha": "1eb656bdb7cce6dee71e826919bc9c172a2daf61",
       "files": [
         "modules/nf-core/glimpse2/chunk/environment.yml",
         "modules/nf-core/glimpse2/chunk/main.nf",
@@ -154065,7 +154256,7 @@
             "glimpse2": {
               "description": "GLIMPSE2 is a phasing and imputation method for large-scale low-coverage sequencing studies.",
               "homepage": "https://odelaneau.github.io/GLIMPSE",
-              "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
+              "documentation": "https://odelaneau.github.io/GLIMPSE/",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
               "licence": [
@@ -154198,7 +154389,7 @@
           "AVX2"
         ]
       },
-      "git_sha": "23445414e844130ca9e9dec93cc8797e36157c05",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "phaseimpute",
@@ -154209,7 +154400,7 @@
     {
       "name": "glimpse2_concordance",
       "path": "modules/nf-core/glimpse2/concordance/meta.yml",
-      "tree_sha": "03840bc52ff913284673ef9734ca59dd11c5599b",
+      "tree_sha": "c35e95aa67e9c550b1da7c3f6a7da6da918ff51c",
       "files": [
         "modules/nf-core/glimpse2/concordance/environment.yml",
         "modules/nf-core/glimpse2/concordance/main.nf",
@@ -154233,7 +154424,7 @@
             "glimpse2": {
               "description": "GLIMPSE2 is a phasing and imputation method for large-scale low-coverage sequencing studies.",
               "homepage": "https://odelaneau.github.io/GLIMPSE",
-              "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
+              "documentation": "https://odelaneau.github.io/GLIMPSE/",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
               "licence": [
@@ -154556,7 +154747,7 @@
           "@louislenezet"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "phaseimpute",
@@ -154567,7 +154758,7 @@
     {
       "name": "glimpse2_ligate",
       "path": "modules/nf-core/glimpse2/ligate/meta.yml",
-      "tree_sha": "23117044f1f70abd6d7460b43e1b2eb93f936ba0",
+      "tree_sha": "2c0aae32cc7d6ef7359c78c3b7c95d661bbb394a",
       "files": [
         "modules/nf-core/glimpse2/ligate/environment.yml",
         "modules/nf-core/glimpse2/ligate/main.nf",
@@ -154590,7 +154781,7 @@
             "glimpse2": {
               "description": "GLIMPSE2 is a phasing and imputation method for large-scale low-coverage sequencing studies.",
               "homepage": "https://odelaneau.github.io/GLIMPSE",
-              "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
+              "documentation": "https://odelaneau.github.io/GLIMPSE/",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
               "licence": [
@@ -154699,7 +154890,7 @@
           "@louislenezet"
         ]
       },
-      "git_sha": "feef37435aea56816adf4b3bde1fc76aac327a8d",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "phaseimpute",
@@ -154710,7 +154901,7 @@
     {
       "name": "glimpse2_phase",
       "path": "modules/nf-core/glimpse2/phase/meta.yml",
-      "tree_sha": "59d1c2aecb0d9516a39c64dcfbe195bcd09cb6d3",
+      "tree_sha": "fec881c205d8b8da890c62c1f4feed9ad003bf55",
       "files": [
         "modules/nf-core/glimpse2/phase/environment.yml",
         "modules/nf-core/glimpse2/phase/main.nf",
@@ -154734,7 +154925,7 @@
             "glimpse2": {
               "description": "GLIMPSE2 is a phasing and imputation method for large-scale low-coverage sequencing studies.",
               "homepage": "https://odelaneau.github.io/GLIMPSE",
-              "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
+              "documentation": "https://odelaneau.github.io/GLIMPSE/",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
               "licence": [
@@ -154958,7 +155149,7 @@
           "@LouisLeNezet"
         ]
       },
-      "git_sha": "4ddd2d28518c7475bc76f0dd0e0451dd0e19df2a",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "phaseimpute",
@@ -154969,7 +155160,7 @@
     {
       "name": "glimpse2_splitreference",
       "path": "modules/nf-core/glimpse2/splitreference/meta.yml",
-      "tree_sha": "4cf050e19c8a03fd93d1b6ab128f18e93775a703",
+      "tree_sha": "f7438653c789729a0a782781c32bb5d86e2d6d2e",
       "files": [
         "modules/nf-core/glimpse2/splitreference/environment.yml",
         "modules/nf-core/glimpse2/splitreference/main.nf",
@@ -154993,7 +155184,7 @@
             "glimpse2": {
               "description": "GLIMPSE2 is a phasing and imputation method for large-scale low-coverage sequencing studies.",
               "homepage": "https://odelaneau.github.io/GLIMPSE",
-              "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
+              "documentation": "https://odelaneau.github.io/GLIMPSE/",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
               "licence": [
@@ -155127,12 +155318,12 @@
           "AVX2"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "glimpse_chunk",
       "path": "modules/nf-core/glimpse/chunk/meta.yml",
-      "tree_sha": "25cbfba8bedb4436c6b1297f4c8db6bdda91e0fa",
+      "tree_sha": "dca19ba600e9aa35a74edd38e3c1d9367b8ef9b0",
       "files": [
         "modules/nf-core/glimpse/chunk/environment.yml",
         "modules/nf-core/glimpse/chunk/main.nf",
@@ -155155,7 +155346,7 @@
             "glimpse": {
               "description": "GLIMPSE is a phasing and imputation method for large-scale low-coverage sequencing studies.",
               "homepage": "https://odelaneau.github.io/GLIMPSE",
-              "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
+              "documentation": "https://odelaneau.github.io/GLIMPSE/",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
               "licence": [
@@ -155269,7 +155460,7 @@
           "@louislenezet"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "phaseimpute",
@@ -155280,7 +155471,7 @@
     {
       "name": "glimpse_concordance",
       "path": "modules/nf-core/glimpse/concordance/meta.yml",
-      "tree_sha": "676a3f8dd079e2c6dc4d45adbd808022ad18ed51",
+      "tree_sha": "7764b075f20e6322e34439f718da6752b524aca9",
       "files": [
         "modules/nf-core/glimpse/concordance/environment.yml",
         "modules/nf-core/glimpse/concordance/main.nf",
@@ -155304,7 +155495,7 @@
             "glimpse": {
               "description": "GLIMPSE is a phasing and imputation method for large-scale low-coverage sequencing studies.",
               "homepage": "https://odelaneau.github.io/GLIMPSE",
-              "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
+              "documentation": "https://odelaneau.github.io/GLIMPSE/",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
               "licence": [
@@ -155559,12 +155750,12 @@
           "@louislenezet"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "glimpse_ligate",
       "path": "modules/nf-core/glimpse/ligate/meta.yml",
-      "tree_sha": "d4711d504eacf6ca59122ed8b18be0eea02bb038",
+      "tree_sha": "20862ecdd2989564aa1b2e2cb8ea34966727f0f4",
       "files": [
         "modules/nf-core/glimpse/ligate/environment.yml",
         "modules/nf-core/glimpse/ligate/main.nf",
@@ -155587,7 +155778,7 @@
             "glimpse": {
               "description": "GLIMPSE is a phasing and imputation method for large-scale low-coverage sequencing studies.",
               "homepage": "https://odelaneau.github.io/GLIMPSE",
-              "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
+              "documentation": "https://odelaneau.github.io/GLIMPSE/",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
               "licence": [
@@ -155696,7 +155887,7 @@
           "@louislenezet"
         ]
       },
-      "git_sha": "feef37435aea56816adf4b3bde1fc76aac327a8d",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "phaseimpute",
@@ -155707,7 +155898,7 @@
     {
       "name": "glimpse_phase",
       "path": "modules/nf-core/glimpse/phase/meta.yml",
-      "tree_sha": "433883e72e37cd50b2f934ddb45306036ae8d2e8",
+      "tree_sha": "9f6e24002bf8669a254365c2da10d306bd323703",
       "files": [
         "modules/nf-core/glimpse/phase/environment.yml",
         "modules/nf-core/glimpse/phase/main.nf",
@@ -155730,7 +155921,7 @@
             "glimpse": {
               "description": "GLIMPSE is a phasing and imputation method for large-scale low-coverage sequencing studies.",
               "homepage": "https://odelaneau.github.io/GLIMPSE",
-              "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
+              "documentation": "https://odelaneau.github.io/GLIMPSE/",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
               "licence": [
@@ -155889,7 +156080,7 @@
           "@louislenezet"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "phaseimpute",
@@ -155900,7 +156091,7 @@
     {
       "name": "glimpse_sample",
       "path": "modules/nf-core/glimpse/sample/meta.yml",
-      "tree_sha": "300edf2659d221fde265cc9e4514a00310ccba98",
+      "tree_sha": "4c68e4a2640fc90d9b8f81e58a8bebe1182c78e1",
       "files": [
         "modules/nf-core/glimpse/sample/environment.yml",
         "modules/nf-core/glimpse/sample/main.nf",
@@ -155923,7 +156114,7 @@
             "glimpse": {
               "description": "GLIMPSE is a phasing and imputation method for large-scale low-coverage sequencing studies.",
               "homepage": "https://odelaneau.github.io/GLIMPSE",
-              "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
+              "documentation": "https://odelaneau.github.io/GLIMPSE/",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
               "licence": [
@@ -156032,7 +156223,7 @@
           "@louislenezet"
         ]
       },
-      "git_sha": "feef37435aea56816adf4b3bde1fc76aac327a8d"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "glnexus",
@@ -162967,7 +163158,7 @@
     {
       "name": "gubbins",
       "path": "modules/nf-core/gubbins/meta.yml",
-      "tree_sha": "f29f370975ff536bfded335042b715b5b8a714fa",
+      "tree_sha": "c4bb55d7f3c67065f90b2410ac38aec17f5397de",
       "files": [
         "modules/nf-core/gubbins/environment.yml",
         "modules/nf-core/gubbins/main.nf",
@@ -162988,8 +163179,8 @@
           {
             "gubbins": {
               "description": "Rapid phylogenetic analysis of large samples of recombinant bacterial whole genome sequences using Gubbins.",
-              "homepage": "https://sanger-pathogens.github.io/gubbins/",
-              "documentation": "https://sanger-pathogens.github.io/gubbins/",
+              "homepage": "https://nickjcroucher.github.io/gubbins/",
+              "documentation": "https://nickjcroucher.github.io/gubbins/",
               "identifier": "biotools:gubbins"
             }
           }
@@ -163156,7 +163347,7 @@
           "GPL-2.0-only"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "gunc_downloaddb",
@@ -167131,7 +167322,7 @@
     {
       "name": "hasheddrops",
       "path": "modules/nf-core/hasheddrops/meta.yml",
-      "tree_sha": "127762191c519556a66d7d9bf6908095996b8377",
+      "tree_sha": "bade5a61f7ef087760a1bf7699f29dc768326390",
       "files": [
         "modules/nf-core/hasheddrops/environment.yml",
         "modules/nf-core/hasheddrops/main.nf",
@@ -167153,8 +167344,8 @@
           {
             "hasheddrops": {
               "description": "Demultiplex cell barcodes into their samples of origin based on the most abundant hash tag oligo (HTO). Also identify potential doublets based on the presence of multiple significant HTOs.",
-              "homepage": "https://rdrr.io/github/MarioniLab/DropletUtils/man/hashedDrops.html",
-              "documentation": "https://rdrr.io/github/MarioniLab/DropletUtils/man/hashedDrops.html",
+              "homepage": "https://github.com/MarioniLab/DropletUtils",
+              "documentation": "https://github.com/MarioniLab/DropletUtils",
               "tool_dev_url": "https://github.com/MarioniLab/DropletUtils",
               "doi": "10.18129/B9.bioc.DropletUtils",
               "licence": [
@@ -167401,7 +167592,7 @@
           "@LuisHeinzlmeier"
         ]
       },
-      "git_sha": "8e89b068261ea1a0c941c3b89543c7e27e0f7451"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "helitronscanner_draw",
@@ -169709,7 +169900,7 @@
     {
       "name": "hifitrimmer_processblast",
       "path": "modules/nf-core/hifitrimmer/processblast/meta.yml",
-      "tree_sha": "a42d8a860eedac3df3ad92b01b669ebf23e2a6e2",
+      "tree_sha": "88c527ad18fa80ba50be56bc2c156afb12c8aa82",
       "files": [
         "modules/nf-core/hifitrimmer/processblast/environment.yml",
         "modules/nf-core/hifitrimmer/processblast/main.nf",
@@ -169898,12 +170089,12 @@
           "@sainsachiko"
         ]
       },
-      "git_sha": "8a90603f7591995c51e6eb6bac31d4694aa3ee83"
+      "git_sha": "9ecb0724f4cf9c3bfabef1ace14ff336a65fc6b6"
     },
     {
       "name": "hifitrimmer_trim",
       "path": "modules/nf-core/hifitrimmer/trim/meta.yml",
-      "tree_sha": "d79b7d2e39a9d1750c4e43d2c40dfaa2bc54b4a2",
+      "tree_sha": "7344b8b0ac8658225383fc864e6887e417ac3380",
       "files": [
         "modules/nf-core/hifitrimmer/trim/environment.yml",
         "modules/nf-core/hifitrimmer/trim/main.nf",
@@ -169915,11 +170106,12 @@
       "type": "module",
       "meta": {
         "name": "hifitrimmer_trim",
-        "description": "Run hifi-trimmer trim to filter and trim adapter-hit regions from PacBio HiFi reads.\nSupports BAM/CRAM/FASTA/FASTQ input and emits SAM/BAM/CRAM according to the selected output format.\n",
+        "description": "Run hifi-trimmer trim to filter and trim adapter-hit regions from PacBio HiFi reads.\nSupports BAM/CRAM/FASTA/FASTQ input and emits gzip-compressed FASTA (default) or FASTQ, or SAM, BAM, or CRAM according to the selected output format.\n",
         "keywords": [
           "pacbio",
           "bam",
           "fasta",
+          "fastq",
           "hifi_trimmer",
           "filtering",
           "trimming",
@@ -169975,6 +170167,50 @@
           ]
         ],
         "output": {
+          "fasta": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.fasta.gz": {
+                  "type": "file",
+                  "description": "Gzip-compressed FASTA output from hifi-trimmer (default format)",
+                  "pattern": "*.fasta.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "fastq": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.fastq.gz": {
+                  "type": "file",
+                  "description": "Gzip-compressed FASTQ output from hifi-trimmer when `-f fastq` is selected",
+                  "pattern": "*.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "sam": [
             [
               {
@@ -170137,7 +170373,7 @@
           "@sainsachiko"
         ]
       },
-      "git_sha": "8a90603f7591995c51e6eb6bac31d4694aa3ee83"
+      "git_sha": "9ecb0724f4cf9c3bfabef1ace14ff336a65fc6b6"
     },
     {
       "name": "hiphase",
@@ -182434,7 +182670,7 @@
     {
       "name": "imc2mc",
       "path": "modules/nf-core/imc2mc/meta.yml",
-      "tree_sha": "b0f81b1ec869ecd8fae05e914b1aa018e6210309",
+      "tree_sha": "542b9816bfb13f8315aa67a2f1fb1884fea41cc3",
       "files": [
         "modules/nf-core/imc2mc/environment.yml",
         "modules/nf-core/imc2mc/main.nf",
@@ -182458,7 +182694,7 @@
             "imc2mc": {
               "description": "Formatting Imaging Mass Cytrometry (IMC) output files to be compatible with the MCMICRO pipeline.",
               "homepage": "https://github.com/SchapiroLabor/imc2mc",
-              "documentation": "https://github.com/SchapiroLabor/imc2mc/README.md",
+              "documentation": "https://github.com/SchapiroLabor/imc2mc",
               "tool_dev_url": "https://github.com/SchapiroLabor/imc2mc",
               "licence": [
                 "GPL-3.0 license"
@@ -182567,7 +182803,7 @@
           "@MargotCh"
         ]
       },
-      "git_sha": "071ee60843626bb63a44d54e1fac5ea4eb419af2"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "immunedeconv",
@@ -189747,7 +189983,7 @@
     {
       "name": "kalign_align",
       "path": "modules/nf-core/kalign/align/meta.yml",
-      "tree_sha": "8e0e845977604099df94d917621bc271112a4c52",
+      "tree_sha": "8c3333a09dc47ae3669678ff74ca1b8ca37226cf",
       "files": [
         "modules/nf-core/kalign/align/environment.yml",
         "modules/nf-core/kalign/align/main.nf",
@@ -189768,7 +190004,7 @@
           {
             "kalign": {
               "description": "Kalign is a fast and accurate multiple sequence alignment algorithm.",
-              "homepage": "https://msa.sbc.su.se/cgi-bin/msa.cgi",
+              "homepage": "https://msa.sbc.su.se/",
               "documentation": "https://github.com/TimoLassmann/kalign",
               "tool_dev_url": "https://github.com/TimoLassmann/kalign",
               "doi": "10.1093/bioinformatics/btz795",
@@ -189937,7 +190173,7 @@
           "@JoseEspinosa"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "multiplesequencealign",
@@ -195383,7 +195619,7 @@
     {
       "name": "krona_ktimportkrona",
       "path": "modules/nf-core/krona/ktimportkrona/meta.yml",
-      "tree_sha": "ea7be47cc70822bdc7b479e8e16738f929a8942c",
+      "tree_sha": "698e13142abcf1ba653c01459cf6e3b0f84b1bec",
       "files": [
         "modules/nf-core/krona/ktimportkrona/environment.yml",
         "modules/nf-core/krona/ktimportkrona/main.nf",
@@ -195408,7 +195644,7 @@
             "krona": {
               "description": "Krona Tools is a set of scripts to create Krona charts from several Bioinformatics tools as well as from text and XML files.",
               "homepage": "https://github.com/marbl/Krona/wiki/KronaTools",
-              "documentation": "http://manpages.ubuntu.com/manpages/impish/man1/ktImportTaxonomy.1.html",
+              "documentation": "https://manpages.ubuntu.com/manpages/noble/man1/ktImportTaxonomy.1.html",
               "doi": "10.1186/1471-2105-12-385",
               "publication": {
                 "author": "Ondov B.D., Bergman N.H. & Phillippy A.M.",
@@ -195497,12 +195733,12 @@
           "@paulwolk"
         ]
       },
-      "git_sha": "10d22ca9b72ecea28167f289df13a81ceb12d085"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "krona_ktimporttaxonomy",
       "path": "modules/nf-core/krona/ktimporttaxonomy/meta.yml",
-      "tree_sha": "de313afb5ee5829004a62cd439f4203fd17934c6",
+      "tree_sha": "fa669d61b38ef2ee0e660fd255f77b7e391fdf69",
       "files": [
         "modules/nf-core/krona/ktimporttaxonomy/environment.yml",
         "modules/nf-core/krona/ktimporttaxonomy/main.nf",
@@ -195527,7 +195763,7 @@
             "krona": {
               "description": "Krona Tools is a set of scripts to create Krona charts from several Bioinformatics tools as well as from text and XML files.",
               "homepage": "https://github.com/marbl/Krona/wiki/KronaTools",
-              "documentation": "http://manpages.ubuntu.com/manpages/impish/man1/ktImportTaxonomy.1.html",
+              "documentation": "https://manpages.ubuntu.com/manpages/noble/man1/ktImportTaxonomy.1.html",
               "doi": "10.1186/1471-2105-12-385",
               "publication": {
                 "author": "Ondov B.D., Bergman N.H. & Phillippy A.M.",
@@ -195647,7 +195883,7 @@
           "@mjakobs"
         ]
       },
-      "git_sha": "10d22ca9b72ecea28167f289df13a81ceb12d085",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "hgtseq",
@@ -195666,7 +195902,7 @@
     {
       "name": "krona_ktimporttext",
       "path": "modules/nf-core/krona/ktimporttext/meta.yml",
-      "tree_sha": "d6c22802be7404b1aa3cd77a3577e52a6b6534c6",
+      "tree_sha": "3a497080c06ced791d5d58b3ec93a8b61ca20836",
       "files": [
         "modules/nf-core/krona/ktimporttext/environment.yml",
         "modules/nf-core/krona/ktimporttext/main.nf",
@@ -195692,7 +195928,7 @@
             "krona": {
               "description": "Krona Tools is a set of scripts to create Krona charts from several Bioinformatics tools as well as from text and XML files.",
               "homepage": "https://github.com/marbl/Krona/wiki/KronaTools",
-              "documentation": "http://manpages.ubuntu.com/manpages/impish/man1/ktImportTaxonomy.1.html",
+              "documentation": "https://manpages.ubuntu.com/manpages/noble/man1/ktImportTaxonomy.1.html",
               "tool_dev_url": "https://github.com/marbl/Krona",
               "doi": "10.1186/1471-2105-12-385",
               "publication": {
@@ -195799,7 +196035,7 @@
           "@jianhong"
         ]
       },
-      "git_sha": "10d22ca9b72ecea28167f289df13a81ceb12d085",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "taxprofiler",
@@ -210400,7 +210636,7 @@
     {
       "name": "maxquant_lfq",
       "path": "modules/nf-core/maxquant/lfq/meta.yml",
-      "tree_sha": "5b5c1ca95c67f94e88486ec381ad65344b8111c9",
+      "tree_sha": "ccec50932c66dec9acb8302e5c1a15bf90f23f95",
       "files": [
         "modules/nf-core/maxquant/lfq/environment.yml",
         "modules/nf-core/maxquant/lfq/main.nf",
@@ -210422,7 +210658,7 @@
             "maxquant": {
               "description": "MaxQuant is a quantitative proteomics software package designed for analyzing large mass-spectrometric data sets. License restricted.",
               "homepage": "https://www.maxquant.org/",
-              "documentation": "http://coxdocs.org/doku.php?id=maxquant:start",
+              "documentation": "https://www.maxquant.org/",
               "licence": [
                 "http://www.coxdocs.org/lib/exe/fetch.php?media=license_agreement.pdf"
               ],
@@ -210536,7 +210772,7 @@
           "@veitveit"
         ]
       },
-      "git_sha": "2e704944c60ca2d6adc8d800e3905bdd13d3118b"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "mcquant",
@@ -210879,7 +211115,7 @@
     {
       "name": "mcstaging_imc2mc",
       "path": "modules/nf-core/mcstaging/imc2mc/meta.yml",
-      "tree_sha": "a2587d4a3902aa56913b180ef7d03d23fe74d2d9",
+      "tree_sha": "f16bac4cd7cf3db94032c1b56a6257033db84982",
       "files": [
         "modules/nf-core/mcstaging/imc2mc/main.nf",
         "modules/nf-core/mcstaging/imc2mc/meta.yml",
@@ -210903,7 +211139,7 @@
             "mcstaging": {
               "description": "Staging modules for MCMICRO",
               "homepage": "https://github.com/SchapiroLabor/imc2mc",
-              "documentation": "https://github.com/SchapiroLabor/imc2mc/README.md",
+              "documentation": "https://github.com/SchapiroLabor/imc2mc",
               "tool_dev_url": "https://github.com/SchapiroLabor/imc2mc",
               "licence": [
                 "GPL-3.0 license"
@@ -210971,12 +211207,12 @@
           "@MargotCh"
         ]
       },
-      "git_sha": "eac429d4c67ac5114ce7d4287d460d8f05fd9fab"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "mcstaging_macsima2mc",
       "path": "modules/nf-core/mcstaging/macsima2mc/meta.yml",
-      "tree_sha": "c0a1e1634c4b45fcdbcec90239949ac52296bbd9",
+      "tree_sha": "e30477524f1647e920ad2eb79f028cae17360e54",
       "files": [
         "modules/nf-core/mcstaging/macsima2mc/main.nf",
         "modules/nf-core/mcstaging/macsima2mc/meta.yml",
@@ -211000,7 +211236,7 @@
             "macsima2mc": {
               "description": "Staging module for MCMICRO",
               "homepage": "https://github.com/SchapiroLabor/macsima2mc",
-              "documentation": "https://github.com/SchapiroLabor/macsima2mc/README.md",
+              "documentation": "https://github.com/SchapiroLabor/macsima2mc",
               "tool_dev_url": "https://github.com/SchapiroLabor/macsima2mc",
               "licence": [
                 "BSD-3-Clause"
@@ -211105,12 +211341,12 @@
           "@VictorDidier"
         ]
       },
-      "git_sha": "28cb5cea6e699f66696addea78c9d09e5276c6ca"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "mcstaging_phenoimager2mc",
       "path": "modules/nf-core/mcstaging/phenoimager2mc/meta.yml",
-      "tree_sha": "d959a5daac6d625a7e4588b7d011b949a9b30e15",
+      "tree_sha": "8901fff209d3b145dc669dfd878b0301ab9b5abc",
       "files": [
         "modules/nf-core/mcstaging/phenoimager2mc/main.nf",
         "modules/nf-core/mcstaging/phenoimager2mc/meta.yml",
@@ -211135,7 +211371,7 @@
             "mcstaging": {
               "description": "Staging modules for MCMICRO",
               "homepage": "https://github.com/SchapiroLabor/phenoimager2mc",
-              "documentation": "https://github.com/SchapiroLabor/phenoimager2mc/README.md",
+              "documentation": "https://github.com/SchapiroLabor/phenoimager2mc",
               "tool_dev_url": "https://github.com/SchapiroLabor/phenoimager2mc",
               "licence": [
                 "GPL-2.0 license"
@@ -211237,7 +211473,7 @@
           "@chiarasch"
         ]
       },
-      "git_sha": "eac429d4c67ac5114ce7d4287d460d8f05fd9fab"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "md5sum",
@@ -211523,7 +211759,7 @@
     {
       "name": "medaka",
       "path": "modules/nf-core/medaka/meta.yml",
-      "tree_sha": "a8b3cf98897e93fee7ba530bd2fb35b0caa71e3a",
+      "tree_sha": "548ec3753a2fb5cde9d822bd9416fe1b7a84fc13",
       "files": [
         "modules/nf-core/medaka/environment.yml",
         "modules/nf-core/medaka/main.nf",
@@ -211544,8 +211780,8 @@
           {
             "medaka": {
               "description": "Neural network sequence error correction.",
-              "homepage": "https://nanoporetech.github.io/medaka/index.html",
-              "documentation": "https://nanoporetech.github.io/medaka/index.html",
+              "homepage": "https://github.com/nanoporetech/medaka",
+              "documentation": "https://github.com/nanoporetech/medaka",
               "tool_dev_url": "https://github.com/nanoporetech/medaka",
               "licence": [
                 "Mozilla Public License 2.0"
@@ -211661,7 +211897,7 @@
           "@avantonder"
         ]
       },
-      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "crisprseq",
@@ -214486,8 +214722,10 @@
     {
       "name": "merquryfk_merquryfk",
       "path": "modules/nf-core/merquryfk/merquryfk/meta.yml",
-      "tree_sha": "ae57ceb0f1b0a96c32317316b0d3afa7e6dc964b",
+      "tree_sha": "20f15ce8537e31cd66f3968daaaa458ddfaa686e",
       "files": [
+        "modules/nf-core/merquryfk/merquryfk/.conda-lock/linux_amd64-bd-5ac50fb470d146e0_1.txt",
+        "modules/nf-core/merquryfk/merquryfk/.conda-lock/linux_arm64-bd-1e5626c171d2dfe9_1.txt",
         "modules/nf-core/merquryfk/merquryfk/environment.yml",
         "modules/nf-core/merquryfk/merquryfk/main.nf",
         "modules/nf-core/merquryfk/merquryfk/meta.yml",
@@ -214528,7 +214766,7 @@
             {
               "fastk_hist": {
                 "type": "file",
-                "description": "A histogram files from the program FastK",
+                "description": "A histogram file from the program FastK",
                 "pattern": "*.hist",
                 "ontologies": []
               }
@@ -214544,16 +214782,16 @@
             {
               "assembly": {
                 "type": "file",
-                "description": "Genome (primary) assembly files (fasta format)",
-                "pattern": ".fasta",
+                "description": "FASTA file containing a single primary haplotype",
+                "pattern": "*.{fasta.gz,fasta}",
                 "ontologies": []
               }
             },
             {
               "haplotigs": {
                 "type": "file",
-                "description": "Assembly haplotigs (fasta format)",
-                "pattern": ".fasta",
+                "description": "FASTA file, or list of FASTA files, containing an alternate haplotype or set of haplotypes",
+                "pattern": "*.{fasta.gz,fasta}",
                 "ontologies": []
               }
             }
@@ -214887,9 +215125,43 @@
         "maintainers": [
           "@mahesh-panchal",
           "@yumisims"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/merquryfk:1.2--5ac50fb470d146e0",
+              "build_id": "bd-5ac50fb470d146e0_1",
+              "scan_id": "sc-68bfb8fb0f296829_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/merquryfk:1.2--1e5626c171d2dfe9",
+              "build_id": "bd-1e5626c171d2dfe9_1",
+              "scan_id": "sc-201842fa3258d31c_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/merquryfk:1.2--273c5808a585c7dc",
+              "build_id": "bd-273c5808a585c7dc_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/fb/fb9dbdf098779f2b84401de5e6e8569dd9120018a47b92126876260a0bb621a6/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/merquryfk:1.2--2810c9cbc10a5bb6",
+              "build_id": "bd-2810c9cbc10a5bb6_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/b9/b9d3a76b0ab12d4ea8b331912232557ab4797ff4ef336f46680ae92941afdb30/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/merquryfk/merquryfk/.conda-lock/linux_amd64-bd-5ac50fb470d146e0_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/merquryfk/merquryfk/.conda-lock/linux_arm64-bd-1e5626c171d2dfe9_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "89ddac6065d90fe246fa7f86bfec311023c9424f"
     },
     {
       "name": "merquryfk_ploidyplot",
@@ -216106,7 +216378,7 @@
     {
       "name": "metacache_build",
       "path": "modules/nf-core/metacache/build/meta.yml",
-      "tree_sha": "e9f3140dabd835824e8f6a97db7476dea760dbcb",
+      "tree_sha": "61f07e6460f1e7e97b008dc9c082b61f94799edd",
       "files": [
         "modules/nf-core/metacache/build/environment.yml",
         "modules/nf-core/metacache/build/main.nf",
@@ -216134,7 +216406,7 @@
           {
             "metacache": {
               "description": "MetaCache is a classification system for mapping genomic sequences (short reads, long reads, contigs, ...) from metagenomic samples to their most likely taxon of origin. It aims to reduce the memory requirement usually associated with k-mer based methods while retaining their speed. MetaCache uses locality sensitive hashing to quickly identify candidate regions within one or multiple reference genomes. A read is then classified based on the similarity to those regions.\n\nFor an independent comparison to other tools in terms of classification accuracy see the LEMMI benchmarking site.\n\nThe latest version of MetaCache classifies around 60 Million reads (of length 100) per minute against all complete bacterial, viral and archaea genomes from NCBI RefSeq Release 97 running with 88 threads on a workstation with 2 Intel(R) Xeon(R) Gold 6238 CPUs.\n",
-              "homepage": "https://muellan.github.io/metacache",
+              "homepage": "https://github.com/muellan/metacache",
               "documentation": "https://github.com/muellan/metacache/tree/master/docs",
               "tool_dev_url": "https://github.com/muellan/metacache",
               "licence": [
@@ -216284,7 +216556,7 @@
           "@Gullumluvl"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "createtaxdb",
@@ -216295,7 +216567,7 @@
     {
       "name": "metacache_query",
       "path": "modules/nf-core/metacache/query/meta.yml",
-      "tree_sha": "693943e076c3ce78fa1aa3f21fe9ca955f6afbca",
+      "tree_sha": "ed2daef67d08903f7c799bb5658a675b99cac361",
       "files": [
         "modules/nf-core/metacache/query/environment.yml",
         "modules/nf-core/metacache/query/main.nf",
@@ -216317,7 +216589,7 @@
             "metacache": {
               "description": "MetaCache is a classification system for mapping genomic sequences (short reads, long reads, contigs, ...) from metagenomic samples to their most likely taxon of origin.",
               "homepage": "https://github.com/muellan/metacache",
-              "documentation": "https://muellan.github.io/metacache/",
+              "documentation": "https://github.com/muellan/metacache/",
               "tool_dev_url": "https://github.com/muellan/metacache",
               "doi": "10.1093/bioinformatics/btx520",
               "licence": [
@@ -216454,7 +216726,7 @@
           "@Gullumluvl"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "taxprofiler",
@@ -218860,7 +219132,7 @@
     {
       "name": "methurator_gtestimator",
       "path": "modules/nf-core/methurator/gtestimator/meta.yml",
-      "tree_sha": "77b8de2e0456a6a5416128b7ad22cf7359b76d3a",
+      "tree_sha": "f4cabcddff8f2a145800b1f9168ba553dd9632b6",
       "files": [
         "modules/nf-core/methurator/gtestimator/environment.yml",
         "modules/nf-core/methurator/gtestimator/main.nf",
@@ -218887,7 +219159,7 @@
             "methurator": {
               "description": "Methurator is a Python package designed to estimate CpGs saturation\nfor DNA methylation sequencing data.\n",
               "homepage": "https://github.com/VIBTOBIlab/methurator",
-              "documentation": "https://github.com/VIBTOBIlab/methurator/README.md",
+              "documentation": "https://github.com/VIBTOBIlab/methurator",
               "licence": [
                 "MIT"
               ],
@@ -219026,12 +219298,12 @@
           "@edogiuili"
         ]
       },
-      "git_sha": "2789ce924a0745bc3d8c8929dc2a6be8a11920e6"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "methurator_plot",
       "path": "modules/nf-core/methurator/plot/meta.yml",
-      "tree_sha": "e666739eadc670433be813321df54a86c3b45662",
+      "tree_sha": "c788d4b3a71f2fb1095cccfa55af87bcc28b7bad",
       "files": [
         "modules/nf-core/methurator/plot/environment.yml",
         "modules/nf-core/methurator/plot/main.nf",
@@ -219058,7 +219330,7 @@
             "methurator": {
               "description": "methurator is a Python package designed to estimate sequencing saturation\nfor DNA methylation sequencing data.\n",
               "homepage": "https://github.com/VIBTOBIlab/methurator",
-              "documentation": "https://github.com/VIBTOBIlab/methurator/README.md",
+              "documentation": "https://github.com/VIBTOBIlab/methurator",
               "licence": [
                 "MIT"
               ],
@@ -219165,7 +219437,7 @@
           "@edogiuili"
         ]
       },
-      "git_sha": "2789ce924a0745bc3d8c8929dc2a6be8a11920e6"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "methyldackel_extract",
@@ -257595,7 +257867,7 @@
     {
       "name": "paraphrase",
       "path": "modules/nf-core/paraphrase/meta.yml",
-      "tree_sha": "2620bb968d6d9f7d8fff581825ff83989647d965",
+      "tree_sha": "a2bb592f57ceac2e3662424e03b3f5eeee22bd1c",
       "files": [
         "modules/nf-core/paraphrase/environment.yml",
         "modules/nf-core/paraphrase/main.nf",
@@ -257618,7 +257890,7 @@
             "paraphrase": {
               "description": "Paraphase JSON parser",
               "homepage": "https://github.com/Clinical-Genomics/paraphrase",
-              "documentation": "https://github.com/Clinical-Genomics/paraphrase/README.md",
+              "documentation": "https://github.com/Clinical-Genomics/paraphrase",
               "tool_dev_url": "https://github.com/Clinical-Genomics/paraphrase",
               "licence": [
                 "MIT"
@@ -257779,7 +258051,7 @@
           "@fellen31"
         ]
       },
-      "git_sha": "54e41f4ed3aead45054380a9befeb927612ffc91"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "parsesdrf_convert",
@@ -264097,7 +264369,7 @@
     {
       "name": "phenoimager2mc",
       "path": "modules/nf-core/phenoimager2mc/meta.yml",
-      "tree_sha": "5fa5570b0cee9bd043dddd9d3af8992da2fba0b7",
+      "tree_sha": "40d7168766ca69d10567a42df692b357132e373a",
       "files": [
         "modules/nf-core/phenoimager2mc/environment.yml",
         "modules/nf-core/phenoimager2mc/main.nf",
@@ -264122,7 +264394,7 @@
             "phenoimager2mc": {
               "description": "PhenoImager output conversion into a stacked and normalized OME-TIFF file per cycle.",
               "homepage": "https://github.com/SchapiroLabor/phenoimager2mc",
-              "documentation": "https://github.com/SchapiroLabor/phenoimager2mc/README.md",
+              "documentation": "https://github.com/SchapiroLabor/phenoimager2mc",
               "tool_dev_url": "https://github.com/SchapiroLabor/phenoimager2mc",
               "licence": [
                 "GPL-2.0 license"
@@ -264309,7 +264581,7 @@
           "@chiarasch"
         ]
       },
-      "git_sha": "91d94af4aa6e48954670b1485fc729e392a51b43"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "phispy",
@@ -272237,7 +272509,7 @@
     {
       "name": "platypus",
       "path": "modules/nf-core/platypus/meta.yml",
-      "tree_sha": "1821c26a3995daba057467af6b3e0aa000b96ee4",
+      "tree_sha": "e43569e120cede41fa2cfcb55ddb556cc83887e3",
       "files": [
         "modules/nf-core/platypus/environment.yml",
         "modules/nf-core/platypus/main.nf",
@@ -272259,8 +272531,8 @@
           {
             "platypus": {
               "description": "Platypus is a tool designed for efficient and accurate variant-detection in high-throughput sequencing data.",
-              "homepage": "https://www.well.ox.ac.uk/research/research-groups/lunter-group/lunter-group/platypus-a-haplotype-based-variant-caller-for-next-generation-sequence-data",
-              "documentation": "https://www.well.ox.ac.uk/research/research-groups/lunter-group/lunter-group/platypus-documentation",
+              "homepage": "https://github.com/andyrimmer/Platypus",
+              "documentation": "https://github.com/andyrimmer/Platypus",
               "tool_dev_url": "https://github.com/andyrimmer/Platypus",
               "doi": "10.1038/ng.3036",
               "licence": [
@@ -272453,7 +272725,7 @@
           "@kubranarci"
         ]
       },
-      "git_sha": "064dc68ae81fee9a4cada7535f5c36ec5084ea47"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "plink2_extract",
@@ -287774,7 +288046,7 @@
     {
       "name": "pycoqc",
       "path": "modules/nf-core/pycoqc/meta.yml",
-      "tree_sha": "4d8563d2a235fefa839d41e3045af869b34c7802",
+      "tree_sha": "b0b6915cd483b4cb8320acb21d018ddfcbfe184d",
       "files": [
         "modules/nf-core/pycoqc/environment.yml",
         "modules/nf-core/pycoqc/main.nf",
@@ -287797,9 +288069,9 @@
           {
             "pycoqc": {
               "description": "PycoQC computes metrics and generates interactive QC plots for Oxford Nanopore technologies sequencing data",
-              "homepage": "https://github.com/tleonardi/pycoQC",
-              "documentation": "https://tleonardi.github.io/pycoQC/",
-              "tool_dev_url": "https://github.com/tleonardi/pycoQC",
+              "homepage": "https://github.com/a-slide/pycoQC",
+              "documentation": "https://a-slide.github.io/pycoQC/",
+              "tool_dev_url": "https://github.com/a-slide/pycoQC",
               "doi": "10.21105/joss.01236",
               "licence": [
                 "GNU General Public v3 (GPL v3)"
@@ -287922,7 +288194,7 @@
           "@drpatelh"
         ]
       },
-      "git_sha": "74690a3287947454f401025df414423073b896b2",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "viralrecon",
@@ -290649,7 +290921,7 @@
     {
       "name": "quantmsutils_diann2mztab",
       "path": "modules/nf-core/quantmsutils/diann2mztab/meta.yml",
-      "tree_sha": "e575abd6d9b364ad1b7b93fe55a1805ffcdd3e91",
+      "tree_sha": "b6e5da38911becfd3cda737637e6fde047bbe259",
       "files": [
         "modules/nf-core/quantmsutils/diann2mztab/environment.yml",
         "modules/nf-core/quantmsutils/diann2mztab/main.nf",
@@ -290674,7 +290946,7 @@
             "quantms-utils": {
               "description": "quantms-utils is a Python package for proteomics data processing",
               "homepage": "https://github.com/bigbio/quantms-utils",
-              "documentation": "https://quantms-utils.readthedocs.io/",
+              "documentation": "https://github.com/bigbio/quantms-utils",
               "tool_dev_url": "https://github.com/bigbio/quantms-utils",
               "licence": [
                 "MIT"
@@ -290901,7 +291173,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "ad17321fcad18434230692f3f8a9c95a7dde4bfe"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "quantmsutils_dianncfg",
@@ -291064,7 +291336,7 @@
     {
       "name": "quantmsutils_mzmlstatistics",
       "path": "modules/nf-core/quantmsutils/mzmlstatistics/meta.yml",
-      "tree_sha": "94eb7719a49a4de28a5d9779f0161bc12c4270a3",
+      "tree_sha": "ecd6691e73813f9428ae81f287fb3287ee10649b",
       "files": [
         "modules/nf-core/quantmsutils/mzmlstatistics/environment.yml",
         "modules/nf-core/quantmsutils/mzmlstatistics/main.nf",
@@ -291089,7 +291361,7 @@
             "quantms-utils": {
               "description": "A Python package for quantitative mass spectrometry data analysis",
               "homepage": "https://github.com/bigbio/quantms-utils",
-              "documentation": "https://quantms-utils.readthedocs.io/",
+              "documentation": "https://github.com/bigbio/quantms-utils",
               "tool_dev_url": "https://github.com/bigbio/quantms-utils",
               "licence": [
                 "MIT"
@@ -291266,7 +291538,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "ad17321fcad18434230692f3f8a9c95a7dde4bfe"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "quartonotebook",
@@ -294892,7 +295164,7 @@
     {
       "name": "raxmlng",
       "path": "modules/nf-core/raxmlng/meta.yml",
-      "tree_sha": "8ad2a1da2fd441ca08fdc0b7991ddacbaa6bd68b",
+      "tree_sha": "f23de78316f8425f28fce897bd8ec35b288d7085",
       "files": [
         "modules/nf-core/raxmlng/environment.yml",
         "modules/nf-core/raxmlng/main.nf",
@@ -294989,19 +295261,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_raxmlng": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "raxmlng": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "raxml-ng --version 2>&1 | sed '/RAxML-NG v/!d;s/.*v. //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "raxmlng": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "raxml-ng --version 2>&1 | sed '/RAxML-NG v/!d;s/.*v. //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -295013,7 +295317,7 @@
           "@aunderwo"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "c2244f084072141a61e0571a52a4be98c55f3cc0"
     },
     {
       "name": "rbt_vcfsplit",
@@ -298630,7 +298934,7 @@
     {
       "name": "resfinder_run",
       "path": "modules/nf-core/resfinder/run/meta.yml",
-      "tree_sha": "a1ed5f261d24cc27dd3f4c9080101320ad5365a7",
+      "tree_sha": "de88b439c16c6386a0427f20a01b6a19ba9c7ae4",
       "files": [
         "modules/nf-core/resfinder/run/environment.yml",
         "modules/nf-core/resfinder/run/main.nf",
@@ -298986,19 +299290,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_resfinder": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "resfinder": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "run_resfinder.py -v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "resfinder": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "run_resfinder.py -v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -299008,7 +299344,7 @@
           "@marrip"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "1765c297334f83a042ad4e3890628678a79b21b6"
     },
     {
       "name": "rgi_bwt",
@@ -301293,15 +301629,14 @@
     {
       "name": "ribotricer_detectorfs",
       "path": "modules/nf-core/ribotricer/detectorfs/meta.yml",
-      "tree_sha": "418b8ffe8b789f822be4707760d22fb3691da8f7",
+      "tree_sha": "978638cd625ea1de0eac214c267f4b9cb2ee0546",
       "files": [
         "modules/nf-core/ribotricer/detectorfs/environment.yml",
         "modules/nf-core/ribotricer/detectorfs/main.nf",
         "modules/nf-core/ribotricer/detectorfs/meta.yml",
         "modules/nf-core/ribotricer/detectorfs/tests/main.nf.test",
         "modules/nf-core/ribotricer/detectorfs/tests/main.nf.test.snap",
-        "modules/nf-core/ribotricer/detectorfs/tests/nextflow.all.config",
-        "modules/nf-core/ribotricer/detectorfs/tests/nextflow.filtered.config"
+        "modules/nf-core/ribotricer/detectorfs/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
@@ -301348,6 +301683,13 @@
                 "type": "file",
                 "description": "Index for sorted BAM/CRAM/SAM file",
                 "pattern": "*.{bai}",
+                "ontologies": []
+              }
+            },
+            {
+              "strandedness": {
+                "type": "string",
+                "description": "Strandedness of the data",
                 "ontologies": []
               }
             }
@@ -301566,19 +301908,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_ribotricer": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ribotricer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ribotricer --version 2>&1 | sed -n 's/^ribotricer, version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ribotricer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ribotricer --version 2>&1 | sed -n 's/^ribotricer, version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -301588,7 +301962,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "277a5577e6d79196792122049f87173e2142c90d",
       "pipelines": [
         {
           "name": "riboseq",
@@ -301599,7 +301973,7 @@
     {
       "name": "ribotricer_prepareorfs",
       "path": "modules/nf-core/ribotricer/prepareorfs/meta.yml",
-      "tree_sha": "ae3b7bb15655cb6596502121a65e3688c9e7bb19",
+      "tree_sha": "ab9e00576f950294ea8e79790f29e6f663a81359",
       "files": [
         "modules/nf-core/ribotricer/prepareorfs/environment.yml",
         "modules/nf-core/ribotricer/prepareorfs/main.nf",
@@ -301680,19 +302054,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_ribotricer": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ribotricer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ribotricer --version 2>&1 | sed -n 's/^ribotricer, version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ribotricer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ribotricer --version 2>&1 | sed -n 's/^ribotricer, version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -301702,7 +302108,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "277a5577e6d79196792122049f87173e2142c90d",
       "pipelines": [
         {
           "name": "riboseq",
@@ -303342,7 +303748,7 @@
     {
       "name": "rnaquast",
       "path": "modules/nf-core/rnaquast/meta.yml",
-      "tree_sha": "1df3311dee3b222e39ff9602c1843a390afb3490",
+      "tree_sha": "e9eeb84ad9f3652de9cad468f6153d02627c76d1",
       "files": [
         "modules/nf-core/rnaquast/environment.yml",
         "modules/nf-core/rnaquast/main.nf",
@@ -303459,19 +303865,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rnaquast": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rnaquast": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rnaQUAST.py -h | grep -i 'rnaQUAST.py v' | sed -E 's/.*v\\.([0-9.]+).*/\\1/'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rnaquast": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rnaQUAST.py -h | grep -i 'rnaQUAST.py v' | sed -E 's/.*v\\.([0-9.]+).*/\\1/'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -303481,7 +303919,7 @@
           "@vagkaratzas"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "c34a15b4d10536929920775083c81c024dfdba8c"
     },
     {
       "name": "roary",
@@ -310412,7 +310850,7 @@
     {
       "name": "s4pred_runmodel",
       "path": "modules/nf-core/s4pred/runmodel/meta.yml",
-      "tree_sha": "7b90f8495ef9331b7b7eed8e4a87551ff8097433",
+      "tree_sha": "efc0404c29f32fad9a3264502f3fe706cb289931",
       "files": [
         "modules/nf-core/s4pred/runmodel/environment.yml",
         "modules/nf-core/s4pred/runmodel/main.nf",
@@ -310484,19 +310922,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_s4pred": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "s4pred": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.2.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "s4pred": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.2.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -310506,7 +310976,7 @@
           "@vagkaratzas"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "5aec38f88fcc09d05e4315b51eb2f7a1f94b5a28",
       "pipelines": [
         {
           "name": "proteinannotator",
@@ -310517,7 +310987,7 @@
     {
       "name": "sageproteomics_sage",
       "path": "modules/nf-core/sageproteomics/sage/meta.yml",
-      "tree_sha": "a429fae7382f304ab3aab81f2dc1643b1ae3a48f",
+      "tree_sha": "0e139018ceb4d90f3e031890e340ad6c06b4fba6",
       "files": [
         "modules/nf-core/sageproteomics/sage/environment.yml",
         "modules/nf-core/sageproteomics/sage/main.nf",
@@ -310674,19 +311144,32 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_sageproteomics": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sageproteomics": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sage --version |& sed '1!d ; s/sage //'": {
+                  "type": "eval",
+                  "description": "The version of the tool",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_0953"
+                    }
+                  ]
+                }
               }
-            }
+            ]
           ],
           "tmt_tsv": [
             [
@@ -310733,6 +311216,35 @@
             ]
           ]
         },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sageproteomics": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sage --version |& sed '1!d ; s/sage //'": {
+                  "type": "eval",
+                  "description": "The version of the tool",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_0953"
+                    }
+                  ]
+                }
+              }
+            ]
+          ]
+        },
         "authors": [
           "@dgemperline-lilly"
         ],
@@ -310740,7 +311252,7 @@
           "@dgemperline-lilly"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "2f9e9b3368a56c8f9c93f34f722d59e64580adfb"
     },
     {
       "name": "salmon_index",
@@ -311879,7 +312391,7 @@
     {
       "name": "sam2lca_analyze",
       "path": "modules/nf-core/sam2lca/analyze/meta.yml",
-      "tree_sha": "1f8e09e71456e9d441c025d440d5f6ab340fe23b",
+      "tree_sha": "125ac3d66fd9e25d8199f33663f7758cf61ca5da",
       "files": [
         "modules/nf-core/sam2lca/analyze/environment.yml",
         "modules/nf-core/sam2lca/analyze/main.nf",
@@ -312011,19 +312523,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_sam2lca": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sam2lca": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sam2lca --version | sed 's/.*version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sam2lca": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sam2lca --version | sed 's/.*version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -312033,7 +312577,7 @@
           "@maxibor"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "1f7f3ee45071798ae6ea064c93e878cc94a4fdd6",
       "pipelines": [
         {
           "name": "coproid",
@@ -312497,7 +313041,7 @@
     {
       "name": "samblaster",
       "path": "modules/nf-core/samblaster/meta.yml",
-      "tree_sha": "149738f19d8f6c4786089a76b884f9803b5eb168",
+      "tree_sha": "5cd1c2fb705d4b399ef7245d18ad1acbd314e551",
       "files": [
         "modules/nf-core/samblaster/environment.yml",
         "modules/nf-core/samblaster/main.nf",
@@ -312566,19 +313110,93 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_samblaster": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samblaster": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samblaster -h 2>&1 | head -n 1 | sed 's/^samblaster: Version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ],
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools --version 2>&1 | head -n1 | sed 's/^.*samtools //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samblaster": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samblaster -h 2>&1 | head -n 1 | sed 's/^samblaster: Version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools --version 2>&1 | head -n1 | sed 's/^.*samtools //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -312589,7 +313207,7 @@
           "@gallvp"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "d0feb166fd1d14fe722554cd301c569b269d05c0",
       "pipelines": [
         {
           "name": "rnadnavar",
@@ -323721,7 +324339,7 @@
     {
       "name": "scanpy_filter",
       "path": "modules/nf-core/scanpy/filter/meta.yml",
-      "tree_sha": "15a18eef84e6b88e7e05033a1dc83e1169f30a49",
+      "tree_sha": "4cb6558b35ff608802a4087fb2150d4bbe8b6eaa",
       "files": [
         "modules/nf-core/scanpy/filter/environment.yml",
         "modules/nf-core/scanpy/filter/main.nf",
@@ -323747,7 +324365,7 @@
             "scanpy": {
               "description": "Single-Cell Analysis in Python",
               "homepage": "https://scanpy.readthedocs.io",
-              "documentation": "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pp.filter_cells.html",
+              "documentation": "https://scanpy.readthedocs.io/en/stable/api/preprocessing.html",
               "tool_dev_url": "https://github.com/scverse/scanpy",
               "doi": "10.1186/s13059-017-1382-0",
               "licence": [
@@ -323882,7 +324500,7 @@
           "@nictru"
         ]
       },
-      "git_sha": "5795e46cae24fa6e00e348fc9757c9058db811d3"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "scanpy_hashsolo",
@@ -324047,7 +324665,7 @@
     {
       "name": "scanpy_pca",
       "path": "modules/nf-core/scanpy/pca/meta.yml",
-      "tree_sha": "feeea92b4c4b88ca25bde5ec6a84d2d8d93e9a84",
+      "tree_sha": "a4f898241fc393d164bfcc1daec350689943ebbe",
       "files": [
         "modules/nf-core/scanpy/pca/environment.yml",
         "modules/nf-core/scanpy/pca/main.nf",
@@ -324073,7 +324691,7 @@
             "scanpy": {
               "description": "Single-Cell Analysis in Python",
               "homepage": "https://scanpy.readthedocs.io",
-              "documentation": "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pp.pca.html",
+              "documentation": "https://scanpy.readthedocs.io/en/stable/api/preprocessing.html",
               "tool_dev_url": "https://github.com/scverse/scanpy",
               "doi": "10.1186/s13059-017-1382-0",
               "licence": [
@@ -324199,12 +324817,12 @@
           "@nictru"
         ]
       },
-      "git_sha": "cc2736c07cd74e01941d844e28086c1906661606"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "scanpy_scrublet",
       "path": "modules/nf-core/scanpy/scrublet/meta.yml",
-      "tree_sha": "698f20ea32ff4cf1a3d78f7f16c7c4bb47e2a618",
+      "tree_sha": "b14e0bbbe71d76b051229d91cd285ac5f57ca4f9",
       "files": [
         "modules/nf-core/scanpy/scrublet/environment.yml",
         "modules/nf-core/scanpy/scrublet/main.nf",
@@ -324326,6 +324944,22 @@
             }
           ]
         },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
         "authors": [
           "@nictru"
         ],
@@ -324333,7 +324967,7 @@
           "@nictru"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "fa506994bc44f45c9b76f42b6b021973a9f343f1",
       "pipelines": [
         {
           "name": "scdownstream",
@@ -324463,7 +325097,7 @@
     {
       "name": "scimap_mcmicro",
       "path": "modules/nf-core/scimap/mcmicro/meta.yml",
-      "tree_sha": "21ba98c214cbb72bd544bd4c8896f08f54fad8c3",
+      "tree_sha": "56806e8fb6e714c399863bf7a6e2fadd3062d032",
       "files": [
         "modules/nf-core/scimap/mcmicro/main.nf",
         "modules/nf-core/scimap/mcmicro/meta.yml",
@@ -324484,7 +325118,7 @@
             "scimap": {
               "description": "Scimap is a scalable toolkit for analyzing spatial molecular data.",
               "homepage": "https://scimap.xyz/",
-              "documentation": "https://scimap.xyz/All%20Functions/A.%20Pre%20Processing/sm.pp.mcmicro_to_scimap/",
+              "documentation": "https://scimap.xyz/",
               "tool_dev_url": "https://github.com/labsyspharm/scimap",
               "licence": [
                 "MIT License"
@@ -324556,19 +325190,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_scimap": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "scimap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "2.1.3": {
+                  "type": "string",
+                  "description": "The version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "scimap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "2.1.3": {
+                  "type": "string",
+                  "description": "The version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -324578,7 +325244,7 @@
           "@luiskuhn"
         ]
       },
-      "git_sha": "b75cf1a894cc2d63a81dc3bd58126de7f023acf9",
+      "git_sha": "28150ec1302a1a54f0061d163bebc2ec34518a1a",
       "pipelines": [
         {
           "name": "mcmicro",
@@ -324589,7 +325255,7 @@
     {
       "name": "scimap_spatiallda",
       "path": "modules/nf-core/scimap/spatiallda/meta.yml",
-      "tree_sha": "774779b9e4912673963023ffea130216d48bf18b",
+      "tree_sha": "3bd2a58081fdc6ccfba36a0e5d6f4171b6da6a30",
       "files": [
         "modules/nf-core/scimap/spatiallda/main.nf",
         "modules/nf-core/scimap/spatiallda/meta.yml",
@@ -324611,7 +325277,7 @@
             "scimap": {
               "description": "Scimap is a scalable toolkit for analyzing spatial molecular data. The underlying framework is generalizable to spatial datasets mapped to XY coordinates. The package uses the anndata framework making it easy to integrate with other popular single-cell analysis toolkits. It includes preprocessing, phenotyping, visualization, clustering, spatial analysis and differential spatial testing. The Python-based implementation efficiently deals with large datasets of millions of cells.",
               "homepage": "https://scimap.xyz/",
-              "documentation": "https://scimap.xyz/tutorials/1-scimap-tutorial-getting-started/",
+              "documentation": "https://scimap.xyz/",
               "tool_dev_url": "https://github.com/labsyspharm/scimap",
               "doi": "10.5281/zenodo.7854095",
               "licence": [
@@ -324702,19 +325368,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_scimap": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "scimap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python /scimap/scripts/spatialLDA.py --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "scimap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python /scimap/scripts/spatialLDA.py --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -324726,7 +325424,7 @@
           "@chiarasch"
         ]
       },
-      "git_sha": "41dfa3f7c0ffabb96a6a813fe321c6d1cc5b6e46"
+      "git_sha": "69e6f6fa1d89cbc2256cc59baf04def783202064"
     },
     {
       "name": "scoary",
@@ -324887,7 +325585,7 @@
     {
       "name": "scramble_clusteranalysis",
       "path": "modules/nf-core/scramble/clusteranalysis/meta.yml",
-      "tree_sha": "e98c41f81ca10751b5936d29aa1435ee5e58a7ff",
+      "tree_sha": "a90e4b4d54905290583a889b90182ae76b34358e",
       "files": [
         "modules/nf-core/scramble/clusteranalysis/environment.yml",
         "modules/nf-core/scramble/clusteranalysis/main.nf",
@@ -325017,19 +325715,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_scramble": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "scramble": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "1.0.2": {
+                  "type": "string",
+                  "description": "The version of the tool (hardcoded, not available via CLI)"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "scramble": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "1.0.2": {
+                  "type": "string",
+                  "description": "The version of the tool (hardcoded, not available via CLI)"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -325039,7 +325769,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "a28d5c5bb9de7f7e01a97f072dac2be993c539b6"
     },
     {
       "name": "scramble_clusteridentifier",
@@ -325163,7 +325893,7 @@
     {
       "name": "scvitools_scar",
       "path": "modules/nf-core/scvitools/scar/meta.yml",
-      "tree_sha": "545f8b4ccccbff25a737bf4c623b04cd887d3df1",
+      "tree_sha": "704d2c6f4cbdefca305b7c331361ffb6dc916ef2",
       "files": [
         "modules/nf-core/scvitools/scar/environment.yml",
         "modules/nf-core/scvitools/scar/main.nf",
@@ -325318,7 +326048,7 @@
           "@nictru"
         ]
       },
-      "git_sha": "4b801f99cf081cfbc00d202272385817636e6dfd",
+      "git_sha": "416bcdbf15649b918f1c38d3921f3182e97af530",
       "pipelines": [
         {
           "name": "scdownstream",
@@ -325329,7 +326059,7 @@
     {
       "name": "scvitools_solo",
       "path": "modules/nf-core/scvitools/solo/meta.yml",
-      "tree_sha": "3f10271653c27feaf6c37e6dcc2acea205eb6f45",
+      "tree_sha": "5c03caac9b0a5042157ce044f09c75c829878446",
       "files": [
         "modules/nf-core/scvitools/solo/environment.yml",
         "modules/nf-core/scvitools/solo/main.nf",
@@ -325468,7 +326198,7 @@
           "@LeonHafner"
         ]
       },
-      "git_sha": "4b801f99cf081cfbc00d202272385817636e6dfd",
+      "git_sha": "416bcdbf15649b918f1c38d3921f3182e97af530",
       "pipelines": [
         {
           "name": "scdownstream",
@@ -325596,7 +326326,7 @@
     {
       "name": "segemehl_align",
       "path": "modules/nf-core/segemehl/align/meta.yml",
-      "tree_sha": "6d9137fd7154a88d1c9675b8a8f17be020472f78",
+      "tree_sha": "86b5247a06b14f064a1f03bc60983dcccacaaa04",
       "files": [
         "modules/nf-core/segemehl/align/environment.yml",
         "modules/nf-core/segemehl/align/main.nf",
@@ -325740,19 +326470,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_segemehl": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "segemehl": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "segemehl.x 2>&1 | grep -A1 VERSION | tail -1 | sed \"s/^ *//;s/ .*//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "segemehl": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "segemehl.x 2>&1 | grep -A1 VERSION | tail -1 | sed \"s/^ *//;s/ .*//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -325763,7 +326525,7 @@
           "@nictru"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "c39748b7ba61f4da0350533fb646314dd276ae07",
       "pipelines": [
         {
           "name": "circrna",
@@ -332500,7 +333262,7 @@
     {
       "name": "seqcluster_collapse",
       "path": "modules/nf-core/seqcluster/collapse/meta.yml",
-      "tree_sha": "c852f516b65496468a2cf51c20022affb55f4651",
+      "tree_sha": "b2a3320e53a70ec561f233c0a984c354bb4fdc01",
       "files": [
         "modules/nf-core/seqcluster/collapse/environment.yml",
         "modules/nf-core/seqcluster/collapse/main.nf",
@@ -332570,19 +333332,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_seqcluster": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqcluster": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqcluster --version 2>&1 | tail -n 1 | sed 's/^seqcluster //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqcluster": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqcluster --version 2>&1 | tail -n 1 | sed 's/^seqcluster //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -332592,7 +333386,7 @@
           "@atrigila"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "4db832d6916111d1d10d6acb8be86f9f2d45e108",
       "pipelines": [
         {
           "name": "smrnaseq",
@@ -337585,7 +338379,7 @@
     {
       "name": "seroba_run",
       "path": "modules/nf-core/seroba/run/meta.yml",
-      "tree_sha": "2f9a2d4da612421f77b9b750410bfefdce95174b",
+      "tree_sha": "dfd7041e467a44c8fb431ab134a40a42b1d0911e",
       "files": [
         "modules/nf-core/seroba/run/environment.yml",
         "modules/nf-core/seroba/run/main.nf",
@@ -337676,19 +338470,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_seroba": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seroba": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seroba version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seroba": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seroba version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -337698,7 +338524,7 @@
           "@rpetit3"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "117c1c65e1ecd4ee9cfdcd6e3630200998932503"
     },
     {
       "name": "severus",
@@ -338140,7 +338966,7 @@
     {
       "name": "sexdeterrmine",
       "path": "modules/nf-core/sexdeterrmine/meta.yml",
-      "tree_sha": "dcb40422e80c0fd71c18010e437d98629f6ec05c",
+      "tree_sha": "70d01dd2d44ae30b3166b1b00792d122e9fe2cbe",
       "files": [
         "modules/nf-core/sexdeterrmine/environment.yml",
         "modules/nf-core/sexdeterrmine/main.nf",
@@ -338164,7 +338990,7 @@
             "sexdeterrmine": {
               "description": "A python script carry out calculate the relative coverage of X and Y chromosomes, and their associated error bars, out of capture data.",
               "homepage": "https://github.com/TCLamnidis/Sex.DetERRmine",
-              "documentation": "https://github.com/TCLamnidis/Sex.DetERRmine/README.md",
+              "documentation": "https://github.com/TCLamnidis/Sex.DetERRmine",
               "tool_dev_url": "https://github.com/TCLamnidis/Sex.DetERRmine",
               "doi": "10.1038/s41467-018-07483-5",
               "licence": [
@@ -338298,7 +339124,7 @@
           "@TCLamnidis"
         ]
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "sgdemux",
@@ -338537,7 +339363,7 @@
     {
       "name": "shapeit5_ligate",
       "path": "modules/nf-core/shapeit5/ligate/meta.yml",
-      "tree_sha": "a915413badd269c3952dd23c09ae5b70784c21ed",
+      "tree_sha": "030a5f5308e551cec076f0fcdf50b3f284b80bb0",
       "files": [
         "modules/nf-core/shapeit5/ligate/environment.yml",
         "modules/nf-core/shapeit5/ligate/main.nf",
@@ -338559,8 +339385,8 @@
           {
             "shapeit5": {
               "description": "Fast and accurate method for estimation of haplotypes (phasing)",
-              "homepage": "https://odelaneau.github.io/shapeit5/",
-              "documentation": "https://odelaneau.github.io/shapeit5/docs/documentation",
+              "homepage": "https://github.com/odelaneau/shapeit5",
+              "documentation": "https://github.com/odelaneau/shapeit5",
               "tool_dev_url": "https://github.com/odelaneau/shapeit5",
               "doi": "10.1101/2022.10.19.512867",
               "licence": [
@@ -338676,7 +339502,7 @@
           "@louislenezet"
         ]
       },
-      "git_sha": "8556a739676498417d5b323107e8db43089cf303",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "phaseimpute",
@@ -338687,7 +339513,7 @@
     {
       "name": "shapeit5_phasecommon",
       "path": "modules/nf-core/shapeit5/phasecommon/meta.yml",
-      "tree_sha": "952ba857e305a1df8b550d6d208e1de26339b3d4",
+      "tree_sha": "b3ced4a19880dfcf9ffc296697a45e47dd26002f",
       "files": [
         "modules/nf-core/shapeit5/phasecommon/environment.yml",
         "modules/nf-core/shapeit5/phasecommon/main.nf",
@@ -338709,8 +339535,8 @@
           {
             "shapeit5": {
               "description": "Fast and accurate method for estimation of haplotypes (phasing)",
-              "homepage": "https://odelaneau.github.io/shapeit5/",
-              "documentation": "https://odelaneau.github.io/shapeit5/docs/documentation",
+              "homepage": "https://github.com/odelaneau/shapeit5",
+              "documentation": "https://github.com/odelaneau/shapeit5",
               "tool_dev_url": "https://github.com/odelaneau/shapeit5",
               "doi": "10.1101/2022.10.19.512867 ",
               "licence": [
@@ -338874,7 +339700,7 @@
           "@LouisLeNezet"
         ]
       },
-      "git_sha": "8556a739676498417d5b323107e8db43089cf303",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "phaseimpute",
@@ -338885,7 +339711,7 @@
     {
       "name": "shapeit5_phaserare",
       "path": "modules/nf-core/shapeit5/phaserare/meta.yml",
-      "tree_sha": "3951aa0dda130d4c1e1b9b64a9918a97eec53953",
+      "tree_sha": "22bbd9eb547c8c8f71d3688f88c034c4517af508",
       "files": [
         "modules/nf-core/shapeit5/phaserare/environment.yml",
         "modules/nf-core/shapeit5/phaserare/main.nf",
@@ -338908,8 +339734,8 @@
           {
             "shapeit5": {
               "description": "Fast and accurate method for estimation of haplotypes (phasing)",
-              "homepage": "https://odelaneau.github.io/shapeit5/",
-              "documentation": "https://odelaneau.github.io/shapeit5/docs/documentation",
+              "homepage": "https://github.com/odelaneau/shapeit5",
+              "documentation": "https://github.com/odelaneau/shapeit5",
               "tool_dev_url": "https://github.com/odelaneau/shapeit5",
               "doi": "10.1101/2022.10.19.512867 ",
               "licence": [
@@ -339072,12 +339898,12 @@
         ],
         "requirement": "AVX2"
       },
-      "git_sha": "8556a739676498417d5b323107e8db43089cf303"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "shapeit5_switch",
       "path": "modules/nf-core/shapeit5/switch/meta.yml",
-      "tree_sha": "e3fb3d8c6d7e33cfe1f6db3c6891a0333ec46282",
+      "tree_sha": "eacc18f3264290df51b32556c19c91c61dd2c35d",
       "files": [
         "modules/nf-core/shapeit5/switch/environment.yml",
         "modules/nf-core/shapeit5/switch/main.nf",
@@ -339100,8 +339926,8 @@
           {
             "shapeit5": {
               "description": "Fast and accurate method for estimation of haplotypes (phasing)",
-              "homepage": "https://odelaneau.github.io/shapeit5/",
-              "documentation": "https://odelaneau.github.io/shapeit5/docs/documentation",
+              "homepage": "https://github.com/odelaneau/shapeit5",
+              "documentation": "https://github.com/odelaneau/shapeit5",
               "tool_dev_url": "https://github.com/odelaneau/shapeit5",
               "doi": "10.1101/2022.10.19.512867 ",
               "licence": [
@@ -339261,7 +340087,7 @@
           "@LouisLeNezet"
         ]
       },
-      "git_sha": "8556a739676498417d5b323107e8db43089cf303"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "shasta",
@@ -339955,7 +340781,7 @@
     {
       "name": "shinyngs_app",
       "path": "modules/nf-core/shinyngs/app/meta.yml",
-      "tree_sha": "69bce5a998b08847bcbd018693f550f2ff4d4dd6",
+      "tree_sha": "ff1be9fedfbff8608f6279abc5983a6799a09243",
       "files": [
         "modules/nf-core/shinyngs/app/.conda-lock/linux_amd64-bd-d43071e62bc500d3_1.txt",
         "modules/nf-core/shinyngs/app/.conda-lock/linux_arm64-bd-d168a374ce5dc1af_1.txt",
@@ -339981,7 +340807,7 @@
             "shinyngs": {
               "description": "Provides Shiny applications for various array and NGS applications. Currently very RNA-seq centric, with plans for expansion.",
               "homepage": "https://github.com/pinin4fjords/shinyngs",
-              "documentation": "https://rawgit.com/pinin4fjords/shinyngs/master/vignettes/shinyngs.html",
+              "documentation": "https://pinin4fjords.github.io/shinyngs/",
               "tool_dev_url": "https://github.com/pinin4fjords/shinyngs",
               "licence": [
                 "AGPL v3"
@@ -340188,7 +341014,7 @@
           }
         }
       },
-      "git_sha": "18756aea6cac39a78a7ca8cd51bb9ee53d4e7ba4",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "differentialabundance",
@@ -340199,7 +341025,7 @@
     {
       "name": "shinyngs_staticdifferential",
       "path": "modules/nf-core/shinyngs/staticdifferential/meta.yml",
-      "tree_sha": "55436736bd44a80b0976edd852fb9b8d8e33d10c",
+      "tree_sha": "a6b615a34b818090790ee063c93e7f5b0a958cd6",
       "files": [
         "modules/nf-core/shinyngs/staticdifferential/.conda-lock/linux_amd64-bd-d43071e62bc500d3_1.txt",
         "modules/nf-core/shinyngs/staticdifferential/.conda-lock/linux_arm64-bd-d168a374ce5dc1af_1.txt",
@@ -340225,7 +341051,7 @@
             "shinyngs": {
               "description": "Provides Shiny applications for various array and NGS applications. Currently very RNA-seq centric, with plans for expansion.",
               "homepage": "https://github.com/pinin4fjords/shinyngs",
-              "documentation": "https://rawgit.com/pinin4fjords/shinyngs/master/vignettes/shinyngs.html",
+              "documentation": "https://pinin4fjords.github.io/shinyngs/",
               "tool_dev_url": "https://github.com/pinin4fjords/shinyngs",
               "licence": [
                 "AGPL v3"
@@ -340403,7 +341229,7 @@
           }
         }
       },
-      "git_sha": "18756aea6cac39a78a7ca8cd51bb9ee53d4e7ba4",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "differentialabundance",
@@ -340414,7 +341240,7 @@
     {
       "name": "shinyngs_staticexploratory",
       "path": "modules/nf-core/shinyngs/staticexploratory/meta.yml",
-      "tree_sha": "0c2d7ad239cdb18d4faaf5666c10bf6b7bc1f72f",
+      "tree_sha": "98f0bf6854528efc084e4e1412f989ebd5087447",
       "files": [
         "modules/nf-core/shinyngs/staticexploratory/.conda-lock/linux_amd64-bd-d43071e62bc500d3_1.txt",
         "modules/nf-core/shinyngs/staticexploratory/.conda-lock/linux_arm64-bd-d168a374ce5dc1af_1.txt",
@@ -340443,7 +341269,7 @@
             "shinyngs": {
               "description": "Provides Shiny applications for various array and NGS applications. Currently very RNA-seq centric, with plans for expansion.",
               "homepage": "https://github.com/pinin4fjords/shinyngs",
-              "documentation": "https://rawgit.com/pinin4fjords/shinyngs/master/vignettes/shinyngs.html",
+              "documentation": "https://pinin4fjords.github.io/shinyngs/",
               "tool_dev_url": "https://github.com/pinin4fjords/shinyngs",
               "licence": [
                 "AGPL v3"
@@ -340777,7 +341603,7 @@
           }
         }
       },
-      "git_sha": "18756aea6cac39a78a7ca8cd51bb9ee53d4e7ba4",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "differentialabundance",
@@ -340788,7 +341614,7 @@
     {
       "name": "shinyngs_validatefomcomponents",
       "path": "modules/nf-core/shinyngs/validatefomcomponents/meta.yml",
-      "tree_sha": "f97b1eaf31d1c862c350fc9acca179f171c4714d",
+      "tree_sha": "1a0e73cca35366f2ddb02aea7133e3efc3aaa426",
       "files": [
         "modules/nf-core/shinyngs/validatefomcomponents/.conda-lock/linux_amd64-bd-d43071e62bc500d3_1.txt",
         "modules/nf-core/shinyngs/validatefomcomponents/.conda-lock/linux_arm64-bd-d168a374ce5dc1af_1.txt",
@@ -340814,7 +341640,7 @@
             "shinyngs": {
               "description": "Provides Shiny applications for various array and NGS applications. Currently very RNA-seq centric, with plans for expansion.",
               "homepage": "https://github.com/pinin4fjords/shinyngs",
-              "documentation": "https://rawgit.com/pinin4fjords/shinyngs/master/vignettes/shinyngs.html",
+              "documentation": "https://pinin4fjords.github.io/shinyngs/",
               "tool_dev_url": "https://github.com/pinin4fjords/shinyngs",
               "licence": [
                 "AGPL v3"
@@ -341055,7 +341881,7 @@
           }
         }
       },
-      "git_sha": "18756aea6cac39a78a7ca8cd51bb9ee53d4e7ba4",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "differentialabundance",
@@ -342705,7 +343531,7 @@
     {
       "name": "ska_fasta",
       "path": "modules/nf-core/ska/fasta/meta.yml",
-      "tree_sha": "2a70258830d6fd7b9129f8c31b43fe9634edeb4c",
+      "tree_sha": "08e8e0d072bd87bf9cf0d19287bd0c0e7db4b51a",
       "files": [
         "modules/nf-core/ska/fasta/environment.yml",
         "modules/nf-core/ska/fasta/main.nf",
@@ -342788,19 +343614,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_ska": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ska": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ska version | grep Version | cut -d ' ' -f 2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ska": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ska version | grep Version | cut -d ' ' -f 2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -342810,7 +343668,7 @@
           "@itrujnara"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "e43d2f46150f0382417a3b923298350a2b56b3c1"
     },
     {
       "name": "skani_dist",
@@ -344413,7 +345271,7 @@
     {
       "name": "smoove_call",
       "path": "modules/nf-core/smoove/call/meta.yml",
-      "tree_sha": "0ccd4e3321b8169bae26bed92ffd7d457fd32cdd",
+      "tree_sha": "2b6e8e6cd08d349bbc468b8d1e6a1d3e04fd85b2",
       "files": [
         "modules/nf-core/smoove/call/environment.yml",
         "modules/nf-core/smoove/call/main.nf",
@@ -344436,7 +345294,7 @@
             "smoove": {
               "description": "structural variant calling and genotyping with existing tools, but, smoothly",
               "homepage": "https://github.com/brentp/smoove",
-              "documentation": "https://brentp.github.io/post/smoove/",
+              "documentation": "https://github.com/brentp/smoove",
               "tool_dev_url": "https://github.com/brentp/smoove",
               "licence": [
                 "Apache-2.0"
@@ -344590,7 +345448,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "snakemake",
@@ -346154,7 +347012,7 @@
     {
       "name": "snpeff_download",
       "path": "modules/nf-core/snpeff/download/meta.yml",
-      "tree_sha": "fa537aa589d1cc7d1febe629fe3037fcf5bc77b9",
+      "tree_sha": "00d8b9b67ea36309e38898f675d2cf3d53d53c3c",
       "files": [
         "modules/nf-core/snpeff/download/environment.yml",
         "modules/nf-core/snpeff/download/main.nf",
@@ -346178,7 +347036,7 @@
             "snpeff": {
               "description": "SnpEff is a variant annotation and effect prediction tool.\nIt annotates and predicts the effects of genetic variants on genes and proteins (such as amino acid changes).\n",
               "homepage": "https://pcingola.github.io/SnpEff/",
-              "documentation": "https://pcingola.github.io/SnpEff/se_introduction/",
+              "documentation": "https://pcingola.github.io/SnpEff/snpeff/introduction/",
               "licence": [
                 "MIT"
               ],
@@ -346276,7 +347134,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "longraredisease",
@@ -346299,7 +347157,7 @@
     {
       "name": "snpeff_snpeff",
       "path": "modules/nf-core/snpeff/snpeff/meta.yml",
-      "tree_sha": "4cf779c39fee8e626c18a5fa6f57842c1af23b2f",
+      "tree_sha": "04c761fb585ee4453782bc462a7e5fb8e8d9ae17",
       "files": [
         "modules/nf-core/snpeff/snpeff/environment.yml",
         "modules/nf-core/snpeff/snpeff/main.nf",
@@ -346324,7 +347182,7 @@
             "snpeff": {
               "description": "SnpEff is a variant annotation and effect prediction tool.\nIt annotates and predicts the effects of genetic variants on genes and proteins (such as amino acid changes).\n",
               "homepage": "https://pcingola.github.io/SnpEff/",
-              "documentation": "https://pcingola.github.io/SnpEff/se_introduction/",
+              "documentation": "https://pcingola.github.io/SnpEff/snpeff/introduction/",
               "licence": [
                 "MIT"
               ],
@@ -346641,7 +347499,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "longraredisease",
@@ -347021,7 +347879,7 @@
     {
       "name": "snpsift_annotate",
       "path": "modules/nf-core/snpsift/annotate/meta.yml",
-      "tree_sha": "60e0bb55a8bbd7f8d2e633d955703b9f5152dc2a",
+      "tree_sha": "b849d1042b854173a2512cdc2e3dbb903011352e",
       "files": [
         "modules/nf-core/snpsift/annotate/environment.yml",
         "modules/nf-core/snpsift/annotate/main.nf",
@@ -347043,8 +347901,8 @@
           {
             "snpsift": {
               "description": "SnpSift is a toolbox that allows you to filter and manipulate annotated files",
-              "homepage": "https://pcingola.github.io/SnpEff/ss_introduction/",
-              "documentation": "https://pcingola.github.io/SnpEff/ss_introduction/",
+              "homepage": "https://pcingola.github.io/SnpEff/snpsift/introduction/",
+              "documentation": "https://pcingola.github.io/SnpEff/snpsift/introduction/",
               "tool_dev_url": "https://github.com/pcingola/SnpEff",
               "doi": "10.3389/fgene.2012.00035",
               "licence": [
@@ -347177,12 +348035,12 @@
           "@LlaneroHiboreo"
         ]
       },
-      "git_sha": "84fca3ce48c31dc0944c7dcecb08858a097a51a9"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "snpsift_dbnsfp",
       "path": "modules/nf-core/snpsift/dbnsfp/meta.yml",
-      "tree_sha": "4dff37c15c2275d764bce3a823db15ad222e8fb2",
+      "tree_sha": "b68ec8e657b218cc792a1a167e8326dd963c7128",
       "files": [
         "modules/nf-core/snpsift/dbnsfp/environment.yml",
         "modules/nf-core/snpsift/dbnsfp/main.nf",
@@ -347206,8 +348064,8 @@
           {
             "snpsift": {
               "description": "SnpSift is a toolbox that allows you to filter and manipulate annotated files",
-              "homepage": "https://pcingola.github.io/SnpEff/ss_introduction/",
-              "documentation": "https://pcingola.github.io/SnpEff/ss_dbnsfp/",
+              "homepage": "https://pcingola.github.io/SnpEff/snpsift/introduction/",
+              "documentation": "https://pcingola.github.io/SnpEff/snpsift/dbnsfp/",
               "tool_dev_url": "https://github.com/pcingola/SnpEff",
               "doi": "10.3389/fgene.2012.00035",
               "licence": [
@@ -347340,12 +348198,12 @@
           "@LlaneroHiboreo"
         ]
       },
-      "git_sha": "84fca3ce48c31dc0944c7dcecb08858a097a51a9"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "snpsift_split",
       "path": "modules/nf-core/snpsift/split/meta.yml",
-      "tree_sha": "0ef3fffe18814b9c608feb8c42abac898827ccbf",
+      "tree_sha": "b4b29d730846f4c25ffafa278e13bbc65c6bce1e",
       "files": [
         "modules/nf-core/snpsift/split/environment.yml",
         "modules/nf-core/snpsift/split/main.nf",
@@ -347367,8 +348225,8 @@
           {
             "snpsift": {
               "description": "SnpSift is a toolbox that allows you to filter and manipulate annotated files",
-              "homepage": "https://pcingola.github.io/SnpEff/ss_introduction/",
-              "documentation": "https://pcingola.github.io/SnpEff/ss_introduction/",
+              "homepage": "https://pcingola.github.io/SnpEff/snpsift/introduction/",
+              "documentation": "https://pcingola.github.io/SnpEff/snpsift/introduction/",
               "tool_dev_url": "https://github.com/pcingola/SnpEff",
               "doi": "10.3389/fgene.2012.00035",
               "licence": [
@@ -347471,7 +348329,7 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "9091c30765ad62592d9a3b07f811d5eec142e471",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "epitopeprediction",
@@ -351295,7 +352153,7 @@
     {
       "name": "spotiflow",
       "path": "modules/nf-core/spotiflow/meta.yml",
-      "tree_sha": "cbb69b47b70552cc7324ee2c7dcf9d2516d5eee5",
+      "tree_sha": "258246a52e83ec0316ec92a58b1afbb6d8936b2b",
       "files": [
         "modules/nf-core/spotiflow/main.nf",
         "modules/nf-core/spotiflow/meta.yml",
@@ -351372,19 +352230,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_spotiflow": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "spotiflow": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -m pip show spotiflow | grep 'Version' | sed -e 's/Version: //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "spotiflow": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -m pip show spotiflow | grep 'Version' | sed -e 's/Version: //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -351394,7 +352284,7 @@
           "@migueLib"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "4e982bc6da7f9a2f74744c7b40baa3ac1c3463db"
     },
     {
       "name": "spring_compress",
@@ -354802,7 +355692,7 @@
     {
       "name": "star_starsolo",
       "path": "modules/nf-core/star/starsolo/meta.yml",
-      "tree_sha": "652199c103db021d7162e132cd6a11d2691618ce",
+      "tree_sha": "e33fcba4de1cee20d7ebdc6204b3e72f3e0739f3",
       "files": [
         "modules/nf-core/star/starsolo/environment.yml",
         "modules/nf-core/star/starsolo/main.nf",
@@ -354813,7 +355703,7 @@
       ],
       "type": "module",
       "meta": {
-        "name": "starsolo",
+        "name": "star_starsolo",
         "description": "Create a counts matrix for single-cell data using STARSolo, handling cell barcodes and UMI information.",
         "keywords": [
           "align",
@@ -354975,19 +355865,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_star": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "star": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "STAR --version | sed -e \"s/STAR_//g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "star": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "STAR --version | sed -e \"s/STAR_//g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -355013,7 +355935,7 @@
           "@joaodemeirelles"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "d28b8b9497c367a9af632d643fa48b4e03e3eb2b"
     },
     {
       "name": "staramr_search",
@@ -358998,7 +359920,7 @@
     {
       "name": "subread_featurecounts",
       "path": "modules/nf-core/subread/featurecounts/meta.yml",
-      "tree_sha": "3973704a176d2b51c8181116d17c51135b8a5d58",
+      "tree_sha": "720860fd0db62871fe68e272516e4ff465e152b1",
       "files": [
         "modules/nf-core/subread/featurecounts/environment.yml",
         "modules/nf-core/subread/featurecounts/main.nf",
@@ -359021,8 +359943,8 @@
           {
             "featurecounts": {
               "description": "featureCounts is a highly efficient general-purpose read summarization program that counts mapped reads for genomic features such as genes, exons, promoter, gene bodies, genomic bins and chromosomal locations. It can be used to count both RNA-seq and genomic DNA-seq reads.",
-              "homepage": "http://bioinf.wehi.edu.au/featureCounts/",
-              "documentation": "http://bioinf.wehi.edu.au/subread-package/SubreadUsersGuide.pdf",
+              "homepage": "https://subread.sourceforge.net/featureCounts.html",
+              "documentation": "https://subread.sourceforge.net/SubreadUsersGuide.pdf",
               "doi": "10.1093/bioinformatics/btt656",
               "licence": [
                 "GPL v3"
@@ -359152,7 +360074,7 @@
           "@ntoda03"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "atacseq",
@@ -368504,7 +369426,7 @@
     {
       "name": "tcoffee_align",
       "path": "modules/nf-core/tcoffee/align/meta.yml",
-      "tree_sha": "23c3a534020f8c9c8554a13120702f4a2d454f92",
+      "tree_sha": "67769c840ebdd531efcaffcd84ca8a88ff9afb49",
       "files": [
         "modules/nf-core/tcoffee/align/environment.yml",
         "modules/nf-core/tcoffee/align/main.nf",
@@ -368527,7 +369449,7 @@
           {
             "tcoffee": {
               "description": "A collection of tools for Computing, Evaluating and Manipulating Multiple Alignments of DNA, RNA, Protein Sequences and Structures.",
-              "homepage": "http://www.tcoffee.org/Projects/tcoffee/",
+              "homepage": "https://tcoffee.org/Projects/tcoffee/index.html",
               "documentation": "https://tcoffee.readthedocs.io/en/latest/tcoffee_main_documentation.html",
               "tool_dev_url": "https://github.com/cbcrg/tcoffee",
               "doi": "10.1006/jmbi.2000.4042",
@@ -368778,7 +369700,7 @@
           "@alessiovignoli"
         ]
       },
-      "git_sha": "bae3c94c72519318ad3b16b2ff9ce203944ec914",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "multiplesequencealign",
@@ -368789,7 +369711,7 @@
     {
       "name": "tcoffee_alncompare",
       "path": "modules/nf-core/tcoffee/alncompare/meta.yml",
-      "tree_sha": "4116a319230796364c967b7108d6f01b3fdfdb34",
+      "tree_sha": "3f472e15f5719dade93673de302a2fc2699f47ca",
       "files": [
         "modules/nf-core/tcoffee/alncompare/environment.yml",
         "modules/nf-core/tcoffee/alncompare/main.nf",
@@ -368811,7 +369733,7 @@
           {
             "tcoffee": {
               "description": "A collection of tools for Multiple Alignments of DNA, RNA, Protein Sequence",
-              "homepage": "http://www.tcoffee.org/Projects/tcoffee/",
+              "homepage": "https://tcoffee.org/Projects/tcoffee/index.html",
               "documentation": "https://tcoffee.readthedocs.io/en/latest/tcoffee_main_documentation.html",
               "tool_dev_url": "https://github.com/cbcrg/tcoffee",
               "doi": "10.1006/jmbi.2000.4042",
@@ -368989,7 +369911,7 @@
           "@luisas"
         ]
       },
-      "git_sha": "bae3c94c72519318ad3b16b2ff9ce203944ec914",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "multiplesequencealign",
@@ -369000,7 +369922,7 @@
     {
       "name": "tcoffee_consensus",
       "path": "modules/nf-core/tcoffee/consensus/meta.yml",
-      "tree_sha": "d7b448e45a53e8d82f7b221cc33ef3841741afe3",
+      "tree_sha": "86eb682d74741693dc77e5ed16cb62f4c6e6617e",
       "files": [
         "modules/nf-core/tcoffee/consensus/environment.yml",
         "modules/nf-core/tcoffee/consensus/main.nf",
@@ -369023,7 +369945,7 @@
           {
             "tcoffee": {
               "description": "A collection of tools for Computing, Evaluating and Manipulating Multiple Alignments of DNA, RNA, Protein Sequences and Structures.",
-              "homepage": "http://www.tcoffee.org/Projects/tcoffee/",
+              "homepage": "https://tcoffee.org/Projects/tcoffee/index.html",
               "documentation": "https://tcoffee.readthedocs.io/en/latest/tcoffee_main_documentation.html",
               "tool_dev_url": "https://github.com/cbcrg/tcoffee",
               "doi": "10.1006/jmbi.2000.4042",
@@ -369217,7 +370139,7 @@
           "@luisas"
         ]
       },
-      "git_sha": "bae3c94c72519318ad3b16b2ff9ce203944ec914",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "multiplesequencealign",
@@ -369228,7 +370150,7 @@
     {
       "name": "tcoffee_extractfrompdb",
       "path": "modules/nf-core/tcoffee/extractfrompdb/meta.yml",
-      "tree_sha": "5f83bb5c6098fffc52487f3c9551d5d1989957ec",
+      "tree_sha": "e3d7248c2a00c03ae1959f1cc3b4d0580503d13f",
       "files": [
         "modules/nf-core/tcoffee/extractfrompdb/environment.yml",
         "modules/nf-core/tcoffee/extractfrompdb/main.nf",
@@ -369249,7 +370171,7 @@
           {
             "tcoffee": {
               "description": "A collection of tools for Computing, Evaluating and Manipulating Multiple Alignments of DNA, RNA, Protein Sequences and Structures.",
-              "homepage": "http://www.tcoffee.org/Projects/tcoffee/",
+              "homepage": "https://tcoffee.org/Projects/tcoffee/index.html",
               "documentation": "https://tcoffee.readthedocs.io/en/latest/tcoffee_main_documentation.html",
               "tool_dev_url": "https://github.com/cbcrg/tcoffee",
               "doi": "10.1006/jmbi.2000.4042",
@@ -369347,7 +370269,7 @@
           "@luisas"
         ]
       },
-      "git_sha": "bae3c94c72519318ad3b16b2ff9ce203944ec914",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "multiplesequencealign",
@@ -369358,7 +370280,7 @@
     {
       "name": "tcoffee_irmsd",
       "path": "modules/nf-core/tcoffee/irmsd/meta.yml",
-      "tree_sha": "245925390e408832c6c44886b984e2d722331514",
+      "tree_sha": "fe6cd85e573705eb3d99ca2f6d565ec89bb438ff",
       "files": [
         "modules/nf-core/tcoffee/irmsd/environment.yml",
         "modules/nf-core/tcoffee/irmsd/main.nf",
@@ -369379,7 +370301,7 @@
           {
             "tcoffee": {
               "description": "A collection of tools for Multiple Alignments of DNA, RNA, Protein Sequence",
-              "homepage": "http://www.tcoffee.org/Projects/tcoffee/",
+              "homepage": "https://tcoffee.org/Projects/tcoffee/index.html",
               "documentation": "https://tcoffee.readthedocs.io/en/latest/tcoffee_main_documentation.html",
               "tool_dev_url": "https://github.com/cbcrg/tcoffee",
               "doi": "10.1006/jmbi.2000.4042",
@@ -369569,7 +370491,7 @@
           "@luisas"
         ]
       },
-      "git_sha": "bae3c94c72519318ad3b16b2ff9ce203944ec914",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "multiplesequencealign",
@@ -369580,7 +370502,7 @@
     {
       "name": "tcoffee_regressive",
       "path": "modules/nf-core/tcoffee/regressive/meta.yml",
-      "tree_sha": "f3cdc9cfd81cddbc20b2d5e95d1717511135a827",
+      "tree_sha": "da35dce3d581e7ae0eeb8ba7e43ef9fa9ccb03cb",
       "files": [
         "modules/nf-core/tcoffee/regressive/environment.yml",
         "modules/nf-core/tcoffee/regressive/main.nf",
@@ -369601,7 +370523,7 @@
           {
             "tcoffee": {
               "description": "A collection of tools for Computing, Evaluating and Manipulating Multiple Alignments of DNA, RNA, Protein Sequences and Structures.",
-              "homepage": "http://www.tcoffee.org/Projects/tcoffee/",
+              "homepage": "https://tcoffee.org/Projects/tcoffee/index.html",
               "documentation": "https://tcoffee.readthedocs.io/en/latest/tcoffee_main_documentation.html",
               "tool_dev_url": "https://github.com/cbcrg/tcoffee",
               "doi": "10.1038/s41587-019-0333-6",
@@ -369826,7 +370748,7 @@
           "@luisas"
         ]
       },
-      "git_sha": "bae3c94c72519318ad3b16b2ff9ce203944ec914",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "multiplesequencealign",
@@ -369837,7 +370759,7 @@
     {
       "name": "tcoffee_seqreformat",
       "path": "modules/nf-core/tcoffee/seqreformat/meta.yml",
-      "tree_sha": "db8d79620631abdedef4e04e22683269b7343cd8",
+      "tree_sha": "b642916fd0d50a471c5956ae77ac0ca81fa71373",
       "files": [
         "modules/nf-core/tcoffee/seqreformat/environment.yml",
         "modules/nf-core/tcoffee/seqreformat/main.nf",
@@ -369859,7 +370781,7 @@
           {
             "tcoffee": {
               "description": "A collection of tools for Computing, Evaluating and Manipulating Multiple Alignments of DNA, RNA, Protein Sequences and Structures.",
-              "homepage": "http://www.tcoffee.org/Projects/tcoffee/",
+              "homepage": "https://tcoffee.org/Projects/tcoffee/index.html",
               "documentation": "https://tcoffee.readthedocs.io/en/latest/tcoffee_main_documentation.html",
               "tool_dev_url": "https://github.com/cbcrg/tcoffee",
               "doi": "10.1006/jmbi.2000.4042",
@@ -369958,7 +370880,7 @@
           "@JoseEspinosa"
         ]
       },
-      "git_sha": "bae3c94c72519318ad3b16b2ff9ce203944ec914",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "multiplesequencealign",
@@ -369969,7 +370891,7 @@
     {
       "name": "tcoffee_tcs",
       "path": "modules/nf-core/tcoffee/tcs/meta.yml",
-      "tree_sha": "4ca73496cef860a86d5aeebe42106d392c878e15",
+      "tree_sha": "b33d1ce255c5ba70f453eaf1dc7e4a2314ac899f",
       "files": [
         "modules/nf-core/tcoffee/tcs/environment.yml",
         "modules/nf-core/tcoffee/tcs/main.nf",
@@ -369991,7 +370913,7 @@
           {
             "tcoffee": {
               "description": "A collection of tools for Multiple Alignments of DNA, RNA, Protein Sequence",
-              "homepage": "http://www.tcoffee.org/Projects/tcoffee/",
+              "homepage": "https://tcoffee.org/Projects/tcoffee/index.html",
               "documentation": "https://tcoffee.readthedocs.io/en/latest/tcoffee_main_documentation.html",
               "tool_dev_url": "https://github.com/cbcrg/tcoffee",
               "doi": "10.1006/jmbi.2000.4042",
@@ -370187,7 +371109,7 @@
           "@alessiovignoli"
         ]
       },
-      "git_sha": "bae3c94c72519318ad3b16b2ff9ce203944ec914",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "multiplesequencealign",
@@ -371605,7 +372527,7 @@
     {
       "name": "tesorter",
       "path": "modules/nf-core/tesorter/meta.yml",
-      "tree_sha": "8edfa0a930c0b5a0094cc2d1d179d101dc308f74",
+      "tree_sha": "cf68093a16cd11dc2372a184284d90d1d03c321e",
       "files": [
         "modules/nf-core/tesorter/environment.yml",
         "modules/nf-core/tesorter/main.nf",
@@ -371817,19 +372739,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_tesorter": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "TEsorter": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "TEsorter -v": {
+                  "type": "eval",
+                  "description": "The version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "TEsorter": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "TEsorter -v": {
+                  "type": "eval",
+                  "description": "The version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -371839,12 +372793,12 @@
           "@GallVp"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "912f9af0cffa715a126b452db2d724703c4c213b"
     },
     {
       "name": "tetranscripts",
       "path": "modules/nf-core/tetranscripts/meta.yml",
-      "tree_sha": "3d82c9b82156bd76707b6076fa21f8bfaafe6ea3",
+      "tree_sha": "5ae8b553b49c411f91ea8fa202bfe9165619aabe",
       "files": [
         "modules/nf-core/tetranscripts/environment.yml",
         "modules/nf-core/tetranscripts/main.nf",
@@ -371867,7 +372821,7 @@
             "tetranscripts": {
               "description": "A package for including transposable elements in differential enrichment analysis of sequencing datasets.",
               "homepage": "https://github.com/mhammell-laboratory/TEtranscripts",
-              "documentation": "https://hammelllab.labsites.cshl.edu/software/#TEtranscripts",
+              "documentation": "https://github.com/mhammell-laboratory/TEtranscripts",
               "tool_dev_url": "https://github.com/mhammell-laboratory/TEtranscripts",
               "doi": "10.1093/bioinformatics/btv422",
               "licence": [
@@ -372098,7 +373052,7 @@
           "@hanalysis"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
       "name": "thermorawfileparser",
@@ -374125,7 +375079,7 @@
     {
       "name": "traitar_pfamget",
       "path": "modules/nf-core/traitar/pfamget/meta.yml",
-      "tree_sha": "2ada507f0fc6ed80f849cd7a1354210dca36a5e3",
+      "tree_sha": "a696a2629c3edf285ac5a6def3245eb8f27ab724",
       "files": [
         "modules/nf-core/traitar/pfamget/environment.yml",
         "modules/nf-core/traitar/pfamget/main.nf",
@@ -374147,9 +375101,9 @@
           {
             "traitar": {
               "description": "Microbial trait prediction from genome sequences",
-              "homepage": "https://github.com/hzi-bifo/traitar3",
-              "documentation": "https://github.com/hzi-bifo/traitar3",
-              "tool_dev_url": "https://github.com/hzi-bifo/traitar3",
+              "homepage": "https://github.com/hzi-bifo/traitar",
+              "documentation": "https://github.com/hzi-bifo/traitar",
+              "tool_dev_url": "https://github.com/hzi-bifo/traitar",
               "licence": [
                 "GPL v3"
               ],
@@ -374221,7 +375175,7 @@
           "@brovolia"
         ]
       },
-      "git_sha": "bd8653e13f9c2394b757da1fd48b8cf9ad641e11",
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
       "pipelines": [
         {
           "name": "bacmodel",
@@ -407280,7 +408234,7 @@
     {
       "name": "deepvariant",
       "path": "subworkflows/nf-core/deepvariant/meta.yml",
-      "tree_sha": "1f22a4952aa5b4ead92249cb733cbd22c3758fe3",
+      "tree_sha": "a459fa5b0591e93a4ed27d3311478e5a141913e4",
       "files": [
         "subworkflows/nf-core/deepvariant/README.md",
         "subworkflows/nf-core/deepvariant/main.nf",
@@ -407290,7 +408244,8 @@
         "subworkflows/nf-core/deepvariant/tests/equality.nf.test",
         "subworkflows/nf-core/deepvariant/tests/main.nf.test",
         "subworkflows/nf-core/deepvariant/tests/main.nf.test.snap",
-        "subworkflows/nf-core/deepvariant/tests/nextflow.config"
+        "subworkflows/nf-core/deepvariant/tests/nextflow.config",
+        "subworkflows/nf-core/deepvariant/tests/pacbio_profile.config"
       ],
       "type": "subworkflow",
       "meta": {
@@ -407387,7 +408342,7 @@
           "@fa2k"
         ]
       },
-      "git_sha": "29031bf70ae8117b235400aca32796a433c733f2"
+      "git_sha": "4a4ccce52d5a280b0b136ff3ac841607debed92b"
     },
     {
       "name": "dia_proteomics_analysis",
@@ -419975,6 +420930,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "8e4cc14bb069daefdcb5e7c44736cefddecad4c0",
-  "updated_at": "2026-08-14T03:00:18.644Z"
+  "commit_sha": "c2244f084072141a61e0571a52a4be98c55f3cc0",
+  "updated_at": "2026-08-18T02:31:34.754Z"
 }
