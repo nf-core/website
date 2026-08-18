@@ -1,6 +1,6 @@
 ---
 title: Workshop de treinamento do Nextflow
-category: training
+category: community
 slack: 
 location: UFRN
 leaders:
