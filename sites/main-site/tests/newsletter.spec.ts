@@ -7,7 +7,7 @@ import {
     getPipelineReleasesForMonth,
     getProposalsForMonth,
     newsletterMonthHasContent,
-} from "@utils/newsletter";
+} from "../../utils/newsletter";
 
 // Unit tests for the newsletter data/date logic. These functions are pure and
 // build-time critical: the month maths (incl. year boundaries), release grouping
