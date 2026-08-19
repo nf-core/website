@@ -22,6 +22,13 @@ const {
 // Live newsletter service /subscribe endpoint.
 // TODO: move behind a stable custom domain (e.g. api.nf-co.re) when one exists.
 const SUBSCRIBE_URL = "https://e5veor8z45.execute-api.eu-west-1.amazonaws.com/subscribe";
+
+// Cloudflare Turnstile CAPTCHA, to stop the endpoint being used as a spam relay
+// (harvested addresses submitted here get a confirmation email from us).
+// The site key is public by design. Until it's set (local dev, early preview
+// deploys) the form degrades gracefully to its pre-Turnstile behaviour — the
+// backend only enforces the check once its matching secret key is configured.
+const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 ---
 
 <div class="nl-signup">
@@ -44,16 +51,70 @@ const SUBSCRIBE_URL = "https://e5veor8z45.execute-api.eu-west-1.amazonaws.com/su
                 autocomplete="email"
                 required
             />
-            <button class="btn btn-success" type="submit">
+            <button class="btn btn-success" type="submit" disabled={!!TURNSTILE_SITE_KEY}>
                 <i class="fas fa-envelope me-1"></i> Subscribe
             </button>
         </div>
+        {TURNSTILE_SITE_KEY && <div class="nl-signup-turnstile mt-2" data-sitekey={TURNSTILE_SITE_KEY} />}
         <div class="nl-signup-status small mt-2" role="status" aria-live="polite"></div>
     </form>
 </div>
 
+{
+    TURNSTILE_SITE_KEY && (
+        <script
+            is:inline
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback&render=explicit"
+            async
+            defer
+        />
+    )
+}
+
 <script>
+    // Renders the Turnstile widget in every `.nl-signup-turnstile` container that
+    // isn't already rendered. Called once the Turnstile script has loaded
+    // (`onloadTurnstileCallback`, for the very first page) and again from
+    // `initNewsletterSignup` (for widgets that appear later, e.g. after a client-side
+    // navigation swap where the script tag persists but doesn't re-fire onload).
+    function renderTurnstileWidgets() {
+        const turnstile = (window as any).turnstile;
+        if (!turnstile) return;
+        document.querySelectorAll(".nl-signup-turnstile").forEach((el) => {
+            const container = el as HTMLElement;
+            if (container.dataset.tsRendered) return;
+            container.dataset.tsRendered = "1";
+            const form = container.closest("form") as HTMLFormElement;
+            const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+            turnstile.render(container, {
+                sitekey: container.dataset.sitekey,
+                callback: (token: string) => {
+                    form.dataset.turnstileToken = token;
+                    button.disabled = false;
+                },
+                "expired-callback": () => {
+                    delete form.dataset.turnstileToken;
+                    button.disabled = true;
+                },
+                "error-callback": () => {
+                    delete form.dataset.turnstileToken;
+                    button.disabled = true;
+                },
+            });
+        });
+    }
+    (window as any).onloadTurnstileCallback = renderTurnstileWidgets;
+
+    function resetTurnstileFor(form: HTMLFormElement) {
+        delete form.dataset.turnstileToken;
+        const container = form.querySelector(".nl-signup-turnstile") as HTMLElement | null;
+        const turnstile = (window as any).turnstile;
+        if (container && turnstile) turnstile.reset(container);
+    }
+
     function initNewsletterSignup() {
+        renderTurnstileWidgets();
+
         document.querySelectorAll(".nl-signup-form").forEach((el) => {
             const form = el as HTMLFormElement;
             if (form.dataset.nlInit) return;
@@ -62,10 +123,18 @@ const SUBSCRIBE_URL = "https://e5veor8z45.execute-api.eu-west-1.amazonaws.com/su
             const input = form.querySelector('input[name="email"]') as HTMLInputElement;
             const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
             const status = form.querySelector(".nl-signup-status") as HTMLElement;
+            // Present only when PUBLIC_TURNSTILE_SITE_KEY was set at build time.
+            const turnstileContainer = form.querySelector(".nl-signup-turnstile");
 
             const setStatus = (message: string, kind: "success" | "danger" | "body-secondary") => {
                 status.textContent = message;
                 status.className = `nl-signup-status small mt-2 text-${kind}`;
+            };
+
+            // With no Turnstile widget the button is never disabled by the captcha
+            // gate, so this always allows submission (pre-Turnstile behaviour).
+            const syncButton = () => {
+                button.disabled = !!turnstileContainer && !form.dataset.turnstileToken;
             };
 
             form.addEventListener("submit", async (e) => {
@@ -74,13 +143,21 @@ const SUBSCRIBE_URL = "https://e5veor8z45.execute-api.eu-west-1.amazonaws.com/su
                     setStatus("Please enter a valid email address.", "danger");
                     return;
                 }
+                if (turnstileContainer && !form.dataset.turnstileToken) {
+                    setStatus("Please complete the verification check.", "danger");
+                    return;
+                }
                 button.disabled = true;
                 setStatus("Subscribing…", "body-secondary");
                 try {
+                    const body: Record<string, string> = { email: input.value.trim() };
+                    if (form.dataset.turnstileToken) {
+                        body["cf-turnstile-response"] = form.dataset.turnstileToken;
+                    }
                     const res = await fetch(form.dataset.endpoint as string, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ email: input.value.trim() }),
+                        body: JSON.stringify(body),
                     });
                     if (res.ok) {
                         const data = await res.json().catch(() => ({}));
@@ -91,15 +168,23 @@ const SUBSCRIBE_URL = "https://e5veor8z45.execute-api.eu-west-1.amazonaws.com/su
                             "success",
                         );
                         form.reset();
+                        // The token is single-use; get a fresh one ready for next time.
+                        resetTurnstileFor(form);
                     } else if (res.status === 400) {
-                        setStatus("Please enter a valid email address.", "danger");
+                        const data = await res.json().catch(() => ({}));
+                        if (data.error === "captcha_failed") {
+                            setStatus("Verification failed. Please try again.", "danger");
+                            resetTurnstileFor(form);
+                        } else {
+                            setStatus("Please enter a valid email address.", "danger");
+                        }
                     } else {
                         setStatus("Something went wrong. Please try again later.", "danger");
                     }
                 } catch {
                     setStatus("Couldn't reach the server. Please try again later.", "danger");
                 } finally {
-                    button.disabled = false;
+                    syncButton();
                 }
             });
         });
