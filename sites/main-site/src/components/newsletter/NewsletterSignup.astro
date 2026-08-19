@@ -62,12 +62,18 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 
 {
     TURNSTILE_SITE_KEY && (
-        <script
-            is:inline
-            src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback&render=explicit"
-            async
-            defer
-        />
+        <Fragment>
+            {/* Stub so api.js finds a callback on load, silencing a console warning —
+                the deferred module below can't win that race. It replaces this with the
+                real renderer, and renders any widget already in the DOM. */}
+            <script is:inline>{"window.onloadTurnstileCallback = function () {};"}</script>
+            <script
+                is:inline
+                src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback&render=explicit"
+                async
+                defer
+            />
+        </Fragment>
     )
 }
 
@@ -88,6 +94,10 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
             const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
             turnstile.render(container, {
                 sitekey: container.dataset.sitekey,
+                // Hidden unless the visitor actually has to solve something. Note this
+                // needs a Managed widget: an Invisible one is never shown, so anyone it
+                // can't clear silently (VPN, Tor, locked-down browser) would be stuck.
+                appearance: "interaction-only",
                 callback: (token: string) => {
                     form.dataset.turnstileToken = token;
                     button.disabled = false;
