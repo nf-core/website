@@ -250563,15 +250563,17 @@
     {
       "name": "optitype",
       "path": "modules/nf-core/optitype/meta.yml",
-      "tree_sha": "29f2e98a43b295aa03b2c130caa599332118d47a",
+      "tree_sha": "b96816ce800479bec974ca527d1a9ae887f303cf",
       "files": [
+        "modules/nf-core/optitype/.conda-lock/linux_amd64-bd-0b46ade42a5009b2_1.txt",
         "modules/nf-core/optitype/environment.yml",
         "modules/nf-core/optitype/main.nf",
         "modules/nf-core/optitype/meta.yml",
         "modules/nf-core/optitype/tests/main.nf.test",
         "modules/nf-core/optitype/tests/main.nf.test.snap",
         "modules/nf-core/optitype/tests/nextflow.config",
-        "modules/nf-core/optitype/tests/optitype_cbc.config"
+        "modules/nf-core/optitype/tests/optitype_cbc.config",
+        "modules/nf-core/optitype/tests/optitype_cplex.config"
       ],
       "type": "module",
       "meta": {
@@ -250674,7 +250676,7 @@
                 }
               },
               {
-                "grep \"Version:\" $(which OptiTypePipeline.py) | sed \"s/Version: //g\"": {
+                "optitype info | sed -n \"s/.*OptiType version: \\([0-9.]*\\).*/\\1/p\"": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -250698,7 +250700,7 @@
                 }
               },
               {
-                "grep \"Version:\" $(which OptiTypePipeline.py) | sed \"s/Version: //g\"": {
+                "optitype info | sed -n \"s/.*OptiType version: \\([0-9.]*\\).*/\\1/p\"": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -250712,9 +250714,30 @@
         "maintainers": [
           "@apeltzer",
           "@christopher-mohr"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/optitype_coincbc_cplex:0b46ade42a5009b2",
+              "build_id": "bd-0b46ade42a5009b2_1",
+              "scan_id": "sc-573b3792bd8c1c1a_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/optitype_coincbc_cplex:740697b2eda2bbc2",
+              "build_id": "bd-740697b2eda2bbc2_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9f/9ff14340c6c903c1c9d926fb7ffa60460986852515c76673cc54f6c958ff35bd/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/optitype/.conda-lock/linux_amd64-bd-0b46ade42a5009b2_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "c12be5fb432ac1548e6221bb988f191b163c6e21",
+      "git_sha": "fcad955c9c9529407951b09583707290c9220c94",
       "pipelines": [
         {
           "name": "hlatyping",
@@ -302397,7 +302420,7 @@
     {
       "name": "ribowaltz",
       "path": "modules/nf-core/ribowaltz/meta.yml",
-      "tree_sha": "b91c42c64e90babdd01ed87ba267af0daf9c09a9",
+      "tree_sha": "1665685b84e88d167ef806ce4dea082702e41d22",
       "files": [
         "modules/nf-core/ribowaltz/environment.yml",
         "modules/nf-core/ribowaltz/main.nf",
@@ -302680,11 +302703,31 @@
                   "type": "file",
                   "description": "TSV files containing data underlying riboWaltz QC plots including read length distribution, read length bins for P-site offset identification, ends heatmap, codon usage, P-site region distribution, frame distribution, frame distribution stratified by read length, and metaprofile P-site frequency around start/stop codons (optional)",
                   "pattern": "ribowaltz_qc/*.tsv",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
                 }
               }
             ]
           ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
           "versions": [
             {
               "versions.yml": {
@@ -302707,7 +302750,7 @@
           "@iraiosub"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "6a56192e2d3fed052037664256cd1c9ea4954044",
       "pipelines": [
         {
           "name": "riboseq",
@@ -305563,7 +305606,7 @@
     {
       "name": "rrnatranscripts",
       "path": "modules/nf-core/rrnatranscripts/meta.yml",
-      "tree_sha": "1145a7adf2b7439a077c55c5bb7679106e68d555",
+      "tree_sha": "422df8cde031fad7c5f6c4db3f34079952f2f596",
       "files": [
         "modules/nf-core/rrnatranscripts/environment.yml",
         "modules/nf-core/rrnatranscripts/main.nf",
@@ -305653,6 +305696,16 @@
             }
           ]
         },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
+              }
+            }
+          ]
+        },
         "authors": [
           "@rannick"
         ],
@@ -305660,7 +305713,7 @@
           "@rannick"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "a958e2f9f7e1a27dc3fb92ef9150da908c9b9c53"
     },
     {
       "name": "rsem_calculateexpression",
@@ -325272,7 +325325,7 @@
     {
       "name": "scds",
       "path": "modules/nf-core/scds/meta.yml",
-      "tree_sha": "8d5f85fedee00f9a1bf940a8c8527f5a5a5e2818",
+      "tree_sha": "2db8e0945a60367b86fd3297e82f461f7ff1f820",
       "files": [
         "modules/nf-core/scds/environment.yml",
         "modules/nf-core/scds/main.nf",
@@ -325379,6 +325432,22 @@
             }
           ]
         },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software version",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
         "authors": [
           "@cakirb"
         ],
@@ -325386,7 +325455,7 @@
           "@cakirb"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "c4957b018853c69b8dd3766c87c21bcf25548299"
     },
     {
       "name": "scimap_mcmicro",
@@ -326068,7 +326137,7 @@
     {
       "name": "scramble_clusteridentifier",
       "path": "modules/nf-core/scramble/clusteridentifier/meta.yml",
-      "tree_sha": "8854bbc093e97f206df0fdd282a4f036e536a067",
+      "tree_sha": "632038a58c8afe96d57b20cb66431fdf187b18a1",
       "files": [
         "modules/nf-core/scramble/clusteridentifier/environment.yml",
         "modules/nf-core/scramble/clusteridentifier/main.nf",
@@ -326160,19 +326229,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_scramble": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "scramble": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "1.0.2": {
+                  "type": "string",
+                  "description": "The version of the tool (hardcoded, not available via CLI)"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "scramble": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "1.0.2": {
+                  "type": "string",
+                  "description": "The version of the tool (hardcoded, not available via CLI)"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -326182,7 +326283,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "7a67f68ccfe78c7d71945bac0a500a48ba011292"
     },
     {
       "name": "scvitools_scar",
@@ -414865,7 +414966,7 @@
     {
       "name": "fastq_qc_trim_filter_setstrandedness",
       "path": "subworkflows/nf-core/fastq_qc_trim_filter_setstrandedness/meta.yml",
-      "tree_sha": "7dcfdb4f9b5f70f560fae2f178f686f3cc4169c2",
+      "tree_sha": "1c62243f4430c76d54d2d9e1447658ac2df6fbda",
       "files": [
         "subworkflows/nf-core/fastq_qc_trim_filter_setstrandedness/main.nf",
         "subworkflows/nf-core/fastq_qc_trim_filter_setstrandedness/meta.yml",
@@ -415382,7 +415483,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "125dd56462de94a3172255b4912dbc4efadd6421",
+      "git_sha": "06d95c8ca20cbb78d4364f4e59d7b86fa5c61662",
       "pipelines": [
         {
           "name": "lncpipe",
@@ -421319,6 +421420,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "5949023709a5113e77133ce65eafde7aa4464bc0",
-  "updated_at": "2026-08-18T14:21:13.578Z"
+  "commit_sha": "fcad955c9c9529407951b09583707290c9220c94",
+  "updated_at": "2026-08-19T02:33:17.575Z"
 }
