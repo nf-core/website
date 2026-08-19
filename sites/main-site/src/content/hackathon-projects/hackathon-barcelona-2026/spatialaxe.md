@@ -2,6 +2,7 @@
 title: nf-core/spatialaxe
 category: pipelines
 slack: https://nfcore.slack.com/channels/spatialaxe
+location: Barcelona
 image: "/assets/images/events/2026/hackathon-barcelona/spatialaxe-metromap.png"
 image_alt: "nf-core/spatialaxe metromap showing the current pipeline implementation plan"
 leaders:
