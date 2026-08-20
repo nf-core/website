@@ -3,6 +3,8 @@ title: Agentic module development
 category: components
 slack: https://nfcore.slack.com/archives/CJRH30T6V
 location: Barcelona
+image: "/assets/images/events/2026/hackathon-barcelona/agentic-modules-wishlist.png"
+image_alt: "nf-core/modules wishlist agents"
 leaders:
   vagkaratzas:
     name: Evangelos Karatzas
