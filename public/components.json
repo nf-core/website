@@ -52531,7 +52531,7 @@
         },
         {
           "name": "pixelator",
-          "version": "5.0.0"
+          "version": "5.0.1"
         },
         {
           "name": "raredisease",
@@ -70742,8 +70742,9 @@
     {
       "name": "comebin_runcomebin",
       "path": "modules/nf-core/comebin/runcomebin/meta.yml",
-      "tree_sha": "fb1a6a24861bc3967cb24aaa72b73ef97a33c5fa",
+      "tree_sha": "b6544128c56344bc4d24e44cbf54fcd19d7968aa",
       "files": [
+        "modules/nf-core/comebin/runcomebin/.conda-lock/linux_amd64-bd-f7721f7c5a189044_1.txt",
         "modules/nf-core/comebin/runcomebin/environment.yml",
         "modules/nf-core/comebin/runcomebin/main.nf",
         "modules/nf-core/comebin/runcomebin/meta.yml",
@@ -70937,7 +70938,7 @@
                 }
               },
               {
-                "run_comebin.sh | sed '2!d;s/COMEBin version: //'": {
+                "run_comebin.sh | sed '5!d;s/COMEBin version: //'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -70961,7 +70962,7 @@
                 }
               },
               {
-                "run_comebin.sh | sed '2!d;s/COMEBin version: //'": {
+                "run_comebin.sh | sed '5!d;s/COMEBin version: //'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -70974,9 +70975,30 @@
         ],
         "maintainers": [
           "@prototaxites"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/comebin:1.1.0--f7721f7c5a189044",
+              "build_id": "bd-f7721f7c5a189044_1",
+              "scan_id": "sc-52432bea18de12e1_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/comebin:1.1.0--a7e5189ce655fa30",
+              "build_id": "bd-a7e5189ce655fa30_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/46/46c7be4715b72a8d91735d465c9d677cc918f2921f2bdb528dd20222d07975a0/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/comebin/runcomebin/.conda-lock/linux_amd64-bd-f7721f7c5a189044_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "2f88a8bd7f40c9a29219a72da7f96f6db95925df",
       "pipelines": [
         {
           "name": "mag",
@@ -82262,7 +82284,7 @@
     {
       "name": "custom_orfnormalise",
       "path": "modules/nf-core/custom/orfnormalise/meta.yml",
-      "tree_sha": "ca351a72ad08280c5228f9d39bbb717dfa5f4d78",
+      "tree_sha": "d912b9927e37ee303a7b1eac3bff38ece685828b",
       "files": [
         "modules/nf-core/custom/orfnormalise/environment.yml",
         "modules/nf-core/custom/orfnormalise/main.nf",
@@ -82394,7 +82416,7 @@
             {
               "gtf": {
                 "type": "file",
-                "description": "Annotation GTF. Required for ribocode (transcript-relative\ncoordinates → genomic lift) and strongly recommended for\nribotish (multi-exon block recovery from GenomePos) and\nribotricer (multi-exon block recovery from ORF_ID span). For\nrpbp and price (genomic coordinates emitted directly by the\ntool) the GTF is unused; pass `[ [:], [] ]` if you only run\nthose callers.\n",
+                "description": "Annotation GTF, used by every caller: ribocode, ribotish and\nribotricer for genomic coordinates and multi-exon blocks, rpbp\nand price to resolve `gene_id` from the ORF's transcript id.\nMust cover the annotation the caller ran against, or a superset:\nunmatched transcripts lose `gene_id`, and price falls back to its\n`Gene` column, which concatenates every gene the ORF overlaps.\n",
                 "pattern": "*.gtf",
                 "ontologies": [
                   {
@@ -82482,7 +82504,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "be91fb1578e47bf1a8acc301bf7d755cb7313fc2"
+      "git_sha": "fdb10e2a26e8b02391826f307ecf56fddf8f7e60"
     },
     {
       "name": "custom_pcaclustering",
@@ -85804,6 +85826,168 @@
         ]
       },
       "git_sha": "719abfd0ec41bcc7e2f540b4fd5c8150fdfe228e"
+    },
+    {
+      "name": "debreak",
+      "path": "modules/nf-core/debreak/meta.yml",
+      "tree_sha": "172b711f0826f8407f44bb20b5b117dcb7d481bb",
+      "files": [
+        "modules/nf-core/debreak/environment.yml",
+        "modules/nf-core/debreak/main.nf",
+        "modules/nf-core/debreak/meta.yml",
+        "modules/nf-core/debreak/tests/main.nf.test",
+        "modules/nf-core/debreak/tests/main.nf.test.snap",
+        "modules/nf-core/debreak/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "debreak",
+        "description": "Structural variant calling from long-read sequencing data using DeBreak",
+        "keywords": [
+          "debreak",
+          "structural variants",
+          "long-read",
+          "SV calling"
+        ],
+        "tools": [
+          {
+            "debreak": {
+              "description": "A structural variant caller for long-read sequencing data that uses partial-order alignment for breakpoint refinement and local assembly for large insertion detection",
+              "homepage": "https://github.com/Maggi-Chen/DeBreak",
+              "documentation": "https://github.com/Maggi-Chen/DeBreak",
+              "tool_dev_url": "https://github.com/Maggi-Chen/DeBreak",
+              "doi": "10.1038/s41467-023-37619-3",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM file",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file",
+                "pattern": "*.bai",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'hg38' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome FASTA file. Required for breakpoint refinement (--poa) and large insertion detection (--rescue_large_ins). Pass [] to skip.",
+                "pattern": "*.{fa,fasta,fa.gz,fasta.gz}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.vcf": {
+                  "type": "file",
+                  "description": "VCF file containing detected structural variants",
+                  "pattern": "*.vcf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_debreak": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "debreak": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.3": {
+                  "type": "string",
+                  "description": "The name of the tool version"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "debreak": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.3": {
+                  "type": "string",
+                  "description": "The name of the tool version"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@aksenia"
+        ],
+        "maintainers": [
+          "@aksenia"
+        ]
+      },
+      "git_sha": "0c18e8d1894d478108eb61f2627a5587901464d8"
     },
     {
       "name": "decoupler_decoupler",
@@ -116400,8 +116584,10 @@
     {
       "name": "fgumi_clip",
       "path": "modules/nf-core/fgumi/clip/meta.yml",
-      "tree_sha": "f80afa5edf93fb0ce66c10736df287314010efaf",
+      "tree_sha": "e98cb1756d5e8717fbb8205b634c373c0b0228ea",
       "files": [
+        "modules/nf-core/fgumi/clip/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt",
+        "modules/nf-core/fgumi/clip/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt",
         "modules/nf-core/fgumi/clip/environment.yml",
         "modules/nf-core/fgumi/clip/main.nf",
         "modules/nf-core/fgumi/clip/meta.yml",
@@ -116571,15 +116757,51 @@
         ],
         "maintainers": [
           "@nh13"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c97194d17da0d1cd",
+              "build_id": "bd-c97194d17da0d1cd_1",
+              "scan_id": "sc-12a9f07935b105c6_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c2c03620f6999cbb",
+              "build_id": "bd-c2c03620f6999cbb_1",
+              "scan_id": "sc-28cfea28ac8f0b00_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--bf2cc0c2bf5f1666",
+              "build_id": "bd-bf2cc0c2bf5f1666_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e6/e613097ca7c84595a8683b6b042d113ac40e1936a809477aa95fcd1f8f3bfca2/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--9104012f8f17c48e",
+              "build_id": "bd-9104012f8f17c48e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9f/9f99979f01d1b8142c2883a1da264fec0f446be1ae59e96a70ec5975209fd965/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fgumi/clip/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/fgumi/clip/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "fgumi_codec",
       "path": "modules/nf-core/fgumi/codec/meta.yml",
-      "tree_sha": "334ef62918407c5ab9bcba2919e66a324777436a",
+      "tree_sha": "818afb8ae23a7dbec2c99f4efa3a74478e6b939b",
       "files": [
+        "modules/nf-core/fgumi/codec/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt",
+        "modules/nf-core/fgumi/codec/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt",
         "modules/nf-core/fgumi/codec/environment.yml",
         "modules/nf-core/fgumi/codec/main.nf",
         "modules/nf-core/fgumi/codec/meta.yml",
@@ -116754,15 +116976,51 @@
         ],
         "maintainers": [
           "@nh13"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c2c03620f6999cbb",
+              "build_id": "bd-c2c03620f6999cbb_1",
+              "scan_id": "sc-28cfea28ac8f0b00_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c97194d17da0d1cd",
+              "build_id": "bd-c97194d17da0d1cd_1",
+              "scan_id": "sc-12a9f07935b105c6_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--bf2cc0c2bf5f1666",
+              "build_id": "bd-bf2cc0c2bf5f1666_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e6/e613097ca7c84595a8683b6b042d113ac40e1936a809477aa95fcd1f8f3bfca2/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--9104012f8f17c48e",
+              "build_id": "bd-9104012f8f17c48e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9f/9f99979f01d1b8142c2883a1da264fec0f446be1ae59e96a70ec5975209fd965/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fgumi/codec/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/fgumi/codec/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "fgumi_correct",
       "path": "modules/nf-core/fgumi/correct/meta.yml",
-      "tree_sha": "595b495c47a082e38434f35e2d903023e01e5fb6",
+      "tree_sha": "71041cb6d24d1dc5fe358d10aeaaac2324ee09cf",
       "files": [
+        "modules/nf-core/fgumi/correct/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt",
+        "modules/nf-core/fgumi/correct/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt",
         "modules/nf-core/fgumi/correct/environment.yml",
         "modules/nf-core/fgumi/correct/main.nf",
         "modules/nf-core/fgumi/correct/meta.yml",
@@ -116950,15 +117208,51 @@
         ],
         "maintainers": [
           "@nh13"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c97194d17da0d1cd",
+              "build_id": "bd-c97194d17da0d1cd_1",
+              "scan_id": "sc-12a9f07935b105c6_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c2c03620f6999cbb",
+              "build_id": "bd-c2c03620f6999cbb_1",
+              "scan_id": "sc-28cfea28ac8f0b00_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--9104012f8f17c48e",
+              "build_id": "bd-9104012f8f17c48e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9f/9f99979f01d1b8142c2883a1da264fec0f446be1ae59e96a70ec5975209fd965/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--bf2cc0c2bf5f1666",
+              "build_id": "bd-bf2cc0c2bf5f1666_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e6/e613097ca7c84595a8683b6b042d113ac40e1936a809477aa95fcd1f8f3bfca2/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fgumi/correct/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/fgumi/correct/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "fgumi_dedup",
       "path": "modules/nf-core/fgumi/dedup/meta.yml",
-      "tree_sha": "a7f59b18a482fa67934d4175f823d5469e76cc19",
+      "tree_sha": "6b289b4fa75af626c9e6ca14f2ba37f31a4105b3",
       "files": [
+        "modules/nf-core/fgumi/dedup/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt",
+        "modules/nf-core/fgumi/dedup/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt",
         "modules/nf-core/fgumi/dedup/environment.yml",
         "modules/nf-core/fgumi/dedup/main.nf",
         "modules/nf-core/fgumi/dedup/meta.yml",
@@ -117123,15 +117417,51 @@
         ],
         "maintainers": [
           "@nh13"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c2c03620f6999cbb",
+              "build_id": "bd-c2c03620f6999cbb_1",
+              "scan_id": "sc-28cfea28ac8f0b00_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c97194d17da0d1cd",
+              "build_id": "bd-c97194d17da0d1cd_1",
+              "scan_id": "sc-12a9f07935b105c6_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--bf2cc0c2bf5f1666",
+              "build_id": "bd-bf2cc0c2bf5f1666_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e6/e613097ca7c84595a8683b6b042d113ac40e1936a809477aa95fcd1f8f3bfca2/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--9104012f8f17c48e",
+              "build_id": "bd-9104012f8f17c48e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9f/9f99979f01d1b8142c2883a1da264fec0f446be1ae59e96a70ec5975209fd965/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fgumi/dedup/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/fgumi/dedup/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "fgumi_downsample",
       "path": "modules/nf-core/fgumi/downsample/meta.yml",
-      "tree_sha": "b990b2f03d564117a48638848698f644a5910c0e",
+      "tree_sha": "3a6207031d73729b41ab57c21a9d9efa3a56a3c7",
       "files": [
+        "modules/nf-core/fgumi/downsample/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt",
+        "modules/nf-core/fgumi/downsample/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt",
         "modules/nf-core/fgumi/downsample/environment.yml",
         "modules/nf-core/fgumi/downsample/main.nf",
         "modules/nf-core/fgumi/downsample/meta.yml",
@@ -117330,15 +117660,51 @@
         ],
         "maintainers": [
           "@nh13"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c97194d17da0d1cd",
+              "build_id": "bd-c97194d17da0d1cd_1",
+              "scan_id": "sc-12a9f07935b105c6_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c2c03620f6999cbb",
+              "build_id": "bd-c2c03620f6999cbb_1",
+              "scan_id": "sc-28cfea28ac8f0b00_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--bf2cc0c2bf5f1666",
+              "build_id": "bd-bf2cc0c2bf5f1666_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e6/e613097ca7c84595a8683b6b042d113ac40e1936a809477aa95fcd1f8f3bfca2/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--9104012f8f17c48e",
+              "build_id": "bd-9104012f8f17c48e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9f/9f99979f01d1b8142c2883a1da264fec0f446be1ae59e96a70ec5975209fd965/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fgumi/downsample/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/fgumi/downsample/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "fgumi_duplex",
       "path": "modules/nf-core/fgumi/duplex/meta.yml",
-      "tree_sha": "af2f0c9d094c7ed960ea8986b4866b01db16a667",
+      "tree_sha": "f230e6a31268ae52e1a701d4731bd8a5acfcb0a6",
       "files": [
+        "modules/nf-core/fgumi/duplex/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt",
+        "modules/nf-core/fgumi/duplex/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt",
         "modules/nf-core/fgumi/duplex/environment.yml",
         "modules/nf-core/fgumi/duplex/main.nf",
         "modules/nf-core/fgumi/duplex/meta.yml",
@@ -117518,15 +117884,51 @@
         ],
         "maintainers": [
           "@sppearce"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c97194d17da0d1cd",
+              "build_id": "bd-c97194d17da0d1cd_1",
+              "scan_id": "sc-12a9f07935b105c6_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c2c03620f6999cbb",
+              "build_id": "bd-c2c03620f6999cbb_1",
+              "scan_id": "sc-28cfea28ac8f0b00_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--bf2cc0c2bf5f1666",
+              "build_id": "bd-bf2cc0c2bf5f1666_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e6/e613097ca7c84595a8683b6b042d113ac40e1936a809477aa95fcd1f8f3bfca2/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--9104012f8f17c48e",
+              "build_id": "bd-9104012f8f17c48e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9f/9f99979f01d1b8142c2883a1da264fec0f446be1ae59e96a70ec5975209fd965/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fgumi/duplex/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/fgumi/duplex/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "fgumi_duplexmetrics",
       "path": "modules/nf-core/fgumi/duplexmetrics/meta.yml",
-      "tree_sha": "861e5c0f238322b773c9373697f2a0d06b14a748",
+      "tree_sha": "fb0ada76b2ebb8c64aa4b695aa73831eafbba31b",
       "files": [
+        "modules/nf-core/fgumi/duplexmetrics/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt",
+        "modules/nf-core/fgumi/duplexmetrics/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt",
         "modules/nf-core/fgumi/duplexmetrics/environment.yml",
         "modules/nf-core/fgumi/duplexmetrics/main.nf",
         "modules/nf-core/fgumi/duplexmetrics/meta.yml",
@@ -117750,15 +118152,51 @@
         ],
         "maintainers": [
           "@nf-core"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c97194d17da0d1cd",
+              "build_id": "bd-c97194d17da0d1cd_1",
+              "scan_id": "sc-12a9f07935b105c6_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c2c03620f6999cbb",
+              "build_id": "bd-c2c03620f6999cbb_1",
+              "scan_id": "sc-28cfea28ac8f0b00_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--bf2cc0c2bf5f1666",
+              "build_id": "bd-bf2cc0c2bf5f1666_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e6/e613097ca7c84595a8683b6b042d113ac40e1936a809477aa95fcd1f8f3bfca2/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--9104012f8f17c48e",
+              "build_id": "bd-9104012f8f17c48e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9f/9f99979f01d1b8142c2883a1da264fec0f446be1ae59e96a70ec5975209fd965/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fgumi/duplexmetrics/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/fgumi/duplexmetrics/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "fgumi_extract",
       "path": "modules/nf-core/fgumi/extract/meta.yml",
-      "tree_sha": "ccceac1bf654916d9001be04f060fb077f5763da",
+      "tree_sha": "8e8b41431180629af05c2c72fc847e0811e99cf3",
       "files": [
+        "modules/nf-core/fgumi/extract/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt",
+        "modules/nf-core/fgumi/extract/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt",
         "modules/nf-core/fgumi/extract/environment.yml",
         "modules/nf-core/fgumi/extract/main.nf",
         "modules/nf-core/fgumi/extract/meta.yml",
@@ -117889,15 +118327,51 @@
         ],
         "maintainers": [
           "@atrigila"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c2c03620f6999cbb",
+              "build_id": "bd-c2c03620f6999cbb_1",
+              "scan_id": "sc-28cfea28ac8f0b00_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c97194d17da0d1cd",
+              "build_id": "bd-c97194d17da0d1cd_1",
+              "scan_id": "sc-12a9f07935b105c6_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--bf2cc0c2bf5f1666",
+              "build_id": "bd-bf2cc0c2bf5f1666_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e6/e613097ca7c84595a8683b6b042d113ac40e1936a809477aa95fcd1f8f3bfca2/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--9104012f8f17c48e",
+              "build_id": "bd-9104012f8f17c48e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9f/9f99979f01d1b8142c2883a1da264fec0f446be1ae59e96a70ec5975209fd965/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fgumi/extract/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/fgumi/extract/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "fgumi_fastq",
       "path": "modules/nf-core/fgumi/fastq/meta.yml",
-      "tree_sha": "dc1ba50456ef0320ca963ecbc5fed379a348afa6",
+      "tree_sha": "6f929c51a4b814a56dbb569f757bc0161636ff66",
       "files": [
+        "modules/nf-core/fgumi/fastq/.conda-lock/linux_amd64-bd-934119bc275ab7a2_1.txt",
+        "modules/nf-core/fgumi/fastq/.conda-lock/linux_arm64-bd-c968ce9f846de727_1.txt",
         "modules/nf-core/fgumi/fastq/environment.yml",
         "modules/nf-core/fgumi/fastq/main.nf",
         "modules/nf-core/fgumi/fastq/meta.yml",
@@ -118070,15 +118544,51 @@
         ],
         "maintainers": [
           "@nh13"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fgumi_gzip:934119bc275ab7a2",
+              "build_id": "bd-934119bc275ab7a2_1",
+              "scan_id": "sc-c1968f695c6ce2dd_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/fgumi_gzip:c968ce9f846de727",
+              "build_id": "bd-c968ce9f846de727_1",
+              "scan_id": "sc-eed9eefe23a09daf_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi_gzip:15c7afce978cf600",
+              "build_id": "bd-15c7afce978cf600_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/ea/ea9756c684085fa9050ba182975df4bd4675658f458267ecc3f2d4c93a3f8dff/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi_gzip:4e6f33b2a4ea48d1",
+              "build_id": "bd-4e6f33b2a4ea48d1_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/23/233ca4b4658beb1089b1548fc8ebdc848dc051173d3ae257161298657981b8b6/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fgumi/fastq/.conda-lock/linux_amd64-bd-934119bc275ab7a2_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/fgumi/fastq/.conda-lock/linux_arm64-bd-c968ce9f846de727_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "fgumi_filter",
       "path": "modules/nf-core/fgumi/filter/meta.yml",
-      "tree_sha": "09dc44fc08036fe1f57b6a131258757401f361d5",
+      "tree_sha": "3c30cb67ca5f72abacc08cc373522097a9851da7",
       "files": [
+        "modules/nf-core/fgumi/filter/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt",
+        "modules/nf-core/fgumi/filter/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt",
         "modules/nf-core/fgumi/filter/environment.yml",
         "modules/nf-core/fgumi/filter/main.nf",
         "modules/nf-core/fgumi/filter/meta.yml",
@@ -118279,15 +118789,51 @@
         ],
         "maintainers": [
           "@sppearce"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c2c03620f6999cbb",
+              "build_id": "bd-c2c03620f6999cbb_1",
+              "scan_id": "sc-28cfea28ac8f0b00_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c97194d17da0d1cd",
+              "build_id": "bd-c97194d17da0d1cd_1",
+              "scan_id": "sc-12a9f07935b105c6_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--bf2cc0c2bf5f1666",
+              "build_id": "bd-bf2cc0c2bf5f1666_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e6/e613097ca7c84595a8683b6b042d113ac40e1936a809477aa95fcd1f8f3bfca2/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--9104012f8f17c48e",
+              "build_id": "bd-9104012f8f17c48e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9f/9f99979f01d1b8142c2883a1da264fec0f446be1ae59e96a70ec5975209fd965/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fgumi/filter/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/fgumi/filter/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "fgumi_group",
       "path": "modules/nf-core/fgumi/group/meta.yml",
-      "tree_sha": "1ab42c518e69d0fa976a6d026f7e6feacc8c8535",
+      "tree_sha": "a6757d1cdf75e770d57e502003effcd688181e86",
       "files": [
+        "modules/nf-core/fgumi/group/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt",
+        "modules/nf-core/fgumi/group/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt",
         "modules/nf-core/fgumi/group/environment.yml",
         "modules/nf-core/fgumi/group/main.nf",
         "modules/nf-core/fgumi/group/meta.yml",
@@ -118461,15 +119007,51 @@
         ],
         "maintainers": [
           "@sppearce"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c97194d17da0d1cd",
+              "build_id": "bd-c97194d17da0d1cd_1",
+              "scan_id": "sc-12a9f07935b105c6_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c2c03620f6999cbb",
+              "build_id": "bd-c2c03620f6999cbb_1",
+              "scan_id": "sc-28cfea28ac8f0b00_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--bf2cc0c2bf5f1666",
+              "build_id": "bd-bf2cc0c2bf5f1666_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e6/e613097ca7c84595a8683b6b042d113ac40e1936a809477aa95fcd1f8f3bfca2/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--9104012f8f17c48e",
+              "build_id": "bd-9104012f8f17c48e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9f/9f99979f01d1b8142c2883a1da264fec0f446be1ae59e96a70ec5975209fd965/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fgumi/group/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/fgumi/group/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "fgumi_merge",
       "path": "modules/nf-core/fgumi/merge/meta.yml",
-      "tree_sha": "1a795c4ccdfb229f95920f613b1889bfd9fc5638",
+      "tree_sha": "8df45121b64c8ebf556f367a278a5fcf819e1322",
       "files": [
+        "modules/nf-core/fgumi/merge/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt",
+        "modules/nf-core/fgumi/merge/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt",
         "modules/nf-core/fgumi/merge/environment.yml",
         "modules/nf-core/fgumi/merge/main.nf",
         "modules/nf-core/fgumi/merge/meta.yml",
@@ -118598,15 +119180,51 @@
         ],
         "maintainers": [
           "@sppearce"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c2c03620f6999cbb",
+              "build_id": "bd-c2c03620f6999cbb_1",
+              "scan_id": "sc-28cfea28ac8f0b00_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c97194d17da0d1cd",
+              "build_id": "bd-c97194d17da0d1cd_1",
+              "scan_id": "sc-12a9f07935b105c6_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--bf2cc0c2bf5f1666",
+              "build_id": "bd-bf2cc0c2bf5f1666_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e6/e613097ca7c84595a8683b6b042d113ac40e1936a809477aa95fcd1f8f3bfca2/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--9104012f8f17c48e",
+              "build_id": "bd-9104012f8f17c48e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9f/9f99979f01d1b8142c2883a1da264fec0f446be1ae59e96a70ec5975209fd965/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fgumi/merge/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/fgumi/merge/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "fgumi_simplex",
       "path": "modules/nf-core/fgumi/simplex/meta.yml",
-      "tree_sha": "f4b283e41f298cd484350ca2e728416a2b9ee24a",
+      "tree_sha": "15e7b47b638a5f06e027bb0430f8dd9208b0fd47",
       "files": [
+        "modules/nf-core/fgumi/simplex/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt",
+        "modules/nf-core/fgumi/simplex/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt",
         "modules/nf-core/fgumi/simplex/environment.yml",
         "modules/nf-core/fgumi/simplex/main.nf",
         "modules/nf-core/fgumi/simplex/meta.yml",
@@ -118786,15 +119404,51 @@
         ],
         "maintainers": [
           "@sppearce"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c97194d17da0d1cd",
+              "build_id": "bd-c97194d17da0d1cd_1",
+              "scan_id": "sc-12a9f07935b105c6_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c2c03620f6999cbb",
+              "build_id": "bd-c2c03620f6999cbb_1",
+              "scan_id": "sc-28cfea28ac8f0b00_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--9104012f8f17c48e",
+              "build_id": "bd-9104012f8f17c48e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9f/9f99979f01d1b8142c2883a1da264fec0f446be1ae59e96a70ec5975209fd965/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--bf2cc0c2bf5f1666",
+              "build_id": "bd-bf2cc0c2bf5f1666_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e6/e613097ca7c84595a8683b6b042d113ac40e1936a809477aa95fcd1f8f3bfca2/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fgumi/simplex/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/fgumi/simplex/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "fgumi_simplexmetrics",
       "path": "modules/nf-core/fgumi/simplexmetrics/meta.yml",
-      "tree_sha": "b7f5ebdec5c5f227f7728359e13d6b1f996ef0a6",
+      "tree_sha": "2bc3f2cda2efa0b1d1f297b09d89e8e9b085263e",
       "files": [
+        "modules/nf-core/fgumi/simplexmetrics/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt",
+        "modules/nf-core/fgumi/simplexmetrics/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt",
         "modules/nf-core/fgumi/simplexmetrics/environment.yml",
         "modules/nf-core/fgumi/simplexmetrics/main.nf",
         "modules/nf-core/fgumi/simplexmetrics/meta.yml",
@@ -118981,15 +119635,51 @@
         ],
         "maintainers": [
           "@nh13"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c97194d17da0d1cd",
+              "build_id": "bd-c97194d17da0d1cd_1",
+              "scan_id": "sc-12a9f07935b105c6_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c2c03620f6999cbb",
+              "build_id": "bd-c2c03620f6999cbb_1",
+              "scan_id": "sc-28cfea28ac8f0b00_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--bf2cc0c2bf5f1666",
+              "build_id": "bd-bf2cc0c2bf5f1666_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e6/e613097ca7c84595a8683b6b042d113ac40e1936a809477aa95fcd1f8f3bfca2/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--9104012f8f17c48e",
+              "build_id": "bd-9104012f8f17c48e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9f/9f99979f01d1b8142c2883a1da264fec0f446be1ae59e96a70ec5975209fd965/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fgumi/simplexmetrics/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/fgumi/simplexmetrics/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "fgumi_sort",
       "path": "modules/nf-core/fgumi/sort/meta.yml",
-      "tree_sha": "0cf066625d3d8251f69844e666dba3bade929025",
+      "tree_sha": "423b617720d04be6cc3c5495931bd6eabdf43ad6",
       "files": [
+        "modules/nf-core/fgumi/sort/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt",
+        "modules/nf-core/fgumi/sort/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt",
         "modules/nf-core/fgumi/sort/environment.yml",
         "modules/nf-core/fgumi/sort/main.nf",
         "modules/nf-core/fgumi/sort/meta.yml",
@@ -119139,15 +119829,51 @@
         ],
         "maintainers": [
           "@sppearce"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c97194d17da0d1cd",
+              "build_id": "bd-c97194d17da0d1cd_1",
+              "scan_id": "sc-12a9f07935b105c6_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c2c03620f6999cbb",
+              "build_id": "bd-c2c03620f6999cbb_1",
+              "scan_id": "sc-28cfea28ac8f0b00_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--bf2cc0c2bf5f1666",
+              "build_id": "bd-bf2cc0c2bf5f1666_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e6/e613097ca7c84595a8683b6b042d113ac40e1936a809477aa95fcd1f8f3bfca2/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--9104012f8f17c48e",
+              "build_id": "bd-9104012f8f17c48e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9f/9f99979f01d1b8142c2883a1da264fec0f446be1ae59e96a70ec5975209fd965/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fgumi/sort/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/fgumi/sort/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "fgumi_zipper",
       "path": "modules/nf-core/fgumi/zipper/meta.yml",
-      "tree_sha": "974d1e7fcebed91c3023510070bda82ca2d1b7c8",
+      "tree_sha": "74ef21ca54f654d3868671541be793a6206d0518",
       "files": [
+        "modules/nf-core/fgumi/zipper/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt",
+        "modules/nf-core/fgumi/zipper/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt",
         "modules/nf-core/fgumi/zipper/environment.yml",
         "modules/nf-core/fgumi/zipper/main.nf",
         "modules/nf-core/fgumi/zipper/meta.yml",
@@ -119328,9 +120054,43 @@
         ],
         "maintainers": [
           "@nh13"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c97194d17da0d1cd",
+              "build_id": "bd-c97194d17da0d1cd_1",
+              "scan_id": "sc-12a9f07935b105c6_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/fgumi:0.6.0--c2c03620f6999cbb",
+              "build_id": "bd-c2c03620f6999cbb_1",
+              "scan_id": "sc-28cfea28ac8f0b00_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--bf2cc0c2bf5f1666",
+              "build_id": "bd-bf2cc0c2bf5f1666_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e6/e613097ca7c84595a8683b6b042d113ac40e1936a809477aa95fcd1f8f3bfca2/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/fgumi:0.6.0--9104012f8f17c48e",
+              "build_id": "bd-9104012f8f17c48e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9f/9f99979f01d1b8142c2883a1da264fec0f446be1ae59e96a70ec5975209fd965/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fgumi/zipper/.conda-lock/linux_amd64-bd-c97194d17da0d1cd_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/fgumi/zipper/.conda-lock/linux_arm64-bd-c2c03620f6999cbb_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "bbf80cf36f51c04771feacc3ce7c4e485032a344"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "fibertoolsrs_addnucleosomes",
@@ -130527,7 +131287,7 @@
     {
       "name": "gatk4_addorreplacereadgroups",
       "path": "modules/nf-core/gatk4/addorreplacereadgroups/meta.yml",
-      "tree_sha": "ea8baef9cab0fddad3ad6be58767e9bf248aff04",
+      "tree_sha": "9e7f904168fe0d632945aaf36a242e0aae7bc6ef",
       "files": [
         "modules/nf-core/gatk4/addorreplacereadgroups/environment.yml",
         "modules/nf-core/gatk4/addorreplacereadgroups/main.nf",
@@ -130729,7 +131489,7 @@
           "@muffato"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -130740,7 +131500,7 @@
     {
       "name": "gatk4_analyzecovariates",
       "path": "modules/nf-core/gatk4/analyzecovariates/meta.yml",
-      "tree_sha": "4db6e2dab02bc3a20c9b80f8a053e9b9def991d4",
+      "tree_sha": "eec7bb8ed98b650032b421b762bb2f1c9efd8896",
       "files": [
         "modules/nf-core/gatk4/analyzecovariates/environment.yml",
         "modules/nf-core/gatk4/analyzecovariates/main.nf",
@@ -130904,7 +131664,7 @@
           "@thomasisensee"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -130915,7 +131675,7 @@
     {
       "name": "gatk4_annotateintervals",
       "path": "modules/nf-core/gatk4/annotateintervals/meta.yml",
-      "tree_sha": "bdbaca030c5b0ee2fd21c3ce1864897de3a2bd5d",
+      "tree_sha": "0dc6b08403bcc08268a2b9b20e8d350c84157cf2",
       "files": [
         "modules/nf-core/gatk4/annotateintervals/environment.yml",
         "modules/nf-core/gatk4/annotateintervals/main.nf",
@@ -131156,7 +131916,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -131167,7 +131927,7 @@
     {
       "name": "gatk4_applybqsr",
       "path": "modules/nf-core/gatk4/applybqsr/meta.yml",
-      "tree_sha": "53893f3144da6e802550ae24b279f9670d5f0d6c",
+      "tree_sha": "e2567d33363dc59f1ea783c92b6d64808f172ba4",
       "files": [
         "modules/nf-core/gatk4/applybqsr/environment.yml",
         "modules/nf-core/gatk4/applybqsr/main.nf",
@@ -131423,7 +132183,7 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -131450,7 +132210,7 @@
     {
       "name": "gatk4_applyvqsr",
       "path": "modules/nf-core/gatk4/applyvqsr/meta.yml",
-      "tree_sha": "e9c61194e2336bc9030af74e23b48ff22ae6daec",
+      "tree_sha": "bdb44b127e88c3e04df50f9a67c1805ab2c22355",
       "files": [
         "modules/nf-core/gatk4/applyvqsr/environment.yml",
         "modules/nf-core/gatk4/applyvqsr/main.nf",
@@ -131665,7 +132425,7 @@
           "@GCJMackenzie"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "pathogenepidemiology",
@@ -131684,7 +132444,7 @@
     {
       "name": "gatk4_asereadcounter",
       "path": "modules/nf-core/gatk4/asereadcounter/meta.yml",
-      "tree_sha": "e39992c05ae76e14d4ae60ae84779c6c67a57fb5",
+      "tree_sha": "1c8cfb30a41b36243342c882829472c541d85663",
       "files": [
         "modules/nf-core/gatk4/asereadcounter/environment.yml",
         "modules/nf-core/gatk4/asereadcounter/main.nf",
@@ -131876,12 +132636,12 @@
           "@Lucpen"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "gatk4_baserecalibrator",
       "path": "modules/nf-core/gatk4/baserecalibrator/meta.yml",
-      "tree_sha": "4bf2da48916bfbbc6b0b8b7b35b24259611f48e5",
+      "tree_sha": "cba8d7d561c12187e3baddac992c89f6a3aea485",
       "files": [
         "modules/nf-core/gatk4/baserecalibrator/environment.yml",
         "modules/nf-core/gatk4/baserecalibrator/main.nf",
@@ -132108,7 +132868,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -132131,7 +132891,7 @@
     {
       "name": "gatk4_bedtointervallist",
       "path": "modules/nf-core/gatk4/bedtointervallist/meta.yml",
-      "tree_sha": "857d4169520979a492df5552191a54c2f5fd6ef1",
+      "tree_sha": "f42a84e44f2ce8fb245578ba45b1af0318fe02b6",
       "files": [
         "modules/nf-core/gatk4/bedtointervallist/environment.yml",
         "modules/nf-core/gatk4/bedtointervallist/main.nf",
@@ -132274,7 +133034,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -132301,7 +133061,7 @@
     {
       "name": "gatk4_calculatecontamination",
       "path": "modules/nf-core/gatk4/calculatecontamination/meta.yml",
-      "tree_sha": "86c89c56090b68d3b61196d94cc4bb23c9b28514",
+      "tree_sha": "d2465757c93a0df3b05946c2b0fb7ce2d22a1ba6",
       "files": [
         "modules/nf-core/gatk4/calculatecontamination/environment.yml",
         "modules/nf-core/gatk4/calculatecontamination/main.nf",
@@ -132458,7 +133218,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "rnadnavar",
@@ -132473,7 +133233,7 @@
     {
       "name": "gatk4_calibratedragstrmodel",
       "path": "modules/nf-core/gatk4/calibratedragstrmodel/meta.yml",
-      "tree_sha": "4f2d9b9d2b6c712902d11a9d4a40a87a684f79f8",
+      "tree_sha": "6b44522b12df14c62aa4d0ccec9533084ffd8135",
       "files": [
         "modules/nf-core/gatk4/calibratedragstrmodel/environment.yml",
         "modules/nf-core/gatk4/calibratedragstrmodel/main.nf",
@@ -132642,12 +133402,12 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "gatk4_cleansam",
       "path": "modules/nf-core/gatk4/cleansam/meta.yml",
-      "tree_sha": "7bf6057a5564af6182a2dca0b2168e0dec4c42ee",
+      "tree_sha": "d7f66417c4f1e1fc6359fff19c817a5b625a479c",
       "files": [
         "modules/nf-core/gatk4/cleansam/environment.yml",
         "modules/nf-core/gatk4/cleansam/main.nf",
@@ -132856,7 +133616,7 @@
           "@sofiademmou"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "gatk4_cnnscorevariants",
@@ -133083,7 +133843,7 @@
     {
       "name": "gatk4_collectreadcounts",
       "path": "modules/nf-core/gatk4/collectreadcounts/meta.yml",
-      "tree_sha": "a9b2ca900c153133d159bfea38fbd725ba22a31a",
+      "tree_sha": "22aa2da6d6b65e2429e51ded84c9f6f6d89193d2",
       "files": [
         "modules/nf-core/gatk4/collectreadcounts/environment.yml",
         "modules/nf-core/gatk4/collectreadcounts/main.nf",
@@ -133296,7 +134056,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -133311,7 +134071,7 @@
     {
       "name": "gatk4_collectsvevidence",
       "path": "modules/nf-core/gatk4/collectsvevidence/meta.yml",
-      "tree_sha": "a9cc1253240e540fa5a113d299e1665d21cb18c7",
+      "tree_sha": "e1dcbb06a4a177e6257185531c5344158bada540",
       "files": [
         "modules/nf-core/gatk4/collectsvevidence/environment.yml",
         "modules/nf-core/gatk4/collectsvevidence/main.nf",
@@ -133589,12 +134349,12 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "gatk4_combinegvcfs",
       "path": "modules/nf-core/gatk4/combinegvcfs/meta.yml",
-      "tree_sha": "dffb7ceccbe38c8f9351643683002857bed46d64",
+      "tree_sha": "bc99a5ab91df77bfd2dc80ec27ffe079158cb874",
       "files": [
         "modules/nf-core/gatk4/combinegvcfs/environment.yml",
         "modules/nf-core/gatk4/combinegvcfs/main.nf",
@@ -133771,7 +134531,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "rnavar",
@@ -133782,7 +134542,7 @@
     {
       "name": "gatk4_composestrtablefile",
       "path": "modules/nf-core/gatk4/composestrtablefile/meta.yml",
-      "tree_sha": "87be11b410468fb54e0e118ed85c5b9d9d4ea29b",
+      "tree_sha": "6c8af7479ef75611f1f0ec4c19b12198e3f31c8a",
       "files": [
         "modules/nf-core/gatk4/composestrtablefile/environment.yml",
         "modules/nf-core/gatk4/composestrtablefile/main.nf",
@@ -133908,12 +134668,12 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "gatk4_concordance",
       "path": "modules/nf-core/gatk4/concordance/meta.yml",
-      "tree_sha": "6e1e251c70a0c270f9b4339eb7e4a20720e116ea",
+      "tree_sha": "1c59441d61c1f2ce90f57af3439ad96729b060ed",
       "files": [
         "modules/nf-core/gatk4/concordance/environment.yml",
         "modules/nf-core/gatk4/concordance/main.nf",
@@ -134215,7 +134975,7 @@
           "@kubranarci"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "variantbenchmarking",
@@ -134226,7 +134986,7 @@
     {
       "name": "gatk4_condensedepthevidence",
       "path": "modules/nf-core/gatk4/condensedepthevidence/meta.yml",
-      "tree_sha": "6011dee1903dbcfdb72a102487b53b1824fa8a6f",
+      "tree_sha": "d3ed0d3b105e6e5212b3075c3be4b8b39e6d507e",
       "files": [
         "modules/nf-core/gatk4/condensedepthevidence/environment.yml",
         "modules/nf-core/gatk4/condensedepthevidence/main.nf",
@@ -134406,12 +135166,12 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "gatk4_createreadcountpanelofnormals",
       "path": "modules/nf-core/gatk4/createreadcountpanelofnormals/meta.yml",
-      "tree_sha": "6403d4ade1d1f84834348cdecc1b9abd20b12a53",
+      "tree_sha": "9a8415ef1935fea1b4327fc82648f05cd575a4e1",
       "files": [
         "modules/nf-core/gatk4/createreadcountpanelofnormals/environment.yml",
         "modules/nf-core/gatk4/createreadcountpanelofnormals/main.nf",
@@ -134539,7 +135299,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -134550,7 +135310,7 @@
     {
       "name": "gatk4_createsequencedictionary",
       "path": "modules/nf-core/gatk4/createsequencedictionary/meta.yml",
-      "tree_sha": "53b5b4ac792850509336449cc21c0a0a8cc03e8c",
+      "tree_sha": "a21e8f42179e6002d44607c62f97de72ace4f6df",
       "files": [
         "modules/nf-core/gatk4/createsequencedictionary/environment.yml",
         "modules/nf-core/gatk4/createsequencedictionary/main.nf",
@@ -134677,7 +135437,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -134724,7 +135484,7 @@
     {
       "name": "gatk4_createsomaticpanelofnormals",
       "path": "modules/nf-core/gatk4/createsomaticpanelofnormals/meta.yml",
-      "tree_sha": "bff603e42d562119b911f0502569fdad08454ea3",
+      "tree_sha": "95e4d4e1eccbcf3cf2d9deed7d80e9509e845b97",
       "files": [
         "modules/nf-core/gatk4/createsomaticpanelofnormals/environment.yml",
         "modules/nf-core/gatk4/createsomaticpanelofnormals/main.nf",
@@ -134912,7 +135672,7 @@
           "@GCJMackenzie"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -134923,7 +135683,7 @@
     {
       "name": "gatk4_denoisereadcounts",
       "path": "modules/nf-core/gatk4/denoisereadcounts/meta.yml",
-      "tree_sha": "3118ca0da83f05da2fc2d46dda0d0a74911114ad",
+      "tree_sha": "e932bea000af85969aff0cc6e39df0c01efe8b71",
       "files": [
         "modules/nf-core/gatk4/denoisereadcounts/environment.yml",
         "modules/nf-core/gatk4/denoisereadcounts/main.nf",
@@ -135093,7 +135853,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "raredisease",
@@ -135104,7 +135864,7 @@
     {
       "name": "gatk4_determinegermlinecontigploidy",
       "path": "modules/nf-core/gatk4/determinegermlinecontigploidy/meta.yml",
-      "tree_sha": "70b40ee2670fea734820e68428f5520cd1ad3933",
+      "tree_sha": "e02776bd3bfb1c39354133d1ef2e32ae72f2720b",
       "files": [
         "modules/nf-core/gatk4/determinegermlinecontigploidy/environment.yml",
         "modules/nf-core/gatk4/determinegermlinecontigploidy/main.nf",
@@ -135290,7 +136050,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -135305,7 +136065,7 @@
     {
       "name": "gatk4_estimatelibrarycomplexity",
       "path": "modules/nf-core/gatk4/estimatelibrarycomplexity/meta.yml",
-      "tree_sha": "b705c8e079873821e7151bc2832dae77b2de7854",
+      "tree_sha": "9fe2d92a09dcc977a16dbae8a41f824281f97230",
       "files": [
         "modules/nf-core/gatk4/estimatelibrarycomplexity/environment.yml",
         "modules/nf-core/gatk4/estimatelibrarycomplexity/main.nf",
@@ -135455,7 +136215,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "sarek",
@@ -135466,7 +136226,7 @@
     {
       "name": "gatk4_fastqtosam",
       "path": "modules/nf-core/gatk4/fastqtosam/meta.yml",
-      "tree_sha": "b17dae531bf89000e6cc4131b1a985f164d8f447",
+      "tree_sha": "c5fd7dc791d9ea9bebd6bb0dc64585ff8abc09ff",
       "files": [
         "modules/nf-core/gatk4/fastqtosam/environment.yml",
         "modules/nf-core/gatk4/fastqtosam/main.nf",
@@ -135594,12 +136354,12 @@
           "@ntoda03"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "gatk4_filterintervals",
       "path": "modules/nf-core/gatk4/filterintervals/meta.yml",
-      "tree_sha": "3cc29653f61253e5ed9cf29f73d33544406db514",
+      "tree_sha": "8b62363b963c9169727dea7856f3f102babae7be",
       "files": [
         "modules/nf-core/gatk4/filterintervals/environment.yml",
         "modules/nf-core/gatk4/filterintervals/main.nf",
@@ -135764,7 +136524,7 @@
           "@ViktorHy"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -135775,7 +136535,7 @@
     {
       "name": "gatk4_filtermutectcalls",
       "path": "modules/nf-core/gatk4/filtermutectcalls/meta.yml",
-      "tree_sha": "e86b0cb318c527a09e07fdcebcfb653be670f326",
+      "tree_sha": "26f83860ed12bed591a447a2e26698da2a03d507",
       "files": [
         "modules/nf-core/gatk4/filtermutectcalls/environment.yml",
         "modules/nf-core/gatk4/filtermutectcalls/main.nf",
@@ -136065,7 +136825,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "raredisease",
@@ -136088,7 +136848,7 @@
     {
       "name": "gatk4_filtervarianttranches",
       "path": "modules/nf-core/gatk4/filtervarianttranches/meta.yml",
-      "tree_sha": "6be3a9b28b2561b02f9549cc3a6b4b4360260dcd",
+      "tree_sha": "f792993a2382d68365ccc445c2feb2750b183d33",
       "files": [
         "modules/nf-core/gatk4/filtervarianttranches/environment.yml",
         "modules/nf-core/gatk4/filtervarianttranches/main.nf",
@@ -136290,7 +137050,7 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "sarek",
@@ -136301,7 +137061,7 @@
     {
       "name": "gatk4_gatherbqsrreports",
       "path": "modules/nf-core/gatk4/gatherbqsrreports/meta.yml",
-      "tree_sha": "2b6b21668469cef3d5769bc42a4999e1ddb4e7d6",
+      "tree_sha": "f564bd4fbfc64929d68fae45e894fd5bc0e31850",
       "files": [
         "modules/nf-core/gatk4/gatherbqsrreports/environment.yml",
         "modules/nf-core/gatk4/gatherbqsrreports/main.nf",
@@ -136425,7 +137185,7 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -136444,7 +137204,7 @@
     {
       "name": "gatk4_gatherpileupsummaries",
       "path": "modules/nf-core/gatk4/gatherpileupsummaries/meta.yml",
-      "tree_sha": "7f2175ab8c41f9023420b2124d8441d5c698461d",
+      "tree_sha": "f9d6bf1d80e13796aa79c089510aac568fc9da7e",
       "files": [
         "modules/nf-core/gatk4/gatherpileupsummaries/environment.yml",
         "modules/nf-core/gatk4/gatherpileupsummaries/main.nf",
@@ -136577,7 +137337,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "rnadnavar",
@@ -136592,7 +137352,7 @@
     {
       "name": "gatk4_genomicsdbimport",
       "path": "modules/nf-core/gatk4/genomicsdbimport/meta.yml",
-      "tree_sha": "2a466af879e97e62b352cee5e4c6a7cad3fc60d1",
+      "tree_sha": "81fb53db4981508e63acdd7b04c026282038f9f4",
       "files": [
         "modules/nf-core/gatk4/genomicsdbimport/environment.yml",
         "modules/nf-core/gatk4/genomicsdbimport/main.nf",
@@ -136798,7 +137558,7 @@
           "@GCJMackenzie"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -136817,7 +137577,7 @@
     {
       "name": "gatk4_genotypegvcfs",
       "path": "modules/nf-core/gatk4/genotypegvcfs/meta.yml",
-      "tree_sha": "6aad27e15600374468d3750f6f720711aa15cff0",
+      "tree_sha": "bceeebd56bf63d7544d278b9d41ce45e9c5c2c31",
       "files": [
         "modules/nf-core/gatk4/genotypegvcfs/environment.yml",
         "modules/nf-core/gatk4/genotypegvcfs/main.nf",
@@ -137075,7 +137835,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -137094,7 +137854,7 @@
     {
       "name": "gatk4_germlinecnvcaller",
       "path": "modules/nf-core/gatk4/germlinecnvcaller/meta.yml",
-      "tree_sha": "79fcfb9b34805219ee2584fbde829ee5280ab161",
+      "tree_sha": "96612c548c650f0491b5bcddf3c80224ec3b2b9d",
       "files": [
         "modules/nf-core/gatk4/germlinecnvcaller/environment.yml",
         "modules/nf-core/gatk4/germlinecnvcaller/main.nf",
@@ -137278,7 +138038,7 @@
           "@ViktorHy"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -137293,7 +138053,7 @@
     {
       "name": "gatk4_getpileupsummaries",
       "path": "modules/nf-core/gatk4/getpileupsummaries/meta.yml",
-      "tree_sha": "bf6bce92043db4f2d5d498faf8f980677cb29ddd",
+      "tree_sha": "8afa07a284748117db50fc2afd2f0b34a83a6462",
       "files": [
         "modules/nf-core/gatk4/getpileupsummaries/environment.yml",
         "modules/nf-core/gatk4/getpileupsummaries/main.nf",
@@ -137500,7 +138260,7 @@
           "@GCJMackenzie"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "rnadnavar",
@@ -137515,7 +138275,7 @@
     {
       "name": "gatk4_haplotypecaller",
       "path": "modules/nf-core/gatk4/haplotypecaller/meta.yml",
-      "tree_sha": "a9f41aa1376cad8041a6a57080eee70a38c142a7",
+      "tree_sha": "1290b55d891801638831e4ea382a35c2e4c40028",
       "files": [
         "modules/nf-core/gatk4/haplotypecaller/environment.yml",
         "modules/nf-core/gatk4/haplotypecaller/main.nf",
@@ -137780,7 +138540,7 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -137807,7 +138567,7 @@
     {
       "name": "gatk4_indexfeaturefile",
       "path": "modules/nf-core/gatk4/indexfeaturefile/meta.yml",
-      "tree_sha": "95aa3b71c2f39bc6e72eb7f56a49402a0b11efbb",
+      "tree_sha": "1568d7e5458ec41de441ebc8962f896b24f62d28",
       "files": [
         "modules/nf-core/gatk4/indexfeaturefile/environment.yml",
         "modules/nf-core/gatk4/indexfeaturefile/main.nf",
@@ -137931,7 +138691,7 @@
           "@santiagorevale"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -137950,7 +138710,7 @@
     {
       "name": "gatk4_intervallisttobed",
       "path": "modules/nf-core/gatk4/intervallisttobed/meta.yml",
-      "tree_sha": "86d13fa811ef60f357f2e702afcce4aad4fc8d53",
+      "tree_sha": "ba325f2118db56040076be4634b1c6aa7bdf2525",
       "files": [
         "modules/nf-core/gatk4/intervallisttobed/environment.yml",
         "modules/nf-core/gatk4/intervallisttobed/main.nf",
@@ -138072,7 +138832,7 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "rnadnavar",
@@ -138087,7 +138847,7 @@
     {
       "name": "gatk4_intervallisttools",
       "path": "modules/nf-core/gatk4/intervallisttools/meta.yml",
-      "tree_sha": "1a7651e4ded18f128d1b2617115fc2ed70ca2216",
+      "tree_sha": "f4091a12fd5946363aa29d52b6c54c5d9f95003b",
       "files": [
         "modules/nf-core/gatk4/intervallisttools/environment.yml",
         "modules/nf-core/gatk4/intervallisttools/main.nf",
@@ -138210,7 +138970,7 @@
           "@praveenraj2018"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -138229,7 +138989,7 @@
     {
       "name": "gatk4_learnreadorientationmodel",
       "path": "modules/nf-core/gatk4/learnreadorientationmodel/meta.yml",
-      "tree_sha": "5abca42f5c88e5796eac2567f4317ede609231aa",
+      "tree_sha": "825050ca6749b00f40a6d13a0f45c9e7d1d5beb3",
       "files": [
         "modules/nf-core/gatk4/learnreadorientationmodel/environment.yml",
         "modules/nf-core/gatk4/learnreadorientationmodel/main.nf",
@@ -138362,7 +139122,7 @@
           "@GCJMackenzie"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "rnadnavar",
@@ -138377,7 +139137,7 @@
     {
       "name": "gatk4_leftalignandtrimvariants",
       "path": "modules/nf-core/gatk4/leftalignandtrimvariants/meta.yml",
-      "tree_sha": "ab94722cb3de675c3bba368b621e29f9ae0b1a20",
+      "tree_sha": "f25d0008bf636586919b685430103e4b7071ee0f",
       "files": [
         "modules/nf-core/gatk4/leftalignandtrimvariants/environment.yml",
         "modules/nf-core/gatk4/leftalignandtrimvariants/main.nf",
@@ -138557,7 +139317,7 @@
           "@adamrtalbot"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "variantcatalogue",
@@ -138568,7 +139328,7 @@
     {
       "name": "gatk4_markduplicates",
       "path": "modules/nf-core/gatk4/markduplicates/meta.yml",
-      "tree_sha": "05308bfcbebc3358b2157d05ae01d952aa544b89",
+      "tree_sha": "4b43e1f139c69a258b58c2a02bad945e46c3a806",
       "files": [
         "modules/nf-core/gatk4/markduplicates/environment.yml",
         "modules/nf-core/gatk4/markduplicates/main.nf",
@@ -138828,7 +139588,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -138867,7 +139627,7 @@
     {
       "name": "gatk4_mergebamalignment",
       "path": "modules/nf-core/gatk4/mergebamalignment/meta.yml",
-      "tree_sha": "89686b26e5a735bbb8b2a8eb9186daa5def0484b",
+      "tree_sha": "37c56fcf8033815040b3469cdf857700206f0fd3",
       "files": [
         "modules/nf-core/gatk4/mergebamalignment/environment.yml",
         "modules/nf-core/gatk4/mergebamalignment/main.nf",
@@ -139033,7 +139793,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "raredisease",
@@ -139044,7 +139804,7 @@
     {
       "name": "gatk4_mergemutectstats",
       "path": "modules/nf-core/gatk4/mergemutectstats/meta.yml",
-      "tree_sha": "b867b7c4fb2032c2662e699e715c947e57f98549",
+      "tree_sha": "7fa2e9ef8fa2d8059c8046fc145a79c1742c350c",
       "files": [
         "modules/nf-core/gatk4/mergemutectstats/environment.yml",
         "modules/nf-core/gatk4/mergemutectstats/main.nf",
@@ -139168,7 +139928,7 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -139191,7 +139951,7 @@
     {
       "name": "gatk4_mergevcfs",
       "path": "modules/nf-core/gatk4/mergevcfs/meta.yml",
-      "tree_sha": "00b827094a6c721dd71694479ccc281cd783c9fb",
+      "tree_sha": "43582e15e8f146dec070a6063e5be88381c46b56",
       "files": [
         "modules/nf-core/gatk4/mergevcfs/environment.yml",
         "modules/nf-core/gatk4/mergevcfs/main.nf",
@@ -139362,7 +140122,7 @@
           "@kevinmenden"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -139397,7 +140157,7 @@
     {
       "name": "gatk4_modelsegments",
       "path": "modules/nf-core/gatk4/modelsegments/meta.yml",
-      "tree_sha": "9812bcace7fe2d44202d9b5f1acedc8db4b25b20",
+      "tree_sha": "faad96cf5d221b2104856403ac2faaafe5d80614",
       "files": [
         "modules/nf-core/gatk4/modelsegments/environment.yml",
         "modules/nf-core/gatk4/modelsegments/main.nf",
@@ -139521,12 +140281,12 @@
           "@lbeltrame"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "gatk4_mutect2",
       "path": "modules/nf-core/gatk4/mutect2/meta.yml",
-      "tree_sha": "7ca56fc31d467fee0e762e946f2e2804f7106a30",
+      "tree_sha": "5fee322268956c7747ab2135d3a40a07be914632",
       "files": [
         "modules/nf-core/gatk4/mutect2/environment.yml",
         "modules/nf-core/gatk4/mutect2/main.nf",
@@ -139846,7 +140606,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -139873,7 +140633,7 @@
     {
       "name": "gatk4_postprocessgermlinecnvcalls",
       "path": "modules/nf-core/gatk4/postprocessgermlinecnvcalls/meta.yml",
-      "tree_sha": "3c053e40a8c1238b310159676decc9d7b255af88",
+      "tree_sha": "ac081508ef9c96f26b9bda1798901db1b14b0c27",
       "files": [
         "modules/nf-core/gatk4/postprocessgermlinecnvcalls/environment.yml",
         "modules/nf-core/gatk4/postprocessgermlinecnvcalls/main.nf",
@@ -140057,7 +140817,7 @@
           "@ryanjameskennedy"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "raredisease",
@@ -140068,7 +140828,7 @@
     {
       "name": "gatk4_preprocessintervals",
       "path": "modules/nf-core/gatk4/preprocessintervals/meta.yml",
-      "tree_sha": "818edf22fbdcc531190ae3b45c3a23a587b95896",
+      "tree_sha": "aed05c24846f46e7555ecbe7db5ba381cce7adc9",
       "files": [
         "modules/nf-core/gatk4/preprocessintervals/environment.yml",
         "modules/nf-core/gatk4/preprocessintervals/main.nf",
@@ -140260,7 +141020,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -140271,7 +141031,7 @@
     {
       "name": "gatk4_printreads",
       "path": "modules/nf-core/gatk4/printreads/meta.yml",
-      "tree_sha": "e1718687da7b5efebd99a0b97f526c8d212d6a4c",
+      "tree_sha": "153f8ae5a149e6da0d9ae75ade46bc7bdb79c068",
       "files": [
         "modules/nf-core/gatk4/printreads/environment.yml",
         "modules/nf-core/gatk4/printreads/main.nf",
@@ -140487,7 +141247,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "raredisease",
@@ -140502,7 +141262,7 @@
     {
       "name": "gatk4_printsvevidence",
       "path": "modules/nf-core/gatk4/printsvevidence/meta.yml",
-      "tree_sha": "0c8fdb8409e9793437645b8f8d6c7e82626e2ba3",
+      "tree_sha": "1aafbc011e5cf70914bbe2ecb4b4354d9cbd8c28",
       "files": [
         "modules/nf-core/gatk4/printsvevidence/environment.yml",
         "modules/nf-core/gatk4/printsvevidence/main.nf",
@@ -140683,12 +141443,12 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "gatk4_reblockgvcf",
       "path": "modules/nf-core/gatk4/reblockgvcf/meta.yml",
-      "tree_sha": "a13e76c83d49ce10e54686c0e6b5b51464582ffc",
+      "tree_sha": "d73e9a90e933d655f7b936338725531fcb72f4f1",
       "files": [
         "modules/nf-core/gatk4/reblockgvcf/environment.yml",
         "modules/nf-core/gatk4/reblockgvcf/main.nf",
@@ -140875,12 +141635,12 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "gatk4_revertsam",
       "path": "modules/nf-core/gatk4/revertsam/meta.yml",
-      "tree_sha": "ff143ceb1985318668e0beec90ed7532c6cb70e0",
+      "tree_sha": "705a4db74cbd1f3ddbac2d17000e0a535686c71d",
       "files": [
         "modules/nf-core/gatk4/revertsam/environment.yml",
         "modules/nf-core/gatk4/revertsam/main.nf",
@@ -141004,7 +141764,7 @@
           "@kevinmenden"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "raredisease",
@@ -141015,7 +141775,7 @@
     {
       "name": "gatk4_samtofastq",
       "path": "modules/nf-core/gatk4/samtofastq/meta.yml",
-      "tree_sha": "e45de384b84c7a48cb8e7f34f2c4f537422aaa60",
+      "tree_sha": "9ef7f2de976c3e3c348b374396606564a9f1c4ad",
       "files": [
         "modules/nf-core/gatk4/samtofastq/environment.yml",
         "modules/nf-core/gatk4/samtofastq/main.nf",
@@ -141141,7 +141901,7 @@
           "@kevinmenden"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "raredisease",
@@ -141156,7 +141916,7 @@
     {
       "name": "gatk4_selectvariants",
       "path": "modules/nf-core/gatk4/selectvariants/meta.yml",
-      "tree_sha": "72564dad7ae658178ec4190d124ee8159313d24d",
+      "tree_sha": "6ec56bb07ef9d340be08e2f1c64c7e0ebfd9471d",
       "files": [
         "modules/nf-core/gatk4/selectvariants/environment.yml",
         "modules/nf-core/gatk4/selectvariants/main.nf",
@@ -141317,7 +142077,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -141336,7 +142096,7 @@
     {
       "name": "gatk4_shiftfasta",
       "path": "modules/nf-core/gatk4/shiftfasta/meta.yml",
-      "tree_sha": "7b0fa95eb89d29b1dfde44d725f08ddd61def525",
+      "tree_sha": "cbf654fbe9b39ecda3dc410a588e4358853b847f",
       "files": [
         "modules/nf-core/gatk4/shiftfasta/environment.yml",
         "modules/nf-core/gatk4/shiftfasta/main.nf",
@@ -141584,7 +142344,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "raredisease",
@@ -141595,7 +142355,7 @@
     {
       "name": "gatk4_sitedepthtobaf",
       "path": "modules/nf-core/gatk4/sitedepthtobaf/meta.yml",
-      "tree_sha": "36bf9d67841edcef6d149b68ac5420eed7d1c16b",
+      "tree_sha": "6467ea7d0cc3a48ca91f8d027bff3d1ff98e2677",
       "files": [
         "modules/nf-core/gatk4/sitedepthtobaf/environment.yml",
         "modules/nf-core/gatk4/sitedepthtobaf/main.nf",
@@ -141799,12 +142559,12 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "gatk4_splitcram",
       "path": "modules/nf-core/gatk4/splitcram/meta.yml",
-      "tree_sha": "b3f11d41205b8942565d277f76d2ab5188f3d77d",
+      "tree_sha": "550a47c3e1cc39fc06e62aeae2ff848723ceaf02",
       "files": [
         "modules/nf-core/gatk4/splitcram/environment.yml",
         "modules/nf-core/gatk4/splitcram/main.nf",
@@ -141928,12 +142688,12 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "gatk4_splitintervals",
       "path": "modules/nf-core/gatk4/splitintervals/meta.yml",
-      "tree_sha": "754d805f869cca543012a3e38e3de53db88c5991",
+      "tree_sha": "df50f3a09f31939e15356ca11dd21e3e4e1fd5fe",
       "files": [
         "modules/nf-core/gatk4/splitintervals/environment.yml",
         "modules/nf-core/gatk4/splitintervals/main.nf",
@@ -142107,7 +142867,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -142122,7 +142882,7 @@
     {
       "name": "gatk4_splitncigarreads",
       "path": "modules/nf-core/gatk4/splitncigarreads/meta.yml",
-      "tree_sha": "003011569c15c4c4cd77f78935a8d3e0e874a9e1",
+      "tree_sha": "53c607359ee033518e82edfcf77a575a4c80c1f0",
       "files": [
         "modules/nf-core/gatk4/splitncigarreads/environment.yml",
         "modules/nf-core/gatk4/splitncigarreads/main.nf",
@@ -142307,7 +143067,7 @@
           "@kevinmenden"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "rnadnavar",
@@ -142322,7 +143082,7 @@
     {
       "name": "gatk4_svannotate",
       "path": "modules/nf-core/gatk4/svannotate/meta.yml",
-      "tree_sha": "3c2d3c2d391908dff8b25616588fef0f46a0a8da",
+      "tree_sha": "764160034982dacdc56760a2046f23473189b807",
       "files": [
         "modules/nf-core/gatk4/svannotate/environment.yml",
         "modules/nf-core/gatk4/svannotate/main.nf",
@@ -142561,12 +143321,12 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "gatk4_svcluster",
       "path": "modules/nf-core/gatk4/svcluster/meta.yml",
-      "tree_sha": "a978fdb9c8ac80080a5dde1d9c0691eaada8c9d3",
+      "tree_sha": "d0bccb3d0fa68ec02235e77829777a6fb2ef8434",
       "files": [
         "modules/nf-core/gatk4/svcluster/environment.yml",
         "modules/nf-core/gatk4/svcluster/main.nf",
@@ -142759,7 +143519,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
     },
     {
       "name": "gatk4_unmarkduplicates",
@@ -142915,7 +143675,7 @@
     {
       "name": "gatk4_variantfiltration",
       "path": "modules/nf-core/gatk4/variantfiltration/meta.yml",
-      "tree_sha": "7f42278e30b086c6968a222d6eb40ad3d683b1a3",
+      "tree_sha": "0c6f7f46eaeb21b17c438b7e7a4106b1a5b8698d",
       "files": [
         "modules/nf-core/gatk4/variantfiltration/environment.yml",
         "modules/nf-core/gatk4/variantfiltration/main.nf",
@@ -143144,7 +143904,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -143175,7 +143935,7 @@
     {
       "name": "gatk4_variantrecalibrator",
       "path": "modules/nf-core/gatk4/variantrecalibrator/meta.yml",
-      "tree_sha": "41fa0e92a6224cfabf5b99a882e85011fd856b8a",
+      "tree_sha": "216fc2c2ccbca21979e9a8173b675a7e0a9d8004",
       "files": [
         "modules/nf-core/gatk4/variantrecalibrator/environment.yml",
         "modules/nf-core/gatk4/variantrecalibrator/main.nf",
@@ -143426,7 +144186,7 @@
           "@nickhsmith"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "pathogenepidemiology",
@@ -143449,7 +144209,7 @@
     {
       "name": "gatk4_variantstotable",
       "path": "modules/nf-core/gatk4/variantstotable/meta.yml",
-      "tree_sha": "5a722eda8434e656f76eea8b80717cb0b4f1c32b",
+      "tree_sha": "abb94f697d2af565ab862a82d0ca4a187de4e28e",
       "files": [
         "modules/nf-core/gatk4/variantstotable/environment.yml",
         "modules/nf-core/gatk4/variantstotable/main.nf",
@@ -143663,7 +144423,7 @@
           "@lindenb"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203",
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
       "pipelines": [
         {
           "name": "tbanalyzer",
@@ -165264,7 +166024,7 @@
     {
       "name": "hamronization_rgi",
       "path": "modules/nf-core/hamronization/rgi/meta.yml",
-      "tree_sha": "3b7398671a9d6a6a56f435824133c265b35a7a17",
+      "tree_sha": "62fa671e1f2b75ad24af4ba790c79a256d6a2de6",
       "files": [
         "modules/nf-core/hamronization/rgi/environment.yml",
         "modules/nf-core/hamronization/rgi/main.nf",
@@ -165436,7 +166196,7 @@
           "@louperelo"
         ]
       },
-      "git_sha": "56f42bcdc5030d479f9a694355e5ed7fb64d4c5f",
+      "git_sha": "0a93f68a28f5e07bb7ae82aeb005720faf8a3b35",
       "pipelines": [
         {
           "name": "funcscan",
@@ -170093,7 +170853,7 @@
     {
       "name": "hifitrimmer_trim",
       "path": "modules/nf-core/hifitrimmer/trim/meta.yml",
-      "tree_sha": "7344b8b0ac8658225383fc864e6887e417ac3380",
+      "tree_sha": "875bdfb33f45c7732c3459cd61553d8c9b57e22d",
       "files": [
         "modules/nf-core/hifitrimmer/trim/environment.yml",
         "modules/nf-core/hifitrimmer/trim/main.nf",
@@ -170126,18 +170886,6 @@
               "licence": [
                 "MIT"
               ]
-            }
-          },
-          {
-            "samtools": {
-              "description": "SAMtools is a set of utilities for interacting with and post-processing\nshort DNA sequence read alignments in the SAM, BAM and CRAM formats, written by Heng Li.\nThese files are generated as output by short read aligners like BWA.\n",
-              "homepage": "http://www.htslib.org/",
-              "documentation": "http://www.htslib.org/doc/samtools.html",
-              "doi": "10.1093/bioinformatics/btp352",
-              "licence": [
-                "MIT"
-              ],
-              "identifier": "biotools:samtools"
             }
           }
         ],
@@ -170297,28 +171045,6 @@
                 }
               }
             ]
-          ],
-          "versions_samtools": [
-            [
-              {
-                "${task.process}": {
-                  "type": "string",
-                  "description": "Name of the process"
-                }
-              },
-              {
-                "samtools": {
-                  "type": "string",
-                  "description": "Name of the tool"
-                }
-              },
-              {
-                "samtools --version | head -1 | sed -e \"s/samtools //\"": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
-                }
-              }
-            ]
           ]
         },
         "topics": {
@@ -170342,26 +171068,6 @@
                   "description": "The expression to obtain the version"
                 }
               }
-            ],
-            [
-              {
-                "${task.process}": {
-                  "type": "string",
-                  "description": "Name of the process"
-                }
-              },
-              {
-                "samtools": {
-                  "type": "string",
-                  "description": "Name of the tool"
-                }
-              },
-              {
-                "samtools --version | head -1 | sed -e \"s/samtools //\"": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
-                }
-              }
             ]
           ]
         },
@@ -170372,7 +171078,7 @@
           "@sainsachiko"
         ]
       },
-      "git_sha": "9ecb0724f4cf9c3bfabef1ace14ff336a65fc6b6"
+      "git_sha": "b3017e9bc0b972c6cbaf6a8fb7520b6f0e060b40"
     },
     {
       "name": "hiphase",
@@ -253653,7 +254359,7 @@
     {
       "name": "parabricks_applybqsr",
       "path": "modules/nf-core/parabricks/applybqsr/meta.yml",
-      "tree_sha": "7b489988816467f36f4e6728bad0a9390c63bd0f",
+      "tree_sha": "d10ba70ca2b934b7123ad1e202553154f1a282ec",
       "files": [
         "modules/nf-core/parabricks/applybqsr/main.nf",
         "modules/nf-core/parabricks/applybqsr/meta.yml",
@@ -253695,7 +254401,7 @@
             {
               "bam": {
                 "type": "file",
-                "description": "BAM file",
+                "description": "Input BAM file",
                 "pattern": "*.bam",
                 "ontologies": [
                   {
@@ -253703,17 +254409,9 @@
                   }
                 ]
               }
-            }
-          ],
-          [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing sample information.\ne.g. [ id:'test' ]\n"
-              }
             },
             {
-              "bam_index": {
+              "bai": {
                 "type": "file",
                 "description": "BAM index file",
                 "pattern": "*.bam.bai",
@@ -253869,7 +254567,7 @@
           "@famosab"
         ]
       },
-      "git_sha": "3e0ec6464725c64d81abe928e15a6750d5fdd272"
+      "git_sha": "25c09c0823b4e6dfe41505d194daad9a08554b7b"
     },
     {
       "name": "parabricks_dbsnp",
@@ -299958,7 +300656,7 @@
     {
       "name": "rgi_bwt",
       "path": "modules/nf-core/rgi/bwt/meta.yml",
-      "tree_sha": "e5f85c45b585a1d0359bf1d1162a05deb77396ff",
+      "tree_sha": "3ecad1ea6b985974b8c0d0a7dc2fa13db602c8c7",
       "files": [
         "modules/nf-core/rgi/bwt/environment.yml",
         "modules/nf-core/rgi/bwt/main.nf",
@@ -300143,7 +300841,7 @@
                 }
               },
               {
-                "kma -v": {
+                "kma -v | sed 's/KMA-//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -300207,7 +300905,7 @@
                 }
               },
               {
-                "kma -v": {
+                "kma -v | sed 's/KMA-//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -300257,7 +300955,7 @@
           }
         }
       },
-      "git_sha": "587ef528a2f42a2415ad1b5f760ea93ab1983603",
+      "git_sha": "0a93f68a28f5e07bb7ae82aeb005720faf8a3b35",
       "pipelines": [
         {
           "name": "funcprofiler",
@@ -300268,7 +300966,7 @@
     {
       "name": "rgi_cardannotation",
       "path": "modules/nf-core/rgi/cardannotation/meta.yml",
-      "tree_sha": "fad6e569fdfc4398c4ac1648063bf18e7b7f1acd",
+      "tree_sha": "32d8e30827682faf7be1b6e2a1c06084a4e6abc7",
       "files": [
         "modules/nf-core/rgi/cardannotation/environment.yml",
         "modules/nf-core/rgi/cardannotation/main.nf",
@@ -300335,19 +301033,135 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rgi": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rgi": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rgi main --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ],
+          "versions_db": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rgi-database": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "echo \\$DB_VERSION": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_kma": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kma": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kma -v | sed 's/KMA-//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rgi": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rgi main --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rgi-database": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "echo \\$DB_VERSION": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kma": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kma -v | sed 's/KMA-//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -300361,7 +301175,7 @@
           "@jasmezz"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "0a93f68a28f5e07bb7ae82aeb005720faf8a3b35",
       "pipelines": [
         {
           "name": "funcprofiler",
@@ -300376,7 +301190,7 @@
     {
       "name": "rgi_main",
       "path": "modules/nf-core/rgi/main/meta.yml",
-      "tree_sha": "8ea73527941340ad124f08f98bacf90f3e981715",
+      "tree_sha": "58e14443b5e0fcd9e40183738982d467f07ffb9a",
       "files": [
         "modules/nf-core/rgi/main/environment.yml",
         "modules/nf-core/rgi/main/main.nf",
@@ -300450,10 +301264,10 @@
                 }
               },
               {
-                "*.json": {
+                "${prefix}.json": {
                   "type": "file",
                   "description": "JSON formatted file with RGI results",
-                  "pattern": "*.{json}",
+                  "pattern": "${prefix}.{json}",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3464"
@@ -300472,10 +301286,10 @@
                 }
               },
               {
-                "*.txt": {
+                "${prefix}.txt": {
                   "type": "file",
                   "description": "Tab-delimited file with RGI results",
-                  "pattern": "*.{txt}",
+                  "pattern": "${prefix}.txt",
                   "ontologies": []
                 }
               }
@@ -300514,19 +301328,135 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rgi": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rgi": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rgi main --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ],
+          "versions_db": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rgi-database": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "echo \\$DB_VERSION": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_kma": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kma": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kma -v | sed 's/KMA-//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rgi": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rgi main --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rgi-database": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "echo \\$DB_VERSION": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kma": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kma -v | sed 's/KMA-//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -300540,7 +301470,7 @@
           "@jasmezz"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "0a93f68a28f5e07bb7ae82aeb005720faf8a3b35",
       "pipelines": [
         {
           "name": "funcscan",
@@ -326912,7 +327842,7 @@
     {
       "name": "seacr_callpeak",
       "path": "modules/nf-core/seacr/callpeak/meta.yml",
-      "tree_sha": "099e214838b2a560d369936b4315468d5424b42e",
+      "tree_sha": "00764dbd223474965d10187c89285caa1a75c3c3",
       "files": [
         "modules/nf-core/seacr/callpeak/environment.yml",
         "modules/nf-core/seacr/callpeak/main.nf",
@@ -326996,19 +327926,135 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_scramble": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "scramble": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.3": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ],
+          "versions_bedtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bedtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bedtools --version | sed -e 's/bedtools v//g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_rbase": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "r-base": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "R --version | sed '1!d; s/.*version //; s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "scramble": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.3": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bedtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bedtools --version | sed -e 's/bedtools v//g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "r-base": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "R --version | sed '1!d; s/.*version //; s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -327018,7 +328064,7 @@
           "@chris-cheshire"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "168422ac58116cbfe6656526131597120067be9d",
       "pipelines": [
         {
           "name": "cutandrun",
@@ -327029,14 +328075,14 @@
     {
       "name": "segemehl_align",
       "path": "modules/nf-core/segemehl/align/meta.yml",
-      "tree_sha": "86b5247a06b14f064a1f03bc60983dcccacaaa04",
+      "tree_sha": "0441cb39e86e67f47e24b89de8ffd691512b613a",
       "files": [
         "modules/nf-core/segemehl/align/environment.yml",
         "modules/nf-core/segemehl/align/main.nf",
         "modules/nf-core/segemehl/align/meta.yml",
         "modules/nf-core/segemehl/align/tests/main.nf.test",
         "modules/nf-core/segemehl/align/tests/main.nf.test.snap",
-        "modules/nf-core/segemehl/align/tests/split.config"
+        "modules/nf-core/segemehl/align/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
@@ -327083,22 +328129,30 @@
               }
             }
           ],
-          {
-            "fasta": {
-              "type": "file",
-              "description": "Reference genome FASTA file used to construct Segemehl",
-              "pattern": "*.{fa,fasta}",
-              "ontologies": []
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing genome information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome FASTA file used to construct Segemehl",
+                "pattern": "*.{fa,fasta}",
+                "ontologies": []
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "Segemehl Index file from SEGEMEHL_INDEX",
+                "pattern": "*.idx",
+                "ontologies": []
+              }
             }
-          },
-          {
-            "index": {
-              "type": "file",
-              "description": "Segemehl Index file from SEGEMEHL_INDEX",
-              "pattern": "*.idx",
-              "ontologies": []
-            }
-          }
+          ]
         ],
         "output": {
           "alignment": [
@@ -327188,7 +328242,7 @@
                 }
               },
               {
-                "segemehl.x 2>&1 | grep -A1 VERSION | tail -1 | sed \"s/^ *//;s/ .*//\"": {
+                "segemehl.x 2>&1 | sed '/^  [0-9]\\.[0-9\\.]*/!d;s/^  //;s/ .*//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -327212,7 +328266,7 @@
                 }
               },
               {
-                "segemehl.x 2>&1 | grep -A1 VERSION | tail -1 | sed \"s/^ *//;s/ .*//\"": {
+                "segemehl.x 2>&1 | sed '/^  [0-9]\\.[0-9\\.]*/!d;s/^  //;s/ .*//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -327228,7 +328282,7 @@
           "@nictru"
         ]
       },
-      "git_sha": "c39748b7ba61f4da0350533fb646314dd276ae07",
+      "git_sha": "5152eb48902197896351a4771b96f0f6ad018b86",
       "pipelines": [
         {
           "name": "circrna",
@@ -327239,7 +328293,7 @@
     {
       "name": "segemehl_index",
       "path": "modules/nf-core/segemehl/index/meta.yml",
-      "tree_sha": "412ff75b1c1884bdbbaf0514f441db01726a4272",
+      "tree_sha": "8d17a8ed38cc5ae5c19ab7e0c5a1a5008d8bfd89",
       "files": [
         "modules/nf-core/segemehl/index/environment.yml",
         "modules/nf-core/segemehl/index/main.nf",
@@ -327272,39 +328326,87 @@
           }
         ],
         "input": [
-          {
-            "fasta": {
-              "type": "file",
-              "description": "Reference genome FASTA file",
-              "pattern": "*.{fa,fasta}",
-              "ontologies": []
-            }
-          }
-        ],
-        "output": {
-          "index": [
+          [
             {
-              "*.idx": {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing genome information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "fasta": {
                 "type": "file",
-                "description": "Segemehl index file",
-                "pattern": "*.{idx}",
+                "description": "Reference genome FASTA file",
+                "pattern": "*.{fa,fasta}",
                 "ontologies": []
               }
             }
-          ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          ]
+        ],
+        "output": {
+          "index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing genome information\ne.g. [ id:'genome' ]\n"
+                }
+              },
+              {
+                "*.idx": {
+                  "type": "file",
+                  "description": "Segemehl index file",
+                  "pattern": "*.{idx}",
+                  "ontologies": []
+                }
               }
-            }
+            ]
+          ],
+          "versions_segemehl": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "segemehl": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "segemehl.x 2>&1 | sed '/^  [0-9]\\.[0-9\\.]*/!d;s/^  //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "segemehl": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "segemehl.x 2>&1 | sed '/^  [0-9]\\.[0-9\\.]*/!d;s/^  //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -327314,7 +328416,7 @@
           "@BarryDigby"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "5152eb48902197896351a4771b96f0f6ad018b86",
       "pipelines": [
         {
           "name": "circrna",
@@ -338754,7 +339856,7 @@
     {
       "name": "sequenzautils_bam2seqz",
       "path": "modules/nf-core/sequenzautils/bam2seqz/meta.yml",
-      "tree_sha": "fad66073daeaabf4cbfa654a41849724806ef1d5",
+      "tree_sha": "6baea89c170c5c08eeadf8b98d8b40dc6a3627a4",
       "files": [
         "modules/nf-core/sequenzautils/bam2seqz/environment.yml",
         "modules/nf-core/sequenzautils/bam2seqz/main.nf",
@@ -338846,19 +339948,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_sequenzautils": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sequenzautils": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sequenza-utils 2>&1 | sed '/version/!d;s/.*version //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sequenzautils": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sequenza-utils 2>&1 | sed '/version/!d;s/.*version //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -338868,12 +340002,12 @@
           "@kaurravneet4123"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "da7c4a3972b4d747a68a028ce154727b1529404b"
     },
     {
       "name": "sequenzautils_gcwiggle",
       "path": "modules/nf-core/sequenzautils/gcwiggle/meta.yml",
-      "tree_sha": "8827287d4ce685bf463a0f976cd664fa548dba52",
+      "tree_sha": "653da87aee4339caaa33266a3f9a6852b5fad70d",
       "files": [
         "modules/nf-core/sequenzautils/gcwiggle/environment.yml",
         "modules/nf-core/sequenzautils/gcwiggle/main.nf",
@@ -338942,19 +340076,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_sequenzautils": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sequenzautils": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sequenza-utils 2>&1 | sed '/version/!d;s/.*version //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sequenzautils": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sequenza-utils 2>&1 | sed '/version/!d;s/.*version //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -338964,7 +340130,7 @@
           "@kaurravneet4123"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "da7c4a3972b4d747a68a028ce154727b1529404b"
     },
     {
       "name": "seqwish_induce",
@@ -419057,7 +420223,7 @@
         },
         {
           "name": "pixelator",
-          "version": "5.0.0"
+          "version": "5.0.1"
         },
         {
           "name": "plasmodiumdrugres",
@@ -419541,7 +420707,7 @@
         },
         {
           "name": "pixelator",
-          "version": "5.0.0"
+          "version": "5.0.1"
         },
         {
           "name": "plasmodiumdrugres",
@@ -420061,7 +421227,7 @@
         },
         {
           "name": "pixelator",
-          "version": "5.0.0"
+          "version": "5.0.1"
         },
         {
           "name": "plasmodiumdrugres",
@@ -421728,6 +422894,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "f0c89298605aba2bcbaa9c843409cd8af013605e",
-  "updated_at": "2026-08-20T02:33:32.621Z"
+  "commit_sha": "2f88a8bd7f40c9a29219a72da7f96f6db95925df",
+  "updated_at": "2026-08-20T14:22:33.563Z"
 }
