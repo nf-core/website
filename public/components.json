@@ -12854,6 +12854,169 @@
       "git_sha": "50f30abb06caadcf794e59c5d9d94a2a6d1b5a2b"
     },
     {
+      "name": "arcane_index",
+      "path": "modules/nf-core/arcane/index/meta.yml",
+      "tree_sha": "34f562dd35215fa17402ebda243db462266c98f2",
+      "files": [
+        "modules/nf-core/arcane/index/environment.yml",
+        "modules/nf-core/arcane/index/main.nf",
+        "modules/nf-core/arcane/index/meta.yml",
+        "modules/nf-core/arcane/index/tests/main.nf.test",
+        "modules/nf-core/arcane/index/tests/main.nf.test.snap",
+        "modules/nf-core/arcane/index/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "arcane_index",
+        "description": "Build a k-mer hash index from a filtered reference for alignment-free single-cell RNA-seq quantification with Arcane",
+        "keywords": [
+          "single-cell",
+          "rnaseq",
+          "index",
+          "kmer",
+          "hash",
+          "transcriptomics"
+        ],
+        "tools": [
+          {
+            "arcane": {
+              "description": "Arcane: Alignment-free single cell RNA-seq gene expression estimation",
+              "homepage": "https://gitlab.com/rahmannlab/arcane",
+              "documentation": "https://gitlab.com/rahmannlab/arcane",
+              "tool_dev_url": "https://gitlab.com/rahmannlab/arcane",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "reference": {
+                "type": "file",
+                "description": "Filtered sequence reference FASTA file produced by the arcane filter step",
+                "pattern": "*.{fa,fasta,fa.gz,fasta.gz}",
+                "ontology": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "genes": {
+                "type": "file",
+                "description": "Gene IDs file (one per line, in gene_number order) produced by the arcane filter\nstep. Must be staged alongside `reference` — arcane index locates it implicitly\nby filename convention relative to `--ref`.\n",
+                "pattern": "*_genes.txt"
+              }
+            }
+          ],
+          {
+            "n_objects": {
+              "type": "integer",
+              "description": "Number of k-mers to be stored in the hash table (passed to `--nobjects`)"
+            }
+          }
+        ],
+        "output": {
+          "index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.hash": {
+                  "type": "file",
+                  "description": "Binary hash table file containing the built k-mer index",
+                  "pattern": "*.hash"
+                }
+              }
+            ]
+          ],
+          "info": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.info": {
+                  "type": "file",
+                  "description": "Index metadata file accompanying the hash table",
+                  "pattern": "*.info"
+                }
+              }
+            ]
+          ],
+          "versions_arcane": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "arcane": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "arcane --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "arcane": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "arcane --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@LeonHornich"
+        ],
+        "maintainers": [
+          "@LeonHornich"
+        ]
+      },
+      "git_sha": "db741a16a2b8945898e9f1eee8c74bd060fe1350"
+    },
+    {
       "name": "arcashla_extract",
       "path": "modules/nf-core/arcashla/extract/meta.yml",
       "tree_sha": "b48bdc53cf9b5e65b7f16d7663fc71facd129d20",
@@ -26898,11 +27061,12 @@
     {
       "name": "bcftools_plotvcfstats",
       "path": "modules/nf-core/bcftools/plotvcfstats/meta.yml",
-      "tree_sha": "0a7382de4f080c82f03134cc81dc1e54fbf2a06b",
+      "tree_sha": "ea463562c4d881bec2212198d597b4677425e0cc",
       "files": [
         "modules/nf-core/bcftools/plotvcfstats/environment.yml",
         "modules/nf-core/bcftools/plotvcfstats/main.nf",
         "modules/nf-core/bcftools/plotvcfstats/meta.yml",
+        "modules/nf-core/bcftools/plotvcfstats/tests/individual_pdf.config",
         "modules/nf-core/bcftools/plotvcfstats/tests/main.nf.test",
         "modules/nf-core/bcftools/plotvcfstats/tests/main.nf.test.snap"
       ],
@@ -26961,7 +27125,7 @@
                 }
               },
               {
-                "*plots*": {
+                "${prefix}_plots": {
                   "type": "directory",
                   "description": "Output directory containing plots, raw data, and log files",
                   "pattern": "*plots*",
@@ -26979,13 +27143,57 @@
                 }
               },
               {
-                "*.pdf": {
+                "${prefix}.plot-vcfstats.pdf": {
                   "type": "file",
-                  "description": "(Link to the original) summary output in PDF",
+                  "description": "Summary output in PDF",
                   "pattern": "*.pdf",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3508"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "images_pdf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${prefix}_plots/*.pdf": {
+                  "type": "file",
+                  "description": "All the individual PDF images generated (no summary PDF)",
+                  "pattern": "*.pdf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3508"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "images_png": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${prefix}_plots/*.png": {
+                  "type": "file",
+                  "description": "All the individual PNG images generated",
+                  "pattern": "*.png",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3603"
                     }
                   ]
                 }
@@ -27043,7 +27251,7 @@
           "@yz533cb"
         ]
       },
-      "git_sha": "feef37435aea56816adf4b3bde1fc76aac327a8d"
+      "git_sha": "40292e3f585e1e2612c6e475a8ff02954b8d3ed4"
     },
     {
       "name": "bcftools_pluginfilltags",
@@ -109742,6 +109950,197 @@
       "git_sha": "44ee42158ede8a07bef49a0875d0234fd7a7359e"
     },
     {
+      "name": "fastaguard",
+      "path": "modules/nf-core/fastaguard/meta.yml",
+      "tree_sha": "23294c479fe1c6819f08e21457c8533571ef5643",
+      "files": [
+        "modules/nf-core/fastaguard/environment.yml",
+        "modules/nf-core/fastaguard/main.nf",
+        "modules/nf-core/fastaguard/meta.yml",
+        "modules/nf-core/fastaguard/tests/main.nf.test",
+        "modules/nf-core/fastaguard/tests/main.nf.test.snap",
+        "modules/nf-core/fastaguard/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "fastaguard",
+        "description": "FASTA preflight QC for assembly pipelines",
+        "keywords": [
+          "fasta",
+          "assembly",
+          "qc"
+        ],
+        "tools": [
+          {
+            "fastaguard": {
+              "description": "FASTA preflight QC for assembly pipelines",
+              "homepage": "https://github.com/ehsanestaji/FastaGuard",
+              "documentation": "https://github.com/ehsanestaji/FastaGuard",
+              "tool_dev_url": "https://github.com/ehsanestaji/FastaGuard",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'sample' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Assembly FASTA file",
+                "pattern": "*.{fa,fasta,fa.gz,fasta.gz}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "html": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample' ]\n"
+                }
+              },
+              {
+                "*.fastaguard.html": {
+                  "type": "file",
+                  "description": "FastaGuard HTML report",
+                  "pattern": "*.fastaguard.html",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample' ]\n"
+                }
+              },
+              {
+                "*.fastaguard.json": {
+                  "type": "file",
+                  "description": "FastaGuard JSON report",
+                  "pattern": "*.fastaguard.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample' ]\n"
+                }
+              },
+              {
+                "*.fastaguard.tsv": {
+                  "type": "file",
+                  "description": "FastaGuard TSV summary",
+                  "pattern": "*.fastaguard.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "mqc": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample' ]\n"
+                }
+              },
+              {
+                "*.fastaguard_mqc.json": {
+                  "type": "file",
+                  "description": "MultiQC custom-content JSON",
+                  "pattern": "*.fastaguard_mqc.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_fastaguard": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "fastaguard": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "fastaguard --version | cut -d \" \" -f 2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "fastaguard": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "fastaguard --version | cut -d \" \" -f 2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@ehsanestaji"
+        ]
+      },
+      "git_sha": "a7116208c690972314627f376bf16f2372fde63a"
+    },
+    {
       "name": "fastani",
       "path": "modules/nf-core/fastani/meta.yml",
       "tree_sha": "cd78b22a76a95077964a602ff78018f488a746ab",
@@ -171083,7 +171482,7 @@
     {
       "name": "hiphase",
       "path": "modules/nf-core/hiphase/meta.yml",
-      "tree_sha": "2af98f9774c4cbbcaaadc5690179e174cbc0e1b1",
+      "tree_sha": "3fb717ff3d27b10583e7368abea57c9eb6ff45be",
       "files": [
         "modules/nf-core/hiphase/environment.yml",
         "modules/nf-core/hiphase/main.nf",
@@ -171615,7 +172014,7 @@
           "@fellen31"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "32d9d7b17b837f68b7f3916f53bfa90d1b434fdd",
       "pipelines": [
         {
           "name": "pacsomatic",
@@ -254359,7 +254758,7 @@
     {
       "name": "parabricks_applybqsr",
       "path": "modules/nf-core/parabricks/applybqsr/meta.yml",
-      "tree_sha": "d10ba70ca2b934b7123ad1e202553154f1a282ec",
+      "tree_sha": "6ef234f216a6eb6927a49457d6874c2b34721e50",
       "files": [
         "modules/nf-core/parabricks/applybqsr/main.nf",
         "modules/nf-core/parabricks/applybqsr/meta.yml",
@@ -254401,11 +254800,14 @@
             {
               "bam": {
                 "type": "file",
-                "description": "Input BAM file",
-                "pattern": "*.bam",
+                "description": "Input BAM / CRAM file",
+                "pattern": "*.{bam,cram}",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
                   }
                 ]
               }
@@ -254413,8 +254815,8 @@
             {
               "bai": {
                 "type": "file",
-                "description": "BAM index file",
-                "pattern": "*.bam.bai",
+                "description": "BAM / CRAM index file",
+                "pattern": "*.{bam.bai,cram.crai}",
                 "ontologies": []
               }
             }
@@ -254469,7 +254871,14 @@
                 ]
               }
             }
-          ]
+          ],
+          {
+            "output_fmt": {
+              "type": "string",
+              "description": "Output format for the alignment. Options are 'bam' or 'cram'",
+              "pattern": "{bam,cram}"
+            }
+          }
         ],
         "output": {
           "bam": [
@@ -254507,6 +254916,46 @@
                   "type": "file",
                   "description": "bai index corresponding to output bam file.",
                   "pattern": "*.bam.bai",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "cram": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.cram": {
+                  "type": "file",
+                  "description": "CRAM file after applying BQSR.",
+                  "pattern": "*.cram",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3462"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "crai": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.crai": {
+                  "type": "file",
+                  "description": "crai index corresponding to output cram file.",
+                  "pattern": "*.cram.crai",
                   "ontologies": []
                 }
               }
@@ -254567,7 +255016,7 @@
           "@famosab"
         ]
       },
-      "git_sha": "25c09c0823b4e6dfe41505d194daad9a08554b7b"
+      "git_sha": "006a6142690e2f4a455f77a1bc7d71459d78deb5"
     },
     {
       "name": "parabricks_dbsnp",
@@ -282233,6 +282682,180 @@
       "git_sha": "62e46584684cfb0276c1525c861b11c547c522d5"
     },
     {
+      "name": "presto_pairseq",
+      "path": "modules/nf-core/presto/pairseq/meta.yml",
+      "tree_sha": "1d082a271503f3818b85deca6458af26da9e302a",
+      "files": [
+        "modules/nf-core/presto/pairseq/environment.yml",
+        "modules/nf-core/presto/pairseq/main.nf",
+        "modules/nf-core/presto/pairseq/meta.yml",
+        "modules/nf-core/presto/pairseq/tests/main.nf.test",
+        "modules/nf-core/presto/pairseq/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "presto_pairseq",
+        "description": "Sorts and matches sequence records with matching coordinates across files",
+        "keywords": [
+          "immcantation",
+          "airrseq",
+          "genomics",
+          "immunoinformatics"
+        ],
+        "tools": [
+          {
+            "presto": {
+              "description": "A bioinformatics toolkit for processing high-throughput lymphocyte receptor sequencing data.",
+              "homepage": "https://immcantation.readthedocs.io",
+              "documentation": "https://presto.readthedocs.io",
+              "tool_dev_url": "https://bitbucket.org/kleinstein/presto",
+              "doi": "10.1093/bioinformatics/btu138",
+              "licence": [
+                "AGPL v3"
+              ],
+              "identifier": "biotools:presto-measure"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+              }
+            },
+            {
+              "R1_read": {
+                "type": "file",
+                "description": "Compressed FASTQ file of R1.\n",
+                "pattern": "*.{fastq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            },
+            {
+              "R2_read": {
+                "type": "file",
+                "description": "Compressed FASTQ file of R2.\n",
+                "pattern": "*.{fastq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "barcode_position": {
+              "type": "string",
+              "description": "Barcode position. One of `R1`, `R2`, `R1R2`, `clustersets` or ``. Default is ``."
+            }
+          }
+        ],
+        "output": {
+          "reads": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+                }
+              },
+              {
+                "*1_pair-pass.fastq.gz": {
+                  "type": "file",
+                  "description": "paired fastq.gz file of R1 reads",
+                  "pattern": "*.{fastq.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    }
+                  ]
+                }
+              },
+              {
+                "*2_pair-pass.fastq.gz": {
+                  "type": "file",
+                  "description": "paired fastq.gz file of R2 reads",
+                  "pattern": "*.{fastq.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "logs": [
+            {
+              "*_command_log.txt": {
+                "type": "file",
+                "description": "command_logs",
+                "pattern": "*.txt",
+                "ontologies": []
+              }
+            }
+          ],
+          "versions_presto": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "presto": {
+                  "type": "string",
+                  "description": "the name of the tool"
+                }
+              },
+              {
+                "PairSeq.py --version | grep -o \"[0-9][0-9.]*\" | head -n 1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "presto": {
+                  "type": "string",
+                  "description": "the name of the tool"
+                }
+              },
+              {
+                "PairSeq.py --version | grep -o \"[0-9][0-9.]*\" | head -n 1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@Vivian0105"
+        ]
+      },
+      "git_sha": "aadea720765c094f68cd32e32649341b98882e75"
+    },
+    {
       "name": "pretextmap",
       "path": "modules/nf-core/pretextmap/meta.yml",
       "tree_sha": "98b5241675962def1a5b74c80be99e5b8f9958cb",
@@ -294855,6 +295478,372 @@
           "version": "1.1.0"
         }
       ]
+    },
+    {
+      "name": "rami2d_register",
+      "path": "modules/nf-core/rami2d/register/meta.yml",
+      "tree_sha": "4f6ee11e31800d9c0ddeeed8ed143b5a98d60558",
+      "files": [
+        "modules/nf-core/rami2d/register/environment.yml",
+        "modules/nf-core/rami2d/register/main.nf",
+        "modules/nf-core/rami2d/register/meta.yml",
+        "modules/nf-core/rami2d/register/tests/main.nf.test",
+        "modules/nf-core/rami2d/register/tests/main.nf.test.snap",
+        "modules/nf-core/rami2d/register/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "rami2d_register",
+        "description": "offers 3 pre-defined registration schemes 1) Rigid, 2) Rigid+Affine 3) Rigid+Affine+Bsplines, each of them providing more geometrical adaptability and thus more control in the final outcome.",
+        "keywords": [
+          "registration",
+          "imaging",
+          "multiplex",
+          "spatial"
+        ],
+        "tools": [
+          {
+            "rami2d": {
+              "description": "Robust Alignment of Multichannel Images in 2D",
+              "homepage": "https://pypi.org/project/rami2d/",
+              "documentation": "https://github.com/VictorDidier/RAMI2D",
+              "tool_dev_url": "https://github.com/VictorDidier/RAMI2D",
+              "licence": [
+                "BSD-3-Clause"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing fixed image sample information\ne.g. [ id:'sample1' ]\n"
+              }
+            },
+            {
+              "fixed_img": {
+                "type": "file",
+                "description": "Absolute path of the image stack containing the fixed image",
+                "pattern": "*.{tif,tiff,ome.tif,ome.tiff,svs,avs,vms,dcm,vmus,ndpi,scn,mrxs,svslide,bif,czi}",
+                "ontologies": []
+              }
+            },
+            {
+              "moving_img": {
+                "type": "file",
+                "description": "Absolute path of the image stack containing the moving image",
+                "pattern": "*.{tif,tiff,ome.tif,ome.tiff,svs,avs,vms,dcm,vmus,ndpi,scn,mrxs,svslide,bif,czi}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing metadata information for the markers file\ne.g. [ id:'markers' ]\n"
+              }
+            },
+            {
+              "markers": {
+                "type": "file",
+                "description": "Path to a csv file with a column named marker_name, each row is the name of the channel in the ome metadata of the output image",
+                "pattern": "*.csv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "ifix": {
+              "type": "string",
+              "description": "Integer or string h,e,d. 0-based index of channel to be used for registration. If string it converts your H&E into Hematoxylin, Eosin or DAB. fixed image stack"
+            }
+          },
+          {
+            "imov": {
+              "type": "string",
+              "description": "Integer or string h,e,d. 0-based index of channel to be used for registration. If string it converts your H&E into Hematoxylin, Eosin or DAB. moving image stack"
+            }
+          },
+          {
+            "mpp_fix": {
+              "type": "float",
+              "description": "Pixel size of the fixed image in micrometers"
+            }
+          },
+          {
+            "mpp_mov": {
+              "type": "float",
+              "description": "Pixel size of the moving image in micrometers"
+            }
+          },
+          {
+            "mpp_reg": {
+              "type": "float",
+              "description": "Image resolution in micrometers to be used for applying the registration scheme"
+            }
+          }
+        ],
+        "output": {
+          "registered_image": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${prefix}/*.ome.tif": {
+                  "type": "file",
+                  "description": "Registered output image in pyramidal OME TIFF format",
+                  "pattern": "*.ome.tif",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "qc_dir": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${prefix}/qc": {
+                  "type": "directory",
+                  "description": "Directory containing QC outputs including subdirectories refchns, keypoints and fullres transformations",
+                  "pattern": "qc"
+                }
+              }
+            ]
+          ],
+          "versions_rami2d": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the task process"
+                }
+              },
+              {
+                "rami2d": {
+                  "type": "string",
+                  "description": "Name of the tool"
+                }
+              },
+              {
+                "rami2d-register -v | sed \"s/rami2d-register //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the task process"
+                }
+              },
+              {
+                "rami2d": {
+                  "type": "string",
+                  "description": "Name of the tool"
+                }
+              },
+              {
+                "rami2d-register -v | sed \"s/rami2d-register //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@kubranarci"
+        ],
+        "maintainers": [
+          "@kubranarci"
+        ]
+      },
+      "git_sha": "004f71cb3e8d49575762acb92ab86c0ff4febb62"
+    },
+    {
+      "name": "rami2d_transform",
+      "path": "modules/nf-core/rami2d/transform/meta.yml",
+      "tree_sha": "a516882d0d925a36cbb6afb0b420ba6685b81e1f",
+      "files": [
+        "modules/nf-core/rami2d/transform/environment.yml",
+        "modules/nf-core/rami2d/transform/main.nf",
+        "modules/nf-core/rami2d/transform/meta.yml",
+        "modules/nf-core/rami2d/transform/tests/main.nf.test",
+        "modules/nf-core/rami2d/transform/tests/main.nf.test.snap",
+        "modules/nf-core/rami2d/transform/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "rami2d_transform",
+        "description": "Applies transformations to images using RAMI2D, designed to take the transformation maps produced by rami2d-register",
+        "keywords": [
+          "imaging",
+          "spatialomics",
+          "multiplexed",
+          "registration",
+          "transform"
+        ],
+        "tools": [
+          {
+            "rami2d": {
+              "description": "Robust Alignment of Multichannel Images in 2D",
+              "homepage": "https://pypi.org/project/rami2d/",
+              "documentation": "https://github.com/VictorDidier/RAMI2D",
+              "tool_dev_url": "https://github.com/VictorDidier/RAMI2D",
+              "licence": [
+                "BSD-3-Clause"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "image_file": {
+                "type": "file",
+                "description": "Absolute path to the input image file",
+                "pattern": "*.{tif}",
+                "ontologies": []
+              }
+            },
+            {
+              "transform_dir": {
+                "type": "directory",
+                "description": "Directory containing the transformation matrices/files generated by rami2d-register"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information for the markers file\n"
+              }
+            },
+            {
+              "markers": {
+                "type": "file",
+                "description": "Optional CSV file with a column named marker_name containing the names of the channels",
+                "pattern": "*.csv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "mpp": {
+              "type": "float",
+              "description": "Pixel size of the image in microns (microns per pixel)"
+            }
+          }
+        ],
+        "output": {
+          "transformed_image": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/*transformed.ome.tif": {
+                  "type": "file",
+                  "description": "Transformed output image in OME TIFF format",
+                  "pattern": "*.ome.tif",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_rami2d": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the task process"
+                }
+              },
+              {
+                "rami2d": {
+                  "type": "string",
+                  "description": "Name of the tool"
+                }
+              },
+              {
+                "rami2d-transform -v | sed \"s/rami2d-transform //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the task process"
+                }
+              },
+              {
+                "rami2d": {
+                  "type": "string",
+                  "description": "Name of the tool"
+                }
+              },
+              {
+                "rami2d-transform -v | sed \"s/rami2d-transform //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@kubranarci"
+        ],
+        "maintainers": [
+          "@kubranarci"
+        ]
+      },
+      "git_sha": "004f71cb3e8d49575762acb92ab86c0ff4febb62"
     },
     {
       "name": "rapidnj",
@@ -328627,6 +329616,206 @@
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
     },
     {
+      "name": "semibin_concatenatefasta",
+      "path": "modules/nf-core/semibin/concatenatefasta/meta.yml",
+      "tree_sha": "4ed6f3693af2171025fc3125607f58db944bfe49",
+      "files": [
+        "modules/nf-core/semibin/concatenatefasta/.conda-lock/linux_amd64-bd-594344a862aee1b8_1.txt",
+        "modules/nf-core/semibin/concatenatefasta/.conda-lock/linux_arm64-bd-f56bcc59d929ffa0_1.txt",
+        "modules/nf-core/semibin/concatenatefasta/environment.yml",
+        "modules/nf-core/semibin/concatenatefasta/main.nf",
+        "modules/nf-core/semibin/concatenatefasta/meta.yml",
+        "modules/nf-core/semibin/concatenatefasta/tests/main.nf.test",
+        "modules/nf-core/semibin/concatenatefasta/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "semibin_concatenatefasta",
+        "description": "Concatenate multiple sample FASTAs to a single FASTA with the correct header format for SemiBin2",
+        "keywords": [
+          "concatenate",
+          "fasta",
+          "binning"
+        ],
+        "tools": [
+          {
+            "semibin": {
+              "description": "Metagenomic binning with semi-supervised siamese neural network",
+              "homepage": "https://github.com/BigDataBiology/SemiBin",
+              "documentation": "https://semibin.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/BigDataBiology/SemiBin",
+              "doi": "10.1038/s41467-022-29843-y",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:semibin"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fastas": {
+                "type": "file",
+                "description": "Input FASTAs, per sample.",
+                "pattern": "*.{fa,fa.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "concat_fasta": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.fasta*": {
+                  "type": "file",
+                  "description": "Output concatenated FASTA.",
+                  "pattern": "*.{fasta,fasta.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "Log file of run",
+                  "pattern": "*.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_semibin": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "semibin": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SemiBin2 --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "semibin": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SemiBin2 --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@prototaxites"
+        ],
+        "maintainers": [
+          "@prototaxites"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/semibin:2.4.1--594344a862aee1b8",
+              "build_id": "bd-594344a862aee1b8_1",
+              "scan_id": "sc-053cbcebe5fc843e_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/semibin:2.4.1--f56bcc59d929ffa0",
+              "build_id": "bd-f56bcc59d929ffa0_1",
+              "scan_id": "sc-ac89c91c6cbc8252_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/semibin:2.4.1--85b6858e3b6df529",
+              "build_id": "bd-85b6858e3b6df529_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/7b/7b2b3f8ee7844ec6f6ab7e89eb0397435eea5ff1c7866f055af6aac5969caf16/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/semibin:2.4.1--eefeb0dcf2ca104c",
+              "build_id": "bd-eefeb0dcf2ca104c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/4c/4c049230e87478349b2ecca53156faedfb077df85a4f6deaa8d0b22bd8a975c4/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/semibin/concatenatefasta/.conda-lock/linux_amd64-bd-594344a862aee1b8_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/semibin/concatenatefasta/.conda-lock/linux_arm64-bd-f56bcc59d929ffa0_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "ace7e02d9d1a61d9998f6bbed18e723945def56b"
+    },
+    {
       "name": "semibin_singleeasybin",
       "path": "modules/nf-core/semibin/singleeasybin/meta.yml",
       "tree_sha": "c9c1d0d97a1a255057116032bf776b8dc3c7aad3",
@@ -331083,7 +332272,7 @@
     {
       "name": "sentieon_gvcftyper",
       "path": "modules/nf-core/sentieon/gvcftyper/meta.yml",
-      "tree_sha": "5e39396e3c42ea0a8ce46093d2806b7886667be3",
+      "tree_sha": "03a52f2f5ef2abd543a97e889aafed0c72c0e642",
       "files": [
         "modules/nf-core/sentieon/gvcftyper/environment.yml",
         "modules/nf-core/sentieon/gvcftyper/main.nf",
@@ -331307,7 +332496,7 @@
           "@asp8200"
         ]
       },
-      "git_sha": "19430b872a6e970b62e625d78a29a9b275d9dc18",
+      "git_sha": "35477cf84fee26c6f4664419cc1c045fa52eb2db",
       "pipelines": [
         {
           "name": "sarek",
@@ -423025,6 +424214,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "fe08122c3dc2f2d7890daba06f6c90e570ef01de",
-  "updated_at": "2026-08-21T02:37:10.154Z"
+  "commit_sha": "ace7e02d9d1a61d9998f6bbed18e723945def56b",
+  "updated_at": "2026-08-21T14:20:49.329Z"
 }
