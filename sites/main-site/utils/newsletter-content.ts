@@ -50,7 +50,19 @@ export async function getNewsletterContentData(
     const monthAdvisories = getAdvisoriesForMonth(allAdvisories, contentYear, contentMonth);
     const olderAdvisories = getAdvisoriesForPreviousMonths(allAdvisories, contentYear, contentMonth, 2);
     const proposals = getProposalsForMonth(allProposals, contentYear, contentMonth);
-    const pipelineProposals = proposals.filter((p) => p.category === "pipeline");
+    // When a pipeline proposal is accepted its repo is created the same month, so it
+    // also shows up in `newPipelines` ("New pipeline repositories"). Drop the proposal
+    // entry in that case to avoid listing the same pipeline twice in one newsletter —
+    // the repo entry (with description + link to the pipeline) is the more useful one.
+    const newPipelineNames = new Set(newPipelines.map((p) => p.name.toLowerCase()));
+    const proposalRepoName = (displayTitle: string) =>
+        displayTitle
+            .replace(/^nf-core\//i, "")
+            .trim()
+            .toLowerCase();
+    const pipelineProposals = proposals
+        .filter((p) => p.category === "pipeline")
+        .filter((p) => !newPipelineNames.has(proposalRepoName(p.displayTitle)));
     const otherProposals = proposals.filter((p) => p.category === "other");
 
     const upcomingEvents = [...getEventsForMonth(events, year, month), ...getFutureEvents(events, year, month, 1)];
