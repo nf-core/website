@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "astro dev",
         "build": "NODE_OPTIONS='--max-old-space-size=4096' astro build",
-        "test": "playwright test",
+        "test": "playwright test --tsconfig=../tsconfig.playwright.json",
         "format": "prettier --write .",
         "lint": "prettier --check ."
     },
