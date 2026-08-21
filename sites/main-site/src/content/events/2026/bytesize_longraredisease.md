@@ -6,6 +6,8 @@ startDate: "2026-08-18"
 startTime: "13:00+02:00"
 endDate: "2026-08-18"
 endTime: "13:30+02:00"
+embedAt: "longraredisease"
+youtubeEmbed: https://youtu.be/A7cMeOJ6TIA
 locations:
   - name: Online
     links:
