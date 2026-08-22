@@ -329816,10 +329816,281 @@
       "git_sha": "ace7e02d9d1a61d9998f6bbed18e723945def56b"
     },
     {
+      "name": "semibin_multieasybin",
+      "path": "modules/nf-core/semibin/multieasybin/meta.yml",
+      "tree_sha": "e0fe43a708281bd310e8a7f19454474e336a8165",
+      "files": [
+        "modules/nf-core/semibin/multieasybin/.conda-lock/linux_amd64-bd-594344a862aee1b8_1.txt",
+        "modules/nf-core/semibin/multieasybin/.conda-lock/linux_arm64-bd-f56bcc59d929ffa0_1.txt",
+        "modules/nf-core/semibin/multieasybin/environment.yml",
+        "modules/nf-core/semibin/multieasybin/main.nf",
+        "modules/nf-core/semibin/multieasybin/meta.yml",
+        "modules/nf-core/semibin/multieasybin/tests/main.nf.test",
+        "modules/nf-core/semibin/multieasybin/tests/main.nf.test.snap",
+        "modules/nf-core/semibin/multieasybin/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "semibin_multieasybin",
+        "description": "metagenomic binning with self-supervised learning",
+        "keywords": [
+          "binning",
+          "assembly-binning",
+          "metagenomics"
+        ],
+        "tools": [
+          {
+            "semibin": {
+              "description": "Metagenomic binning with semi-supervised siamese neural network",
+              "homepage": "https://github.com/BigDataBiology/SemiBin",
+              "documentation": "https://semibin.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/BigDataBiology/SemiBin",
+              "doi": "10.1038/s41467-022-29843-y",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:semibin"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Fasta file of concatenated contigs from all samples to be binned. They should have\na header like: `>S1:<contig1>`, `S2:<contig1>`. The `:` separator between sample and\ncontig name can be configured.\n",
+                "pattern": "*.{fa,fasta,fna,fa.gz,fasta.gz,fna.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "A list of BAM/CRAM files - one per sample, mapped to the concatenated reference.",
+                "pattern": "*.{bam,cram}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
+              }
+            },
+            {
+              "depths": {
+                "type": "file",
+                "description": "Optionally, instead of BAM files, a list of text files in Strobealign --aemb format.\nOne per sample. Requires at least 5 samples.\n",
+                "pattern": "*.{tsv,txt}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bins": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/bins/*.fa.gz": {
+                  "type": "file",
+                  "description": "Output bins from all samples (prefixed with sample name)",
+                  "pattern": "*.fa.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "csv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/samples/*/*.csv": {
+                  "type": "file",
+                  "description": "CSV files describing the binning run, per sample.",
+                  "pattern": "*.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/samples/*/*.tsv": {
+                  "type": "file",
+                  "description": "TSV files describing the binning run, per sample.",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/SemiBinRun.log": {
+                  "type": "file",
+                  "description": "Log file of SemiBin run",
+                  "pattern": "${prefix}/SemiBinRun.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_2526"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_semibin": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "SemiBin": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SemiBin2 --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "SemiBin": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SemiBin2 --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@prototaxites"
+        ],
+        "maintainers": [
+          "@prototaxites"
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/semibin:2.4.1--f56bcc59d929ffa0",
+              "build_id": "bd-f56bcc59d929ffa0_1",
+              "scan_id": "sc-ac89c91c6cbc8252_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/semibin:2.4.1--594344a862aee1b8",
+              "build_id": "bd-594344a862aee1b8_1",
+              "scan_id": "sc-053cbcebe5fc843e_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/semibin:2.4.1--85b6858e3b6df529",
+              "build_id": "bd-85b6858e3b6df529_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/7b/7b2b3f8ee7844ec6f6ab7e89eb0397435eea5ff1c7866f055af6aac5969caf16/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/semibin:2.4.1--eefeb0dcf2ca104c",
+              "build_id": "bd-eefeb0dcf2ca104c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/4c/4c049230e87478349b2ecca53156faedfb077df85a4f6deaa8d0b22bd8a975c4/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/semibin/singleeasybin/.conda-lock/linux_amd64-bd-594344a862aee1b8_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/semibin/singleeasybin/.conda-lock/linux_arm64-bd-f56bcc59d929ffa0_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "041fbd98880c9af7762aec2f54fa4f35503d50f2"
+    },
+    {
       "name": "semibin_singleeasybin",
       "path": "modules/nf-core/semibin/singleeasybin/meta.yml",
-      "tree_sha": "c9c1d0d97a1a255057116032bf776b8dc3c7aad3",
+      "tree_sha": "4a4ccac14d0accd3763eb883453abc2604493fe7",
       "files": [
+        "modules/nf-core/semibin/singleeasybin/.conda-lock/linux_amd64-bd-594344a862aee1b8_1.txt",
+        "modules/nf-core/semibin/singleeasybin/.conda-lock/linux_arm64-bd-f56bcc59d929ffa0_1.txt",
         "modules/nf-core/semibin/singleeasybin/environment.yml",
         "modules/nf-core/semibin/singleeasybin/main.nf",
         "modules/nf-core/semibin/singleeasybin/meta.yml",
@@ -330010,9 +330281,43 @@
         ],
         "maintainers": [
           "@BigDataBiology"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/semibin:2.4.1--f56bcc59d929ffa0",
+              "build_id": "bd-f56bcc59d929ffa0_1",
+              "scan_id": "sc-ac89c91c6cbc8252_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/semibin:2.4.1--594344a862aee1b8",
+              "build_id": "bd-594344a862aee1b8_1",
+              "scan_id": "sc-053cbcebe5fc843e_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/semibin:2.4.1--85b6858e3b6df529",
+              "build_id": "bd-85b6858e3b6df529_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/7b/7b2b3f8ee7844ec6f6ab7e89eb0397435eea5ff1c7866f055af6aac5969caf16/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/semibin:2.4.1--eefeb0dcf2ca104c",
+              "build_id": "bd-eefeb0dcf2ca104c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/4c/4c049230e87478349b2ecca53156faedfb077df85a4f6deaa8d0b22bd8a975c4/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/semibin/singleeasybin/.conda-lock/linux_amd64-bd-594344a862aee1b8_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/semibin/singleeasybin/.conda-lock/linux_arm64-bd-f56bcc59d929ffa0_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "041fbd98880c9af7762aec2f54fa4f35503d50f2",
       "pipelines": [
         {
           "name": "mag",
@@ -424214,6 +424519,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "ace7e02d9d1a61d9998f6bbed18e723945def56b",
-  "updated_at": "2026-08-21T14:20:49.329Z"
+  "commit_sha": "041fbd98880c9af7762aec2f54fa4f35503d50f2",
+  "updated_at": "2026-08-22T02:31:50.795Z"
 }
