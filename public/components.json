@@ -176403,13 +176403,14 @@
     {
       "name": "hmmer_hmmrank",
       "path": "modules/nf-core/hmmer/hmmrank/meta.yml",
-      "tree_sha": "a5d73cdf469cf9fd94a1fff253e0de1c4778936b",
+      "tree_sha": "ecdf938060b4ddb247f6fa48cc297e12aa557b4e",
       "files": [
         "modules/nf-core/hmmer/hmmrank/environment.yml",
         "modules/nf-core/hmmer/hmmrank/main.nf",
         "modules/nf-core/hmmer/hmmrank/meta.yml",
         "modules/nf-core/hmmer/hmmrank/tests/main.nf.test",
-        "modules/nf-core/hmmer/hmmrank/tests/main.nf.test.snap"
+        "modules/nf-core/hmmer/hmmrank/tests/main.nf.test.snap",
+        "modules/nf-core/hmmer/hmmrank/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
@@ -176470,8 +176471,20 @@
             {
               "tblouts": {
                 "type": "file",
-                "description": "table outputs from hmmsearch",
-                "pattern": "*.tsv.gz",
+                "description": "per-sequence hit tables from hmmsearch (--tblout)",
+                "pattern": "*.tbl.gz",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            },
+            {
+              "domtblouts": {
+                "type": "file",
+                "description": "Optional per-domain hit tables from hmmsearch (--domtblout). When supplied, the\nranked table gains the target and profile lengths and, for each of the three\ncoordinate sets, the outer bounds of the match, the size of the union of the\npair's domains, and the number of separate stretches that union spans. Every\ndomain hmmsearch reported is counted, whatever its own significance: a hit can\nclear the full-sequence threshold while each of its domains is weak in isolation,\nand dropping those would leave exactly such hits without coordinates.\n",
+                "pattern": "*.domtbl.gz",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_3989"
@@ -176493,7 +176506,7 @@
               {
                 "*.hmmrank.tsv.gz": {
                   "type": "file",
-                  "description": "TSV file with ranked hmmer results",
+                  "description": "TSV file with ranked hmmer results: one row per (accno, profile) pair with\nprofile, accno, profile_desc, evalue, score and rank. When domtblouts are\nsupplied it also carries tlen and qlen, plus from, to, len and n_islands for\neach of the hmm, ali and env coordinate sets. n_islands is 1 when the domains\nmerge into a single continuous stretch and rises as they scatter; coordinates\nare inclusive, so domains that abut with no gap between them count as one.\n",
                   "pattern": "*.hmmrank.tsv.gz",
                   "ontologies": [
                     {
@@ -176542,7 +176555,7 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "f2bed902e13076698e7d59d1fedf5c083f6f17c0",
+      "git_sha": "106170c99010f5429b24c610f2da528e47ca3276",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -351934,7 +351947,7 @@
     {
       "name": "snpsites",
       "path": "modules/nf-core/snpsites/meta.yml",
-      "tree_sha": "5e8bdbb349bda71adea4a848ee6da691b5302126",
+      "tree_sha": "3a671d67360042b468e4af85ae8e03cfc4207a6d",
       "files": [
         "modules/nf-core/snpsites/environment.yml",
         "modules/nf-core/snpsites/main.nf",
@@ -351995,20 +352008,6 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
-              }
-            }
-          ],
           "constant_sites_string": [
             {
               "CONSTANT_SITES": {
@@ -352017,6 +352016,52 @@
                 "pattern": "*.{sites.txt}"
               }
             }
+          ],
+          "versions_snpsites": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "snpsites": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "snp-sites -V 2>&1 | sed 's/snp-sites //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "snpsites": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "snp-sites -V 2>&1 | sed 's/snp-sites //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -352026,7 +352071,7 @@
           "@avantonder"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "ae73cfe626c4a0cad72d870779561b4dad290e24",
       "pipelines": [
         {
           "name": "tbanalyzer",
@@ -413884,7 +413929,7 @@
     {
       "name": "fasta_hmmsearch_rank_fastas",
       "path": "subworkflows/nf-core/fasta_hmmsearch_rank_fastas/meta.yml",
-      "tree_sha": "ac4bdb8dd9adca166ad36428b970408f43292830",
+      "tree_sha": "18982eab5c0ec98e79044e6403694c8e8fd72d6e",
       "files": [
         "subworkflows/nf-core/fasta_hmmsearch_rank_fastas/main.nf",
         "subworkflows/nf-core/fasta_hmmsearch_rank_fastas/meta.yml",
@@ -413931,7 +413976,7 @@
           {
             "hmmrank": {
               "type": "file",
-              "description": "Channel containing the TSV file from ranking hmmsearch hits\nStructure: [ val(meta), path(hmmrank) ]\n",
+              "description": "Channel containing the TSV file from ranking hmmsearch hits.\nWhen save_domtblout is set, the table also carries the target and profile lengths\nand, for each of the three coordinate sets, the bounds of the match, the size of the\nunion of the pair's domains, and the number of disjoint pieces it falls into.\nStructure: [ val(meta), path(hmmrank) ]\n",
               "pattern": "*.hmmrank.tsv.gz"
             }
           },
@@ -413957,7 +414002,7 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "56521ad3d62f3bcc12285fe4b62ea2d574433090",
+      "git_sha": "106170c99010f5429b24c610f2da528e47ca3276",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -424568,6 +424613,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "284ea90dc9e73c8cb87e829fafb8966f033f032f",
-  "updated_at": "2026-08-24T14:23:15.422Z"
+  "commit_sha": "106170c99010f5429b24c610f2da528e47ca3276",
+  "updated_at": "2026-08-25T02:33:45.584Z"
 }
