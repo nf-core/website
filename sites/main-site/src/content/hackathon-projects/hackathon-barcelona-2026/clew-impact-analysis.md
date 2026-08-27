@@ -17,7 +17,7 @@ Run Clew on real Nextflow production or research runs from participants and see 
 
 ## Description
 
-There are cases where an input turns out to be defective long after the run finished: a container had a bug, a sample failed QC after its data was already used somewhere downstream, or a reference genome got updated. The usual action is to rerun the current pipeline with the `-resume` command, but it doesn't tell you which older runs used the defective input, which tasks consumed its outputs, or what to delete, re-run and disclose. 
+There are cases where an input turns out to be defective long after the run finished: a container had a bug, a sample failed QC after its data was already used somewhere downstream, or a reference genome got updated. The usual action is to rerun the current pipeline with the `-resume` command, but it doesn't tell you which older runs used the defective input, which tasks consumed its outputs, or what to delete, re-run and disclose.
 
 Clew tries to answer these questions with evidence: it builds a DAG from the existing data lineage store, nf-prov RO-Crates, or `work/` symlinks, and provides an impact analysis with a remediation plan. Verdicts reference the policy rule they came from and can be recomputed offline. It also follows links between pipelines, e.g. a withdrawn sample in an rnaseq run ends up in the differentialabundance run that read its count matrix.
 
