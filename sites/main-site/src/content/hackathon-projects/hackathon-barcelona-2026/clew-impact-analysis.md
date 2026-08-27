@@ -13,13 +13,13 @@ leaders:
 
 ## Goal
 
-Test Clew's impact analysis against participants' real Nextflow runs, add adapters for more nf-core pipelines, and collect practitioner corrections to the remediation model, so the tool leaves the hackathon proven against reality rather than fixtures.
+Run Clew on real Nextflow production or research runs from participants and see how it behaves. I am also planning to add more report adapters for nf-core pipelines. I want to collect feedback on whether this model matches how labs actually work, and if it is useful for the intended users.
 
 ## Description
 
-When something upstream turns out to be bad (a buggy container, a failed QC, a stale reference, a withdrawn sample), `-resume` fixes the run in front of you, but nothing answers which past runs used the bad input, which other runs consumed their outputs, and what has to be deleted, re-run, or disclosed now.
+There are cases where an input turns out to be defective long after the run finished: a container had a bug, a sample failed QC after its data was already used somewhere downstream, or a reference genome got updated. The usual action is to rerun the current pipeline with the `-resume` command, but it doesn't tell you which older runs used the defective input, which tasks consumed its outputs, or what to delete, re-run and disclose. 
 
-Clew computes that. It reads the lineage Nextflow already writes (the native lineage store on 25.04+, nf-prov RO-Crates, or plain `work/` symlinks on any version), merges runs into one graph, and produces a remediation plan where every verdict cites a rule and replays offline, so the output is something you can hand to an auditor. It traces across pipelines too: a withdrawn sample in an rnaseq run reaches the differentialabundance run that consumed its count matrix.
+Clew tries to answer these questions with evidence: it builds a DAG from the existing data lineage store, nf-prov RO-Crates, or `work/` symlinks, and provides an impact analysis with a remediation plan. Verdicts reference the policy rule they came from and can be recomputed offline. It also follows links between pipelines, e.g. a withdrawn sample in an rnaseq run ends up in the differentialabundance run that read its count matrix.
 
 Try it in two minutes:
 
