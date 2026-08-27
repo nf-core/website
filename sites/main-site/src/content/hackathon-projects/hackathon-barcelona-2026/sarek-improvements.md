@@ -3,7 +3,7 @@ title: nf-core/sarek improvements
 category: pipelines
 slack: https://nfcore.slack.com/channels/sarek_dev
 location: Barcelona
-image: /assets/images/events/2026/hackathon-barcelona/sarek4_720.jpg
+image: /assets/images/nf-lore/sarek4_720.jpg
 image_alt: "nf-core/sarek sticker in the mountains"
 leaders:
   maxulysse:
