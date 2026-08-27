@@ -70950,14 +70950,19 @@
     {
       "name": "comebin_runcomebin",
       "path": "modules/nf-core/comebin/runcomebin/meta.yml",
-      "tree_sha": "da10b5873b7cc1029b492291135439a7860e4c91",
+      "tree_sha": "35a5076541199347c2668164764c04696bdefa4c",
       "files": [
         "modules/nf-core/comebin/runcomebin/.conda-lock/linux_amd64-bd-818f10a274a0d480_1.txt",
+        "modules/nf-core/comebin/runcomebin/environment.gpu.yml",
         "modules/nf-core/comebin/runcomebin/environment.yml",
         "modules/nf-core/comebin/runcomebin/main.nf",
         "modules/nf-core/comebin/runcomebin/meta.yml",
+        "modules/nf-core/comebin/runcomebin/tests/main.gpu.nf.test",
+        "modules/nf-core/comebin/runcomebin/tests/main.gpu.nf.test.snap",
         "modules/nf-core/comebin/runcomebin/tests/main.nf.test",
-        "modules/nf-core/comebin/runcomebin/tests/main.nf.test.snap"
+        "modules/nf-core/comebin/runcomebin/tests/main.nf.test.snap",
+        "modules/nf-core/comebin/runcomebin/tests/nextflow.config",
+        "modules/nf-core/comebin/runcomebin/tests/nextflow.gpu.config"
       ],
       "type": "module",
       "meta": {
@@ -71096,15 +71101,11 @@
                 }
               },
               {
-                "${prefix}/embeddings.tsv": {
+                "${prefix}/embeddings.npy": {
                   "type": "file",
-                  "description": "TSV describing the embeddings of the contigs\n",
-                  "pattern": "*.tsv",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3475"
-                    }
-                  ]
+                  "description": "NumPy array of the contig embeddings, rows in the order of `embedding_ids.txt`\n",
+                  "pattern": "*.npy",
+                  "ontologies": []
                 }
               }
             ]
@@ -71118,15 +71119,29 @@
                 }
               },
               {
-                "${prefix}/covembeddings.tsv": {
+                "${prefix}/covembeddings.npy": {
                   "type": "file",
-                  "description": "TSV describing the embeddings of the contigs\n",
-                  "pattern": "*.tsv",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3475"
-                    }
-                  ]
+                  "description": "NumPy array of the coverage embeddings, rows in the order of `embedding_ids.txt`\n",
+                  "pattern": "*.npy",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "embedding_ids": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}/embedding_ids.txt": {
+                  "type": "file",
+                  "description": "Contig identifiers, one per line, giving the row order of both embedding arrays\n",
+                  "pattern": "*.txt",
+                  "ontologies": []
                 }
               }
             ]
@@ -71152,6 +71167,28 @@
                 }
               }
             ]
+          ],
+          "versions_cuda": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cuda": {
+                  "type": "string",
+                  "description": "The name of the runtime"
+                }
+              },
+              {
+                "python -c \"import torch; print(torch.version.cuda or 'no CUDA available')\"": {
+                  "type": "eval",
+                  "description": "CUDA version bundled with the task's pytorch build, or `no CUDA available` on the non-GPU path"
+                }
+              }
+            ]
           ]
         },
         "topics": {
@@ -71173,6 +71210,26 @@
                 "run_comebin.sh -V | sed 's/COMEBin version: //'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cuda": {
+                  "type": "string",
+                  "description": "The name of the runtime"
+                }
+              },
+              {
+                "python -c \"import torch; print(torch.version.cuda or 'no CUDA available')\"": {
+                  "type": "eval",
+                  "description": "CUDA version bundled with the task's pytorch build, or `no CUDA available` on the non-GPU path"
                 }
               }
             ]
@@ -71206,7 +71263,7 @@
           }
         }
       },
-      "git_sha": "fcc9c9adc59e6b0bfb91fc4b8855de00c81a9bd5",
+      "git_sha": "974db4cfc4dfe066c896a3a1af35dfa37eeec7a7",
       "pipelines": [
         {
           "name": "mag",
@@ -317485,7 +317542,7 @@
     {
       "name": "samplesheetparser_diff",
       "path": "modules/nf-core/samplesheetparser/diff/meta.yml",
-      "tree_sha": "aa0a13cc6f77d73130e0f38c5a66fe7033bb1d08",
+      "tree_sha": "85313017e46fa23647609b3fdb2c8a8d3a7f29be",
       "files": [
         "modules/nf-core/samplesheetparser/diff/environment.yml",
         "modules/nf-core/samplesheetparser/diff/main.nf",
@@ -317632,12 +317689,12 @@
           "@chaitanyakasaraneni"
         ]
       },
-      "git_sha": "0651d607626d676b565ea3c869f04b34e1ecbc8b"
+      "git_sha": "c6db68a562b7ec99eb0f69e2b35050e35349584c"
     },
     {
       "name": "samplesheetparser_info",
       "path": "modules/nf-core/samplesheetparser/info/meta.yml",
-      "tree_sha": "abc20f4f74ee7561d1bc093ffb7b2610ec14dd93",
+      "tree_sha": "461d6dc0badeb76514db23fd133346fef51b07f0",
       "files": [
         "modules/nf-core/samplesheetparser/info/environment.yml",
         "modules/nf-core/samplesheetparser/info/main.nf",
@@ -317771,12 +317828,12 @@
           "@chaitanyakasaraneni"
         ]
       },
-      "git_sha": "0651d607626d676b565ea3c869f04b34e1ecbc8b"
+      "git_sha": "c6db68a562b7ec99eb0f69e2b35050e35349584c"
     },
     {
       "name": "samplesheetparser_merge",
       "path": "modules/nf-core/samplesheetparser/merge/meta.yml",
-      "tree_sha": "5c6d75bc08db7b12270416761e489d47807e6d13",
+      "tree_sha": "0bbbd8f8f85d3242c3020114d383c6d1d01d3260",
       "files": [
         "modules/nf-core/samplesheetparser/merge/environment.yml",
         "modules/nf-core/samplesheetparser/merge/main.nf",
@@ -317938,12 +317995,12 @@
           "@chaitanyakasaraneni"
         ]
       },
-      "git_sha": "0651d607626d676b565ea3c869f04b34e1ecbc8b"
+      "git_sha": "c6db68a562b7ec99eb0f69e2b35050e35349584c"
     },
     {
       "name": "samplesheetparser_split",
       "path": "modules/nf-core/samplesheetparser/split/meta.yml",
-      "tree_sha": "ca5107b8bbadcff52387a01e84736ac4ae3664cd",
+      "tree_sha": "6b087605dc5fc952ef970aa9d76bc01b90dcdbf7",
       "files": [
         "modules/nf-core/samplesheetparser/split/environment.yml",
         "modules/nf-core/samplesheetparser/split/main.nf",
@@ -318111,12 +318168,12 @@
           "@chaitanyakasaraneni"
         ]
       },
-      "git_sha": "0651d607626d676b565ea3c869f04b34e1ecbc8b"
+      "git_sha": "c6db68a562b7ec99eb0f69e2b35050e35349584c"
     },
     {
       "name": "samplesheetparser_validate",
       "path": "modules/nf-core/samplesheetparser/validate/meta.yml",
-      "tree_sha": "0a4c8a06c9ddd1dd2db69aa834cc04dbe7e77604",
+      "tree_sha": "d124070008b5610b03d88a5401f8368c39ad6503",
       "files": [
         "modules/nf-core/samplesheetparser/validate/environment.yml",
         "modules/nf-core/samplesheetparser/validate/main.nf",
@@ -318251,7 +318308,7 @@
           "@chaitanyakasaraneni"
         ]
       },
-      "git_sha": "0651d607626d676b565ea3c869f04b34e1ecbc8b"
+      "git_sha": "c6db68a562b7ec99eb0f69e2b35050e35349584c"
     },
     {
       "name": "samshee",
@@ -347594,7 +347651,7 @@
     {
       "name": "sigprofiler",
       "path": "modules/nf-core/sigprofiler/meta.yml",
-      "tree_sha": "a15d91caa94f701321830e72efa2598fef7bed30",
+      "tree_sha": "0c4137b0eff1a8c3ff74e37203a769494f09aac4",
       "files": [
         "modules/nf-core/sigprofiler/environment.yml",
         "modules/nf-core/sigprofiler/main.nf",
@@ -347673,6 +347730,13 @@
               "description": "path to installed reference genome (optional)",
               "ontologies": []
             }
+          },
+          {
+            "seeds": {
+              "type": "file",
+              "description": "Seeds file from previous run for reproducible resamples or \"random\" (default is \"random\").",
+              "ontologies": []
+            }
           }
         ],
         "output": {
@@ -347709,11 +347773,27 @@
             }
           ]
         },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
         "authors": [
           "@kdavydzenka"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "2a355c816f06b834fadd05fd444cbea171f7bdee",
       "pipelines": [
         {
           "name": "tumourevo",
@@ -362554,7 +362634,7 @@
     {
       "name": "starfusion_detect",
       "path": "modules/nf-core/starfusion/detect/meta.yml",
-      "tree_sha": "bdc5d6baa10033cadc9c7401826b34781741d0ab",
+      "tree_sha": "5a4f4fa31960938a25230544fb64ea50e70a0f4a",
       "files": [
         "modules/nf-core/starfusion/detect/environment.yml",
         "modules/nf-core/starfusion/detect/main.nf",
@@ -362638,7 +362718,8 @@
                 "*.fusion_predictions.tsv": {
                   "type": "file",
                   "description": "Fusion events from STAR-fusion",
-                  "pattern": "*.{fusion_predictions.tsv}"
+                  "pattern": "*.{fusion_predictions.tsv}",
+                  "ontologies": []
                 }
               }
             ]
@@ -362655,7 +362736,8 @@
                 "*.abridged.tsv": {
                   "type": "file",
                   "description": "Abridged version of fusion events from STAR-fusion",
-                  "pattern": "*.{fusion.abridged.tsv}"
+                  "pattern": "*.{fusion.abridged.tsv}",
+                  "ontologies": []
                 }
               }
             ]
@@ -362672,31 +362754,64 @@
                 "*.coding_effect.tsv": {
                   "type": "file",
                   "description": "Fusion events with their coding effect from STAR-fusion",
-                  "pattern": "*.{coding_effect.tsv}"
+                  "pattern": "*.{coding_effect.tsv}",
+                  "ontologies": []
                 }
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_starfusion": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "star-fusion": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "echo 1.15.1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "star-fusion": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "echo 1.15.1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
           "@praveenraj2018"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "e1df711ff0808b28a06f7af50bf247def47ab998",
       "pipelines": [
         {
           "name": "rnafusion",
@@ -381362,13 +381477,14 @@
     {
       "name": "transdecoder_predict",
       "path": "modules/nf-core/transdecoder/predict/meta.yml",
-      "tree_sha": "0ec5e20490995d76517111672f9cecff01e81e83",
+      "tree_sha": "e42d57e912a2bcb154ed692931396a5df7d9ce45",
       "files": [
         "modules/nf-core/transdecoder/predict/environment.yml",
         "modules/nf-core/transdecoder/predict/main.nf",
         "modules/nf-core/transdecoder/predict/meta.yml",
         "modules/nf-core/transdecoder/predict/tests/main.nf.test",
-        "modules/nf-core/transdecoder/predict/tests/main.nf.test.snap"
+        "modules/nf-core/transdecoder/predict/tests/main.nf.test.snap",
+        "modules/nf-core/transdecoder/predict/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
@@ -381546,7 +381662,7 @@
           "@Danilo2771"
         ]
       },
-      "git_sha": "f9b05e226409f21226a46d95d2d26c58d68958e6"
+      "git_sha": "863a36f28b3c3c39b182be6f977799fb8de49598"
     },
     {
       "name": "transrate",
@@ -387736,7 +387852,7 @@
     {
       "name": "umicollapse",
       "path": "modules/nf-core/umicollapse/meta.yml",
-      "tree_sha": "c328aa84a9770674ad966bd523aab094431bf724",
+      "tree_sha": "cf65949854fdba93e02ab7e1820b99bb2ee7f839",
       "files": [
         "modules/nf-core/umicollapse/environment.yml",
         "modules/nf-core/umicollapse/main.nf",
@@ -387920,7 +388036,7 @@
           "@MatthiasZepper"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "0fd93feb0513677fba6a295f5cebf9d63e8a9112",
       "pipelines": [
         {
           "name": "lncpipe",
@@ -392627,7 +392743,7 @@
     {
       "name": "vcf2cytosure",
       "path": "modules/nf-core/vcf2cytosure/meta.yml",
-      "tree_sha": "cfcdadcd757612145e1bc683ffb0525d74c871a0",
+      "tree_sha": "cda36d6ba08da7641249c696938a4c2b549b1a6d",
       "files": [
         "modules/nf-core/vcf2cytosure/environment.yml",
         "modules/nf-core/vcf2cytosure/main.nf",
@@ -392801,7 +392917,7 @@
           "@jemten"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "f1eb4e27e85a454b7e7c5be881deba444abe736f",
       "pipelines": [
         {
           "name": "raredisease",
@@ -409265,7 +409381,7 @@
     {
       "name": "bam_dedup_stats_samtools_umicollapse",
       "path": "subworkflows/nf-core/bam_dedup_stats_samtools_umicollapse/meta.yml",
-      "tree_sha": "823c07849e9d94111ee610233e2920caef649383",
+      "tree_sha": "1b0371baa649e76d27a62b918aec107885f4eee8",
       "files": [
         "subworkflows/nf-core/bam_dedup_stats_samtools_umicollapse/main.nf",
         "subworkflows/nf-core/bam_dedup_stats_samtools_umicollapse/meta.yml",
@@ -409349,7 +409465,7 @@
           "@MatthiasZepper"
         ]
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "0fd93feb0513677fba6a295f5cebf9d63e8a9112",
       "pipelines": [
         {
           "name": "lncpipe",
@@ -426814,6 +426930,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "74be114b46468b8387826e7ffe5bf7c25ba2fc09",
-  "updated_at": "2026-08-27T03:47:36.767Z"
+  "commit_sha": "863a36f28b3c3c39b182be6f977799fb8de49598",
+  "updated_at": "2026-08-27T17:55:28.953Z"
 }
