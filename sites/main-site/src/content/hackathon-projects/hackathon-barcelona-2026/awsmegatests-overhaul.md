@@ -3,6 +3,7 @@ title: AWS megatests overhaul
 category: tooling
 location: Barcelona
 image: "/assets/images/events/2026/hackathon-barcelona/megatests.jpg"
+image_alt: "Marie Kondo loves AWS megatests"
 slack: https://nfcore.slack.com/archives/CTY8L26C8
 leaders:
   FriederikeHanssen:
