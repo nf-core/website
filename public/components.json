@@ -182417,6 +182417,171 @@
       "git_sha": "a58ced848e0af22c64905719fa55fe9416df1a9f"
     },
     {
+      "name": "hyphy_gard",
+      "path": "modules/nf-core/hyphy/gard/meta.yml",
+      "tree_sha": "cd058caad911ce1eeee43d76ec2d9e00f3d12a0c",
+      "files": [
+        "modules/nf-core/hyphy/gard/environment.yml",
+        "modules/nf-core/hyphy/gard/main.nf",
+        "modules/nf-core/hyphy/gard/meta.yml",
+        "modules/nf-core/hyphy/gard/tests/main.nf.test",
+        "modules/nf-core/hyphy/gard/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "hyphy_gard",
+        "description": "GARD (Genetic Algorithm for Recombination Detection) is a method to screen a multiple sequence alignment for the presence of recombination and is extremely useful as a pre-processing step for selection inference.",
+        "keywords": [
+          "recombination",
+          "pre-processing",
+          "selection inference",
+          "gene evolution"
+        ],
+        "tools": [
+          {
+            "hyphy": {
+              "description": "An open-source software package for comparative sequence analysis using stochastic evolutionary models.",
+              "homepage": "https://hyphy.org",
+              "documentation": "https://hyphy.org",
+              "tool_dev_url": "https://github.com/veg/hyphy",
+              "doi": "10.1093/molbev/msz197",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:HyPhy"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "alignment": {
+                "type": "file",
+                "description": "Codon aligned sequences in FASTA format.",
+                "pattern": "*.{fa,fas,fasta,aln}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2554"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1921"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1984"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.json": {
+                  "type": "file",
+                  "description": "GARD results in JSON format.",
+                  "pattern": "*.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_output.txt": {
+                  "type": "file",
+                  "description": "GARD results in human-readable format.",
+                  "pattern": "*.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_hyphy": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hyphy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hyphy --version | sed -E 's/.*HYPHY ([0-9]+\\.[0-9]+\\.[0-9]+).*/\\1/'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hyphy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hyphy --version | sed -E 's/.*HYPHY ([0-9]+\\.[0-9]+\\.[0-9]+).*/\\1/'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@leapicard"
+        ],
+        "maintainers": [
+          "@leapicard"
+        ]
+      },
+      "git_sha": "88679cf821cd4ba2ba86228179e05e5887cba252"
+    },
+    {
       "name": "hyphy_meme",
       "path": "modules/nf-core/hyphy/meme/meta.yml",
       "tree_sha": "c9fca8fe741029d969cd9762965b8686ba307e08",
@@ -426930,6 +427095,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "863a36f28b3c3c39b182be6f977799fb8de49598",
-  "updated_at": "2026-08-27T17:55:28.953Z"
+  "commit_sha": "88679cf821cd4ba2ba86228179e05e5887cba252",
+  "updated_at": "2026-08-28T04:44:03.764Z"
 }
