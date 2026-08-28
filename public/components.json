@@ -7972,7 +7972,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         }
       ]
     },
@@ -8421,14 +8421,14 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         }
       ]
     },
     {
       "name": "anarcii",
       "path": "modules/nf-core/anarcii/meta.yml",
-      "tree_sha": "6dd70b75062403a9019ae822400f44b18f1484e4",
+      "tree_sha": "a9b1dbcad23b601c1e429749e80779000b286a1e",
       "files": [
         "modules/nf-core/anarcii/environment.yml",
         "modules/nf-core/anarcii/main.nf",
@@ -8481,7 +8481,14 @@
                 ]
               }
             }
-          ]
+          ],
+          {
+            "seq_type": {
+              "type": "string",
+              "description": "Receptor type to number, passed to ANARCII's `-t` flag. Selects the model used for alignment.\n",
+              "pattern": "antibody|tcr|vnar|vhh|shark|unknown"
+            }
+          }
         ],
         "output": {
           "anarcii": [
@@ -8560,7 +8567,7 @@
           "@Clara0611"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "4fd055dffcc22151554b75c134feac4aa7491f17"
     },
     {
       "name": "angsd_contamination",
@@ -24237,7 +24244,7 @@
     {
       "name": "bbmap_repair",
       "path": "modules/nf-core/bbmap/repair/meta.yml",
-      "tree_sha": "ebc7b2c618b58fc73a20762549a0ca5d944104b8",
+      "tree_sha": "bf1ea8640b846948943fc771b9261df34ab4e905",
       "files": [
         "modules/nf-core/bbmap/repair/environment.yml",
         "modules/nf-core/bbmap/repair/main.nf",
@@ -24406,7 +24413,7 @@
           "@tm4zza"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "706ad8341158bfa1dc9c225665a0e0011ff2f117",
       "pipelines": [
         {
           "name": "fastqrepair",
@@ -52667,7 +52674,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         },
         {
           "name": "bacass",
@@ -56939,7 +56946,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         },
         {
           "name": "scrnaseq",
@@ -57553,7 +57560,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         }
       ]
     },
@@ -112340,7 +112347,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         },
         {
           "name": "bacass",
@@ -112876,7 +112883,7 @@
         },
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         },
         {
           "name": "alleleexpression",
@@ -181880,7 +181887,7 @@
     {
       "name": "hyphy_busted",
       "path": "modules/nf-core/hyphy/busted/meta.yml",
-      "tree_sha": "eab3c52bbb271760c72682b42c9baf6353399c4d",
+      "tree_sha": "35b0d24360ceb17ac3b2d7f8a768b81dedc9c412",
       "files": [
         "modules/nf-core/hyphy/busted/environment.yml",
         "modules/nf-core/hyphy/busted/main.nf",
@@ -182054,7 +182061,186 @@
           "@leapicard"
         ]
       },
-      "git_sha": "eefaa88428174479eae96e6ae3bdd6ae57e84a9c"
+      "git_sha": "a163a2120d0e9f289fdfac7e396d719ed28adca3"
+    },
+    {
+      "name": "hyphy_fade",
+      "path": "modules/nf-core/hyphy/fade/meta.yml",
+      "tree_sha": "b02aaee29751155f77517d2fa2fde809d261d4c4",
+      "files": [
+        "modules/nf-core/hyphy/fade/environment.yml",
+        "modules/nf-core/hyphy/fade/main.nf",
+        "modules/nf-core/hyphy/fade/meta.yml",
+        "modules/nf-core/hyphy/fade/tests/main.nf.test",
+        "modules/nf-core/hyphy/fade/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "hyphy_fade",
+        "description": "FADE (FUBAR Aproach to Directional Evolution) is a method that uses a Bayesian framework, based on that introduced by FUBAR ), to test whether sites in a protein alignment are subject to directional selection.",
+        "keywords": [
+          "positive selection",
+          "pervasive selection",
+          "protein evolution"
+        ],
+        "tools": [
+          {
+            "hyphy": {
+              "description": "An open-source software package for comparative sequence analysis using stochastic evolutionary models.",
+              "homepage": "https://hyphy.org",
+              "documentation": "https://hyphy.org",
+              "tool_dev_url": "https://github.com/veg/hyphy",
+              "doi": "10.1093/molbev/msz197",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:HyPhy"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "alignment": {
+                "type": "file",
+                "description": "Aligned protein sequences in FASTA format.",
+                "pattern": "*.{fa,fas,fasta,aln}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2554"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1921"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1984"
+                  }
+                ]
+              }
+            },
+            {
+              "tree": {
+                "type": "file",
+                "description": "Phylogenetic gene tree in text or xml format",
+                "pattern": "*.{tree,txt,nwk,newick,nhx,phyloxml,xml}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1910"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3159"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.json": {
+                  "type": "file",
+                  "description": "FADE results in JSON format.",
+                  "pattern": "*.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_output.txt": {
+                  "type": "file",
+                  "description": "FADE results in human-readable format.",
+                  "pattern": "*.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_hyphy": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hyphy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hyphy --version | sed -E 's/.*HYPHY ([0-9]+\\.[0-9]+\\.[0-9]+).*/\\1/'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hyphy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hyphy --version | sed -E 's/.*HYPHY ([0-9]+\\.[0-9]+\\.[0-9]+).*/\\1/'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@leapicard"
+        ],
+        "maintainers": [
+          "@leapicard"
+        ]
+      },
+      "git_sha": "e5521761d8ed32fc5c343948378f6bbaee756b09"
     },
     {
       "name": "hyphy_fel",
@@ -235958,7 +236144,7 @@
         },
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         },
         {
           "name": "alleleexpression",
@@ -333161,7 +333347,7 @@
     {
       "name": "sentieon_coveragemetrics",
       "path": "modules/nf-core/sentieon/coveragemetrics/meta.yml",
-      "tree_sha": "b85500f4c2279c23d093775a53845e7ff1554f77",
+      "tree_sha": "8fa673358277b196126ef4d868c1db904f2e6192",
       "files": [
         "modules/nf-core/sentieon/coveragemetrics/environment.yml",
         "modules/nf-core/sentieon/coveragemetrics/main.nf",
@@ -333445,7 +333631,7 @@
           "@adamrtalbot"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "a19d1c054460b7af9ea28b281899dc612f463d60"
     },
     {
       "name": "sentieon_datametrics",
@@ -384650,7 +384836,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         }
       ]
     },
@@ -424148,7 +424334,7 @@
         },
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         },
         {
           "name": "ampliseq",
@@ -424632,7 +424818,7 @@
         },
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         },
         {
           "name": "ampliseq",
@@ -425172,7 +425358,7 @@
         },
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         },
         {
           "name": "ampliseq",
@@ -427095,6 +427281,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "88679cf821cd4ba2ba86228179e05e5887cba252",
-  "updated_at": "2026-08-28T04:44:03.764Z"
+  "commit_sha": "4fd055dffcc22151554b75c134feac4aa7491f17",
+  "updated_at": "2026-08-28T18:11:11.835Z"
 }
