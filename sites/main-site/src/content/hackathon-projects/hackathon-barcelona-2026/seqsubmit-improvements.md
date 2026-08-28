@@ -3,8 +3,8 @@ title: "nf-core/seqsubmit improvements"
 category: pipelines
 slack: https://nfcore.slack.com/channels/seqsubmit
 location: Barcelona
-image: "/assets/images/events/2025/hackathon-barcelona/nfcore-metaomics_logo.png"
-image_alt: "nf-core/seqsubmit logo"
+image: "/assets/images/events/2026/hackathon-barcelona/seqsubmit_schema.png"
+image_alt: "nf-core/seqsubmit workflow schema"
 leaders:
   ochkalova:
     name: Sonya Ochkalova
