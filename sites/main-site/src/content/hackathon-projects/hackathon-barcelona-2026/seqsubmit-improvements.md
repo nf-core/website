@@ -39,13 +39,13 @@ We probably won't get through all of these during the hackathon. We'll pick from
 Several tasks below are Easy or Medium and can be done without prior nf-core experience, they're a good place to start if this is your first contribution to the nf-core pipeline.
 :::
 
-- [Make the test suite runnable without maintainer Webin credentials](https://github.com/nf-core/seqsubmit/issues/95) (Difficulty: Easy)
-- [Add tests for --is_private flag for different kinds of data](https://github.com/nf-core/seqsubmit/issues/80) (Difficulty: Easy)
-- [Add `reads` mode output files to multiqc report](https://github.com/nf-core/seqsubmit/issues/70) (Difficulty: Medium)
-- [Support submission of metagenomic assemblies generated from co-assemblies](https://github.com/nf-core/seqsubmit/issues/61) (Difficulty: Medium)
-- [Support submission of MAGs/bins generated from co-assemblies](https://github.com/nf-core/seqsubmit/issues/96) (Difficulty: Hard)
-- [Add eukaryotic MAGs/bins support](https://github.com/nf-core/seqsubmit/issues/40) (Difficulty: Hard)
-- [Pipeline should support long-read submissions end-to-end](https://github.com/nf-core/seqsubmit/issues/98) (Difficulty: Hard)
+- Make the test suite runnable without maintainer Webin credentials ([#95](https://github.com/nf-core/seqsubmit/issues/95)) (Difficulty: Easy)
+- Add tests for --is_private flag for different kinds of data ([#80](https://github.com/nf-core/seqsubmit/issues/80)) (Difficulty: Easy)
+- Add `reads` mode output files to multiqc report ([#70](https://github.com/nf-core/seqsubmit/issues/70)) (Difficulty: Medium)
+- Support submission of metagenomic assemblies generated from co-assemblies ([#61](https://github.com/nf-core/seqsubmit/issues/61)) (Difficulty: Medium)
+- Support submission of MAGs/bins generated from co-assemblies ([#96](https://github.com/nf-core/seqsubmit/issues/96)) (Difficulty: Hard)
+- Add eukaryotic MAGs/bins support ([#40](https://github.com/nf-core/seqsubmit/issues/40)) (Difficulty: Hard)
+- Pipeline should support long-read submissions end-to-end ([#98](https://github.com/nf-core/seqsubmit/issues/98)) (Difficulty: Hard)
 
 Each linked issue has background on why it matters, the terms you'll need, and a suggested step-by-step approach, so pick whichever one matches your interest and experience level.
 
