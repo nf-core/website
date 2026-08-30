@@ -368597,9 +368597,9 @@
     {
       "name": "sushie",
       "path": "modules/nf-core/sushie/meta.yml",
-      "tree_sha": "1bf9e3893d05d723be19ed9d5314366f520a9226",
+      "tree_sha": "a14cd9ef605348f3ed1ae1a106ed3e6999294d94",
       "files": [
-        "modules/nf-core/sushie/Dockerfile",
+        "modules/nf-core/sushie/environment.yml",
         "modules/nf-core/sushie/main.nf",
         "modules/nf-core/sushie/meta.yml",
         "modules/nf-core/sushie/tests/main.nf.test",
@@ -368761,8 +368761,8 @@
                 }
               },
               {
-                "0.19": {
-                  "type": "string",
+                "sushie --version": {
+                  "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
               }
@@ -368803,8 +368803,8 @@
                 }
               },
               {
-                "0.19": {
-                  "type": "string",
+                "sushie --version": {
+                  "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
               }
@@ -368818,7 +368818,7 @@
           "@camlloyd"
         ]
       },
-      "git_sha": "21e4662ae927fdbc5fc04eec9bde38b0689d4954"
+      "git_sha": "46e340e0a6395d0823d465591c08ac2fb07288eb"
     },
     {
       "name": "svaba",
@@ -427570,6 +427570,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "89bd1a3bcc6969b93871a0b667f67d68caa0747f",
-  "updated_at": "2026-08-30T02:12:32.954Z"
+  "commit_sha": "46e340e0a6395d0823d465591c08ac2fb07288eb",
+  "updated_at": "2026-08-30T14:12:20.619Z"
 }
