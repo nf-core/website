@@ -24417,7 +24417,7 @@
       "pipelines": [
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -80746,6 +80746,160 @@
       "git_sha": "2599d25d757e0d966a103b53a7304385df112be2"
     },
     {
+      "name": "custom_collectfeaturecounts",
+      "path": "modules/nf-core/custom/collectfeaturecounts/meta.yml",
+      "tree_sha": "368ec268b68e5e0452737c705f5e60219bfd856b",
+      "files": [
+        "modules/nf-core/custom/collectfeaturecounts/.conda-lock/linux_amd64-bd-e289d008f8e006c5_1.txt",
+        "modules/nf-core/custom/collectfeaturecounts/.conda-lock/linux_arm64-bd-e98a95795cdd7b8d_1.txt",
+        "modules/nf-core/custom/collectfeaturecounts/environment.yml",
+        "modules/nf-core/custom/collectfeaturecounts/main.nf",
+        "modules/nf-core/custom/collectfeaturecounts/meta.yml",
+        "modules/nf-core/custom/collectfeaturecounts/templates/collectfeaturecounts.R",
+        "modules/nf-core/custom/collectfeaturecounts/tests/main.nf.test",
+        "modules/nf-core/custom/collectfeaturecounts/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "custom_collectfeaturecounts",
+        "description": "Collects one or more subread/featureCounts raw output files (typically one per sample,\nfor the same feature type/ORF caller) into a single long-format table with per-sample\nTPM (Transcripts Per Million)  computed.\n",
+        "keywords": [
+          "featurecounts",
+          "collect",
+          "counts",
+          "tpm"
+        ],
+        "tools": [
+          {
+            "collectfeaturecounts": {
+              "description": "In-house R script that reshapes one or more raw featureCounts output files into a\nsingle long-format table (one row per feature/sample), computing transcripts per million (TPMs) per sample.\n",
+              "tool_dev_url": "https://github.com/nf-core/modules/blob/master/modules/nf-core/custom/collectfeaturecounts/main.nf",
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "inputfiles": {
+                "type": "file",
+                "description": "One or more raw featureCounts output files (as produced by `subread/featurecounts`),\ntypically one per sample against the same feature set/ORF caller. The sample name\nis taken from each file's count column header (its BAM filename, with a trailing\n`.sorted.bam` stripped).\n",
+                "pattern": "*.featureCounts.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "counts": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "${prefix}.counts.tsv.gz": {
+                  "type": "file",
+                  "description": "Long-format table (`orf`, `chr`, `start`, `end`, `strand`, `length`, `sample`,\n`count`, `tpm`) with one row per feature/sample, `count` > 0 rows only.\n",
+                  "pattern": "*.counts.tsv.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@danilodileo",
+          "@erikrikarddaniel"
+        ],
+        "maintainers": [
+          "@danilodileo",
+          "@erikrikarddaniel"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/r-base_r-data.table_r-dplyr_r-dtplyr_pruned:e289d008f8e006c5",
+              "build_id": "bd-e289d008f8e006c5_1",
+              "scan_id": "sc-601d91a135cd74c5_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/r-base_r-data.table_r-dplyr_r-dtplyr_pruned:e98a95795cdd7b8d",
+              "build_id": "bd-e98a95795cdd7b8d_1",
+              "scan_id": "sc-f9ffad43ab7d9bab_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/r-base_r-data.table_r-dplyr_r-dtplyr_pruned:cfc660db3b9f0e48",
+              "build_id": "bd-cfc660db3b9f0e48_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/bf/bfe4a872ba15a90cc12fb24aa96ddda852d5b295c214684d9c8fdf3dc02af535/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/r-base_r-data.table_r-dplyr_r-dtplyr_pruned:26dcf8d18c74568a",
+              "build_id": "bd-26dcf8d18c74568a_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e5/e52672c5c96c9a2da0c032f5603ac4a193fc02e81feeb81257e54b8ded39acf6/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/custom/collectfeaturecounts/.conda-lock/linux_amd64-bd-e289d008f8e006c5_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/custom/collectfeaturecounts/.conda-lock/linux_arm64-bd-e98a95795cdd7b8d_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "94b413835288b0e80bd29256d0a95e4fce020a8b"
+    },
+    {
       "name": "custom_collectstats",
       "path": "modules/nf-core/custom/collectstats/meta.yml",
       "tree_sha": "37ff0dea6d55211c9dc4b1d548e72f3bc663f191",
@@ -113252,7 +113406,7 @@
         },
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         },
         {
           "name": "fastquorum",
@@ -166075,7 +166229,7 @@
       "pipelines": [
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -172969,8 +173123,10 @@
     {
       "name": "hisat2_align",
       "path": "modules/nf-core/hisat2/align/meta.yml",
-      "tree_sha": "769176455592e5241f40d322d367f768340442f2",
+      "tree_sha": "1ed1c14695a52cc28aa7ce55dc5437e7846fcd3e",
       "files": [
+        "modules/nf-core/hisat2/align/.conda-lock/linux_amd64-bd-a0c9b8ccf8116a89_1.txt",
+        "modules/nf-core/hisat2/align/.conda-lock/linux_arm64-bd-2061bdd7bd29b1cd_1.txt",
         "modules/nf-core/hisat2/align/environment.yml",
         "modules/nf-core/hisat2/align/main.nf",
         "modules/nf-core/hisat2/align/meta.yml",
@@ -173212,9 +173368,43 @@
         "maintainers": [
           "@ntoda03",
           "@ramprasadn"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/hisat2_samtools:a0c9b8ccf8116a89",
+              "build_id": "bd-a0c9b8ccf8116a89_1",
+              "scan_id": "sc-886103d0f76f5df6_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/hisat2_samtools:2061bdd7bd29b1cd",
+              "build_id": "bd-2061bdd7bd29b1cd_1",
+              "scan_id": "sc-184bae2a6fa4d5eb_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/hisat2_samtools:c8aaaadb7f843dc5",
+              "build_id": "bd-c8aaaadb7f843dc5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/92/92f546b522b78597047a54609eefcf35a014de082df0e500bc2adf64d2733669/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/hisat2_samtools:85c43579819c7f9c",
+              "build_id": "bd-85c43579819c7f9c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/0a/0ac773ba54fb01c7ec8666b1347db8c0c5100a8e8b34e5ee5ee3f92abebd8ee7/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/hisat2/align/.conda-lock/linux_amd64-bd-a0c9b8ccf8116a89_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/hisat2/align/.conda-lock/linux_arm64-bd-2061bdd7bd29b1cd_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "e7428eccb8981604debd11146649b95686621a7b",
       "pipelines": [
         {
           "name": "circrna",
@@ -173245,8 +173435,9 @@
     {
       "name": "hisat2_build",
       "path": "modules/nf-core/hisat2/build/meta.yml",
-      "tree_sha": "7196b9d81f5fbfaaf5082a76c2b246fd72200945",
+      "tree_sha": "0d67919562bf571ef373d420a1a0eba50f3e3699",
       "files": [
+        "modules/nf-core/hisat2/build/.conda-lock/linux_amd64-bd-2616fa83d3b9d8f8_1.txt",
         "modules/nf-core/hisat2/build/environment.yml",
         "modules/nf-core/hisat2/build/main.nf",
         "modules/nf-core/hisat2/build/meta.yml",
@@ -173293,14 +173484,6 @@
                 "pattern": "*.{fa,fasta,fna}",
                 "ontologies": []
               }
-            }
-          ],
-          [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
-              }
             },
             {
               "gtf": {
@@ -173308,14 +173491,6 @@
                 "description": "Reference gtf annotation file",
                 "pattern": "*.{gtf}",
                 "ontologies": []
-              }
-            }
-          ],
-          [
-            {
-              "meta3": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
               }
             },
             {
@@ -173326,7 +173501,13 @@
                 "ontologies": []
               }
             }
-          ]
+          ],
+          {
+            "hisat2_memory_input": {
+              "type": "string",
+              "description": "Memory threshold for HISAT2 index building. When available process memory\nmeets or exceeds this value, splice sites and exons are used to build a\nsplice-aware index. Use false to disable splice-aware indexing.\n"
+            }
+          }
         ],
         "output": {
           "index": [
@@ -173400,9 +173581,40 @@
         ],
         "maintainers": [
           "@ntoda03"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/hisat2:2.2.3--2616fa83d3b9d8f8",
+              "build_id": "bd-2616fa83d3b9d8f8_1",
+              "scan_id": "sc-734493ace7062424_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/hisat2:2.2.3--0b83b24baf5a98d0",
+              "build_id": "",
+              "scan_id": "sc-98ff2d246e5f21bc_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/hisat2:2.2.3--43d6b2eab6ddad26",
+              "build_id": "",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a1/a16b8102041e76f25358477471bafe813828313f7a8787066f390354cd7b8b7c/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/hisat2:2.2.3--2e8243af13980ed3",
+              "build_id": "",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/4e/4edf1cfd94406d23f9a32bab4361cfbf770b0e6fdedb1fbc97d966c6074f51f8/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/hisat2/build/.conda-lock/linux_amd64-bd-2616fa83d3b9d8f8_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "e7428eccb8981604debd11146649b95686621a7b",
       "pipelines": [
         {
           "name": "circrna",
@@ -173437,8 +173649,10 @@
     {
       "name": "hisat2_extractsplicesites",
       "path": "modules/nf-core/hisat2/extractsplicesites/meta.yml",
-      "tree_sha": "816ac8def31fc6f7abff3c93c5b8f6e1727647ca",
+      "tree_sha": "d1bd4e0acc2aa56ea088e19b09f1bcb218d109f8",
       "files": [
+        "modules/nf-core/hisat2/extractsplicesites/.conda-lock/linux_amd64-bd-a0c9b8ccf8116a89_1.txt",
+        "modules/nf-core/hisat2/extractsplicesites/.conda-lock/linux_arm64-bd-2061bdd7bd29b1cd_1.txt",
         "modules/nf-core/hisat2/extractsplicesites/environment.yml",
         "modules/nf-core/hisat2/extractsplicesites/main.nf",
         "modules/nf-core/hisat2/extractsplicesites/meta.yml",
@@ -173560,9 +173774,43 @@
         "maintainers": [
           "@ntoda03",
           "@ramprasadn"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/hisat2_samtools:a0c9b8ccf8116a89",
+              "build_id": "bd-a0c9b8ccf8116a89_1",
+              "scan_id": "sc-886103d0f76f5df6_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/hisat2_samtools:2061bdd7bd29b1cd",
+              "build_id": "bd-2061bdd7bd29b1cd_1",
+              "scan_id": "sc-184bae2a6fa4d5eb_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/hisat2_samtools:c8aaaadb7f843dc5",
+              "build_id": "bd-c8aaaadb7f843dc5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/92/92f546b522b78597047a54609eefcf35a014de082df0e500bc2adf64d2733669/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/hisat2_samtools:85c43579819c7f9c",
+              "build_id": "bd-85c43579819c7f9c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/0a/0ac773ba54fb01c7ec8666b1347db8c0c5100a8e8b34e5ee5ee3f92abebd8ee7/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/hisat2/extractsplicesites/.conda-lock/linux_amd64-bd-a0c9b8ccf8116a89_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/hisat2/extractsplicesites/.conda-lock/linux_arm64-bd-2061bdd7bd29b1cd_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "e7428eccb8981604debd11146649b95686621a7b",
       "pipelines": [
         {
           "name": "circrna",
@@ -236529,7 +236777,7 @@
         },
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         },
         {
           "name": "fastquorum",
@@ -405393,7 +405641,7 @@
       "pipelines": [
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -405548,7 +405796,7 @@
       "pipelines": [
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -405722,7 +405970,7 @@
       "pipelines": [
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -405866,7 +406114,7 @@
       "pipelines": [
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -418853,7 +419101,7 @@
     {
       "name": "fastq_align_hisat2",
       "path": "subworkflows/nf-core/fastq_align_hisat2/meta.yml",
-      "tree_sha": "c5e8d1206887dc54263f723e19a4d497a191abf8",
+      "tree_sha": "05f3c18383b0ddfc4f6a520186b621defa0ebc79",
       "files": [
         "subworkflows/nf-core/fastq_align_hisat2/main.nf",
         "subworkflows/nf-core/fastq_align_hisat2/meta.yml",
@@ -419008,7 +419256,7 @@
           "@priyanka-surana"
         ]
       },
-      "git_sha": "5c4fc6bbf9af3642bdd9f2408a90970f616bf837",
+      "git_sha": "e7428eccb8981604debd11146649b95686621a7b",
       "pipelines": [
         {
           "name": "lncpipe",
@@ -424727,7 +424975,7 @@
         },
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         },
         {
           "name": "fastquorum",
@@ -425211,7 +425459,7 @@
         },
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         },
         {
           "name": "fastquorum",
@@ -425747,7 +425995,7 @@
         },
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         },
         {
           "name": "fastquorum",
@@ -427570,6 +427818,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "46e340e0a6395d0823d465591c08ac2fb07288eb",
-  "updated_at": "2026-08-31T02:13:53.240Z"
+  "commit_sha": "94b413835288b0e80bd29256d0a95e4fce020a8b",
+  "updated_at": "2026-08-31T14:12:40.883Z"
 }
