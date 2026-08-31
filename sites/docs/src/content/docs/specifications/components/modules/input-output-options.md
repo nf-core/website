@@ -50,6 +50,17 @@ When one and only one of multiple argument are required:
 
   :::
 
+### Random seed
+
+If the main underlying tool accepts a random seed as an argument, the module SHOULD define an optional `val` input for the random seed.
+
+- If the user provides a value, it MUST be appropriately provided to the tool.
+- If the user provides no value (`[]`), the module MUST NOT pass any seed argument to the tool.
+
+:::info{title="Rationale" collapse}
+Random seeds often have major impact on the output of tools. To highlight the fact that a tool accepts a random seed input, we expose it as an input channel rather than relying on `ext.args`. If the user decides not to provide a seed, the module reverts to the default behaviour of the tool, which is often deliberately non-deterministic.
+:::
+
 ## Output channel emissions
 
 Named file extensions MUST be emitted for ALL output channels.
