@@ -59,7 +59,14 @@ If the main underlying tool accepts a random seed as an argument, the module SHO
 - If a random seed is provided through both the input and `ext.args`, the module SHOULD use the value from `ext.args`.
 
 :::info{title="Tip"}
-Since most tools apply duplicate arguments in the order they are provided, you can usually achieve this by passing `$args` after the input-based seed argument.
+Some tools resolve duplicate arguments based on order. However, the most reliable approach is to check whether `ext.args` contain a seed argument, similar to the following snippet:
+```
+def seed_flag = random_seed ? "--seed ${random_seed}": ""
+if (task.ext.args.contains("--seed")){
+  // extract the value
+  seed_flag = "..."
+}
+```
 :::
 
 :::info{title="Rationale" collapse}
