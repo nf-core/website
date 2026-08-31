@@ -120,3 +120,48 @@ We restructured out [module and subworkflow lint documentation](https://nf-co.re
 # Changelog
 
 You can find the complete changelog and technical details [on GitHub](https://github.com/nf-core/tools/releases/tag/4.1.0).
+
+# How to resolve common merge conflicts on pipeline sync PRs
+
+All the template changes are listed in [the Template section of the changelog](https://github.com/nf-core/tools/releases/tag/4.0.0).
+Below, we have collected the most common merge conflicts that you may find and how to resolve them.
+
+## `subworkflows/local/utils_nfcore_demo_pipeline/main.nf`
+
+The `UTILS_NFSCHEMA_PLUGIN` got a new argument to better handle typing issues with Nextflow 26.04.0 and later.
+
+```diff title="subworkflows/local/utils_nfcore_demo_pipeline/main.nf"
+ UTILS_NFSCHEMA_PLUGIN(
+        workflow,
+        validate_params,
+        null,
+        help,
+        help_full,
+        show_hidden,
+        before_text,
+        after_text,
+        command,
++ <<<<<<< HEAD
++         false
++ =======
++ >>>>>>>
+    )
+```
+
+Resolution:
+Accept HEAD with `false` as the `use_typing` argument. Or set it to `true` if you are already supporting typing.
+
+## `CHANGELOG.md`
+
+We added a `TODO nf-core` comment to the title field in the `CHANGELOG.md` file, to avoid accidentally releasing without a date.
+
+```diff title="CHANGELOG.md"
+<<<<<<< HEAD
+## v1.2.1dev - [unreleased<!-- TODO nf-core: replace with date on release -->]
+=======
+## v1.2.1dev - [unreleased]
+```
+
+#### Resolution:
+
+Keep dev version, but copy the TODO statement as a reminder
