@@ -4,9 +4,10 @@ import SidebarToc from "@components/sidebar/SidebarToc.svelte";
 import SidebarNav from "@components/sidebar/SidebarNav.astro";
 import PipelinePageLayout from "@layouts/PipelinePageLayout.astro";
 import pipelines_json from "@public/pipelines.json";
-import { getEntry, type CollectionEntry, getCollection } from "astro:content";
+import { getEntry, type CollectionEntry } from "astro:content";
 import type { SidebarEntry } from "@utils/types";
 import { addEntriesToSection } from "@utils/functions";
+import { renderPipelineMarkdown } from "@utils/pipelineMarkdown";
 
 import ExpandDetailsButton from "@components/sidebar/ExpandDetailsButton.svelte";
 
@@ -129,12 +130,15 @@ let entry: CollectionEntry<"pipelines"> | undefined = await getEntry(
     "pipelines",
     pipeline + "/" + version_tag_name + "/docs/" + content_md_file,
 );
-let Content = entry?.rendered?.html;
-let headings = entry?.rendered?.metadata?.headings || [];
-const max_heading_depth = 3;
 
-// filter out headings that are higher than max_heading_depth
-headings = headings.filter((h) => h.depth <= max_heading_depth);
+const parentDir = ("docs/" + content_md_file).split("/").slice(0, -1).join("/");
+const { html: Content, headings: rawHeadings } = await renderPipelineMarkdown(
+    entry?.body ?? "",
+    pipeline,
+    version_tag_name,
+    parentDir,
+);
+let headings = rawHeadings.filter((h) => h.depth <= 3);
 ---
 
 <PipelinePageLayout

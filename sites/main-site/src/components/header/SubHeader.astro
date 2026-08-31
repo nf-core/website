@@ -42,7 +42,15 @@ const shaking = version === "dev" ? "3deg" : "1deg";
                 <div class="alert alert-warning p-1 p-md-3" role="alert">
                     <span>
                         {version === "dev" ? (
-                            <span>This is the development version of the pipeline.</span>
+                            <span>
+                                This is the development version of the pipeline.
+                                {latestVersion !== "dev" && (
+                                    <>
+                                        {" "}
+                                        <a href={latest_link}>View the latest v{latestVersion} release.</a>
+                                    </>
+                                )}
+                            </span>
                         ) : (
                             <span>
                                 These pages are for an old version of the pipeline (<code>{version}</code>). The latest

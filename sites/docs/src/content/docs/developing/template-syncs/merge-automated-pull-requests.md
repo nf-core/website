@@ -148,7 +148,7 @@ git push --set-upstream origin merging-template-updates
 
 1. Create a pull request from your fork to the main nf-core repository for the pipeline.
 
-1. Request reviews and merge as usual.
+1. Request reviews and merge. Use a regular merge and do not squash template update PRs.
 
 The commit history on your PR will include a commit by the `@nf-core-bot` user with the same commit hash as the automated `TEMPLATE` PR.
 Once you merge your fork, the automated PR will show as merged and close automatically.

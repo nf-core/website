@@ -16,6 +16,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.inputs.pipeline_name || github.event.client_payload.pipeline_name || 'all' }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   build-component-json:
     runs-on: ubuntu-latest
@@ -24,14 +27,14 @@ jobs:
 
     steps:
       # Set up the main website repo
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0 # Don't do a shallow clone
-          token: ${{secrets.NF_CORE_BOT_AUTH_TOKEN}} # Needed for pushing back to the repo
+          persist-credentials: false
 
       # install npm dependencies
       - name: Set up node.js
-        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
         with:
           node-version: 24
           cache: "npm"
@@ -39,21 +42,40 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Resolve pipeline name
+        id: pipeline
+        env:
+          PIPELINE_NAME_INPUT: ${{ github.event.inputs.pipeline_name || github.event.client_payload.pipeline_name || '' }}
+        run: |
+          if [ -n "$PIPELINE_NAME_INPUT" ] && [[ ! "$PIPELINE_NAME_INPUT" =~ ^[a-z]+$ ]]; then
+            echo "Invalid pipeline name. Use lowercase letters only, or leave the value empty."
+            exit 1
+          fi
+          echo "pipeline_name=$PIPELINE_NAME_INPUT" >> "$GITHUB_OUTPUT"
+
       - name: create pipeline.json
-        run: npm run build-pipeline-json -- ${{ github.event.inputs.pipeline_name || github.event.client_payload.pipeline_name || '' }}
+        run: npm run build-pipeline-json -- "$PIPELINE_NAME"
         env:
           GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
+          PIPELINE_NAME: ${{ steps.pipeline.outputs.pipeline_name }}
 
       - name: create component.json
-        run: npm run build-component-json -- ${{ github.event.inputs.pipeline_name || github.event.client_payload.pipeline_name || '' }}
+        run: npm run build-component-json -- "$PIPELINE_NAME"
         env:
           GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
+          PIPELINE_NAME: ${{ steps.pipeline.outputs.pipeline_name }}
 
       - name: Commit and push changes
+        env:
+          GH_TOKEN: ${{ secrets.NF_CORE_BOT_AUTH_TOKEN }}
         run: |
+          gh auth setup-git
           git config user.email "core@nf-co.re"
           git config user.name "nf-core-bot"
           git config push.default upstream
           git status
-          git pull
-          git diff --quiet || (git commit -am "[automated] Update json files" && git push)
+          git -c core.hooksPath=/dev/null pull --ff-only
+          if ! git diff --quiet; then
+            git -c core.hooksPath=/dev/null -c commit.gpgsign=false commit -am "[automated] Update json files"
+            git -c core.hooksPath=/dev/null push
+          fi

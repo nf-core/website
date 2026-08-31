@@ -168,6 +168,20 @@ const countTrue = (fn) => {
                             );
                         })
                     }
+                    <th
+                        colspan="2"
+                        class="small fw-normal text-center p-1 px-3"
+                        title="Root `main.nf` declares a `params {}` block"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Params block</th
+                    >
+                    <th
+                        colspan="2"
+                        class="small fw-normal text-center p-1 px-3"
+                        title="Uses the secure pr-comment.yml workflow (nf-core/tools >= 4.0.3)"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">PR-comment workflow</th
+                    >
                 </tr>
             </thead>
             <tbody>
@@ -225,7 +239,6 @@ const countTrue = (fn) => {
                                                 data-bs-toggle="tooltip"
                                             />
                                         )}
-                                        {/* <GitHubActionTrigger client:idle pipelineName={pipeline.name} /> */}
                                     </span>
                                 </td>
                                 {/* Released */}
@@ -428,6 +441,41 @@ const countTrue = (fn) => {
                                         ),
                                     ],
                                 )}
+                                {/* Params block in main.nf */}
+                                {getCell(
+                                    pipeline[`${mainOrMasterBranch}_uses_params_block`],
+                                    pipeline.repository_url + `/blob/${mainOrMasterBranch}/main.nf`,
+                                    `root main.nf declares a \`params {}\` block in ${mainOrMasterBranch}`,
+                                    "border-start",
+                                )}
+                                {getCell(
+                                    pipeline["dev_uses_params_block"],
+                                    pipeline.repository_url + "/blob/dev/main.nf",
+                                    "root main.nf declares a `params {}` block in dev",
+                                )}
+                                {/* Secure pr-comment.yml workflow */}
+                                {pipeline.releases?.length > 1 ? (
+                                    getCell(
+                                        pipeline[`${mainOrMasterBranch}_has_pr_comment_workflow`],
+                                        pipeline.repository_url +
+                                            `/blob/${mainOrMasterBranch}/.github/workflows/pr-comment.yml`,
+                                        `uses the secure pr-comment.yml workflow in ${mainOrMasterBranch}`,
+                                        "border-start",
+                                    )
+                                ) : (
+                                    <td
+                                        class="text-center status status--unknown border-start"
+                                        data-bs-toggle="tooltip"
+                                        title={pipeline.name + ": not yet released, check not applicable"}
+                                    >
+                                        <span class="text-secondary">-</span>
+                                    </td>
+                                )}
+                                {getCell(
+                                    pipeline["dev_has_pr_comment_workflow"],
+                                    pipeline.repository_url + "/blob/dev/.github/workflows/pr-comment.yml",
+                                    "uses the secure pr-comment.yml workflow in dev",
+                                )}
                             </tr>
                         );
                     })
@@ -458,8 +506,8 @@ const countTrue = (fn) => {
                                     p[(p.main_branch_exists ? "main" : "master") + "_nextflow_config_manifest"]
                                         ?.defaultBranch === p.default_branch,
                             )
-                        }</td
-                    >
+                        }
+                    </td>
                     <td class="text-center">{countTrue((p) => p.has_required_topics)}</td>
                     <td class="text-center">{countTrue((p) => p.description)}</td>
                     <td class="text-center"
@@ -526,6 +574,16 @@ const countTrue = (fn) => {
                             ],
                         )
                     }
+                    <td class="text-center border-start"
+                        >{countTrue((p) => p[(p.main_branch_exists ? "main" : "master") + "_uses_params_block"])}</td
+                    >
+                    <td class="text-center">{countTrue((p) => p["dev_uses_params_block"])}</td>
+                    <td class="text-center border-start"
+                        >{
+                            countTrue((p) => p[(p.main_branch_exists ? "main" : "master") + "_has_pr_comment_workflow"])
+                        }</td
+                    >
+                    <td class="text-center">{countTrue((p) => p["dev_has_pr_comment_workflow"])}</td>
                 </tr>
             </tfoot>
         </table>

@@ -1,0 +1,205 @@
+---
+// Reusable newsletter sign-up form. Posts { email } to the nf-core newsletter
+// service, which runs an Amazon SES double-opt-in flow (a confirmation email is
+// sent; the address is only subscribed after the recipient clicks confirm).
+//
+// Usage:
+//   <NewsletterSignup />                       full (heading + blurb)
+//   <NewsletterSignup compact={true} />        just the form (caller supplies copy)
+
+interface Props {
+    heading?: string;
+    description?: string;
+    compact?: boolean;
+}
+
+const {
+    heading = "Subscribe to the nf-core newsletter",
+    description = "One email a month with community news, pipeline releases, and events. Unsubscribe anytime.",
+    compact = false,
+} = Astro.props;
+
+// Live newsletter service /subscribe endpoint.
+// TODO: move behind a stable custom domain (e.g. api.nf-co.re) when one exists.
+const SUBSCRIBE_URL = "https://e5veor8z45.execute-api.eu-west-1.amazonaws.com/subscribe";
+
+// Cloudflare Turnstile CAPTCHA, to stop the endpoint being used as a spam relay
+// (harvested addresses submitted here get a confirmation email from us).
+// The site key is public by design. Until it's set (local dev, early preview
+// deploys) the form degrades gracefully to its pre-Turnstile behaviour — the
+// backend only enforces the check once its matching secret key is configured.
+const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+---
+
+<div class="nl-signup">
+    {!compact && <h3 class="mb-2">{heading}</h3>}
+    {
+        !compact && (
+            <p class="text-body-secondary mb-3">
+                {description} <a href="/newsletter/subscribe">See details</a>.
+            </p>
+        )
+    }
+    <form class="nl-signup-form" data-endpoint={SUBSCRIBE_URL} novalidate>
+        <div class="input-group">
+            <input
+                type="email"
+                name="email"
+                class="form-control"
+                placeholder="you@example.com"
+                aria-label="Email address"
+                autocomplete="email"
+                required
+            />
+            <button class="btn btn-success" type="submit" disabled={!!TURNSTILE_SITE_KEY}>
+                <i class="fas fa-envelope me-1"></i> Subscribe
+            </button>
+        </div>
+        {TURNSTILE_SITE_KEY && <div class="nl-signup-turnstile mt-2" data-sitekey={TURNSTILE_SITE_KEY} />}
+        <div class="nl-signup-status small mt-2" role="status" aria-live="polite"></div>
+    </form>
+</div>
+
+{
+    TURNSTILE_SITE_KEY && (
+        <Fragment>
+            {/* Stub so api.js finds a callback on load, silencing a console warning —
+                the deferred module below can't win that race. It replaces this with the
+                real renderer, and renders any widget already in the DOM. */}
+            <script is:inline>{"window.onloadTurnstileCallback = function () {};"}</script>
+            <script
+                is:inline
+                src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback&render=explicit"
+                async
+                defer
+            />
+        </Fragment>
+    )
+}
+
+<script>
+    // Renders the Turnstile widget in every `.nl-signup-turnstile` container that
+    // isn't already rendered. Called once the Turnstile script has loaded
+    // (`onloadTurnstileCallback`, for the very first page) and again from
+    // `initNewsletterSignup` (for widgets that appear later, e.g. after a client-side
+    // navigation swap where the script tag persists but doesn't re-fire onload).
+    function renderTurnstileWidgets() {
+        const turnstile = (window as any).turnstile;
+        if (!turnstile) return;
+        document.querySelectorAll(".nl-signup-turnstile").forEach((el) => {
+            const container = el as HTMLElement;
+            if (container.dataset.tsRendered) return;
+            container.dataset.tsRendered = "1";
+            const form = container.closest("form") as HTMLFormElement;
+            const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+            turnstile.render(container, {
+                sitekey: container.dataset.sitekey,
+                // Hidden unless the visitor actually has to solve something. Note this
+                // needs a Managed widget: an Invisible one is never shown, so anyone it
+                // can't clear silently (VPN, Tor, locked-down browser) would be stuck.
+                appearance: "interaction-only",
+                callback: (token: string) => {
+                    form.dataset.turnstileToken = token;
+                    button.disabled = false;
+                },
+                "expired-callback": () => {
+                    delete form.dataset.turnstileToken;
+                    button.disabled = true;
+                },
+                "error-callback": () => {
+                    delete form.dataset.turnstileToken;
+                    button.disabled = true;
+                },
+            });
+        });
+    }
+    (window as any).onloadTurnstileCallback = renderTurnstileWidgets;
+
+    function resetTurnstileFor(form: HTMLFormElement) {
+        delete form.dataset.turnstileToken;
+        const container = form.querySelector(".nl-signup-turnstile") as HTMLElement | null;
+        const turnstile = (window as any).turnstile;
+        if (container && turnstile) turnstile.reset(container);
+    }
+
+    function initNewsletterSignup() {
+        renderTurnstileWidgets();
+
+        document.querySelectorAll(".nl-signup-form").forEach((el) => {
+            const form = el as HTMLFormElement;
+            if (form.dataset.nlInit) return;
+            form.dataset.nlInit = "1";
+
+            const input = form.querySelector('input[name="email"]') as HTMLInputElement;
+            const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+            const status = form.querySelector(".nl-signup-status") as HTMLElement;
+            // Present only when PUBLIC_TURNSTILE_SITE_KEY was set at build time.
+            const turnstileContainer = form.querySelector(".nl-signup-turnstile");
+
+            const setStatus = (message: string, kind: "success" | "danger" | "body-secondary") => {
+                status.textContent = message;
+                status.className = `nl-signup-status small mt-2 text-${kind}`;
+            };
+
+            // With no Turnstile widget the button is never disabled by the captcha
+            // gate, so this always allows submission (pre-Turnstile behaviour).
+            const syncButton = () => {
+                button.disabled = !!turnstileContainer && !form.dataset.turnstileToken;
+            };
+
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                if (!input.value || !input.checkValidity()) {
+                    setStatus("Please enter a valid email address.", "danger");
+                    return;
+                }
+                if (turnstileContainer && !form.dataset.turnstileToken) {
+                    setStatus("Please complete the verification check.", "danger");
+                    return;
+                }
+                button.disabled = true;
+                setStatus("Subscribing…", "body-secondary");
+                try {
+                    const body: Record<string, string> = { email: input.value.trim() };
+                    if (form.dataset.turnstileToken) {
+                        body["cf-turnstile-response"] = form.dataset.turnstileToken;
+                    }
+                    const res = await fetch(form.dataset.endpoint as string, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(body),
+                    });
+                    if (res.ok) {
+                        const data = await res.json().catch(() => ({}));
+                        setStatus(
+                            data.status === "already_subscribed"
+                                ? "You're already subscribed — thanks!"
+                                : "Almost there! Check your inbox to confirm your subscription.",
+                            "success",
+                        );
+                        form.reset();
+                        // The token is single-use; get a fresh one ready for next time.
+                        resetTurnstileFor(form);
+                    } else if (res.status === 400) {
+                        const data = await res.json().catch(() => ({}));
+                        if (data.error === "captcha_failed") {
+                            setStatus("Verification failed. Please try again.", "danger");
+                            resetTurnstileFor(form);
+                        } else {
+                            setStatus("Please enter a valid email address.", "danger");
+                        }
+                    } else {
+                        setStatus("Something went wrong. Please try again later.", "danger");
+                    }
+                } catch {
+                    setStatus("Couldn't reach the server. Please try again later.", "danger");
+                } finally {
+                    syncButton();
+                }
+            });
+        });
+    }
+
+    initNewsletterSignup();
+    document.addEventListener("astro:after-swap", initNewsletterSignup);
+</script>

@@ -1,0 +1,28 @@
+name: Delete Netlify Deploy Previews
+
+on:
+  pull_request_target:
+    types: [closed]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: "PR number to delete deploy previews for"
+        required: true
+        type: number
+
+jobs:
+  delete-previews:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          sparse-checkout: .github/scripts/delete-netlify-previews.py
+          sparse-checkout-cone-mode: false
+
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+
+      - name: Delete deploy previews for merged PR
+        run: uv run .github/scripts/delete-netlify-previews.py
+        env:
+          NETLIFY_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number || inputs.pr_number }}

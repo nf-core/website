@@ -1,0 +1,16 @@
+{
+    "//": "Shared Playwright-only tsconfig for every site (referenced via --tsconfig in each site's test script). Deliberately self-contained with no astro/tsconfigs/base extends: Playwright 1.62's config loader can't resolve that package specifier when astro is hoisted to the workspace-root node_modules, which aborts the run before any test executes. Paths are relative to this file (sites/). Only main-site's tests import source (via @utils, which pulls in @components etc.); the other subsites' tests import no aliases, so this single set covers them all.",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@assets/*": ["main-site/src/assets/*"],
+            "@components/*": ["main-site/src/components/*"],
+            "@layouts/*": ["main-site/src/layouts/*"],
+            "@content/*": ["main-site/src/content/*"],
+            "@public/*": ["main-site/public/*"],
+            "@styles/*": ["main-site/src/styles/*"],
+            "@root/*": ["../*"],
+            "@utils/*": ["main-site/utils/*"]
+        }
+    }
+}
