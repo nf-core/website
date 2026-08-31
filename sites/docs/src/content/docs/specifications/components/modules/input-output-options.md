@@ -56,6 +56,11 @@ If the main underlying tool accepts a random seed as an argument, the module SHO
 
 - If the user provides a value, it MUST be appropriately provided to the tool.
 - If the user provides no value (`[]`), the module MUST NOT pass any seed argument to the tool.
+- If a random seed is provided through both the input and `ext.args`, the module SHOULD use the value from `ext.args`.
+
+:::info{title="Tip"}
+Since most tools apply duplicate arguments in the order they are provided, you can usually achieve this by passing `$args` after the input-based seed argument.
+:::
 
 :::info{title="Rationale" collapse}
 Random seeds often have major impact on the output of tools. To highlight the fact that a tool accepts a random seed input, we expose it as an input channel rather than relying on `ext.args`. If the user decides not to provide a seed, the module reverts to the default behaviour of the tool, which is often deliberately non-deterministic.
