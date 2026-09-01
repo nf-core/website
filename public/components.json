@@ -71804,6 +71804,301 @@
       ]
     },
     {
+      "name": "compleasm_run",
+      "path": "modules/nf-core/compleasm/run/meta.yml",
+      "tree_sha": "6863e99c97339a6676958131e776d10ed0006d2c",
+      "files": [
+        "modules/nf-core/compleasm/run/.conda-lock/linux_amd64-bd-52aa1279fc8cbd91_1.txt",
+        "modules/nf-core/compleasm/run/environment.yml",
+        "modules/nf-core/compleasm/run/main.nf",
+        "modules/nf-core/compleasm/run/meta.yml",
+        "modules/nf-core/compleasm/run/tests/main.nf.test",
+        "modules/nf-core/compleasm/run/tests/main.nf.test.snap",
+        "modules/nf-core/compleasm/run/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "compleasm_run",
+        "description": "Assess genome assembly completeness against BUSCO lineages using miniprot alignments",
+        "keywords": [
+          "quality control",
+          "completeness",
+          "genome",
+          "busco"
+        ],
+        "tools": [
+          {
+            "compleasm": {
+              "description": "Compleasm: a faster and more accurate reimplementation of BUSCO",
+              "homepage": "https://github.com/huangnengCSU/compleasm",
+              "documentation": "https://github.com/huangnengCSU/compleasm",
+              "tool_dev_url": "https://github.com/huangnengCSU/compleasm",
+              "doi": "10.1093/bioinformatics/btad595",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": "biotools:compleasm"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Genome assembly in FASTA format, optionally gzipped",
+                "pattern": "*.{fasta,fa,fna,fasta.gz,fa.gz,fna.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "lineage": {
+              "type": "string",
+              "description": "BUSCO lineage to check against, e.g. \"bacteria\", or \"auto\" to automatically select the lineage"
+            }
+          },
+          {
+            "library_path": {
+              "type": "directory",
+              "description": "Directory holding downloaded BUSCO lineages. Lineages are downloaded if not set."
+            }
+          }
+        ],
+        "output": {
+          "summary": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*/summary.txt": {
+                  "type": "file",
+                  "description": "Completeness summary with the proportion of single copy, duplicated, fragmented and missing genes",
+                  "pattern": "*/summary.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "full_table": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*/*/full_table.tsv": {
+                  "type": "file",
+                  "description": "Status and alignment details of every BUSCO gene",
+                  "pattern": "*/*/full_table.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "full_table_busco_format": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*/*/full_table_busco_format.tsv": {
+                  "type": "file",
+                  "description": "Status of every BUSCO gene, in the BUSCO full table format",
+                  "pattern": "*/*/full_table_busco_format.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "gff": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*/*/detected_genes.gff": {
+                  "type": "file",
+                  "description": "Annotation of the detected BUSCO genes",
+                  "pattern": "*/*/detected_genes.gff",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2305"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "gene_marker": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*/*/gene_marker.fasta": {
+                  "type": "file",
+                  "description": "Protein sequences of the single copy complete BUSCO genes",
+                  "pattern": "*/*/gene_marker.fasta",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "translated_protein": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*/*/translated_protein.fasta": {
+                  "type": "file",
+                  "description": "Protein sequences translated from the miniprot alignments",
+                  "pattern": "*/*/translated_protein.fasta",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "library": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "mb_downloads": {
+                  "type": "directory",
+                  "description": "Lineage library downloaded by compleasm when running the analysis, reusable as `library_path`",
+                  "pattern": "mb_downloads"
+                }
+              }
+            ]
+          ],
+          "versions_compleasm": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "compleasm": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "compleasm --version | sed 's/compleasm //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "compleasm": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "compleasm --version | sed 's/compleasm //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@dialvarezs"
+        ],
+        "maintainers": [
+          "@dialvarezs"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/compleasm:0.2.9--52aa1279fc8cbd91",
+              "build_id": "bd-52aa1279fc8cbd91_1",
+              "scan_id": "sc-3c61eb84ff6a4b2e_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/compleasm:0.2.9--bf5f9483c85269f8",
+              "build_id": "bd-bf5f9483c85269f8_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/93/9392dd488f3f8f78d5567bccb09a0dcf43e9b9ce301321014ba236f7a3c533a2/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/compleasm/run/.conda-lock/linux_amd64-bd-52aa1279fc8cbd91_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "fda0a889ed06ac33683aa501ad395dd7a4ee8c66"
+    },
+    {
       "name": "concoct_concoct",
       "path": "modules/nf-core/concoct/concoct/meta.yml",
       "tree_sha": "5cccb4f1f74d7c9ef0509bd0df7b1a8c09987a7c",
@@ -130289,9 +130584,137 @@
       ]
     },
     {
+      "name": "gappa_editmerge",
+      "path": "modules/nf-core/gappa/editmerge/meta.yml",
+      "tree_sha": "c40ea4634d4f5f2db61b4571985fbcee46bd4975",
+      "files": [
+        "modules/nf-core/gappa/editmerge/environment.yml",
+        "modules/nf-core/gappa/editmerge/main.nf",
+        "modules/nf-core/gappa/editmerge/meta.yml",
+        "modules/nf-core/gappa/editmerge/tests/main.nf.test",
+        "modules/nf-core/gappa/editmerge/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "gappa_editmerge",
+        "description": "Merges the pqueries of several jplace files, placed on a common reference tree, into a single jplace file",
+        "keywords": [
+          "merge",
+          "jplace",
+          "phylogenetic placement"
+        ],
+        "tools": [
+          {
+            "gappa": {
+              "description": "Genesis Applications for Phylogenetic Placement Analysis",
+              "homepage": "https://github.com/lczech/gappa",
+              "documentation": "https://github.com/lczech/gappa/wiki",
+              "tool_dev_url": "https://github.com/lczech/gappa",
+              "doi": "10.1093/bioinformatics/btaa070",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:GAPPA"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "jplace": {
+                "type": "file",
+                "description": "Two or more jplace files output from phylogenetic placement, e.g. EPA-NG,\ngzipped or not. All of them must reference the same tree; gappa aborts with\n\"Input jplace files have differing reference trees.\" if they do not.\n",
+                "pattern": "*.{jplace,jplace.gz}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "jplace": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.merge.jplace*": {
+                  "type": "file",
+                  "description": "Single jplace file holding the pqueries of every input file. Gzipped when\n`--compress` is passed via `task.ext.args`.\n",
+                  "pattern": "*.merge.jplace{,.gz}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_gappa": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gappa": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gappa --version 2>&1 | sed 's/v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gappa": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gappa --version 2>&1 | sed 's/v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@erikrikarddaniel"
+        ],
+        "maintainers": [
+          "@erikrikarddaniel"
+        ]
+      },
+      "git_sha": "f207500ed447dfcdae0986cb2cb92e4d0d59c845"
+    },
+    {
       "name": "gappa_examineassign",
       "path": "modules/nf-core/gappa/examineassign/meta.yml",
-      "tree_sha": "ab1f57f052ad192b0dedb28bf374d50b8f8297c8",
+      "tree_sha": "b61414c6e883ce8a84ba268fb7d32e2579459e71",
       "files": [
         "modules/nf-core/gappa/examineassign/environment.yml",
         "modules/nf-core/gappa/examineassign/main.nf",
@@ -130507,7 +130930,7 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "9359d5e7ded9180d28a82ba1881b8ec5a6a96467",
+      "git_sha": "7e678ba56e91b8b61b01ad8e94a6987db443f7e4",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -130522,7 +130945,7 @@
     {
       "name": "gappa_examinegraft",
       "path": "modules/nf-core/gappa/examinegraft/meta.yml",
-      "tree_sha": "791755ca4d57b1f3cfe549809ce6b355d9917170",
+      "tree_sha": "96345c31c524eff94a88d78bdaa3e65faf1554c7",
       "files": [
         "modules/nf-core/gappa/examinegraft/environment.yml",
         "modules/nf-core/gappa/examinegraft/main.nf",
@@ -130645,7 +131068,7 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "9359d5e7ded9180d28a82ba1881b8ec5a6a96467",
+      "git_sha": "7e678ba56e91b8b61b01ad8e94a6987db443f7e4",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -130660,7 +131083,7 @@
     {
       "name": "gappa_examineheattree",
       "path": "modules/nf-core/gappa/examineheattree/meta.yml",
-      "tree_sha": "d0f567f85ab17d8855da655f8892edfc0392fd93",
+      "tree_sha": "4175fb992f679d660ca4867a53bbee94304274cb",
       "files": [
         "modules/nf-core/gappa/examineheattree/environment.yml",
         "modules/nf-core/gappa/examineheattree/main.nf",
@@ -130875,7 +131298,7 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "9359d5e7ded9180d28a82ba1881b8ec5a6a96467",
+      "git_sha": "7e678ba56e91b8b61b01ad8e94a6987db443f7e4",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -173123,7 +173546,7 @@
     {
       "name": "hisat2_align",
       "path": "modules/nf-core/hisat2/align/meta.yml",
-      "tree_sha": "1ed1c14695a52cc28aa7ce55dc5437e7846fcd3e",
+      "tree_sha": "b055e13d268e56a91edf32a551c707dddaedcd82",
       "files": [
         "modules/nf-core/hisat2/align/.conda-lock/linux_amd64-bd-a0c9b8ccf8116a89_1.txt",
         "modules/nf-core/hisat2/align/.conda-lock/linux_arm64-bd-2061bdd7bd29b1cd_1.txt",
@@ -173404,7 +173827,7 @@
           }
         }
       },
-      "git_sha": "e7428eccb8981604debd11146649b95686621a7b",
+      "git_sha": "7ff2dbaefb93fdd3825b7bff1d86d2f3c7e946f5",
       "pipelines": [
         {
           "name": "circrna",
@@ -173435,7 +173858,7 @@
     {
       "name": "hisat2_build",
       "path": "modules/nf-core/hisat2/build/meta.yml",
-      "tree_sha": "0d67919562bf571ef373d420a1a0eba50f3e3699",
+      "tree_sha": "09d5a0ceca484a597c3598687ec3ece9c5946ce5",
       "files": [
         "modules/nf-core/hisat2/build/.conda-lock/linux_amd64-bd-2616fa83d3b9d8f8_1.txt",
         "modules/nf-core/hisat2/build/environment.yml",
@@ -173614,7 +174037,7 @@
           }
         }
       },
-      "git_sha": "e7428eccb8981604debd11146649b95686621a7b",
+      "git_sha": "7ff2dbaefb93fdd3825b7bff1d86d2f3c7e946f5",
       "pipelines": [
         {
           "name": "circrna",
@@ -173649,7 +174072,7 @@
     {
       "name": "hisat2_extractsplicesites",
       "path": "modules/nf-core/hisat2/extractsplicesites/meta.yml",
-      "tree_sha": "d1bd4e0acc2aa56ea088e19b09f1bcb218d109f8",
+      "tree_sha": "26c59bd8c3e9ec1dc1b1804714ae47043590b0ae",
       "files": [
         "modules/nf-core/hisat2/extractsplicesites/.conda-lock/linux_amd64-bd-a0c9b8ccf8116a89_1.txt",
         "modules/nf-core/hisat2/extractsplicesites/.conda-lock/linux_arm64-bd-2061bdd7bd29b1cd_1.txt",
@@ -173810,7 +174233,7 @@
           }
         }
       },
-      "git_sha": "e7428eccb8981604debd11146649b95686621a7b",
+      "git_sha": "7ff2dbaefb93fdd3825b7bff1d86d2f3c7e946f5",
       "pipelines": [
         {
           "name": "circrna",
@@ -351307,7 +351730,7 @@
     {
       "name": "smncopynumbercaller",
       "path": "modules/nf-core/smncopynumbercaller/meta.yml",
-      "tree_sha": "c01dc3478b822406d1e7bfada4c01eadd786655f",
+      "tree_sha": "f21ce45cd760dc0971ecdfb71a51c8770029d0b7",
       "files": [
         "modules/nf-core/smncopynumbercaller/environment.yml",
         "modules/nf-core/smncopynumbercaller/main.nf",
@@ -351363,6 +351786,34 @@
                 "type": "file",
                 "description": "BAM/CRAM index file",
                 "pattern": "*.{bai,crai}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference FASTA the alignments were made against. Required for CRAM\ninput; pass `[[],[],[]]` when the input is BAM.\n",
+                "pattern": "*.{fa,fna,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "FASTA index (`samtools faidx`), required alongside `fasta` so htslib\ndoes not have to rebuild it per task.\n",
+                "pattern": "*.fai",
                 "ontologies": []
               }
             }
@@ -351467,7 +351918,7 @@
           "@peterpru"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "3c11702264e47ce04ec5e2e57683f0b695ed9f66",
       "pipelines": [
         {
           "name": "raredisease",
@@ -351973,7 +352424,7 @@
     {
       "name": "snapaligner_align",
       "path": "modules/nf-core/snapaligner/align/meta.yml",
-      "tree_sha": "5225f7de19f077c529ad01034d728c5bf01db36e",
+      "tree_sha": "73303066c5727ae4a55225266cb30adcbb9dd583",
       "files": [
         "modules/nf-core/snapaligner/align/environment.yml",
         "modules/nf-core/snapaligner/align/main.nf",
@@ -352147,7 +352598,7 @@
           "@sofiromano"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "c8ebae73f5cd2886ad8e3e28d52fe6f6f22cd9ca",
       "pipelines": [
         {
           "name": "sammyseq",
@@ -352158,7 +352609,7 @@
     {
       "name": "snapaligner_index",
       "path": "modules/nf-core/snapaligner/index/meta.yml",
-      "tree_sha": "b8b13f9740c78751920beedeb8e479692a7d9c02",
+      "tree_sha": "8e9b843001c517075501e1c433fc31026e3d5bc2",
       "files": [
         "modules/nf-core/snapaligner/index/environment.yml",
         "modules/nf-core/snapaligner/index/main.nf",
@@ -352250,14 +352701,12 @@
             [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "SNAP genome index files",
-                  "pattern": "{Genome,GenomeIndex,GenomeIndexHash,OverflowTable}",
-                  "ontologies": []
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "snap/*": {
+                "snap": {
                   "type": "file",
                   "description": "SNAP genome index files",
                   "pattern": "{Genome,GenomeIndex,GenomeIndexHash,OverflowTable}",
@@ -352320,7 +352769,7 @@
           "@matthdsm"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "c8ebae73f5cd2886ad8e3e28d52fe6f6f22cd9ca"
     },
     {
       "name": "sniffles",
@@ -417328,7 +417777,7 @@
     {
       "name": "fasta_index_dna",
       "path": "subworkflows/nf-core/fasta_index_dna/meta.yml",
-      "tree_sha": "11690ca4d7e9dbccf49ee293bc04758836eee557",
+      "tree_sha": "83c8cc8e94fdbe7172302ed8694fddd620839710",
       "files": [
         "subworkflows/nf-core/fasta_index_dna/main.nf",
         "subworkflows/nf-core/fasta_index_dna/meta.yml",
@@ -417424,7 +417873,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "a0961c41021561ac7cf139f86bd7812a2f99e994"
+      "git_sha": "c8ebae73f5cd2886ad8e3e28d52fe6f6f22cd9ca"
     },
     {
       "name": "fasta_index_methylseq",
@@ -427818,6 +428267,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "94b413835288b0e80bd29256d0a95e4fce020a8b",
-  "updated_at": "2026-08-31T14:12:40.883Z"
+  "commit_sha": "7e678ba56e91b8b61b01ad8e94a6987db443f7e4",
+  "updated_at": "2026-09-01T02:17:09.741Z"
 }
