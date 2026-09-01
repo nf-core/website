@@ -7972,7 +7972,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         }
       ]
     },
@@ -8421,14 +8421,14 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         }
       ]
     },
     {
       "name": "anarcii",
       "path": "modules/nf-core/anarcii/meta.yml",
-      "tree_sha": "6dd70b75062403a9019ae822400f44b18f1484e4",
+      "tree_sha": "a9b1dbcad23b601c1e429749e80779000b286a1e",
       "files": [
         "modules/nf-core/anarcii/environment.yml",
         "modules/nf-core/anarcii/main.nf",
@@ -8481,7 +8481,14 @@
                 ]
               }
             }
-          ]
+          ],
+          {
+            "seq_type": {
+              "type": "string",
+              "description": "Receptor type to number, passed to ANARCII's `-t` flag. Selects the model used for alignment.\n",
+              "pattern": "antibody|tcr|vnar|vhh|shark|unknown"
+            }
+          }
         ],
         "output": {
           "anarcii": [
@@ -8560,7 +8567,7 @@
           "@Clara0611"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "4fd055dffcc22151554b75c134feac4aa7491f17"
     },
     {
       "name": "angsd_contamination",
@@ -24237,7 +24244,7 @@
     {
       "name": "bbmap_repair",
       "path": "modules/nf-core/bbmap/repair/meta.yml",
-      "tree_sha": "ebc7b2c618b58fc73a20762549a0ca5d944104b8",
+      "tree_sha": "bf1ea8640b846948943fc771b9261df34ab4e905",
       "files": [
         "modules/nf-core/bbmap/repair/environment.yml",
         "modules/nf-core/bbmap/repair/main.nf",
@@ -24406,11 +24413,11 @@
           "@tm4zza"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "706ad8341158bfa1dc9c225665a0e0011ff2f117",
       "pipelines": [
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -44436,6 +44443,295 @@
       ]
     },
     {
+      "name": "bppsuite_bppml",
+      "path": "modules/nf-core/bppsuite/bppml/meta.yml",
+      "tree_sha": "4ad194678ef6a9ef7f04cb92ecbfc86a076fde3e",
+      "files": [
+        "modules/nf-core/bppsuite/bppml/environment.yml",
+        "modules/nf-core/bppsuite/bppml/main.nf",
+        "modules/nf-core/bppsuite/bppml/meta.yml",
+        "modules/nf-core/bppsuite/bppml/tests/main.nf.test",
+        "modules/nf-core/bppsuite/bppml/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "bppsuite_bppml",
+        "description": "Bio++ Maximum Likelihood Computation (bppml) is a command-line tool within the Bio++ suite designed for maximum likelihood estimation of evolutionary parameters on phylogenetic trees. It estimates branch lengths, substitution model parameters (such as $d_N/d_S$ ratios, transition/transversion ratios, or amino acid replacement matrices), site-specific rate distributions, and equilibrium frequencies for nucleotide, codon, or protein alignments under defined phylogenetic models.",
+        "keywords": [
+          "branch length estimation",
+          "maximum likelihood",
+          "substitution models",
+          "site-specific rate distributions",
+          "nucleotide models",
+          "codon models",
+          "protein models"
+        ],
+        "tools": [
+          {
+            "bppsuite": {
+              "description": "BppSuite is a suite of ready-to-use programs for phylogenetic and sequence analysis.",
+              "homepage": "https://github.com/BioPP/bppsuite",
+              "documentation": "https://pbil.univ-lyon1.fr/bpp-doc/bppsuite/bppsuite.html",
+              "tool_dev_url": "https://github.com/BioPP/bppsuite",
+              "doi": "10.1093/molbev/mst097",
+              "licence": [
+                "CECILL-2.1"
+              ],
+              "identifier": "biotools:biopp"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "alignment": {
+                "type": "file",
+                "description": "Aligned sequences in FASTA format.",
+                "pattern": "*.{fa,fas,fasta,aln}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2554"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1921"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1984"
+                  }
+                ]
+              }
+            },
+            {
+              "tree": {
+                "type": "file",
+                "description": "Phylogenetic gene tree in text or xml format",
+                "pattern": "*.{tree,txt,nwk,newick,nhx,phyloxml,xml}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1910"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3159"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2332"
+                  }
+                ]
+              }
+            },
+            {
+              "parameters": {
+                "type": "file",
+                "description": "Text file with all other parameters necessary to run a model in bppml.",
+                "pattern": "*.{txt,bpp}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2330"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "parameters": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.params*": {
+                  "type": "file",
+                  "description": "Optimized parameters estimated by bppml in text format. Required output.",
+                  "pattern": "*.params*",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tree": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.{nwk,tree,dnd}*": {
+                  "type": "file",
+                  "description": "Resulting phylogenetic tree after parameter optimization. Optional.",
+                  "pattern": "*.{nwk,tree,dnd}*",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1910"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3159"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "backup": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.backup*": {
+                  "type": "file",
+                  "description": "A backup file where parameters values are stored during the optimization process in text format. Optional.",
+                  "pattern": "*.backup*",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "infos": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.infos*": {
+                  "type": "file",
+                  "description": "Alignment information log file (site specific rates, etc) in text format. Optional.",
+                  "pattern": "*.infos*",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "messages": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.messages*": {
+                  "type": "file",
+                  "description": "Error or warning messages in text format. Optional.",
+                  "pattern": "*.messages*",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "profile": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.profile*": {
+                  "type": "file",
+                  "description": "Optimization steps in text format. Optional.",
+                  "pattern": "*.profile*",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_bppsuite": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bppml": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bppml | sed -n 's/.*version \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bppml": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bppml | sed -n 's/.*version \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@leapicard"
+        ],
+        "maintainers": [
+          "@leapicard"
+        ]
+      },
+      "git_sha": "89bd1a3bcc6969b93871a0b667f67d68caa0747f"
+    },
+    {
       "name": "bracken_bracken",
       "path": "modules/nf-core/bracken/bracken/meta.yml",
       "tree_sha": "664d511530f0e27a0059c936bb430c57a1deb0ca",
@@ -52667,7 +52963,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         },
         {
           "name": "bacass",
@@ -56939,7 +57235,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         },
         {
           "name": "scrnaseq",
@@ -57553,7 +57849,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         }
       ]
     },
@@ -71508,6 +71804,301 @@
       ]
     },
     {
+      "name": "compleasm_run",
+      "path": "modules/nf-core/compleasm/run/meta.yml",
+      "tree_sha": "6863e99c97339a6676958131e776d10ed0006d2c",
+      "files": [
+        "modules/nf-core/compleasm/run/.conda-lock/linux_amd64-bd-52aa1279fc8cbd91_1.txt",
+        "modules/nf-core/compleasm/run/environment.yml",
+        "modules/nf-core/compleasm/run/main.nf",
+        "modules/nf-core/compleasm/run/meta.yml",
+        "modules/nf-core/compleasm/run/tests/main.nf.test",
+        "modules/nf-core/compleasm/run/tests/main.nf.test.snap",
+        "modules/nf-core/compleasm/run/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "compleasm_run",
+        "description": "Assess genome assembly completeness against BUSCO lineages using miniprot alignments",
+        "keywords": [
+          "quality control",
+          "completeness",
+          "genome",
+          "busco"
+        ],
+        "tools": [
+          {
+            "compleasm": {
+              "description": "Compleasm: a faster and more accurate reimplementation of BUSCO",
+              "homepage": "https://github.com/huangnengCSU/compleasm",
+              "documentation": "https://github.com/huangnengCSU/compleasm",
+              "tool_dev_url": "https://github.com/huangnengCSU/compleasm",
+              "doi": "10.1093/bioinformatics/btad595",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": "biotools:compleasm"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Genome assembly in FASTA format, optionally gzipped",
+                "pattern": "*.{fasta,fa,fna,fasta.gz,fa.gz,fna.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "lineage": {
+              "type": "string",
+              "description": "BUSCO lineage to check against, e.g. \"bacteria\", or \"auto\" to automatically select the lineage"
+            }
+          },
+          {
+            "library_path": {
+              "type": "directory",
+              "description": "Directory holding downloaded BUSCO lineages. Lineages are downloaded if not set."
+            }
+          }
+        ],
+        "output": {
+          "summary": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*/summary.txt": {
+                  "type": "file",
+                  "description": "Completeness summary with the proportion of single copy, duplicated, fragmented and missing genes",
+                  "pattern": "*/summary.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "full_table": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*/*/full_table.tsv": {
+                  "type": "file",
+                  "description": "Status and alignment details of every BUSCO gene",
+                  "pattern": "*/*/full_table.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "full_table_busco_format": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*/*/full_table_busco_format.tsv": {
+                  "type": "file",
+                  "description": "Status of every BUSCO gene, in the BUSCO full table format",
+                  "pattern": "*/*/full_table_busco_format.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "gff": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*/*/detected_genes.gff": {
+                  "type": "file",
+                  "description": "Annotation of the detected BUSCO genes",
+                  "pattern": "*/*/detected_genes.gff",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2305"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "gene_marker": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*/*/gene_marker.fasta": {
+                  "type": "file",
+                  "description": "Protein sequences of the single copy complete BUSCO genes",
+                  "pattern": "*/*/gene_marker.fasta",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "translated_protein": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*/*/translated_protein.fasta": {
+                  "type": "file",
+                  "description": "Protein sequences translated from the miniprot alignments",
+                  "pattern": "*/*/translated_protein.fasta",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "library": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "mb_downloads": {
+                  "type": "directory",
+                  "description": "Lineage library downloaded by compleasm when running the analysis, reusable as `library_path`",
+                  "pattern": "mb_downloads"
+                }
+              }
+            ]
+          ],
+          "versions_compleasm": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "compleasm": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "compleasm --version | sed 's/compleasm //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "compleasm": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "compleasm --version | sed 's/compleasm //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@dialvarezs"
+        ],
+        "maintainers": [
+          "@dialvarezs"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/compleasm:0.2.9--52aa1279fc8cbd91",
+              "build_id": "bd-52aa1279fc8cbd91_1",
+              "scan_id": "sc-3c61eb84ff6a4b2e_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/compleasm:0.2.9--bf5f9483c85269f8",
+              "build_id": "bd-bf5f9483c85269f8_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/93/9392dd488f3f8f78d5567bccb09a0dcf43e9b9ce301321014ba236f7a3c533a2/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/compleasm/run/.conda-lock/linux_amd64-bd-52aa1279fc8cbd91_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "fda0a889ed06ac33683aa501ad395dd7a4ee8c66"
+    },
+    {
       "name": "concoct_concoct",
       "path": "modules/nf-core/concoct/concoct/meta.yml",
       "tree_sha": "5cccb4f1f74d7c9ef0509bd0df7b1a8c09987a7c",
@@ -80448,6 +81039,160 @@
         ]
       },
       "git_sha": "2599d25d757e0d966a103b53a7304385df112be2"
+    },
+    {
+      "name": "custom_collectfeaturecounts",
+      "path": "modules/nf-core/custom/collectfeaturecounts/meta.yml",
+      "tree_sha": "368ec268b68e5e0452737c705f5e60219bfd856b",
+      "files": [
+        "modules/nf-core/custom/collectfeaturecounts/.conda-lock/linux_amd64-bd-e289d008f8e006c5_1.txt",
+        "modules/nf-core/custom/collectfeaturecounts/.conda-lock/linux_arm64-bd-e98a95795cdd7b8d_1.txt",
+        "modules/nf-core/custom/collectfeaturecounts/environment.yml",
+        "modules/nf-core/custom/collectfeaturecounts/main.nf",
+        "modules/nf-core/custom/collectfeaturecounts/meta.yml",
+        "modules/nf-core/custom/collectfeaturecounts/templates/collectfeaturecounts.R",
+        "modules/nf-core/custom/collectfeaturecounts/tests/main.nf.test",
+        "modules/nf-core/custom/collectfeaturecounts/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "custom_collectfeaturecounts",
+        "description": "Collects one or more subread/featureCounts raw output files (typically one per sample,\nfor the same feature type/ORF caller) into a single long-format table with per-sample\nTPM (Transcripts Per Million)  computed.\n",
+        "keywords": [
+          "featurecounts",
+          "collect",
+          "counts",
+          "tpm"
+        ],
+        "tools": [
+          {
+            "collectfeaturecounts": {
+              "description": "In-house R script that reshapes one or more raw featureCounts output files into a\nsingle long-format table (one row per feature/sample), computing transcripts per million (TPMs) per sample.\n",
+              "tool_dev_url": "https://github.com/nf-core/modules/blob/master/modules/nf-core/custom/collectfeaturecounts/main.nf",
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "inputfiles": {
+                "type": "file",
+                "description": "One or more raw featureCounts output files (as produced by `subread/featurecounts`),\ntypically one per sample against the same feature set/ORF caller. The sample name\nis taken from each file's count column header (its BAM filename, with a trailing\n`.sorted.bam` stripped).\n",
+                "pattern": "*.featureCounts.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "counts": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "${prefix}.counts.tsv.gz": {
+                  "type": "file",
+                  "description": "Long-format table (`orf`, `chr`, `start`, `end`, `strand`, `length`, `sample`,\n`count`, `tpm`) with one row per feature/sample, `count` > 0 rows only.\n",
+                  "pattern": "*.counts.tsv.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@danilodileo",
+          "@erikrikarddaniel"
+        ],
+        "maintainers": [
+          "@danilodileo",
+          "@erikrikarddaniel"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/r-base_r-data.table_r-dplyr_r-dtplyr_pruned:e289d008f8e006c5",
+              "build_id": "bd-e289d008f8e006c5_1",
+              "scan_id": "sc-601d91a135cd74c5_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/r-base_r-data.table_r-dplyr_r-dtplyr_pruned:e98a95795cdd7b8d",
+              "build_id": "bd-e98a95795cdd7b8d_1",
+              "scan_id": "sc-f9ffad43ab7d9bab_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/r-base_r-data.table_r-dplyr_r-dtplyr_pruned:cfc660db3b9f0e48",
+              "build_id": "bd-cfc660db3b9f0e48_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/bf/bfe4a872ba15a90cc12fb24aa96ddda852d5b295c214684d9c8fdf3dc02af535/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/r-base_r-data.table_r-dplyr_r-dtplyr_pruned:26dcf8d18c74568a",
+              "build_id": "bd-26dcf8d18c74568a_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e5/e52672c5c96c9a2da0c032f5603ac4a193fc02e81feeb81257e54b8ded39acf6/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/custom/collectfeaturecounts/.conda-lock/linux_amd64-bd-e289d008f8e006c5_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/custom/collectfeaturecounts/.conda-lock/linux_arm64-bd-e98a95795cdd7b8d_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "94b413835288b0e80bd29256d0a95e4fce020a8b"
     },
     {
       "name": "custom_collectstats",
@@ -112340,7 +113085,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         },
         {
           "name": "bacass",
@@ -112876,7 +113621,7 @@
         },
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         },
         {
           "name": "alleleexpression",
@@ -112956,7 +113701,7 @@
         },
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         },
         {
           "name": "fastquorum",
@@ -129839,9 +130584,137 @@
       ]
     },
     {
+      "name": "gappa_editmerge",
+      "path": "modules/nf-core/gappa/editmerge/meta.yml",
+      "tree_sha": "c40ea4634d4f5f2db61b4571985fbcee46bd4975",
+      "files": [
+        "modules/nf-core/gappa/editmerge/environment.yml",
+        "modules/nf-core/gappa/editmerge/main.nf",
+        "modules/nf-core/gappa/editmerge/meta.yml",
+        "modules/nf-core/gappa/editmerge/tests/main.nf.test",
+        "modules/nf-core/gappa/editmerge/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "gappa_editmerge",
+        "description": "Merges the pqueries of several jplace files, placed on a common reference tree, into a single jplace file",
+        "keywords": [
+          "merge",
+          "jplace",
+          "phylogenetic placement"
+        ],
+        "tools": [
+          {
+            "gappa": {
+              "description": "Genesis Applications for Phylogenetic Placement Analysis",
+              "homepage": "https://github.com/lczech/gappa",
+              "documentation": "https://github.com/lczech/gappa/wiki",
+              "tool_dev_url": "https://github.com/lczech/gappa",
+              "doi": "10.1093/bioinformatics/btaa070",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:GAPPA"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "jplace": {
+                "type": "file",
+                "description": "Two or more jplace files output from phylogenetic placement, e.g. EPA-NG,\ngzipped or not. All of them must reference the same tree; gappa aborts with\n\"Input jplace files have differing reference trees.\" if they do not.\n",
+                "pattern": "*.{jplace,jplace.gz}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "jplace": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.merge.jplace*": {
+                  "type": "file",
+                  "description": "Single jplace file holding the pqueries of every input file. Gzipped when\n`--compress` is passed via `task.ext.args`.\n",
+                  "pattern": "*.merge.jplace{,.gz}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_gappa": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gappa": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gappa --version 2>&1 | sed 's/v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gappa": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gappa --version 2>&1 | sed 's/v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@erikrikarddaniel"
+        ],
+        "maintainers": [
+          "@erikrikarddaniel"
+        ]
+      },
+      "git_sha": "f207500ed447dfcdae0986cb2cb92e4d0d59c845"
+    },
+    {
       "name": "gappa_examineassign",
       "path": "modules/nf-core/gappa/examineassign/meta.yml",
-      "tree_sha": "ab1f57f052ad192b0dedb28bf374d50b8f8297c8",
+      "tree_sha": "b61414c6e883ce8a84ba268fb7d32e2579459e71",
       "files": [
         "modules/nf-core/gappa/examineassign/environment.yml",
         "modules/nf-core/gappa/examineassign/main.nf",
@@ -130057,7 +130930,7 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "9359d5e7ded9180d28a82ba1881b8ec5a6a96467",
+      "git_sha": "7e678ba56e91b8b61b01ad8e94a6987db443f7e4",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -130072,7 +130945,7 @@
     {
       "name": "gappa_examinegraft",
       "path": "modules/nf-core/gappa/examinegraft/meta.yml",
-      "tree_sha": "791755ca4d57b1f3cfe549809ce6b355d9917170",
+      "tree_sha": "96345c31c524eff94a88d78bdaa3e65faf1554c7",
       "files": [
         "modules/nf-core/gappa/examinegraft/environment.yml",
         "modules/nf-core/gappa/examinegraft/main.nf",
@@ -130195,7 +131068,7 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "9359d5e7ded9180d28a82ba1881b8ec5a6a96467",
+      "git_sha": "7e678ba56e91b8b61b01ad8e94a6987db443f7e4",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -130210,7 +131083,7 @@
     {
       "name": "gappa_examineheattree",
       "path": "modules/nf-core/gappa/examineheattree/meta.yml",
-      "tree_sha": "d0f567f85ab17d8855da655f8892edfc0392fd93",
+      "tree_sha": "4175fb992f679d660ca4867a53bbee94304274cb",
       "files": [
         "modules/nf-core/gappa/examineheattree/environment.yml",
         "modules/nf-core/gappa/examineheattree/main.nf",
@@ -130425,7 +131298,7 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "9359d5e7ded9180d28a82ba1881b8ec5a6a96467",
+      "git_sha": "7e678ba56e91b8b61b01ad8e94a6987db443f7e4",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -165779,7 +166652,7 @@
       "pipelines": [
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -172673,8 +173546,10 @@
     {
       "name": "hisat2_align",
       "path": "modules/nf-core/hisat2/align/meta.yml",
-      "tree_sha": "769176455592e5241f40d322d367f768340442f2",
+      "tree_sha": "b055e13d268e56a91edf32a551c707dddaedcd82",
       "files": [
+        "modules/nf-core/hisat2/align/.conda-lock/linux_amd64-bd-a0c9b8ccf8116a89_1.txt",
+        "modules/nf-core/hisat2/align/.conda-lock/linux_arm64-bd-2061bdd7bd29b1cd_1.txt",
         "modules/nf-core/hisat2/align/environment.yml",
         "modules/nf-core/hisat2/align/main.nf",
         "modules/nf-core/hisat2/align/meta.yml",
@@ -172916,9 +173791,43 @@
         "maintainers": [
           "@ntoda03",
           "@ramprasadn"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/hisat2_samtools:a0c9b8ccf8116a89",
+              "build_id": "bd-a0c9b8ccf8116a89_1",
+              "scan_id": "sc-886103d0f76f5df6_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/hisat2_samtools:2061bdd7bd29b1cd",
+              "build_id": "bd-2061bdd7bd29b1cd_1",
+              "scan_id": "sc-184bae2a6fa4d5eb_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/hisat2_samtools:c8aaaadb7f843dc5",
+              "build_id": "bd-c8aaaadb7f843dc5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/92/92f546b522b78597047a54609eefcf35a014de082df0e500bc2adf64d2733669/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/hisat2_samtools:85c43579819c7f9c",
+              "build_id": "bd-85c43579819c7f9c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/0a/0ac773ba54fb01c7ec8666b1347db8c0c5100a8e8b34e5ee5ee3f92abebd8ee7/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/hisat2/align/.conda-lock/linux_amd64-bd-a0c9b8ccf8116a89_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/hisat2/align/.conda-lock/linux_arm64-bd-2061bdd7bd29b1cd_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "7ff2dbaefb93fdd3825b7bff1d86d2f3c7e946f5",
       "pipelines": [
         {
           "name": "circrna",
@@ -172949,8 +173858,9 @@
     {
       "name": "hisat2_build",
       "path": "modules/nf-core/hisat2/build/meta.yml",
-      "tree_sha": "7196b9d81f5fbfaaf5082a76c2b246fd72200945",
+      "tree_sha": "09d5a0ceca484a597c3598687ec3ece9c5946ce5",
       "files": [
+        "modules/nf-core/hisat2/build/.conda-lock/linux_amd64-bd-2616fa83d3b9d8f8_1.txt",
         "modules/nf-core/hisat2/build/environment.yml",
         "modules/nf-core/hisat2/build/main.nf",
         "modules/nf-core/hisat2/build/meta.yml",
@@ -172997,14 +173907,6 @@
                 "pattern": "*.{fa,fasta,fna}",
                 "ontologies": []
               }
-            }
-          ],
-          [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
-              }
             },
             {
               "gtf": {
@@ -173012,14 +173914,6 @@
                 "description": "Reference gtf annotation file",
                 "pattern": "*.{gtf}",
                 "ontologies": []
-              }
-            }
-          ],
-          [
-            {
-              "meta3": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
               }
             },
             {
@@ -173030,7 +173924,13 @@
                 "ontologies": []
               }
             }
-          ]
+          ],
+          {
+            "hisat2_memory_input": {
+              "type": "string",
+              "description": "Memory threshold for HISAT2 index building. When available process memory\nmeets or exceeds this value, splice sites and exons are used to build a\nsplice-aware index. Use false to disable splice-aware indexing.\n"
+            }
+          }
         ],
         "output": {
           "index": [
@@ -173104,9 +174004,40 @@
         ],
         "maintainers": [
           "@ntoda03"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/hisat2:2.2.3--2616fa83d3b9d8f8",
+              "build_id": "bd-2616fa83d3b9d8f8_1",
+              "scan_id": "sc-734493ace7062424_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/hisat2:2.2.3--0b83b24baf5a98d0",
+              "build_id": "",
+              "scan_id": "sc-98ff2d246e5f21bc_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/hisat2:2.2.3--43d6b2eab6ddad26",
+              "build_id": "",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a1/a16b8102041e76f25358477471bafe813828313f7a8787066f390354cd7b8b7c/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/hisat2:2.2.3--2e8243af13980ed3",
+              "build_id": "",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/4e/4edf1cfd94406d23f9a32bab4361cfbf770b0e6fdedb1fbc97d966c6074f51f8/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/hisat2/build/.conda-lock/linux_amd64-bd-2616fa83d3b9d8f8_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "7ff2dbaefb93fdd3825b7bff1d86d2f3c7e946f5",
       "pipelines": [
         {
           "name": "circrna",
@@ -173141,8 +174072,10 @@
     {
       "name": "hisat2_extractsplicesites",
       "path": "modules/nf-core/hisat2/extractsplicesites/meta.yml",
-      "tree_sha": "816ac8def31fc6f7abff3c93c5b8f6e1727647ca",
+      "tree_sha": "26c59bd8c3e9ec1dc1b1804714ae47043590b0ae",
       "files": [
+        "modules/nf-core/hisat2/extractsplicesites/.conda-lock/linux_amd64-bd-a0c9b8ccf8116a89_1.txt",
+        "modules/nf-core/hisat2/extractsplicesites/.conda-lock/linux_arm64-bd-2061bdd7bd29b1cd_1.txt",
         "modules/nf-core/hisat2/extractsplicesites/environment.yml",
         "modules/nf-core/hisat2/extractsplicesites/main.nf",
         "modules/nf-core/hisat2/extractsplicesites/meta.yml",
@@ -173264,9 +174197,43 @@
         "maintainers": [
           "@ntoda03",
           "@ramprasadn"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/hisat2_samtools:a0c9b8ccf8116a89",
+              "build_id": "bd-a0c9b8ccf8116a89_1",
+              "scan_id": "sc-886103d0f76f5df6_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/hisat2_samtools:2061bdd7bd29b1cd",
+              "build_id": "bd-2061bdd7bd29b1cd_1",
+              "scan_id": "sc-184bae2a6fa4d5eb_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/hisat2_samtools:c8aaaadb7f843dc5",
+              "build_id": "bd-c8aaaadb7f843dc5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/92/92f546b522b78597047a54609eefcf35a014de082df0e500bc2adf64d2733669/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/hisat2_samtools:85c43579819c7f9c",
+              "build_id": "bd-85c43579819c7f9c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/0a/0ac773ba54fb01c7ec8666b1347db8c0c5100a8e8b34e5ee5ee3f92abebd8ee7/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/hisat2/extractsplicesites/.conda-lock/linux_amd64-bd-a0c9b8ccf8116a89_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/hisat2/extractsplicesites/.conda-lock/linux_arm64-bd-2061bdd7bd29b1cd_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "7ff2dbaefb93fdd3825b7bff1d86d2f3c7e946f5",
       "pipelines": [
         {
           "name": "circrna",
@@ -181880,7 +182847,7 @@
     {
       "name": "hyphy_busted",
       "path": "modules/nf-core/hyphy/busted/meta.yml",
-      "tree_sha": "eab3c52bbb271760c72682b42c9baf6353399c4d",
+      "tree_sha": "35b0d24360ceb17ac3b2d7f8a768b81dedc9c412",
       "files": [
         "modules/nf-core/hyphy/busted/environment.yml",
         "modules/nf-core/hyphy/busted/main.nf",
@@ -182054,7 +183021,186 @@
           "@leapicard"
         ]
       },
-      "git_sha": "eefaa88428174479eae96e6ae3bdd6ae57e84a9c"
+      "git_sha": "a163a2120d0e9f289fdfac7e396d719ed28adca3"
+    },
+    {
+      "name": "hyphy_fade",
+      "path": "modules/nf-core/hyphy/fade/meta.yml",
+      "tree_sha": "b02aaee29751155f77517d2fa2fde809d261d4c4",
+      "files": [
+        "modules/nf-core/hyphy/fade/environment.yml",
+        "modules/nf-core/hyphy/fade/main.nf",
+        "modules/nf-core/hyphy/fade/meta.yml",
+        "modules/nf-core/hyphy/fade/tests/main.nf.test",
+        "modules/nf-core/hyphy/fade/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "hyphy_fade",
+        "description": "FADE (FUBAR Aproach to Directional Evolution) is a method that uses a Bayesian framework, based on that introduced by FUBAR ), to test whether sites in a protein alignment are subject to directional selection.",
+        "keywords": [
+          "positive selection",
+          "pervasive selection",
+          "protein evolution"
+        ],
+        "tools": [
+          {
+            "hyphy": {
+              "description": "An open-source software package for comparative sequence analysis using stochastic evolutionary models.",
+              "homepage": "https://hyphy.org",
+              "documentation": "https://hyphy.org",
+              "tool_dev_url": "https://github.com/veg/hyphy",
+              "doi": "10.1093/molbev/msz197",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:HyPhy"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "alignment": {
+                "type": "file",
+                "description": "Aligned protein sequences in FASTA format.",
+                "pattern": "*.{fa,fas,fasta,aln}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2554"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1921"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1984"
+                  }
+                ]
+              }
+            },
+            {
+              "tree": {
+                "type": "file",
+                "description": "Phylogenetic gene tree in text or xml format",
+                "pattern": "*.{tree,txt,nwk,newick,nhx,phyloxml,xml}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1910"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3159"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.json": {
+                  "type": "file",
+                  "description": "FADE results in JSON format.",
+                  "pattern": "*.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_output.txt": {
+                  "type": "file",
+                  "description": "FADE results in human-readable format.",
+                  "pattern": "*.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_hyphy": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hyphy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hyphy --version | sed -E 's/.*HYPHY ([0-9]+\\.[0-9]+\\.[0-9]+).*/\\1/'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hyphy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hyphy --version | sed -E 's/.*HYPHY ([0-9]+\\.[0-9]+\\.[0-9]+).*/\\1/'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@leapicard"
+        ],
+        "maintainers": [
+          "@leapicard"
+        ]
+      },
+      "git_sha": "e5521761d8ed32fc5c343948378f6bbaee756b09"
     },
     {
       "name": "hyphy_fel",
@@ -235958,7 +237104,7 @@
         },
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         },
         {
           "name": "alleleexpression",
@@ -236054,7 +237200,7 @@
         },
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         },
         {
           "name": "fastquorum",
@@ -333161,7 +334307,7 @@
     {
       "name": "sentieon_coveragemetrics",
       "path": "modules/nf-core/sentieon/coveragemetrics/meta.yml",
-      "tree_sha": "b85500f4c2279c23d093775a53845e7ff1554f77",
+      "tree_sha": "8fa673358277b196126ef4d868c1db904f2e6192",
       "files": [
         "modules/nf-core/sentieon/coveragemetrics/environment.yml",
         "modules/nf-core/sentieon/coveragemetrics/main.nf",
@@ -333445,7 +334591,7 @@
           "@adamrtalbot"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "a19d1c054460b7af9ea28b281899dc612f463d60"
     },
     {
       "name": "sentieon_datametrics",
@@ -350584,7 +351730,7 @@
     {
       "name": "smncopynumbercaller",
       "path": "modules/nf-core/smncopynumbercaller/meta.yml",
-      "tree_sha": "c01dc3478b822406d1e7bfada4c01eadd786655f",
+      "tree_sha": "f21ce45cd760dc0971ecdfb71a51c8770029d0b7",
       "files": [
         "modules/nf-core/smncopynumbercaller/environment.yml",
         "modules/nf-core/smncopynumbercaller/main.nf",
@@ -350640,6 +351786,34 @@
                 "type": "file",
                 "description": "BAM/CRAM index file",
                 "pattern": "*.{bai,crai}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference FASTA the alignments were made against. Required for CRAM\ninput; pass `[[],[],[]]` when the input is BAM.\n",
+                "pattern": "*.{fa,fna,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "FASTA index (`samtools faidx`), required alongside `fasta` so htslib\ndoes not have to rebuild it per task.\n",
+                "pattern": "*.fai",
                 "ontologies": []
               }
             }
@@ -350744,7 +351918,7 @@
           "@peterpru"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "3c11702264e47ce04ec5e2e57683f0b695ed9f66",
       "pipelines": [
         {
           "name": "raredisease",
@@ -351250,7 +352424,7 @@
     {
       "name": "snapaligner_align",
       "path": "modules/nf-core/snapaligner/align/meta.yml",
-      "tree_sha": "5225f7de19f077c529ad01034d728c5bf01db36e",
+      "tree_sha": "73303066c5727ae4a55225266cb30adcbb9dd583",
       "files": [
         "modules/nf-core/snapaligner/align/environment.yml",
         "modules/nf-core/snapaligner/align/main.nf",
@@ -351424,7 +352598,7 @@
           "@sofiromano"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "c8ebae73f5cd2886ad8e3e28d52fe6f6f22cd9ca",
       "pipelines": [
         {
           "name": "sammyseq",
@@ -351435,7 +352609,7 @@
     {
       "name": "snapaligner_index",
       "path": "modules/nf-core/snapaligner/index/meta.yml",
-      "tree_sha": "b8b13f9740c78751920beedeb8e479692a7d9c02",
+      "tree_sha": "8e9b843001c517075501e1c433fc31026e3d5bc2",
       "files": [
         "modules/nf-core/snapaligner/index/environment.yml",
         "modules/nf-core/snapaligner/index/main.nf",
@@ -351527,14 +352701,12 @@
             [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "SNAP genome index files",
-                  "pattern": "{Genome,GenomeIndex,GenomeIndexHash,OverflowTable}",
-                  "ontologies": []
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "snap/*": {
+                "snap": {
                   "type": "file",
                   "description": "SNAP genome index files",
                   "pattern": "{Genome,GenomeIndex,GenomeIndexHash,OverflowTable}",
@@ -351597,7 +352769,7 @@
           "@matthdsm"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "c8ebae73f5cd2886ad8e3e28d52fe6f6f22cd9ca"
     },
     {
       "name": "sniffles",
@@ -368122,9 +369294,9 @@
     {
       "name": "sushie",
       "path": "modules/nf-core/sushie/meta.yml",
-      "tree_sha": "1bf9e3893d05d723be19ed9d5314366f520a9226",
+      "tree_sha": "a14cd9ef605348f3ed1ae1a106ed3e6999294d94",
       "files": [
-        "modules/nf-core/sushie/Dockerfile",
+        "modules/nf-core/sushie/environment.yml",
         "modules/nf-core/sushie/main.nf",
         "modules/nf-core/sushie/meta.yml",
         "modules/nf-core/sushie/tests/main.nf.test",
@@ -368286,8 +369458,8 @@
                 }
               },
               {
-                "0.19": {
-                  "type": "string",
+                "sushie --version": {
+                  "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
               }
@@ -368328,8 +369500,8 @@
                 }
               },
               {
-                "0.19": {
-                  "type": "string",
+                "sushie --version": {
+                  "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
               }
@@ -368343,7 +369515,7 @@
           "@camlloyd"
         ]
       },
-      "git_sha": "21e4662ae927fdbc5fc04eec9bde38b0689d4954"
+      "git_sha": "46e340e0a6395d0823d465591c08ac2fb07288eb"
     },
     {
       "name": "svaba",
@@ -384650,7 +385822,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         }
       ]
     },
@@ -404918,7 +406090,7 @@
       "pipelines": [
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -405073,7 +406245,7 @@
       "pipelines": [
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -405247,7 +406419,7 @@
       "pipelines": [
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -405391,7 +406563,7 @@
       "pipelines": [
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -416605,7 +417777,7 @@
     {
       "name": "fasta_index_dna",
       "path": "subworkflows/nf-core/fasta_index_dna/meta.yml",
-      "tree_sha": "11690ca4d7e9dbccf49ee293bc04758836eee557",
+      "tree_sha": "83c8cc8e94fdbe7172302ed8694fddd620839710",
       "files": [
         "subworkflows/nf-core/fasta_index_dna/main.nf",
         "subworkflows/nf-core/fasta_index_dna/meta.yml",
@@ -416701,7 +417873,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "a0961c41021561ac7cf139f86bd7812a2f99e994"
+      "git_sha": "c8ebae73f5cd2886ad8e3e28d52fe6f6f22cd9ca"
     },
     {
       "name": "fasta_index_methylseq",
@@ -418378,7 +419550,7 @@
     {
       "name": "fastq_align_hisat2",
       "path": "subworkflows/nf-core/fastq_align_hisat2/meta.yml",
-      "tree_sha": "c5e8d1206887dc54263f723e19a4d497a191abf8",
+      "tree_sha": "05f3c18383b0ddfc4f6a520186b621defa0ebc79",
       "files": [
         "subworkflows/nf-core/fastq_align_hisat2/main.nf",
         "subworkflows/nf-core/fastq_align_hisat2/meta.yml",
@@ -418533,7 +419705,7 @@
           "@priyanka-surana"
         ]
       },
-      "git_sha": "5c4fc6bbf9af3642bdd9f2408a90970f616bf837",
+      "git_sha": "e7428eccb8981604debd11146649b95686621a7b",
       "pipelines": [
         {
           "name": "lncpipe",
@@ -424148,7 +425320,7 @@
         },
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         },
         {
           "name": "ampliseq",
@@ -424252,7 +425424,7 @@
         },
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         },
         {
           "name": "fastquorum",
@@ -424632,7 +425804,7 @@
         },
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         },
         {
           "name": "ampliseq",
@@ -424736,7 +425908,7 @@
         },
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         },
         {
           "name": "fastquorum",
@@ -425172,7 +426344,7 @@
         },
         {
           "name": "airrflow",
-          "version": "5.1.0"
+          "version": "5.1.1"
         },
         {
           "name": "ampliseq",
@@ -425272,7 +426444,7 @@
         },
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         },
         {
           "name": "fastquorum",
@@ -427095,6 +428267,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "88679cf821cd4ba2ba86228179e05e5887cba252",
-  "updated_at": "2026-08-28T04:44:03.764Z"
+  "commit_sha": "7e678ba56e91b8b61b01ad8e94a6987db443f7e4",
+  "updated_at": "2026-09-01T02:17:09.741Z"
 }
