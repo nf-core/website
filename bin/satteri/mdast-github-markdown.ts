@@ -100,8 +100,8 @@ export function createGitHubMarkdownPlugin(options: GitHubMarkdownOptions) {
         const resolved = new URL(url, `https://n/${parentDirectory ? parentDirectory + "/" : ""}`);
         const path = resolved.pathname.slice(1);
         const page = path.replace(/\.mdx?$/, "");
-        if (page === "README") return `/${repo}/${version}/${resolved.hash}`;
-        if (!page.startsWith("docs/")) return `${baseRepoUrl}${path}${resolved.search}`;
+        if (page === "README") return `/${repo}/${version}/${resolved.search}${resolved.hash}`;
+        if (!page.startsWith("docs/")) return `${baseRepoUrl}${path}${resolved.search}${resolved.hash}`;
         return `/${repo}/${version}/${page}/${resolved.search}${resolved.hash}`;
     }
 

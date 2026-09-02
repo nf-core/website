@@ -26,6 +26,15 @@ test("markdown links point at the same pipeline and version", () => {
 
 test("files without a page on the website still go to GitHub", () => {
     assert.equal(rewriteLink("../CHANGELOG.md", "docs"), "https://github.com/nf-core/mag/blob/2.5.4/CHANGELOG.md");
+    // anchors survive: the reader lands on the release section, not the top of the changelog
+    assert.equal(
+        rewriteLink("../CHANGELOG.md#v250", "docs"),
+        "https://github.com/nf-core/mag/blob/2.5.4/CHANGELOG.md#v250",
+    );
+    assert.equal(
+        rewriteLink("CITATIONS.md#bowtie2", ""),
+        "https://github.com/nf-core/mag/blob/2.5.4/CITATIONS.md#bowtie2",
+    );
     assert.equal(rewriteLink("CITATIONS.md", ""), "https://github.com/nf-core/mag/blob/2.5.4/CITATIONS.md");
     assert.equal(rewriteLink("../assets/foo.csv", "docs"), "https://github.com/nf-core/mag/blob/2.5.4/assets/foo.csv");
 });
