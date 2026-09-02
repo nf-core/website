@@ -81829,7 +81829,7 @@
     {
       "name": "custom_geneticmapconvert",
       "path": "modules/nf-core/custom/geneticmapconvert/meta.yml",
-      "tree_sha": "e4ea67a0b186bc2731daf09aec663bf45d883fc8",
+      "tree_sha": "078066c225ecc066d19e8a4b2f5789a5f6a28390",
       "files": [
         "modules/nf-core/custom/geneticmapconvert/environment.yml",
         "modules/nf-core/custom/geneticmapconvert/main.nf",
@@ -81842,7 +81842,7 @@
       "type": "module",
       "meta": {
         "name": "custom_geneticmapconvert",
-        "description": "This R script allows to automatically detect the different genetic map format and\nconvert the input file in all the other format type.\n",
+        "description": "This R script allows to automatically detect the different genetic map format and\nconvert the input file in all the other format type.\nRecombination rate will be recomputed in the following case:\n - '--remove_duplicated_cm' and uplicated genetic distance present (lines removed except first one)\n - '--remove_null_rate' and zero rate values present (line removed)\n",
         "keywords": [
           "map",
           "convertion",
@@ -82011,7 +82011,7 @@
           "@LouisLeNezet"
         ]
       },
-      "git_sha": "910e3bd7551af42eff7f1da242725f9137718cd7"
+      "git_sha": "be67eecddc6d3c22faa270757dd15d43a2777578"
     },
     {
       "name": "custom_getchromsizes",
@@ -428553,6 +428553,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "22b467cf44542d7e16b1410c5dbd5982c9545f27",
-  "updated_at": "2026-09-02T02:23:46.082Z"
+  "commit_sha": "be67eecddc6d3c22faa270757dd15d43a2777578",
+  "updated_at": "2026-09-02T14:13:21.530Z"
 }
