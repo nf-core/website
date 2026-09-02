@@ -82,9 +82,6 @@ let leftSidebar = md_files.filter((file) => file.id.split("/")[0] === section).l
 
 let sections: SidebarEntry[] = [];
 
-// add trailing slash to url if missing
-let url = Astro.url.pathname.endsWith("/") ? Astro.url.pathname : Astro.url.pathname + "/";
-url = url.replace(/\.html\/$/, "/");
 // drop everything after docs/
 if (leftSidebar) {
     // Convert md_files to match the expected CollectionEntry<'docs'> structure
@@ -137,6 +134,7 @@ const { html: Content, headings: rawHeadings } = await renderPipelineMarkdown(
     pipeline,
     version_tag_name,
     parentDir,
+    version,
 );
 let headings = rawHeadings.filter((h) => h.depth <= 3);
 ---
