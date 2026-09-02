@@ -38,7 +38,13 @@ const is_archived = meta.archived;
 const version_tag_name = version === "latest" ? versions[0] : version;
 let entry = await getEntry("pipelines", pipeline + "/" + version_tag_name + "/README");
 
-const { html: Content, headings } = await renderPipelineMarkdown(entry?.body ?? "", pipeline, version_tag_name, "");
+const { html: Content, headings } = await renderPipelineMarkdown(
+    entry?.body ?? "",
+    pipeline,
+    version_tag_name,
+    "",
+    version,
+);
 if (version_tag_name !== "dev") {
     meta.doi = entry?.data?.doi;
 }
