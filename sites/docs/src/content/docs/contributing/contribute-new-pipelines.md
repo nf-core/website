@@ -308,7 +308,7 @@ To prepare for release:
 1. Update the version number on the `dev` branch:
 
    ```bash
-   nf-core pipelines bump-version --nextflow <new-version>
+   nf-core pipelines bump-version <new-version>
    ```
 
    - The first release should be version `1.0.0` (pre-releases are discouraged).

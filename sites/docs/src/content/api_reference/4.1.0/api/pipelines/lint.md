@@ -1,7 +1,7 @@
 # nf\_core.pipelines.lint
 
 :::tip
-See the [Lint Tests]() docs for information about specific linting functions.
+See the [Lint Tests](<>) docs for information about specific linting functions.
 :::
 
 <a id="module-nf_core.pipelines.lint"></a>
