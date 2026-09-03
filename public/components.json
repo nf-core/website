@@ -189573,7 +189573,7 @@
     {
       "name": "isoseq3_tag",
       "path": "modules/nf-core/isoseq3/tag/meta.yml",
-      "tree_sha": "af13fe885820ebdb06f90ae93a141935c7797cd9",
+      "tree_sha": "fe80cd57dbfada131033230719a6205505a1e82b",
       "files": [
         "modules/nf-core/isoseq3/tag/environment.yml",
         "modules/nf-core/isoseq3/tag/main.nf",
@@ -189585,6 +189585,7 @@
       "meta": {
         "name": "isoseq3_tag",
         "description": "Extract UMI and cell barcodes",
+        "deprecated": true,
         "keywords": [
           "isoseq",
           "tag",
@@ -189668,19 +189669,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_isoseq3": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "isoseq3": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "isoseq tag --version | sed -n '1s/isoseq tag \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "isoseq3": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "isoseq tag --version | sed -n '1s/isoseq tag \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -189690,12 +189723,12 @@
           "@skraettli"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "4bae68e852d2ec1fed3bcfda348e1287f55393d3"
     },
     {
       "name": "isoseq_cluster",
       "path": "modules/nf-core/isoseq/cluster/meta.yml",
-      "tree_sha": "07a36354ea38e977587d32b2599b46a01da8cd77",
+      "tree_sha": "2e729b6f40a12e1955d97d56adff75471cf4bff9",
       "files": [
         "modules/nf-core/isoseq/cluster/environment.yml",
         "modules/nf-core/isoseq/cluster/main.nf",
@@ -189708,6 +189741,7 @@
       "meta": {
         "name": "isoseq_cluster",
         "description": "IsoSeq - Cluster - Cluster trimmed consensus sequences",
+        "deprecated": true,
         "keywords": [
           "cluster",
           "HiFi",
@@ -190007,12 +190041,350 @@
           "@sguizard"
         ]
       },
-      "git_sha": "17bf175c37d61ae3ba8b1e0bd972f3f880327497"
+      "git_sha": "63ccc54e3fda85bd5efe2f726eba7a9fd6a2e2f0"
+    },
+    {
+      "name": "isoseq_cluster2",
+      "path": "modules/nf-core/isoseq/cluster2/meta.yml",
+      "tree_sha": "b4e4c8c99856eedbeffde45d15045f6a0409c692",
+      "files": [
+        "modules/nf-core/isoseq/cluster2/environment.yml",
+        "modules/nf-core/isoseq/cluster2/main.nf",
+        "modules/nf-core/isoseq/cluster2/meta.yml",
+        "modules/nf-core/isoseq/cluster2/tests/main.nf.test",
+        "modules/nf-core/isoseq/cluster2/tests/main.nf.test.snap",
+        "modules/nf-core/isoseq/cluster2/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "isoseq_cluster2",
+        "description": "IsoSeq - Cluster2 - Cluster full-length non-chimeric reads into transcripts",
+        "keywords": [
+          "cluster",
+          "HiFi",
+          "isoseq",
+          "Pacbio"
+        ],
+        "tools": [
+          {
+            "isoseq": {
+              "description": "IsoSeq - Cluster2 - Cluster full-length non-chimeric reads into transcripts, replacing the legacy isoseq cluster command",
+              "homepage": "https://isoseq.how/clustering/cli-workflow.html",
+              "documentation": "https://isoseq.how/clustering/cli-workflow.html",
+              "tool_dev_url": "https://github.com/PacificBiosciences/IsoSeq/tree/master",
+              "licence": [
+                "BSD-3-Clause-Clear"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM file generated by isoseq refine",
+                "pattern": "*.bam",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.transcripts.bam": {
+                  "type": "file",
+                  "description": "BAM file of clustered transcripts",
+                  "pattern": "*.transcripts.bam",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "pbi": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.transcripts.bam.pbi": {
+                  "type": "file",
+                  "description": "Pacbio index of clustered transcripts",
+                  "pattern": "*.transcripts.bam.pbi",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "cluster_report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.transcripts.cluster_report.csv": {
+                  "type": "file",
+                  "description": "A table of clusters (transcripts) and their members (reads)",
+                  "pattern": "*.transcripts.cluster_report.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_isoseq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "isoseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "isoseq cluster2 --version | sed -n '1s/isoseq cluster2 \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "isoseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "isoseq cluster2 --version | sed -n '1s/isoseq cluster2 \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@mahesh-panchal"
+        ],
+        "maintainers": [
+          "@mahesh-panchal"
+        ]
+      },
+      "git_sha": "aacea9cc662e60319168e3590ed9d9c325f0d644"
+    },
+    {
+      "name": "isoseq_groupdedup",
+      "path": "modules/nf-core/isoseq/groupdedup/meta.yml",
+      "tree_sha": "89a754fbfa3a51aae8ff8083a7ee3612d9c84c9b",
+      "files": [
+        "modules/nf-core/isoseq/groupdedup/environment.yml",
+        "modules/nf-core/isoseq/groupdedup/main.nf",
+        "modules/nf-core/isoseq/groupdedup/meta.yml",
+        "modules/nf-core/isoseq/groupdedup/tests/main.nf.test",
+        "modules/nf-core/isoseq/groupdedup/tests/main.nf.test.snap",
+        "modules/nf-core/isoseq/groupdedup/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "isoseq_groupdedup",
+        "description": "IsoSeq - GroupDedup - Deduplicate PCR artifacts grouped by cell barcode",
+        "keywords": [
+          "dedup",
+          "single-cell",
+          "isoseq",
+          "Pacbio"
+        ],
+        "tools": [
+          {
+            "isoseq": {
+              "description": "IsoSeq - GroupDedup - Deduplicate PCR artifacts grouped by cell barcode (barcode-sorted FLTNC to DEDUP)",
+              "homepage": "https://isoseq.how/",
+              "documentation": "https://isoseq.how/",
+              "tool_dev_url": "https://github.com/PacificBiosciences/IsoSeq/tree/master",
+              "licence": [
+                "BSD-3-Clause-Clear"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "FLTNC BAM file generated by isoseq refine, sorted by cell barcode (CB or XC tags)",
+                "pattern": "*.bam",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.dedup.bam": {
+                  "type": "file",
+                  "description": "BAM file of deduplicated consensus reads",
+                  "pattern": "*.dedup.bam",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "pbi": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.dedup.bam.pbi": {
+                  "type": "file",
+                  "description": "Pacbio index of deduplicated consensus reads",
+                  "pattern": "*.dedup.bam.pbi",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "fasta": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.dedup.fasta.gz": {
+                  "type": "file",
+                  "description": "Gzipped FASTA of deduplicated consensus reads",
+                  "pattern": "*.dedup.fasta.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_isoseq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "isoseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "isoseq groupdedup --version | sed -n '1s/isoseq groupdedup \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "isoseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "isoseq groupdedup --version | sed -n '1s/isoseq groupdedup \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@mahesh-panchal"
+        ],
+        "maintainers": [
+          "@mahesh-panchal"
+        ]
+      },
+      "git_sha": "1221e19b830ca8c7d1753642f0268d1dcf4db04c"
     },
     {
       "name": "isoseq_refine",
       "path": "modules/nf-core/isoseq/refine/meta.yml",
-      "tree_sha": "d18d2f2c1e9646b59f8c9e6143db0b8487125fe1",
+      "tree_sha": "2c6e714268d88df13d79dd078eb755ba294ff135",
       "files": [
         "modules/nf-core/isoseq/refine/environment.yml",
         "modules/nf-core/isoseq/refine/main.nf",
@@ -190190,7 +190562,7 @@
                 }
               },
               {
-                "isoseq refine --version | head -n 1 | sed 's/isoseq refine //' | sed 's/ (commit.\\+//'": {
+                "isoseq refine --version | sed -n '1s/isoseq refine \\([0-9.]*\\).*/\\1/p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -190214,7 +190586,7 @@
                 }
               },
               {
-                "isoseq refine --version | head -n 1 | sed 's/isoseq refine //' | sed 's/ (commit.\\+//'": {
+                "isoseq refine --version | sed -n '1s/isoseq refine \\([0-9.]*\\).*/\\1/p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -190229,13 +190601,169 @@
           "@sguizard"
         ]
       },
-      "git_sha": "17bf175c37d61ae3ba8b1e0bd972f3f880327497",
+      "git_sha": "73c8ea33e94c4ab747212860e59d8f7d59ecd293",
       "pipelines": [
         {
           "name": "isoseq",
           "version": "2.0.0"
         }
       ]
+    },
+    {
+      "name": "isoseq_tag",
+      "path": "modules/nf-core/isoseq/tag/meta.yml",
+      "tree_sha": "5c2cbf48a8eaa7f7f8d7ef474e1b378760548bfd",
+      "files": [
+        "modules/nf-core/isoseq/tag/environment.yml",
+        "modules/nf-core/isoseq/tag/main.nf",
+        "modules/nf-core/isoseq/tag/meta.yml",
+        "modules/nf-core/isoseq/tag/tests/main.nf.test",
+        "modules/nf-core/isoseq/tag/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "isoseq_tag",
+        "description": "Extract UMI and cell barcodes",
+        "keywords": [
+          "isoseq",
+          "tag",
+          "pacbio",
+          "UMI",
+          "cell_barcodes"
+        ],
+        "tools": [
+          {
+            "isoseq": {
+              "description": "IsoSeq - Scalable De Novo Isoform Discovery",
+              "homepage": "https://github.com/PacificBiosciences/IsoSeq/tree/master",
+              "documentation": "https://isoseq.how/",
+              "tool_dev_url": "https://github.com/PacificBiosciences/IsoSeq/tree/master",
+              "licence": [
+                "BSD-3-Clause-Clear"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM file, one full-length CCS file generated by lima",
+                "pattern": "*.5p--3p.bam",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "design": {
+              "type": "string",
+              "description": "Barcoding design. Specifies which bases to use as cell/molecular barcodes.",
+              "pattern": "^(?:\\d{1,2}[UBGX]-)+T$|^(?:\\d{1,2}[UBGX]-)+T(?:-\\d{1,2}[UBGX])+$|^T(?:-\\d{1,2}[UBGX])+$"
+            }
+          }
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1']\n"
+                }
+              },
+              {
+                "*.flt.bam": {
+                  "type": "file",
+                  "description": "BAM file with full-length tagged reads",
+                  "pattern": "*.flt.bam",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "pbi": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1']\n"
+                }
+              },
+              {
+                "*.flt.bam.pbi": {
+                  "type": "file",
+                  "description": "Pacbio index file of full-length tagged reads",
+                  "pattern": "*.flt.bam.pbi",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_isoseq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "isoseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "isoseq tag --version | sed -n '1s/isoseq tag \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "isoseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "isoseq tag --version | sed -n '1s/isoseq tag \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@skraettli",
+          "@mahesh-panchal"
+        ],
+        "maintainers": [
+          "@skraettli",
+          "@mahesh-panchal"
+        ]
+      },
+      "git_sha": "2744671fb4afac5038b16c7eaac9bbfac0492cb5"
     },
     {
       "name": "ivar_consensus",
@@ -300915,7 +301443,7 @@
     {
       "name": "rclone_check",
       "path": "modules/nf-core/rclone/check/meta.yml",
-      "tree_sha": "2a11131c5653ef70b7a7c26a0793d9786ffb554a",
+      "tree_sha": "dd2a90bdbecf7519d05ca5ca7dc0a9b37b077f23",
       "files": [
         "modules/nf-core/rclone/check/.conda-lock/linux_amd64-bd-2ef33c5b9132aa97_1.txt",
         "modules/nf-core/rclone/check/.conda-lock/linux_arm64-bd-351f8e39202b129a_1.txt",
@@ -301222,7 +301750,7 @@
           }
         }
       },
-      "git_sha": "fef5b8209601b7746f9705f63e5856cd2b5be708",
+      "git_sha": "0f1a09cd10bb7a05bfedb3d8780f985751f9c614",
       "pipelines": [
         {
           "name": "datasync",
@@ -301233,7 +301761,7 @@
     {
       "name": "rclone_checksum",
       "path": "modules/nf-core/rclone/checksum/meta.yml",
-      "tree_sha": "47d614b717780923878b73f31e430b1cbf353d8d",
+      "tree_sha": "db463f3fc3c891e12fcd1232af92547fa790b737",
       "files": [
         "modules/nf-core/rclone/checksum/environment.yml",
         "modules/nf-core/rclone/checksum/main.nf",
@@ -301552,7 +302080,7 @@
           }
         }
       },
-      "git_sha": "fef5b8209601b7746f9705f63e5856cd2b5be708",
+      "git_sha": "0f1a09cd10bb7a05bfedb3d8780f985751f9c614",
       "pipelines": [
         {
           "name": "datasync",
@@ -301563,7 +302091,7 @@
     {
       "name": "rclone_copy",
       "path": "modules/nf-core/rclone/copy/meta.yml",
-      "tree_sha": "2f41e1afdef92f49b75edb60fa97b6700a661494",
+      "tree_sha": "ffd0793744f3242343a732435e0c1f30da5cb204",
       "files": [
         "modules/nf-core/rclone/copy/environment.yml",
         "modules/nf-core/rclone/copy/main.nf",
@@ -301738,7 +302266,7 @@
           }
         }
       },
-      "git_sha": "b34acd9d361bb226be8f0cf446b8b3a20ad0e3da",
+      "git_sha": "0f1a09cd10bb7a05bfedb3d8780f985751f9c614",
       "pipelines": [
         {
           "name": "datasync",
@@ -333268,16 +333796,20 @@
     {
       "name": "semibin_multieasybin",
       "path": "modules/nf-core/semibin/multieasybin/meta.yml",
-      "tree_sha": "e0fe43a708281bd310e8a7f19454474e336a8165",
+      "tree_sha": "6cb397a8125feeb62c6b7fc8038b9134c0b276c2",
       "files": [
         "modules/nf-core/semibin/multieasybin/.conda-lock/linux_amd64-bd-594344a862aee1b8_1.txt",
         "modules/nf-core/semibin/multieasybin/.conda-lock/linux_arm64-bd-f56bcc59d929ffa0_1.txt",
+        "modules/nf-core/semibin/multieasybin/environment.gpu.yml",
         "modules/nf-core/semibin/multieasybin/environment.yml",
         "modules/nf-core/semibin/multieasybin/main.nf",
         "modules/nf-core/semibin/multieasybin/meta.yml",
+        "modules/nf-core/semibin/multieasybin/tests/main.gpu.nf.test",
+        "modules/nf-core/semibin/multieasybin/tests/main.gpu.nf.test.snap",
         "modules/nf-core/semibin/multieasybin/tests/main.nf.test",
         "modules/nf-core/semibin/multieasybin/tests/main.nf.test.snap",
-        "modules/nf-core/semibin/multieasybin/tests/nextflow.config"
+        "modules/nf-core/semibin/multieasybin/tests/nextflow.config",
+        "modules/nf-core/semibin/multieasybin/tests/nextflow.gpu.config"
       ],
       "type": "module",
       "meta": {
@@ -333465,6 +333997,28 @@
                 }
               }
             ]
+          ],
+          "versions_cuda": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cuda": {
+                  "type": "string",
+                  "description": "The name of the runtime"
+                }
+              },
+              {
+                "python -c \"import torch; print(torch.version.cuda or 'no CUDA available')\"": {
+                  "type": "eval",
+                  "description": "CUDA version bundled with the task's pytorch build, or `no CUDA available` on the non-GPU path"
+                }
+              }
+            ]
           ]
         },
         "topics": {
@@ -333486,6 +334040,26 @@
                 "SemiBin2 --version": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cuda": {
+                  "type": "string",
+                  "description": "The name of the runtime"
+                }
+              },
+              {
+                "python -c \"import torch; print(torch.version.cuda or 'no CUDA available')\"": {
+                  "type": "eval",
+                  "description": "CUDA version bundled with the task's pytorch build, or `no CUDA available` on the non-GPU path"
                 }
               }
             ]
@@ -333532,21 +334106,25 @@
           }
         }
       },
-      "git_sha": "041fbd98880c9af7762aec2f54fa4f35503d50f2"
+      "git_sha": "9f8642c41bf67d2787820e4c4aa34c0356a0d464"
     },
     {
       "name": "semibin_singleeasybin",
       "path": "modules/nf-core/semibin/singleeasybin/meta.yml",
-      "tree_sha": "4a4ccac14d0accd3763eb883453abc2604493fe7",
+      "tree_sha": "4b58c9f5411d5497b552747be9c7ea1398758124",
       "files": [
         "modules/nf-core/semibin/singleeasybin/.conda-lock/linux_amd64-bd-594344a862aee1b8_1.txt",
         "modules/nf-core/semibin/singleeasybin/.conda-lock/linux_arm64-bd-f56bcc59d929ffa0_1.txt",
+        "modules/nf-core/semibin/singleeasybin/environment.gpu.yml",
         "modules/nf-core/semibin/singleeasybin/environment.yml",
         "modules/nf-core/semibin/singleeasybin/main.nf",
         "modules/nf-core/semibin/singleeasybin/meta.yml",
+        "modules/nf-core/semibin/singleeasybin/tests/main.gpu.nf.test",
+        "modules/nf-core/semibin/singleeasybin/tests/main.gpu.nf.test.snap",
         "modules/nf-core/semibin/singleeasybin/tests/main.nf.test",
         "modules/nf-core/semibin/singleeasybin/tests/main.nf.test.snap",
-        "modules/nf-core/semibin/singleeasybin/tests/nextflow.config"
+        "modules/nf-core/semibin/singleeasybin/tests/nextflow.config",
+        "modules/nf-core/semibin/singleeasybin/tests/nextflow.gpu.config"
       ],
       "type": "module",
       "meta": {
@@ -333700,6 +334278,28 @@
                 }
               }
             ]
+          ],
+          "versions_cuda": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cuda": {
+                  "type": "string",
+                  "description": "The name of the runtime"
+                }
+              },
+              {
+                "python -c \"import torch; print(torch.version.cuda or 'no CUDA available')\"": {
+                  "type": "eval",
+                  "description": "CUDA version bundled with the task's pytorch build, or `no CUDA available` on the non-GPU path"
+                }
+              }
+            ]
           ]
         },
         "topics": {
@@ -333721,6 +334321,26 @@
                 "SemiBin2 --version": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cuda": {
+                  "type": "string",
+                  "description": "The name of the runtime"
+                }
+              },
+              {
+                "python -c \"import torch; print(torch.version.cuda or 'no CUDA available')\"": {
+                  "type": "eval",
+                  "description": "CUDA version bundled with the task's pytorch build, or `no CUDA available` on the non-GPU path"
                 }
               }
             ]
@@ -333767,7 +334387,7 @@
           }
         }
       },
-      "git_sha": "041fbd98880c9af7762aec2f54fa4f35503d50f2",
+      "git_sha": "9f8642c41bf67d2787820e4c4aa34c0356a0d464",
       "pipelines": [
         {
           "name": "mag",
@@ -428553,6 +429173,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "be67eecddc6d3c22faa270757dd15d43a2777578",
-  "updated_at": "2026-09-03T02:18:24.303Z"
+  "commit_sha": "0f1a09cd10bb7a05bfedb3d8780f985751f9c614",
+  "updated_at": "2026-09-03T14:11:52.316Z"
 }
