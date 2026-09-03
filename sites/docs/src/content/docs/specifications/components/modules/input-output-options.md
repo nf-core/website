@@ -60,6 +60,7 @@ If the main underlying tool accepts a random seed as an argument, the module SHO
 
 :::info{title="Tip"}
 Some tools resolve duplicate arguments based on order. However, the most reliable approach is to check whether `ext.args` contain a seed argument, similar to the following snippet:
+
 ```
 def seed_flag = random_seed ? "--seed ${random_seed}": ""
 if (task.ext.args.contains("--seed")){
@@ -67,6 +68,7 @@ if (task.ext.args.contains("--seed")){
   seed_flag = "..."
 }
 ```
+
 :::
 
 :::info{title="Rationale" collapse}
