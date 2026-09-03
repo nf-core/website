@@ -7,21 +7,41 @@
         "build-cache": "npm run build-pipeline-json && npm run build-component-json",
         "build-pipeline-json": "node bin/pipelines.json.js",
         "build-component-json": "node bin/components.json.js",
+        "check-api-catalog": "node bin/check-api-catalog.js",
         "update": "npx npm-check-updates --interactive --format group --workspaces",
-        "test-all": "for dir in sites/*; do (cd $dir && npm run test); done"
+        "test-all": "for dir in sites/*; do (cd $dir && npm run test); done",
+        "test-unit": "node --test bin/satteri/*.test.ts"
     },
     "workspaces": [
         "sites/*"
     ],
     "dependencies": {
-        "@astrojs/compiler-rs": "^0.2.0",
+        "@astrojs/compiler-rs": "^0.4.0",
+        "@astrojs/markdown-satteri": "^0.4.0",
+        "@astrojs/mdx": "^8.0.0",
+        "@astrojs/netlify": "^8.2.5",
+        "@astrojs/partytown": "^2.1.7",
+        "@astrojs/sitemap": "^3.7.4",
+        "@astrojs/svelte": "^9.0.1",
+        "@expressive-code/plugin-line-numbers": "^0.44.2",
+        "@mashehu/astropub-md": "^3.0.0",
+        "@rollup/plugin-yaml": "5.0.0",
+        "astro": "^7.2.10",
+        "astro-expressive-code": "^0.44.2",
+        "astro-icon": "^1.2.0",
+        "expressive-code": "^0.44.2",
+        "github-slugger": "^2.0.0",
+        "node-emoji": "^2.2.0",
         "remark": "^15.0.1",
+        "satteri": "^0.10.5",
+        "shiki": "^4.4.3",
         "unist-util-visit": "^5.1.0"
     },
     "devDependencies": {
-        "@j178/prek": "^0.4.1",
-        "prettier": "^3.8.3",
+        "@j178/prek": "^0.5.2",
+        "@playwright/test": "^1.62.1",
+        "prettier": "^3.9.6",
         "prettier-plugin-astro": "^0.14.1",
-        "prettier-plugin-svelte": "^4.0.0"
+        "prettier-plugin-svelte": "^4.1.1"
     }
 }

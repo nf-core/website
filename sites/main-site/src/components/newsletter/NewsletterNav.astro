@@ -1,0 +1,101 @@
+---
+// Prev / next month navigation for a newsletter page. Rendered both above and
+// below the content, so it lives here once rather than being duplicated.
+// `showFormats` adds the alternate-format buttons (RSS / email / markdown /
+// plain HTML) — only wanted on the top nav.
+import { getMonthName } from "@utils/newsletter";
+import type { NewsletterMonth } from "@utils/newsletter";
+
+interface Props {
+    year: number;
+    month: number;
+    prevMonth: NewsletterMonth | null;
+    nextMonth: NewsletterMonth | null;
+    allMonths: NewsletterMonth[];
+    showFormats?: boolean;
+    navClass?: string;
+}
+
+const { year, month, prevMonth, nextMonth, allMonths, showFormats = false, navClass = "mb-4" } = Astro.props;
+
+function monthUrl(m: NewsletterMonth): string {
+    return `/newsletter/${m.year}/${String(m.month).padStart(2, "0")}`;
+}
+const currentUrl = monthUrl({ year, month });
+---
+
+<nav class={navClass}>
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        {
+            prevMonth ? (
+                <a href={monthUrl(prevMonth)} class="btn btn-outline-secondary btn-sm">
+                    <i class="fa-solid fa-arrow-left" /> {getMonthName(prevMonth.month)}{" "}
+                    <span class="d-none d-md-inline">{prevMonth.year}</span>
+                </a>
+            ) : (
+                <span />
+            )
+        }
+
+        <div class="d-flex align-items-center gap-2">
+            {
+                showFormats && (
+                    <>
+                        <a
+                            href="/newsletter/rss.xml"
+                            class="btn btn-outline-secondary btn-sm"
+                            data-bs-toggle="tooltip"
+                            title="RSS feed"
+                        >
+                            <i class="fa-solid fa-rss" /> <span class="d-none d-md-inline">RSS Feed</span>
+                        </a>
+                        <a
+                            href={`${currentUrl}/email`}
+                            class="btn btn-outline-secondary btn-sm"
+                            data-bs-toggle="tooltip"
+                            title="Email HTML version"
+                        >
+                            <i class="fa-solid fa-envelope" /> <span class="d-none d-md-inline">Email</span>
+                        </a>
+                        <a
+                            href={`${currentUrl}/markdown`}
+                            class="btn btn-outline-secondary btn-sm"
+                            data-bs-toggle="tooltip"
+                            title="Markdown version (for AI agents)"
+                        >
+                            <i class="fa-brands fa-markdown" /> <span class="d-none d-md-inline">Markdown</span>
+                        </a>
+                        <a
+                            href={`${currentUrl}/simple`}
+                            class="btn btn-outline-secondary btn-sm"
+                            data-bs-toggle="tooltip"
+                            title="Plain HTML version"
+                        >
+                            <i class="fa-solid fa-code" /> <span class="d-none d-md-inline">Plain HTML</span>
+                        </a>
+                    </>
+                )
+            }
+            <select class="newsletter-month-select form-select form-select-sm w-auto">
+                {
+                    allMonths.map((m) => (
+                        <option value={monthUrl(m)} selected={m.year === year && m.month === month}>
+                            {getMonthName(m.month)} {m.year}
+                        </option>
+                    ))
+                }
+            </select>
+        </div>
+
+        {
+            nextMonth ? (
+                <a href={monthUrl(nextMonth)} class="btn btn-outline-secondary btn-sm">
+                    {getMonthName(nextMonth.month)} <span class="d-none d-md-inline">{nextMonth.year}</span>{" "}
+                    <i class="fa-solid fa-arrow-right" />
+                </a>
+            ) : (
+                <span />
+            )
+        }
+    </div>
+</nav>

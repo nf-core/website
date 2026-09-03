@@ -51,6 +51,17 @@ assert snapshot(process.out).match()
 When the snapshot is unstable, use another way to test the output files.
 See [nf-test assertions](/docs/contributing/nf-test/assertions) for examples on how to do this.
 
+## GPU tests
+
+Modules that support both CPU and GPU modes SHOULD include a separate GPU test file (`main.gpu.nf.test`).
+GPU-only modules MAY use a single test file.
+
+GPU tests MUST be tagged with `"gpu"` or `"gpu_highmem"` so the GPU CI workflow discovers and runs them on GPU-enabled runners.
+GPU tests SHOULD include a `nextflow.gpu.config` that sets `accelerator = 1` on the process.
+GPU tests SHOULD use the same assertions as the CPU tests to verify that GPU and CPU modes produce equivalent results, and SHOULD include both a real test and a stub test.
+
+For runner instance types, the GPU concurrency caveat under Singularity, and a worked example, see the [GPU-capable modules](/docs/developing/components/gpu-modules) guide.
+
 ## Stub tests
 
 A stub test MUST be included for the module.
