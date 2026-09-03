@@ -85,21 +85,24 @@ headings.map((heading) => {
     heading.text = heading.text.replaceAll(/\./g, ".\u200B");
 });
 
-// try to figure out github URL to the source file from file path
-let md_github_url = "";
-const base_url = `https://github.com/nf-core/tools/blob/${version_tag_name}/nf_core/`;
-const file_name =
-    entry.filePath?.replace("src/content/api_reference/", "").split("/").pop()?.replace(".md", ".py") || "";
-// check if entry.id contains "pipeline_lint_tests"
-if (entry.id.includes("pipeline_lint_tests")) {
-    md_github_url = base_url + "lint/" + file_name;
-} else if (entry.id.includes("module_lint_tests") || entry.id.includes("subworkflow_lint_tests")) {
-    // append to base url either to modules/lint or subworkflows/lint
-    const component_type = entry.id.includes("module_lint_tests") ? "modules" : "subworkflows";
-    md_github_url = base_url + component_type + "/lint/" + file_name;
-} else if (entry.id.includes("api")) {
-    md_github_url = base_url + file_name;
-}
+// Path of this page within its version directory, e.g. api/pipelines/create
+const [section, ...doc_path] =
+    entry.filePath?.replace("src/content/api_reference/", "").replace(/\.md$/, "").split("/").slice(1) || [];
+// nf-core/tools moved the pipeline commands under nf_core/pipelines/ in v3.0
+const pipelines_prefix = version_tag_name === "dev" || Number(version_tag_name?.split(".")[0]) >= 3 ? "pipelines/" : "";
+const source_dirs: Record<string, string> = {
+    api: "nf_core",
+    pipeline_lint_tests: `nf_core/${pipelines_prefix}lint`,
+    module_lint_tests: "nf_core/modules/lint",
+    subworkflow_lint_tests: "nf_core/subworkflows/lint",
+};
+// Pages under api/ mirror the module path, lint tests are named after the file in their lint
+// directory. Pages for a package rather than a module have no .py of their own and will 404.
+const source_file = doc_path.join("/").replace(/-/g, "_") + ".py"; // params-file.md documents params_file.py
+const md_github_url =
+    section in source_dirs && doc_path.length && doc_path.at(-1) !== "index"
+        ? `https://github.com/nf-core/tools/blob/${version_tag_name}/${source_dirs[section]}/${source_file}`
+        : "";
 
 let tools: CollectionEntry<"api_reference">[] = await getCollection("api_reference");
 // replace tools.id with tools.filePath
@@ -110,6 +113,16 @@ tools = tools.map((tool) => {
 // filter tools by version_
 const versioned_tools = tools.filter((tool) => tool.id.split("/")[0] === version_tag_name);
 const section_names = [...new Set(versioned_tools.map((entry) => entry.id.split("/")[1]))];
+const base_url = "/docs/nf-core-tools/api_reference/";
+// Tool ids start with the resolved version tag, but links keep the version being browsed,
+// so that navigating from /latest/ doesn't pin you to the release it points at.
+const href_for = (id: string) => base_url + [version, ...id.split("/").slice(1)].join("/");
+const current_path = Astro.url.pathname.replace(".html", "").replace(/\/$/, "");
+// Most pages exist for some versions only, so offer the version front page when this one is missing
+const tool_ids = new Set(tools.map((tool) => tool.id));
+const slug_id = Astro.params.slug?.replace(/\/$/, "/index");
+const version_url = (v: string) =>
+    base_url + (slug_id && tool_ids.has(`${v}/${slug_id}`) ? `${v}/${Astro.params.slug}` : v);
 const sections: SidebarEntry[] = section_names
     .filter((entry) => entry !== "index")
     .map((entry) => {
@@ -117,12 +130,11 @@ const sections: SidebarEntry[] = section_names
             type: "group",
             id: entry,
             label: entry === "api" ? "API" : entry.replace(/_/g, " ").replace(/^\w/, (c) => c.toUpperCase()),
-            href:
-                "/docs/nf-core-tools/api_reference/" +
-                versioned_tools
-                    .find((tool_entry) => tool_entry.id.endsWith("index") && tool_entry.id.split("/")[1] === entry)
-                    ?.id.replace(/index\.md$/, "index")
-                    .replace("docs/", ""),
+            href: href_for(
+                versioned_tools.find(
+                    (tool_entry) => tool_entry.id.endsWith("index") && tool_entry.id.split("/")[1] === entry,
+                )?.id || "",
+            ),
             collapsed: true,
             isCurrent: false,
             entries: versioned_tools
@@ -134,16 +146,8 @@ const sections: SidebarEntry[] = section_names
                             type: "link",
                             label: `<code>${tool_entry.id?.split("/")[2].replace(/\.md$/, "")}</code>`,
                             id: tool_entry.id.split("/")[2].replace(/\.md$/, ""),
-                            href:
-                                "/docs/nf-core-tools/api_reference/" +
-                                tool_entry.id.replace("docs/", "").replace(/\.md$/, ""),
-                            isCurrent: Astro.url.pathname
-                                .replace(".html", "")
-                                .replace("/latest/", `/${version_tag_name}/`)
-                                .includes(
-                                    "/docs/nf-core-tools/api_reference/" +
-                                        tool_entry.id.replace("docs/", "").replace(/\.md$/, ""),
-                                ),
+                            href: href_for(tool_entry.id),
+                            isCurrent: current_path === href_for(tool_entry.id),
                         };
                     } else {
                         return {
@@ -167,16 +171,8 @@ const sections: SidebarEntry[] = section_names
                                               type: "link",
                                               label: `<code>${grand_child.id?.split("/")[3].replace(/\.md$/, "")}</code>`,
                                               id: grand_child.id.split("/")[3].replace(/\.md$/, ""),
-                                              href:
-                                                  "/docs/nf-core-tools/api_reference/" +
-                                                  grand_child.id.replace("docs/", "").replace(/\.md$/, ""),
-                                              isCurrent: Astro.url.pathname
-                                                  .replace(".html", "")
-                                                  .replace("/latest/", `/${version_tag_name}/`)
-                                                  .includes(
-                                                      "/docs/nf-core-tools/api_reference/" +
-                                                          grand_child.id.replace("docs/", "").replace(/\.md$/, ""),
-                                                  ),
+                                              href: href_for(grand_child.id),
+                                              isCurrent: current_path === href_for(grand_child.id),
                                           };
                                       })
                                 : [
@@ -184,16 +180,8 @@ const sections: SidebarEntry[] = section_names
                                           type: "link",
                                           label: `<code>${tool_entry.id?.split("/")[2].replace(/\.md$/, "")}</code>`,
                                           id: tool_entry.id.split("/")[2].replace(/\.md$/, ""),
-                                          href:
-                                              "/docs/nf-core-tools/api_reference/" +
-                                              tool_entry.id.replace("docs/", "").replace(/\.md$/, ""),
-                                          isCurrent: Astro.url.pathname
-                                              .replace(".html", "")
-                                              .replace("/latest/", `/${version_tag_name}/`)
-                                              .includes(
-                                                  "/docs/nf-core-tools/api_reference/" +
-                                                      tool_entry.id.replace("docs/", "").replace(/\.md$/, ""),
-                                              ),
+                                          href: href_for(tool_entry.id),
+                                          isCurrent: current_path === href_for(tool_entry.id),
                                       },
                                   ],
                         };
@@ -258,10 +246,7 @@ sections.sort((a, b) => {
                 {
                     versions &&
                         versions.map((v) => {
-                            let url = Astro.url.pathname.replace(
-                                `tools/api_reference/${version}`,
-                                `tools/api_reference/${v}`,
-                            );
+                            const url = version_url(v);
                             return (
                                 <li>
                                     <a class={"dropdown-item " + (v === version_tag_name ? "active" : "")} href={url}>

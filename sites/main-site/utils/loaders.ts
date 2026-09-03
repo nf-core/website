@@ -5,7 +5,6 @@ import { octokit, getCurrentRateLimitRemaining } from "@components/octokit.js";
 import ProgressBar from "progress";
 import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
 import { createMarkdownProcessor } from "@astrojs/markdown-remark";
-import remarkGitHubMarkdown from "../../../bin/remark-github-markdown.js";
 
 // ========================================
 // TYPE DEFINITIONS
@@ -122,42 +121,6 @@ function createProcessors(processors: Processors) {
                   });
         },
     });
-}
-
-/**
- * Creates a markdown processor with GitHub-specific transformations
- */
-function createGitHubMarkdownProcessor(renderMarkdown: Function, options: { repo: string; ref: string }): Processors {
-    return {
-        md: async (text: string, config: AstroConfig, filepath?: string): Promise<RenderedContent> => {
-            try {
-                const parentDir = filepath?.includes("/") ? filepath.split("/").slice(0, -1).join("/") : "";
-                const processor = await createMarkdownProcessor({
-                    ...config.markdown,
-                    remarkPlugins: [
-                        [
-                            remarkGitHubMarkdown,
-                            {
-                                org: "nf-core",
-                                repo: options.repo,
-                                ref: options.ref,
-                                parent_directory: parentDir,
-                            },
-                        ],
-                        ...(config.markdown?.remarkPlugins || []),
-                    ],
-                });
-                const { code: html, metadata } = await processor.render(text);
-                return { html, metadata };
-            } catch (error) {
-                console.error(`Error processing markdown for ${options.repo}/${options.ref}:`, error);
-                return {
-                    html: `<div class="error">Error processing markdown: ${error.message}</div>`,
-                    metadata: {},
-                };
-            }
-        },
-    };
 }
 
 /**
@@ -625,10 +588,6 @@ export function pipelineLoader(pipelines_json: PipelineJson): Loader {
                     const filePattern = new RegExp(`^(${filesToProcess.map((f) => f.replace(".", "\\.")).join("|")})$`);
 
                     const processors = {
-                        ...createGitHubMarkdownProcessor(context.renderMarkdown, {
-                            repo: pipeline.name,
-                            ref: release.tag_name,
-                        }),
                         ...createSchemaProcessor(context.renderMarkdown),
                     };
 

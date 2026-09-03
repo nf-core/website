@@ -1,14 +1,15 @@
 <script lang="ts">
     import ListingCard from "@components/ListingCard.svelte";
     import TagSection from "@components/TagSection.svelte";
-    import Markdown from "@components/markdown/Markdown.svelte";
+    import { filterByKeyword } from "@utils/search";
     import { formatDistanceToNow, add } from "date-fns";
     import { Confetti } from "svelte-confetti";
 
     let { pipeline } = $props();
 
     const name = $derived(pipeline.name);
-    const body = $derived(pipeline.description);
+    // description_rendered is pre-rendered server-side (pipelines.astro)
+    const body = $derived(pipeline.description_rendered ?? pipeline.description);
     const stars = $derived(pipeline.stargazers_count);
     const topics = $derived(pipeline.topics);
     const releases = $derived(pipeline.releases);
@@ -79,11 +80,11 @@
                 {/if}
             </div>
             {#if body}
-                <div class="description flex-grow-1" class:pt-1={recentRelease}><Markdown md={body} /></div>
+                <div class="description flex-grow-1" class:pt-1={recentRelease}>{@html body}</div>
             {/if}
 
             <div class="mb-2">
-                <TagSection tags={topics} type="keywords" />
+                <TagSection tags={topics} type="keywords" onTagClick={filterByKeyword} />
             </div>
 
             {#if released}

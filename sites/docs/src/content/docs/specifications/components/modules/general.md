@@ -511,7 +511,7 @@ Alternative suggestions:
 ## Script inclusion
 
 Module templates separate scientific logic from workflow-specific logic, improving code clarity and maintainability.
-If a module's `script:` block contains a script rather than command invocations, regardless of the language (for example, Bash, R, Python), and the content is more than a readable length (as a rule of thumb, approximately 20 lines), provide it through a [Nextflow module template](https://docs.seqera.io/nextflow/module#module-templates).
+If a module's `script:` block contains a script rather than command invocations, regardless of the language (for example, Bash, R, Python), and the content is more than a readable length (as a rule of thumb, approximately 20 lines), provide it through a [Nextflow module template](https://docs.seqera.io/nextflow/process#template).
 
 :::note
 We recommend use of Nextflow templates as they are the most portable method of separating custom script content and execution across all execution contexts.

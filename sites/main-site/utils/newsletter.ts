@@ -95,7 +95,11 @@ function adjacentMonths(year: number, month: number, count: number, step: 1 | -1
 // ========================================
 
 /**
- * Get all months that have any newsletter content, sorted descending.
+ * Candidate newsletter months, sorted newest-first and limited to past/current months.
+ *
+ * Seeded from the months that *report* each item, not the months it's dated in, so the
+ * newsletter that renders an item is always in the set. Callers filter this further with
+ * newsletterMonthHasContent to drop candidates whose sections would all be empty.
  */
 export function getNewsletterMonths(
     blogPosts: { data: { pubDate: Date } }[],
@@ -104,31 +108,38 @@ export function getNewsletterMonths(
     advisories: { data: { publishedDate: Date } }[] = [],
 ): NewsletterMonth[] {
     const monthSet = new Set<string>();
+    const add = (year: number, month: number) => monthSet.add(`${year}-${month}`);
+
+    // Seeds the newsletter month(s) an item's month is reported in, relative to its own month:
+    //   [1]     – content (posts, advisories, releases, new pipelines): month X → newsletter X+1.
+    //   [0, -1] – events: month X → newsletters X (this month) and X-1 (upcoming events).
+    const seedFrom = (date: Date, offsets: number[]) => {
+        const anchor = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), 1, 12));
+        for (const offset of offsets) {
+            const d = addMonths(anchor, offset);
+            add(d.getUTCFullYear(), d.getUTCMonth() + 1);
+        }
+    };
 
     for (const post of blogPosts) {
-        const d = new Date(post.data.pubDate);
-        monthSet.add(`${d.getUTCFullYear()}-${d.getUTCMonth() + 1}`);
+        seedFrom(new Date(post.data.pubDate), [1]);
     }
 
     for (const event of events) {
-        const d = new Date(event.data.start);
-        monthSet.add(`${d.getUTCFullYear()}-${d.getUTCMonth() + 1}`);
+        seedFrom(new Date(event.data.start), [0, -1]);
     }
 
     for (const advisory of advisories) {
-        const d = new Date(advisory.data.publishedDate);
-        monthSet.add(`${d.getUTCFullYear()}-${d.getUTCMonth() + 1}`);
+        seedFrom(new Date(advisory.data.publishedDate), [1]);
     }
 
     for (const pipeline of pipelines) {
         for (const release of pipeline.releases) {
             if (release.tag_name === "dev") continue;
-            const d = new Date(release.published_at);
-            monthSet.add(`${d.getUTCFullYear()}-${d.getUTCMonth() + 1}`);
+            seedFrom(new Date(release.published_at), [1]);
         }
-        // Also include month when pipeline was created
-        const created = new Date(pipeline.created_at);
-        monthSet.add(`${created.getUTCFullYear()}-${created.getUTCMonth() + 1}`);
+        // Also seed from the month the pipeline was created (new-pipeline section).
+        seedFrom(new Date(pipeline.created_at), [1]);
     }
 
     const months: NewsletterMonth[] = [...monthSet].map((key) => {
@@ -152,14 +163,10 @@ export function getNewsletterMonths(
 /**
  * Whether the newsletter dated the 1st of (year, month) would render any content.
  *
- * The candidate-month set above is seeded from the months that content lands in,
- * but a newsletter looks *back* at the previous calendar month (blog posts,
- * advisories, releases, new pipelines, recent events, proposals) and *forward* at
- * this + next month (upcoming events). That offset means a seeded month can end up
- * with every section empty — e.g. a lone advisory dated in a month whose preceding
- * month has nothing. This mirrors the section gating in NewsletterLayout so we only
- * keep months where at least one section would actually render, and never publish a
- * page that is just the header and footer.
+ * A newsletter looks *back* a month (posts, advisories, releases, new pipelines, recent
+ * events, proposals) and *forward* (upcoming events), so a seeded candidate month can still
+ * end up empty — e.g. a lone advisory whose preceding month has nothing. This mirrors the
+ * section gating in NewsletterLayout so we never publish a page with just a header/footer.
  */
 export function newsletterMonthHasContent(
     blogPosts: { id: string; data: { pubDate: Date } }[],
@@ -433,8 +440,11 @@ export function getProposalsForMonth(proposals: RawProposal[], year: number, mon
             results.set(key, { ...p, displayTitle, category, status: "new" });
         }
 
-        // Closed this month as "completed" = accepted (skip "not_planned" = rejected)
-        if (p.closedAt && p.stateReason === "completed" && isInMonth(new Date(p.closedAt), year, month)) {
+        // Accepted this month = closed this month AND carrying the "accepted" label.
+        // The GitHub close reason can't be trusted here: rejected/withdrawn proposals
+        // are closed as "completed" too (only some are "not_planned"), so the only
+        // reliable signal that a proposal was actually approved is the "accepted" label.
+        if (p.closedAt && p.labels.includes("accepted") && isInMonth(new Date(p.closedAt), year, month)) {
             const existing = results.get(key);
             if (existing) {
                 existing.status = "accepted";

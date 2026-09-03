@@ -22,7 +22,7 @@ test("getMonthName maps 1-indexed months to English names", () => {
     expect(getMonthName(12)).toBe("December");
 });
 
-test("getNewsletterMonths dedupes, sorts newest-first, and drops future months", () => {
+test("getNewsletterMonths seeds the reporting newsletter, dedupes, sorts newest-first, drops future months", () => {
     const future = new Date();
     future.setFullYear(future.getFullYear() + 5);
 
@@ -30,13 +30,19 @@ test("getNewsletterMonths dedupes, sorts newest-first, and drops future months",
         [blog("a", "2020-03-10"), blog("future", future.toISOString())],
         [evt("e", "2020-05-20")],
         [], // pipelines
-        [advisory("adv", "2020-05-02")], // same month as the event -> must dedupe
+        [advisory("adv", "2020-05-02")],
     );
 
-    // 2020-05 appears once despite event + advisory; future month excluded.
+    // Backward-looking content is reported by the *next* month's newsletter:
+    // the March blog -> April, the May advisory -> June.
+    expect(months).toContainEqual({ year: 2020, month: 4 });
+    expect(months).toContainEqual({ year: 2020, month: 6 });
+    // An event seeds its own month (this month) and the previous month (next
+    // month's "upcoming events"): the May event -> May and April.
     expect(months).toContainEqual({ year: 2020, month: 5 });
-    expect(months).toContainEqual({ year: 2020, month: 3 });
-    expect(months.filter((m) => m.year === 2020 && m.month === 5)).toHaveLength(1);
+    // April is seeded by both the March blog and the May event -> still one entry.
+    expect(months.filter((m) => m.year === 2020 && m.month === 4)).toHaveLength(1);
+    // Future months excluded.
     expect(months.some((m) => m.year === future.getFullYear())).toBe(false);
 
     // Sorted strictly newest-first.
@@ -123,12 +129,12 @@ test("getProposalsForMonth categorises and assigns status", () => {
             stateReason: null,
             createdAt: "2025-06-10",
         },
-        // Closed as completed this month (opened earlier) -> accepted, non-pipeline.
+        // Closed this month with the "accepted" label (opened earlier) -> accepted, non-pipeline.
         {
             title: "RFC: governance",
             url: "u2",
             number: 2,
-            labels: [],
+            labels: ["accepted"],
             closedAt: "2025-06-20",
             stateReason: "completed",
             createdAt: "2025-01-01",
@@ -143,6 +149,17 @@ test("getProposalsForMonth categorises and assigns status", () => {
             stateReason: "not_planned",
             createdAt: "2025-06-05",
         },
+        // Closed as "completed" this month but WITHOUT the "accepted" label (rejected /
+        // withdrawn), and opened earlier -> must not appear at all (not accepted, not new).
+        {
+            title: "New pipeline: dragenlike",
+            url: "u4",
+            number: 4,
+            labels: ["proposed"],
+            closedAt: "2025-06-22",
+            stateReason: "completed",
+            createdAt: "2025-01-15",
+        },
     ];
     const result = getProposalsForMonth(proposals, 2025, 6);
     const byNumber = Object.fromEntries(result.map((p) => [p.number, p]));
@@ -150,4 +167,6 @@ test("getProposalsForMonth categorises and assigns status", () => {
     expect(byNumber[1]).toMatchObject({ category: "pipeline", displayTitle: "foobar", status: "new" });
     expect(byNumber[2]).toMatchObject({ category: "other", displayTitle: "RFC: governance", status: "accepted" });
     expect(byNumber[3]).toMatchObject({ category: "pipeline", displayTitle: "rejected", status: "new" });
+    // Closed as "completed" without the "accepted" label and not opened this month -> excluded.
+    expect(byNumber[4]).toBeUndefined();
 });
