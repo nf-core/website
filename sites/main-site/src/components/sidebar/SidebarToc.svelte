@@ -45,7 +45,9 @@
             if (hCheckboxes) {
                 hCheckboxes.forEach((checkbox) => {
                     const checkboxElement = document.getElementById(checkbox.id);
-                    checkboxElement.checked = false;
+                    if (checkboxElement) {
+                        (checkboxElement as HTMLInputElement).checked = false;
+                    }
                     Checkboxes.set([]);
                 });
                 hCheckboxes = hCheckboxes; // trigger reactivity

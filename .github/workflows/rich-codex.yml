@@ -6,19 +6,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           # Use @nf-core-bot token to check out so we can push without a PR
           token: ${{ secrets.NF_CORE_BOT_AUTH_TOKEN }}
 
       # Add Node.js setup step
       - name: Setup Node.js
-        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
         with:
           node-version: "24"
 
       - name: Set up Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
         with:
           python-version: 3.14
 
@@ -30,16 +30,16 @@ jobs:
           fi
 
       - name: Install Nextflow
-        uses: nf-core/setup-nextflow@b4ec1bc7c16a94435159de94a05253542fddf6ef # v3
+        uses: nf-core/setup-nextflow@893c28b667aedeba26e37f296d260ccc5bc4d914 # v3
 
       - name: Install nf-test
-        uses: nf-core/setup-nf-test@ce65500579e8587607aab289ecb3a9c343c32e79 # v2
+        uses: nf-core/setup-nf-test@4069fbbaabe94c08faba4ad261bfa88225ba133f # v2
 
       - name: Install nf-core/tools
         run: pip install nf-core
 
       - name: Generate terminal images with rich-codex
-        uses: ewels/rich-codex@80de9de011c994f32274bb4cffee140567621d8e # v1
+        uses: ewels/rich-codex@1af970c6b6850d5870fed9041ac7a6337940fdc3 # v1
         env:
           COLUMNS: 100
           HIDE_PROGRESS: "true"

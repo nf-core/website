@@ -2,6 +2,7 @@
 title: nf-core guidelines for assertions
 subtitle: Write test assertions
 shortTitle: Assertions
+weight: 2
 ---
 
 nf-core guidelines for assertions:

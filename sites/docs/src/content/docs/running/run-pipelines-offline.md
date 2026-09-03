@@ -20,7 +20,7 @@ Running pipelines offline requires three main components:
 
 To transfer Nextflow to an offline system:
 
-1. [Install Nextflow](https://nextflow.io/docs/latest/getstarted.html#installation) in an online environment.
+1. [Install Nextflow](https://docs.seqera.io/nextflow/install) in an online environment.
 2. Run your pipeline locally.
 
    :::note
@@ -79,7 +79,7 @@ See [Reference genomes](./reference-genomes) for more information.
 
 For more information about running nf-core pipelines offline, see:
 
-- Read the nf-core/tools [`pipeline download`](../nf-core-tools/cli/pipelines/download) subcommand documentation
+- Read the nf-core/tools [`pipeline download`](../docs/nf-core-tools/cli/pipelines/download) subcommand documentation
 - Watch the nf-core/bytesize: Running pipelines offline
 
   <!-- markdownlint-disable -->

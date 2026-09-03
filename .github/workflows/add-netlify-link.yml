@@ -6,22 +6,27 @@ on:
       - "sites/**/src/pages/**"
       - "sites/**/src/content/**"
 
+permissions:
+  pull-requests: write
+
 jobs:
   add-comment:
     runs-on: ubuntu-latest
     steps:
-      - name: Check for changed files
-        id: changed-files
-        uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # v47
-
       - name: Add Netlify link to PR
-        if: steps.changed-files.outputs.all_changed_files != ''
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
         with:
-          github-token: ${{ secrets.NF_CORE_BOT_AUTH_TOKEN }}
+          github-token: ${{ github.token }}
           script: |
-            let changedFiles = `${{ steps.changed-files.outputs.all_changed_files }}`.split(' ').slice(0, 50);
-            console.log('Changed files:', changedFiles)
+            const changedFiles = (await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              per_page: 100,
+            }))
+              .map(file => file.filename)
+              .slice(0, 50);
+            console.log('Changed files:', changedFiles);
 
             // remove the sites/** prefix until src
             const processedFiles = changedFiles.map(file => file.replace(/^sites\/[^/]+\//, ''));

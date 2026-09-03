@@ -32,4 +32,4 @@ Common issues within nf-core components to avoid:
 
 ## General module code formatting
 
-All code SHOULD otherwise be aligned to follow the '[Harshil Alignment™️](/docs/contributing/code_editors_and_styling/harshil_alignment)' format, if it does not violate the Nextflow strict syntax specifications.
+All code SHOULD otherwise be aligned to follow the automated Nextflow lint formatting (`nextflow lint -format -harshil-alignment`) or manually formatted following '[Harshil Alignment™️](/docs/contributing/code_editors_and_styling/harshil_alignment)', if it does not violate the Nextflow strict syntax specifications.

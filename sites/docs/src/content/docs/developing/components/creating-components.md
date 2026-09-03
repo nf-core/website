@@ -17,8 +17,8 @@ You will need the following to get started:
 - [Nextflow version 21.04.0 or later](../../get_started/environment_setup/nextflow.md)
 - [nf-core/tools version 2.7 or later](../../get_started/environment_setup/nf-core-tools.md)
 - [nf-test](https://www.nf-test.com/) for testing
-- [pre-commit](https://pre-commit.com/) for code quality checks
-- A container engine ([Docker](../../get_started/environment_setup/software-dependencies.md#docker), [Singularity](../../get_started/environment_setup/software-dependencies.md#singularity), or [Conda](../../get_started/environment_setup/software-dependencies.md#condamamba))
+- [prek](https://prek.j178.dev/) for code quality checks (included with nf-core tools)
+- A container engine ([Docker](../../get_started/environment_setup/software-dependencies#docker), [Singularity](../../get_started/environment_setup/software-dependencies#singularity), or [Conda](../../get_started/environment_setup/software-dependencies#condamamba))
 - A fork and clone of the [nf-core/modules repository](https://github.com/nf-core/modules)
 
 :::
@@ -148,6 +148,11 @@ Before contributing your component, thoroughly test it to ensure it meets nf-cor
 
 :::tip
 GitHub Actions automatically runs these tests when you submit a pull request, but running them locally first helps catch issues early.
+:::
+
+:::warning
+The `nf-core <modules|subworkflows> test` commands only work on modules repositories.
+They will not work on installed modules within a pipeline.
 :::
 
 ## Next steps

@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import { Font } from "astro:assets";
 export interface Props {
     title: string;
@@ -35,6 +35,11 @@ description = description?.replaceAll(/<[^>]*>?/g, "");
         <link rel="alternate" type="application/rss+xml" title="nf-core Blog" href="/blog/rss.xml" />
     )
 }
+{
+    Astro.url.pathname.includes("newsletter") && (
+        <link rel="alternate" type="application/rss+xml" title="nf-core Newsletter" href="/newsletter/rss.xml" />
+    )
+}
 <meta name="generator" content={Astro.generator} />
 <link rel="sitemap" href="/sitemap-index.xml" />
 
@@ -57,7 +62,7 @@ description = description?.replaceAll(/<[^>]*>?/g, "");
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-{viewTransitions && <ViewTransitions fallback="none" />}
+{viewTransitions && <ClientRouter fallback="none" />}
 
 <Font cssVariable="--font-inter" preload />
 <Font cssVariable="--font-maven-pro" preload />

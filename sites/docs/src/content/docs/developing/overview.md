@@ -26,6 +26,7 @@ nf-core modules and subworkflows are reusable building blocks shared across pipe
 Each module wraps a single tool and follows strict guidelines for metadata, containers, and testing, making it straightforward to combine components into larger workflows.
 
 - **[Creating components](components/creating-components):** Write and contribute reusable modules and subworkflows for use across nf-core pipelines
+- **[GPU-capable modules](components/gpu-modules):** Write modules that use GPU acceleration, including container strategies, CUDA version pinning, and testing
 - **[Storing sample metadata](components/meta-map):** Store and manage sample metadata in nf-core modules using the meta map
 - **[ext arguments](components/ext-args):** Use the `ext` directive to inject custom command-line arguments into module scripts
 - **[Cross-organisational components](components/cross-org-components):** Combine modules from different organisations within a single subworkflow
@@ -49,6 +50,7 @@ Tests capture output snapshots and run automatically on every pull request, help
 - **[Overview](testing/overview):** Introduction to the nf-test framework and snapshot-based testing for Nextflow components
 - **[Assertions](testing/assertions):** Best practices for writing assertions in nf-test, including snapshot capture and encapsulation requirements
 - **[Advanced techniques](testing/advanced):** Advanced assertion patterns for handling complex testing scenarios beyond standard snapshot comparisons
+- **[CI runners](testing/ci-runners):** Configure RunsOn self-hosted runners and troubleshoot CI failures such as insufficient disk space
 
 ## Template syncs
 
