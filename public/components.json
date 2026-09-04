@@ -3383,7 +3383,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -4348,7 +4348,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -4644,7 +4644,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -24417,7 +24417,7 @@
       "pipelines": [
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -46121,7 +46121,7 @@
         },
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "mag",
@@ -46268,7 +46268,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "pathogensurveillance",
@@ -47036,7 +47036,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.3.0"
+          "version": "3.0.0"
         },
         {
           "name": "pathogensurveillance",
@@ -48589,7 +48589,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.3.0"
+          "version": "3.0.0"
         },
         {
           "name": "radseq",
@@ -55494,7 +55494,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "viralmetagenome",
@@ -71804,6 +71804,301 @@
       ]
     },
     {
+      "name": "compleasm_run",
+      "path": "modules/nf-core/compleasm/run/meta.yml",
+      "tree_sha": "6863e99c97339a6676958131e776d10ed0006d2c",
+      "files": [
+        "modules/nf-core/compleasm/run/.conda-lock/linux_amd64-bd-52aa1279fc8cbd91_1.txt",
+        "modules/nf-core/compleasm/run/environment.yml",
+        "modules/nf-core/compleasm/run/main.nf",
+        "modules/nf-core/compleasm/run/meta.yml",
+        "modules/nf-core/compleasm/run/tests/main.nf.test",
+        "modules/nf-core/compleasm/run/tests/main.nf.test.snap",
+        "modules/nf-core/compleasm/run/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "compleasm_run",
+        "description": "Assess genome assembly completeness against BUSCO lineages using miniprot alignments",
+        "keywords": [
+          "quality control",
+          "completeness",
+          "genome",
+          "busco"
+        ],
+        "tools": [
+          {
+            "compleasm": {
+              "description": "Compleasm: a faster and more accurate reimplementation of BUSCO",
+              "homepage": "https://github.com/huangnengCSU/compleasm",
+              "documentation": "https://github.com/huangnengCSU/compleasm",
+              "tool_dev_url": "https://github.com/huangnengCSU/compleasm",
+              "doi": "10.1093/bioinformatics/btad595",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": "biotools:compleasm"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Genome assembly in FASTA format, optionally gzipped",
+                "pattern": "*.{fasta,fa,fna,fasta.gz,fa.gz,fna.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "lineage": {
+              "type": "string",
+              "description": "BUSCO lineage to check against, e.g. \"bacteria\", or \"auto\" to automatically select the lineage"
+            }
+          },
+          {
+            "library_path": {
+              "type": "directory",
+              "description": "Directory holding downloaded BUSCO lineages. Lineages are downloaded if not set."
+            }
+          }
+        ],
+        "output": {
+          "summary": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*/summary.txt": {
+                  "type": "file",
+                  "description": "Completeness summary with the proportion of single copy, duplicated, fragmented and missing genes",
+                  "pattern": "*/summary.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "full_table": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*/*/full_table.tsv": {
+                  "type": "file",
+                  "description": "Status and alignment details of every BUSCO gene",
+                  "pattern": "*/*/full_table.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "full_table_busco_format": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*/*/full_table_busco_format.tsv": {
+                  "type": "file",
+                  "description": "Status of every BUSCO gene, in the BUSCO full table format",
+                  "pattern": "*/*/full_table_busco_format.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "gff": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*/*/detected_genes.gff": {
+                  "type": "file",
+                  "description": "Annotation of the detected BUSCO genes",
+                  "pattern": "*/*/detected_genes.gff",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2305"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "gene_marker": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*/*/gene_marker.fasta": {
+                  "type": "file",
+                  "description": "Protein sequences of the single copy complete BUSCO genes",
+                  "pattern": "*/*/gene_marker.fasta",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "translated_protein": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*/*/translated_protein.fasta": {
+                  "type": "file",
+                  "description": "Protein sequences translated from the miniprot alignments",
+                  "pattern": "*/*/translated_protein.fasta",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "library": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "mb_downloads": {
+                  "type": "directory",
+                  "description": "Lineage library downloaded by compleasm when running the analysis, reusable as `library_path`",
+                  "pattern": "mb_downloads"
+                }
+              }
+            ]
+          ],
+          "versions_compleasm": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "compleasm": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "compleasm --version | sed 's/compleasm //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "compleasm": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "compleasm --version | sed 's/compleasm //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@dialvarezs"
+        ],
+        "maintainers": [
+          "@dialvarezs"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/compleasm:0.2.9--52aa1279fc8cbd91",
+              "build_id": "bd-52aa1279fc8cbd91_1",
+              "scan_id": "sc-3c61eb84ff6a4b2e_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/compleasm:0.2.9--bf5f9483c85269f8",
+              "build_id": "bd-bf5f9483c85269f8_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/93/9392dd488f3f8f78d5567bccb09a0dcf43e9b9ce301321014ba236f7a3c533a2/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/compleasm/run/.conda-lock/linux_amd64-bd-52aa1279fc8cbd91_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "fda0a889ed06ac33683aa501ad395dd7a4ee8c66"
+    },
+    {
       "name": "concoct_concoct",
       "path": "modules/nf-core/concoct/concoct/meta.yml",
       "tree_sha": "5cccb4f1f74d7c9ef0509bd0df7b1a8c09987a7c",
@@ -80746,6 +81041,160 @@
       "git_sha": "2599d25d757e0d966a103b53a7304385df112be2"
     },
     {
+      "name": "custom_collectfeaturecounts",
+      "path": "modules/nf-core/custom/collectfeaturecounts/meta.yml",
+      "tree_sha": "368ec268b68e5e0452737c705f5e60219bfd856b",
+      "files": [
+        "modules/nf-core/custom/collectfeaturecounts/.conda-lock/linux_amd64-bd-e289d008f8e006c5_1.txt",
+        "modules/nf-core/custom/collectfeaturecounts/.conda-lock/linux_arm64-bd-e98a95795cdd7b8d_1.txt",
+        "modules/nf-core/custom/collectfeaturecounts/environment.yml",
+        "modules/nf-core/custom/collectfeaturecounts/main.nf",
+        "modules/nf-core/custom/collectfeaturecounts/meta.yml",
+        "modules/nf-core/custom/collectfeaturecounts/templates/collectfeaturecounts.R",
+        "modules/nf-core/custom/collectfeaturecounts/tests/main.nf.test",
+        "modules/nf-core/custom/collectfeaturecounts/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "custom_collectfeaturecounts",
+        "description": "Collects one or more subread/featureCounts raw output files (typically one per sample,\nfor the same feature type/ORF caller) into a single long-format table with per-sample\nTPM (Transcripts Per Million)  computed.\n",
+        "keywords": [
+          "featurecounts",
+          "collect",
+          "counts",
+          "tpm"
+        ],
+        "tools": [
+          {
+            "collectfeaturecounts": {
+              "description": "In-house R script that reshapes one or more raw featureCounts output files into a\nsingle long-format table (one row per feature/sample), computing transcripts per million (TPMs) per sample.\n",
+              "tool_dev_url": "https://github.com/nf-core/modules/blob/master/modules/nf-core/custom/collectfeaturecounts/main.nf",
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "inputfiles": {
+                "type": "file",
+                "description": "One or more raw featureCounts output files (as produced by `subread/featurecounts`),\ntypically one per sample against the same feature set/ORF caller. The sample name\nis taken from each file's count column header (its BAM filename, with a trailing\n`.sorted.bam` stripped).\n",
+                "pattern": "*.featureCounts.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "counts": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "${prefix}.counts.tsv.gz": {
+                  "type": "file",
+                  "description": "Long-format table (`orf`, `chr`, `start`, `end`, `strand`, `length`, `sample`,\n`count`, `tpm`) with one row per feature/sample, `count` > 0 rows only.\n",
+                  "pattern": "*.counts.tsv.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@danilodileo",
+          "@erikrikarddaniel"
+        ],
+        "maintainers": [
+          "@danilodileo",
+          "@erikrikarddaniel"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/r-base_r-data.table_r-dplyr_r-dtplyr_pruned:e289d008f8e006c5",
+              "build_id": "bd-e289d008f8e006c5_1",
+              "scan_id": "sc-601d91a135cd74c5_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/r-base_r-data.table_r-dplyr_r-dtplyr_pruned:e98a95795cdd7b8d",
+              "build_id": "bd-e98a95795cdd7b8d_1",
+              "scan_id": "sc-f9ffad43ab7d9bab_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/r-base_r-data.table_r-dplyr_r-dtplyr_pruned:cfc660db3b9f0e48",
+              "build_id": "bd-cfc660db3b9f0e48_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/bf/bfe4a872ba15a90cc12fb24aa96ddda852d5b295c214684d9c8fdf3dc02af535/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/r-base_r-data.table_r-dplyr_r-dtplyr_pruned:26dcf8d18c74568a",
+              "build_id": "bd-26dcf8d18c74568a_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e5/e52672c5c96c9a2da0c032f5603ac4a193fc02e81feeb81257e54b8ded39acf6/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/custom/collectfeaturecounts/.conda-lock/linux_amd64-bd-e289d008f8e006c5_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/custom/collectfeaturecounts/.conda-lock/linux_arm64-bd-e98a95795cdd7b8d_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "94b413835288b0e80bd29256d0a95e4fce020a8b"
+    },
+    {
       "name": "custom_collectstats",
       "path": "modules/nf-core/custom/collectstats/meta.yml",
       "tree_sha": "37ff0dea6d55211c9dc4b1d548e72f3bc663f191",
@@ -81380,7 +81829,7 @@
     {
       "name": "custom_geneticmapconvert",
       "path": "modules/nf-core/custom/geneticmapconvert/meta.yml",
-      "tree_sha": "e4ea67a0b186bc2731daf09aec663bf45d883fc8",
+      "tree_sha": "078066c225ecc066d19e8a4b2f5789a5f6a28390",
       "files": [
         "modules/nf-core/custom/geneticmapconvert/environment.yml",
         "modules/nf-core/custom/geneticmapconvert/main.nf",
@@ -81393,7 +81842,7 @@
       "type": "module",
       "meta": {
         "name": "custom_geneticmapconvert",
-        "description": "This R script allows to automatically detect the different genetic map format and\nconvert the input file in all the other format type.\n",
+        "description": "This R script allows to automatically detect the different genetic map format and\nconvert the input file in all the other format type.\nRecombination rate will be recomputed in the following case:\n - '--remove_duplicated_cm' and uplicated genetic distance present (lines removed except first one)\n - '--remove_null_rate' and zero rate values present (line removed)\n",
         "keywords": [
           "map",
           "convertion",
@@ -81562,7 +82011,7 @@
           "@LouisLeNezet"
         ]
       },
-      "git_sha": "910e3bd7551af42eff7f1da242725f9137718cd7"
+      "git_sha": "be67eecddc6d3c22faa270757dd15d43a2777578"
     },
     {
       "name": "custom_getchromsizes",
@@ -113252,7 +113701,7 @@
         },
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         },
         {
           "name": "fastquorum",
@@ -113268,7 +113717,7 @@
         },
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "genomeskim",
@@ -114828,7 +115277,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -115190,7 +115639,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -115307,7 +115756,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -115521,7 +115970,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -123125,7 +123574,7 @@
         },
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "mag",
@@ -130135,9 +130584,137 @@
       ]
     },
     {
+      "name": "gappa_editmerge",
+      "path": "modules/nf-core/gappa/editmerge/meta.yml",
+      "tree_sha": "c40ea4634d4f5f2db61b4571985fbcee46bd4975",
+      "files": [
+        "modules/nf-core/gappa/editmerge/environment.yml",
+        "modules/nf-core/gappa/editmerge/main.nf",
+        "modules/nf-core/gappa/editmerge/meta.yml",
+        "modules/nf-core/gappa/editmerge/tests/main.nf.test",
+        "modules/nf-core/gappa/editmerge/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "gappa_editmerge",
+        "description": "Merges the pqueries of several jplace files, placed on a common reference tree, into a single jplace file",
+        "keywords": [
+          "merge",
+          "jplace",
+          "phylogenetic placement"
+        ],
+        "tools": [
+          {
+            "gappa": {
+              "description": "Genesis Applications for Phylogenetic Placement Analysis",
+              "homepage": "https://github.com/lczech/gappa",
+              "documentation": "https://github.com/lczech/gappa/wiki",
+              "tool_dev_url": "https://github.com/lczech/gappa",
+              "doi": "10.1093/bioinformatics/btaa070",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:GAPPA"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "jplace": {
+                "type": "file",
+                "description": "Two or more jplace files output from phylogenetic placement, e.g. EPA-NG,\ngzipped or not. All of them must reference the same tree; gappa aborts with\n\"Input jplace files have differing reference trees.\" if they do not.\n",
+                "pattern": "*.{jplace,jplace.gz}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "jplace": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.merge.jplace*": {
+                  "type": "file",
+                  "description": "Single jplace file holding the pqueries of every input file. Gzipped when\n`--compress` is passed via `task.ext.args`.\n",
+                  "pattern": "*.merge.jplace{,.gz}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_gappa": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gappa": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gappa --version 2>&1 | sed 's/v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gappa": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gappa --version 2>&1 | sed 's/v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@erikrikarddaniel"
+        ],
+        "maintainers": [
+          "@erikrikarddaniel"
+        ]
+      },
+      "git_sha": "f207500ed447dfcdae0986cb2cb92e4d0d59c845"
+    },
+    {
       "name": "gappa_examineassign",
       "path": "modules/nf-core/gappa/examineassign/meta.yml",
-      "tree_sha": "ab1f57f052ad192b0dedb28bf374d50b8f8297c8",
+      "tree_sha": "b61414c6e883ce8a84ba268fb7d32e2579459e71",
       "files": [
         "modules/nf-core/gappa/examineassign/environment.yml",
         "modules/nf-core/gappa/examineassign/main.nf",
@@ -130353,7 +130930,7 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "9359d5e7ded9180d28a82ba1881b8ec5a6a96467",
+      "git_sha": "7e678ba56e91b8b61b01ad8e94a6987db443f7e4",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -130368,7 +130945,7 @@
     {
       "name": "gappa_examinegraft",
       "path": "modules/nf-core/gappa/examinegraft/meta.yml",
-      "tree_sha": "791755ca4d57b1f3cfe549809ce6b355d9917170",
+      "tree_sha": "96345c31c524eff94a88d78bdaa3e65faf1554c7",
       "files": [
         "modules/nf-core/gappa/examinegraft/environment.yml",
         "modules/nf-core/gappa/examinegraft/main.nf",
@@ -130491,7 +131068,7 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "9359d5e7ded9180d28a82ba1881b8ec5a6a96467",
+      "git_sha": "7e678ba56e91b8b61b01ad8e94a6987db443f7e4",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -130506,7 +131083,7 @@
     {
       "name": "gappa_examineheattree",
       "path": "modules/nf-core/gappa/examineheattree/meta.yml",
-      "tree_sha": "d0f567f85ab17d8855da655f8892edfc0392fd93",
+      "tree_sha": "4175fb992f679d660ca4867a53bbee94304274cb",
       "files": [
         "modules/nf-core/gappa/examineheattree/environment.yml",
         "modules/nf-core/gappa/examineheattree/main.nf",
@@ -130721,7 +131298,7 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "9359d5e7ded9180d28a82ba1881b8ec5a6a96467",
+      "git_sha": "7e678ba56e91b8b61b01ad8e94a6987db443f7e4",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -140538,7 +141115,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.3.0"
+          "version": "3.0.0"
         },
         {
           "name": "pathogenepidemiology",
@@ -146840,7 +147417,7 @@
         },
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "genomicrelatedness",
@@ -155720,7 +156297,7 @@
         },
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "hicar",
@@ -166075,7 +166652,7 @@
       "pipelines": [
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -172969,8 +173546,10 @@
     {
       "name": "hisat2_align",
       "path": "modules/nf-core/hisat2/align/meta.yml",
-      "tree_sha": "769176455592e5241f40d322d367f768340442f2",
+      "tree_sha": "b055e13d268e56a91edf32a551c707dddaedcd82",
       "files": [
+        "modules/nf-core/hisat2/align/.conda-lock/linux_amd64-bd-a0c9b8ccf8116a89_1.txt",
+        "modules/nf-core/hisat2/align/.conda-lock/linux_arm64-bd-2061bdd7bd29b1cd_1.txt",
         "modules/nf-core/hisat2/align/environment.yml",
         "modules/nf-core/hisat2/align/main.nf",
         "modules/nf-core/hisat2/align/meta.yml",
@@ -173212,9 +173791,43 @@
         "maintainers": [
           "@ntoda03",
           "@ramprasadn"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/hisat2_samtools:a0c9b8ccf8116a89",
+              "build_id": "bd-a0c9b8ccf8116a89_1",
+              "scan_id": "sc-886103d0f76f5df6_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/hisat2_samtools:2061bdd7bd29b1cd",
+              "build_id": "bd-2061bdd7bd29b1cd_1",
+              "scan_id": "sc-184bae2a6fa4d5eb_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/hisat2_samtools:c8aaaadb7f843dc5",
+              "build_id": "bd-c8aaaadb7f843dc5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/92/92f546b522b78597047a54609eefcf35a014de082df0e500bc2adf64d2733669/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/hisat2_samtools:85c43579819c7f9c",
+              "build_id": "bd-85c43579819c7f9c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/0a/0ac773ba54fb01c7ec8666b1347db8c0c5100a8e8b34e5ee5ee3f92abebd8ee7/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/hisat2/align/.conda-lock/linux_amd64-bd-a0c9b8ccf8116a89_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/hisat2/align/.conda-lock/linux_arm64-bd-2061bdd7bd29b1cd_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "7ff2dbaefb93fdd3825b7bff1d86d2f3c7e946f5",
       "pipelines": [
         {
           "name": "circrna",
@@ -173245,8 +173858,9 @@
     {
       "name": "hisat2_build",
       "path": "modules/nf-core/hisat2/build/meta.yml",
-      "tree_sha": "7196b9d81f5fbfaaf5082a76c2b246fd72200945",
+      "tree_sha": "09d5a0ceca484a597c3598687ec3ece9c5946ce5",
       "files": [
+        "modules/nf-core/hisat2/build/.conda-lock/linux_amd64-bd-2616fa83d3b9d8f8_1.txt",
         "modules/nf-core/hisat2/build/environment.yml",
         "modules/nf-core/hisat2/build/main.nf",
         "modules/nf-core/hisat2/build/meta.yml",
@@ -173293,14 +173907,6 @@
                 "pattern": "*.{fa,fasta,fna}",
                 "ontologies": []
               }
-            }
-          ],
-          [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
-              }
             },
             {
               "gtf": {
@@ -173308,14 +173914,6 @@
                 "description": "Reference gtf annotation file",
                 "pattern": "*.{gtf}",
                 "ontologies": []
-              }
-            }
-          ],
-          [
-            {
-              "meta3": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
               }
             },
             {
@@ -173326,7 +173924,13 @@
                 "ontologies": []
               }
             }
-          ]
+          ],
+          {
+            "hisat2_memory_input": {
+              "type": "string",
+              "description": "Memory threshold for HISAT2 index building. When available process memory\nmeets or exceeds this value, splice sites and exons are used to build a\nsplice-aware index. Use false to disable splice-aware indexing.\n"
+            }
+          }
         ],
         "output": {
           "index": [
@@ -173400,9 +174004,40 @@
         ],
         "maintainers": [
           "@ntoda03"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/hisat2:2.2.3--2616fa83d3b9d8f8",
+              "build_id": "bd-2616fa83d3b9d8f8_1",
+              "scan_id": "sc-734493ace7062424_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/hisat2:2.2.3--0b83b24baf5a98d0",
+              "build_id": "",
+              "scan_id": "sc-98ff2d246e5f21bc_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/hisat2:2.2.3--43d6b2eab6ddad26",
+              "build_id": "",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a1/a16b8102041e76f25358477471bafe813828313f7a8787066f390354cd7b8b7c/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/hisat2:2.2.3--2e8243af13980ed3",
+              "build_id": "",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/4e/4edf1cfd94406d23f9a32bab4361cfbf770b0e6fdedb1fbc97d966c6074f51f8/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/hisat2/build/.conda-lock/linux_amd64-bd-2616fa83d3b9d8f8_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "7ff2dbaefb93fdd3825b7bff1d86d2f3c7e946f5",
       "pipelines": [
         {
           "name": "circrna",
@@ -173437,8 +174072,10 @@
     {
       "name": "hisat2_extractsplicesites",
       "path": "modules/nf-core/hisat2/extractsplicesites/meta.yml",
-      "tree_sha": "816ac8def31fc6f7abff3c93c5b8f6e1727647ca",
+      "tree_sha": "de4ef3f9ac118c6c7415e37924502374eb052044",
       "files": [
+        "modules/nf-core/hisat2/extractsplicesites/.conda-lock/linux_amd64-bd-a0c9b8ccf8116a89_1.txt",
+        "modules/nf-core/hisat2/extractsplicesites/.conda-lock/linux_arm64-bd-2061bdd7bd29b1cd_1.txt",
         "modules/nf-core/hisat2/extractsplicesites/environment.yml",
         "modules/nf-core/hisat2/extractsplicesites/main.nf",
         "modules/nf-core/hisat2/extractsplicesites/meta.yml",
@@ -173511,17 +174148,39 @@
               {
                 "${task.process}": {
                   "type": "string",
-                  "description": "The process the versions were collected from"
+                  "description": "The name of the process"
                 }
               },
               {
                 "hisat2": {
                   "type": "string",
-                  "description": "The tool name"
+                  "description": "The name of the tool"
                 }
               },
               {
                 "hisat2 --version | grep -o \"version [^ ]*\" | cut -d \" \" -f 2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools --version | sed -n '1s/samtools //p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -173535,17 +174194,37 @@
               {
                 "${task.process}": {
                   "type": "string",
-                  "description": "The process the versions were collected from"
+                  "description": "The name of the process"
                 }
               },
               {
                 "hisat2": {
                   "type": "string",
-                  "description": "The tool name"
+                  "description": "The name of the tool"
                 }
               },
               {
                 "hisat2 --version | grep -o \"version [^ ]*\" | cut -d \" \" -f 2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools --version | sed -n '1s/samtools //p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -173560,9 +174239,43 @@
         "maintainers": [
           "@ntoda03",
           "@ramprasadn"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/hisat2_samtools:a0c9b8ccf8116a89",
+              "build_id": "bd-a0c9b8ccf8116a89_1",
+              "scan_id": "sc-886103d0f76f5df6_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/hisat2_samtools:2061bdd7bd29b1cd",
+              "build_id": "bd-2061bdd7bd29b1cd_1",
+              "scan_id": "sc-184bae2a6fa4d5eb_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/hisat2_samtools:c8aaaadb7f843dc5",
+              "build_id": "bd-c8aaaadb7f843dc5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/92/92f546b522b78597047a54609eefcf35a014de082df0e500bc2adf64d2733669/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/hisat2_samtools:85c43579819c7f9c",
+              "build_id": "bd-85c43579819c7f9c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/0a/0ac773ba54fb01c7ec8666b1347db8c0c5100a8e8b34e5ee5ee3f92abebd8ee7/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/hisat2/extractsplicesites/.conda-lock/linux_amd64-bd-a0c9b8ccf8116a89_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/hisat2/extractsplicesites/.conda-lock/linux_arm64-bd-2061bdd7bd29b1cd_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "22b467cf44542d7e16b1410c5dbd5982c9545f27",
       "pipelines": [
         {
           "name": "circrna",
@@ -188860,7 +189573,7 @@
     {
       "name": "isoseq3_tag",
       "path": "modules/nf-core/isoseq3/tag/meta.yml",
-      "tree_sha": "af13fe885820ebdb06f90ae93a141935c7797cd9",
+      "tree_sha": "fe80cd57dbfada131033230719a6205505a1e82b",
       "files": [
         "modules/nf-core/isoseq3/tag/environment.yml",
         "modules/nf-core/isoseq3/tag/main.nf",
@@ -188872,6 +189585,7 @@
       "meta": {
         "name": "isoseq3_tag",
         "description": "Extract UMI and cell barcodes",
+        "deprecated": true,
         "keywords": [
           "isoseq",
           "tag",
@@ -188955,19 +189669,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_isoseq3": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "isoseq3": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "isoseq tag --version | sed -n '1s/isoseq tag \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "isoseq3": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "isoseq tag --version | sed -n '1s/isoseq tag \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -188977,12 +189723,12 @@
           "@skraettli"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "4bae68e852d2ec1fed3bcfda348e1287f55393d3"
     },
     {
       "name": "isoseq_cluster",
       "path": "modules/nf-core/isoseq/cluster/meta.yml",
-      "tree_sha": "07a36354ea38e977587d32b2599b46a01da8cd77",
+      "tree_sha": "2e729b6f40a12e1955d97d56adff75471cf4bff9",
       "files": [
         "modules/nf-core/isoseq/cluster/environment.yml",
         "modules/nf-core/isoseq/cluster/main.nf",
@@ -188995,6 +189741,7 @@
       "meta": {
         "name": "isoseq_cluster",
         "description": "IsoSeq - Cluster - Cluster trimmed consensus sequences",
+        "deprecated": true,
         "keywords": [
           "cluster",
           "HiFi",
@@ -189294,12 +190041,350 @@
           "@sguizard"
         ]
       },
-      "git_sha": "17bf175c37d61ae3ba8b1e0bd972f3f880327497"
+      "git_sha": "63ccc54e3fda85bd5efe2f726eba7a9fd6a2e2f0"
+    },
+    {
+      "name": "isoseq_cluster2",
+      "path": "modules/nf-core/isoseq/cluster2/meta.yml",
+      "tree_sha": "b4e4c8c99856eedbeffde45d15045f6a0409c692",
+      "files": [
+        "modules/nf-core/isoseq/cluster2/environment.yml",
+        "modules/nf-core/isoseq/cluster2/main.nf",
+        "modules/nf-core/isoseq/cluster2/meta.yml",
+        "modules/nf-core/isoseq/cluster2/tests/main.nf.test",
+        "modules/nf-core/isoseq/cluster2/tests/main.nf.test.snap",
+        "modules/nf-core/isoseq/cluster2/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "isoseq_cluster2",
+        "description": "IsoSeq - Cluster2 - Cluster full-length non-chimeric reads into transcripts",
+        "keywords": [
+          "cluster",
+          "HiFi",
+          "isoseq",
+          "Pacbio"
+        ],
+        "tools": [
+          {
+            "isoseq": {
+              "description": "IsoSeq - Cluster2 - Cluster full-length non-chimeric reads into transcripts, replacing the legacy isoseq cluster command",
+              "homepage": "https://isoseq.how/clustering/cli-workflow.html",
+              "documentation": "https://isoseq.how/clustering/cli-workflow.html",
+              "tool_dev_url": "https://github.com/PacificBiosciences/IsoSeq/tree/master",
+              "licence": [
+                "BSD-3-Clause-Clear"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM file generated by isoseq refine",
+                "pattern": "*.bam",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.transcripts.bam": {
+                  "type": "file",
+                  "description": "BAM file of clustered transcripts",
+                  "pattern": "*.transcripts.bam",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "pbi": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.transcripts.bam.pbi": {
+                  "type": "file",
+                  "description": "Pacbio index of clustered transcripts",
+                  "pattern": "*.transcripts.bam.pbi",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "cluster_report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.transcripts.cluster_report.csv": {
+                  "type": "file",
+                  "description": "A table of clusters (transcripts) and their members (reads)",
+                  "pattern": "*.transcripts.cluster_report.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_isoseq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "isoseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "isoseq cluster2 --version | sed -n '1s/isoseq cluster2 \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "isoseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "isoseq cluster2 --version | sed -n '1s/isoseq cluster2 \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@mahesh-panchal"
+        ],
+        "maintainers": [
+          "@mahesh-panchal"
+        ]
+      },
+      "git_sha": "aacea9cc662e60319168e3590ed9d9c325f0d644"
+    },
+    {
+      "name": "isoseq_groupdedup",
+      "path": "modules/nf-core/isoseq/groupdedup/meta.yml",
+      "tree_sha": "89a754fbfa3a51aae8ff8083a7ee3612d9c84c9b",
+      "files": [
+        "modules/nf-core/isoseq/groupdedup/environment.yml",
+        "modules/nf-core/isoseq/groupdedup/main.nf",
+        "modules/nf-core/isoseq/groupdedup/meta.yml",
+        "modules/nf-core/isoseq/groupdedup/tests/main.nf.test",
+        "modules/nf-core/isoseq/groupdedup/tests/main.nf.test.snap",
+        "modules/nf-core/isoseq/groupdedup/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "isoseq_groupdedup",
+        "description": "IsoSeq - GroupDedup - Deduplicate PCR artifacts grouped by cell barcode",
+        "keywords": [
+          "dedup",
+          "single-cell",
+          "isoseq",
+          "Pacbio"
+        ],
+        "tools": [
+          {
+            "isoseq": {
+              "description": "IsoSeq - GroupDedup - Deduplicate PCR artifacts grouped by cell barcode (barcode-sorted FLTNC to DEDUP)",
+              "homepage": "https://isoseq.how/",
+              "documentation": "https://isoseq.how/",
+              "tool_dev_url": "https://github.com/PacificBiosciences/IsoSeq/tree/master",
+              "licence": [
+                "BSD-3-Clause-Clear"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "FLTNC BAM file generated by isoseq refine, sorted by cell barcode (CB or XC tags)",
+                "pattern": "*.bam",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.dedup.bam": {
+                  "type": "file",
+                  "description": "BAM file of deduplicated consensus reads",
+                  "pattern": "*.dedup.bam",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "pbi": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.dedup.bam.pbi": {
+                  "type": "file",
+                  "description": "Pacbio index of deduplicated consensus reads",
+                  "pattern": "*.dedup.bam.pbi",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "fasta": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.dedup.fasta.gz": {
+                  "type": "file",
+                  "description": "Gzipped FASTA of deduplicated consensus reads",
+                  "pattern": "*.dedup.fasta.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_isoseq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "isoseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "isoseq groupdedup --version | sed -n '1s/isoseq groupdedup \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "isoseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "isoseq groupdedup --version | sed -n '1s/isoseq groupdedup \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@mahesh-panchal"
+        ],
+        "maintainers": [
+          "@mahesh-panchal"
+        ]
+      },
+      "git_sha": "1221e19b830ca8c7d1753642f0268d1dcf4db04c"
     },
     {
       "name": "isoseq_refine",
       "path": "modules/nf-core/isoseq/refine/meta.yml",
-      "tree_sha": "d18d2f2c1e9646b59f8c9e6143db0b8487125fe1",
+      "tree_sha": "2c6e714268d88df13d79dd078eb755ba294ff135",
       "files": [
         "modules/nf-core/isoseq/refine/environment.yml",
         "modules/nf-core/isoseq/refine/main.nf",
@@ -189477,7 +190562,7 @@
                 }
               },
               {
-                "isoseq refine --version | head -n 1 | sed 's/isoseq refine //' | sed 's/ (commit.\\+//'": {
+                "isoseq refine --version | sed -n '1s/isoseq refine \\([0-9.]*\\).*/\\1/p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -189501,7 +190586,7 @@
                 }
               },
               {
-                "isoseq refine --version | head -n 1 | sed 's/isoseq refine //' | sed 's/ (commit.\\+//'": {
+                "isoseq refine --version | sed -n '1s/isoseq refine \\([0-9.]*\\).*/\\1/p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -189516,13 +190601,169 @@
           "@sguizard"
         ]
       },
-      "git_sha": "17bf175c37d61ae3ba8b1e0bd972f3f880327497",
+      "git_sha": "73c8ea33e94c4ab747212860e59d8f7d59ecd293",
       "pipelines": [
         {
           "name": "isoseq",
           "version": "2.0.0"
         }
       ]
+    },
+    {
+      "name": "isoseq_tag",
+      "path": "modules/nf-core/isoseq/tag/meta.yml",
+      "tree_sha": "5c2cbf48a8eaa7f7f8d7ef474e1b378760548bfd",
+      "files": [
+        "modules/nf-core/isoseq/tag/environment.yml",
+        "modules/nf-core/isoseq/tag/main.nf",
+        "modules/nf-core/isoseq/tag/meta.yml",
+        "modules/nf-core/isoseq/tag/tests/main.nf.test",
+        "modules/nf-core/isoseq/tag/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "isoseq_tag",
+        "description": "Extract UMI and cell barcodes",
+        "keywords": [
+          "isoseq",
+          "tag",
+          "pacbio",
+          "UMI",
+          "cell_barcodes"
+        ],
+        "tools": [
+          {
+            "isoseq": {
+              "description": "IsoSeq - Scalable De Novo Isoform Discovery",
+              "homepage": "https://github.com/PacificBiosciences/IsoSeq/tree/master",
+              "documentation": "https://isoseq.how/",
+              "tool_dev_url": "https://github.com/PacificBiosciences/IsoSeq/tree/master",
+              "licence": [
+                "BSD-3-Clause-Clear"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM file, one full-length CCS file generated by lima",
+                "pattern": "*.5p--3p.bam",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "design": {
+              "type": "string",
+              "description": "Barcoding design. Specifies which bases to use as cell/molecular barcodes.",
+              "pattern": "^(?:\\d{1,2}[UBGX]-)+T$|^(?:\\d{1,2}[UBGX]-)+T(?:-\\d{1,2}[UBGX])+$|^T(?:-\\d{1,2}[UBGX])+$"
+            }
+          }
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1']\n"
+                }
+              },
+              {
+                "*.flt.bam": {
+                  "type": "file",
+                  "description": "BAM file with full-length tagged reads",
+                  "pattern": "*.flt.bam",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "pbi": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1']\n"
+                }
+              },
+              {
+                "*.flt.bam.pbi": {
+                  "type": "file",
+                  "description": "Pacbio index file of full-length tagged reads",
+                  "pattern": "*.flt.bam.pbi",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_isoseq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "isoseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "isoseq tag --version | sed -n '1s/isoseq tag \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "isoseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "isoseq tag --version | sed -n '1s/isoseq tag \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@skraettli",
+          "@mahesh-panchal"
+        ],
+        "maintainers": [
+          "@skraettli",
+          "@mahesh-panchal"
+        ]
+      },
+      "git_sha": "2744671fb4afac5038b16c7eaac9bbfac0492cb5"
     },
     {
       "name": "ivar_consensus",
@@ -215015,7 +216256,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -217299,7 +218540,7 @@
         },
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -218783,7 +220024,7 @@
         },
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -219056,7 +220297,7 @@
         },
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -230703,7 +231944,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -236529,7 +237770,7 @@
         },
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         },
         {
           "name": "fastquorum",
@@ -236549,7 +237790,7 @@
         },
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "genomeskim",
@@ -243011,7 +244252,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "readsimulator",
@@ -254472,7 +255713,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -264343,6 +265584,244 @@
       "git_sha": "2b9ca5c012c5eb45f03af3c43c39fadd4c684eaf"
     },
     {
+      "name": "pcaone",
+      "path": "modules/nf-core/pcaone/meta.yml",
+      "tree_sha": "bd2f6602efe5c5ba3e922e6b8c6ef4c24e6fd642",
+      "files": [
+        "modules/nf-core/pcaone/.conda-lock/linux_amd64-bd-22489ef995a570f0_1.txt",
+        "modules/nf-core/pcaone/environment.yml",
+        "modules/nf-core/pcaone/main.nf",
+        "modules/nf-core/pcaone/meta.yml",
+        "modules/nf-core/pcaone/tests/main.nf.test",
+        "modules/nf-core/pcaone/tests/main.nf.test.snap",
+        "modules/nf-core/pcaone/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "pcaone",
+        "description": "Fast, accurate and memory-efficient PCA on large-scale genotype or single-cell data",
+        "keywords": [
+          "pca",
+          "population genetics",
+          "dimensionality reduction",
+          "svd",
+          "genotype"
+        ],
+        "tools": [
+          {
+            "pcaone": {
+              "description": "Fast, Accurate and Memory-Efficient Principal Component Analysis All in One For Large-scale Dataset",
+              "homepage": "https://github.com/Zilong-Li/PCAone",
+              "documentation": "https://github.com/Zilong-Li/PCAone/blob/main/README.org",
+              "tool_dev_url": "https://github.com/Zilong-Li/PCAone",
+              "doi": "10.1101/gr.277525.122",
+              "licence": [
+                "GPL-3.0-only"
+              ],
+              "identifier": "biotools:pcaone"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bed": {
+                "type": "file",
+                "description": "PLINK binary biallelic genotype file",
+                "pattern": "*.bed",
+                "ontologies": []
+              }
+            },
+            {
+              "bim": {
+                "type": "file",
+                "description": "PLINK extended variant information file",
+                "pattern": "*.bim",
+                "ontologies": []
+              }
+            },
+            {
+              "fam": {
+                "type": "file",
+                "description": "PLINK sample information file",
+                "pattern": "*.fam",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "eigvecs": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.eigvecs": {
+                  "type": "file",
+                  "description": "Eigenvectors (top PCs), one row per sample",
+                  "pattern": "*.eigvecs",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "eigvecs2": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.eigvecs2": {
+                  "type": "file",
+                  "description": "Eigenvectors with a header line",
+                  "pattern": "*.eigvecs2",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "eigvals": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.eigvals": {
+                  "type": "file",
+                  "description": "Eigenvalues for the top PCs",
+                  "pattern": "*.eigvals",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "loadings": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.loadings": {
+                  "type": "file",
+                  "description": "Feature/SNP loadings, produced with the --printv option",
+                  "pattern": "*.loadings",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "mbim": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.mbim": {
+                  "type": "file",
+                  "description": "Plink-like bim file with allele frequency, written alongside loadings",
+                  "pattern": "*.mbim",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "PCAone run log",
+                  "pattern": "*.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_pcaone": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pcaone": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "PCAone 2>&1 | grep -m1 -oE \"v[0-9]+\\.[0-9]+\\.[0-9]+\" | tr -d v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pcaone": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "PCAone 2>&1 | grep -m1 -oE \"v[0-9]+\\.[0-9]+\\.[0-9]+\" | tr -d v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@dbaku42"
+        ],
+        "maintainers": [
+          "@dbaku42"
+        ]
+      },
+      "git_sha": "5ee54e51bcd0c0cb31a2dc6d6040c6f28ca98edd"
+    },
+    {
       "name": "pcgr_getref",
       "path": "modules/nf-core/pcgr/getref/meta.yml",
       "tree_sha": "f20e1d45a3fd4c05e313c9a8d0aad7a89cace15b",
@@ -273567,7 +275046,7 @@
         },
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "multiplesequencealign",
@@ -296197,7 +297676,7 @@
         },
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "pathogensurveillance",
@@ -299964,7 +301443,7 @@
     {
       "name": "rclone_check",
       "path": "modules/nf-core/rclone/check/meta.yml",
-      "tree_sha": "2a11131c5653ef70b7a7c26a0793d9786ffb554a",
+      "tree_sha": "dd2a90bdbecf7519d05ca5ca7dc0a9b37b077f23",
       "files": [
         "modules/nf-core/rclone/check/.conda-lock/linux_amd64-bd-2ef33c5b9132aa97_1.txt",
         "modules/nf-core/rclone/check/.conda-lock/linux_arm64-bd-351f8e39202b129a_1.txt",
@@ -300271,7 +301750,7 @@
           }
         }
       },
-      "git_sha": "fef5b8209601b7746f9705f63e5856cd2b5be708",
+      "git_sha": "0f1a09cd10bb7a05bfedb3d8780f985751f9c614",
       "pipelines": [
         {
           "name": "datasync",
@@ -300282,7 +301761,7 @@
     {
       "name": "rclone_checksum",
       "path": "modules/nf-core/rclone/checksum/meta.yml",
-      "tree_sha": "47d614b717780923878b73f31e430b1cbf353d8d",
+      "tree_sha": "db463f3fc3c891e12fcd1232af92547fa790b737",
       "files": [
         "modules/nf-core/rclone/checksum/environment.yml",
         "modules/nf-core/rclone/checksum/main.nf",
@@ -300601,7 +302080,7 @@
           }
         }
       },
-      "git_sha": "fef5b8209601b7746f9705f63e5856cd2b5be708",
+      "git_sha": "0f1a09cd10bb7a05bfedb3d8780f985751f9c614",
       "pipelines": [
         {
           "name": "datasync",
@@ -300612,7 +302091,7 @@
     {
       "name": "rclone_copy",
       "path": "modules/nf-core/rclone/copy/meta.yml",
-      "tree_sha": "2f41e1afdef92f49b75edb60fa97b6700a661494",
+      "tree_sha": "ffd0793744f3242343a732435e0c1f30da5cb204",
       "files": [
         "modules/nf-core/rclone/copy/environment.yml",
         "modules/nf-core/rclone/copy/main.nf",
@@ -300787,7 +302266,7 @@
           }
         }
       },
-      "git_sha": "b34acd9d361bb226be8f0cf446b8b3a20ad0e3da",
+      "git_sha": "0f1a09cd10bb7a05bfedb3d8780f985751f9c614",
       "pipelines": [
         {
           "name": "datasync",
@@ -303081,7 +304560,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -303278,7 +304757,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -303416,7 +304895,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -321837,7 +323316,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.3.0"
+          "version": "3.0.0"
         },
         {
           "name": "pacsomatic",
@@ -322104,7 +323583,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.3.0"
+          "version": "3.0.0"
         },
         {
           "name": "pacsomatic",
@@ -325823,7 +327302,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.3.0"
+          "version": "3.0.0"
         },
         {
           "name": "pacsomatic",
@@ -332317,16 +333796,20 @@
     {
       "name": "semibin_multieasybin",
       "path": "modules/nf-core/semibin/multieasybin/meta.yml",
-      "tree_sha": "e0fe43a708281bd310e8a7f19454474e336a8165",
+      "tree_sha": "6cb397a8125feeb62c6b7fc8038b9134c0b276c2",
       "files": [
         "modules/nf-core/semibin/multieasybin/.conda-lock/linux_amd64-bd-594344a862aee1b8_1.txt",
         "modules/nf-core/semibin/multieasybin/.conda-lock/linux_arm64-bd-f56bcc59d929ffa0_1.txt",
+        "modules/nf-core/semibin/multieasybin/environment.gpu.yml",
         "modules/nf-core/semibin/multieasybin/environment.yml",
         "modules/nf-core/semibin/multieasybin/main.nf",
         "modules/nf-core/semibin/multieasybin/meta.yml",
+        "modules/nf-core/semibin/multieasybin/tests/main.gpu.nf.test",
+        "modules/nf-core/semibin/multieasybin/tests/main.gpu.nf.test.snap",
         "modules/nf-core/semibin/multieasybin/tests/main.nf.test",
         "modules/nf-core/semibin/multieasybin/tests/main.nf.test.snap",
-        "modules/nf-core/semibin/multieasybin/tests/nextflow.config"
+        "modules/nf-core/semibin/multieasybin/tests/nextflow.config",
+        "modules/nf-core/semibin/multieasybin/tests/nextflow.gpu.config"
       ],
       "type": "module",
       "meta": {
@@ -332514,6 +333997,28 @@
                 }
               }
             ]
+          ],
+          "versions_cuda": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cuda": {
+                  "type": "string",
+                  "description": "The name of the runtime"
+                }
+              },
+              {
+                "python -c \"import torch; print(torch.version.cuda or 'no CUDA available')\"": {
+                  "type": "eval",
+                  "description": "CUDA version bundled with the task's pytorch build, or `no CUDA available` on the non-GPU path"
+                }
+              }
+            ]
           ]
         },
         "topics": {
@@ -332535,6 +334040,26 @@
                 "SemiBin2 --version": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cuda": {
+                  "type": "string",
+                  "description": "The name of the runtime"
+                }
+              },
+              {
+                "python -c \"import torch; print(torch.version.cuda or 'no CUDA available')\"": {
+                  "type": "eval",
+                  "description": "CUDA version bundled with the task's pytorch build, or `no CUDA available` on the non-GPU path"
                 }
               }
             ]
@@ -332581,21 +334106,25 @@
           }
         }
       },
-      "git_sha": "041fbd98880c9af7762aec2f54fa4f35503d50f2"
+      "git_sha": "9f8642c41bf67d2787820e4c4aa34c0356a0d464"
     },
     {
       "name": "semibin_singleeasybin",
       "path": "modules/nf-core/semibin/singleeasybin/meta.yml",
-      "tree_sha": "4a4ccac14d0accd3763eb883453abc2604493fe7",
+      "tree_sha": "4b58c9f5411d5497b552747be9c7ea1398758124",
       "files": [
         "modules/nf-core/semibin/singleeasybin/.conda-lock/linux_amd64-bd-594344a862aee1b8_1.txt",
         "modules/nf-core/semibin/singleeasybin/.conda-lock/linux_arm64-bd-f56bcc59d929ffa0_1.txt",
+        "modules/nf-core/semibin/singleeasybin/environment.gpu.yml",
         "modules/nf-core/semibin/singleeasybin/environment.yml",
         "modules/nf-core/semibin/singleeasybin/main.nf",
         "modules/nf-core/semibin/singleeasybin/meta.yml",
+        "modules/nf-core/semibin/singleeasybin/tests/main.gpu.nf.test",
+        "modules/nf-core/semibin/singleeasybin/tests/main.gpu.nf.test.snap",
         "modules/nf-core/semibin/singleeasybin/tests/main.nf.test",
         "modules/nf-core/semibin/singleeasybin/tests/main.nf.test.snap",
-        "modules/nf-core/semibin/singleeasybin/tests/nextflow.config"
+        "modules/nf-core/semibin/singleeasybin/tests/nextflow.config",
+        "modules/nf-core/semibin/singleeasybin/tests/nextflow.gpu.config"
       ],
       "type": "module",
       "meta": {
@@ -332749,6 +334278,28 @@
                 }
               }
             ]
+          ],
+          "versions_cuda": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cuda": {
+                  "type": "string",
+                  "description": "The name of the runtime"
+                }
+              },
+              {
+                "python -c \"import torch; print(torch.version.cuda or 'no CUDA available')\"": {
+                  "type": "eval",
+                  "description": "CUDA version bundled with the task's pytorch build, or `no CUDA available` on the non-GPU path"
+                }
+              }
+            ]
           ]
         },
         "topics": {
@@ -332770,6 +334321,26 @@
                 "SemiBin2 --version": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cuda": {
+                  "type": "string",
+                  "description": "The name of the runtime"
+                }
+              },
+              {
+                "python -c \"import torch; print(torch.version.cuda or 'no CUDA available')\"": {
+                  "type": "eval",
+                  "description": "CUDA version bundled with the task's pytorch build, or `no CUDA available` on the non-GPU path"
                 }
               }
             ]
@@ -332816,7 +334387,7 @@
           }
         }
       },
-      "git_sha": "041fbd98880c9af7762aec2f54fa4f35503d50f2",
+      "git_sha": "9f8642c41bf67d2787820e4c4aa34c0356a0d464",
       "pipelines": [
         {
           "name": "mag",
@@ -341337,7 +342908,7 @@
         },
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "proteinannotator",
@@ -341625,7 +343196,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -351059,7 +352630,7 @@
     {
       "name": "smncopynumbercaller",
       "path": "modules/nf-core/smncopynumbercaller/meta.yml",
-      "tree_sha": "c01dc3478b822406d1e7bfada4c01eadd786655f",
+      "tree_sha": "f21ce45cd760dc0971ecdfb71a51c8770029d0b7",
       "files": [
         "modules/nf-core/smncopynumbercaller/environment.yml",
         "modules/nf-core/smncopynumbercaller/main.nf",
@@ -351115,6 +352686,34 @@
                 "type": "file",
                 "description": "BAM/CRAM index file",
                 "pattern": "*.{bai,crai}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference FASTA the alignments were made against. Required for CRAM\ninput; pass `[[],[],[]]` when the input is BAM.\n",
+                "pattern": "*.{fa,fna,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "FASTA index (`samtools faidx`), required alongside `fasta` so htslib\ndoes not have to rebuild it per task.\n",
+                "pattern": "*.fai",
                 "ontologies": []
               }
             }
@@ -351219,7 +352818,7 @@
           "@peterpru"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "3c11702264e47ce04ec5e2e57683f0b695ed9f66",
       "pipelines": [
         {
           "name": "raredisease",
@@ -351725,7 +353324,7 @@
     {
       "name": "snapaligner_align",
       "path": "modules/nf-core/snapaligner/align/meta.yml",
-      "tree_sha": "5225f7de19f077c529ad01034d728c5bf01db36e",
+      "tree_sha": "73303066c5727ae4a55225266cb30adcbb9dd583",
       "files": [
         "modules/nf-core/snapaligner/align/environment.yml",
         "modules/nf-core/snapaligner/align/main.nf",
@@ -351899,7 +353498,7 @@
           "@sofiromano"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "c8ebae73f5cd2886ad8e3e28d52fe6f6f22cd9ca",
       "pipelines": [
         {
           "name": "sammyseq",
@@ -351910,7 +353509,7 @@
     {
       "name": "snapaligner_index",
       "path": "modules/nf-core/snapaligner/index/meta.yml",
-      "tree_sha": "b8b13f9740c78751920beedeb8e479692a7d9c02",
+      "tree_sha": "8e9b843001c517075501e1c433fc31026e3d5bc2",
       "files": [
         "modules/nf-core/snapaligner/index/environment.yml",
         "modules/nf-core/snapaligner/index/main.nf",
@@ -352002,14 +353601,12 @@
             [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "SNAP genome index files",
-                  "pattern": "{Genome,GenomeIndex,GenomeIndexHash,OverflowTable}",
-                  "ontologies": []
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "snap/*": {
+                "snap": {
                   "type": "file",
                   "description": "SNAP genome index files",
                   "pattern": "{Genome,GenomeIndex,GenomeIndexHash,OverflowTable}",
@@ -352072,7 +353669,7 @@
           "@matthdsm"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "c8ebae73f5cd2886ad8e3e28d52fe6f6f22cd9ca"
     },
     {
       "name": "sniffles",
@@ -361841,7 +363438,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.3.0"
+          "version": "3.0.0"
         },
         {
           "name": "panoramaseq",
@@ -379871,7 +381468,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "mag",
@@ -380419,7 +382016,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -380558,7 +382155,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -380721,7 +382318,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -405393,7 +406990,7 @@
       "pipelines": [
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -405548,7 +407145,7 @@
       "pipelines": [
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -405722,7 +407319,7 @@
       "pipelines": [
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -405866,7 +407463,7 @@
       "pipelines": [
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -416212,7 +417809,7 @@
     {
       "name": "fasta_clean_faidx",
       "path": "subworkflows/nf-core/fasta_clean_faidx/meta.yml",
-      "tree_sha": "0c5f5513379c59d4f7d6696c2b43ed35595f9d30",
+      "tree_sha": "2d3142b466554c8a0edfb4fc51f4f34d41b0e31b",
       "files": [
         "subworkflows/nf-core/fasta_clean_faidx/main.nf",
         "subworkflows/nf-core/fasta_clean_faidx/meta.yml",
@@ -416245,6 +417842,12 @@
               "type": "file",
               "description": "Input fasta reference assembly.\n\nStructure: [ val(meta), path(fasta) ]\n",
               "pattern": "*.{(fasta,fa,fna)(.gz)}"
+            }
+          },
+          {
+            "val_replace_dots": {
+              "type": "boolean",
+              "description": "Whether to replace dots in the fasta reference name with underscores.\n\nSome tools can't handle dots in the fasta name, however,\nsometimes the ID must remain unchanged.\n"
             }
           },
           {
@@ -416304,7 +417907,7 @@
           "@DLBPointon"
         ]
       },
-      "git_sha": "6b73b7eeb9f260f43230439a2d9be4ea9a05f83b"
+      "git_sha": "5a987fb1332540a5fbe3f5eb27f0dd23740ea548"
     },
     {
       "name": "fasta_clean_fcs",
@@ -416598,7 +418201,7 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -417080,7 +418683,7 @@
     {
       "name": "fasta_index_dna",
       "path": "subworkflows/nf-core/fasta_index_dna/meta.yml",
-      "tree_sha": "11690ca4d7e9dbccf49ee293bc04758836eee557",
+      "tree_sha": "83c8cc8e94fdbe7172302ed8694fddd620839710",
       "files": [
         "subworkflows/nf-core/fasta_index_dna/main.nf",
         "subworkflows/nf-core/fasta_index_dna/meta.yml",
@@ -417176,7 +418779,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "a0961c41021561ac7cf139f86bd7812a2f99e994"
+      "git_sha": "c8ebae73f5cd2886ad8e3e28d52fe6f6f22cd9ca"
     },
     {
       "name": "fasta_index_methylseq",
@@ -418853,7 +420456,7 @@
     {
       "name": "fastq_align_hisat2",
       "path": "subworkflows/nf-core/fastq_align_hisat2/meta.yml",
-      "tree_sha": "c5e8d1206887dc54263f723e19a4d497a191abf8",
+      "tree_sha": "05f3c18383b0ddfc4f6a520186b621defa0ebc79",
       "files": [
         "subworkflows/nf-core/fastq_align_hisat2/main.nf",
         "subworkflows/nf-core/fastq_align_hisat2/meta.yml",
@@ -419008,7 +420611,7 @@
           "@priyanka-surana"
         ]
       },
-      "git_sha": "5c4fc6bbf9af3642bdd9f2408a90970f616bf837",
+      "git_sha": "e7428eccb8981604debd11146649b95686621a7b",
       "pipelines": [
         {
           "name": "lncpipe",
@@ -424727,7 +426330,7 @@
         },
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         },
         {
           "name": "fastquorum",
@@ -424755,7 +426358,7 @@
         },
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "genomicrelatedness",
@@ -424859,7 +426462,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.3.0"
+          "version": "3.0.0"
         },
         {
           "name": "pacsomatic",
@@ -425211,7 +426814,7 @@
         },
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         },
         {
           "name": "fastquorum",
@@ -425239,7 +426842,7 @@
         },
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "genomicrelatedness",
@@ -425343,7 +426946,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.3.0"
+          "version": "3.0.0"
         },
         {
           "name": "pacsomatic",
@@ -425747,7 +427350,7 @@
         },
         {
           "name": "fastqrepair",
-          "version": "1.0.0"
+          "version": "1.1.1"
         },
         {
           "name": "fastquorum",
@@ -425771,7 +427374,7 @@
         },
         {
           "name": "genomeqc",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "genomicrelatedness",
@@ -425863,7 +427466,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.3.0"
+          "version": "3.0.0"
         },
         {
           "name": "pacsomatic",
@@ -427570,6 +429173,6 @@
       "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
     }
   ],
-  "commit_sha": "46e340e0a6395d0823d465591c08ac2fb07288eb",
-  "updated_at": "2026-08-31T02:13:53.240Z"
+  "commit_sha": "ddcdfec176423174312be52c43e18aed0a336665",
+  "updated_at": "2026-09-04T02:15:55.360Z"
 }

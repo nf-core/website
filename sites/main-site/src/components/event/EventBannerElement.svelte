@@ -218,14 +218,14 @@
                                 >{event.data.title}</a
                             >
                         </h4>
-                        <p class="d-sm-none mb-1">
+                        <div class="d-sm-none mb-1">
                             <a href={"events/" + event.id + "/"} class="text-body text-decoration-none"
                                 >{@html event.data.subtitle}</a
                             ><span class={"badge bg-" + event_type_classes[event.data.type] + " small ms-3"}
                                 ><i class={event_type_icons[event.data.type] + " me-1"} aria-hidden="true"></i>
                                 {event.data.type}</span
                             >
-                        </p>
+                        </div>
                         <div class="small mb-1 mx-3 d-flex flex-column">
                             <a
                                 href={"events/" + event.id + "/"}
