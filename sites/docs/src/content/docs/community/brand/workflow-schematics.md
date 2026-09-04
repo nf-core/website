@@ -50,13 +50,15 @@ manifest {
 }
 ```
 
+Nextflow accepts SVG, PNG, JPEG, GIF and WebP files.
 Use an SVG if you can: it scales to any size and a single file can work on both light and dark backgrounds.
 
 :::note
 `manifest.diagram` needs Nextflow `26.10.0` or later, but older versions ignore unknown manifest fields, so it is safe to set it in any pipeline.
 :::
 
-`nf-core pipelines lint` warns if `manifest.diagram` is not set, and fails if it is set to a path that does not exist in the repository.
+`nf-core pipelines lint` warns if `manifest.diagram` is not set.
+It fails if the value is a URL rather than a relative path, is not one of the supported image formats, or points at a file that is not in the repository.
 
 ## Components
 
