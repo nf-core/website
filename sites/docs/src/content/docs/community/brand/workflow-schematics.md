@@ -8,6 +8,9 @@ Simple workflow schematics help outline the main functionality and steps of a pi
 Most workflow schematics are made with vector image editors, such as the open-source tool [Inkscape](https://inkscape.org/) or commercial suite [Adobe Illustrator](https://www.adobe.com/products/illustrator.html).
 Useful tools for collaborative prototyping include [Google Drawings](https://docs.google.com/drawings/) and [LucidChart](https://www.lucidchart.com/pages/).
 
+If you would rather not draw one by hand, [nf-metro](https://seqeralabs.github.io/nf-metro/latest/) generates a metro-map SVG from a simple config file.
+It is a recommendation, not a requirement - any SVG works, however you make it.
+
 All examples and components provided below can be opened in these editors.
 Various parts can be borrowed and/or modified.
 Components are also available on [bioicons](https://bioicons.com/icons/cc-0/Chemo-_and_Bioinformatics/James-A--Fellows-Yates/metromap_style_pipeline_workflow_components.svg), which have direct import extensions for [Inkscape](https://inkscape.org/) and [draw.io](https://app.diagrams.net/).
@@ -35,6 +38,27 @@ Select the schematic image to see the original.
 |             ![nf-core/cutandrun workflow](https://raw.githubusercontent.com/nf-core/sarek/dev/docs/images/sarek_subway.png)              | [nf-core/sarek](https://nf-co.re/sarek)           | By Maxime U Garcia under [MIT](https://github.com/nf-core/sarek/blob/master/LICENSE) license                                                                             |                                                 |
 | ![nf-core/rnaseq metro map grey](https://raw.githubusercontent.com/nf-core/rnaseq/master/docs/images/nf-core-rnaseq_metro_map_grey.png)  | [nf-core/rnaseq](https://nf-co.re/rnaseq)         | By Sarah Guinchard under [MIT](https://github.com/nf-core/sarek/blob/master/LICENSE) license                                                                             |                                                 |
 |        ![nf-core/isoseq metro map](https://raw.githubusercontent.com/nf-core/isoseq/1.1.4/docs/images/Isoseq_pipeline_metro.png)         | [nf-core/isoseq](https://nf-co.re/isoseq)         | By Sébastien Guizard under [MIT](https://github.com/nf-core/isoseq/blob/master/LICENSE) license                                                                          |                                                 |
+
+## Declare your diagram in the pipeline config
+
+Set `manifest.diagram` in `nextflow.config` to a relative path to your diagram, so that Nextflow and other tools can find it:
+
+```groovy title="nextflow.config"
+manifest {
+    // ...
+    diagram = 'docs/images/metro_map.svg'
+}
+```
+
+Nextflow accepts SVG, PNG, JPEG, GIF and WebP files.
+Use an SVG if you can: it scales to any size and a single file can work on both light and dark backgrounds.
+
+:::note
+`manifest.diagram` needs Nextflow `26.10.0` or later, but older versions ignore unknown manifest fields, so it is safe to set it in any pipeline.
+:::
+
+`nf-core pipelines lint` warns if `manifest.diagram` is not set.
+It fails if the value is a URL rather than a relative path, is not one of the supported image formats, or points at a file that is not in the repository.
 
 ## Components
 
