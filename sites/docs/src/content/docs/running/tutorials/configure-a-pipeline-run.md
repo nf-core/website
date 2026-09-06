@@ -163,7 +163,7 @@ Every nf-core pipeline comes with a standard set of profiles:
   :::note
   The [`test_full`](https://github.com/nf-core/demo/blob/master/conf/test_full.config) profile in nf-core/demo is also a very small test dataset that can be used for testing.
   In other pipelines these can be much larger, but produce realistic output.
-  Verify the size of tests of other pipelines before attempting to `test_full` on smaller machines such as laptops. 
+  Verify the size of tests of other pipelines before attempting to `test_full` on smaller machines such as laptops.
   :::
 
 - **Institutional profiles**: contributed to [nf-core/configs](https://github.com/nf-core/configs) and loaded automatically by every nf-core pipeline. Activate one with `-profile <institution>` if your cluster has one. See [Use shared institutional configs](#use-shared-institutional-configs).
@@ -498,14 +498,14 @@ This step combines them into one invocation so you can see how they interact.
 
 2. Capture pipeline parameters in a `params-final.yaml` file so the run is reproducible:
 
-   
+   ```yaml title="params-final.yaml"
    outdir: my_results
    multiqc_title: "nf-core/demo configured run"
    ```
 
 3. Put per-process overrides in `custom.config`:
 
-   
+   ```groovy title="custom.config"
    process {
      withName: 'NFCORE_DEMO:DEMO:FASTQC' {
        cpus = 4
@@ -526,7 +526,7 @@ This step combines them into one invocation so you can see how they interact.
    nextflow run nf-core/demo -r 1.2.0 \
      -profile test,docker \
      -params-file params-final.yaml \
-     -c custom-final.config
+     -c custom.config
    ```
 
 This single command exercises every layer the tutorial introduced.
