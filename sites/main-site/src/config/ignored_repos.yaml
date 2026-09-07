@@ -1,16 +1,24 @@
-# GitHub nf-core repositories that are not pipelines
+# GitHub nf-core repositories that should be excluded from the website
+
 ignore_repos:
+  # Early-stage pipelines (sorted by date created, oldest first)
+  - genephylo # 2025-02-14
+  - moleculardynamics # 2025-08-04
+  - tandemrepeat # 2025-11-21
+  - crossmirna # 2025-11-21
+  - pharmstarcaller # 2026-02-19
+  - msproteomics # 2026-03-19
+
+  # Non-pipeline repos (sorted alphabetically)
   - .github
-  - awsmegatests
   - actions
   - actions-runners
   - agents
+  - awsmegatests
   - basic_training
-  - connectgame
   - configs
+  - connectgame
   - cookiecutter
-  - crossmirna
-  - genephylo
   - gh-actions-lint
   - hackathon
   - hackathon-infra
@@ -18,27 +26,23 @@ ignore_repos:
   - megatest-seqerakit
   - modules
   - modules-template
-  - moleculardynamics
-  - msproteomics
   - newsletter
+  - nf-core-utils
   - nf-core.github.io
   - nft-tiff
   - nft-utils
-  - nf-core-utils
   - ops
-  - pharmstarcaller
   - prettier-plugin-nextflow
   - proposals
+  - r-nf-core-utils
   - references-assets
   - references-datasheets
-  - r-nf-core-utils
   - setup-nextflow
   - setup-nf-test
   - slackbot
   - stats
   - strict-syntax-health
   - sublime
-  - tandemrepeat
   - test-datasets
   - testpipeline
   - tools
