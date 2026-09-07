@@ -375213,8 +375213,10 @@
     {
       "name": "t1k_build",
       "path": "modules/nf-core/t1k/build/meta.yml",
-      "tree_sha": "00b1e679b17a0d9b9c6a147baf110643870f5161",
+      "tree_sha": "5c3118d77da34e806a2a32b41c6a7ca176e89ae6",
       "files": [
+        "modules/nf-core/t1k/build/.conda-lock/linux_amd64-bd-35c476de36986302_1.txt",
+        "modules/nf-core/t1k/build/.conda-lock/linux_arm64-bd-c5ee69646579b5cd_1.txt",
         "modules/nf-core/t1k/build/environment.yml",
         "modules/nf-core/t1k/build/main.nf",
         "modules/nf-core/t1k/build/meta.yml",
@@ -375446,15 +375448,51 @@
         ],
         "maintainers": [
           "@georgiakes"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/t1k:1.0.10--35c476de36986302",
+              "build_id": "bd-35c476de36986302_1",
+              "scan_id": "sc-7928fab76c8681ac_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/t1k:1.0.10--c5ee69646579b5cd",
+              "build_id": "bd-c5ee69646579b5cd_1",
+              "scan_id": "sc-d272b86fc87046b1_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/t1k:1.0.10--3f4861669acd8d30",
+              "build_id": "bd-3f4861669acd8d30_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/db/db0ceb6240d9a8827941a8c914a60cc4199bd4f5f9cc472d7d9f43c334680f34/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/t1k:1.0.10--6b0d2d0ed2acc8e2",
+              "build_id": "bd-6b0d2d0ed2acc8e2_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9b/9b67510eb3f479e57143afe58aa6fc86880d7f2631753b61bb00437d8e1d6088/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/t1k/build/.conda-lock/linux_amd64-bd-35c476de36986302_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/t1k/build/.conda-lock/linux_arm64-bd-c5ee69646579b5cd_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "e7d162e6b238afb3313dc96e3a03f388f0cd6245"
     },
     {
       "name": "t1k_run",
       "path": "modules/nf-core/t1k/run/meta.yml",
-      "tree_sha": "4267f974007551e98099a19a777d37c69fdf11e8",
+      "tree_sha": "cb6fab08f0bd96656223233e112ec30740031784",
       "files": [
+        "modules/nf-core/t1k/run/.conda-lock/linux_amd64-bd-35c476de36986302_1.txt",
+        "modules/nf-core/t1k/run/.conda-lock/linux_arm64-bd-c5ee69646579b5cd_1.txt",
         "modules/nf-core/t1k/run/environment.yml",
         "modules/nf-core/t1k/run/main.nf",
         "modules/nf-core/t1k/run/meta.yml",
@@ -375807,9 +375845,43 @@
         ],
         "maintainers": [
           "@georgiakes"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/t1k:1.0.10--35c476de36986302",
+              "build_id": "bd-35c476de36986302_1",
+              "scan_id": "sc-7928fab76c8681ac_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/t1k:1.0.10--c5ee69646579b5cd",
+              "build_id": "bd-c5ee69646579b5cd_1",
+              "scan_id": "sc-d272b86fc87046b1_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/t1k:1.0.10--3f4861669acd8d30",
+              "build_id": "bd-3f4861669acd8d30_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/db/db0ceb6240d9a8827941a8c914a60cc4199bd4f5f9cc472d7d9f43c334680f34/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/t1k:1.0.10--6b0d2d0ed2acc8e2",
+              "build_id": "bd-6b0d2d0ed2acc8e2_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9b/9b67510eb3f479e57143afe58aa6fc86880d7f2631753b61bb00437d8e1d6088/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/t1k/run/.conda-lock/linux_amd64-bd-35c476de36986302_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/t1k/run/.conda-lock/linux_arm64-bd-c5ee69646579b5cd_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "e7d162e6b238afb3313dc96e3a03f388f0cd6245"
     },
     {
       "name": "tabix_bgzip",
@@ -382929,8 +383001,10 @@
     {
       "name": "tmb_pytmb",
       "path": "modules/nf-core/tmb/pytmb/meta.yml",
-      "tree_sha": "9baa3a7d2d85953ed46d11b8a977d94fa36b189b",
+      "tree_sha": "b038d9a94f57cdd64d66157f4083d93de61a68f2",
       "files": [
+        "modules/nf-core/tmb/pytmb/.conda-lock/linux_amd64-bd-1565c74af4a6a012_1.txt",
+        "modules/nf-core/tmb/pytmb/.conda-lock/linux_arm64-bd-7e5e767f3c8b2d54_1.txt",
         "modules/nf-core/tmb/pytmb/environment.yml",
         "modules/nf-core/tmb/pytmb/main.nf",
         "modules/nf-core/tmb/pytmb/meta.yml",
@@ -383103,7 +383177,7 @@
                 }
               },
               {
-                " pyTMB.py --version | awk '{print \\$2}' | tr -d '()' ": {
+                "pyTMB --version | awk '{print \\$2}' | tr -d '()'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -383127,7 +383201,7 @@
                 }
               },
               {
-                " pyTMB.py --version | awk '{print \\$2}' | tr -d '()' ": {
+                "pyTMB --version | awk '{print \\$2}' | tr -d '()'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -383140,9 +383214,43 @@
         ],
         "maintainers": [
           "@georgiakes"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/tmb:1.6.0--1565c74af4a6a012",
+              "build_id": "bd-1565c74af4a6a012_1",
+              "scan_id": "sc-dc540dec232ea771_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/tmb:1.6.0--7e5e767f3c8b2d54",
+              "build_id": "bd-7e5e767f3c8b2d54_1",
+              "scan_id": "sc-46ea13f8aabe7500_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/tmb:1.6.0--44abee6975a63674",
+              "build_id": "bd-44abee6975a63674_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/fb/fb8cfebbaf26d58af3128fcf154d6221f3aeab0d1ad0df96f5e967d60ef4f4d9/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/tmb:1.6.0--767d7aef10af2669",
+              "build_id": "bd-767d7aef10af2669_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/b8/b8e9dc290c8325622210e2a5e3203ac646508a28affeb07830a54046e147fb48/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/tmb/pytmb/.conda-lock/linux_amd64-bd-1565c74af4a6a012_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/tmb/pytmb/.conda-lock/linux_arm64-bd-7e5e767f3c8b2d54_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "0000a1fd5d7fae7f0411d0a0fdad1ecba92efe8a"
     },
     {
       "name": "topas_gencons",
@@ -429048,6 +429156,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "781f2625386fe0bf2f337c7b99f56e618c59fc99",
-  "updated_at": "2026-09-07T02:12:49.312Z"
+  "commit_sha": "e7d162e6b238afb3313dc96e3a03f388f0cd6245",
+  "updated_at": "2026-09-07T14:12:27.174Z"
 }
