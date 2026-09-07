@@ -1,7 +1,7 @@
 # GitHub nf-core repositories that should be excluded from the website
 
 ignore_repos:
-  # Early-stage pipelines (sorted by date created, oldest first)
+  # Early-stage pipelines
   - genephylo # 2025-02-14
   - moleculardynamics # 2025-08-04
   - tandemrepeat # 2025-11-21
@@ -9,17 +9,14 @@ ignore_repos:
   - pharmstarcaller # 2026-02-19
   - msproteomics # 2026-03-19
 
-  # Non-pipeline repos (sorted alphabetically)
+  # Non-pipeline repos
   - .github
   - actions
   - actions-runners
   - agents
-  - awsmegatests
   - basic_training
   - configs
   - connectgame
-  - cookiecutter
-  - gh-actions-lint
   - hackathon
   - hackathon-infra
   - logos
@@ -28,11 +25,9 @@ ignore_repos:
   - modules-template
   - newsletter
   - nf-core-utils
-  - nf-core.github.io
   - nft-tiff
   - nft-utils
   - ops
-  - prettier-plugin-nextflow
   - proposals
   - r-nf-core-utils
   - references-assets
@@ -46,10 +41,17 @@ ignore_repos:
   - test-datasets
   - testpipeline
   - tools
-  - tower-action
   - vale
   - vscode-extensionpack
   - website
+
+  # Archived repos
+  - awsmegatests
+  - cookiecutter
+  - gh-actions-lint
+  - nf-core.github.io
+  - prettier-plugin-nextflow
+  - tower-action
 
 ignore_topics:
   - nf-core
