@@ -23,6 +23,10 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      - name: Give Netlify a head start
+        # Netlify builds take ~2:45-3:12; without this the wait step below can get a
+        # 200 from the *previous* deploy preview and test stale content.
+        run: sleep 210
       - name: Waiting for 200 from the Netlify Preview
         uses: jakepartusch/wait-for-netlify-action@f1e137043864b9ab9034ae3a5adc1c108e3f1a48 # v1.4
         id: waitFor200
