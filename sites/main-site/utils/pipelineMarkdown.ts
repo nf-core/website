@@ -8,6 +8,7 @@ export async function renderPipelineMarkdown(
     repo: string,
     ref: string,
     parentDir: string,
+    version: string,
 ): Promise<{ html: string; headings: MarkdownHeading[] }> {
     const { features, mdastPlugins, hastPlugins } = createSatteriPluginSets();
     // The processor is created per call: the GitHub URL rewriting is parameterised by
@@ -17,7 +18,7 @@ export async function renderPipelineMarkdown(
     const processor = await createSatteriMarkdownProcessor({
         syntaxHighlight: false,
         features,
-        mdastPlugins: [createGitHubMarkdownPlugin({ repo, ref, parentDirectory: parentDir }), ...mdastPlugins],
+        mdastPlugins: [createGitHubMarkdownPlugin({ repo, ref, version, parentDirectory: parentDir }), ...mdastPlugins],
         hastPlugins,
     });
     const { code: html, metadata } = await processor.render(trimGitHubReadme(body));

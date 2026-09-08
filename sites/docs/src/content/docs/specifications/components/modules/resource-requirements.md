@@ -32,6 +32,9 @@ If the tool does not support multi-threading, consider `process_single` unless l
 Modules that support GPU acceleration SHOULD use `task.accelerator{:groovy}` to detect whether a GPU has been requested.
 The module SHOULD NOT set the `accelerator` directive itself; pipelines control GPU allocation by setting `accelerator = 1{:groovy}` in their process config.
 
+Pipelines SHOULD only set `accelerator.request{:groovy}` (the GPU count), the equivalent of the `cpus` directive for GPUs.
+`accelerator.type{:groovy}` names a specific GPU model and is infrastructure-dependent; it MUST NOT be hardcoded in pipeline config and is left to institutional profiles or user overrides to set.
+
 Tools that accept a GPU count SHOULD pass `task.accelerator.request{:groovy}` in the command so users can override it via their pipeline config.
 This value SHOULD NOT be hardcoded.
 

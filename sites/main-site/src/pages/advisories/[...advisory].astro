@@ -27,8 +27,7 @@ let { headings, Content } = await render(advisory);
 if (frontmatter.references) {
     headings = [...headings, { depth: 1, slug: "references", text: "References" }];
 }
-const md_github_url =
-    "https://github.com/nf-core/website/blob/main/sites/main-site/src/content/advisories/" + advisory.id + ".md";
+const md_github_url = "https://github.com/nf-core/website/blob/main/sites/main-site/" + advisory.filePath;
 
 const addEntriesToSection = (sections, advisories: CollectionEntry<"advisories">[]) => {
     // First, group advisories by year

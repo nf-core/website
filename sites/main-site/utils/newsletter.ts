@@ -440,8 +440,11 @@ export function getProposalsForMonth(proposals: RawProposal[], year: number, mon
             results.set(key, { ...p, displayTitle, category, status: "new" });
         }
 
-        // Closed this month as "completed" = accepted (skip "not_planned" = rejected)
-        if (p.closedAt && p.stateReason === "completed" && isInMonth(new Date(p.closedAt), year, month)) {
+        // Accepted this month = closed this month AND carrying the "accepted" label.
+        // The GitHub close reason can't be trusted here: rejected/withdrawn proposals
+        // are closed as "completed" too (only some are "not_planned"), so the only
+        // reliable signal that a proposal was actually approved is the "accepted" label.
+        if (p.closedAt && p.labels.includes("accepted") && isInMonth(new Date(p.closedAt), year, month)) {
             const existing = results.get(key);
             if (existing) {
                 existing.status = "accepted";

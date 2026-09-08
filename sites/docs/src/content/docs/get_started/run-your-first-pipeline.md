@@ -167,6 +167,7 @@ Version information is automatically recorded in pipeline reports in the `pipeli
 
 Now that you've successfully run your first nf-core pipeline:
 
+- Complete the [Configure a pipeline run](../running/tutorials/configure-a-pipeline-run.md) tutorial, a more comprehensive, hands-on walkthrough of every configuration layer (environment variables, parameters, profiles, custom config files, and `ext.args`) using `nf-core/demo` as the worked example
 - Browse the [nf-core pipeline catalog](https://nf-co.re/pipelines) to find workflows for your research area
 - Learn to [adjust resource requirements and parameters](../running/configuration/overview.md) for your infrastructure
 - Join the [nf-core Slack](https://nf-co.re/join/slack) community

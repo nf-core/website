@@ -50,6 +50,31 @@ When one and only one of multiple argument are required:
 
   :::
 
+### Random seed
+
+If the main underlying tool accepts a random seed as an argument, the module SHOULD define an optional `val` input for the random seed.
+
+- If the user provides a value, it MUST be appropriately provided to the tool.
+- If the user provides no value (`[]`), the module MUST NOT pass any seed argument to the tool.
+- If a random seed is provided through both the input and `ext.args`, the module SHOULD use the value from `ext.args`.
+
+:::info{title="Tip"}
+Some tools resolve duplicate arguments based on order. However, the most reliable approach is to check whether `ext.args` contain a seed argument, similar to the following snippet:
+
+```
+def seed_flag = random_seed ? "--seed ${random_seed}": ""
+if (task.ext.args.contains("--seed")){
+  // extract the value
+  seed_flag = "..."
+}
+```
+
+:::
+
+:::info{title="Rationale" collapse}
+Random seeds often have major impact on the output of tools. To highlight the fact that a tool accepts a random seed input, we expose it as an input channel rather than relying on `ext.args`. If the user decides not to provide a seed, the module reverts to the default behaviour of the tool, which is often deliberately non-deterministic.
+:::
+
 ## Output channel emissions
 
 Named file extensions MUST be emitted for ALL output channels.

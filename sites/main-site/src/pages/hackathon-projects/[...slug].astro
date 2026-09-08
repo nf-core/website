@@ -32,10 +32,7 @@ if (!color && category) {
     if (category == "special-interest-groups") this_color = "#238636";
 }
 
-const md_github_url =
-    "https://github.com/nf-core/website/blob/main/sites/main-site/src/content/hackathon-projects/" +
-    project.id +
-    ".mdx";
+const md_github_url = "https://github.com/nf-core/website/blob/main/sites/main-site/" + project.filePath;
 
 const images = import.meta.glob("../../assets/**");
 const showSidebar = intro_video || image || leaders || slack || category || location;

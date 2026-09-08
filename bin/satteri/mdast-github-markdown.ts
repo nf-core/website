@@ -15,7 +15,7 @@
 import { defineMdastPlugin } from "satteri";
 
 const SPECIAL_FILES_REGEX = /^(\.github\/CONTRIBUTING\.md|CITATIONS\.md|CHANGELOG\.md|\.config)$/;
-const MDX_ANCHOR_REGEX = /\.mdx?#/;
+const MD_LINK_REGEX = /\.mdx?($|#|\?)/;
 const ADMONITION_REGEX = /^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*(.*)/;
 const IMG_SRC_REGEX = /<img(.*?)src="(.*?)"/g;
 const SOURCE_SRCSET_REGEX = /<source(.*?)srcset="(.*?)"/g;
@@ -74,13 +74,36 @@ export interface GitHubMarkdownOptions {
     org?: string;
     repo: string;
     ref: string;
+    /** URL segment of the page being rendered ("latest", "dev", "4.0.0"), not necessarily `ref`. */
+    version: string;
     parentDirectory?: string;
 }
 
 export function createGitHubMarkdownPlugin(options: GitHubMarkdownOptions) {
-    const { org = "nf-core", repo, ref, parentDirectory = "" } = options;
+    const { org = "nf-core", repo, ref, version, parentDirectory = "" } = options;
     const baseRawUrl = `https://raw.githubusercontent.com/${org}/${repo}/${ref}/`;
     const baseRepoUrl = `https://github.com/${org}/${repo}/blob/${ref}/`;
+
+    /**
+     * Map a relative link to another markdown file onto the website, root-relative:
+     * "usage.md#anchor" in docs/output.md → "/<pipeline>/<version>/docs/usage/#anchor".
+     *
+     * Docs pages are served at trailing-slash URLs, so a relative href resolves one
+     * level too deep (".../docs/output/usage" → 404); the link has to be absolute.
+     * `version` (not `ref`) keeps the reader on the channel they are browsing, so a
+     * link followed from /latest/ or /dev/ stays there.
+     *
+     * Markdown files outside docs/ have no page on the website, so they go to GitHub.
+     */
+    function markdownLinkUrl(url: string): string {
+        // Resolve "../" etc. against the directory of the file being rendered.
+        const resolved = new URL(url, `https://n/${parentDirectory ? parentDirectory + "/" : ""}`);
+        const path = resolved.pathname.slice(1);
+        const page = path.replace(/\.mdx?$/, "");
+        if (page === "README") return `/${repo}/${version}/${resolved.search}${resolved.hash}`;
+        if (!page.startsWith("docs/")) return `${baseRepoUrl}${path}${resolved.search}${resolved.hash}`;
+        return `/${repo}/${version}/${page}/${resolved.search}${resolved.hash}`;
+    }
 
     return defineMdastPlugin({
         name: "github-markdown",
@@ -95,8 +118,8 @@ export function createGitHubMarkdownPlugin(options: GitHubMarkdownOptions) {
                 ctx.setProperty(node, "url", `${baseRepoUrl}${node.url}`);
             } else if (node.url.includes("../assets/")) {
                 ctx.setProperty(node, "url", `${baseRepoUrl}${node.url.replace("../assets/", "assets/")}`);
-            } else if (MDX_ANCHOR_REGEX.test(node.url)) {
-                ctx.setProperty(node, "url", node.url.replace(MDX_ANCHOR_REGEX, "#"));
+            } else if (MD_LINK_REGEX.test(node.url)) {
+                ctx.setProperty(node, "url", markdownLinkUrl(node.url));
             }
         },
         code(node: any, ctx) {
