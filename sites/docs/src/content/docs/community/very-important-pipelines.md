@@ -37,7 +37,7 @@ Recommended practices:
 
 - A team of active co-developers
 - A dedicated GitHub team
-- Defined code owners using CODEOWNERS
+- Defined code owners using [CODEOWNERS](../contributing/reviewing-pull-requests/codeowners)
 - Regular development meetings, open to the community
 - Use of milestones to plan and track releases
 - A developer focused Slack channel, separate from user support
