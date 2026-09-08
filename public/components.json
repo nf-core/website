@@ -83556,7 +83556,7 @@
     {
       "name": "custom_pcaclustering",
       "path": "modules/nf-core/custom/pcaclustering/meta.yml",
-      "tree_sha": "f72e594fa0c26709f030027609bb8089a7908af2",
+      "tree_sha": "845463461f569674daa5bdfe666064319f3e7709",
       "files": [
         "modules/nf-core/custom/pcaclustering/environment.yml",
         "modules/nf-core/custom/pcaclustering/main.nf",
@@ -83574,7 +83574,9 @@
           "kmeans",
           "dbscan",
           "pca",
-          "embeddings"
+          "embeddings",
+          "plink2",
+          "eigenvec"
         ],
         "tools": [
           {
@@ -83600,8 +83602,8 @@
             {
               "features": {
                 "type": "file",
-                "description": "Tab-separated file whose first column is sample IDs (any column\nname) and remaining columns are numeric features (e.g. PLINK2 PCA\ncomponents with `FID` dropped, scikit-learn embeddings, etc.).\n",
-                "pattern": "*.{tsv,txt}",
+                "description": "Sample-by-feature matrix. Either a TSV/TXT whose first column is\nsample IDs (any column name) and remaining columns are numeric\nfeatures, or a PLINK2 PCA `.eigenvec` file (`#FID IID PC1 ...`).\nFor PLINK input, `FID`/`SID` are dropped and `IID` is used as\n`sample_id`.\n",
+                "pattern": "*.{tsv,txt,eigenvec}",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_3475"
@@ -83712,7 +83714,7 @@
           "@dbaku42"
         ]
       },
-      "git_sha": "2599d25d757e0d966a103b53a7304385df112be2"
+      "git_sha": "93661ddf549aaa2828e12af7b3877771a368cdfe"
     },
     {
       "name": "custom_resolvetaxonomy",
@@ -103578,6 +103580,168 @@
       "git_sha": "731ad7cf108acd9305a16aa167b7ef5bcf9dc43f"
     },
     {
+      "name": "easypqp_library",
+      "path": "modules/nf-core/easypqp/library/meta.yml",
+      "tree_sha": "35a95dc84dd4ec028c9d9bcf0268eba897ed85f9",
+      "files": [
+        "modules/nf-core/easypqp/library/environment.yml",
+        "modules/nf-core/easypqp/library/main.nf",
+        "modules/nf-core/easypqp/library/meta.yml",
+        "modules/nf-core/easypqp/library/tests/main.nf.test",
+        "modules/nf-core/easypqp/library/tests/main.nf.test.snap",
+        "modules/nf-core/easypqp/library/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "easypqp_library",
+        "description": "Generate a spectral library (TSV) from EasyPQP PSM and peak pickle files.",
+        "keywords": [
+          "proteomics",
+          "spectral library",
+          "dia",
+          "openswath",
+          "diann"
+        ],
+        "tools": [
+          {
+            "easypqp": {
+              "description": "Python package to generate spectral libraries for data-independent acquisition (DIA) proteomics from DDA search results.",
+              "homepage": "https://github.com/grosenberger/easypqp",
+              "documentation": "https://github.com/grosenberger/easypqp",
+              "tool_dev_url": "https://github.com/grosenberger/easypqp",
+              "licence": [
+                "BSD-3-Clause"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "psmpkl": {
+                "type": "file",
+                "description": "One or more PSM pickle files produced by easypqp convert",
+                "pattern": "*.psmpkl"
+              }
+            },
+            {
+              "peakpkl": {
+                "type": "file",
+                "description": "One or more peak pickle files produced by easypqp convert, matching the PSM pickle files",
+                "pattern": "*.peakpkl"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.tsv": {
+                  "type": "file",
+                  "description": "Spectral library in TSV format",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "run_peaks": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_run_peaks.tsv": {
+                  "type": "file",
+                  "description": "Per-run peak table written alongside the library",
+                  "pattern": "*_run_peaks.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_easypqp": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "easypqp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "easypqp --version | sed 's/.*version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "easypqp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "easypqp --version | sed 's/.*version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@jonasscheid"
+        ],
+        "maintainers": [
+          "@jonasscheid"
+        ]
+      },
+      "git_sha": "86eb20853edff4bc85fa21104c87920270eac92e"
+    },
+    {
       "name": "eautils_fastqstats",
       "path": "modules/nf-core/eautils/fastqstats/meta.yml",
       "tree_sha": "d79fda6cc9a757770f868dc03f17095a09fbd961",
@@ -106256,7 +106420,13 @@
           "@MillironX"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "pipelines": [
+        {
+          "name": "taxmarker",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "emmtyper",
@@ -108229,6 +108399,10 @@
         {
           "name": "phyloplace",
           "version": "2.1.0"
+        },
+        {
+          "name": "taxmarker",
+          "version": "dev"
         }
       ]
     },
@@ -163241,7 +163415,7 @@
     {
       "name": "gsea_gsea",
       "path": "modules/nf-core/gsea/gsea/meta.yml",
-      "tree_sha": "5cabf6561f0c2d1f59a219e3543c9111f77a7148",
+      "tree_sha": "c568ac955dc4e11fa3e6efbd6912520310d8af60",
       "files": [
         "modules/nf-core/gsea/gsea/environment.yml",
         "modules/nf-core/gsea/gsea/main.nf",
@@ -163786,7 +163960,7 @@
           "@nschcolnicov"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "ad1f87495051bbda43fef851cdd069c2f05c16bb",
       "pipelines": [
         {
           "name": "differentialabundance",
@@ -166941,6 +167115,10 @@
         {
           "name": "scrnaseq",
           "version": "4.2.0"
+        },
+        {
+          "name": "taxmarker",
+          "version": "dev"
         },
         {
           "name": "taxprofiler",
@@ -176515,6 +176693,10 @@
         {
           "name": "phyloplace",
           "version": "2.1.0"
+        },
+        {
+          "name": "taxmarker",
+          "version": "dev"
         }
       ]
     },
@@ -176888,6 +177070,10 @@
         {
           "name": "phyloplace",
           "version": "2.1.0"
+        },
+        {
+          "name": "taxmarker",
+          "version": "dev"
         }
       ]
     },
@@ -177477,6 +177663,10 @@
         {
           "name": "proteinfamilies",
           "version": "2.5.0"
+        },
+        {
+          "name": "taxmarker",
+          "version": "dev"
         }
       ]
     },
@@ -177965,7 +178155,13 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "f2bed902e13076698e7d59d1fedf5c083f6f17c0"
+      "git_sha": "f2bed902e13076698e7d59d1fedf5c083f6f17c0",
+      "pipelines": [
+        {
+          "name": "taxmarker",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "hmmer_hmmlogo",
@@ -189654,6 +189850,10 @@
         {
           "name": "pathogensurveillance",
           "version": "1.1.0"
+        },
+        {
+          "name": "taxmarker",
+          "version": "dev"
         },
         {
           "name": "tbanalyzer",
@@ -238657,6 +238857,10 @@
           "version": "dev"
         },
         {
+          "name": "taxmarker",
+          "version": "dev"
+        },
+        {
           "name": "taxprofiler",
           "version": "2.0.1"
         },
@@ -255651,17 +255855,16 @@
     {
       "name": "optitype",
       "path": "modules/nf-core/optitype/meta.yml",
-      "tree_sha": "b96816ce800479bec974ca527d1a9ae887f303cf",
+      "tree_sha": "54dbf9ea2ff1fb344cd88959d805a06270000b41",
       "files": [
-        "modules/nf-core/optitype/.conda-lock/linux_amd64-bd-0b46ade42a5009b2_1.txt",
+        "modules/nf-core/optitype/.conda-lock/linux_amd64-bd-722e52fd4495c161_1.txt",
         "modules/nf-core/optitype/environment.yml",
         "modules/nf-core/optitype/main.nf",
         "modules/nf-core/optitype/meta.yml",
         "modules/nf-core/optitype/tests/main.nf.test",
         "modules/nf-core/optitype/tests/main.nf.test.snap",
         "modules/nf-core/optitype/tests/nextflow.config",
-        "modules/nf-core/optitype/tests/optitype_cbc.config",
-        "modules/nf-core/optitype/tests/optitype_cplex.config"
+        "modules/nf-core/optitype/tests/optitype_cbc.config"
       ],
       "type": "module",
       "meta": {
@@ -255806,26 +256009,26 @@
         "containers": {
           "docker": {
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/optitype_coincbc_cplex:0b46ade42a5009b2",
-              "build_id": "bd-0b46ade42a5009b2_1",
-              "scan_id": "sc-573b3792bd8c1c1a_1"
+              "name": "community.wave.seqera.io/library/optitype_coincbc:722e52fd4495c161",
+              "build_id": "bd-722e52fd4495c161_1",
+              "scan_id": "sc-3f4315fffa1b381e_1"
             }
           },
           "singularity": {
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/optitype_coincbc_cplex:740697b2eda2bbc2",
-              "build_id": "bd-740697b2eda2bbc2_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9f/9ff14340c6c903c1c9d926fb7ffa60460986852515c76673cc54f6c958ff35bd/data"
+              "name": "oras://community.wave.seqera.io/library/optitype_coincbc:3308fdb619aa2595",
+              "build_id": "bd-3308fdb619aa2595_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/0a/0aaca7463454e693f5646e40a31b4deb8a575f0ac5b3c853fd740ff3031cc117/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/optitype/.conda-lock/linux_amd64-bd-0b46ade42a5009b2_1.txt"
+              "lock_file": "modules/nf-core/optitype/.conda-lock/linux_amd64-bd-722e52fd4495c161_1.txt"
             }
           }
         }
       },
-      "git_sha": "fcad955c9c9529407951b09583707290c9220c94",
+      "git_sha": "7557e3468d1a55fe8c21500fd5c7b469560d89aa",
       "pipelines": [
         {
           "name": "hlatyping",
@@ -298026,7 +298229,7 @@
     {
       "name": "quast",
       "path": "modules/nf-core/quast/meta.yml",
-      "tree_sha": "76f4ae938e19ae1b0e22a7041c70f547f7d1d114",
+      "tree_sha": "4e08605479bb46342edbe99691d34fe43e6d7d50",
       "files": [
         "modules/nf-core/quast/environment.yml",
         "modules/nf-core/quast/main.nf",
@@ -298250,7 +298453,7 @@
           "@kevinmenden"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "9a034dd2c5df2c9b283e09ddf2667d9118b4ccd7",
       "pipelines": [
         {
           "name": "bacass",
@@ -425287,7 +425490,7 @@
     {
       "name": "orftable_fasta_gtf_buildorfcatalogue",
       "path": "subworkflows/nf-core/orftable_fasta_gtf_buildorfcatalogue/meta.yml",
-      "tree_sha": "7616dd9b8ece44647862728ab714144c67d25778",
+      "tree_sha": "ddc7f3b03764c4cda406fc16895fad4d3fe6e136",
       "files": [
         "subworkflows/nf-core/orftable_fasta_gtf_buildorfcatalogue/main.nf",
         "subworkflows/nf-core/orftable_fasta_gtf_buildorfcatalogue/meta.yml",
@@ -425385,7 +425588,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "c804473fd6f5dcffaf3ed5fd9a832b403808f3ef"
+      "git_sha": "7baf88e0ae1fe0e547509d7ed06aa1ed294bf13c"
     },
     {
       "name": "quant_tximport_summarizedexperiment",
@@ -426793,6 +426996,10 @@
           "version": "dev"
         },
         {
+          "name": "taxmarker",
+          "version": "dev"
+        },
+        {
           "name": "taxprofiler",
           "version": "2.0.1"
         },
@@ -427274,6 +427481,10 @@
         },
         {
           "name": "stableexpression",
+          "version": "dev"
+        },
+        {
+          "name": "taxmarker",
           "version": "dev"
         },
         {
@@ -427790,6 +428001,10 @@
         },
         {
           "name": "stableexpression",
+          "version": "dev"
+        },
+        {
+          "name": "taxmarker",
           "version": "dev"
         },
         {
@@ -429346,6 +429561,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "0853b48c6477aa76c2d77386169a0d510ac817d6",
-  "updated_at": "2026-09-08T02:12:37.650Z"
+  "commit_sha": "ad1f87495051bbda43fef851cdd069c2f05c16bb",
+  "updated_at": "2026-09-08T14:11:59.029Z"
 }
