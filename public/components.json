@@ -103395,6 +103395,189 @@
       "git_sha": "715597907f91bcf41eeddde3faed0e786d57a83d"
     },
     {
+      "name": "easypqp_convert",
+      "path": "modules/nf-core/easypqp/convert/meta.yml",
+      "tree_sha": "9afb3b713f106a27ffb7e816c1bd956ed3f28af7",
+      "files": [
+        "modules/nf-core/easypqp/convert/environment.yml",
+        "modules/nf-core/easypqp/convert/main.nf",
+        "modules/nf-core/easypqp/convert/meta.yml",
+        "modules/nf-core/easypqp/convert/tests/main.nf.test",
+        "modules/nf-core/easypqp/convert/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "easypqp_convert",
+        "description": "Convert peptide identifications (pepXML or idXML) and the matching spectra (mzML, mzXML or MGF) into EasyPQP PSM and peak pickle files for spectral library generation.",
+        "keywords": [
+          "proteomics",
+          "spectral library",
+          "dia",
+          "pepxml",
+          "idxml",
+          "mzml"
+        ],
+        "tools": [
+          {
+            "easypqp": {
+              "description": "Python package to generate spectral libraries for data-independent acquisition (DIA) proteomics from DDA search results.",
+              "homepage": "https://github.com/grosenberger/easypqp",
+              "documentation": "https://github.com/grosenberger/easypqp",
+              "tool_dev_url": "https://github.com/grosenberger/easypqp",
+              "licence": [
+                "BSD-3-Clause"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "id_file": {
+                "type": "file",
+                "description": "Peptide identifications for one MS run. Either a pepXML file (`*.pep.xml`, e.g. interact-*.pep.xml from the\nTrans-Proteomic Pipeline; PSMs without PeptideProphet/iProphet probabilities are ignored) or an OpenMS idXML\nfile (`*.idXML`, any score type; a q-value or PEP score is used when present). The idXML route is used by\nnf-core/mhcquant with Comet/Percolator results.\n",
+                "pattern": "*.{pep.xml,idXML}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3655"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3764"
+                  }
+                ]
+              }
+            },
+            {
+              "spectra": {
+                "type": "file",
+                "description": "Spectra of the same MS run in mzML, mzXML or MGF (timsTOF) format. The output pickles are named after the\nbasename of this file.\n",
+                "pattern": "*.{mzML,mzXML,mgf}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3244"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3654"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3651"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "unimod": {
+              "type": "file",
+              "description": "Optional UniMod XML file used to annotate modifications. EasyPQP's bundled UniMod is used when omitted.",
+              "pattern": "*.xml",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_2332"
+                }
+              ]
+            }
+          }
+        ],
+        "output": {
+          "psmpkl": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.psmpkl": {
+                  "type": "file",
+                  "description": "Pickled pandas DataFrame with the parsed PSMs. Named after the spectra file basename, which easypqp library uses to pair PSMs and peaks.",
+                  "pattern": "*.psmpkl"
+                }
+              }
+            ]
+          ],
+          "peakpkl": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.peakpkl": {
+                  "type": "file",
+                  "description": "Pickled pandas DataFrame with the annotated fragment ion peaks. Named after the spectra file basename, which easypqp library uses to pair PSMs and peaks.",
+                  "pattern": "*.peakpkl"
+                }
+              }
+            ]
+          ],
+          "versions_easypqp": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "easypqp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "easypqp --version | sed 's/.*version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "easypqp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "easypqp --version | sed 's/.*version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@jonasscheid"
+        ],
+        "maintainers": [
+          "@jonasscheid"
+        ]
+      },
+      "git_sha": "731ad7cf108acd9305a16aa167b7ef5bcf9dc43f"
+    },
+    {
       "name": "eautils_fastqstats",
       "path": "modules/nf-core/eautils/fastqstats/meta.yml",
       "tree_sha": "d79fda6cc9a757770f868dc03f17095a09fbd961",
@@ -422886,7 +423069,7 @@
     {
       "name": "fastq_qc_trim_filter_setstrandedness",
       "path": "subworkflows/nf-core/fastq_qc_trim_filter_setstrandedness/meta.yml",
-      "tree_sha": "f6caef15df4c982a2d39e3b03920f2cf25020749",
+      "tree_sha": "c64abbc75f888ec335b0a1d180c4a8283e52e82f",
       "files": [
         "subworkflows/nf-core/fastq_qc_trim_filter_setstrandedness/main.nf",
         "subworkflows/nf-core/fastq_qc_trim_filter_setstrandedness/meta.yml",
@@ -423134,6 +423317,13 @@
             }
           },
           {
+            "trim_reads_merged": {
+              "type": "file",
+              "description": "fastp's merged overlapping read pairs, produced only when `trimmer == 'fastp'` and\n`fastp_merge == true`. Empty otherwise. These reads are excluded from `reads`;\ncallers that want to use them downstream must consume this channel separately.\n\nStructure: [ val(meta), path(reads) ]\n",
+              "pattern": "*.merged.fastq.gz"
+            }
+          },
+          {
             "multiqc_files": {
               "type": "file",
               "description": "MultiQC-compatible output files from tools used in preprocessing, one file per item.\n\nStructure: [ val(meta), path(mqc) ]\n"
@@ -423325,7 +423515,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
+      "git_sha": "0853b48c6477aa76c2d77386169a0d510ac817d6",
       "pipelines": [
         {
           "name": "lncpipe",
@@ -429156,6 +429346,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "e7d162e6b238afb3313dc96e3a03f388f0cd6245",
-  "updated_at": "2026-09-07T14:12:27.174Z"
+  "commit_sha": "0853b48c6477aa76c2d77386169a0d510ac817d6",
+  "updated_at": "2026-09-08T02:12:37.650Z"
 }
