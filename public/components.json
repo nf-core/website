@@ -103400,7 +103400,7 @@
     {
       "name": "easypqp_convert",
       "path": "modules/nf-core/easypqp/convert/meta.yml",
-      "tree_sha": "9afb3b713f106a27ffb7e816c1bd956ed3f28af7",
+      "tree_sha": "b282b07b36208607529e443ce6cd3e30be160bac",
       "files": [
         "modules/nf-core/easypqp/convert/environment.yml",
         "modules/nf-core/easypqp/convert/main.nf",
@@ -103446,7 +103446,7 @@
               "id_file": {
                 "type": "file",
                 "description": "Peptide identifications for one MS run. Either a pepXML file (`*.pep.xml`, e.g. interact-*.pep.xml from the\nTrans-Proteomic Pipeline; PSMs without PeptideProphet/iProphet probabilities are ignored) or an OpenMS idXML\nfile (`*.idXML`, any score type; a q-value or PEP score is used when present). The idXML route is used by\nnf-core/mhcquant with Comet/Percolator results.\n",
-                "pattern": "*.{pep.xml,idXML}",
+                "pattern": "*.{pep.xml,pepxml,idXML}",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_3655"
@@ -103578,7 +103578,7 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "731ad7cf108acd9305a16aa167b7ef5bcf9dc43f"
+      "git_sha": "fab9e45e452a3087c9647f036437b7df35a43700"
     },
     {
       "name": "easypqp_library",
@@ -127152,7 +127152,7 @@
     {
       "name": "fqtk",
       "path": "modules/nf-core/fqtk/meta.yml",
-      "tree_sha": "69402ba53ac111c2b5ccaec33656a8bbd6eceba7",
+      "tree_sha": "bb2e69aab152c953af071d623c2064fa027bf323",
       "files": [
         "modules/nf-core/fqtk/environment.yml",
         "modules/nf-core/fqtk/main.nf",
@@ -127337,7 +127337,7 @@
           "@sam-white04"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "55bd7cff3f0511fc0a91381604ca90a524e680ca",
       "pipelines": [
         {
           "name": "demultiplex",
@@ -301918,7 +301918,7 @@
     {
       "name": "raxmlng",
       "path": "modules/nf-core/raxmlng/meta.yml",
-      "tree_sha": "f23de78316f8425f28fce897bd8ec35b288d7085",
+      "tree_sha": "06a4612fbaddf4080a97a9e75750947c5c8855d8",
       "files": [
         "modules/nf-core/raxmlng/environment.yml",
         "modules/nf-core/raxmlng/main.nf",
@@ -302071,7 +302071,252 @@
           "@aunderwo"
         ]
       },
-      "git_sha": "c2244f084072141a61e0571a52a4be98c55f3cc0"
+      "git_sha": "bfc020fb46e321f4b8b78d113780285629ccfb51"
+    },
+    {
+      "name": "raxmlng_search",
+      "path": "modules/nf-core/raxmlng/search/meta.yml",
+      "tree_sha": "b6bdb9c109934b3f45265ca349aa3909979beddb",
+      "files": [
+        "modules/nf-core/raxmlng/search/environment.yml",
+        "modules/nf-core/raxmlng/search/main.nf",
+        "modules/nf-core/raxmlng/search/meta.yml",
+        "modules/nf-core/raxmlng/search/tests/main.nf.test",
+        "modules/nf-core/raxmlng/search/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "raxmlng_search",
+        "description": "Maximum-likelihood tree search with RAxML-NG, optionally combined with its integrated automatic model selection (MOOSE)",
+        "keywords": [
+          "phylogeny",
+          "newick",
+          "maximum likelihood",
+          "model selection"
+        ],
+        "tools": [
+          {
+            "raxmlng": {
+              "description": "RAxML-NG is a phylogenetic tree inference tool which uses maximum-likelihood (ML) optimality criterion.",
+              "homepage": "https://github.com/amkozlov/raxml-ng",
+              "documentation": "https://github.com/amkozlov/raxml-ng/wiki",
+              "tool_dev_url": "https://github.com/amkozlov/raxml-ng",
+              "doi": "10.1093/bioinformatics/btz305",
+              "licence": [
+                "GPL v2-or-later"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information (e.g. [ id:'sample1' ])"
+              }
+            },
+            {
+              "alignment": {
+                "type": "file",
+                "description": "A FASTA/PHYLIP format multiple sequence alignment file",
+                "pattern": "*.{fasta,fas,fa,mfa,phy}",
+                "ontologies": []
+              }
+            },
+            {
+              "model": {
+                "type": "string",
+                "description": "The substitution model to use for the phylogenetic inference (e.g. \"GTR+G\"),\nor \"DNA\"/\"AA\"/\"auto\" to trigger RAxML-NG's integrated automatic model selection\n(MOOSE) instead of a fixed model. Ignored if `partitions` is also given.\n"
+              }
+            }
+          ],
+          {
+            "tree": {
+              "type": "file",
+              "description": "Optional starting tree in Newick format. If not given, RAxML-NG generates its\nown starting tree(s) (parsimony/random, auto-detected count based on MSA\ndifficulty).\n",
+              "pattern": "*.{nwk,newick,tree,treefile}",
+              "ontologies": [],
+              "optional": true
+            }
+          },
+          {
+            "tree_constraint": {
+              "type": "file",
+              "description": "A backbone/topology constraint tree in Newick format",
+              "pattern": "*.{nwk,newick,tree,treefile}",
+              "ontologies": [],
+              "optional": true
+            }
+          },
+          {
+            "partitions": {
+              "type": "file",
+              "description": "A RAxML-NG partition/model-definition file, used in place of the `model`\nstring input when given (e.g. for partitioned analyses, or `--model auto=FILE`\nfor MOOSE on partitioned data).\n",
+              "pattern": "*.{txt,part,partitions}",
+              "ontologies": [],
+              "optional": true
+            }
+          },
+          {
+            "site_weights": {
+              "type": "file",
+              "description": "A file of positive-integer MSA column weights",
+              "pattern": "*.{txt}",
+              "ontologies": [],
+              "optional": true
+            }
+          }
+        ],
+        "output": {
+          "phylogeny": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.raxml.bestTree": {
+                  "type": "file",
+                  "description": "The best-scoring ML tree found, in Newick format",
+                  "pattern": "*.raxml.bestTree",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "best_model": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.raxml.bestModel": {
+                  "type": "file",
+                  "description": "The optimized substitution model in RAxML-NG's own machine-readable model\nstring format -- whether `model` was a fixed model string or MOOSE picked it\nautomatically\n",
+                  "pattern": "*.raxml.bestModel",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "ml_trees": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.raxml.mlTrees": {
+                  "type": "file",
+                  "description": "All ML trees from every independent tree search, in Newick format",
+                  "pattern": "*.raxml.mlTrees",
+                  "optional": true,
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "start_tree": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.raxml.startTree": {
+                  "type": "file",
+                  "description": "The starting tree(s) used for the search, in Newick format",
+                  "pattern": "*.raxml.startTree",
+                  "optional": true,
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.raxml.log": {
+                  "type": "file",
+                  "description": "RAxML-NG's run log",
+                  "pattern": "*.raxml.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_raxmlng": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "raxmlng": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "raxml-ng --version 2>&1 | sed '/RAxML-NG v/!d;s/.*v. //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "raxmlng": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "raxml-ng --version 2>&1 | sed '/RAxML-NG v/!d;s/.*v. //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@erikrikarddaniel"
+        ],
+        "maintainers": [
+          "@erikrikarddaniel"
+        ]
+      },
+      "git_sha": "bfc020fb46e321f4b8b78d113780285629ccfb51"
     },
     {
       "name": "rbt_vcfsplit",
@@ -429562,6 +429807,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "9f93628271da521143182197ebc41a3a134051cd",
-  "updated_at": "2026-09-09T02:13:04.002Z"
+  "commit_sha": "bfc020fb46e321f4b8b78d113780285629ccfb51",
+  "updated_at": "2026-09-09T14:13:19.320Z"
 }
