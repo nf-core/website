@@ -61,7 +61,7 @@ Very Important Pipelines should set the standard for clarity and usability.
 Recommended practices:
 
 - A pipeline logo and associated visual assets
-- A pipeline metro map
+- A pipeline [metro map](/docs/community/brand/workflow-schematics), declared with `manifest.diagram`
 - Extended documentation beyond the minimum requirements
 - All outputs fully described in the documentation
 - Practical usage tutorials for common workflows
