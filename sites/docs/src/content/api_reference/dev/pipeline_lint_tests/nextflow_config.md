@@ -49,9 +49,22 @@ are not checked and will be assumed to be missing.
 **The following variables throw warnings if missing:**
 
 - `manifest.mainScript`: The filename of the main pipeline script (should be `main.nf`)
+- `manifest.diagram`
+  - A relative path to a workflow diagram (metro map) for the pipeline, eg. `docs/images/metro_map.svg`
+  - Any SVG works, including hand-drawn ones. [nf-metro](https://seqeralabs.github.io/nf-metro/latest/)
+    can generate one from a config file, if you’d like a hand.
+  - Requires Nextflow `26.10.0` or later, but is safe to set for older versions - they ignore it.
+  - If set, the value must be valid or the test **fails** (see below)
 - `timeline.file`, `trace.file`, `report.file`, `dag.file`
   - Default filenames for the timeline, trace and report
   - The DAG file path should end with `.svg` (If Graphviz is not installed, Nextflow will generate a `.dot` file instead)
+
+**The following variables fail the test if they are set to an invalid value:**
+
+- `manifest.diagram`
+  - Must be a relative path inside the pipeline (not a URL, absolute path or `../`)
+  - Must be one of the image formats that Nextflow accepts: `.svg`, `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`
+  - Must point at a file that exists in the pipeline
 
 **The following variables are depreciated and fail the test if they are still present:**
 
