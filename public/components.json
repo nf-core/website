@@ -31699,7 +31699,7 @@
       "pipelines": [
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -43790,7 +43790,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sammyseq",
@@ -44007,7 +44007,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sammyseq",
@@ -44316,7 +44316,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "smrnaseq",
@@ -44471,7 +44471,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "smrnaseq",
@@ -53100,7 +53100,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -80687,7 +80687,7 @@
     {
       "name": "custom_clustermetrics",
       "path": "modules/nf-core/custom/clustermetrics/meta.yml",
-      "tree_sha": "fddf2a10b5e1b0d1bf9c8c26d17c69dbfd143780",
+      "tree_sha": "840fd0ef2d0903609a29de96fef651c0e1c58bac",
       "files": [
         "modules/nf-core/custom/clustermetrics/environment.yml",
         "modules/nf-core/custom/clustermetrics/main.nf",
@@ -80699,13 +80699,14 @@
       "type": "module",
       "meta": {
         "name": "CUSTOM_CLUSTERMETRICS",
-        "description": "Computes clustering quality metrics (silhouette, Calinski-Harabasz, Davies-Bouldin) and performs k-sweep analysis",
+        "description": "Computes clustering quality metrics (silhouette, Calinski-Harabasz, Davies-Bouldin), performs k-sweep and k-distance analysis",
         "keywords": [
           "clustering",
           "metrics",
           "silhouette",
           "calinski-harabasz",
           "davies-bouldin",
+          "k-distance",
           "evaluation"
         ],
         "tools": [
@@ -80732,8 +80733,8 @@
             {
               "features": {
                 "type": "file",
-                "description": "Tab-separated feature matrix with a `sample_id` column and one\ncolumn per numeric feature (e.g. PCA scores).\n",
-                "pattern": "*.tsv",
+                "description": "Sample-by-feature matrix: TSV with a `sample_id` column, or a\nPLINK2 `.eigenvec` file (`#FID IID PC1 ...` or `#IID PC1 ...`).\nFamily/source ID columns are dropped; remaining columns are\nnumeric features (e.g. PCA scores).\n",
+                "pattern": "*.{tsv,txt,eigenvec}",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_3475"
@@ -80872,12 +80873,12 @@
           "@dbaku42"
         ]
       },
-      "git_sha": "2599d25d757e0d966a103b53a7304385df112be2"
+      "git_sha": "9f93628271da521143182197ebc41a3a134051cd"
     },
     {
       "name": "custom_clustervisualization",
       "path": "modules/nf-core/custom/clustervisualization/meta.yml",
-      "tree_sha": "bb043e2d970428bafb2dff189032c8d37baf444c",
+      "tree_sha": "0c1b087bc7e4ee0d8a38ef83f6b334d4f9bdafbe",
       "files": [
         "modules/nf-core/custom/clustervisualization/environment.yml",
         "modules/nf-core/custom/clustervisualization/main.nf",
@@ -80933,8 +80934,8 @@
             {
               "features": {
                 "type": "file",
-                "description": "Tab-separated feature matrix with a `sample_id` column and one\ncolumn per numeric feature (e.g. PCA scores).\n",
-                "pattern": "*.tsv",
+                "description": "Sample-by-feature matrix: TSV with a `sample_id` column, or a\nPLINK2 `.eigenvec` file (`#FID IID PC1 ...` or `#IID PC1 ...`).\nFamily/source ID columns are dropped; remaining columns are\nnumeric features (e.g. PCA scores).\n",
+                "pattern": "*.{tsv,txt,eigenvec}",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_3475"
@@ -81075,7 +81076,7 @@
           "@dbaku42"
         ]
       },
-      "git_sha": "2599d25d757e0d966a103b53a7304385df112be2"
+      "git_sha": "9f93628271da521143182197ebc41a3a134051cd"
     },
     {
       "name": "custom_collectfeaturecounts",
@@ -85181,7 +85182,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "viralrecon",
@@ -114471,7 +114472,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -157091,7 +157092,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -238802,7 +238803,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -313215,7 +313216,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -322504,7 +322505,7 @@
       "pipelines": [
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -324420,7 +324421,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -325126,7 +325127,7 @@
       "pipelines": [
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -325379,7 +325380,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -325772,7 +325773,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -326285,7 +326286,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -326534,7 +326535,7 @@
       "pipelines": [
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -328135,7 +328136,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -328640,7 +328641,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -329087,7 +329088,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sammyseq",
@@ -363958,7 +363959,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -364255,7 +364256,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -390154,7 +390155,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -391460,7 +391461,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "scnanoseq",
@@ -391653,7 +391654,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -426945,7 +426946,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sammyseq",
@@ -427433,7 +427434,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sammyseq",
@@ -427953,7 +427954,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sammyseq",
@@ -429561,6 +429562,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "ad1f87495051bbda43fef851cdd069c2f05c16bb",
-  "updated_at": "2026-09-08T14:11:59.029Z"
+  "commit_sha": "9f93628271da521143182197ebc41a3a134051cd",
+  "updated_at": "2026-09-09T02:13:04.002Z"
 }
