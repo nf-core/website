@@ -34,12 +34,16 @@ It fails if the value is a URL rather than a relative path, is not one of the su
 
 [nf-metro](https://seqeralabs.github.io/nf-metro/latest/) renders a metro map from a text file, so the diagram lives in the pipeline repo as source and can be re-rendered whenever the workflow changes.
 
-Describe the pipeline as a Mermaid graph, with `%%metro` directives to declare the lines:
+Describe the pipeline as a Mermaid graph, with `%%metro` directives to declare the lines.
+NB: `PIPELINE` is a placeholder for your pipeline's name.
 
 ```txt title="assets/metro_map.mmd"
-%%metro title: Simple Pipeline
+%%metro title: nf-core/PIPELINE
+%%metro logo: ../docs/images/nf-core-PIPELINE_logo_light.png | ../docs/images/nf-core-PIPELINE_logo_dark.png
+%%metro style: dark
 %%metro line: main | Main | #4CAF50
 %%metro line: qc | Quality Control | #2196F3 | dashed
+%%metro legend: bl
 
 graph LR
     input[Input]
@@ -57,7 +61,33 @@ Then render it and commit the SVG:
 nf-metro render assets/metro_map.mmd -o docs/images/metro_map.svg
 ```
 
-Colours in the SVG are written as CSS `light-dark()` pairs, so one file works on both light and dark backgrounds - no need for a `_light` / `_dark` pair.
+### Light and dark mode
+
+Colours in the SVG are written as CSS `light-dark()` pairs, so one file works on both light and dark backgrounds - there's no need for a `_light` / `_dark` SVG pair.
+
+However, you may want `_light` and `_dark` pairs for PNG outputs for convenience for users.
+You can also generate animated versions with little circles that move along the tracks.
+
+A typical set of commands to generate these variants is as follows:
+
+```bash
+pip install 'nf-metro>=2.0.0'
+
+# Static SVG + dark-mode PNG
+nf-metro render assets/metro_map.mmd \
+    -o docs/images/metro_map.svg \
+    -o docs/images/metro_map_dark.png
+
+# Static light-mode PNG
+nf-metro render assets/metro_map.mmd --mode light \
+    -o docs/images/metro_map_light.png
+
+# Animated SVG
+nf-metro render assets/metro_map.mmd --animate \
+    -o docs/images/metro_map_animated.svg
+```
+
+### Additional features
 
 If you like, nf-metro can also export interactive HTML, light up stations in real time as a run progresses, and import a Nextflow `-with-dag` diagram as a starting point.
 
