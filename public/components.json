@@ -53072,7 +53072,7 @@
         },
         {
           "name": "pixelator",
-          "version": "5.0.1"
+          "version": "5.0.2"
         },
         {
           "name": "raredisease",
@@ -66277,7 +66277,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -83905,7 +83905,13 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "74be114b46468b8387826e7ffe5bf7c25ba2fc09"
+      "git_sha": "74be114b46468b8387826e7ffe5bf7c25ba2fc09",
+      "pipelines": [
+        {
+          "name": "phyloplace",
+          "version": "2.2.0"
+        }
+      ]
     },
     {
       "name": "custom_rsemmergecounts",
@@ -108399,7 +108405,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "taxmarker",
@@ -108565,7 +108571,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -131324,7 +131330,13 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "f207500ed447dfcdae0986cb2cb92e4d0d59c845"
+      "git_sha": "f207500ed447dfcdae0986cb2cb92e4d0d59c845",
+      "pipelines": [
+        {
+          "name": "phyloplace",
+          "version": "2.2.0"
+        }
+      ]
     },
     {
       "name": "gappa_examineassign",
@@ -131553,7 +131565,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -131691,7 +131703,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -131921,7 +131933,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -176693,7 +176705,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "taxmarker",
@@ -177070,7 +177082,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "taxmarker",
@@ -177659,7 +177671,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "proteinfamilies",
@@ -177837,7 +177849,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "proteinfamilies",
@@ -178596,7 +178608,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -178860,7 +178872,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "proteinannotator",
@@ -200584,7 +200596,7 @@
     {
       "name": "krakenuniq_preloadedkrakenuniq",
       "path": "modules/nf-core/krakenuniq/preloadedkrakenuniq/meta.yml",
-      "tree_sha": "18defd353902a2b012d9beba3d22e7e26c7946ba",
+      "tree_sha": "d4e7cb0a57af79e6c1270297d2218d34a999913c",
       "files": [
         "modules/nf-core/krakenuniq/preloadedkrakenuniq/environment.yml",
         "modules/nf-core/krakenuniq/preloadedkrakenuniq/main.nf",
@@ -200809,7 +200821,7 @@
           "@Midnighter"
         ]
       },
-      "git_sha": "53c5d14fe7173a1fee9973dcba5cf79164760770",
+      "git_sha": "65d35c30a46419599cfd1b2b183e6f17af6889f6",
       "pipelines": [
         {
           "name": "taxprofiler",
@@ -210940,7 +210952,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "proteinfamilies",
@@ -234566,6 +234578,401 @@
       ]
     },
     {
+      "name": "modkit_extractcalls",
+      "path": "modules/nf-core/modkit/extractcalls/meta.yml",
+      "tree_sha": "e00da92878bec68e506a889a59b5fbf205445a66",
+      "files": [
+        "modules/nf-core/modkit/extractcalls/environment.yml",
+        "modules/nf-core/modkit/extractcalls/main.nf",
+        "modules/nf-core/modkit/extractcalls/meta.yml",
+        "modules/nf-core/modkit/extractcalls/tests/main.nf.test",
+        "modules/nf-core/modkit/extractcalls/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "modkit_extractcalls",
+        "description": "Produce a per-read per-position table of base modification **calls**\n(pass/fail/filtered, with the called base) from a modBAM using the same\nthresholding algorithm as `modkit pileup`. Complementary to `modkit\nextract full`, which emits raw probabilities: `extract calls` emits the\nthresholded categorical decision per site per read.\n",
+        "keywords": [
+          "modkit",
+          "methylation",
+          "extract",
+          "calls",
+          "read-level",
+          "modbam",
+          "nanopore",
+          "ont"
+        ],
+        "tools": [
+          {
+            "modkit": {
+              "description": "A bioinformatics tool for working with modified bases in Oxford Nanopore sequencing data.",
+              "homepage": "https://github.com/nanoporetech/modkit",
+              "documentation": "https://nanoporetech.github.io/modkit/",
+              "tool_dev_url": "https://github.com/nanoporetech/modkit",
+              "licence": [
+                "Oxford Nanopore Technologies PLC. Public License Version 1.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`. The output inherits this meta.\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Input modBAM/modCRAM with MM/ML tags. A CRAM input also requires\n`fasta` to be supplied.\n",
+                "pattern": "*.{bam,cram}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "Index for `bam` — `.bai`/`.csi` for a BAM, `.crai` for a CRAM.\n",
+                "pattern": "*.{bai,csi,crai}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'mm10' ]`. May be `[[], [], []]` to skip — reference\ncontext columns will then be \".\" in the output.\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Optional reference FASTA. Required only to populate reference-context columns in the output.",
+                "pattern": "*.{fa,fasta,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Samtools FASTA index for `fasta`.",
+                "pattern": "*.fai",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`.\n"
+                }
+              },
+              {
+                "*.tsv{,.gz}": {
+                  "type": "file",
+                  "description": "Per-read per-position call table. BGZF-compressed when `--bgzf`\nis passed via `ext.args`.\n",
+                  "pattern": "*.{tsv,tsv.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`.\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "Optional modkit debug log (only emitted when `--log-filepath\n<name>.log` is passed via `ext.args`).\n",
+                  "pattern": "*.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_modkit": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "modkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "modkit --version | sed 's/modkit //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "modkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "modkit --version | sed 's/modkit //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@sahuno"
+        ],
+        "maintainers": [
+          "@sahuno"
+        ]
+      },
+      "git_sha": "6cd5243e5a3e1e8882b438a33e0a5e106970433a"
+    },
+    {
+      "name": "modkit_extractfull",
+      "path": "modules/nf-core/modkit/extractfull/meta.yml",
+      "tree_sha": "b0c1757ba78455016aeeca81a105e628b4aa48bf",
+      "files": [
+        "modules/nf-core/modkit/extractfull/environment.yml",
+        "modules/nf-core/modkit/extractfull/main.nf",
+        "modules/nf-core/modkit/extractfull/meta.yml",
+        "modules/nf-core/modkit/extractfull/tests/main.nf.test",
+        "modules/nf-core/modkit/extractfull/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "modkit_extractfull",
+        "description": "Transform the probabilities from the MM/ML tags in a modBAM into a\ntab-separated per-read-per-position table. Emits one row for every\nmodified-base probability call in every read — useful for downstream\ncustom filtering, plotting, and ML training. Optionally BGZF-compressed\nvia `--bgzf` in `ext.args`.\n",
+        "keywords": [
+          "modkit",
+          "methylation",
+          "extract",
+          "read-level",
+          "modbam",
+          "nanopore",
+          "ont"
+        ],
+        "tools": [
+          {
+            "modkit": {
+              "description": "A bioinformatics tool for working with modified bases in Oxford Nanopore sequencing data.",
+              "homepage": "https://github.com/nanoporetech/modkit",
+              "documentation": "https://nanoporetech.github.io/modkit/",
+              "tool_dev_url": "https://github.com/nanoporetech/modkit",
+              "licence": [
+                "Oxford Nanopore Technologies PLC. Public License Version 1.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`. The output inherits this meta.\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Input modBAM with MM/ML tags.",
+                "pattern": "*.{bam,cram}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index (`.bai` or `.csi`). Optional — if absent, modkit does a serial scan of the BAM (see `--ignore-index`).",
+                "pattern": "*.{bai,csi}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'mm10' ]`. May be `[[], [], []]` to skip (modkit works\nunaligned, but reference context columns will be missing).\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference FASTA. Required to populate reference-context columns in the output (`ref_kmer`, strand, etc.).",
+                "pattern": "*.{fa,fasta,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Samtools FASTA index for `fasta`.",
+                "pattern": "*.fai",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`.\n"
+                }
+              },
+              {
+                "*.tsv{,.gz}": {
+                  "type": "file",
+                  "description": "Per-read-per-position probability table. BGZF-compressed when\n`--bgzf` is passed via `ext.args`.\n",
+                  "pattern": "*.{tsv,tsv.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`.\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "Optional modkit debug log (only emitted when `--log-filepath\n<name>.log` is passed via `ext.args`).\n",
+                  "pattern": "*.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_modkit": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "modkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "modkit --version | sed 's/modkit //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "modkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "modkit --version | sed 's/modkit //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@sahuno"
+        ],
+        "maintainers": [
+          "@sahuno"
+        ]
+      },
+      "git_sha": "2d92423787076c29ad6d6d72bbf5427c8b5ed3b4"
+    },
+    {
       "name": "modkit_pileup",
       "path": "modules/nf-core/modkit/pileup/meta.yml",
       "tree_sha": "0a46e6bbcd0e8be998326aaf58ecf8b54b2f5f58",
@@ -238731,7 +239138,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "proteinannotator",
@@ -346346,7 +346753,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -417679,7 +418086,7 @@
     {
       "name": "bcl_demultiplex",
       "path": "subworkflows/nf-core/bcl_demultiplex/meta.yml",
-      "tree_sha": "c75a91a8c314e29d81b250b90fb0e45caaa657af",
+      "tree_sha": "27c110eece1007bc0486d1b3986e02e9957b0825",
       "files": [
         "subworkflows/nf-core/bcl_demultiplex/main.nf",
         "subworkflows/nf-core/bcl_demultiplex/meta.yml",
@@ -417796,7 +418203,7 @@
           "@matthdsm"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
+      "git_sha": "c5d82c0d48f39025e56264b572575255f77847bc",
       "pipelines": [
         {
           "name": "demultiplex",
@@ -420053,7 +420460,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -420471,7 +420878,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -427498,11 +427905,11 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "pixelator",
-          "version": "5.0.1"
+          "version": "5.0.2"
         },
         {
           "name": "plasmodiumdrugres",
@@ -427986,11 +428393,11 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "pixelator",
-          "version": "5.0.1"
+          "version": "5.0.2"
         },
         {
           "name": "plasmodiumdrugres",
@@ -428510,11 +428917,11 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "pixelator",
-          "version": "5.0.1"
+          "version": "5.0.2"
         },
         {
           "name": "plasmodiumdrugres",
@@ -430186,6 +430593,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "b80f9f534316d36fec85fa36cf6b4c60ab8c5b96",
-  "updated_at": "2026-09-11T02:12:53.852Z"
+  "commit_sha": "c5d82c0d48f39025e56264b572575255f77847bc",
+  "updated_at": "2026-09-11T14:12:11.671Z"
 }
