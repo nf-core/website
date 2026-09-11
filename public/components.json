@@ -256595,7 +256595,7 @@
     {
       "name": "orthofinder",
       "path": "modules/nf-core/orthofinder/meta.yml",
-      "tree_sha": "8b6a4aa422aeddc46d6c804b4ed33e7e3a787b97",
+      "tree_sha": "0f18082cb61f583ce1b9d1a52d28e7b3db352733",
       "files": [
         "modules/nf-core/orthofinder/environment.yml",
         "modules/nf-core/orthofinder/main.nf",
@@ -256672,7 +256672,7 @@
                 }
               },
               {
-                "$prefix": {
+                "$results_dir": {
                   "type": "directory",
                   "description": "OrthoFinder output directory"
                 }
@@ -256688,9 +256688,59 @@
                 }
               },
               {
-                "$prefix/WorkingDirectory": {
+                "$results_dir/WorkingDirectory": {
                   "type": "directory",
                   "description": "OrthoFinder WorkingDirectory (used for the resume function)"
+                }
+              }
+            ]
+          ],
+          "single_copy_seqs": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "$results_dir/Single_Copy_Orthologue_Sequences/": {
+                  "type": "directory",
+                  "description": "Directory of FASTA files, one per orthogroup that contains exactly one gene\nper species. May be empty if no single-copy orthologues were found.\n"
+                }
+              }
+            ]
+          ],
+          "orthogroups": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "$results_dir/Orthogroups/Orthogroups.tsv": {
+                  "type": "file",
+                  "description": "Tab-separated file listing the genes belonging to each orthogroup, one row\nper orthogroup and one column per species.\n",
+                  "pattern": "*.tsv"
+                }
+              }
+            ]
+          ],
+          "sptree": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "$results_dir/Species_Tree/SpeciesTree_rooted_node_labels.txt": {
+                  "type": "file",
+                  "description": "Rooted species tree, with internal nodes labelled, in Newick format.",
+                  "pattern": "*.txt"
                 }
               }
             ]
@@ -256751,7 +256801,7 @@
           "@chriswyatt1"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "b80f9f534316d36fec85fa36cf6b4c60ab8c5b96",
       "pipelines": [
         {
           "name": "genomeqc",
@@ -327109,7 +327159,7 @@
     {
       "name": "samtools_merge",
       "path": "modules/nf-core/samtools/merge/meta.yml",
-      "tree_sha": "26b3c27fd1bdd2f5344d243d5bd0c4ef73978393",
+      "tree_sha": "aeefde7358d1c83e11577fbecfeb16167f8f7be0",
       "files": [
         "modules/nf-core/samtools/merge/environment.yml",
         "modules/nf-core/samtools/merge/main.nf",
@@ -327198,7 +327248,14 @@
                 "ontologies": []
               }
             }
-          ]
+          ],
+          {
+            "index_format": {
+              "type": "string",
+              "description": "Index format to use (optional)",
+              "pattern": "bai|csi|crai"
+            }
+          }
         ],
         "output": {
           "bam": [
@@ -327246,9 +327303,9 @@
                 }
               },
               {
-                "*.{bai,crai,csi}": {
+                "${prefix}.${file_type}.{bai,crai,csi}": {
                   "type": "file",
-                  "description": "BAM index file (optional)",
+                  "description": "BAM/CRAM index file, generated when index_format is specified. Can only be generated if the input files are coordinate sorted.",
                   "pattern": "*.{bai,crai,csi}",
                   "ontologies": []
                 }
@@ -327316,7 +327373,7 @@
           "@matthdsm"
         ]
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "8fd5fe1c1e410ea530995d243bf49cd91e401d87",
       "pipelines": [
         {
           "name": "bamtofastq",
@@ -412858,7 +412915,7 @@
     {
       "name": "bam_applybqsr",
       "path": "subworkflows/nf-core/bam_applybqsr/meta.yml",
-      "tree_sha": "b379e385868d74e72f686cc6b083c2ce4cedf735",
+      "tree_sha": "77028f73a41bb88a4d276cbaee91aa59d520eb5c",
       "files": [
         "subworkflows/nf-core/bam_applybqsr/main.nf",
         "subworkflows/nf-core/bam_applybqsr/meta.yml",
@@ -412926,7 +412983,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
+      "git_sha": "8fd5fe1c1e410ea530995d243bf49cd91e401d87"
     },
     {
       "name": "bam_cnv_wisecondorx",
@@ -430129,6 +430186,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "3b8b3417008c77642d7023e8d74810bb09261540",
-  "updated_at": "2026-09-10T14:11:59.346Z"
+  "commit_sha": "b80f9f534316d36fec85fa36cf6b4c60ab8c5b96",
+  "updated_at": "2026-09-11T02:12:53.852Z"
 }
