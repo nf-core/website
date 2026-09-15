@@ -23183,7 +23183,7 @@
     {
       "name": "bbmap_bbnorm",
       "path": "modules/nf-core/bbmap/bbnorm/meta.yml",
-      "tree_sha": "ef444011a9e3fc5fc17b658e081b38d3a9d059c8",
+      "tree_sha": "d62eccf4d6c64435e6e98a31292f23c2eeb9a340",
       "files": [
         "modules/nf-core/bbmap/bbnorm/environment.yml",
         "modules/nf-core/bbmap/bbnorm/main.nf",
@@ -23332,7 +23332,7 @@
           "@danilodileo"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "57ce8038e3afe6bc6c6fdd2b3bf2abf5077b96a7",
       "pipelines": [
         {
           "name": "mag",
@@ -27057,6 +27057,10 @@
       "git_sha": "feef37435aea56816adf4b3bde1fc76aac327a8d",
       "pipelines": [
         {
+          "name": "abotyper",
+          "version": "dev"
+        },
+        {
           "name": "longraredisease",
           "version": "1.0.0"
         },
@@ -28980,6 +28984,10 @@
       "git_sha": "feef37435aea56816adf4b3bde1fc76aac327a8d",
       "pipelines": [
         {
+          "name": "abotyper",
+          "version": "dev"
+        },
+        {
           "name": "genomicrelatedness",
           "version": "dev"
         },
@@ -30362,6 +30370,10 @@
       },
       "git_sha": "feef37435aea56816adf4b3bde1fc76aac327a8d",
       "pipelines": [
+        {
+          "name": "abotyper",
+          "version": "dev"
+        },
         {
           "name": "alleleexpression",
           "version": "dev"
@@ -64602,6 +64614,10 @@
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
         {
+          "name": "abotyper",
+          "version": "dev"
+        },
+        {
           "name": "longraredisease",
           "version": "1.0.0"
         },
@@ -84282,7 +84298,7 @@
       "pipelines": [
         {
           "name": "fetchngs",
-          "version": "1.12.0"
+          "version": "1.13.0"
         }
       ]
     },
@@ -114719,7 +114735,13 @@
           "@camlloyd"
         ]
       },
-      "git_sha": "6b184b1389e6b41615c169906a621c99f17dc24e"
+      "git_sha": "6b184b1389e6b41615c169906a621c99f17dc24e",
+      "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.13.0"
+        }
+      ]
     },
     {
       "name": "fastqe",
@@ -205773,7 +205795,7 @@
     {
       "name": "lissero",
       "path": "modules/nf-core/lissero/meta.yml",
-      "tree_sha": "e14a4e29ea6931d435825d5e0edef891b019abcc",
+      "tree_sha": "d260a8871195de063ad1b3e7548fa06603220b0b",
       "files": [
         "modules/nf-core/lissero/environment.yml",
         "modules/nf-core/lissero/main.nf",
@@ -205845,19 +205867,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_lissero": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "lissero": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "lissero --version 2>&1 | sed 's/.*LisSero //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "lissero": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "lissero --version 2>&1 | sed 's/.*LisSero //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -205867,7 +205921,7 @@
           "@rpetit3"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "3b50b772ef3c61f71db881dbe17aa170c34552c4"
     },
     {
       "name": "llamacpppython_run",
@@ -249292,6 +249346,453 @@
           "version": "2.0.1"
         }
       ]
+    },
+    {
+      "name": "nucleoatac_run",
+      "path": "modules/nf-core/nucleoatac/run/meta.yml",
+      "tree_sha": "52aa5e1aad3612a72f1117a99a312a0e3c518d93",
+      "files": [
+        "modules/nf-core/nucleoatac/run/environment.yml",
+        "modules/nf-core/nucleoatac/run/main.nf",
+        "modules/nf-core/nucleoatac/run/meta.yml",
+        "modules/nf-core/nucleoatac/run/tests/main.nf.test",
+        "modules/nf-core/nucleoatac/run/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "nucleoatac_run",
+        "description": "Call nucleosome positions and occupancy from paired-end ATAC-seq data",
+        "keywords": [
+          "atac-seq",
+          "nucleosome",
+          "occupancy",
+          "positioning"
+        ],
+        "tools": [
+          {
+            "nucleoatac": {
+              "description": "Python package for calling nucleosomes using ATAC-seq data",
+              "homepage": "https://github.com/GreenleafLab/NucleoATAC",
+              "documentation": "https://nucleoatac.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/GreenleafLab/NucleoATAC",
+              "doi": "10.1101/gr.192294.115",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:nucleoatac"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Coordinate-sorted BAM file",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file",
+                "pattern": "*.{bai,csi}",
+                "ontologies": []
+              }
+            },
+            {
+              "bed": {
+                "type": "file",
+                "description": "Sorted non-overlapping BED file with regions for nucleosome analysis",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome FASTA used for alignment",
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "FASTA index file",
+                "pattern": "*.fai",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "nucpos": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.nucpos.bed*": {
+                  "type": "file",
+                  "description": "Nucleosome dyad calls",
+                  "pattern": "*.nucpos.bed*",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "nucpos_redundant": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.nucpos.redundant.bed*": {
+                  "type": "file",
+                  "description": "Redundant nucleosome dyad calls",
+                  "pattern": "*.nucpos.redundant.bed*",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "nfrpos": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.nfrpos.bed*": {
+                  "type": "file",
+                  "description": "Nucleosome-free region positions",
+                  "pattern": "*.nfrpos.bed*",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "nucmap_combined": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.nucmap_combined.bed*": {
+                  "type": "file",
+                  "description": "Combined low- and high-resolution nucleosome calls",
+                  "pattern": "*.nucmap_combined.bed*",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "occpeaks": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.occpeaks.bed*": {
+                  "type": "file",
+                  "description": "Low-resolution nucleosome occupancy peaks",
+                  "pattern": "*.occpeaks.bed*",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "occupancy": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.occ.bedgraph*": {
+                  "type": "file",
+                  "description": "Nucleosome occupancy score bedGraph",
+                  "pattern": "*.occ.bedgraph*",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3583"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "occupancy_lower_bound": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.occ.lower_bound.bedgraph*": {
+                  "type": "file",
+                  "description": "Lower-bound nucleosome occupancy score bedGraph",
+                  "pattern": "*.occ.lower_bound.bedgraph*",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3583"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "occupancy_upper_bound": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.occ.upper_bound.bedgraph*": {
+                  "type": "file",
+                  "description": "Upper-bound nucleosome occupancy score bedGraph",
+                  "pattern": "*.occ.upper_bound.bedgraph*",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3583"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "signal": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.nucleoatac_signal.bedgraph*": {
+                  "type": "file",
+                  "description": "Normalized NucleoATAC cross-correlation signal bedGraph",
+                  "pattern": "*.nucleoatac_signal.bedgraph*",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3583"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "signal_smooth": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.nucleoatac_signal.smooth.bedgraph*": {
+                  "type": "file",
+                  "description": "Smoothed normalized NucleoATAC signal bedGraph",
+                  "pattern": "*.nucleoatac_signal.smooth.bedgraph*",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3583"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "fragment_sizes": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.fragmentsizes.txt": {
+                  "type": "file",
+                  "description": "Fragment size distribution in the input regions",
+                  "pattern": "*.fragmentsizes.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "nuc_dist": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.nuc_dist.txt": {
+                  "type": "file",
+                  "description": "Estimated nucleosomal fragment size distribution",
+                  "pattern": "*.nuc_dist.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "vmat": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.VMat": {
+                  "type": "file",
+                  "description": "Normalized V-plot matrix for cross-correlation",
+                  "pattern": "*.VMat",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "plots": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.eps": {
+                  "type": "file",
+                  "description": "EPS diagnostic plots",
+                  "pattern": "*.eps",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_nucleoatac": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "nucleoatac": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "nucleoatac --version | sed \"s/^nucleoatac //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "nucleoatac": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "nucleoatac --version | sed \"s/^nucleoatac //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@PFRoux"
+        ],
+        "maintainers": [
+          "@PFRoux"
+        ]
+      },
+      "git_sha": "1a1e61a10e29c2763c902ad3e49290d7814d62e0"
     },
     {
       "name": "nucmer",
@@ -297209,13 +297710,14 @@
     {
       "name": "qualimap_bamqc",
       "path": "modules/nf-core/qualimap/bamqc/meta.yml",
-      "tree_sha": "44aee3a4b554a55ae74a7d0c47809cc14ef84d0b",
+      "tree_sha": "3372d7f5523e75863b8e129f73aefe73547f6567",
       "files": [
         "modules/nf-core/qualimap/bamqc/environment.yml",
         "modules/nf-core/qualimap/bamqc/main.nf",
         "modules/nf-core/qualimap/bamqc/meta.yml",
         "modules/nf-core/qualimap/bamqc/tests/main.nf.test",
-        "modules/nf-core/qualimap/bamqc/tests/main.nf.test.snap"
+        "modules/nf-core/qualimap/bamqc/tests/main.nf.test.snap",
+        "modules/nf-core/qualimap/bamqc/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
@@ -297245,7 +297747,7 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false, strandedness:'forward' ]\nmeta.strandedness can be use in ext.args to set `-p` argument\n(see ./tests/nextflow.config)\n"
               }
             },
             {
@@ -297338,7 +297840,7 @@
           "@phue"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "0befdd9db2975ee04a97decc1672a4304387e9a7",
       "pipelines": [
         {
           "name": "hgtseq",
@@ -297353,13 +297855,14 @@
     {
       "name": "qualimap_bamqccram",
       "path": "modules/nf-core/qualimap/bamqccram/meta.yml",
-      "tree_sha": "9b1bae4ca52894e4f541d6093f3ae54f728a9c99",
+      "tree_sha": "3641cac9168b8d060fd763e22c5a70496cdf16e6",
       "files": [
         "modules/nf-core/qualimap/bamqccram/environment.yml",
         "modules/nf-core/qualimap/bamqccram/main.nf",
         "modules/nf-core/qualimap/bamqccram/meta.yml",
         "modules/nf-core/qualimap/bamqccram/tests/main.nf.test",
-        "modules/nf-core/qualimap/bamqccram/tests/main.nf.test.snap"
+        "modules/nf-core/qualimap/bamqccram/tests/main.nf.test.snap",
+        "modules/nf-core/qualimap/bamqccram/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
@@ -297389,7 +297892,7 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false, strandedness:'forward' ]\nmeta.strandedness can be use in ext.args to set `-p` argument\n(see ./tests/nextflow.config)\n"
               }
             },
             {
@@ -297452,19 +297955,93 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_qualimap": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "qualimap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "qualimap -h | sed -n 's/^QualiMap v.//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ],
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "qualimap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "qualimap -h | sed -n 's/^QualiMap v.//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -297474,7 +298051,7 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "0befdd9db2975ee04a97decc1672a4304387e9a7",
       "pipelines": [
         {
           "name": "methylseq",
@@ -297485,13 +298062,14 @@
     {
       "name": "qualimap_rnaseq",
       "path": "modules/nf-core/qualimap/rnaseq/meta.yml",
-      "tree_sha": "869fd402c3dd5b64972028767eea7c61693dcb98",
+      "tree_sha": "7653480375f26268b1493b65299e67ceaa0bd574",
       "files": [
         "modules/nf-core/qualimap/rnaseq/environment.yml",
         "modules/nf-core/qualimap/rnaseq/main.nf",
         "modules/nf-core/qualimap/rnaseq/meta.yml",
         "modules/nf-core/qualimap/rnaseq/tests/main.nf.test",
-        "modules/nf-core/qualimap/rnaseq/tests/main.nf.test.snap"
+        "modules/nf-core/qualimap/rnaseq/tests/main.nf.test.snap",
+        "modules/nf-core/qualimap/rnaseq/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
@@ -297521,7 +298099,7 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false, strandedness:'forward' ]\nmeta.strandedness can be use in ext.args to set `-p` argument\n(see ./tests/nextflow.config)\n"
               }
             },
             {
@@ -297583,7 +298161,7 @@
                 }
               },
               {
-                "qualimap 2>&1 | sed -n 's/.*QualiMap v.\\(.*\\)/\\1/p'": {
+                "qualimap -h | sed -n 's/^QualiMap v.//p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -297607,7 +298185,7 @@
                 }
               },
               {
-                "qualimap 2>&1 | sed -n 's/.*QualiMap v.\\(.*\\)/\\1/p'": {
+                "qualimap -h | sed -n 's/^QualiMap v.//p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -297622,7 +298200,7 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "0befdd9db2975ee04a97decc1672a4304387e9a7",
       "pipelines": [
         {
           "name": "rnaseq",
@@ -325602,10 +326180,6 @@
           "version": "1.1.3"
         },
         {
-          "name": "pathogenepidemiology",
-          "version": "dev"
-        },
-        {
           "name": "pathogensurveillance",
           "version": "1.1.0"
         },
@@ -329826,10 +330400,6 @@
         },
         {
           "name": "pacsomatic",
-          "version": "dev"
-        },
-        {
-          "name": "pathogenepidemiology",
           "version": "dev"
         },
         {
@@ -355173,6 +355743,177 @@
       "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
+      "name": "smudgeplot_hetmers",
+      "path": "modules/nf-core/smudgeplot/hetmers/meta.yml",
+      "tree_sha": "099caf7cb13b0eb75d1c578907a0111a70cfdbfd",
+      "files": [
+        "modules/nf-core/smudgeplot/hetmers/environment.yml",
+        "modules/nf-core/smudgeplot/hetmers/main.nf",
+        "modules/nf-core/smudgeplot/hetmers/meta.yml",
+        "modules/nf-core/smudgeplot/hetmers/tests/main.nf.test",
+        "modules/nf-core/smudgeplot/hetmers/tests/main.nf.test.snap",
+        "modules/nf-core/smudgeplot/hetmers/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "smudgeplot_hetmers",
+        "description": "Inference of ploidy and heterozygosity structure using whole genome sequencing data using FASTK databases",
+        "keywords": [
+          "Smudgeplot",
+          "reference-free",
+          "kmer",
+          "ploidy",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "smudgeplot": {
+              "description": "Generating smudgeplot kmer counts",
+              "homepage": "https://github.com/KamilSJaron/smudgeplot",
+              "tool_dev_url": "https://github.com/KamilSJaron/smudgeplot",
+              "licence": [
+                "https://github.com/KamilSJaron/smudgeplot/blob/master/LICENSE.md"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fastk_table": {
+                "type": "file",
+                "description": "A kmer table from the program FastK",
+                "pattern": "*.ktab*",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "kmer_cov": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.smu": {
+                  "type": "file",
+                  "description": "Smudgeplot Kmer coverage file",
+                  "pattern": "*.smu",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_smudgeplot": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the process"
+                }
+              },
+              {
+                "smudgeplot": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "smudgeplot -v |& grep \"smudgeplot\" | sed \"s/.*v//\"": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_fastk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the process"
+                }
+              },
+              {
+                "fastk": {
+                  "type": "string",
+                  "description": "Name of the tool"
+                }
+              },
+              {
+                "1.2": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the process"
+                }
+              },
+              {
+                "smudgeplot": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "smudgeplot -v |& grep \"smudgeplot\" | sed \"s/.*v//\"": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the process"
+                }
+              },
+              {
+                "fastk": {
+                  "type": "string",
+                  "description": "Name of the tool"
+                }
+              },
+              {
+                "1.2": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@DLBPointon"
+        ],
+        "maintainers": [
+          "@DLBPointon"
+        ]
+      },
+      "git_sha": "0bb7f49c8635272952501a45b7074075694df629"
+    },
+    {
       "name": "snakemake",
       "path": "modules/nf-core/snakemake/meta.yml",
       "tree_sha": "6a31433fdb3e396d7ffad0f152034833d2f87f02",
@@ -362614,7 +363355,7 @@
       "pipelines": [
         {
           "name": "fetchngs",
-          "version": "1.12.0"
+          "version": "1.13.0"
         },
         {
           "name": "pathogensurveillance",
@@ -362809,7 +363550,7 @@
       "pipelines": [
         {
           "name": "fetchngs",
-          "version": "1.12.0"
+          "version": "1.13.0"
         }
       ]
     },
@@ -382499,6 +383240,227 @@
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
     },
     {
+      "name": "telomerehunter2",
+      "path": "modules/nf-core/telomerehunter2/meta.yml",
+      "tree_sha": "e4709bc8bf158b127329dcf50a117dbdaf093633",
+      "files": [
+        "modules/nf-core/telomerehunter2/environment.yml",
+        "modules/nf-core/telomerehunter2/main.nf",
+        "modules/nf-core/telomerehunter2/meta.yml",
+        "modules/nf-core/telomerehunter2/tests/main.nf.test",
+        "modules/nf-core/telomerehunter2/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "telomerehunter2",
+        "description": "Estimate telomere content and telomeric variant repeats from indexed BAM sequencing data",
+        "keywords": [
+          "telomere",
+          "repeats",
+          "bam",
+          "single-cell"
+        ],
+        "tools": [
+          {
+            "telomerehunter2": {
+              "description": "Python 3 implementation of TelomereHunter for telomere content and telomeric variant repeat analysis",
+              "homepage": "https://ferdinand-popp.github.io/telomerehunter2/",
+              "documentation": "https://ferdinand-popp.github.io/telomerehunter2/",
+              "tool_dev_url": "https://github.com/ferdinand-popp/telomerehunter2",
+              "doi": "10.1093/bioadv/vbag187",
+              "licence": [
+                "GPL-3.0-or-later"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Coordinate-sorted BAM file",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file",
+                "pattern": "*.{bai,csi}",
+                "ontologies": []
+              }
+            },
+            {
+              "banding_file": {
+                "type": "file",
+                "description": "Optional chromosome banding file or empty list",
+                "pattern": "*",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "summary": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.telomerehunter2_summary.tsv": {
+                  "type": "file",
+                  "description": "TelomereHunter2 summary table",
+                  "pattern": "*.telomerehunter2_summary.tsv",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "tvr_top_contexts": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.telomerehunter2_TVR_top_contexts.tsv": {
+                  "type": "file",
+                  "description": "Telomeric variant repeat top contexts table",
+                  "pattern": "*.telomerehunter2_TVR_top_contexts.tsv",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "singletons": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.telomerehunter2_singletons.tsv": {
+                  "type": "file",
+                  "description": "Telomeric variant repeat singleton table",
+                  "pattern": "*.telomerehunter2_singletons.tsv",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "file_index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.telomerehunter2_files.txt": {
+                  "type": "file",
+                  "description": "Index of files generated in the TelomereHunter2 output directory",
+                  "pattern": "*.telomerehunter2_files.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "outdir": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.telomerehunter2": {
+                  "type": "directory",
+                  "description": "Complete TelomereHunter2 output directory",
+                  "pattern": "*.telomerehunter2",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_telomerehunter2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "telomerehunter2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import importlib.metadata; print(importlib.metadata.version(\"telomerehunter2\"))'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "telomerehunter2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import importlib.metadata; print(importlib.metadata.version(\"telomerehunter2\"))'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@PFRoux"
+        ],
+        "maintainers": [
+          "@PFRoux"
+        ]
+      },
+      "git_sha": "bb5234293660a919862b480f1c3d3b44f551e623"
+    },
+    {
       "name": "telseq",
       "path": "modules/nf-core/telseq/meta.yml",
       "tree_sha": "a3943cd0eadb9ba9a3054682a052df010f45decc",
@@ -387026,7 +387988,7 @@
     {
       "name": "trimal",
       "path": "modules/nf-core/trimal/meta.yml",
-      "tree_sha": "7a0f62f5a306d003d835bef0171cc00e503bf61f",
+      "tree_sha": "8990b2389980942d386a90772ed9ad4cb4f25e47",
       "files": [
         "modules/nf-core/trimal/environment.yml",
         "modules/nf-core/trimal/main.nf",
@@ -387146,19 +388108,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_trimal": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "trimal": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "trimal --version | sed '2!d;s/trimAl v//;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "trimal": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "trimal --version | sed '2!d;s/trimAl v//;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -387168,7 +388162,7 @@
           "@IceGreb"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "d5f1dda0783a86aa83a1e0df8799a92f99ce9980"
     },
     {
       "name": "trimgalore",
@@ -393738,10 +394732,6 @@
         {
           "name": "drop",
           "version": "1.0.0"
-        },
-        {
-          "name": "fetchngs",
-          "version": "1.12.0"
         },
         {
           "name": "funcprofiler",
@@ -415859,7 +416849,7 @@
     {
       "name": "bam_qc_rnaseq",
       "path": "subworkflows/nf-core/bam_qc_rnaseq/meta.yml",
-      "tree_sha": "b09dd628496485de34b556643ca8a6688d187395",
+      "tree_sha": "fa1e31d722216ee3c2eff8b785c6dc2a43fb51ac",
       "files": [
         "subworkflows/nf-core/bam_qc_rnaseq/main.nf",
         "subworkflows/nf-core/bam_qc_rnaseq/meta.yml",
@@ -416233,7 +417223,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
+      "git_sha": "0befdd9db2975ee04a97decc1672a4304387e9a7",
       "pipelines": [
         {
           "name": "rnaseq",
@@ -423406,7 +424396,7 @@
       "pipelines": [
         {
           "name": "fetchngs",
-          "version": "1.12.0"
+          "version": "1.13.0"
         }
       ]
     },
@@ -428422,10 +429412,6 @@
           "version": "2.0.0"
         },
         {
-          "name": "fetchngs",
-          "version": "1.12.0"
-        },
-        {
           "name": "funcprofiler",
           "version": "dev"
         },
@@ -428908,10 +429894,6 @@
         {
           "name": "fastquorum",
           "version": "2.0.0"
-        },
-        {
-          "name": "fetchngs",
-          "version": "1.12.0"
         },
         {
           "name": "funcprofiler",
@@ -429835,10 +430817,6 @@
         {
           "name": "chipseq",
           "version": "2.1.0"
-        },
-        {
-          "name": "fetchngs",
-          "version": "1.12.0"
         },
         {
           "name": "isoseq",
@@ -431271,6 +432249,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "d6e2b556fcfb3e3f3c4e210e9d65de03abb7a65c",
-  "updated_at": "2026-09-15T02:13:05.901Z"
+  "commit_sha": "0befdd9db2975ee04a97decc1672a4304387e9a7",
+  "updated_at": "2026-09-15T14:12:26.946Z"
 }
