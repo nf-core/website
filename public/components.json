@@ -4349,6 +4349,10 @@
         {
           "name": "genomeqc",
           "version": "1.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -11142,7 +11146,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -22011,7 +22015,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         }
       ]
     },
@@ -22804,7 +22808,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         }
       ]
     },
@@ -22974,7 +22978,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "pathogenepidemiology",
@@ -23340,7 +23344,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         }
       ]
     },
@@ -23591,7 +23595,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -24039,7 +24043,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         }
       ]
     },
@@ -30739,7 +30743,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         }
       ]
     },
@@ -31029,7 +31033,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         }
       ]
     },
@@ -32621,6 +32625,10 @@
           "version": "3.1.2"
         },
         {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.26.0"
         }
@@ -32772,6 +32780,10 @@
         {
           "name": "readsimulator",
           "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         },
         {
           "name": "tfactivity",
@@ -33098,6 +33110,10 @@
         {
           "name": "radseq",
           "version": "dev"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         },
         {
           "name": "sammyseq",
@@ -43797,6 +43813,10 @@
           "version": "1.0.1"
         },
         {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.26.0"
         },
@@ -44012,6 +44032,10 @@
         {
           "name": "references",
           "version": "0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -53072,7 +53096,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "methylseq",
@@ -53092,7 +53116,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -56853,7 +56877,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         }
       ]
     },
@@ -61156,7 +61180,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         },
         {
           "name": "seqinspector",
@@ -80522,7 +80546,13 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "3f616a1dfa699fcd112c5cebd9147fef95e08b07"
+      "git_sha": "3f616a1dfa699fcd112c5cebd9147fef95e08b07",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "custom_catadditionalfasta",
@@ -80692,7 +80722,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -82249,10 +82279,6 @@
           "version": "2.3.0"
         },
         {
-          "name": "riboseq",
-          "version": "1.2.0"
-        },
-        {
           "name": "rnasplice",
           "version": "1.0.4"
         },
@@ -82419,6 +82445,10 @@
         {
           "name": "circrna",
           "version": "dev"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -83083,7 +83113,13 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "c804473fd6f5dcffaf3ed5fd9a832b403808f3ef"
+      "git_sha": "c804473fd6f5dcffaf3ed5fd9a832b403808f3ef",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "custom_orfmerge",
@@ -83343,7 +83379,13 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "c804473fd6f5dcffaf3ed5fd9a832b403808f3ef"
+      "git_sha": "c804473fd6f5dcffaf3ed5fd9a832b403808f3ef",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "custom_orfnormalise",
@@ -83568,7 +83610,13 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "fdb10e2a26e8b02391826f307ecf56fddf8f7e60"
+      "git_sha": "fdb10e2a26e8b02391826f307ecf56fddf8f7e60",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "custom_pcaclustering",
@@ -85000,7 +85048,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -85200,7 +85248,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnastructurome",
@@ -94615,7 +94663,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         }
       ]
     },
@@ -96770,7 +96818,13 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "f0c89298605aba2bcbaa9c843409cd8af013605e"
+      "git_sha": "f0c89298605aba2bcbaa9c843409cd8af013605e",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "doubletdetection",
@@ -110227,7 +110281,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         },
         {
           "name": "taxprofiler",
@@ -113742,7 +113796,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         },
         {
           "name": "denovotranscript",
@@ -113782,7 +113836,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -114321,10 +114375,6 @@
           "version": "1.2.0"
         },
         {
-          "name": "demultiplex",
-          "version": "1.7.1"
-        },
-        {
           "name": "denovotranscript",
           "version": "1.2.1"
         },
@@ -114406,7 +114456,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "methylarray",
@@ -114474,7 +114524,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -124225,7 +124275,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "proteinfamilies",
@@ -127012,7 +127062,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -127169,7 +127219,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -127369,7 +127419,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         }
       ]
     },
@@ -148093,6 +148143,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
+        {
           "name": "sarek",
           "version": "3.10.0"
         },
@@ -151265,7 +151319,13 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "c570cd6a7cf355afca7a795cf202bbc3a75df997"
+      "git_sha": "c570cd6a7cf355afca7a795cf202bbc3a75df997",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "gedi_price",
@@ -151543,7 +151603,13 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "c570cd6a7cf355afca7a795cf202bbc3a75df997"
+      "git_sha": "c570cd6a7cf355afca7a795cf202bbc3a75df997",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "gem2_gem2bedmappability",
@@ -156874,6 +156940,10 @@
         {
           "name": "lncpipe",
           "version": "dev"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -157106,7 +157176,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -167121,7 +167191,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -179084,7 +179154,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "phyloplace",
@@ -195826,7 +195896,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -196055,7 +196125,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -200075,7 +200145,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         },
         {
           "name": "detaxizer",
@@ -217151,7 +217221,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         },
         {
           "name": "provenancereport",
@@ -225814,7 +225884,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         }
       ]
     },
@@ -232986,6 +233056,10 @@
         {
           "name": "genomeqc",
           "version": "1.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -239178,7 +239252,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         },
         {
           "name": "denovotranscript",
@@ -239298,7 +239372,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "methylarray",
@@ -239438,7 +239512,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -240100,7 +240174,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         },
         {
           "name": "seqinspector",
@@ -277092,7 +277166,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "methylong",
@@ -278876,7 +278950,13 @@
           "@suhrig"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "plastid_makewiggle",
@@ -279180,7 +279260,13 @@
           "@suhrig"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "plastid_metagenegenerate",
@@ -279543,7 +279629,13 @@
           "@suhrig"
         ]
       },
-      "git_sha": "59254497d32de2a867233734463c7692ad72e90a"
+      "git_sha": "59254497d32de2a867233734463c7692ad72e90a",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "platypus",
@@ -289885,7 +289977,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         }
       ]
     },
@@ -290288,7 +290380,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "viralmetagenome",
@@ -309177,7 +309269,13 @@
           "@JackCurragh"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "ribocode_metaplots",
@@ -309337,7 +309435,13 @@
           "@JackCurragh"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "ribocode_prepare",
@@ -309477,7 +309581,13 @@
           "@JackCurragh"
         ]
       },
-      "git_sha": "f3e22f6df3d5174e8fde5101632ea684b3b70a9a"
+      "git_sha": "f3e22f6df3d5174e8fde5101632ea684b3b70a9a",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "ribocode_ribocode",
@@ -309688,7 +309798,13 @@
           "@JackCurragh"
         ]
       },
-      "git_sha": "f3e22f6df3d5174e8fde5101632ea684b3b70a9a"
+      "git_sha": "f3e22f6df3d5174e8fde5101632ea684b3b70a9a",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "ribodetector",
@@ -309906,6 +310022,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "rnaseq",
           "version": "3.26.0"
@@ -310210,7 +310330,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -310404,7 +310524,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -310748,7 +310868,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -310894,7 +311014,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -311235,7 +311355,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -312996,7 +313116,13 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "617c552da369f63371648679983483736e52f3b8"
+      "git_sha": "617c552da369f63371648679983483736e52f3b8",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "rpbp_estimateorfbayesfactors",
@@ -313142,7 +313268,13 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "bbd642353cae3464d405ab6ae7366532648164e7"
+      "git_sha": "bbd642353cae3464d405ab6ae7366532648164e7",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "rpbp_extractmetageneprofiles",
@@ -313295,7 +313427,13 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "df05573454925ff87ff6ea6c4afaef70c64b7248"
+      "git_sha": "df05573454925ff87ff6ea6c4afaef70c64b7248",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "rpbp_extractorfprofiles",
@@ -313473,7 +313611,13 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "ad585e77451e4638e876bcf895185f0ac7f85fae"
+      "git_sha": "ad585e77451e4638e876bcf895185f0ac7f85fae",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "rpbp_getperiodiclengthsoffsets",
@@ -313590,7 +313734,13 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "9707facbacc9c5c02ecf0b192f0604a29351b00a"
+      "git_sha": "9707facbacc9c5c02ecf0b192f0604a29351b00a",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "rpbp_preparegenome",
@@ -313769,7 +313919,13 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "d1b9e85e27384110d29e3e178540516990c49886"
+      "git_sha": "d1b9e85e27384110d29e3e178540516990c49886",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "rpbp_selectfinalpredictionset",
@@ -313952,7 +314108,13 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "c2b3bb2252858a79872a27c7918cdb4b2a43f778"
+      "git_sha": "c2b3bb2252858a79872a27c7918cdb4b2a43f778",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "rpbp_selectperiodicoffsets",
@@ -314082,7 +314244,13 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "2f2f5662c0719221637811c6a6e443ec3414e0df"
+      "git_sha": "2f2f5662c0719221637811c6a6e443ec3414e0df",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "rrnatranscripts",
@@ -314680,7 +314848,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -320199,7 +320367,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnafusion",
@@ -320433,7 +320601,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnafusion",
@@ -323193,7 +323361,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         }
       ]
     },
@@ -326200,6 +326368,10 @@
           "version": "0.1"
         },
         {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
+        {
           "name": "rnadnavar",
           "version": "1.0.0"
         },
@@ -326671,6 +326843,10 @@
           "version": "dev"
         },
         {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.26.0"
         },
@@ -327120,7 +327296,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "methylong",
@@ -327152,7 +327328,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -327517,7 +327693,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "methylseq",
@@ -327545,7 +327721,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -328002,7 +328178,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "methylong",
@@ -328058,7 +328234,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -329867,7 +330043,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "methylong",
@@ -329915,7 +330091,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -330384,7 +330560,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "methylseq",
@@ -330416,7 +330592,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -330872,6 +331048,10 @@
         {
           "name": "raredisease",
           "version": "3.1.2"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -344872,6 +345052,10 @@
           "version": "2.5.0"
         },
         {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.26.0"
         },
@@ -346072,6 +346256,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.26.0"
         },
@@ -346354,7 +346542,13 @@
           "@delfiterradas"
         ]
       },
-      "git_sha": "d07a945f421a4a91ce4e5a22db63e0e7f8741607"
+      "git_sha": "d07a945f421a4a91ce4e5a22db63e0e7f8741607",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "seqsero2",
@@ -346928,7 +347122,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         }
       ]
     },
@@ -347203,7 +347397,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         },
         {
           "name": "panoramaseq",
@@ -347361,7 +347555,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "radseq",
@@ -349436,7 +349630,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         }
       ]
     },
@@ -359772,7 +359966,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -362205,7 +362399,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "pathogensurveillance",
@@ -365905,7 +366099,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -366202,7 +366396,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -369859,6 +370053,10 @@
           "version": "3.1.0"
         },
         {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
+        {
           "name": "rnafusion",
           "version": "4.1.3"
         },
@@ -370086,6 +370284,10 @@
         {
           "name": "lncpipe",
           "version": "dev"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         },
         {
           "name": "rnafusion",
@@ -370909,7 +371111,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "nascent",
@@ -371105,7 +371307,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -379492,7 +379694,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         }
       ]
     },
@@ -388436,7 +388638,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "methylseq",
@@ -388444,7 +388646,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -391290,7 +391492,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -391600,6 +391802,10 @@
         {
           "name": "hicar",
           "version": "1.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -393414,7 +393620,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -393672,7 +393878,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -393857,7 +394063,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnafusion",
@@ -394237,7 +394443,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -394723,7 +394929,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         },
         {
           "name": "differentialabundance",
@@ -394759,7 +394965,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "methylseq",
@@ -394811,7 +395017,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -414891,7 +415097,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -415018,7 +415224,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -415634,7 +415840,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -417637,7 +417843,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -417928,7 +418134,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "methylseq",
@@ -417948,7 +418154,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -418066,6 +418272,10 @@
       },
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "rnafusion",
           "version": "4.1.3"
@@ -419391,7 +419601,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         }
       ]
     },
@@ -421392,7 +421602,13 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
+      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "fasta_gxf_busco_plot",
@@ -423826,7 +424042,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -423995,7 +424211,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         }
       ]
     },
@@ -424677,7 +424893,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnafusion",
@@ -424867,7 +425083,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -425942,7 +426158,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -426107,6 +426323,10 @@
       },
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "rnaseq",
           "version": "3.26.0"
@@ -426823,7 +427043,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -427137,7 +427357,13 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
+      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "h5ad_removebackground_barcodes_cellbender_anndata",
@@ -427804,7 +428030,13 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "7baf88e0ae1fe0e547509d7ed06aa1ed294bf13c"
+      "git_sha": "7baf88e0ae1fe0e547509d7ed06aa1ed294bf13c",
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "quant_tximport_summarizedexperiment",
@@ -427976,6 +428208,10 @@
       },
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "rnaseq",
           "version": "3.26.0"
@@ -428201,7 +428437,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnaseq",
@@ -429369,7 +429605,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         },
         {
           "name": "denovotranscript",
@@ -429485,7 +429721,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "methylarray",
@@ -429625,7 +429861,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -429853,7 +430089,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         },
         {
           "name": "denovotranscript",
@@ -429969,7 +430205,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "methylarray",
@@ -430109,7 +430345,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -430389,7 +430625,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.1"
+          "version": "1.8.0"
         },
         {
           "name": "denovotranscript",
@@ -430493,7 +430729,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.0"
+          "version": "1.4.1"
         },
         {
           "name": "methylarray",
@@ -430629,7 +430865,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -432250,5 +432486,5 @@
     }
   ],
   "commit_sha": "0befdd9db2975ee04a97decc1672a4304387e9a7",
-  "updated_at": "2026-09-15T14:12:26.946Z"
+  "updated_at": "2026-09-16T02:12:28.948Z"
 }
