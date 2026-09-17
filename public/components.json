@@ -177684,7 +177684,7 @@
     {
       "name": "hmmer_formattsv",
       "path": "modules/nf-core/hmmer/formattsv/meta.yml",
-      "tree_sha": "39d21752373e07aeac188445dfc8ac7a56036bc5",
+      "tree_sha": "781132c8b7e2027b63dd90d323cdd48571b256cc",
       "files": [
         "modules/nf-core/hmmer/formattsv/.conda-lock/linux_amd64-bd-34c193f8cae8819b_1.txt",
         "modules/nf-core/hmmer/formattsv/environment.yml",
@@ -177873,7 +177873,7 @@
           }
         }
       },
-      "git_sha": "d6e2b556fcfb3e3f3c4e210e9d65de03abb7a65c"
+      "git_sha": "16a32d753b71a738925f436b43a822e5f867ce7d"
     },
     {
       "name": "hmmer_hmmalign",
@@ -255712,6 +255712,144 @@
       ]
     },
     {
+      "name": "openms_idconflictresolver",
+      "path": "modules/nf-core/openms/idconflictresolver/meta.yml",
+      "tree_sha": "1f26cc2f2f044fb4c38f7e1565e30b43fd7384b3",
+      "files": [
+        "modules/nf-core/openms/idconflictresolver/environment.yml",
+        "modules/nf-core/openms/idconflictresolver/main.nf",
+        "modules/nf-core/openms/idconflictresolver/meta.yml",
+        "modules/nf-core/openms/idconflictresolver/tests/main.nf.test",
+        "modules/nf-core/openms/idconflictresolver/tests/main.nf.test.snap",
+        "modules/nf-core/openms/idconflictresolver/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "openms_idconflictresolver",
+        "description": "Resolves ambiguous annotations of features with peptide identifications, keeping the best-scoring hit per feature.",
+        "keywords": [
+          "quantification",
+          "consensusXML",
+          "openms",
+          "proteomics"
+        ],
+        "tools": [
+          {
+            "openms": {
+              "description": "OpenMS is an open-source software C++ library for LC-MS data management and analyses",
+              "homepage": "https://openms.de",
+              "documentation": "https://openms.readthedocs.io/en/latest/index.html",
+              "tool_dev_url": "https://github.com/OpenMS/OpenMS",
+              "doi": "10.1038/s41592-024-02197-7",
+              "licence": [
+                "BSD"
+              ],
+              "identifier": "biotools:openms"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+              }
+            },
+            {
+              "consensus_file": {
+                "type": "file",
+                "description": "Feature map with conflicting identifications.",
+                "pattern": "*.{consensusXML,featureXML}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2536"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "resolved": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}.${consensus_file.extension}": {
+                  "type": "file",
+                  "description": "Feature map with conflicting identifications resolved, same format as the input.",
+                  "pattern": "*.{consensusXML,featureXML}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_2536"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_openms": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "openms": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "FileInfo --help 2>&1 | sed -nE 's/^Version: ([0-9.]+).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "openms": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "FileInfo --help 2>&1 | sed -nE 's/^Version: ([0-9.]+).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@jonasscheid"
+        ],
+        "maintainers": [
+          "@jonasscheid"
+        ]
+      },
+      "git_sha": "4a071f825fcfa127954a1bcc210e0ea3678f9753"
+    },
+    {
       "name": "openms_idfilter",
       "path": "modules/nf-core/openms/idfilter/meta.yml",
       "tree_sha": "79abeb2d0a825c40c12b1ff5f397bb6cdf00847e",
@@ -279790,6 +279928,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -280097,6 +280239,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -433592,6 +433738,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "c1a970a6ad9cbb0b7209a927feb21e1f39c1841a",
-  "updated_at": "2026-09-16T14:12:42.403Z"
+  "commit_sha": "16a32d753b71a738925f436b43a822e5f867ce7d",
+  "updated_at": "2026-09-17T02:13:04.789Z"
 }
