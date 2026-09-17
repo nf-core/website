@@ -102054,14 +102054,15 @@
     {
       "name": "duckdb_table2parquet",
       "path": "modules/nf-core/duckdb/table2parquet/meta.yml",
-      "tree_sha": "debc02f3ac0e8171c778c57709b80ceefd3525b8",
+      "tree_sha": "ae1a023c972346d56143d5cc05cd945971281bdb",
       "files": [
         "modules/nf-core/duckdb/table2parquet/.conda-lock/linux_amd64-bd-9c6d18d9f687a45d_1.txt",
         "modules/nf-core/duckdb/table2parquet/environment.yml",
         "modules/nf-core/duckdb/table2parquet/main.nf",
         "modules/nf-core/duckdb/table2parquet/meta.yml",
         "modules/nf-core/duckdb/table2parquet/tests/main.nf.test",
-        "modules/nf-core/duckdb/table2parquet/tests/main.nf.test.snap"
+        "modules/nf-core/duckdb/table2parquet/tests/main.nf.test.snap",
+        "modules/nf-core/duckdb/table2parquet/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
@@ -102216,7 +102217,7 @@
           }
         }
       },
-      "git_sha": "a01390acb6fb8c7539c8d9126b16df24092db83c",
+      "git_sha": "65c3b99ac5fe292d947a2d3485a2a7f744f242bc",
       "pipelines": [
         {
           "name": "magmap",
@@ -178806,7 +178807,7 @@
     {
       "name": "hmmer_hmmrank",
       "path": "modules/nf-core/hmmer/hmmrank/meta.yml",
-      "tree_sha": "15db62ac769cf0693983259f22c819e543cf6739",
+      "tree_sha": "39cfd2dc04388a022e9ce2cc7f8bb5b9740df5ec",
       "files": [
         "modules/nf-core/hmmer/hmmrank/.conda-lock/linux_amd64-bd-9c6d18d9f687a45d_1.txt",
         "modules/nf-core/hmmer/hmmrank/environment.yml",
@@ -178987,7 +178988,7 @@
           }
         }
       },
-      "git_sha": "0204a5934ccfa9dd2992a9cf9065e64680e3502b",
+      "git_sha": "65c3b99ac5fe292d947a2d3485a2a7f744f242bc",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -226028,7 +226029,7 @@
     {
       "name": "mgnifam_generatefamilies",
       "path": "modules/nf-core/mgnifam/generatefamilies/meta.yml",
-      "tree_sha": "f9a4fa52493888e99215f07771760111562e7e1b",
+      "tree_sha": "f97bededa7d2f8e9c2eb36c42beb715e562eff37",
       "files": [
         "modules/nf-core/mgnifam/generatefamilies/environment.yml",
         "modules/nf-core/mgnifam/generatefamilies/main.nf",
@@ -226047,7 +226048,9 @@
           "profile hmm",
           "clustering",
           "sequence alignment",
-          "proteomics"
+          "metagenomics",
+          "hmmer",
+          "protein sequences"
         ],
         "tools": [
           {
@@ -226088,7 +226091,7 @@
               "fasta_file": {
                 "type": "file",
                 "description": "Uncompressed FASTA file of the protein sequence database, with unique sequence names, referenced by the cluster members",
-                "pattern": "*.{fa,fasta,fna,faa}",
+                "pattern": "*.{fa,fasta,faa}",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_1929"
@@ -226403,13 +226406,418 @@
           "@vagkaratzas"
         ]
       },
-      "git_sha": "acdf5174c3bebdb1ac86858845a18015b5ee9bdb",
+      "git_sha": "ed7d93ace52c604b5a78af2b4a5af49868adfd69",
       "pipelines": [
         {
           "name": "proteinfamilies",
           "version": "2.5.0"
         }
       ]
+    },
+    {
+      "name": "mgnifam_updatefamilies",
+      "path": "modules/nf-core/mgnifam/updatefamilies/meta.yml",
+      "tree_sha": "7afacdaa5c53c264151a01f97bafeab43bc6b6a4",
+      "files": [
+        "modules/nf-core/mgnifam/updatefamilies/environment.yml",
+        "modules/nf-core/mgnifam/updatefamilies/main.nf",
+        "modules/nf-core/mgnifam/updatefamilies/meta.yml",
+        "modules/nf-core/mgnifam/updatefamilies/tests/main.nf.test",
+        "modules/nf-core/mgnifam/updatefamilies/tests/main.nf.test.snap",
+        "modules/nf-core/mgnifam/updatefamilies/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "mgnifam_updatefamilies",
+        "description": "Refreshes existing protein family HMM profiles against a new sequence database, keeping each family's name stable across releases",
+        "keywords": [
+          "protein families",
+          "family update",
+          "database update",
+          "hidden markov model",
+          "profile hmm",
+          "sequence alignment",
+          "metagenomics",
+          "hmmer",
+          "protein sequences"
+        ],
+        "tools": [
+          {
+            "mgnifam": {
+              "description": "Python package for iterative HMM-based protein family generation over large sequence databases, building an HMM from each cluster, recruiting new members, re-aligning, and either converging on a family or discarding the cluster",
+              "homepage": "https://github.com/vagkaratzas/mgnifam",
+              "documentation": "https://github.com/vagkaratzas/mgnifam",
+              "tool_dev_url": "https://github.com/vagkaratzas/mgnifam",
+              "licence": [
+                "MIT"
+              ],
+              "args_id": "$args",
+              "identifier": "biotools:mgnifam"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "hmms": {
+                "type": "file",
+                "description": "One or more gzipped profile HMM files (e.g. the `hmm` output of mgnifam/generatefamilies) or a single gzipped multi-model HMM library, staged under `hmm_input/`. Each model is searched against the new database and re-emitted under its original name",
+                "pattern": "*.{hmm,hmm.gz,hmm.lib.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1370"
+                  }
+                ]
+              }
+            },
+            {
+              "fasta_file": {
+                "type": "file",
+                "description": "Uncompressed FASTA file of the new protein sequence database to search the stored HMMs against",
+                "pattern": "*.{fa,fasta,faa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "fasta_index": {
+                "type": "file",
+                "description": "Optional. Precomputed Easel SSI index of the FASTA file, e.g. from `esl-sfetch --index` (hmmer/eslsfetchindex). Used as given and never rebuilt, so parallel chunk tasks can share one read-only index. Built automatically when omitted",
+                "pattern": "*.ssi",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "seed_msa": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/seed_msa/*.sto.gz": {
+                  "type": "file",
+                  "description": "Optional. Per-family seed multiple sequence alignment in gzipped Stockholm format, named by family id (e.g. `1_7.sto.gz`). Not written when the tool is run with `--skip_refine`",
+                  "pattern": "*/seed_msa/*.sto.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "full_msa": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/full_msa/*.sto.gz": {
+                  "type": "file",
+                  "description": "Optional. Per-family full multiple sequence alignment against the new database, including recruited members, in gzipped Stockholm format, named by family id (e.g. `1_7.sto.gz`)",
+                  "pattern": "*/full_msa/*.sto.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "hmm": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/hmm/*.hmm.gz": {
+                  "type": "file",
+                  "description": "Optional. Updated per-family profile HMM model in gzipped HMMER format, named by family id (e.g. `1_7.hmm.gz`)",
+                  "pattern": "*/hmm/*.hmm.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "rf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/rf/*.txt": {
+                  "type": "file",
+                  "description": "Optional. Per-family reference annotation (RF) line, marking match-state columns of the seed alignment, named by family id (e.g. `1_7.txt`). Not written when the tool is run with `--skip_refine`",
+                  "pattern": "*/rf/*.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_updated_families.tsv": {
+                  "type": "file",
+                  "description": "Optional. Roster of the updated protein families",
+                  "pattern": "*/*_updated_families.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "csv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_updated_metadata.csv": {
+                  "type": "file",
+                  "description": "Optional. Metadata describing the updated protein families",
+                  "pattern": "*/*_updated_metadata.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_updated.log": {
+                  "type": "file",
+                  "description": "Optional. Diagnostic log of the family update run",
+                  "pattern": "*/*_updated.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "reps_fasta": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_updated_reps.fasta.gz": {
+                  "type": "file",
+                  "description": "Optional. Representative sequences of the updated families in gzipped FASTA format",
+                  "pattern": "*/*_updated_reps.fasta.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "successful": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_updated_successful.txt": {
+                  "type": "file",
+                  "description": "Optional. List of families that were successfully updated",
+                  "pattern": "*/*_updated_successful.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "discarded": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_updated_discarded.csv": {
+                  "type": "file",
+                  "description": "Optional. Families discarded during the update, with reasons",
+                  "pattern": "*/*_updated_discarded.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "converged": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_updated_converged.txt": {
+                  "type": "file",
+                  "description": "Optional. List of families that converged during the update",
+                  "pattern": "*/*_updated_converged.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "delta": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_updated_delta.csv": {
+                  "type": "file",
+                  "description": "Optional. One row per input family describing the change against the new database. Columns `family_id` (the model name, e.g. `1_7`, not a rank), `model_length_before`, `model_length_after`, `round1_recruits`, `full_msa_size`, `retention`, `rounds_run`, `converged`, `outcome`",
+                  "pattern": "*/*_updated_delta.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_mgnifam": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mgnifam": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mgnifam --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mgnifam": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mgnifam --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      },
+      "git_sha": "d550e1da9436d4cc3b6489872e10dfe082cb811e"
     },
     {
       "name": "midas_run",
@@ -255995,7 +256403,7 @@
     {
       "name": "openms_idmassaccuracy",
       "path": "modules/nf-core/openms/idmassaccuracy/meta.yml",
-      "tree_sha": "f171127a1fcc8d0c4336ca5ac80397324ede8092",
+      "tree_sha": "7c681845182a98755bd8bcd7a3cac45125078141",
       "files": [
         "modules/nf-core/openms/idmassaccuracy/environment.yml",
         "modules/nf-core/openms/idmassaccuracy/main.nf",
@@ -256100,26 +256508,58 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_openms": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "openms": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "FileInfo --help 2>&1 | sed -nE 's/^Version: ([0-9.]+).*/\\1/p'": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "openms": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "FileInfo --help 2>&1 | sed -nE 's/^Version: ([0-9.]+).*/\\1/p'": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
           "@jonasscheid"
         ]
       },
-      "git_sha": "eac429d4c67ac5114ce7d4287d460d8f05fd9fab"
+      "git_sha": "0c0d023ede1c94c54ed0be987b336e912d37213b"
     },
     {
       "name": "openms_idmerger",
@@ -279932,6 +280372,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -280239,6 +280683,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -300786,10 +301234,6 @@
           "version": "2.0.0"
         },
         {
-          "name": "provenancereport",
-          "version": "dev"
-        },
-        {
           "name": "scdownstream",
           "version": "dev"
         }
@@ -321226,7 +321670,7 @@
     {
       "name": "salmon_index",
       "path": "modules/nf-core/salmon/index/meta.yml",
-      "tree_sha": "98db15c0d018acc0313d428c657cc31555b75eef",
+      "tree_sha": "3c3e99c4247aaffd523359f4af6f41f740d12ff1",
       "files": [
         "modules/nf-core/salmon/index/environment.yml",
         "modules/nf-core/salmon/index/main.nf",
@@ -321259,30 +321703,46 @@
           }
         ],
         "input": [
-          {
-            "genome_fasta": {
-              "type": "file",
-              "description": "Fasta file of the reference genome",
-              "ontologies": []
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "transcript_fasta": {
+                "type": "file",
+                "description": "Fasta file of the reference transcriptome",
+                "ontologies": []
+              }
+            },
+            {
+              "genome_fasta": {
+                "type": "file",
+                "description": "Fasta file of the reference genome, used to build decoy sequences.\nOptional: pass `[]` to build a non-decoy-aware index.\n",
+                "ontologies": []
+              }
             }
-          },
-          {
-            "transcript_fasta": {
-              "type": "file",
-              "description": "Fasta file of the reference transcriptome",
-              "ontologies": []
-            }
-          }
+          ]
         ],
         "output": {
           "index": [
-            {
-              "salmon": {
-                "type": "directory",
-                "description": "Folder containing the star index files",
-                "pattern": "salmon"
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+                }
+              },
+              {
+                "salmon": {
+                  "type": "directory",
+                  "description": "Folder containing the salmon index files",
+                  "pattern": "salmon"
+                }
               }
-            }
+            ]
           ],
           "versions_salmon": [
             [
@@ -321340,7 +321800,7 @@
           "@drpatelh"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "cbe820ee659c7818bb52338e3511951b20b397a0",
       "pipelines": [
         {
           "name": "denovotranscript",
@@ -321375,14 +321835,14 @@
     {
       "name": "salmon_quant",
       "path": "modules/nf-core/salmon/quant/meta.yml",
-      "tree_sha": "d1489ea6b917f23f88b28c2586d7b1584c5ddea4",
+      "tree_sha": "f0a1a64b742feede1c7c1c6a120c7a22d375d56a",
       "files": [
         "modules/nf-core/salmon/quant/environment.yml",
         "modules/nf-core/salmon/quant/main.nf",
         "modules/nf-core/salmon/quant/meta.yml",
         "modules/nf-core/salmon/quant/tests/main.nf.test",
         "modules/nf-core/salmon/quant/tests/main.nf.test.snap",
-        "modules/nf-core/salmon/quant/tests/nextflow.config"
+        "modules/nf-core/salmon/quant/tests/nextflow_ext_args_libtype.config"
       ],
       "type": "module",
       "meta": {
@@ -321419,52 +321879,47 @@
             {
               "reads": {
                 "type": "file",
-                "description": "List of input FastQ files for single-end or paired-end data.\nMultiple single-end fastqs or pairs of paired-end fastqs are\nhandled.\n",
+                "description": "List of input FastQ files for single-end or paired-end data, or a\nsingle BAM of reads already aligned to the transcriptome (a `.bam`\nextension switches the module into salmon's alignment mode). Pass\n`--libType` via `ext.args` to select a specific library type;\nsalmon auto-detects it otherwise.\n",
                 "ontologies": []
               }
             }
           ],
-          {
-            "index": {
-              "type": "directory",
-              "description": "Folder containing the star index files"
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "index": {
+                "type": "directory",
+                "description": "Folder containing the salmon index files. Required for reads\nmode; pass `[]` in alignment mode.\n"
+              }
+            },
+            {
+              "gtf": {
+                "type": "file",
+                "description": "GTF of the reference transcriptome",
+                "ontologies": []
+              }
+            },
+            {
+              "transcript_fasta": {
+                "type": "file",
+                "description": "Fasta file of the reference transcriptome. Required in alignment\nmode as the `-t` reference; pass `[]` in reads mode.\n",
+                "ontologies": []
+              }
             }
-          },
-          {
-            "gtf": {
-              "type": "file",
-              "description": "GTF of the reference transcriptome",
-              "ontologies": []
-            }
-          },
-          {
-            "transcript_fasta": {
-              "type": "file",
-              "description": "Fasta file of the reference transcriptome",
-              "ontologies": []
-            }
-          },
-          {
-            "alignment_mode": {
-              "type": "boolean",
-              "description": "whether to run salmon in alignment mode"
-            }
-          },
-          {
-            "lib_type": {
-              "type": "string",
-              "description": "Override library type inferred based on strandedness defined in meta object\n"
-            }
-          }
+          ]
         ],
         "output": {
           "results": [
             [
               {
                 "meta": {
-                  "type": "directory",
-                  "description": "Folder containing the quantification results for a specific sample",
-                  "pattern": "${prefix}"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
@@ -321480,9 +321935,8 @@
             [
               {
                 "meta": {
-                  "type": "directory",
-                  "description": "Folder containing the quantification results for a specific sample",
-                  "pattern": "${prefix}"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
@@ -321503,9 +321957,8 @@
             [
               {
                 "meta": {
-                  "type": "directory",
-                  "description": "Folder containing the quantification results for a specific sample",
-                  "pattern": "${prefix}"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
@@ -321578,7 +322031,7 @@
           "@drpatelh"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "cbe820ee659c7818bb52338e3511951b20b397a0",
       "pipelines": [
         {
           "name": "denovotranscript",
@@ -369574,6 +370027,370 @@
       ]
     },
     {
+      "name": "stitchr_stitchrdl",
+      "path": "modules/nf-core/stitchr/stitchrdl/meta.yml",
+      "tree_sha": "09ae63fb66bec0d31284a182eed421c534d4fb41",
+      "files": [
+        "modules/nf-core/stitchr/stitchrdl/environment.yml",
+        "modules/nf-core/stitchr/stitchrdl/main.nf",
+        "modules/nf-core/stitchr/stitchrdl/meta.yml",
+        "modules/nf-core/stitchr/stitchrdl/tests/main.nf.test",
+        "modules/nf-core/stitchr/stitchrdl/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "stitchr_stitchrdl",
+        "description": "Download and format IMGT/GENE-DB reference data for use with stitchr",
+        "keywords": [
+          "TCR",
+          "IMGT",
+          "immunology",
+          "reference"
+        ],
+        "tools": [
+          {
+            "stitchr": {
+              "description": "Automatic TCR nucleotide sequence generation from V, J and CDR3 information",
+              "homepage": "https://github.com/JamieHeather/stitchr",
+              "documentation": "https://jamieheather.github.io/stitchr/index.html",
+              "tool_dev_url": "https://github.com/JamieHeather/stitchr",
+              "doi": "10.1093/nar/gkac190",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          },
+          {
+            "imgtgenedl": {
+              "description": "provides access to TCR and IG genes stored in IMGT/GENE-DB",
+              "homepage": "https://github.com/JamieHeather/IMGTgeneDL",
+              "documentation": "https://github.com/JamieHeather/IMGTgeneDL/blob/main/README.md",
+              "tool_dev_url": "https://github.com/JamieHeather/IMGTgeneDL",
+              "doi": "10.1093/nar/gkab1136",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'human' ]`\n"
+              }
+            },
+            {
+              "species": {
+                "type": "string",
+                "description": "Species (common name) to download IMGT reference data for",
+                "pattern": "human|mouse"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "stitchrdl_data": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing reference information\ne.g. `[ id:'human' ]`\n"
+                }
+              },
+              {
+                "species": {
+                  "type": "string",
+                  "description": "Species the reference data was downloaded for"
+                }
+              },
+              {
+                "Data/": {
+                  "type": "directory",
+                  "description": "Stitchr `Data` package holding the downloaded IMGT reference. Must be\nstaged as a directory named `Data` by consumers so that it resolves\nahead of the copy packaged inside the container.\n"
+                }
+              }
+            ]
+          ],
+          "versions_stitchr": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "stitchr": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "stitchr --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_imgtgenedl": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "imgtgenedl": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pip show IMGTgeneDL | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "stitchr": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "stitchr --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "imgtgenedl": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pip show IMGTgeneDL | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@mapo9"
+        ],
+        "maintainers": [
+          "@mapo9"
+        ]
+      },
+      "git_sha": "d2137d188bfc6df1b114da5c100d2d8487cab0aa"
+    },
+    {
+      "name": "stitchr_thimble",
+      "path": "modules/nf-core/stitchr/thimble/meta.yml",
+      "tree_sha": "4a053b13bc2a554316508a1f4719fb56638cb416",
+      "files": [
+        "modules/nf-core/stitchr/thimble/environment.yml",
+        "modules/nf-core/stitchr/thimble/main.nf",
+        "modules/nf-core/stitchr/thimble/meta.yml",
+        "modules/nf-core/stitchr/thimble/tests/main.nf.test",
+        "modules/nf-core/stitchr/thimble/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "stitchr_thimble",
+        "description": "Automatic TCR nucleotide sequence generation from V, J and CDR3 information",
+        "keywords": [
+          "TCR",
+          "sequence",
+          "immunology"
+        ],
+        "tools": [
+          {
+            "stitchr": {
+              "description": "Automatic TCR nucleotide sequence generation from V, J and CDR3 information",
+              "homepage": "https://github.com/JamieHeather/stitchr",
+              "documentation": "https://jamieheather.github.io/stitchr/index.html",
+              "tool_dev_url": "https://github.com/JamieHeather/stitchr",
+              "doi": "10.1093/nar/gkac190",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing per sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "tcr_table": {
+                "type": "file",
+                "description": "tsv containing J,V and CDR3 information",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "alt_codon_usage": {
+              "type": "file",
+              "description": "txt containing alternative codon usage in kazusa-like format",
+              "pattern": "*.txt",
+              "ontologies": []
+            }
+          },
+          {
+            "allele_preferences": {
+              "type": "file",
+              "description": "tsv containing alternative allele preferences",
+              "pattern": "*.tsv",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3475"
+                }
+              ]
+            }
+          },
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'human' ]`\n"
+              }
+            },
+            {
+              "species": {
+                "type": "string",
+                "description": "Species the reference data was downloaded for",
+                "pattern": "human|mouse"
+              }
+            },
+            {
+              "stitchr_data": {
+                "type": "directory",
+                "description": "IMGT reference produced by STITCHR_STITCHRDL. Staged as a directory named\n`Data` so that it resolves ahead of the empty copy packaged in the\ncontainer.\n"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "thimble": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}_stitchr.tsv": {
+                  "type": "file",
+                  "description": "tsv containing full TCR sequences\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_stitchr": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "stitchr": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "stitchr --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "stitchr": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "stitchr --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@Clara0611"
+        ],
+        "maintainers": [
+          "@mapo9"
+        ]
+      },
+      "git_sha": "d2137d188bfc6df1b114da5c100d2d8487cab0aa"
+    },
+    {
       "name": "stranger",
       "path": "modules/nf-core/stranger/meta.yml",
       "tree_sha": "7c42acf35a42f5a0a755b62bff50d5ccacd1cecc",
@@ -389616,7 +390433,7 @@
     {
       "name": "trimgalore",
       "path": "modules/nf-core/trimgalore/meta.yml",
-      "tree_sha": "bb84e3a80c210f2c60c814c8c08575d1e36314f0",
+      "tree_sha": "669c01efeef46f23efe18138c3f7d3c70d8c46d2",
       "files": [
         "modules/nf-core/trimgalore/environment.yml",
         "modules/nf-core/trimgalore/main.nf",
@@ -389711,6 +390528,28 @@
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*report.json": {
+                  "type": "file",
+                  "description": "trimgalore JSON report, consumed by MultiQC's trim_galore module",
+                  "pattern": "*report.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
                     }
                   ]
                 }
@@ -389845,7 +390684,7 @@
           "@vagkaratzas"
         ]
       },
-      "git_sha": "e0dce27411e04123f0fee60eb0f475262c165766",
+      "git_sha": "f97696ae2ba28e94032adafea6777d7eb38d2c1d",
       "pipelines": [
         {
           "name": "atacseq",
@@ -423026,7 +423865,7 @@
     {
       "name": "fasta_hmmsearch_rank_fastas",
       "path": "subworkflows/nf-core/fasta_hmmsearch_rank_fastas/meta.yml",
-      "tree_sha": "7faeb469decf1faa08c8bd2c081311fcc014fd06",
+      "tree_sha": "9881aa4e28c42ec3080567ff4d535dc67159a192",
       "files": [
         "subworkflows/nf-core/fasta_hmmsearch_rank_fastas/main.nf",
         "subworkflows/nf-core/fasta_hmmsearch_rank_fastas/meta.yml",
@@ -423101,7 +423940,7 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "0204a5934ccfa9dd2992a9cf9065e64680e3502b",
+      "git_sha": "29919084ca7299939def67b9dbbcd566a1ba2ba6",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -426953,7 +427792,7 @@
     {
       "name": "fastq_qc_trim_filter_setstrandedness",
       "path": "subworkflows/nf-core/fastq_qc_trim_filter_setstrandedness/meta.yml",
-      "tree_sha": "c64abbc75f888ec335b0a1d180c4a8283e52e82f",
+      "tree_sha": "570877a50eed9eb51d3c659cde767c5e1aaffd92",
       "files": [
         "subworkflows/nf-core/fastq_qc_trim_filter_setstrandedness/main.nf",
         "subworkflows/nf-core/fastq_qc_trim_filter_setstrandedness/meta.yml",
@@ -427399,7 +428238,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "0853b48c6477aa76c2d77386169a0d510ac817d6",
+      "git_sha": "cbe820ee659c7818bb52338e3511951b20b397a0",
       "pipelines": [
         {
           "name": "lncpipe",
@@ -428179,7 +429018,7 @@
     {
       "name": "fastq_subsample_fq_salmon",
       "path": "subworkflows/nf-core/fastq_subsample_fq_salmon/meta.yml",
-      "tree_sha": "a71dfabcaa693bf16983ffe2055e7fe357a6a330",
+      "tree_sha": "667ec5322ee61307a88f04c0e4b70f29caf8f5be",
       "files": [
         "subworkflows/nf-core/fastq_subsample_fq_salmon/main.nf",
         "subworkflows/nf-core/fastq_subsample_fq_salmon/meta.yml",
@@ -428284,7 +429123,7 @@
           "@drpatelh"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
+      "git_sha": "cbe820ee659c7818bb52338e3511951b20b397a0",
       "pipelines": [
         {
           "name": "lncpipe",
@@ -429470,7 +430309,7 @@
     {
       "name": "quantify_pseudo_alignment",
       "path": "subworkflows/nf-core/quantify_pseudo_alignment/meta.yml",
-      "tree_sha": "2add5894daeab4b3fe6835f4b9f17c62be9a8896",
+      "tree_sha": "80b8349426cd4f19b0aae80a1d9d1a7e3466c498",
       "files": [
         "subworkflows/nf-core/quantify_pseudo_alignment/main.nf",
         "subworkflows/nf-core/quantify_pseudo_alignment/meta.yml",
@@ -429511,7 +430350,7 @@
           {
             "index": {
               "type": "path",
-              "description": "Path to Salmon or Kallisto index in the tool-appropriate form.\n"
+              "description": "Channel of `[ val(meta2), index ]`: Salmon or Kallisto index in the\ntool-appropriate form.\n"
             }
           },
           {
@@ -429542,18 +430381,6 @@
             "pseudo_aligner": {
               "type": "string",
               "description": "Pseudoaligner, `kallisto` or `salmon`."
-            }
-          },
-          {
-            "alignment_mode": {
-              "type": "boolean",
-              "description": "If running Salmon, run in alignment mode (`true` or `false`).\n"
-            }
-          },
-          {
-            "lib_type": {
-              "type": "string",
-              "description": "String to override Salmon library type."
             }
           },
           {
@@ -429682,7 +430509,7 @@
           "@adamrtalbot"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
+      "git_sha": "cbe820ee659c7818bb52338e3511951b20b397a0",
       "pipelines": [
         {
           "name": "riboseq",
@@ -433738,6 +434565,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "16a32d753b71a738925f436b43a822e5f867ce7d",
-  "updated_at": "2026-09-17T02:13:04.789Z"
+  "commit_sha": "cbe820ee659c7818bb52338e3511951b20b397a0",
+  "updated_at": "2026-09-17T14:11:38.497Z"
 }
