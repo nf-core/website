@@ -92397,6 +92397,10 @@
         {
           "name": "pacvar",
           "version": "1.1.0"
+        },
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
         }
       ]
     },
@@ -92667,6 +92671,10 @@
         {
           "name": "pacvar",
           "version": "1.1.0"
+        },
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
         }
       ]
     },
@@ -92958,6 +92966,10 @@
         {
           "name": "pacvar",
           "version": "1.1.0"
+        },
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
         }
       ]
     },
@@ -135907,7 +135919,13 @@
           "@sofiademmou"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
+      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "pipelines": [
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gatk4_cnnscorevariants",
@@ -137740,6 +137758,10 @@
         },
         {
           "name": "genomicrelatedness",
+          "version": "dev"
+        },
+        {
+          "name": "pathogenepidemiology",
           "version": "dev"
         },
         {
@@ -139857,6 +139879,10 @@
         },
         {
           "name": "genomicrelatedness",
+          "version": "dev"
+        },
+        {
+          "name": "pathogenepidemiology",
           "version": "dev"
         },
         {
@@ -225745,6 +225771,327 @@
       "git_sha": "4dd270e412e2a7e78761be38aafa5cfa1dcdf891"
     },
     {
+      "name": "mgatk_call",
+      "path": "modules/nf-core/mgatk/call/meta.yml",
+      "tree_sha": "ae3333360d6ae410207c22d00c81e32ad40f4f4b",
+      "files": [
+        "modules/nf-core/mgatk/call/environment.yml",
+        "modules/nf-core/mgatk/call/main.nf",
+        "modules/nf-core/mgatk/call/meta.yml",
+        "modules/nf-core/mgatk/call/tests/main.nf.test",
+        "modules/nf-core/mgatk/call/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "mgatk_call",
+        "description": "Call mitochondrial variants and generate mitochondrial coverage profiles from an indexed BAM file",
+        "keywords": [
+          "mitochondria",
+          "mtDNA",
+          "variants",
+          "ATAC-seq"
+        ],
+        "tools": [
+          {
+            "mgatk": {
+              "description": "Mitochondrial genome analysis toolkit",
+              "homepage": "https://github.com/caleblareau/mgatk",
+              "documentation": "https://github.com/caleblareau/mgatk/wiki",
+              "tool_dev_url": "https://github.com/caleblareau/mgatk",
+              "doi": "10.1038/s41587-020-0645-6",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:mgatk"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Coordinate-sorted BAM file",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file",
+                "pattern": "*.{bai,csi}",
+                "ontologies": []
+              }
+            },
+            {
+              "mito_fasta": {
+                "type": "file",
+                "description": "Mitochondrial reference genome FASTA passed to mgatk as a custom mitochondrial genome configuration",
+                "pattern": "*.{fa,fasta,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "outdir": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.mgatk": {
+                  "type": "directory",
+                  "description": "Complete mgatk output directory",
+                  "pattern": "*.mgatk",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "rds": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.mgatk/final/*.rds": {
+                  "type": "file",
+                  "description": "R serialized objects for downstream mitochondrial variant analysis",
+                  "pattern": "*.rds",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "coverage": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.mgatk/final/*.coverage.txt.gz": {
+                  "type": "file",
+                  "description": "Per-base mitochondrial coverage table",
+                  "pattern": "*.coverage.txt.gz",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "depth_table": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.mgatk/final/*.depthTable.txt": {
+                  "type": "file",
+                  "description": "Mitochondrial sequencing-depth summary table",
+                  "pattern": "*.depthTable.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "counts_a": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.mgatk/final/*.A.txt.gz": {
+                  "type": "file",
+                  "description": "Per-position adenine base-count table",
+                  "pattern": "*.A.txt.gz",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "counts_c": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.mgatk/final/*.C.txt.gz": {
+                  "type": "file",
+                  "description": "Per-position cytosine base-count table",
+                  "pattern": "*.C.txt.gz",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "counts_g": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.mgatk/final/*.G.txt.gz": {
+                  "type": "file",
+                  "description": "Per-position guanine base-count table",
+                  "pattern": "*.G.txt.gz",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "counts_t": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.mgatk/final/*.T.txt.gz": {
+                  "type": "file",
+                  "description": "Per-position thymine base-count table",
+                  "pattern": "*.T.txt.gz",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_mgatk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mgatk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mgatk --version 2>&1 | sed -E 's/.*version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_python": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "python": {
+                  "type": "string",
+                  "description": "The name of the interpreter"
+                }
+              },
+              {
+                "python --version 2>&1 | sed 's/Python //' | cut -d. -f1,2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the interpreter"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mgatk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mgatk --version 2>&1 | sed -E 's/.*version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "python": {
+                  "type": "string",
+                  "description": "The name of the interpreter"
+                }
+              },
+              {
+                "python --version 2>&1 | sed 's/Python //' | cut -d. -f1,2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the interpreter"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@PFRoux"
+        ],
+        "maintainers": [
+          "@PFRoux"
+        ]
+      },
+      "git_sha": "c3eeb662a004a4c75ca2712a095ad61251878c5d"
+    },
+    {
       "name": "mgikit_demultiplex",
       "path": "modules/nf-core/mgikit/demultiplex/meta.yml",
       "tree_sha": "3165a2aae71f393a9d8cee301f2410c54475d1fc",
@@ -236825,6 +237172,10 @@
           "version": "dev"
         },
         {
+          "name": "pathogenepidemiology",
+          "version": "dev"
+        },
+        {
           "name": "raredisease",
           "version": "3.1.2"
         },
@@ -243023,9 +243374,9 @@
     {
       "name": "myloasm",
       "path": "modules/nf-core/myloasm/meta.yml",
-      "tree_sha": "7a87c18dac53fa82ee868fd4167bf6ec69167582",
+      "tree_sha": "5a45f26d620466cf975f136ce830d4bf4f4f0b82",
       "files": [
-        "modules/nf-core/myloasm/.conda-lock/linux_amd64-bd-4ee38265ad9e0a04_1.txt",
+        "modules/nf-core/myloasm/.conda-lock/linux_amd64-bd-154a360acd2dca07_1.txt",
         "modules/nf-core/myloasm/environment.yml",
         "modules/nf-core/myloasm/main.nf",
         "modules/nf-core/myloasm/meta.yml",
@@ -243111,13 +243462,16 @@
                 }
               },
               {
-                "${prefix}/assembly_primary.fa": {
+                "${prefix}/assembly_primary.fa.gz": {
                   "type": "file",
                   "description": "Primary assembly contigs in FASTA format",
-                  "pattern": "assembly_primary.fa",
+                  "pattern": "assembly_primary.fa.gz",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_1929"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
                     }
                   ]
                 }
@@ -243133,13 +243487,16 @@
                 }
               },
               {
-                "${prefix}/final_contig_graph.gfa": {
+                "${prefix}/final_contig_graph.gfa.gz": {
                   "type": "file",
                   "description": "Final contig graph in GFA format",
-                  "pattern": "final_contig_graph.gfa",
+                  "pattern": "final_contig_graph.gfa.gz",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3975"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
                     }
                   ]
                 }
@@ -243155,13 +243512,16 @@
                 }
               },
               {
-                "${prefix}/alternate_assemblies/assembly_alternate.fa": {
+                "${prefix}/alternate_assemblies/assembly_alternate.fa.gz": {
                   "type": "file",
                   "description": "Alternative assembly contigs in FASTA format",
-                  "pattern": "assembly_alternate.fa",
+                  "pattern": "assembly_alternate.fa.gz",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_1929"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
                     }
                   ]
                 }
@@ -243177,13 +243537,16 @@
                 }
               },
               {
-                "${prefix}/alternate_assemblies/duplicated_contigs.fa": {
+                "${prefix}/alternate_assemblies/duplicated_contigs.fa.gz": {
                   "type": "file",
                   "description": "Duplicated contigs in FASTA format",
-                  "pattern": "duplicated_contigs.fa",
+                  "pattern": "duplicated_contigs.fa.gz",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_1929"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
                     }
                   ]
                 }
@@ -243290,26 +243653,26 @@
         "containers": {
           "docker": {
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/myloasm:0.6.0--4ee38265ad9e0a04",
-              "build_id": "bd-4ee38265ad9e0a04_1",
-              "scan_id": "sc-82f6692d18a76843_1"
+              "name": "community.wave.seqera.io/library/myloasm_findutils_gzip:154a360acd2dca07",
+              "build_id": "bd-154a360acd2dca07_1",
+              "scan_id": "sc-8ad31c3881a69148_1"
             }
           },
           "singularity": {
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/myloasm:0.6.0--90ec28ab9f040682",
-              "build_id": "bd-90ec28ab9f040682_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/83/8369a41d8a2d92487caa26e8604015f6b2cfd48a78fbe732e891f7c5cd1f1861/data"
+              "name": "oras://community.wave.seqera.io/library/myloasm_findutils_gzip:7b85c14dfcd70722",
+              "build_id": "bd-7b85c14dfcd70722_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/67/67f705c8fa26ae809d73e5ee2c872c3087fe8abaad12e133bdba8ba4f8cdc553/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/myloasm/.conda-lock/linux_amd64-bd-4ee38265ad9e0a04_1.txt"
+              "lock_file": "modules/nf-core/myloasm/.conda-lock/linux_amd64-bd-154a360acd2dca07_1.txt"
             }
           }
         }
       },
-      "git_sha": "14cc9eccb1a8a20c3ae969a0070e9585ba960945"
+      "git_sha": "77a9e6b9af89bde2a2b472f21c6a9bfecb9c8c7d"
     },
     {
       "name": "nacho_normalize",
@@ -274532,6 +274895,10 @@
       "git_sha": "fe08122c3dc2f2d7890daba06f6c90e570ef01de",
       "pipelines": [
         {
+          "name": "pathogenepidemiology",
+          "version": "dev"
+        },
+        {
           "name": "rnafusion",
           "version": "4.1.3"
         }
@@ -275467,6 +275834,10 @@
         {
           "name": "methylseq",
           "version": "4.2.0"
+        },
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
         },
         {
           "name": "pathogensurveillance",
@@ -277865,6 +278236,10 @@
       },
       "git_sha": "fe08122c3dc2f2d7890daba06f6c90e570ef01de",
       "pipelines": [
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
+        },
         {
           "name": "pathogensurveillance",
           "version": "1.1.0"
@@ -280376,6 +280751,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -280683,6 +281062,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -300664,6 +301047,10 @@
           "version": "dev"
         },
         {
+          "name": "scdownstream",
+          "version": "dev"
+        },
+        {
           "name": "spatialvi",
           "version": "dev"
         }
@@ -301232,10 +301619,6 @@
         {
           "name": "differentialabundance",
           "version": "2.0.0"
-        },
-        {
-          "name": "scdownstream",
-          "version": "dev"
         }
       ]
     },
@@ -327790,6 +328173,10 @@
           "version": "1.1.3"
         },
         {
+          "name": "pathogenepidemiology",
+          "version": "dev"
+        },
+        {
           "name": "pathogensurveillance",
           "version": "1.1.0"
         },
@@ -329648,6 +330035,10 @@
         },
         {
           "name": "panoramaseq",
+          "version": "dev"
+        },
+        {
+          "name": "pathogenepidemiology",
           "version": "dev"
         },
         {
@@ -332018,6 +332409,10 @@
         },
         {
           "name": "pacsomatic",
+          "version": "dev"
+        },
+        {
+          "name": "pathogenepidemiology",
           "version": "dev"
         },
         {
@@ -388093,6 +388488,155 @@
       "git_sha": "da7374ccb36fba9f744829de0fee3bf290851cc3"
     },
     {
+      "name": "tobias_scorebigwig",
+      "path": "modules/nf-core/tobias/scorebigwig/meta.yml",
+      "tree_sha": "7ab07e7e5199706582e6c99db1ce8b82195d8ee9",
+      "files": [
+        "modules/nf-core/tobias/scorebigwig/environment.yml",
+        "modules/nf-core/tobias/scorebigwig/main.nf",
+        "modules/nf-core/tobias/scorebigwig/meta.yml",
+        "modules/nf-core/tobias/scorebigwig/tests/main.nf.test",
+        "modules/nf-core/tobias/scorebigwig/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "tobias_scorebigwig",
+        "description": "Calculate ATAC-seq footprint scores from a BigWig signal track with TOBIAS ScoreBigwig",
+        "keywords": [
+          "ATAC-seq",
+          "footprinting",
+          "bigWig",
+          "transcription factors"
+        ],
+        "tools": [
+          {
+            "tobias": {
+              "description": "Transcription factor Occupancy prediction By Investigation of ATAC-seq Signal",
+              "homepage": "https://github.com/loosolab/TOBIAS",
+              "documentation": "https://github.com/loosolab/TOBIAS/wiki",
+              "tool_dev_url": "https://github.com/loosolab/TOBIAS",
+              "doi": "10.1038/s41467-020-18035-1",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:tobias"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "signal": {
+                "type": "file",
+                "description": "BigWig ATAC-seq cut-site signal, typically generated by TOBIAS ATACorrect",
+                "pattern": "*.bw",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3006"
+                  }
+                ]
+              }
+            },
+            {
+              "regions": {
+                "type": "file",
+                "description": "BED file containing genomic regions for footprint scoring",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "footprints": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*_footprints.bw": {
+                  "type": "file",
+                  "description": "BigWig track containing TOBIAS footprint scores",
+                  "pattern": "*_footprints.bw",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3006"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_tobias": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "tobias": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "TOBIAS --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "tobias": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "TOBIAS --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@PFRoux"
+        ],
+        "maintainers": [
+          "@PFRoux"
+        ]
+      },
+      "git_sha": "773299a03cc62b836a0943ec6319b21a9e686c2f"
+    },
+    {
       "name": "topas_gencons",
       "path": "modules/nf-core/topas/gencons/meta.yml",
       "tree_sha": "489aa255bbc40fa8cbbf1a4dafbcfc3014609d76",
@@ -421998,7 +422542,13 @@
           "@fa2k"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
+      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
+      "pipelines": [
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "dia_proteomics_analysis",
@@ -434565,6 +435115,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "cbe820ee659c7818bb52338e3511951b20b397a0",
-  "updated_at": "2026-09-17T14:11:38.497Z"
+  "commit_sha": "c3eeb662a004a4c75ca2712a095ad61251878c5d",
+  "updated_at": "2026-09-18T02:12:38.063Z"
 }
