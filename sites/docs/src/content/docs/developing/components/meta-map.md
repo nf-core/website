@@ -31,7 +31,7 @@ A meta map sits in a tuple within a Nextflow channel object, next to the one or 
 
 nf-core developers may define and within a pipelines or local subworkflows any name for a meta map key, and record any metadata they require for the execution of the pipeline.
 
-nf-core defines 2 'standard' meta map keys and 1 additional permitted key.
+nf-core defines only two 'standard' meta map keys and one additional permitted key.
 
 | key                 | purpose                                                                                          |
 | ------------------- | ------------------------------------------------------------------------------------------------ |
