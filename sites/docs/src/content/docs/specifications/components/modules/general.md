@@ -211,8 +211,13 @@ Meta variables SHOULD NOT use custom names.
 'Custom' hardcoded `meta` fields MUST NOT be used in modules.
 Do not refer to them within the module as expected input, nor generate new fields as output.
 
-The only accepted 'standard' meta map keys are `meta.id` or `meta.single_end`.
+The only accepted meta map keys are `meta.id`, `meta.single_end`, and `meta.strandedness`.
 Discuss proposals for other 'standard' fields for other disciplines with the maintainers team on slack under the [#modules channel](https://nfcore.slack.com/archives/CJRH30T6V).
+
+:::warning
+New modules SHOULD NOT use `meta.strandedness` directly. Use `ext.args` in `modules.config` instead.
+The only exception is sibling modules of a tool that already uses the pattern (e.g., RNA-seq alignment tools in the same family).
+:::
 
 :::info{title="Rationale" collapse}
 Write modules to allow as much flexibility to pipeline developers as possible.
@@ -226,7 +231,7 @@ In the module code DO NOT:
 ```nextflow title="main.nf"
 """script
 my_command \\
-  -r ${meta.strandedness} \\
+  -r ${meta.library_type} \\
   input.txt \\
   output.txt
 """
@@ -235,7 +240,7 @@ my_command \\
 ... but rather:
 
 ```groovy title="modules.conf"
-ext.args = { "-r ${meta.strandedness}" }
+ext.args = { "-r ${meta.library_type}" }
 ```
 
 And then in the module code:
@@ -258,17 +263,17 @@ However, once a module is included into a pipeline, they can be customised at th
 This can be performed with `nf-core modules patch`.
 If a hardcoded meta key name is an absolute necessity in a module, it MAY be incorporated and maintained with a patch file.
 
-In this example, `-r ${meta.strandedness}` is hardcoded in the `my_command` module.
+In this example, `-r ${meta.library_type}` is hardcoded in the `my_command` module.
 
 First install the tool into your pipeline with `nf-core modules install my_command`.
 
-Edit the `main.nf` to include `-r ${meta.strandedness}` and save it.
+Edit the `main.nf` to include `-r ${meta.library_type}` and save it.
 
 ```nextflow title="main.nf"
 script
 """
 my_command \\
-  -r ${meta.strandedness} \\
+  -r ${meta.library_type} \\
   ${args} \\
   input.txt \\
   output.txt
