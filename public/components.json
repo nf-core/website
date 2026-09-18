@@ -46194,7 +46194,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         },
         {
           "name": "genomeqc",
@@ -48653,6 +48653,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "genomeassembler",
+          "version": "2.0.0"
+        },
+        {
           "name": "genomicrelatedness",
           "version": "dev"
         },
@@ -49026,6 +49030,10 @@
         {
           "name": "callingcards",
           "version": "1.0.0"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "2.0.0"
         },
         {
           "name": "genomicrelatedness",
@@ -113884,6 +113892,10 @@
           "version": "1.3.0"
         },
         {
+          "name": "genomeassembler",
+          "version": "2.0.0"
+        },
+        {
           "name": "genomicrelatedness",
           "version": "dev"
         },
@@ -114195,7 +114207,13 @@
           "@Lupphes"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "fastqc",
@@ -114477,7 +114495,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         },
         {
           "name": "genomeqc",
@@ -124992,7 +125010,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         },
         {
           "name": "mag",
@@ -154827,7 +154845,13 @@
           "@mahesh-panchal"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "genometester4_glistmaker",
@@ -156621,7 +156645,13 @@
           "@mahesh-panchal"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "gfatools_stat",
@@ -167201,6 +167231,10 @@
           "version": "dev"
         },
         {
+          "name": "genomeassembler",
+          "version": "2.0.0"
+        },
+        {
           "name": "genomicrelatedness",
           "version": "dev"
         },
@@ -172670,7 +172704,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -182402,6 +182436,10 @@
       },
       "git_sha": "37f69c8ca3eb3d038a5d44f33a329e49f44bd4f2",
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "2.0.0"
+        },
         {
           "name": "pairgenomealign",
           "version": "3.0.4"
@@ -192910,7 +192948,13 @@
           "@vagkaratzas"
         ]
       },
-      "git_sha": "f783ab0f09a75b5134084aa379280aef197b6dd8"
+      "git_sha": "f783ab0f09a75b5134084aa379280aef197b6dd8",
+      "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "jellyfish_dump",
@@ -195895,7 +195939,7 @@
     {
       "name": "kallisto_index",
       "path": "modules/nf-core/kallisto/index/meta.yml",
-      "tree_sha": "be77519a75b059bc0fdca9a165eb4394ee4c1cc2",
+      "tree_sha": "2cf191cd54a7eb6ee7b06ca624c9899a26705ff5",
       "files": [
         "modules/nf-core/kallisto/index/environment.yml",
         "modules/nf-core/kallisto/index/main.nf",
@@ -196016,7 +196060,7 @@
           "@ggabernet"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "53daf6285b9fbf1164b4dcab41da6e70e1f2f721",
       "pipelines": [
         {
           "name": "lncpipe",
@@ -196039,13 +196083,14 @@
     {
       "name": "kallisto_quant",
       "path": "modules/nf-core/kallisto/quant/meta.yml",
-      "tree_sha": "a1465649be29145dc66492d7753831339eadf192",
+      "tree_sha": "d6ce003601525c0897d89cd9c90cd9b7b9b07e19",
       "files": [
         "modules/nf-core/kallisto/quant/environment.yml",
         "modules/nf-core/kallisto/quant/main.nf",
         "modules/nf-core/kallisto/quant/meta.yml",
         "modules/nf-core/kallisto/quant/tests/main.nf.test",
-        "modules/nf-core/kallisto/quant/tests/main.nf.test.snap"
+        "modules/nf-core/kallisto/quant/tests/main.nf.test.snap",
+        "modules/nf-core/kallisto/quant/tests/nextflow_ext_args_strandedness.config"
       ],
       "type": "module",
       "meta": {
@@ -196082,7 +196127,7 @@
             {
               "reads": {
                 "type": "file",
-                "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n",
+                "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively. Pass `--fr-stranded` or `--rf-stranded` via `ext.args` to select\nstrandedness; kallisto is unstranded by default.\n",
                 "pattern": "*.{fastq,fastq.gz}",
                 "ontologies": [
                   {
@@ -196096,7 +196141,7 @@
             {
               "meta2": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
               }
             },
             {
@@ -196106,28 +196151,28 @@
                 "pattern": "*.idx",
                 "ontologies": []
               }
+            },
+            {
+              "gtf": {
+                "type": "file",
+                "description": "Optional gtf file for translation of transcripts into genomic\ncoordinates. Pass `[]` to omit.\n",
+                "pattern": "*.gtf",
+                "ontologies": []
+              }
+            },
+            {
+              "chromosomes": {
+                "type": "file",
+                "description": "Optional tab separated file with chromosome names and lengths.\nPass `[]` to omit.\n",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
             }
           ],
-          {
-            "gtf": {
-              "type": "file",
-              "description": "Optional gtf file for translation of transcripts into genomic coordinates.",
-              "pattern": "*.gtf",
-              "ontologies": []
-            }
-          },
-          {
-            "chromosomes": {
-              "type": "file",
-              "description": "Optional tab separated file with chromosome names and lengths.",
-              "pattern": "*.tsv",
-              "ontologies": [
-                {
-                  "edam": "http://edamontology.org/format_3475"
-                }
-              ]
-            }
-          },
           {
             "fragment_length": {
               "type": "integer",
@@ -196253,7 +196298,7 @@
           "@anoronh4"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "53daf6285b9fbf1164b4dcab41da6e70e1f2f721",
       "pipelines": [
         {
           "name": "riboseq",
@@ -205029,7 +205074,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -205411,10 +205456,6 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
-        {
-          "name": "genomeassembler",
-          "version": "1.1.0"
-        },
         {
           "name": "isoseq",
           "version": "2.0.0"
@@ -206022,7 +206063,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -208764,7 +208805,13 @@
           "@nschan"
         ]
       },
-      "git_sha": "63f1a4b78b0655e854c1e7cf2b702bc887a1393f"
+      "git_sha": "63f1a4b78b0655e854c1e7cf2b702bc887a1393f",
+      "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "lsa_cosine",
@@ -219811,7 +219858,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         },
         {
           "name": "genomeqc",
@@ -221295,7 +221342,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         },
         {
           "name": "genomeqc",
@@ -221568,7 +221615,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         },
         {
           "name": "genomeqc",
@@ -229176,7 +229223,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         },
         {
           "name": "isoseq",
@@ -273760,7 +273807,7 @@
     {
       "name": "phyloflash",
       "path": "modules/nf-core/phyloflash/meta.yml",
-      "tree_sha": "48c63b48bd2c68f4e3984b047cefefc1ee76682a",
+      "tree_sha": "fef2fee0423998b28f5ce33cf332c7f89207e5f1",
       "files": [
         "modules/nf-core/phyloflash/environment.yml",
         "modules/nf-core/phyloflash/main.nf",
@@ -273841,19 +273888,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_phyloflash": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "phyloflash": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "phyloFlash.pl -version 2>&1 | sed 's/.*phyloFlash v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "phyloflash": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "phyloFlash.pl -version 2>&1 | sed 's/.*phyloFlash v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -273863,7 +273942,7 @@
           "@abhi18av"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "cc89790b9b42878b874dd38cdba1ab2a75a89424"
     },
     {
       "name": "picard_addorreplacereadgroups",
@@ -274063,6 +274142,10 @@
       },
       "git_sha": "fe08122c3dc2f2d7890daba06f6c90e570ef01de",
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "2.0.0"
+        },
         {
           "name": "methylseq",
           "version": "4.2.0"
@@ -277138,6 +277221,10 @@
           "version": "3.2.2"
         },
         {
+          "name": "genomeassembler",
+          "version": "2.0.0"
+        },
+        {
           "name": "methylseq",
           "version": "4.2.0"
         },
@@ -279348,7 +279435,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -280755,6 +280842,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -281062,6 +281153,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -289087,10 +289182,6 @@
         {
           "name": "bacass",
           "version": "2.6.0"
-        },
-        {
-          "name": "genomeassembler",
-          "version": "1.1.0"
         },
         {
           "name": "mag",
@@ -301856,6 +301947,10 @@
           "version": "2.6.0"
         },
         {
+          "name": "genomeassembler",
+          "version": "2.0.0"
+        },
+        {
           "name": "genomeqc",
           "version": "1.0.1"
         },
@@ -303067,7 +303162,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -303294,7 +303389,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -322053,7 +322148,7 @@
     {
       "name": "salmon_index",
       "path": "modules/nf-core/salmon/index/meta.yml",
-      "tree_sha": "3c3e99c4247aaffd523359f4af6f41f740d12ff1",
+      "tree_sha": "1f2fa978aff228f449734b2ff24c34596cb25b9a",
       "files": [
         "modules/nf-core/salmon/index/environment.yml",
         "modules/nf-core/salmon/index/main.nf",
@@ -322183,7 +322278,7 @@
           "@drpatelh"
         ]
       },
-      "git_sha": "cbe820ee659c7818bb52338e3511951b20b397a0",
+      "git_sha": "53daf6285b9fbf1164b4dcab41da6e70e1f2f721",
       "pipelines": [
         {
           "name": "denovotranscript",
@@ -322218,7 +322313,7 @@
     {
       "name": "salmon_quant",
       "path": "modules/nf-core/salmon/quant/meta.yml",
-      "tree_sha": "f0a1a64b742feede1c7c1c6a120c7a22d375d56a",
+      "tree_sha": "fbd39e460181c2443000342d19b0e0c1ab274010",
       "files": [
         "modules/nf-core/salmon/quant/environment.yml",
         "modules/nf-core/salmon/quant/main.nf",
@@ -322414,7 +322509,7 @@
           "@drpatelh"
         ]
       },
-      "git_sha": "cbe820ee659c7818bb52338e3511951b20b397a0",
+      "git_sha": "53daf6285b9fbf1164b4dcab41da6e70e1f2f721",
       "pipelines": [
         {
           "name": "denovotranscript",
@@ -328133,6 +328228,10 @@
           "version": "2.0.0"
         },
         {
+          "name": "genomeassembler",
+          "version": "2.0.0"
+        },
+        {
           "name": "genomicrelatedness",
           "version": "dev"
         },
@@ -328653,7 +328752,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         },
         {
           "name": "hgtseq",
@@ -329101,7 +329200,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         },
         {
           "name": "hgtseq",
@@ -329498,7 +329597,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         },
         {
           "name": "hgtseq",
@@ -329975,7 +330074,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         },
         {
           "name": "genomicrelatedness",
@@ -331852,7 +331951,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         },
         {
           "name": "hgtseq",
@@ -332361,7 +332460,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         },
         {
           "name": "genomicrelatedness",
@@ -339000,7 +339099,7 @@
     {
       "name": "sentieon_applyvarcal",
       "path": "modules/nf-core/sentieon/applyvarcal/meta.yml",
-      "tree_sha": "78a0c57244961896a34bc92387d3858768f1ec0a",
+      "tree_sha": "b2647dde6b5fc31a4000be1f6fac8416c1d28b83",
       "files": [
         "modules/nf-core/sentieon/applyvarcal/environment.yml",
         "modules/nf-core/sentieon/applyvarcal/main.nf",
@@ -339168,7 +339267,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -339192,7 +339291,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -339206,7 +339305,7 @@
           "@assp8200"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
       "pipelines": [
         {
           "name": "sarek",
@@ -339217,7 +339316,7 @@
     {
       "name": "sentieon_bwaindex",
       "path": "modules/nf-core/sentieon/bwaindex/meta.yml",
-      "tree_sha": "fb4816642069070f8aed1c5279c2aa38deef831e",
+      "tree_sha": "722b2cccfbd1365c627188ac3b3a6f995ce4920a",
       "files": [
         "modules/nf-core/sentieon/bwaindex/environment.yml",
         "modules/nf-core/sentieon/bwaindex/main.nf",
@@ -339299,7 +339398,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -339323,7 +339422,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -339337,7 +339436,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
       "pipelines": [
         {
           "name": "raredisease",
@@ -339348,7 +339447,7 @@
     {
       "name": "sentieon_bwamem",
       "path": "modules/nf-core/sentieon/bwamem/meta.yml",
-      "tree_sha": "cff115e0a1b0ab537289319648842cb73fd9d1e9",
+      "tree_sha": "0d9947471a03304c0452f917442569d392936eff",
       "files": [
         "modules/nf-core/sentieon/bwamem/environment.yml",
         "modules/nf-core/sentieon/bwamem/main.nf",
@@ -339360,7 +339459,7 @@
       "type": "module",
       "meta": {
         "name": "sentieon_bwamem",
-        "description": "Performs fastq alignment to a fasta reference using Sentieon's BWA MEM",
+        "description": "Performs the alignment of fastq files to a fasta reference using Sentieon's BWA MEM",
         "keywords": [
           "mem",
           "bwa",
@@ -339488,7 +339587,7 @@
               },
               {
                 "sentieon bwa 2>&1 | sed -n \"s/^Version: *//p\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -339510,7 +339609,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -339534,7 +339633,7 @@
               },
               {
                 "sentieon bwa 2>&1 | sed -n \"s/^Version: *//p\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -339554,7 +339653,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -339569,7 +339668,7 @@
           "@DonFreed"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
       "pipelines": [
         {
           "name": "raredisease",
@@ -339584,7 +339683,7 @@
     {
       "name": "sentieon_collectvcmetrics",
       "path": "modules/nf-core/sentieon/collectvcmetrics/meta.yml",
-      "tree_sha": "eecb38834fb48710a596ad8ed82dbc66566fba49",
+      "tree_sha": "459abe479076f0b5f0ca5dba7095c4c90da2f9b2",
       "files": [
         "modules/nf-core/sentieon/collectvcmetrics/environment.yml",
         "modules/nf-core/sentieon/collectvcmetrics/main.nf",
@@ -339766,7 +339865,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -339790,7 +339889,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -339804,12 +339903,12 @@
           "@adamrtalbot"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053"
     },
     {
       "name": "sentieon_coveragemetrics",
       "path": "modules/nf-core/sentieon/coveragemetrics/meta.yml",
-      "tree_sha": "8fa673358277b196126ef4d868c1db904f2e6192",
+      "tree_sha": "8d38608a5ed71eb962a5e4fc317e3442d2016feb",
       "files": [
         "modules/nf-core/sentieon/coveragemetrics/environment.yml",
         "modules/nf-core/sentieon/coveragemetrics/main.nf",
@@ -340055,7 +340154,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -340079,7 +340178,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -340093,12 +340192,12 @@
           "@adamrtalbot"
         ]
       },
-      "git_sha": "a19d1c054460b7af9ea28b281899dc612f463d60"
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053"
     },
     {
       "name": "sentieon_datametrics",
       "path": "modules/nf-core/sentieon/datametrics/meta.yml",
-      "tree_sha": "5bc95df93b3ce5afbd9e459d8e786bae83eb93ec",
+      "tree_sha": "2c845331aa92253bc37ff845fa37e9956ef3d7f4",
       "files": [
         "modules/nf-core/sentieon/datametrics/environment.yml",
         "modules/nf-core/sentieon/datametrics/main.nf",
@@ -340388,7 +340487,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -340412,7 +340511,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -340426,7 +340525,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
       "pipelines": [
         {
           "name": "raredisease",
@@ -340437,7 +340536,7 @@
     {
       "name": "sentieon_dedup",
       "path": "modules/nf-core/sentieon/dedup/meta.yml",
-      "tree_sha": "5cc68628599f0be8261f07ed7be7fab4eebd2a18",
+      "tree_sha": "3109475e447d211f33d3a32ae073b7f6ec4d78e9",
       "files": [
         "modules/nf-core/sentieon/dedup/environment.yml",
         "modules/nf-core/sentieon/dedup/main.nf",
@@ -340449,7 +340548,7 @@
       "type": "module",
       "meta": {
         "name": "sentieon_dedup",
-        "description": "Runs the sentieon tool LocusCollector followed by Dedup. LocusCollector collects read information that is used by Dedup which in turn marks or removes duplicate reads.",
+        "description": "Runs the sentieon tool LocusCollector followed by Dedup. LocusCollector collects read information that is used by Dedup which, in turn, marks or removes duplicate reads.",
         "keywords": [
           "mem",
           "dedup",
@@ -340673,7 +340772,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -340697,7 +340796,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -340711,7 +340810,7 @@
           "@asp8200"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
       "pipelines": [
         {
           "name": "raredisease",
@@ -340726,7 +340825,7 @@
     {
       "name": "sentieon_dnamodelapply",
       "path": "modules/nf-core/sentieon/dnamodelapply/meta.yml",
-      "tree_sha": "bddf812917439001947e21b36afdb5503d3513ab",
+      "tree_sha": "39cfc1a4d312561ce01820f04cadd69edbdf666b",
       "files": [
         "modules/nf-core/sentieon/dnamodelapply/environment.yml",
         "modules/nf-core/sentieon/dnamodelapply/main.nf",
@@ -340738,7 +340837,7 @@
       "type": "module",
       "meta": {
         "name": "sentieon_dnamodelapply",
-        "description": "modifies the input VCF file by adding the MLrejected FILTER to the variants",
+        "description": "modifies the input VCF file by adding the MLrejected FILTER to variants that are rejected by the selected machine learning model",
         "keywords": [
           "dnamodelapply",
           "vcf",
@@ -340841,7 +340940,7 @@
               {
                 "*.vcf.gz": {
                   "type": "file",
-                  "description": "INPUT VCF file",
+                  "description": "Output VCF file",
                   "pattern": "*.{vcf,vcf.gz}",
                   "ontologies": []
                 }
@@ -340859,7 +340958,7 @@
               {
                 "*.vcf.gz.tbi": {
                   "type": "file",
-                  "description": "Index of the input VCF file",
+                  "description": "Index of the output VCF file",
                   "pattern": "*.{tbi}",
                   "ontologies": []
                 }
@@ -340882,7 +340981,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -340906,7 +341005,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -340920,7 +341019,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
       "pipelines": [
         {
           "name": "raredisease",
@@ -340935,7 +341034,7 @@
     {
       "name": "sentieon_dnascope",
       "path": "modules/nf-core/sentieon/dnascope/meta.yml",
-      "tree_sha": "4168fc4c18da56d38947c27e0045e07bd3bf1fa6",
+      "tree_sha": "cd2887db1519d35e0297d2f4a7a09bfd7179a7b6",
       "files": [
         "modules/nf-core/sentieon/dnascope/environment.yml",
         "modules/nf-core/sentieon/dnascope/main.nf",
@@ -341196,7 +341295,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -341220,7 +341319,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -341234,7 +341333,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
       "pipelines": [
         {
           "name": "raredisease",
@@ -341249,7 +341348,7 @@
     {
       "name": "sentieon_gvcftyper",
       "path": "modules/nf-core/sentieon/gvcftyper/meta.yml",
-      "tree_sha": "03a52f2f5ef2abd543a97e889aafed0c72c0e642",
+      "tree_sha": "a9a9416a4c4c81432d6db67bcbcfff4b444c8aaa",
       "files": [
         "modules/nf-core/sentieon/gvcftyper/environment.yml",
         "modules/nf-core/sentieon/gvcftyper/main.nf",
@@ -341473,7 +341572,7 @@
           "@asp8200"
         ]
       },
-      "git_sha": "35477cf84fee26c6f4664419cc1c045fa52eb2db",
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
       "pipelines": [
         {
           "name": "sarek",
@@ -341484,7 +341583,7 @@
     {
       "name": "sentieon_haplotyper",
       "path": "modules/nf-core/sentieon/haplotyper/meta.yml",
-      "tree_sha": "f62d31240cfed53c3b5fe45cf6dbff6ba6d56b6a",
+      "tree_sha": "4aa60e559e935fb27884c722985f6fc20b6f6551",
       "files": [
         "modules/nf-core/sentieon/haplotyper/environment.yml",
         "modules/nf-core/sentieon/haplotyper/main.nf",
@@ -341723,7 +341822,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -341747,7 +341846,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -341761,7 +341860,7 @@
           "@asp8200"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
       "pipelines": [
         {
           "name": "sarek",
@@ -341772,7 +341871,7 @@
     {
       "name": "sentieon_hsmetrics",
       "path": "modules/nf-core/sentieon/hsmetrics/meta.yml",
-      "tree_sha": "8084f381c637c3d96a88584234a4e8dd3dbb9725",
+      "tree_sha": "7c81ae66dd5503a46c6a4e8e1a2dc1d9a0e19e71",
       "files": [
         "modules/nf-core/sentieon/hsmetrics/environment.yml",
         "modules/nf-core/sentieon/hsmetrics/main.nf",
@@ -341925,7 +342024,7 @@
               },
               {
                 "sentieon driver --version | sed 's/.*-//g'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -341949,7 +342048,7 @@
               },
               {
                 "sentieon driver --version | sed 's/.*-//g'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -341963,12 +342062,12 @@
           "@sppearce"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053"
     },
     {
       "name": "sentieon_qualcal",
       "path": "modules/nf-core/sentieon/qualcal/meta.yml",
-      "tree_sha": "cee0e0673ca2dd0690129871f0d2f88c3c82d9ab",
+      "tree_sha": "26c55d974303c9888d00a21b1574e8255afde8e6",
       "files": [
         "modules/nf-core/sentieon/qualcal/environment.yml",
         "modules/nf-core/sentieon/qualcal/main.nf",
@@ -342108,7 +342207,7 @@
           {
             "generate_recalibrated_bams": {
               "type": "boolean",
-              "description": "If truem, writes recalibrated bams to disc"
+              "description": "If true, writes recalibrated bam files to disk"
             }
           }
         ],
@@ -342223,19 +342322,13 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
             ]
           ]
         },
-        "authors": [
-          "@FriederikeHanssen"
-        ],
-        "maintainers": [
-          "@FriederikeHanssen"
-        ],
         "topics": {
           "versions": [
             [
@@ -342253,20 +342346,26 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
             ]
           ]
-        }
+        },
+        "authors": [
+          "@FriederikeHanssen"
+        ],
+        "maintainers": [
+          "@FriederikeHanssen"
+        ]
       },
-      "git_sha": "075c037ecc41597b7b9aea81a2eb55a3445b9ce3"
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053"
     },
     {
       "name": "sentieon_readwriter",
       "path": "modules/nf-core/sentieon/readwriter/meta.yml",
-      "tree_sha": "a4601d79210ebb589981ddffc4ac33e63323441c",
+      "tree_sha": "a58d37d21368eb3cc8375353be808d0ce962ec0f",
       "files": [
         "modules/nf-core/sentieon/readwriter/environment.yml",
         "modules/nf-core/sentieon/readwriter/main.nf",
@@ -342432,7 +342531,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -342456,7 +342555,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -342470,7 +342569,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
       "pipelines": [
         {
           "name": "raredisease",
@@ -342820,7 +342919,7 @@
     {
       "name": "sentieon_rsempreparereference",
       "path": "modules/nf-core/sentieon/rsempreparereference/meta.yml",
-      "tree_sha": "d28c80ceef592ece8c5f9a883f27723d1a4592cc",
+      "tree_sha": "9b1307c3221221dca72fc48d9f8c21fedbb180b2",
       "files": [
         "modules/nf-core/sentieon/rsempreparereference/environment.yml",
         "modules/nf-core/sentieon/rsempreparereference/main.nf",
@@ -343029,7 +343128,7 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
       "pipelines": [
         {
           "name": "rnaseq",
@@ -343040,7 +343139,7 @@
     {
       "name": "sentieon_staralign",
       "path": "modules/nf-core/sentieon/staralign/meta.yml",
-      "tree_sha": "9e8bae80f665915df73cef8e696eed52492d4e64",
+      "tree_sha": "c312077f259d45b2f817fe335dfa4d60895e1c10",
       "files": [
         "modules/nf-core/sentieon/staralign/environment.yml",
         "modules/nf-core/sentieon/staralign/main.nf",
@@ -343526,7 +343625,7 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
       "pipelines": [
         {
           "name": "rnaseq",
@@ -343537,7 +343636,7 @@
     {
       "name": "sentieon_tnfilter",
       "path": "modules/nf-core/sentieon/tnfilter/meta.yml",
-      "tree_sha": "e7797b65cc960ad9e02aa92c6970e5cfcdac4302",
+      "tree_sha": "ff6bcda5f06bde912c26084b2a7ca8df6eee0c79",
       "files": [
         "modules/nf-core/sentieon/tnfilter/environment.yml",
         "modules/nf-core/sentieon/tnfilter/main.nf",
@@ -343762,7 +343861,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -343786,7 +343885,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -343797,12 +343896,12 @@
           "@asp8200"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053"
     },
     {
       "name": "sentieon_tnhaplotyper2",
       "path": "modules/nf-core/sentieon/tnhaplotyper2/meta.yml",
-      "tree_sha": "cc822b302e48346aa076073623714309b5f18212",
+      "tree_sha": "b847e80b227947a5a7a93189c161d2fe64e76bbd",
       "files": [
         "modules/nf-core/sentieon/tnhaplotyper2/environment.yml",
         "modules/nf-core/sentieon/tnhaplotyper2/main.nf",
@@ -344129,7 +344228,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -344153,7 +344252,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -344167,12 +344266,12 @@
           "@asp8200"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053"
     },
     {
       "name": "sentieon_tnscope",
       "path": "modules/nf-core/sentieon/tnscope/meta.yml",
-      "tree_sha": "5664543053297d68bcbcfc432aeafde6278e0685",
+      "tree_sha": "8e57b02135f6b23929c0a2cebe7a0e91512a75f0",
       "files": [
         "modules/nf-core/sentieon/tnscope/environment.yml",
         "modules/nf-core/sentieon/tnscope/main.nf",
@@ -344427,7 +344526,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -344451,7 +344550,7 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -344465,7 +344564,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
       "pipelines": [
         {
           "name": "sarek",
@@ -344476,7 +344575,7 @@
     {
       "name": "sentieon_varcal",
       "path": "modules/nf-core/sentieon/varcal/meta.yml",
-      "tree_sha": "118117a12f80c9ba187c532df315733ff4c029a4",
+      "tree_sha": "d57eb45657f82c49e286daab6d0854c60f9155fc",
       "files": [
         "modules/nf-core/sentieon/varcal/environment.yml",
         "modules/nf-core/sentieon/varcal/main.nf",
@@ -344677,19 +344776,13 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
             ]
           ]
         },
-        "authors": [
-          "@asp8200"
-        ],
-        "maintainers": [
-          "@asp8200"
-        ],
         "topics": {
           "versions": [
             [
@@ -344707,15 +344800,21 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
             ]
           ]
-        }
+        },
+        "authors": [
+          "@asp8200"
+        ],
+        "maintainers": [
+          "@asp8200"
+        ]
       },
-      "git_sha": "8ee2033cd73a14f4496e690196dac45426e9cadc",
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
       "pipelines": [
         {
           "name": "sarek",
@@ -344726,7 +344825,7 @@
     {
       "name": "sentieon_wgsmetrics",
       "path": "modules/nf-core/sentieon/wgsmetrics/meta.yml",
-      "tree_sha": "26a7bc3d46b6631461dd5ae8cfdcc03eef2a82b6",
+      "tree_sha": "53257786dc50f3430f425afce56a93147b5bfc71",
       "files": [
         "modules/nf-core/sentieon/wgsmetrics/environment.yml",
         "modules/nf-core/sentieon/wgsmetrics/main.nf",
@@ -344839,7 +344938,7 @@
               {
                 "*.txt": {
                   "type": "file",
-                  "description": "File containing the information about mean base quality score for each sequencing cycle",
+                  "description": "File containing WGS metrics produced by WgsMetricsAlgo",
                   "pattern": "*.txt",
                   "ontologies": []
                 }
@@ -344862,19 +344961,13 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
             ]
           ]
         },
-        "authors": [
-          "@ramprasadn"
-        ],
-        "maintainers": [
-          "@ramprasadn"
-        ],
         "topics": {
           "versions": [
             [
@@ -344892,15 +344985,21 @@
               },
               {
                 "sentieon driver --version | sed \"s/.*-//g\"": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
             ]
           ]
-        }
+        },
+        "authors": [
+          "@ramprasadn"
+        ],
+        "maintainers": [
+          "@ramprasadn"
+        ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
       "pipelines": [
         {
           "name": "raredisease",
@@ -391251,10 +391350,6 @@
           "version": "dev"
         },
         {
-          "name": "genomeassembler",
-          "version": "1.1.0"
-        },
-        {
           "name": "hgtseq",
           "version": "1.1.0"
         },
@@ -416031,7 +416126,13 @@
           "@yy5"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "yak_count",
@@ -420445,7 +420546,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         },
         {
           "name": "lncpipe",
@@ -420748,7 +420849,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         },
         {
           "name": "lncpipe",
@@ -428342,7 +428443,7 @@
     {
       "name": "fastq_qc_trim_filter_setstrandedness",
       "path": "subworkflows/nf-core/fastq_qc_trim_filter_setstrandedness/meta.yml",
-      "tree_sha": "570877a50eed9eb51d3c659cde767c5e1aaffd92",
+      "tree_sha": "f4745ae00f8cdc36abba142cad0944e212327866",
       "files": [
         "subworkflows/nf-core/fastq_qc_trim_filter_setstrandedness/main.nf",
         "subworkflows/nf-core/fastq_qc_trim_filter_setstrandedness/meta.yml",
@@ -428788,7 +428889,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "cbe820ee659c7818bb52338e3511951b20b397a0",
+      "git_sha": "53daf6285b9fbf1164b4dcab41da6e70e1f2f721",
       "pipelines": [
         {
           "name": "lncpipe",
@@ -429568,7 +429669,7 @@
     {
       "name": "fastq_subsample_fq_salmon",
       "path": "subworkflows/nf-core/fastq_subsample_fq_salmon/meta.yml",
-      "tree_sha": "667ec5322ee61307a88f04c0e4b70f29caf8f5be",
+      "tree_sha": "1da3aea494615754c93f9787c4180f19fc788854",
       "files": [
         "subworkflows/nf-core/fastq_subsample_fq_salmon/main.nf",
         "subworkflows/nf-core/fastq_subsample_fq_salmon/meta.yml",
@@ -429673,7 +429774,7 @@
           "@drpatelh"
         ]
       },
-      "git_sha": "cbe820ee659c7818bb52338e3511951b20b397a0",
+      "git_sha": "53daf6285b9fbf1164b4dcab41da6e70e1f2f721",
       "pipelines": [
         {
           "name": "lncpipe",
@@ -430679,7 +430780,7 @@
     {
       "name": "quant_tximport_summarizedexperiment",
       "path": "subworkflows/nf-core/quant_tximport_summarizedexperiment/meta.yml",
-      "tree_sha": "91211ce03c65c4cab13aed0fdd32b5ba1e9fe263",
+      "tree_sha": "443ad4afa49e80dd4bcb717a35d8ff6976691236",
       "files": [
         "subworkflows/nf-core/quant_tximport_summarizedexperiment/main.nf",
         "subworkflows/nf-core/quant_tximport_summarizedexperiment/meta.yml",
@@ -430844,7 +430945,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
+      "git_sha": "53daf6285b9fbf1164b4dcab41da6e70e1f2f721",
       "pipelines": [
         {
           "name": "riboseq",
@@ -430859,7 +430960,7 @@
     {
       "name": "quantify_pseudo_alignment",
       "path": "subworkflows/nf-core/quantify_pseudo_alignment/meta.yml",
-      "tree_sha": "80b8349426cd4f19b0aae80a1d9d1a7e3466c498",
+      "tree_sha": "a424b4628bfaa1e12a0ee74d11caae15c9e6616c",
       "files": [
         "subworkflows/nf-core/quantify_pseudo_alignment/main.nf",
         "subworkflows/nf-core/quantify_pseudo_alignment/meta.yml",
@@ -431059,7 +431160,7 @@
           "@adamrtalbot"
         ]
       },
-      "git_sha": "cbe820ee659c7818bb52338e3511951b20b397a0",
+      "git_sha": "53daf6285b9fbf1164b4dcab41da6e70e1f2f721",
       "pipelines": [
         {
           "name": "riboseq",
@@ -432287,7 +432388,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         },
         {
           "name": "genomeqc",
@@ -432775,7 +432876,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         },
         {
           "name": "genomeqc",
@@ -433311,7 +433412,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.1.0"
+          "version": "2.0.0"
         },
         {
           "name": "genomeqc",
@@ -435115,6 +435216,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "c3eeb662a004a4c75ca2712a095ad61251878c5d",
-  "updated_at": "2026-09-18T02:12:38.063Z"
+  "commit_sha": "cc89790b9b42878b874dd38cdba1ab2a75a89424",
+  "updated_at": "2026-09-18T14:11:50.116Z"
 }
