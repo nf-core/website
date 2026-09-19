@@ -92266,6 +92266,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -280846,6 +280854,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -281153,6 +281165,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -322313,7 +322329,7 @@
     {
       "name": "salmon_quant",
       "path": "modules/nf-core/salmon/quant/meta.yml",
-      "tree_sha": "fbd39e460181c2443000342d19b0e0c1ab274010",
+      "tree_sha": "fb72de9b1745dca64ce9bf730ce7cc91586fc457",
       "files": [
         "modules/nf-core/salmon/quant/environment.yml",
         "modules/nf-core/salmon/quant/main.nf",
@@ -322509,7 +322525,7 @@
           "@drpatelh"
         ]
       },
-      "git_sha": "53daf6285b9fbf1164b4dcab41da6e70e1f2f721",
+      "git_sha": "225ce36098d83f8c355c4bb8684f8205350c288e",
       "pipelines": [
         {
           "name": "denovotranscript",
@@ -435216,6 +435232,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "cc89790b9b42878b874dd38cdba1ab2a75a89424",
-  "updated_at": "2026-09-18T14:11:50.116Z"
+  "commit_sha": "66aec9b46a179bd72b055bdeeb8cf19664c2a4a0",
+  "updated_at": "2026-09-19T02:11:41.062Z"
 }
