@@ -92274,6 +92274,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -187895,7 +187903,7 @@
     {
       "name": "imc2mc",
       "path": "modules/nf-core/imc2mc/meta.yml",
-      "tree_sha": "542b9816bfb13f8315aa67a2f1fb1884fea41cc3",
+      "tree_sha": "427ca3ced838de1277a336189caf871c920a2485",
       "files": [
         "modules/nf-core/imc2mc/environment.yml",
         "modules/nf-core/imc2mc/main.nf",
@@ -188028,7 +188036,7 @@
           "@MargotCh"
         ]
       },
-      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
+      "git_sha": "ed9e3d2433a33f02c487f01a23bd266773fb30c4"
     },
     {
       "name": "immunedeconv",
@@ -216945,7 +216953,7 @@
     {
       "name": "mcstaging_imc2mc",
       "path": "modules/nf-core/mcstaging/imc2mc/meta.yml",
-      "tree_sha": "f16bac4cd7cf3db94032c1b56a6257033db84982",
+      "tree_sha": "98f4c2c917df6ba34d3eb170c4ec1cdab35fd0ed",
       "files": [
         "modules/nf-core/mcstaging/imc2mc/main.nf",
         "modules/nf-core/mcstaging/imc2mc/meta.yml",
@@ -217015,19 +217023,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_imc2mc": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "imc2mc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python /imc2mc/scripts/imc2mc.py --version | sed 's/v//g'": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "imc2mc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python /imc2mc/scripts/imc2mc.py --version | sed 's/v//g'": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -217037,7 +217077,7 @@
           "@MargotCh"
         ]
       },
-      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
+      "git_sha": "ed9e3d2433a33f02c487f01a23bd266773fb30c4"
     },
     {
       "name": "mcstaging_macsima2mc",
@@ -280858,6 +280898,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -281165,6 +281209,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -354746,8 +354794,10 @@
     {
       "name": "simpleaf_index",
       "path": "modules/nf-core/simpleaf/index/meta.yml",
-      "tree_sha": "c19723edb78765d5c8a2b5a6acb2684cb1820d1a",
+      "tree_sha": "4ddbb7abc81f1faad959d5719039dc92e6a707f3",
       "files": [
+        "modules/nf-core/simpleaf/index/.conda-lock/linux_amd64-bd-8fd648760a75594c_1.txt",
+        "modules/nf-core/simpleaf/index/.conda-lock/linux_arm64-bd-929cfcc780eff368_1.txt",
         "modules/nf-core/simpleaf/index/environment.yml",
         "modules/nf-core/simpleaf/index/main.nf",
         "modules/nf-core/simpleaf/index/meta.yml",
@@ -355041,9 +355091,43 @@
           "@apeltzer",
           "@pinin4fjords",
           "@dongzehe"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/piscem_simpleaf:8fd648760a75594c",
+              "build_id": "bd-8fd648760a75594c_1",
+              "scan_id": "sc-05af6cd8eb5b4d39_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/piscem_simpleaf:929cfcc780eff368",
+              "build_id": "bd-929cfcc780eff368_1",
+              "scan_id": "sc-591a2cc0204564f5_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/piscem_simpleaf:7fef1cfb3d98fc2e",
+              "build_id": "bd-7fef1cfb3d98fc2e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/d0/d04c6d819d0712b766a7cf18aa39a15cced3ea4d79178c0811966d8a741b4db1/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/piscem_simpleaf:6823ff12964a0381",
+              "build_id": "bd-6823ff12964a0381_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/09/09a58abf1cff2678e3d162d1dd71d307507e675cd8414ca01ed35a8fd3b78663/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/simpleaf/index/.conda-lock/linux_amd64-bd-8fd648760a75594c_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/simpleaf/index/.conda-lock/linux_arm64-bd-929cfcc780eff368_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "0863c5e1224f2e5d62a43fe68f8a16a0e8255ad2",
+      "git_sha": "b803b92468c50da729e14f9fe2edab7cd3cf9ba2",
       "pipelines": [
         {
           "name": "scrnaseq",
@@ -355054,8 +355138,10 @@
     {
       "name": "simpleaf_quant",
       "path": "modules/nf-core/simpleaf/quant/meta.yml",
-      "tree_sha": "dc0be41a89e0b1901f5aecb4cd9f3604d1f12b75",
+      "tree_sha": "631aa8fe73ed3bcb9a2ece5c274a02c0c45210bc",
       "files": [
+        "modules/nf-core/simpleaf/quant/.conda-lock/linux_amd64-bd-8fd648760a75594c_1.txt",
+        "modules/nf-core/simpleaf/quant/.conda-lock/linux_arm64-bd-929cfcc780eff368_1.txt",
         "modules/nf-core/simpleaf/quant/environment.yml",
         "modules/nf-core/simpleaf/quant/main.nf",
         "modules/nf-core/simpleaf/quant/meta.yml",
@@ -355362,9 +355448,43 @@
           "@apeltzer",
           "@pinin4fjords",
           "@dongzehe"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/piscem_simpleaf:929cfcc780eff368",
+              "build_id": "bd-929cfcc780eff368_1",
+              "scan_id": "sc-591a2cc0204564f5_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/piscem_simpleaf:8fd648760a75594c",
+              "build_id": "bd-8fd648760a75594c_1",
+              "scan_id": "sc-05af6cd8eb5b4d39_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/piscem_simpleaf:6823ff12964a0381",
+              "build_id": "bd-6823ff12964a0381_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/09/09a58abf1cff2678e3d162d1dd71d307507e675cd8414ca01ed35a8fd3b78663/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/piscem_simpleaf:7fef1cfb3d98fc2e",
+              "build_id": "bd-7fef1cfb3d98fc2e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/d0/d04c6d819d0712b766a7cf18aa39a15cced3ea4d79178c0811966d8a741b4db1/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/simpleaf/quant/.conda-lock/linux_amd64-bd-8fd648760a75594c_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/simpleaf/quant/.conda-lock/linux_arm64-bd-929cfcc780eff368_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "0863c5e1224f2e5d62a43fe68f8a16a0e8255ad2",
+      "git_sha": "b803b92468c50da729e14f9fe2edab7cd3cf9ba2",
       "pipelines": [
         {
           "name": "scrnaseq",
@@ -429685,7 +429805,7 @@
     {
       "name": "fastq_subsample_fq_salmon",
       "path": "subworkflows/nf-core/fastq_subsample_fq_salmon/meta.yml",
-      "tree_sha": "1da3aea494615754c93f9787c4180f19fc788854",
+      "tree_sha": "aacfd939a93f9daed8491902a3db1e87b45a95fe",
       "files": [
         "subworkflows/nf-core/fastq_subsample_fq_salmon/main.nf",
         "subworkflows/nf-core/fastq_subsample_fq_salmon/meta.yml",
@@ -429790,7 +429910,7 @@
           "@drpatelh"
         ]
       },
-      "git_sha": "53daf6285b9fbf1164b4dcab41da6e70e1f2f721",
+      "git_sha": "81b7daa6a899de586f7492dee5eef68d4419635d",
       "pipelines": [
         {
           "name": "lncpipe",
@@ -430976,7 +431096,7 @@
     {
       "name": "quantify_pseudo_alignment",
       "path": "subworkflows/nf-core/quantify_pseudo_alignment/meta.yml",
-      "tree_sha": "a424b4628bfaa1e12a0ee74d11caae15c9e6616c",
+      "tree_sha": "485fbd43de0671cf519eb36b53ff9a2dbfdb04a0",
       "files": [
         "subworkflows/nf-core/quantify_pseudo_alignment/main.nf",
         "subworkflows/nf-core/quantify_pseudo_alignment/meta.yml",
@@ -431176,7 +431296,7 @@
           "@adamrtalbot"
         ]
       },
-      "git_sha": "53daf6285b9fbf1164b4dcab41da6e70e1f2f721",
+      "git_sha": "81b7daa6a899de586f7492dee5eef68d4419635d",
       "pipelines": [
         {
           "name": "riboseq",
@@ -435232,6 +435352,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "66aec9b46a179bd72b055bdeeb8cf19664c2a4a0",
-  "updated_at": "2026-09-19T02:11:41.062Z"
+  "commit_sha": "81b7daa6a899de586f7492dee5eef68d4419635d",
+  "updated_at": "2026-09-19T14:11:38.535Z"
 }
