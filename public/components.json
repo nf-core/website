@@ -9964,6 +9964,137 @@
       ]
     },
     {
+      "name": "anndata_convert",
+      "path": "modules/nf-core/anndata/convert/meta.yml",
+      "tree_sha": "6ecb85acf67e2ca1d9c9a45e546dd062840a0c6f",
+      "files": [
+        "modules/nf-core/anndata/convert/environment.yml",
+        "modules/nf-core/anndata/convert/main.nf",
+        "modules/nf-core/anndata/convert/meta.yml",
+        "modules/nf-core/anndata/convert/templates/convert.R",
+        "modules/nf-core/anndata/convert/tests/main.nf.test",
+        "modules/nf-core/anndata/convert/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "anndata_convert",
+        "description": "Convert an AnnData H5AD file to Seurat and SingleCellExperiment RDS objects",
+        "keywords": [
+          "single-cell",
+          "anndata",
+          "conversion"
+        ],
+        "tools": [
+          {
+            "anndata": {
+              "description": "An annotated data matrix.",
+              "homepage": "https://anndata.readthedocs.io",
+              "documentation": "https://anndata.readthedocs.io",
+              "tool_dev_url": "https://github.com/theislab/anndata",
+              "doi": "10.21105/joss.04371",
+              "licence": [
+                "BSD-3-clause"
+              ],
+              "identifier": "biotools:anndata"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "h5ad": {
+                "type": "file",
+                "description": "Anndata object as H5AD file",
+                "pattern": "*.h5ad"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "seurat": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.seurat.rds": {
+                  "type": "file",
+                  "description": "Seurat object saved as an RDS file",
+                  "pattern": "*.seurat.rds",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "sce": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.sce.rds": {
+                  "type": "file",
+                  "description": "SingleCellExperiment object saved as an RDS file",
+                  "pattern": "*.sce.rds",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@fmalmeida",
+          "@nictru"
+        ],
+        "maintainers": [
+          "@fmalmeida"
+        ]
+      },
+      "git_sha": "1fcb7c7e29750bd6d1e67663a4bd035d51e92777"
+    },
+    {
       "name": "anndata_getsize",
       "path": "modules/nf-core/anndata/getsize/meta.yml",
       "tree_sha": "15172f3ca755911c3c0bcc3dd83334d313b8a15f",
@@ -48495,7 +48626,7 @@
     {
       "name": "bwamem2_index",
       "path": "modules/nf-core/bwamem2/index/meta.yml",
-      "tree_sha": "ff5dd365f148439851261ca74c1ae607de32998a",
+      "tree_sha": "2c042837b912d8df805b627dcb2ab9229760db96",
       "files": [
         "modules/nf-core/bwamem2/index/environment.yml",
         "modules/nf-core/bwamem2/index/main.nf",
@@ -48544,7 +48675,7 @@
             {
               "fasta": {
                 "type": "file",
-                "description": "Input genome fasta file",
+                "description": "Input genome fasta file, can be bgzipped.",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/data_2044"
@@ -48646,7 +48777,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "62ce917fd775aaef732eb82019de069c765adfd3",
+      "git_sha": "8327445b5266b0df32212e5c27407546d100429f",
       "pipelines": [
         {
           "name": "callingcards",
@@ -48709,7 +48840,7 @@
     {
       "name": "bwamem2_mem",
       "path": "modules/nf-core/bwamem2/mem/meta.yml",
-      "tree_sha": "69d228477ed08a026bc7a02aa4a7eaa1a098f549",
+      "tree_sha": "b2e0fd9c88f81bde7b430dee024759096491d5b1",
       "files": [
         "modules/nf-core/bwamem2/mem/environment.yml",
         "modules/nf-core/bwamem2/mem/main.nf",
@@ -49025,7 +49156,7 @@
           "@matthdsm"
         ]
       },
-      "git_sha": "62ce917fd775aaef732eb82019de069c765adfd3",
+      "git_sha": "8327445b5266b0df32212e5c27407546d100429f",
       "pipelines": [
         {
           "name": "callingcards",
@@ -92282,6 +92413,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -111736,7 +111875,7 @@
     {
       "name": "fastaguard",
       "path": "modules/nf-core/fastaguard/meta.yml",
-      "tree_sha": "a83d5b25ff4b0cba418cf162eb86b66ea2913568",
+      "tree_sha": "77da6efdc7406c6413a8e1dbaec4856357b16128",
       "files": [
         "modules/nf-core/fastaguard/environment.yml",
         "modules/nf-core/fastaguard/main.nf",
@@ -111922,7 +112061,7 @@
           "@ehsanestaji"
         ]
       },
-      "git_sha": "a83b61f09ea3af91d3e42f8671f68ab3bf0eabe1"
+      "git_sha": "63a37680b7657460bc6a9d095e91c66eb7951a7a"
     },
     {
       "name": "fastani",
@@ -268489,7 +268628,7 @@
     {
       "name": "pbmm2_align",
       "path": "modules/nf-core/pbmm2/align/meta.yml",
-      "tree_sha": "53ef7678c89c427df4e5a5537e7ec2844b86f885",
+      "tree_sha": "2bd61e57adb4e9ee90206e89532fa078afe6c391",
       "files": [
         "modules/nf-core/pbmm2/align/environment.yml",
         "modules/nf-core/pbmm2/align/main.nf",
@@ -268674,7 +268813,7 @@
           "@tanyasarkjain"
         ]
       },
-      "git_sha": "e6d1cb8b814c1d0deda51e3d317273901d7e975a",
+      "git_sha": "82ba6390c1ed742177d64895b64b179ab3473452",
       "pipelines": [
         {
           "name": "methylong",
@@ -280902,6 +281041,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -281209,6 +281352,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -369742,7 +369889,7 @@
     {
       "name": "starfusion_build",
       "path": "modules/nf-core/starfusion/build/meta.yml",
-      "tree_sha": "edcba8eb81b684149295d224b26924ed643d2131",
+      "tree_sha": "c13413fc5d65dd38a1566e4caf9ae0f8e0c1f030",
       "files": [
         "modules/nf-core/starfusion/build/environment.yml",
         "modules/nf-core/starfusion/build/main.nf",
@@ -369876,19 +370023,135 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_gunzip": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "gunzip": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "gunzip --version 2>&1 | sed \"1!d;s/^.*(gzip) //; s/ Copyright.*//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ],
+          "versions_hmmer": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "hmmer": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "hmmpress -h 2>&1 | sed \"2!d;s/^# HMMER //;s/ .*$//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_starfusion": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "star-fusion": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "1.15.1": {
+                  "type": "string",
+                  "description": "The version of STAR-Fusion (hardcoded, not available via CLI)"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "gunzip": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "gunzip --version 2>&1 | sed \"1!d;s/^.*(gzip) //; s/ Copyright.*//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "hmmer": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "hmmpress -h 2>&1 | sed \"2!d;s/^# HMMER //;s/ .*$//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "star-fusion": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "1.15.1": {
+                  "type": "string",
+                  "description": "The version of STAR-Fusion (hardcoded, not available via CLI)"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -369902,7 +370165,7 @@
           "@praveenraj2018"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
+      "git_sha": "250a82a774ef585cc03062bf252ee5d91f9811c3",
       "pipelines": [
         {
           "name": "rnafusion",
@@ -388721,6 +388984,247 @@
         ]
       },
       "git_sha": "da7374ccb36fba9f744829de0fee3bf290851cc3"
+    },
+    {
+      "name": "tobias_bindetect",
+      "path": "modules/nf-core/tobias/bindetect/meta.yml",
+      "tree_sha": "6f2d36274d9e0c82bd89d0692b70182dface5eb0",
+      "files": [
+        "modules/nf-core/tobias/bindetect/environment.yml",
+        "modules/nf-core/tobias/bindetect/main.nf",
+        "modules/nf-core/tobias/bindetect/meta.yml",
+        "modules/nf-core/tobias/bindetect/tests/main.nf.test",
+        "modules/nf-core/tobias/bindetect/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "tobias_bindetect",
+        "description": "Estimate transcription factor binding and differential binding from ATAC-seq footprint BigWig tracks with TOBIAS BINDetect",
+        "keywords": [
+          "ATAC-seq",
+          "footprinting",
+          "transcription factors",
+          "differential binding"
+        ],
+        "tools": [
+          {
+            "tobias": {
+              "description": "Transcription factor Occupancy prediction By Investigation of ATAC-seq Signal",
+              "homepage": "https://github.com/loosolab/TOBIAS",
+              "documentation": "https://github.com/loosolab/TOBIAS/wiki",
+              "tool_dev_url": "https://github.com/loosolab/TOBIAS",
+              "doi": "10.1038/s41467-020-18035-1",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:tobias"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing analysis information\ne.g. `[ id:'all_samples' ]`\n"
+              }
+            },
+            {
+              "signals": {
+                "type": "file",
+                "description": "One or more BigWig tracks containing TOBIAS footprint scores, one per condition or sample",
+                "pattern": "*.bw",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3006"
+                  }
+                ]
+              }
+            },
+            {
+              "peaks": {
+                "type": "file",
+                "description": "BED file containing the consensus open-chromatin regions",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            },
+            {
+              "motifs": {
+                "type": "file",
+                "description": "One or more transcription factor motif files in supported TOBIAS formats",
+                "pattern": "*",
+                "ontologies": []
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome FASTA file",
+                "pattern": "*.{fa,fasta,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "outdir": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing analysis information\ne.g. `[ id:'all_samples' ]`\n"
+                }
+              },
+              {
+                "bindetect": {
+                  "type": "directory",
+                  "description": "Complete TOBIAS BINDetect output directory, including motif-specific results",
+                  "pattern": "bindetect",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "results": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing analysis information\ne.g. `[ id:'all_samples' ]`\n"
+                }
+              },
+              {
+                "bindetect/*_results.txt": {
+                  "type": "file",
+                  "description": "Tab-delimited global transcription factor binding results",
+                  "pattern": "*_results.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "results_xlsx": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing analysis information\ne.g. `[ id:'all_samples' ]`\n"
+                }
+              },
+              {
+                "bindetect/*_results.xlsx": {
+                  "type": "file",
+                  "description": "Excel global transcription factor binding results",
+                  "pattern": "*_results.xlsx",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "distances": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing analysis information\ne.g. `[ id:'all_samples' ]`\n"
+                }
+              },
+              {
+                "bindetect/*_distances.txt": {
+                  "type": "file",
+                  "description": "Transcription factor motif-distance summary table",
+                  "pattern": "*_distances.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "figures": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing analysis information\ne.g. `[ id:'all_samples' ]`\n"
+                }
+              },
+              {
+                "bindetect/*_figures.pdf": {
+                  "type": "file",
+                  "description": "TOBIAS BINDetect summary figure PDF",
+                  "pattern": "*_figures.pdf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3508"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_tobias": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "tobias": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "TOBIAS --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "tobias": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "TOBIAS --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@PFRoux"
+        ],
+        "maintainers": [
+          "@PFRoux"
+        ]
+      },
+      "git_sha": "0daecd6ffc13b0b5d93ab84df2b13c02e4c087f3"
     },
     {
       "name": "tobias_scorebigwig",
@@ -427093,7 +427597,7 @@
     {
       "name": "fastq_create_umi_consensus_fgbio",
       "path": "subworkflows/nf-core/fastq_create_umi_consensus_fgbio/meta.yml",
-      "tree_sha": "58e5e18866f590dcb96d16c21d388d652ad8b40d",
+      "tree_sha": "9c1f9037e8b0c468c12f28dd570e2cdd7cc4f88c",
       "files": [
         "subworkflows/nf-core/fastq_create_umi_consensus_fgbio/main.nf",
         "subworkflows/nf-core/fastq_create_umi_consensus_fgbio/meta.yml",
@@ -427236,7 +427740,7 @@
           "@lescai"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
+      "git_sha": "8327445b5266b0df32212e5c27407546d100429f"
     },
     {
       "name": "fastq_decontaminate_deacon",
@@ -427791,7 +428295,7 @@
     {
       "name": "fastq_fastqc_umitools_trimgalore",
       "path": "subworkflows/nf-core/fastq_fastqc_umitools_trimgalore/meta.yml",
-      "tree_sha": "0d1e1a8c2ec45fc05e0716def9f6675885e79fea",
+      "tree_sha": "1cfad867151db8e3eb47f0874c0b8f9e683b6c8e",
       "files": [
         "subworkflows/nf-core/fastq_fastqc_umitools_trimgalore/main.nf",
         "subworkflows/nf-core/fastq_fastqc_umitools_trimgalore/meta.yml",
@@ -427927,6 +428431,13 @@
             }
           },
           {
+            "trim_json": {
+              "type": "file",
+              "description": "Trim Galore! JSON report, consumed by MultiQC's trim_galore module (optional).\n\nStructure: [ val(meta), [ path(json) ] ]\n",
+              "pattern": "*report.json"
+            }
+          },
+          {
             "trim_read_count": {
               "type": "integer",
               "description": "Number of reads remaining after trimming for all input samples.\n\nStructure: [ val(meta), val(count) ]\n"
@@ -427942,7 +428453,7 @@
           "@KamilMaliszArdigen"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
+      "git_sha": "ea400d55ea0a63c1a0f9fd527211208b842ea15e",
       "pipelines": [
         {
           "name": "atacseq",
@@ -428579,7 +429090,7 @@
     {
       "name": "fastq_qc_trim_filter_setstrandedness",
       "path": "subworkflows/nf-core/fastq_qc_trim_filter_setstrandedness/meta.yml",
-      "tree_sha": "f4745ae00f8cdc36abba142cad0944e212327866",
+      "tree_sha": "b85250bf7f361b21211b84ca6478fb6b1319fbc5",
       "files": [
         "subworkflows/nf-core/fastq_qc_trim_filter_setstrandedness/main.nf",
         "subworkflows/nf-core/fastq_qc_trim_filter_setstrandedness/meta.yml",
@@ -429025,7 +429536,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "53daf6285b9fbf1164b4dcab41da6e70e1f2f721",
+      "git_sha": "ea400d55ea0a63c1a0f9fd527211208b842ea15e",
       "pipelines": [
         {
           "name": "lncpipe",
@@ -435352,6 +435863,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "81b7daa6a899de586f7492dee5eef68d4419635d",
-  "updated_at": "2026-09-19T14:11:38.535Z"
+  "commit_sha": "a20acf23088e655a47484165818a5db1279555e3",
+  "updated_at": "2026-09-20T02:11:45.546Z"
 }
