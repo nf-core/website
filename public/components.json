@@ -92421,6 +92421,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -125180,7 +125188,7 @@
     {
       "name": "fmhfunprofiler",
       "path": "modules/nf-core/fmhfunprofiler/meta.yml",
-      "tree_sha": "12b0472b5a3126404a2a8b3017a27ad6feb184a8",
+      "tree_sha": "d6272f3b33df9af277c166979b39fe9e1ab9ab7c",
       "files": [
         "modules/nf-core/fmhfunprofiler/environment.yml",
         "modules/nf-core/fmhfunprofiler/main.nf",
@@ -125333,7 +125341,7 @@
           "@miraep8"
         ]
       },
-      "git_sha": "da290c59a571dbc2fddcd9b87b69b7517cad6a94",
+      "git_sha": "6eaecd6ef9bfc7faf313b1abeaae9b129795291d",
       "pipelines": [
         {
           "name": "funcprofiler",
@@ -281045,6 +281053,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -281352,6 +281364,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -362832,7 +362848,7 @@
     {
       "name": "sourmash_compare",
       "path": "modules/nf-core/sourmash/compare/meta.yml",
-      "tree_sha": "b948d5cbebe789db0454a505c9f2ea76a0c5fc0f",
+      "tree_sha": "d5035dd05edbb262a674f0931acc04c73c580f20",
       "files": [
         "modules/nf-core/sourmash/compare/environment.yml",
         "modules/nf-core/sourmash/compare/main.nf",
@@ -363019,7 +363035,7 @@
           "@taylorreiter"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "6eaecd6ef9bfc7faf313b1abeaae9b129795291d",
       "pipelines": [
         {
           "name": "pathogensurveillance",
@@ -363030,7 +363046,7 @@
     {
       "name": "sourmash_gather",
       "path": "modules/nf-core/sourmash/gather/meta.yml",
-      "tree_sha": "19c85d0dcc18a591f604f0be38ed7a0b0b07e08a",
+      "tree_sha": "fa494f608499d67e703868fd9c2cce9812eced68",
       "files": [
         "modules/nf-core/sourmash/gather/environment.yml",
         "modules/nf-core/sourmash/gather/main.nf",
@@ -363265,7 +363281,7 @@
           "@taylorreiter"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "6eaecd6ef9bfc7faf313b1abeaae9b129795291d",
       "pipelines": [
         {
           "name": "magmap",
@@ -363276,7 +363292,7 @@
     {
       "name": "sourmash_index",
       "path": "modules/nf-core/sourmash/index/meta.yml",
-      "tree_sha": "09b03597083e274a5c168edff11668d083b67bc1",
+      "tree_sha": "b88e3894f67572f06d9b86c14c5c20206a51dbc2",
       "files": [
         "modules/nf-core/sourmash/index/environment.yml",
         "modules/nf-core/sourmash/index/main.nf",
@@ -363408,7 +363424,7 @@
           "@emnilsson"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "6eaecd6ef9bfc7faf313b1abeaae9b129795291d",
       "pipelines": [
         {
           "name": "createtaxdb",
@@ -363423,7 +363439,7 @@
     {
       "name": "sourmash_pairwise",
       "path": "modules/nf-core/sourmash/pairwise/meta.yml",
-      "tree_sha": "680d13eb5a3b2ed6b906174359d00e490899f771",
+      "tree_sha": "f4f5d70a242080284fdaf84bdf38dd240e80c56b",
       "files": [
         "modules/nf-core/sourmash/pairwise/environment.yml",
         "modules/nf-core/sourmash/pairwise/main.nf",
@@ -363581,12 +363597,12 @@
           "@zachary-foster"
         ]
       },
-      "git_sha": "1a6d192f85a35f260ca5b70195f87536d78b4717"
+      "git_sha": "6eaecd6ef9bfc7faf313b1abeaae9b129795291d"
     },
     {
       "name": "sourmash_sketch",
       "path": "modules/nf-core/sourmash/sketch/meta.yml",
-      "tree_sha": "7bb5d40900f1ec128bb730c0305ae9cce2b8a824",
+      "tree_sha": "3e7672c0571c1c4652f733261254d5065c876788",
       "files": [
         "modules/nf-core/sourmash/sketch/environment.yml",
         "modules/nf-core/sourmash/sketch/main.nf",
@@ -363642,7 +363658,13 @@
                 ]
               }
             }
-          ]
+          ],
+          {
+            "merge_sigs": {
+              "type": "boolean",
+              "description": "Specify whether to merge the signatures of all input files into a single signature file.\nUsed e.g. for paired-end FASTQ inputs, or when there are multiple FASTAs for a single genome (such as chromosomes or contigs).\nSignature name will be set to the processes' '${prefix}'.\n"
+            }
+          }
         ],
         "output": {
           "signatures": [
@@ -363717,7 +363739,7 @@
           "@Midnighter"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "6eaecd6ef9bfc7faf313b1abeaae9b129795291d",
       "pipelines": [
         {
           "name": "createtaxdb",
@@ -363736,7 +363758,7 @@
     {
       "name": "sourmash_taxannotate",
       "path": "modules/nf-core/sourmash/taxannotate/meta.yml",
-      "tree_sha": "08298dc99795f241af9555ecbae64c6e034fd93f",
+      "tree_sha": "b10e57e8b28cfcd42db6fbd6d1d445fd1550fe13",
       "files": [
         "modules/nf-core/sourmash/taxannotate/environment.yml",
         "modules/nf-core/sourmash/taxannotate/main.nf",
@@ -363874,7 +363896,7 @@
           "@taylorreiter"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "6eaecd6ef9bfc7faf313b1abeaae9b129795291d"
     },
     {
       "name": "spaceranger_count",
@@ -435863,6 +435885,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "a20acf23088e655a47484165818a5db1279555e3",
-  "updated_at": "2026-09-20T02:11:45.546Z"
+  "commit_sha": "6eaecd6ef9bfc7faf313b1abeaae9b129795291d",
+  "updated_at": "2026-09-20T14:10:54.795Z"
 }
