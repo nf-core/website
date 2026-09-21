@@ -7324,8 +7324,10 @@
     {
       "name": "amulety_antiberta2",
       "path": "modules/nf-core/amulety/antiberta2/meta.yml",
-      "tree_sha": "c4cf25e7e9e23f6603af6fd08a42e53d4c26d7d5",
+      "tree_sha": "01d75c6afba584e9b1550128ac41e0a1d82be04f",
       "files": [
+        "modules/nf-core/amulety/antiberta2/.conda-lock/linux_amd64-bd-5abbe5fc5e136fd3_1.txt",
+        "modules/nf-core/amulety/antiberta2/.conda-lock/linux_arm64-bd-0e94f7a12e9db539_1.txt",
         "modules/nf-core/amulety/antiberta2/environment.yml",
         "modules/nf-core/amulety/antiberta2/main.nf",
         "modules/nf-core/amulety/antiberta2/meta.yml",
@@ -7412,19 +7414,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_amulety": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "amulety": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "amulety --help 2>&1 | grep -o 'version [0-9\\.]\\+' | grep -o '[0-9\\.]\\+'": {
+                  "type": "eval",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "amulety": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "amulety --help 2>&1 | grep -o 'version [0-9\\.]\\+' | grep -o '[0-9\\.]\\+'": {
+                  "type": "eval",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -7432,15 +7466,51 @@
         ],
         "maintainers": [
           "@ggabernet"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/amulety:1.1--0e94f7a12e9db539",
+              "build_id": "bd-0e94f7a12e9db539_1",
+              "scan_id": "sc-c46ca325fe6783e0_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/amulety:1.1--5abbe5fc5e136fd3",
+              "build_id": "bd-5abbe5fc5e136fd3_1",
+              "scan_id": "sc-0a568678900ef142_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/amulety:1.1--e1b6039b9704c9e1",
+              "build_id": "bd-e1b6039b9704c9e1_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/ae/ae2be6d5fd5a4e1024b78eb1acdfdcb6aab4326f002e98d7c2c97ef00aa979e2/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/amulety:1.1--d896faa5bf18336b",
+              "build_id": "bd-d896faa5bf18336b_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/f0/f0688cb48089eebe2648c1b2359e4a75a93b1e70f4580faac2173d16c61b8053/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/amulety/antiberta2/.conda-lock/linux_amd64-bd-5abbe5fc5e136fd3_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/amulety/antiberta2/.conda-lock/linux_arm64-bd-0e94f7a12e9db539_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "eac429d4c67ac5114ce7d4287d460d8f05fd9fab"
+      "git_sha": "32e1ce7c8781543b656bbe7586a610d9d47f2aff"
     },
     {
       "name": "amulety_antiberty",
       "path": "modules/nf-core/amulety/antiberty/meta.yml",
-      "tree_sha": "455c57adc39afcece473cd4d7732191e4216148c",
+      "tree_sha": "cd7d60568392b1d2032f87ead0aff9cd24684065",
       "files": [
+        "modules/nf-core/amulety/antiberty/.conda-lock/linux_amd64-bd-5abbe5fc5e136fd3_1.txt",
+        "modules/nf-core/amulety/antiberty/.conda-lock/linux_arm64-bd-0e94f7a12e9db539_1.txt",
         "modules/nf-core/amulety/antiberty/environment.yml",
         "modules/nf-core/amulety/antiberty/main.nf",
         "modules/nf-core/amulety/antiberty/meta.yml",
@@ -7527,19 +7597,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_amulety": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "amulety": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "amulety --help 2>&1 | grep -o 'version [0-9\\.]\\+' | grep -o '[0-9\\.]\\+'": {
+                  "type": "eval",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "amulety": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "amulety --help 2>&1 | grep -o 'version [0-9\\.]\\+' | grep -o '[0-9\\.]\\+'": {
+                  "type": "eval",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -7547,15 +7649,51 @@
         ],
         "maintainers": [
           "@ggabernet"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/amulety:1.1--5abbe5fc5e136fd3",
+              "build_id": "bd-5abbe5fc5e136fd3_1",
+              "scan_id": "sc-0a568678900ef142_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/amulety:1.1--0e94f7a12e9db539",
+              "build_id": "bd-0e94f7a12e9db539_1",
+              "scan_id": "sc-c46ca325fe6783e0_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/amulety:1.1--e1b6039b9704c9e1",
+              "build_id": "bd-e1b6039b9704c9e1_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/ae/ae2be6d5fd5a4e1024b78eb1acdfdcb6aab4326f002e98d7c2c97ef00aa979e2/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/amulety:1.1--d896faa5bf18336b",
+              "build_id": "bd-d896faa5bf18336b_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/f0/f0688cb48089eebe2648c1b2359e4a75a93b1e70f4580faac2173d16c61b8053/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/amulety/antiberty/.conda-lock/linux_amd64-bd-5abbe5fc5e136fd3_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/amulety/antiberty/.conda-lock/linux_arm64-bd-0e94f7a12e9db539_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "eac429d4c67ac5114ce7d4287d460d8f05fd9fab"
+      "git_sha": "32e1ce7c8781543b656bbe7586a610d9d47f2aff"
     },
     {
       "name": "amulety_balmpaired",
       "path": "modules/nf-core/amulety/balmpaired/meta.yml",
-      "tree_sha": "f9f7a399bc12c30df7e19b77b701bc1d7a677328",
+      "tree_sha": "c128bc1df556583d8e6027b2f80a6b82f907f455",
       "files": [
+        "modules/nf-core/amulety/balmpaired/.conda-lock/linux_amd64-bd-5abbe5fc5e136fd3_1.txt",
+        "modules/nf-core/amulety/balmpaired/.conda-lock/linux_arm64-bd-0e94f7a12e9db539_1.txt",
         "modules/nf-core/amulety/balmpaired/environment.yml",
         "modules/nf-core/amulety/balmpaired/main.nf",
         "modules/nf-core/amulety/balmpaired/meta.yml",
@@ -7642,19 +7780,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_amulety": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "amulety": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "amulety --help 2>&1 | grep -o 'version [0-9\\.]\\+' | grep -o '[0-9\\.]\\+'": {
+                  "type": "eval",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "amulety": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "amulety --help 2>&1 | grep -o 'version [0-9\\.]\\+' | grep -o '[0-9\\.]\\+'": {
+                  "type": "eval",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -7662,9 +7832,43 @@
         ],
         "maintainers": [
           "@ggabernet"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/amulety:1.1--0e94f7a12e9db539",
+              "build_id": "bd-0e94f7a12e9db539_1",
+              "scan_id": "sc-c46ca325fe6783e0_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/amulety:1.1--5abbe5fc5e136fd3",
+              "build_id": "bd-5abbe5fc5e136fd3_1",
+              "scan_id": "sc-0a568678900ef142_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/amulety:1.1--d896faa5bf18336b",
+              "build_id": "bd-d896faa5bf18336b_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/f0/f0688cb48089eebe2648c1b2359e4a75a93b1e70f4580faac2173d16c61b8053/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/amulety:1.1--e1b6039b9704c9e1",
+              "build_id": "bd-e1b6039b9704c9e1_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/ae/ae2be6d5fd5a4e1024b78eb1acdfdcb6aab4326f002e98d7c2c97ef00aa979e2/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/amulety/balmpaired/.conda-lock/linux_amd64-bd-5abbe5fc5e136fd3_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/amulety/balmpaired/.conda-lock/linux_arm64-bd-0e94f7a12e9db539_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "eac429d4c67ac5114ce7d4287d460d8f05fd9fab"
+      "git_sha": "32e1ce7c8781543b656bbe7586a610d9d47f2aff"
     },
     {
       "name": "amulety_embed",
@@ -7983,8 +8187,10 @@
     {
       "name": "amulety_esm2",
       "path": "modules/nf-core/amulety/esm2/meta.yml",
-      "tree_sha": "058af6bcc82574e8388a4bf701e39304ab4e75eb",
+      "tree_sha": "21c6e74f744b3e81b9955ee3877312c9d947f3a8",
       "files": [
+        "modules/nf-core/amulety/esm2/.conda-lock/linux_amd64-bd-5abbe5fc5e136fd3_1.txt",
+        "modules/nf-core/amulety/esm2/.conda-lock/linux_arm64-bd-0e94f7a12e9db539_1.txt",
         "modules/nf-core/amulety/esm2/environment.yml",
         "modules/nf-core/amulety/esm2/main.nf",
         "modules/nf-core/amulety/esm2/meta.yml",
@@ -8071,19 +8277,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_amulety": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "amulety": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "amulety --help 2>&1 | grep -o 'version [0-9\\.]\\+' | grep -o '[0-9\\.]\\+'": {
+                  "type": "eval",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "amulety": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "amulety --help 2>&1 | grep -o 'version [0-9\\.]\\+' | grep -o '[0-9\\.]\\+'": {
+                  "type": "eval",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -8091,9 +8329,43 @@
         ],
         "maintainers": [
           "@ggabernet"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/amulety:1.1--0e94f7a12e9db539",
+              "build_id": "bd-0e94f7a12e9db539_1",
+              "scan_id": "sc-c46ca325fe6783e0_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/amulety:1.1--5abbe5fc5e136fd3",
+              "build_id": "bd-5abbe5fc5e136fd3_1",
+              "scan_id": "sc-0a568678900ef142_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/amulety:1.1--d896faa5bf18336b",
+              "build_id": "bd-d896faa5bf18336b_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/f0/f0688cb48089eebe2648c1b2359e4a75a93b1e70f4580faac2173d16c61b8053/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/amulety:1.1--e1b6039b9704c9e1",
+              "build_id": "bd-e1b6039b9704c9e1_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/ae/ae2be6d5fd5a4e1024b78eb1acdfdcb6aab4326f002e98d7c2c97ef00aa979e2/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/amulety/esm2/.conda-lock/linux_amd64-bd-5abbe5fc5e136fd3_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/amulety/esm2/.conda-lock/linux_arm64-bd-0e94f7a12e9db539_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "eac429d4c67ac5114ce7d4287d460d8f05fd9fab"
+      "git_sha": "32e1ce7c8781543b656bbe7586a610d9d47f2aff"
     },
     {
       "name": "amulety_translate",
@@ -66159,7 +66431,7 @@
     {
       "name": "clustalo_align",
       "path": "modules/nf-core/clustalo/align/meta.yml",
-      "tree_sha": "24da3907f64ea405c120c6b8354200df8ba489c1",
+      "tree_sha": "e36e6e03bbb479246f63b40c7cf56e649371c72b",
       "files": [
         "modules/nf-core/clustalo/align/environment.yml",
         "modules/nf-core/clustalo/align/main.nf",
@@ -66444,7 +66716,7 @@
           "@lrauschning"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "1d6302912fedd26f9c50eecdfb503a73299e8e4d",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -83923,7 +84195,7 @@
     {
       "name": "custom_resolvetaxonomy",
       "path": "modules/nf-core/custom/resolvetaxonomy/meta.yml",
-      "tree_sha": "0b849722efa5882e23f6bc28421002eaa8e9320b",
+      "tree_sha": "01c400c30186f92fc71d3b02a64a99f9385fb46f",
       "files": [
         "modules/nf-core/custom/resolvetaxonomy/environment.yml",
         "modules/nf-core/custom/resolvetaxonomy/main.nf",
@@ -83967,7 +84239,7 @@
               "taxonomy": {
                 "type": "file",
                 "description": "Optional tab-separated taxonomy labels (seq_name<TAB>rank1;rank2;...).\nPass `[]` if not available -- taxonomy is then derived from the\nsequences' own FASTA headers instead.\n",
-                "pattern": "*.{tax,tsv}",
+                "pattern": "*.{tax,tsv,tax.gz,tsv.gz}",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_3475"
@@ -83979,7 +84251,7 @@
               "sequences": {
                 "type": "file",
                 "description": "Sequences, aligned or not, in FASTA, Clustal or PHYLIP format.",
-                "pattern": "*.{fa,fasta,fna,aln,phy}",
+                "pattern": "*.{fa,fasta,fna,aln,phy,fa.gz,fasta.gz,fna.gz,aln.gz,phy.gz}",
                 "ontologies": []
               }
             },
@@ -84023,7 +84295,7 @@
                 }
               },
               {
-                "*.resolved.${sequences.extension ?: 'fasta'}": {
+                "*.resolved.${resolvedExtension(sequences)}": {
                   "type": "file",
                   "description": "The input sequences (same format as the input), headers stripped down to a bare id.",
                   "pattern": "*.resolved.*",
@@ -84108,7 +84380,7 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "74be114b46468b8387826e7ffe5bf7c25ba2fc09",
+      "git_sha": "e3307865b7a10f4bc458189a494a05c0ca9da52e",
       "pipelines": [
         {
           "name": "phyloplace",
@@ -92390,6 +92662,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -108537,7 +108817,7 @@
     {
       "name": "epang_place",
       "path": "modules/nf-core/epang/place/meta.yml",
-      "tree_sha": "831242d1ec94c4a1f32afac604f42582f3f5f3d6",
+      "tree_sha": "0b995c9845473c1fbff860c1d15024041b7a71ae",
       "files": [
         "modules/nf-core/epang/place/environment.yml",
         "modules/nf-core/epang/place/main.nf",
@@ -108723,7 +109003,7 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "e3307865b7a10f4bc458189a494a05c0ca9da52e",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -131687,7 +131967,7 @@
     {
       "name": "gappa_examineassign",
       "path": "modules/nf-core/gappa/examineassign/meta.yml",
-      "tree_sha": "b61414c6e883ce8a84ba268fb7d32e2579459e71",
+      "tree_sha": "317c9bb8418766c60f3e74f6e3b89673bc573a00",
       "files": [
         "modules/nf-core/gappa/examineassign/environment.yml",
         "modules/nf-core/gappa/examineassign/main.nf",
@@ -131903,7 +132183,7 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "7e678ba56e91b8b61b01ad8e94a6987db443f7e4",
+      "git_sha": "e3307865b7a10f4bc458189a494a05c0ca9da52e",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -211324,7 +211604,7 @@
     {
       "name": "mafft_align",
       "path": "modules/nf-core/mafft/align/meta.yml",
-      "tree_sha": "dea5d21c824006e916758afa57ed9e84fe5f4c99",
+      "tree_sha": "fd40e81d14dfe68bbccb73bc78f22ac1c3331ae2",
       "files": [
         "modules/nf-core/mafft/align/environment.yml",
         "modules/nf-core/mafft/align/main.nf",
@@ -211636,7 +211916,7 @@
           "@Joon-Klaps"
         ]
       },
-      "git_sha": "f0fc064c76250bf362d1900bbf8b62092f9f2a1b",
+      "git_sha": "e3307865b7a10f4bc458189a494a05c0ca9da52e",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -281069,6 +281349,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -281376,6 +281660,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -425596,7 +425884,7 @@
     {
       "name": "fasta_newick_epang_gappa",
       "path": "subworkflows/nf-core/fasta_newick_epang_gappa/meta.yml",
-      "tree_sha": "bfd2a52074cf514746a747f0fa4e25fcb090d450",
+      "tree_sha": "2c83a183ad70beb830519530247e9e90c88cd1bb",
       "files": [
         "subworkflows/nf-core/fasta_newick_epang_gappa/main.nf",
         "subworkflows/nf-core/fasta_newick_epang_gappa/meta.yml",
@@ -425634,6 +425922,12 @@
               "type": "map",
               "description": "Phylogenetic placement input, one entry per sample, where:\n\n- `alignmethod` is the method used for alignment, 'hmmer', 'clustalo' or 'mafft'\n- `queryseqfile` is a fasta file with query sequences\n- `refseqfile` is a file with reference sequences, aligned unless an hmmfile is provided\n- `refphylogeny` is a newick file with the reference phylogenetic tree\n- `hmmfile` is an optional HMM file to use for alignment; implies that refseqfile is not aligned\n- `model` is the phylogenetic model to use in placement, e.g. 'LG+F' or 'GTR+I+F'\n- `taxonomy` is a tab separated file with taxonomy information for the reference sequences\n\nStructure: [\n  meta: val(meta),\n  data: [\n    alignmethod:  'hmmer',\n    queryseqfile: path(\"*.faa\"),\n    refseqfile:   path(\"*.alnfaa\"),\n    refphylogeny: path(\"*.newick\"),\n    hmmfile:      path(\"*.hmm\"),\n    model:        \"LG\",\n    taxonomy:     path(\"*.tsv\")\n  ]\n]\n"
             }
+          },
+          {
+            "compress_alignment": {
+              "type": "boolean",
+              "description": "Write the clustalo and mafft profile alignments gzipped. Recommended for large\nalignments, which are mostly gaps; hmmer alignments are not affected.\n"
+            }
           }
         ],
         "output": [
@@ -425649,6 +425943,13 @@
               "type": "file",
               "description": "jplace file from EPA-NG.\n\nStructure: [ val(meta), path(jplace) ]\n",
               "pattern": "*.jplace"
+            }
+          },
+          {
+            "epang_log": {
+              "type": "file",
+              "description": "EPA-NG log file.\n\nStructure: [ path(log) ]\n",
+              "pattern": "*.epa_info.log"
             }
           },
           {
@@ -425678,6 +425979,13 @@
               "description": "Heattree in SVG format.\n\nStructure: [ val(meta), path(svg) ]\n",
               "pattern": "*.svg"
             }
+          },
+          {
+            "hmmbuild_log": {
+              "type": "file",
+              "description": "hmmbuild output, for entries where the hmm was built from the reference alignment.\n\nStructure: [ path(txt) ]\n",
+              "pattern": "*.hmmbuild.txt"
+            }
           }
         ],
         "authors": [
@@ -425687,7 +425995,7 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
+      "git_sha": "1d6302912fedd26f9c50eecdfb503a73299e8e4d",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -435901,6 +436209,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "6eaecd6ef9bfc7faf313b1abeaae9b129795291d",
-  "updated_at": "2026-09-21T02:16:06.129Z"
+  "commit_sha": "1d6302912fedd26f9c50eecdfb503a73299e8e4d",
+  "updated_at": "2026-09-21T14:11:43.228Z"
 }
