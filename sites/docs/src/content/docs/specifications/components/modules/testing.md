@@ -126,39 +126,57 @@ Upload new test data to nf-core/test-datasets only if there is absolutely no oth
 ## Configuration of ext.args in tests
 
 Module nf-tests SHOULD use a single `nextflow.config` to supply `ext.args` to a module.
-Define them in the `when` block of a test under the `params` scope.
+Give `module_args` a default in the config's `params` scope, and apply the config to each test individually rather than once at the top of the file, so a test can override the default in its own `params` block when it needs to:
 
-```groovy {4-6} title="main.nf.test"
-config './nextflow.config'
-
-when {
-  params {
-    module_args = '--extra_opt1 --extra_opt2'
-  }
-  process {
-    """
-    input[0] = [
-      [ id:'test1', single_end:false ], // meta map
-      file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
-    ]
-    """
-  }
+```groovy {2-4} title="nextflow.config"
+params {
+  module_args = ''
 }
-```
 
-```groovy {3} title="nextflow.config"
 process {
   withName: 'MODULE' {
-    ext.args = { params.module_args ?: '' }
+    ext.args = params.module_args
   }
 }
 ```
 
 No other settings should go into this file.
 
-:::tip
-Supply the config only to the tests that use `params`, otherwise define `params` for every test including the stub test.
-:::
+```groovy {2,6-8} title="main.nf.test"
+test("my_tool - custom args") {
+  config './nextflow.config'
+  when {
+    params {
+      module_args = '--extra_opt1 --extra_opt2'
+    }
+    process {
+      """
+      input[0] = [
+        [ id:'test1', single_end:false ], // meta map
+        file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
+      ]
+      """
+    }
+  }
+}
+
+test("my_tool - stub") {
+  config './nextflow.config'
+  options '-stub'
+  when {
+    process {
+      """
+      input[0] = [
+        [ id:'test1', single_end:false ], // meta map
+        file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
+      ]
+      """
+    }
+  }
+}
+```
+
+Because `module_args` already has a default in the config, tests that don't need custom args (like the stub test above) don't need to repeat `module_args = ''` — they inherit the default as soon as they apply `config './nextflow.config'`.
 
 :::info
 Modules in pipelines are frequently configured with dynamic inputs. Test parameters do not support this. For example,
@@ -174,25 +192,29 @@ process {
 
 would be implemented as follows:
 
-```groovy {4-6} title="main.nf.test"
-config './nextflow.config'
-
-when {
-  params {
-    module_args = '--sample test1' // `meta.id` is replaced with the value it would take once dynamically resolved
-  }
-  process {
-    """
-    input[0] = [
-      [ id:'test1', single_end:false ], // meta map
-      file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
-    ]
-    """
+```groovy {2,6-8} title="main.nf.test"
+test("my_tool - dynamic args") {
+  config './nextflow.config'
+  when {
+    params {
+      module_args = '--sample test1' // `meta.id` is replaced with the value it would take once dynamically resolved
+    }
+    process {
+      """
+      input[0] = [
+        [ id:'test1', single_end:false ], // meta map
+        file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
+      ]
+      """
+    }
   }
 }
 ```
 
-```groovy {3-4} title="nextflow.config"
+```groovy {2-6} title="nextflow.config"
+params {
+  module_args = ''
+}
 process {
   withName: 'MODULE' {
     ext.args = params.module_args
