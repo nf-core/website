@@ -2,7 +2,7 @@
 
 A Textual app to create a pipeline.
 
-### _`class{:python}`_`nf_core.pipelines.create.PipelineCreateApp(driver_class: Type[Driver] | None = None, css_path: str | PurePath | List[str | PurePath] | None = None, watch_css: bool = False, ansi_color: bool = False){:python}`
+### _`class{:python}`_`nf_core.pipelines.create.PipelineCreateApp(driver_class: Type[Driver] | None = None, css_path: str | PurePath | List[str | PurePath] | None = None, watch_css: bool = False, ansi_color: bool | None = None){:python}`
 
 Bases: `App`\[`CreateConfig`]
 
@@ -58,7 +58,7 @@ See also \[the Screen.TITLE attribute]\[textual.screen.Screen.TITLE].
 
 #### `_merged_bindings{:python}`_= BindingsMap({'ctrl+q': \[Binding(key='ctrl+q', action='quit', description='Quit', show=False, key\_display=None, priority=True, tooltip='Quit the app and return to the command prompt.', id=None, system=False, group=None)], 'ctrl+c': \[Binding(key='ctrl+c', action='help\_quit', description='', show=False, key\_display=None, priority=False, tooltip='', id=None, system=True, group=None)], 'd': \[Binding(key='d', action='toggle\_dark', description='Toggle dark mode', show=True, key\_display=None, priority=False, tooltip='', id=None, system=False, group=None)], 'q': \[Binding(key='q', action='quit', description='Quit', show=True, key\_display=None, priority=False, tooltip='', id=None, system=False, group=None)], 'a': \[Binding(key='a', action='toggle\_all', description='Toggle all', show=True, key\_display=None, priority=False, tooltip='', id=None, system=False, group=None)]})_
 
-#### `_reactives{:python}`_= {'ansi\_color': Reactive(False, name='ansi\_color'), 'ansi\_theme\_dark': Reactive(\<rich.terminal\_theme.TerminalTheme object>, name='ansi\_theme\_dark'), 'ansi\_theme\_light': Reactive(\<rich.terminal\_theme.TerminalTheme object>, name='ansi\_theme\_light'), 'app\_focus': Reactive(True, compute=False, name='app\_focus'), 'sub\_title': Reactive('', compute=False, name='sub\_title'), 'theme': Reactive('textual-dark', name='theme'), 'title': Reactive('', compute=False, name='title')}_
+#### `_reactives{:python}`_= {'ansi\_color': Reactive(None, name='ansi\_color'), 'ansi\_theme\_dark': Reactive(\<rich.terminal\_theme.TerminalTheme object>, name='ansi\_theme\_dark'), 'ansi\_theme\_light': Reactive(\<rich.terminal\_theme.TerminalTheme object>, name='ansi\_theme\_light'), 'app\_focus': Reactive(True, compute=False, name='app\_focus'), 'sub\_title': Reactive('', compute=False, name='sub\_title'), 'theme': Reactive('textual-dark', name='theme'), 'title': Reactive('', compute=False, name='title')}_
 
 #### `action_toggle_all() → None{:python}`
 
