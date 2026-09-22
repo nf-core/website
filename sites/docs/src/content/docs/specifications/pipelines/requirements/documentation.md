@@ -23,5 +23,5 @@ Documentation MUST include at least the following files:
 - `docs/usage.md`
 - `docs/output.md`
 
-Additional pages (e.g., tutorials, FAQs) MAY be added under `docs/usage/` or `docs/output/`, and will be automatically rendered on the nf-core website pipeline page as sub-pages of the corresponding section.
+Additional markdown pages (e.g., tutorials, FAQs) MAY be added under directories called `docs/usage/` or `docs/output/`, and will be automatically rendered on the nf-core website pipeline page as sub-pages of the corresponding section. These will be only listed in the sidebar. Providing links to the sub-pages within the main `usage.md` or `output.md` is highly recommended.
 Markdown files elsewhere in `docs/` are not rendered on the website: such a page displays correctly on GitHub but returns a 404 on nf-co.re.
