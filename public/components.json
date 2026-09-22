@@ -53479,7 +53479,7 @@
         },
         {
           "name": "funcprofiler",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "genomeannotator",
@@ -92717,6 +92717,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -95514,7 +95522,7 @@
       "pipelines": [
         {
           "name": "funcprofiler",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "taxprofiler",
@@ -105232,7 +105240,7 @@
       "pipelines": [
         {
           "name": "funcprofiler",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -109012,10 +109020,6 @@
         {
           "name": "phyloplace",
           "version": "2.2.0"
-        },
-        {
-          "name": "taxmarker",
-          "version": "dev"
         }
       ]
     },
@@ -125633,7 +125637,7 @@
       "pipelines": [
         {
           "name": "funcprofiler",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -167671,7 +167675,7 @@
         },
         {
           "name": "funcprofiler",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "funcscan",
@@ -183548,7 +183552,7 @@
       "pipelines": [
         {
           "name": "funcprofiler",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -183783,7 +183787,7 @@
       "pipelines": [
         {
           "name": "funcprofiler",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -184004,7 +184008,7 @@
       "pipelines": [
         {
           "name": "funcprofiler",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -190770,10 +190774,6 @@
         {
           "name": "pathogensurveillance",
           "version": "1.1.0"
-        },
-        {
-          "name": "taxmarker",
-          "version": "dev"
         },
         {
           "name": "tbanalyzer",
@@ -224632,7 +224632,7 @@
       "pipelines": [
         {
           "name": "funcprofiler",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "taxprofiler",
@@ -228037,7 +228037,7 @@
       "pipelines": [
         {
           "name": "funcprofiler",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -240778,7 +240778,7 @@
         },
         {
           "name": "funcprofiler",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "funcscan",
@@ -281353,6 +281353,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -281660,6 +281664,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -306337,7 +306345,13 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "bfc020fb46e321f4b8b78d113780285629ccfb51"
+      "git_sha": "bfc020fb46e321f4b8b78d113780285629ccfb51",
+      "pipelines": [
+        {
+          "name": "taxmarker",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "rbt_vcfsplit",
@@ -310736,7 +310750,7 @@
       "pipelines": [
         {
           "name": "funcprofiler",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -310956,7 +310970,7 @@
       "pipelines": [
         {
           "name": "funcprofiler",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "funcscan",
@@ -346754,7 +346768,7 @@
       "pipelines": [
         {
           "name": "funcprofiler",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "smrnaseq",
@@ -398632,7 +398646,7 @@
         },
         {
           "name": "funcprofiler",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "funcscan",
@@ -431773,7 +431787,7 @@
     {
       "name": "quant_tximport_summarizedexperiment",
       "path": "subworkflows/nf-core/quant_tximport_summarizedexperiment/meta.yml",
-      "tree_sha": "443ad4afa49e80dd4bcb717a35d8ff6976691236",
+      "tree_sha": "3ee6a3d665123dc3306e6f8d703db1696360364f",
       "files": [
         "subworkflows/nf-core/quant_tximport_summarizedexperiment/main.nf",
         "subworkflows/nf-core/quant_tximport_summarizedexperiment/meta.yml",
@@ -431938,7 +431952,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "53daf6285b9fbf1164b4dcab41da6e70e1f2f721",
+      "git_sha": "25ed81c43e7b2d70bc667978a5485af653604c5c",
       "pipelines": [
         {
           "name": "riboseq",
@@ -433369,7 +433383,7 @@
         },
         {
           "name": "funcprofiler",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "funcscan",
@@ -433857,7 +433871,7 @@
         },
         {
           "name": "funcprofiler",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "funcscan",
@@ -434393,7 +434407,7 @@
         },
         {
           "name": "funcprofiler",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "funcscan",
@@ -436209,6 +436223,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "1d6302912fedd26f9c50eecdfb503a73299e8e4d",
-  "updated_at": "2026-09-21T14:11:43.228Z"
+  "commit_sha": "25ed81c43e7b2d70bc667978a5485af653604c5c",
+  "updated_at": "2026-09-22T02:13:07.698Z"
 }
