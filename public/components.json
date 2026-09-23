@@ -92729,6 +92729,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -170771,6 +170779,185 @@
           "version": "1.5.0"
         }
       ]
+    },
+    {
+      "name": "happy_report",
+      "path": "modules/nf-core/happy/report/meta.yml",
+      "tree_sha": "e9786e817fbebf02de84a6a5924c610bf96d53f3",
+      "files": [
+        "modules/nf-core/happy/report/.conda-lock/linux_amd64-bd-7d475d30e7c75813_1.txt",
+        "modules/nf-core/happy/report/.conda-lock/linux_arm64-bd-f14c4812e29cbf1b_1.txt",
+        "modules/nf-core/happy/report/environment.yml",
+        "modules/nf-core/happy/report/main.nf",
+        "modules/nf-core/happy/report/meta.yml",
+        "modules/nf-core/happy/report/tests/main.nf.test",
+        "modules/nf-core/happy/report/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "happy_report",
+        "description": "Generate standalone HTML benchmarking reports from GA4GH / hap.py variant-calling metrics CSVs",
+        "keywords": [
+          "happy",
+          "benchmark",
+          "report",
+          "html",
+          "variant-calling"
+        ],
+        "tools": [
+          {
+            "happy": {
+              "description": "Generate standalone HTML benchmarking reports from GA4GH / hap.py variant-calling metrics CSVs",
+              "homepage": "https://github.com/bag-cnag/ga4gh-happy-report",
+              "documentation": "https://github.com/bag-cnag/ga4gh-happy-report",
+              "tool_dev_url": "https://github.com/bag-cnag/ga4gh-happy-report",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "csv_meta": {
+                "type": "list",
+                "description": "A list of maps, one per entry in `csv`, in the same order. Each map\nmust contain a `method` string key (e.g. the variant caller name,\nsuch as `gatk4` or `deepvariant`) and may contain a\n`comparison_method` string key (e.g. `vcfeval` or `happy`). Together\nthey build the GA4GH `<method>_<comparisonmethod>:<file>` label used\nto identify each file's results in the report, e.g.\n`[ method:'gatk4', comparison_method:'vcfeval' ]`. Omit\n`comparison_method` to use just `<method>:<file>` for that file.\n"
+              }
+            },
+            {
+              "csv": {
+                "type": "file",
+                "description": "One or more GA4GH metrics ROC CSV files (e.g. the `*.roc.all.csv.gz` output of hap.py/som.py), one report entry per file. Gzip-compressed files are read transparently. Each file is labelled using the corresponding entry in `csv_meta`.",
+                "pattern": "*.{csv,csv.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "html": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.html": {
+                  "type": "file",
+                  "description": "Standalone HTML benchmarking report",
+                  "pattern": "*.html",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2331"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_happy": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ga4gh-happy-report": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "0.1.2": {
+                  "type": "string",
+                  "description": "The version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ga4gh-happy-report": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "0.1.2": {
+                  "type": "string",
+                  "description": "The version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@georgiakes"
+        ],
+        "maintainers": [
+          "@georgiakes"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/ga4gh-happy-report:0.1.2--7d475d30e7c75813",
+              "build_id": "bd-7d475d30e7c75813_1",
+              "scan_id": "sc-5dcea80692a96ac3_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/ga4gh-happy-report:0.1.2--f14c4812e29cbf1b",
+              "build_id": "bd-f14c4812e29cbf1b_1",
+              "scan_id": "sc-23778356ada014ed_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/ga4gh-happy-report:0.1.2--34969e1f63584a6a",
+              "build_id": "bd-34969e1f63584a6a_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/d9/d950f94e67e3b80cf5c7e4518dbd8413224f02ce0aa769f6e11d2dc26086d2b3/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/ga4gh-happy-report:0.1.2--97c8fe547ec1e57d",
+              "build_id": "bd-97c8fe547ec1e57d_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e2/e2ad64af90253516c2f3b962f9572414097ffb33c2dbad0745122fdbb94b31ea/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/happy/report/.conda-lock/linux_amd64-bd-7d475d30e7c75813_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/happy/report/.conda-lock/linux_arm64-bd-f14c4812e29cbf1b_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "6203cd45b65eebb5658fbcf401adb45c0788dc8a"
     },
     {
       "name": "happy_sompy",
@@ -281371,6 +281558,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -281678,6 +281869,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -305618,6 +305813,197 @@
         ]
       },
       "git_sha": "dbee7347468deab38d0f412de1b9867883b4d791"
+    },
+    {
+      "name": "rattle_polish",
+      "path": "modules/nf-core/rattle/polish/meta.yml",
+      "tree_sha": "790ab7b26e6c6141913b5d01dccec0d926f84fc5",
+      "files": [
+        "modules/nf-core/rattle/polish/environment.yml",
+        "modules/nf-core/rattle/polish/main.nf",
+        "modules/nf-core/rattle/polish/meta.yml",
+        "modules/nf-core/rattle/polish/tests/main.nf.test",
+        "modules/nf-core/rattle/polish/tests/main.nf.test.snap",
+        "modules/nf-core/rattle/polish/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "rattle_polish",
+        "description": "Reference-free polishing and reconstruction of transcriptomes from long-read sequencing consensus sequences",
+        "keywords": [
+          "transcriptomes",
+          "polishing",
+          "long-read",
+          "nanopore",
+          "fastq"
+        ],
+        "tools": [
+          {
+            "rattle": {
+              "description": "Reference-free reconstruction and quantification of transcriptomes from long-read sequencing",
+              "homepage": "https://github.com/comprna/RATTLE",
+              "documentation": "https://github.com/comprna/RATTLE",
+              "tool_dev_url": "https://github.com/comprna/RATTLE",
+              "doi": "10.1186/s13059-022-02715-w",
+              "licence": [
+                "GPL-3.0"
+              ],
+              "identifier": "biotools:rattle"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "consensi": {
+                "type": "file",
+                "description": "RATTLE consensus sequences in FASTA or FASTQ format",
+                "pattern": "*.{fasta,fastq,fasta.gz,fastq.gz,fa,fq,fa.gz,fq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "transcriptome": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.transcriptome.fq": {
+                  "type": "file",
+                  "description": "Final polished transcriptome in FASTQ format",
+                  "pattern": "${prefix}.transcriptome.fq",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "summary": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.polish_summary.tsv": {
+                  "type": "file",
+                  "description": "Optional. Summary of the transcript, gene, and new cluster IDs used to generate the transcriptome,\nproduced when `--summary` is supplied.\n",
+                  "pattern": "${prefix}.polish_summary.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.log": {
+                  "type": "file",
+                  "description": "RATTLE polish log",
+                  "pattern": "${prefix}.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_rattle": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rattle": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0": {
+                  "type": "string",
+                  "description": "The version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rattle": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0": {
+                  "type": "string",
+                  "description": "The version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@chriswyatt1",
+          "@srisarya",
+          "@vagkaratzas"
+        ]
+      },
+      "git_sha": "5a3ad078bbf1192276d13168000a784b13ef0d89"
     },
     {
       "name": "raven",
@@ -436241,6 +436627,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "7844e96252d0693fb2331969a1c9790eb831b0f6",
-  "updated_at": "2026-09-22T14:11:54.629Z"
+  "commit_sha": "5a3ad078bbf1192276d13168000a784b13ef0d89",
+  "updated_at": "2026-09-23T02:12:55.156Z"
 }
