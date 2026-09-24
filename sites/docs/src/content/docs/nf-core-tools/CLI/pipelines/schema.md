@@ -9,7 +9,7 @@ nf-core pipelines have a `nextflow_schema.json` file in their root that describe
 These files enable automated input validation, generate command line help, and build interfaces to launch pipelines.
 Pipeline schema files follow the [JSONSchema specification](https://json-schema.org/) (Draft 7).
 
-To help developers working with pipeline schema, nf-core tools has three `schema` sub-commands:
+To help developers working with pipeline schema, nf-core tools has four `schema` sub-commands:
 
 - `nf-core pipelines schema validate`
 - `nf-core pipelines schema build`
@@ -36,14 +36,14 @@ The `pipeline` option can be a directory containing a pipeline, a path to a sche
 
 ## Build a pipeline schema
 
-Manually building JSONSchema documents is complex and error prone.
+Manually building JSONSchema documents is complex and error-prone.
 The `nf-core pipelines schema build` command collects your pipeline parameters and provides interactive prompts about any missing or unexpected parameters.
 If no schema exists, it will create one for you.
 
 Once built, the tool can send the schema to the nf-core website where you can use a graphical interface to organise and fill in the schema.
 The tool checks your schema status on the website and saves your changes locally once complete.
 
-Run `nf-core schema build -d <pipeline-directory>`, for example:
+Run `nf-core pipelines schema build -d <pipeline-directory>`, for example:
 
 <!-- RICH-CODEX
 working_dir: tmp/nf-core-nextbigthing
