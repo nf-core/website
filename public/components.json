@@ -60887,7 +60887,7 @@
     {
       "name": "checkm2_predict",
       "path": "modules/nf-core/checkm2/predict/meta.yml",
-      "tree_sha": "8eec8db3ea395f6dd4c57c076347253d43e310cd",
+      "tree_sha": "518058ffaddd5997246facc2d5f09d28561370d7",
       "files": [
         "modules/nf-core/checkm2/predict/environment.yml",
         "modules/nf-core/checkm2/predict/main.nf",
@@ -61047,7 +61047,7 @@
           "@eit-maxlcummins"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "deb8254027c27a9e505befc68ab449db1f3dadef",
       "pipelines": [
         {
           "name": "mag",
@@ -92658,6 +92658,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -281584,6 +281592,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -281891,6 +281903,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -436653,6 +436669,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "cbe6025183336010a9b716e463f897b0c0f70f8a",
-  "updated_at": "2026-09-23T14:12:47.192Z"
+  "commit_sha": "deb8254027c27a9e505befc68ab449db1f3dadef",
+  "updated_at": "2026-09-24T02:13:47.824Z"
 }
