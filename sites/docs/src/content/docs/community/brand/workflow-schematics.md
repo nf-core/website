@@ -26,13 +26,13 @@ Use an SVG if you can: it scales to any size and a single file can work on both 
 :::info
 `manifest.diagram` is new in Nextflow `26.10.0`, but setting it is safe on older versions: the pipeline runs as normal, though some versions log a warning.
 
+Don't actually reference `workflow.manifest.diagram` in pipeline code unless the pipeline requires Nextflow `26.10.0` or later: calling it rather than just defining it in the config will break older versions of Nextflow.
+
 | Nextflow                  | Behaviour                                                                                 |
 | ------------------------- | ----------------------------------------------------------------------------------------- |
 | `21.10.6` – `25.04.8`     | `WARN: Invalid config manifest attribute 'diagram'` (twice)                       |
 | `25.10.0` – `25.10.7`     | No warning                                                                                |
 | `26.04.6`, `26.08.0-edge` | `WARN: Unrecognized config option 'manifest.diagram'`, with strict syntax  |
-
-Don't use `workflow.manifest.diagram` in pipeline code unless the pipeline requires Nextflow `26.10.0` or later: calling it rather than just defining it in older versions of Nextflow will trigger an error.
 :::
 
 `nf-core pipelines lint` warns if `manifest.diagram` is not set.
