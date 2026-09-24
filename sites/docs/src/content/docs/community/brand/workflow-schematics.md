@@ -23,8 +23,8 @@ manifest {
 Nextflow accepts SVG, PNG, JPEG, GIF and WebP files.
 Use an SVG if you can: it scales to any size and a single file can work on both light and dark backgrounds.
 
-:::note{title="manifest.diagram is new in Nextflow 26.10.0 but safe in earlier versions" collapse}
-Setting it is safe on older versions: the pipeline runs as normal, though some versions log a warning.
+:::note
+`manifest.diagram` is new in Nextflow `26.10.0`, but setting it is safe on older versions: the pipeline runs as normal, though some versions log a warning.
 
 | Nextflow                  | Behaviour                                                                                 |
 | ------------------------- | ----------------------------------------------------------------------------------------- |
