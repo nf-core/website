@@ -23,8 +23,19 @@ manifest {
 Nextflow accepts SVG, PNG, JPEG, GIF and WebP files.
 Use an SVG if you can: it scales to any size and a single file can work on both light and dark backgrounds.
 
-:::note
-`manifest.diagram` needs Nextflow `26.10.0` or later, but older versions ignore unknown manifest fields, so it is safe to set it in any pipeline.
+:::info
+`manifest.diagram` is new in Nextflow `26.10.0`, but setting it is safe on older versions: the pipeline runs as normal, though some versions log a warning.
+
+Don't actually reference `workflow.manifest.diagram` in pipeline code unless the pipeline requires Nextflow `26.10.0` or later: calling it rather than just defining it in the config will break older versions of Nextflow.
+
+| Nextflow                  | Behaviour                                                                 |
+| ------------------------- | ------------------------------------------------------------------------- |
+| `21.10.6` – `25.04.8`     | `WARN: Invalid config manifest attribute 'diagram'` (twice)               |
+| `25.10.0` – `25.10.7`     | No warning                                                                |
+| `26.04.6`, `26.08.0-edge` | `WARN: Unrecognized config option 'manifest.diagram'`, with strict syntax |
+
+<br>
+
 :::
 
 `nf-core pipelines lint` warns if `manifest.diagram` is not set.
@@ -152,5 +163,5 @@ Select the schematic image to see the original.
 |           ![nf-core/bactmap workflow](https://raw.githubusercontent.com/nf-core/bactmap/dev/docs/images/bactmap_pipeline.png)            | [nf-core/bactmap](https://nf-co.re/bactmap)       | By Anthony Underwood under [MIT](https://github.com/nf-core/mag/blob/master/LICENSE) license                                                                             |                                                 |
 |    ![nf-core/cutandrun workflow](https://raw.githubusercontent.com/nf-core/cutandrun/3.1/docs/images/cutandrun-flow-diagram-v3.0.png)    | [nf-core/cutandrun](https://nf-co.re/cutandrun)   | By Chris Cheshire under [MIT](https://github.com/nf-core/cutandrun/blob/master/LICENSE) license                                                                          |                                                 |
 |             ![nf-core/cutandrun workflow](https://raw.githubusercontent.com/nf-core/sarek/dev/docs/images/sarek_subway.png)              | [nf-core/sarek](https://nf-co.re/sarek)           | By Maxime U Garcia under [MIT](https://github.com/nf-core/sarek/blob/master/LICENSE) license                                                                             |                                                 |
-| ![nf-core/rnaseq metro map grey](https://raw.githubusercontent.com/nf-core/rnaseq/master/docs/images/nf-core-rnaseq_metro_map_grey.png)  | [nf-core/rnaseq](https://nf-co.re/rnaseq)         | By Sarah Guinchard under [MIT](https://github.com/nf-core/sarek/blob/master/LICENSE) license                                                                             |                                                 |
+| ![nf-core/rnaseq metro map grey](https://raw.githubusercontent.com/nf-core/rnaseq/3.26.0/docs/images/nf-core-rnaseq_metro_map_grey.png)  | [nf-core/rnaseq](https://nf-co.re/rnaseq)         | By Sarah Guinchard under [MIT](https://github.com/nf-core/sarek/blob/master/LICENSE) license                                                                             |                                                 |
 |        ![nf-core/isoseq metro map](https://raw.githubusercontent.com/nf-core/isoseq/1.1.4/docs/images/Isoseq_pipeline_metro.png)         | [nf-core/isoseq](https://nf-co.re/isoseq)         | By Sébastien Guizard under [MIT](https://github.com/nf-core/isoseq/blob/master/LICENSE) license                                                                          |                                                 |
