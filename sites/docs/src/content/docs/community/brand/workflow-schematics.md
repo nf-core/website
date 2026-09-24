@@ -23,7 +23,7 @@ manifest {
 Nextflow accepts SVG, PNG, JPEG, GIF and WebP files.
 Use an SVG if you can: it scales to any size and a single file can work on both light and dark backgrounds.
 
-:::note{title="manifest.diagram needs Nextflow 26.10.0 or later" collapse}
+:::note{title="manifest.diagram is new in Nextflow 26.10.0 but safe in earlier versions" collapse}
 Setting it is safe on older versions: the pipeline runs as normal, though some versions log a warning.
 
 | Nextflow                  | Behaviour                                                                                 |
@@ -32,7 +32,7 @@ Setting it is safe on older versions: the pipeline runs as normal, though some v
 | `25.10.0` – `25.10.7`     | No warning                                                                                |
 | `26.04.6`, `26.08.0-edge` | `WARN: Unrecognized config option 'manifest.diagram'`, with the strict syntax parser only |
 
-Don't read `workflow.manifest.diagram` in pipeline code unless the pipeline requires Nextflow `26.10.0` or later: older versions fail.
+Don't use `workflow.manifest.diagram` in pipeline code unless the pipeline requires Nextflow `26.10.0` or later: older versions fail.
 :::
 
 `nf-core pipelines lint` warns if `manifest.diagram` is not set.
