@@ -92769,6 +92769,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -229357,7 +229365,7 @@
     {
       "name": "minimac4_compressref",
       "path": "modules/nf-core/minimac4/compressref/meta.yml",
-      "tree_sha": "44f38441fea6eafc7a03a34f39a31c0221771fa9",
+      "tree_sha": "4bfdca248dfec643efb2113248867d1caf783b44",
       "files": [
         "modules/nf-core/minimac4/compressref/environment.yml",
         "modules/nf-core/minimac4/compressref/main.nf",
@@ -229499,7 +229507,7 @@
           "@LouisLeNezet"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "e8dac84ca00d68c8cc87fb91b48e691e689e2afe",
       "pipelines": [
         {
           "name": "phaseimpute",
@@ -229510,7 +229518,7 @@
     {
       "name": "minimac4_impute",
       "path": "modules/nf-core/minimac4/impute/meta.yml",
-      "tree_sha": "00079a7aa74d2e8c54be0989e936a19b9144e0e9",
+      "tree_sha": "4ed5da284f94c0895be6a3932b7c14c772304d70",
       "files": [
         "modules/nf-core/minimac4/impute/environment.yml",
         "modules/nf-core/minimac4/impute/main.nf",
@@ -229587,33 +229595,6 @@
               }
             },
             {
-              "sites_vcf": {
-                "type": "file",
-                "description": "Sites VCF/BCF file containing the sites to impute",
-                "pattern": "*.{vcf,bcf,vcf.gz}",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3016"
-                  },
-                  {
-                    "edam": "http://edamontology.org/format_3020"
-                  }
-                ]
-              }
-            },
-            {
-              "sites_index": {
-                "type": "file",
-                "description": "Sites VCF/BCF file index",
-                "pattern": "*.{csi,tbi}",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3700"
-                  }
-                ]
-              }
-            },
-            {
               "map": {
                 "type": "file",
                 "description": "Genetic map file",
@@ -229632,7 +229613,13 @@
                 "pattern": "(chr)?\\d*:\\d*-\\d*"
               }
             }
-          ]
+          ],
+          {
+            "write_sites": {
+              "type": "boolean",
+              "description": "Write the sites-only file"
+            }
+          }
         ],
         "output": {
           "vcf": [
@@ -229644,16 +229631,38 @@
                 }
               },
               {
-                "*.{bcf,sav,vcf.gz,vcf,ubcf,usav}": {
+                "${prefix}.${extension}": {
                   "type": "file",
                   "description": "Imputed variants file",
-                  "pattern": "*.{bcf,sav,vcf.gz,vcf,ubcf,usav}",
+                  "pattern": "${prefix}.${extension}",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3016"
                     },
                     {
                       "edam": "http://edamontology.org/format_3020"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "sites": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}.sites.vcf.gz": {
+                  "type": "file",
+                  "description": "Sites-only file (output of `--sites`)",
+                  "pattern": "${prefix}.sites.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
                     }
                   ]
                 }
@@ -229714,7 +229723,7 @@
           "@LouisLeNezet"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "e8dac84ca00d68c8cc87fb91b48e691e689e2afe",
       "pipelines": [
         {
           "name": "phaseimpute",
@@ -281630,6 +281639,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -281937,6 +281950,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -416142,6 +416159,279 @@
       ]
     },
     {
+      "name": "xengsort_classify",
+      "path": "modules/nf-core/xengsort/classify/meta.yml",
+      "tree_sha": "8784963e7486daf9c3ba1457adf51431d0fcb402",
+      "files": [
+        "modules/nf-core/xengsort/classify/environment.yml",
+        "modules/nf-core/xengsort/classify/main.nf",
+        "modules/nf-core/xengsort/classify/meta.yml",
+        "modules/nf-core/xengsort/classify/tests/main.nf.test",
+        "modules/nf-core/xengsort/classify/tests/main.nf.test.snap",
+        "modules/nf-core/xengsort/classify/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "xengsort_classify",
+        "description": "Classify and sort FASTQ reads into host, graft, both, neither, or ambiguous categories using a xengsort hash index.",
+        "keywords": [
+          "classify",
+          "sort",
+          "xenograft",
+          "fastq",
+          "cuckoo hash",
+          "k-mer"
+        ],
+        "tools": [
+          {
+            "xengsort": {
+              "description": "Fast lightweight accurate xenograft sorting using 3-way bucketed Cuckoo hashing",
+              "homepage": "https://gitlab.com/genomeinformatics/xengsort",
+              "documentation": "https://gitlab.com/genomeinformatics/xengsort",
+              "tool_dev_url": "https://gitlab.com/genomeinformatics/xengsort",
+              "doi": "10.4230/LIPIcs.WABI.2020.4",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Single-end or paired-end FASTQ files to be classified.",
+                "pattern": "*.{fq,fastq,fq.gz,fastq.gz,fq.bz2,fastq.bz2,fq.xz,fastq.xz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing index metadata\ne.g. `[ id:'mouse_human_index' ]`\n"
+              }
+            },
+            {
+              "hash": {
+                "type": "file",
+                "description": "Binary Cuckoo hash table file generated by xengsort index.",
+                "pattern": "*.hash",
+                "ontologies": []
+              }
+            },
+            {
+              "info": {
+                "type": "file",
+                "description": "Header and metadata file containing hash table parameters generated by xengsort index.",
+                "pattern": "*.info",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "mode": {
+              "type": "string",
+              "description": "Classification mode. Options: 'count', 'coverage', 'quick'.\n'count': Classifies based on the number of k-mers that belong to host or graft.\n'coverage': Classifies based on the proportions covered by k-mers of each class.\n'quick': Classifies based only on the third and third-last k-mer.\n"
+            }
+          }
+        ],
+        "output": {
+          "host": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*-host*.fq.gz": {
+                  "type": "file",
+                  "description": "FASTQ file(s) containing reads classified as originating from the host genome.",
+                  "pattern": "*-host*.fq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "graft": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*-graft*.fq.gz": {
+                  "type": "file",
+                  "description": "FASTQ file(s) containing reads classified as originating from the graft genome.",
+                  "pattern": "*-graft*.fq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "both": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*-both*.fq.gz": {
+                  "type": "file",
+                  "description": "FASTQ file(s) containing reads classified as mapping equally well to both host and graft.",
+                  "pattern": "*-both*.fq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "neither": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*-neither*.fq.gz": {
+                  "type": "file",
+                  "description": "FASTQ file(s) containing reads classified as mapping to neither the host nor the graft genome.",
+                  "pattern": "*-neither*.fq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "ambiguous": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*-ambiguous*.fq.gz": {
+                  "type": "file",
+                  "description": "FASTQ file(s) containing reads that could not be confidently classified.",
+                  "pattern": "*-ambiguous*.fq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_xengsort": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "xengsort": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "xengsort --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "xengsort": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "xengsort --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@LeonHornich"
+        ],
+        "maintainers": [
+          "@LeonHornich"
+        ]
+      },
+      "git_sha": "7fb83dc4f68838d9650503aff4aec3a3e4072196"
+    },
+    {
       "name": "xengsort_index",
       "path": "modules/nf-core/xengsort/index/meta.yml",
       "tree_sha": "d3b5a5848f516e35a7a68832a5c883d0b3e17f0f",
@@ -436517,7 +436807,7 @@
     {
       "name": "vcf_impute_minimac4",
       "path": "subworkflows/nf-core/vcf_impute_minimac4/meta.yml",
-      "tree_sha": "75e816c4107825919cdb2d26b3e41e3c045529d2",
+      "tree_sha": "f56ec54550d182fd7252b39a06f694bc53f42c27",
       "files": [
         "subworkflows/nf-core/vcf_impute_minimac4/main.nf",
         "subworkflows/nf-core/vcf_impute_minimac4/meta.yml",
@@ -436700,7 +436990,7 @@
           "@gichas"
         ]
       },
-      "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
+      "git_sha": "e8dac84ca00d68c8cc87fb91b48e691e689e2afe"
     },
     {
       "name": "vcf_phase_shapeit5",
@@ -436923,6 +437213,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "4a208ad81dc6284b41f6a11aaa7d14336fe322a9",
-  "updated_at": "2026-09-25T02:11:53.815Z"
+  "commit_sha": "7fb83dc4f68838d9650503aff4aec3a3e4072196",
+  "updated_at": "2026-09-25T14:12:49.113Z"
 }
