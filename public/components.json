@@ -92761,6 +92761,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -281618,6 +281626,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -281925,6 +281937,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -383063,6 +383079,150 @@
       "git_sha": "03cb040e9ed50a0e9c1e8cdbffc5f7cba6ecb3ca"
     },
     {
+      "name": "taxonkit_lca",
+      "path": "modules/nf-core/taxonkit/lca/meta.yml",
+      "tree_sha": "1508290c3dd0ffb664122778191d8f465e4e8678",
+      "files": [
+        "modules/nf-core/taxonkit/lca/environment.yml",
+        "modules/nf-core/taxonkit/lca/main.nf",
+        "modules/nf-core/taxonkit/lca/meta.yml",
+        "modules/nf-core/taxonkit/lca/tests/main.nf.test",
+        "modules/nf-core/taxonkit/lca/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "taxonkit_lca",
+        "description": "Compute lowest common ancestor (LCA) for taxonids",
+        "keywords": [
+          "taxonomy",
+          "taxids",
+          "lca"
+        ],
+        "tools": [
+          {
+            "taxonkit": {
+              "description": "A Cross-platform and Efficient NCBI Taxonomy Toolkit",
+              "homepage": "https://bioinf.shenwei.me/taxonkit/",
+              "documentation": "https://bioinf.shenwei.me/taxonkit/usage/#lca",
+              "tool_dev_url": "https://github.com/shenwei356/taxonkit",
+              "doi": "10.1016/j.jgg.2021.03.006",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:taxonkit"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "taxids": {
+                "type": "string",
+                "description": "Taxon ids to consider\n(provide either this or taxidsfile, not both)\n"
+              }
+            },
+            {
+              "taxidsfile": {
+                "type": "file",
+                "description": "File with space separated list of taxon ids to look up\nwith all ids being on the same line\n(provide either this or name, not both)\n",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "taxdb": {
+              "type": "file",
+              "description": "Taxonomy database unpacked from ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz",
+              "ontologies": []
+            }
+          }
+        ],
+        "output": {
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "TSV file with passed ids in the first column and\nthe LCA tax id in the second\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_taxonkit": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "taxonkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "taxonkit version | sed 's/.* v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "taxonkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "taxonkit version | sed 's/.* v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@jcbioinformatics"
+        ],
+        "maintainers": [
+          "@jcbioinformatics"
+        ]
+      },
+      "git_sha": "4a208ad81dc6284b41f6a11aaa7d14336fe322a9"
+    },
+    {
       "name": "taxonkit_lineage",
       "path": "modules/nf-core/taxonkit/lineage/meta.yml",
       "tree_sha": "1bf6db3b548b0cdfdc04255ca26f693784c60a8a",
@@ -393261,8 +393421,10 @@
     {
       "name": "trnascanse",
       "path": "modules/nf-core/trnascanse/meta.yml",
-      "tree_sha": "642e4e429fe3aad3411d7d58d3831b23012e3fa0",
+      "tree_sha": "f5c12a13324177de208af2c3d61cb6510906160a",
       "files": [
+        "modules/nf-core/trnascanse/.conda-lock/linux_amd64-bd-15c0475b13b49f03_1.txt",
+        "modules/nf-core/trnascanse/.conda-lock/linux_arm64-bd-b0274a0899088e35_1.txt",
         "modules/nf-core/trnascanse/environment.yml",
         "modules/nf-core/trnascanse/main.nf",
         "modules/nf-core/trnascanse/meta.yml",
@@ -393316,7 +393478,31 @@
                 ]
               }
             }
-          ]
+          ],
+          {
+            "write_stats": {
+              "type": "boolean",
+              "description": "Write the stats file"
+            }
+          },
+          {
+            "write_fasta": {
+              "type": "boolean",
+              "description": "Write a FASTA file of tRNA sequences"
+            }
+          },
+          {
+            "write_gff": {
+              "type": "boolean",
+              "description": "Write a GFF file of tRNA annotations"
+            }
+          },
+          {
+            "write_bed": {
+              "type": "boolean",
+              "description": "Write a BED file of tRNA annotations"
+            }
+          }
         ],
         "output": {
           "tsv": [
@@ -393504,9 +393690,43 @@
         ],
         "maintainers": [
           "@prototaxites"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/trnascan-se_gzip_findutils:b0274a0899088e35",
+              "build_id": "bd-b0274a0899088e35_1",
+              "scan_id": "sc-90a1a80ff5815a5b_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/trnascan-se_gzip_findutils:15c0475b13b49f03",
+              "build_id": "bd-15c0475b13b49f03_1",
+              "scan_id": "sc-56849b20d8e3559a_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/trnascan-se_gzip_findutils:fa05bc72bdec0557",
+              "build_id": "bd-fa05bc72bdec0557_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2a/2ae0c76c670fe400689455bacd48acd58203cf27876fc79b04ed2395681ab7ec/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/trnascan-se_gzip_findutils:7f4fa655dc8e261b",
+              "build_id": "bd-7f4fa655dc8e261b_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e6/e67fae15e207274f7007314b675884186eec7d195c82db002cb04cd218f20b8f/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/trnascanse/.conda-lock/linux_amd64-bd-15c0475b13b49f03_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/trnascanse/.conda-lock/linux_arm64-bd-b0274a0899088e35_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "0c739827833fdece07eb80618fd085a9a8992406",
+      "git_sha": "610fdc0f12df14140cfa6164a4c8b61132d74a2e",
       "pipelines": [
         {
           "name": "seqsubmit",
@@ -436703,6 +436923,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "ef60b708c7b9871dd6ca6d526fec183faf645dc5",
-  "updated_at": "2026-09-24T14:12:29.549Z"
+  "commit_sha": "4a208ad81dc6284b41f6a11aaa7d14336fe322a9",
+  "updated_at": "2026-09-25T02:11:53.815Z"
 }
