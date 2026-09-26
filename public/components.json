@@ -92785,6 +92785,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -189877,7 +189885,7 @@
     {
       "name": "interproscan",
       "path": "modules/nf-core/interproscan/meta.yml",
-      "tree_sha": "f0012f12c43673c4c7f6e22781d94803756a7b63",
+      "tree_sha": "3f15f4ef29793e1a57c3681b7b2eaab25a017dbf",
       "files": [
         "modules/nf-core/interproscan/environment.yml",
         "modules/nf-core/interproscan/main.nf",
@@ -189937,7 +189945,7 @@
           {
             "interproscan_database": {
               "type": "directory",
-              "description": "Path to the interproscan database (untarred http://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/${version_major}-${version_minor}/interproscan-${version_major}-${version_minor}-64-bit.tar.gz)"
+              "description": "Path to the data/ folder of an InterProScan release matching the module\nversion (untarred from\nhttp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/${version_major}-${version_minor}/interproscan-${version_major}-${version_minor}-64-bit.tar.gz).\nHMMs should already be pressed (python3 setup.py -f interproscan.properties),\notherwise hmmpress runs in every task and parallel tasks may race.\n"
             }
           }
         ],
@@ -190087,7 +190095,7 @@
           "@mahesh-panchal"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "3137cddd6fa5fd47e1673081fa82a12644e91996",
       "pipelines": [
         {
           "name": "funcscan",
@@ -281655,6 +281663,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -281962,6 +281974,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -437426,6 +437442,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "6ea7380463eee30a9792c0199aed8fd976abbdc0",
-  "updated_at": "2026-09-26T02:11:43.938Z"
+  "commit_sha": "3137cddd6fa5fd47e1673081fa82a12644e91996",
+  "updated_at": "2026-09-26T14:11:11.321Z"
 }
