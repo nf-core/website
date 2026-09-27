@@ -31,11 +31,11 @@ These modules are intended as reusable building blocks for population-genetics w
 
 The modules we plan to build:
 
-| Module                   | What it does                                                                                         |
-| ------------------------ | ---------------------------------------------------------------------------------------------------- |
-| PLINK allele frequencies | Calculates per-population allele frequencies from PLINK data (`--freq` with population assignments) |
-| TreeMix input conversion | Converts per-population allele-frequency output into the format required by TreeMix                  |
-| TreeMix                  | Fits a population tree with user-defined migration edges, root population, seed and block size       |
+The modules we plan to build:
+
+- **PLINK allele frequencies:** Calculates per-population allele frequencies from PLINK data (`--freq` with population assignments).
+- **TreeMix input conversion:** Converts per-population allele-frequency output into the format required by TreeMix.
+- **TreeMix:** Fits a population tree with user-defined migration edges, root population, seed and block size.
 
 Two design points we want to get right from the start:
 
