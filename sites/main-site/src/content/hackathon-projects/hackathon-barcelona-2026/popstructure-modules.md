@@ -4,7 +4,7 @@ category: components
 slack: https://nfcore.slack.com/archives/C0C34GCCPN1
 location: Barcelona
 image: "/assets/images/events/2026/hackathon-barcelona/popstructure-modules-fry.png"
-image_alt: "Meme of Fry from Futurama squinting suspiciously, captioned: Not sure if it's a bottleneck or just population structure. A strip below shows a small population tree with a dashed migration edge and the text: Let's find out with TreeMix + PLINK modules, nf-core hackathon Barcelona 2026."
+image_alt: "Meme of Fry from Futurama squinting suspiciously, captioned: Not sure if it's a tree or there's gene flow. A strip below shows a small population tree with a dashed migration edge and the text: Let's find out with TreeMix + PLINK modules, nf-core hackathon Barcelona 2026."
 leaders:
   malghuraybi:
     name: Mashael Alghuraybi
