@@ -14,7 +14,6 @@ leaders:
     slack: https://nfcore.slack.com/team/U0BQUD29125
   Othmanaljurayyad:
     name: Othman Aljurayyad
-    slack: https://nextflow.slack.com/team/U0BHKD48AFP
 ---
 
 ## Goal
