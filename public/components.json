@@ -92817,6 +92817,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -103138,7 +103146,7 @@
     {
       "name": "dupradar",
       "path": "modules/nf-core/dupradar/meta.yml",
-      "tree_sha": "a78ec0370e2656d747795e05dc01e45ddc12c67e",
+      "tree_sha": "46476e3f0cbe9dd31cfbc81209e86703b4debe50",
       "files": [
         "modules/nf-core/dupradar/environment.yml",
         "modules/nf-core/dupradar/main.nf",
@@ -103365,7 +103373,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "07f8f55a82b2f9eb764bcd6db7d53041e138d3d2",
       "pipelines": [
         {
           "name": "rnaseq",
@@ -178287,8 +178295,10 @@
     {
       "name": "hmmer_eslsfetchindex",
       "path": "modules/nf-core/hmmer/eslsfetchindex/meta.yml",
-      "tree_sha": "739ef73ebb42809da033ddb4c176c4b06f5d3107",
+      "tree_sha": "8721f76be8ec6a8c7d4e2008fe455eeb37b90cf7",
       "files": [
+        "modules/nf-core/hmmer/eslsfetchindex/.conda-lock/linux_amd64-bd-4d607118d1d3ddb5_1.txt",
+        "modules/nf-core/hmmer/eslsfetchindex/.conda-lock/linux_arm64-bd-1dbf7ed6a137048e_1.txt",
         "modules/nf-core/hmmer/eslsfetchindex/environment.yml",
         "modules/nf-core/hmmer/eslsfetchindex/main.nf",
         "modules/nf-core/hmmer/eslsfetchindex/meta.yml",
@@ -178320,6 +178330,18 @@
               ],
               "identifier": "biotools:hmmer"
             }
+          },
+          {
+            "coreutils": {
+              "description": "GNU utilities for basic file, shell, and text manipulation, including sort.",
+              "homepage": "https://www.gnu.org/software/coreutils/",
+              "documentation": "https://www.gnu.org/software/coreutils/manual/",
+              "tool_dev_url": "https://git.savannah.gnu.org/cgit/coreutils.git",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": ""
+            }
           }
         ],
         "input": [
@@ -178333,7 +178355,7 @@
             {
               "seqfile": {
                 "type": "file",
-                "description": "Sequence file, in any format supported by esl-sfetch (fasta, embl,\ngenbank, stockholm, a2m, afa, psiblast, clustal, phylip). Must NOT\nbe gzip-compressed: esl-sfetch --index cannot index a .gz file.\n",
+                "description": "Sequence file, in any format supported by esl-sfetch (fasta, embl,\ngenbank, stockholm, a2m, afa, psiblast, clustal, phylip). Must NOT\nbe gzip-compressed: esl-sfetch --index cannot index a .gz file.\nVery large indexing jobs may need substantial temporary disk under\n`$TMPDIR` for GNU sort.\n",
                 "pattern": "*",
                 "ontologies": [
                   {
@@ -178427,6 +178449,28 @@
                 }
               }
             ]
+          ],
+          "versions_coreutils": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "coreutils": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sort --version |& sed '1!d ; s/sort (GNU coreutils) //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "topics": {
@@ -178470,6 +178514,26 @@
                   "description": "The expression to obtain the version of the tool"
                 }
               }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "coreutils": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sort --version |& sed '1!d ; s/sort (GNU coreutils) //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
             ]
           ]
         },
@@ -178478,9 +178542,43 @@
         ],
         "maintainers": [
           "@vagkaratzas"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/coreutils_hmmer:4d607118d1d3ddb5",
+              "build_id": "bd-4d607118d1d3ddb5_1",
+              "scan_id": "sc-74f7d97ce52ada0c_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/coreutils_hmmer:1dbf7ed6a137048e",
+              "build_id": "bd-1dbf7ed6a137048e_1",
+              "scan_id": "sc-f5c8750be9875869_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/coreutils_hmmer:be81135087bcd369",
+              "build_id": "bd-be81135087bcd369_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/f2/f2c9b2c2ded44fc2076629da06a841d3bd8a9f847f6d6e4b6a3aac38897870bc/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/coreutils_hmmer:c82c60576a7dd57b",
+              "build_id": "bd-c82c60576a7dd57b_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/22/22f18750c163d666d594cd90391d3e9a9ebc878118345f1b545770574d6d8d1a/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/hmmer/eslsfetchindex/.conda-lock/linux_amd64-bd-4d607118d1d3ddb5_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/hmmer/eslsfetchindex/.conda-lock/linux_arm64-bd-1dbf7ed6a137048e_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "d3d8e0c6c33925e69f96f44fc6204302841f3562",
+      "git_sha": "f179ce7da20507dcddbd8e8eaa07a89ebebf95c0",
       "pipelines": [
         {
           "name": "proteinfamilies",
@@ -254021,6 +254119,168 @@
       "git_sha": "77ac074b2ba982e853c0ec17205367a56740412f"
     },
     {
+      "name": "octopusv_filter",
+      "path": "modules/nf-core/octopusv/filter/meta.yml",
+      "tree_sha": "80243006d0ae783f3d6b98b160918744e665b145",
+      "files": [
+        "modules/nf-core/octopusv/filter/environment.yml",
+        "modules/nf-core/octopusv/filter/main.nf",
+        "modules/nf-core/octopusv/filter/meta.yml",
+        "modules/nf-core/octopusv/filter/tests/main.nf.test",
+        "modules/nf-core/octopusv/filter/tests/main.nf.test.snap",
+        "modules/nf-core/octopusv/filter/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "octopusv_filter",
+        "description": "Filter SVCF based on specified criteria",
+        "keywords": [
+          "structural",
+          "variant",
+          "sv",
+          "svcf",
+          "filter"
+        ],
+        "tools": [
+          {
+            "octopusv": {
+              "description": "End-to-end structural variant post-processing: standardize, merge, compare, and export SVs.",
+              "homepage": "https://github.com/ylab-hi/OctopuSV",
+              "documentation": "https://github.com/ylab-hi/OctopuSV",
+              "tool_dev_url": "https://github.com/ylab-hi/OctopuSV",
+              "doi": "10.1093/bioinformatics/btaf599",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "svcf_in": {
+                "type": "file",
+                "description": "Input SVCF file to be filtered",
+                "pattern": "*.svcf",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "svcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n"
+                }
+              },
+              {
+                "*.svcf": {
+                  "type": "file",
+                  "description": "Filtered SVCF file",
+                  "pattern": "*.svcf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n"
+                }
+              },
+              {
+                "*.json": {
+                  "type": "file",
+                  "description": "JSON summary of the filtering",
+                  "pattern": "*.json",
+                  "optional": true,
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_octopusv": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "octopusv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import importlib.metadata as m; print(m.version('octopusv'))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "octopusv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import importlib.metadata as m; print(m.version('octopusv'))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@manascripts"
+        ],
+        "maintainers": [
+          "@manascripts"
+        ]
+      },
+      "git_sha": "234d5bc9907cd8b272365eabdd6de66fd4ba925c"
+    },
+    {
       "name": "octopusv_merge",
       "path": "modules/nf-core/octopusv/merge/meta.yml",
       "tree_sha": "927d87edef9b55e35dc0618d35b3e8fd538e876d",
@@ -254799,6 +255059,210 @@
         ]
       },
       "git_sha": "77ac074b2ba982e853c0ec17205367a56740412f"
+    },
+    {
+      "name": "octopusv_subset",
+      "path": "modules/nf-core/octopusv/subset/meta.yml",
+      "tree_sha": "ce194b43cff480c28351f54283129b95d44bf435",
+      "files": [
+        "modules/nf-core/octopusv/subset/environment.yml",
+        "modules/nf-core/octopusv/subset/main.nf",
+        "modules/nf-core/octopusv/subset/meta.yml",
+        "modules/nf-core/octopusv/subset/tests/main.nf.test",
+        "modules/nf-core/octopusv/subset/tests/main.nf.test.snap",
+        "modules/nf-core/octopusv/subset/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "octopusv_subset",
+        "description": "Subset an OctopuSV SVCF by sample and/or caller.",
+        "keywords": [
+          "structural",
+          "variant",
+          "sv",
+          "svcf",
+          "subset"
+        ],
+        "tools": [
+          {
+            "octopusv": {
+              "description": "End-to-end structural variant post-processing: standardize, merge, compare, and export SVs.",
+              "homepage": "https://github.com/ylab-hi/OctopuSV",
+              "documentation": "https://github.com/ylab-hi/OctopuSV",
+              "tool_dev_url": "https://github.com/ylab-hi/OctopuSV",
+              "doi": "10.1093/bioinformatics/btaf599",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "svcf_in": {
+                "type": "file",
+                "description": "Input SVCF file",
+                "pattern": "*.svcf",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample-file information\ne.g. `[ id:'sample_file' ]`\n"
+              }
+            },
+            {
+              "sample_file": {
+                "type": "file",
+                "description": "Optional file containing sample/input column names to retain, one per line",
+                "pattern": "*.txt",
+                "optional": true,
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1964"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing caller-file information\ne.g. `[ id:'caller_file' ]`\n"
+              }
+            },
+            {
+              "caller_file": {
+                "type": "file",
+                "description": "Optional file containing caller names to retain, one per line",
+                "pattern": "*.txt",
+                "optional": true,
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1964"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "svcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n"
+                }
+              },
+              {
+                "*.svcf": {
+                  "type": "file",
+                  "description": "Subset SVCF file",
+                  "pattern": "*.svcf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n"
+                }
+              },
+              {
+                "*.json": {
+                  "type": "file",
+                  "description": "JSON summary of the subsetting",
+                  "pattern": "*.json",
+                  "optional": true,
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_octopusv": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "octopusv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import importlib.metadata as m; print(m.version('octopusv'))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "octopusv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import importlib.metadata as m; print(m.version('octopusv'))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@manascripts"
+        ],
+        "maintainers": [
+          "@manascripts"
+        ]
+      },
+      "git_sha": "234d5bc9907cd8b272365eabdd6de66fd4ba925c"
     },
     {
       "name": "octopusv_svcf2bed",
@@ -281703,6 +282167,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -282010,6 +282478,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -317408,12 +317880,11 @@
     {
       "name": "rsem_calculateexpression",
       "path": "modules/nf-core/rsem/calculateexpression/meta.yml",
-      "tree_sha": "b8af0524b70f1151a6e0e5e87629a610d0845ade",
+      "tree_sha": "1d5f8284fd7d84ea58cff881cc0a7e1462991115",
       "files": [
         "modules/nf-core/rsem/calculateexpression/environment.yml",
         "modules/nf-core/rsem/calculateexpression/main.nf",
         "modules/nf-core/rsem/calculateexpression/meta.yml",
-        "modules/nf-core/rsem/calculateexpression/tests/alignment.config",
         "modules/nf-core/rsem/calculateexpression/tests/main.nf.test",
         "modules/nf-core/rsem/calculateexpression/tests/main.nf.test.snap",
         "modules/nf-core/rsem/calculateexpression/tests/nextflow.config"
@@ -317699,7 +318170,7 @@
           "@kevinmenden"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "07f8f55a82b2f9eb764bcd6db7d53041e138d3d2",
       "pipelines": [
         {
           "name": "rnaseq",
@@ -343907,7 +344378,7 @@
     {
       "name": "sentieon_rsemcalculateexpression",
       "path": "modules/nf-core/sentieon/rsemcalculateexpression/meta.yml",
-      "tree_sha": "2d42a22a803fef0600993405a22f1ec6fefed62d",
+      "tree_sha": "0d804085c2c75449fcd31679ba676eb941c117d4",
       "files": [
         "modules/nf-core/sentieon/rsemcalculateexpression/environment.yml",
         "modules/nf-core/sentieon/rsemcalculateexpression/main.nf",
@@ -344235,7 +344706,7 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "07f8f55a82b2f9eb764bcd6db7d53041e138d3d2",
       "pipelines": [
         {
           "name": "rnaseq",
@@ -437490,6 +437961,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "3137cddd6fa5fd47e1673081fa82a12644e91996",
-  "updated_at": "2026-09-28T02:20:32.028Z"
+  "commit_sha": "234d5bc9907cd8b272365eabdd6de66fd4ba925c",
+  "updated_at": "2026-09-28T14:12:39.965Z"
 }
