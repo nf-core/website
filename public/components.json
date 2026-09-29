@@ -25571,6 +25571,10 @@
           "version": "dev"
         },
         {
+          "name": "pathogenepidemiology",
+          "version": "dev"
+        },
+        {
           "name": "phaseimpute",
           "version": "1.1.0"
         },
@@ -27044,7 +27048,7 @@
     {
       "name": "bcftools_mpileup",
       "path": "modules/nf-core/bcftools/mpileup/meta.yml",
-      "tree_sha": "ece9a1457bcbc200925f112fe1f19156f9f1238b",
+      "tree_sha": "22593f9ef27337de938d57ece90cb3daa8966f64",
       "files": [
         "modules/nf-core/bcftools/mpileup/environment.yml",
         "modules/nf-core/bcftools/mpileup/main.nf",
@@ -27148,10 +27152,10 @@
                 }
               },
               {
-                "*vcf.gz": {
+                "*.{bcf,vcf}{,.gz}": {
                   "type": "file",
                   "description": "VCF gzipped output file",
-                  "pattern": "*.{vcf.gz}",
+                  "pattern": "*.{bcf,vcf}{,.gz}",
                   "ontologies": []
                 }
               }
@@ -27264,7 +27268,7 @@
           "@joseespinosa"
         ]
       },
-      "git_sha": "feef37435aea56816adf4b3bde1fc76aac327a8d",
+      "git_sha": "140a5c4d654dfb1e609334d2543bdfe22f8288db",
       "pipelines": [
         {
           "name": "phaseimpute",
@@ -92658,6 +92662,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -263879,6 +263891,241 @@
       "git_sha": "3e0ec6464725c64d81abe928e15a6750d5fdd272"
     },
     {
+      "name": "parabricks_deepsomatic",
+      "path": "modules/nf-core/parabricks/deepsomatic/meta.yml",
+      "tree_sha": "921a7d321831379f9218ad78a294db9147f9dabb",
+      "files": [
+        "modules/nf-core/parabricks/deepsomatic/main.nf",
+        "modules/nf-core/parabricks/deepsomatic/meta.yml",
+        "modules/nf-core/parabricks/deepsomatic/tests/main.nf.test",
+        "modules/nf-core/parabricks/deepsomatic/tests/main.nf.test.snap",
+        "modules/nf-core/parabricks/deepsomatic/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "parabricks_deepsomatic",
+        "description": "NVIDIA Clara Parabricks GPU-accelerated somatic variant calling, replicating deepsomatic.",
+        "keywords": [
+          "variant",
+          "somatic",
+          "vcf",
+          "deepsomatic",
+          "tumor",
+          "normal"
+        ],
+        "tools": [
+          {
+            "parabricks": {
+              "description": "NVIDIA Clara Parabricks GPU-accelerated genomics tools",
+              "homepage": "https://www.nvidia.com/en-us/clara/genomics/",
+              "documentation": "https://docs.nvidia.com/clara/parabricks/latest/index.html",
+              "licence": [
+                "custom"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information.\n[ id:'tumor_vs_normal']\n"
+              }
+            },
+            {
+              "input_tumor": {
+                "type": "file",
+                "description": "BAM/CRAM file for tumor sample.",
+                "pattern": "*.{bam,cram}",
+                "ontologies": []
+              }
+            },
+            {
+              "index_tumor": {
+                "type": "file",
+                "description": "BAI/CRAI index corresponding to tumor BAM/CRAM file.",
+                "pattern": "*.{bai,crai}",
+                "ontologies": []
+              }
+            },
+            {
+              "input_normal": {
+                "type": "file",
+                "description": "BAM/CRAM file for normal sample.",
+                "pattern": "*.{bam,cram}",
+                "ontologies": []
+              }
+            },
+            {
+              "index_normal": {
+                "type": "file",
+                "description": "BAI/CRAI index corresponding to normal BAM/CRAM file.",
+                "pattern": "*.{bai,crai}",
+                "ontologies": []
+              }
+            },
+            {
+              "intervals": {
+                "type": "file",
+                "description": "File or files containing genomic intervals for variant calling.",
+                "pattern": "*.{bed,interval_list,picard,list,intervals}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "ref_meta": {
+                "type": "map",
+                "description": "Groovy Map containing reference information.\n[ id:'genome']\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference fasta - must be unzipped.",
+                "pattern": "*.fasta",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\ne.g. [ id:'tumor_vs_normal' ]\n"
+                }
+              },
+              {
+                "*.vcf.gz": {
+                  "type": "file",
+                  "description": "VCF file created with deepsomatic, optional",
+                  "pattern": "*.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "gvcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\ne.g. [ id:'tumor_vs_normal' ]\n"
+                }
+              },
+              {
+                "*.g.vcf.gz": {
+                  "type": "file",
+                  "description": "bgzipped gVCF created with deepsomatic, optional",
+                  "pattern": "*.g.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\ne.g. [ id:'tumor_vs_normal' ]\n"
+                }
+              },
+              {
+                "*.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "Tabix index for the VCF or gVCF file",
+                  "pattern": "*.vcf.gz.tbi",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "compatible_versions": [
+            {
+              "compatible_versions.yml": {
+                "type": "file",
+                "description": "File containing info on compatible CPU-based software versions.",
+                "pattern": "compatible_versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ],
+          "versions_parabricks": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@sppearce"
+        ],
+        "maintainers": [
+          "@sppearce"
+        ]
+      },
+      "git_sha": "3ccf6cbb9868aa36cf77b9490af7b47595eaab17"
+    },
+    {
       "name": "parabricks_deepvariant",
       "path": "modules/nf-core/parabricks/deepvariant/meta.yml",
       "tree_sha": "32b7fee7a9b963e38e176c362aa4b97c89b795fd",
@@ -282171,6 +282418,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -282478,6 +282729,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -422315,7 +422570,7 @@
     {
       "name": "bam_ngscheckmate",
       "path": "subworkflows/nf-core/bam_ngscheckmate/meta.yml",
-      "tree_sha": "0d7504a766ce86c22a76848bd33aff2df867cd4a",
+      "tree_sha": "82bd7961ecb789055431df6c0b1dea0f87e3cc09",
       "files": [
         "subworkflows/nf-core/bam_ngscheckmate/main.nf",
         "subworkflows/nf-core/bam_ngscheckmate/meta.yml",
@@ -422404,7 +422659,7 @@
           "@SPPearce"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
+      "git_sha": "140a5c4d654dfb1e609334d2543bdfe22f8288db",
       "pipelines": [
         {
           "name": "sarek",
@@ -424443,7 +424698,7 @@
     {
       "name": "bam_variant_calling_mpileup_bcftools",
       "path": "subworkflows/nf-core/bam_variant_calling_mpileup_bcftools/meta.yml",
-      "tree_sha": "7f0d4871e7f047c51afef4ad5d395e2e9481cac4",
+      "tree_sha": "2e3ac9cdd1c87eec80aa1642ec9949a26daa66bb",
       "files": [
         "subworkflows/nf-core/bam_variant_calling_mpileup_bcftools/main.nf",
         "subworkflows/nf-core/bam_variant_calling_mpileup_bcftools/meta.yml",
@@ -424604,7 +424859,7 @@
           "@louislenezet"
         ]
       },
-      "git_sha": "7844e96252d0693fb2331969a1c9790eb831b0f6"
+      "git_sha": "140a5c4d654dfb1e609334d2543bdfe22f8288db"
     },
     {
       "name": "bam_variant_calling_sort_freebayes_bcftools",
@@ -437961,6 +438216,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "234d5bc9907cd8b272365eabdd6de66fd4ba925c",
-  "updated_at": "2026-09-28T14:12:39.965Z"
+  "commit_sha": "3ccf6cbb9868aa36cf77b9490af7b47595eaab17",
+  "updated_at": "2026-09-29T02:17:35.441Z"
 }
