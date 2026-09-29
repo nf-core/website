@@ -35841,7 +35841,13 @@
           "@LuisHeinzlmeier"
         ]
       },
-      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
+      "pipelines": [
+        {
+          "name": "hadge",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "bftools_showinf",
@@ -59649,7 +59655,13 @@
           "@wxicu"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "pipelines": [
+        {
+          "name": "hadge",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "centrifuge_build",
@@ -79258,6 +79270,10 @@
           "version": "2.0.0"
         },
         {
+          "name": "hadge",
+          "version": "1.0.0"
+        },
+        {
           "name": "multiplesequencealign",
           "version": "1.1.1"
         },
@@ -92837,6 +92853,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -94625,7 +94649,13 @@
           "@Zethson"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "pipelines": [
+        {
+          "name": "hadge",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "deseq2_differential",
@@ -102645,7 +102675,7 @@
     {
       "name": "duckdb_table2parquet",
       "path": "modules/nf-core/duckdb/table2parquet/meta.yml",
-      "tree_sha": "ae1a023c972346d56143d5cc05cd945971281bdb",
+      "tree_sha": "4306461b52c2669c38d6f12f4943e8e80959572d",
       "files": [
         "modules/nf-core/duckdb/table2parquet/.conda-lock/linux_amd64-bd-9c6d18d9f687a45d_1.txt",
         "modules/nf-core/duckdb/table2parquet/environment.yml",
@@ -102808,7 +102838,7 @@
           }
         }
       },
-      "git_sha": "65c3b99ac5fe292d947a2d3485a2a7f744f242bc",
+      "git_sha": "64017d8989654a65db85f8ba181a9c387ac58fad",
       "pipelines": [
         {
           "name": "magmap",
@@ -160519,7 +160549,13 @@
           "@Zethson"
         ]
       },
-      "git_sha": "6303e9a20c7060f3f834d7eb147b27799c710dc3"
+      "git_sha": "6303e9a20c7060f3f834d7eb147b27799c710dc3",
+      "pipelines": [
+        {
+          "name": "hadge",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "gnu_sort",
@@ -171632,7 +171668,13 @@
           "@LuisHeinzlmeier"
         ]
       },
-      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
+      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a",
+      "pipelines": [
+        {
+          "name": "hadge",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "helitronscanner_draw",
@@ -179729,7 +179771,7 @@
     {
       "name": "hmmer_hmmrank",
       "path": "modules/nf-core/hmmer/hmmrank/meta.yml",
-      "tree_sha": "39cfd2dc04388a022e9ce2cc7f8bb5b9740df5ec",
+      "tree_sha": "f032358d4b6aaf4a5403103428a3fa9e3e0e073c",
       "files": [
         "modules/nf-core/hmmer/hmmrank/.conda-lock/linux_amd64-bd-9c6d18d9f687a45d_1.txt",
         "modules/nf-core/hmmer/hmmrank/environment.yml",
@@ -179910,7 +179952,7 @@
           }
         }
       },
-      "git_sha": "65c3b99ac5fe292d947a2d3485a2a7f744f242bc",
+      "git_sha": "64017d8989654a65db85f8ba181a9c387ac58fad",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -182896,7 +182938,13 @@
           "@LuisHeinzlmeier"
         ]
       },
-      "git_sha": "0699518f4bfa7ba1b29dc755bc982157385d8aa2"
+      "git_sha": "0699518f4bfa7ba1b29dc755bc982157385d8aa2",
+      "pipelines": [
+        {
+          "name": "hadge",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "htseq_count",
@@ -227313,7 +227361,7 @@
     {
       "name": "mgnifam_generatefamilies",
       "path": "modules/nf-core/mgnifam/generatefamilies/meta.yml",
-      "tree_sha": "f97bededa7d2f8e9c2eb36c42beb715e562eff37",
+      "tree_sha": "33f483cf6b6fb13d9fbac0018c3b1eb95ad5a285",
       "files": [
         "modules/nf-core/mgnifam/generatefamilies/environment.yml",
         "modules/nf-core/mgnifam/generatefamilies/main.nf",
@@ -227341,7 +227389,7 @@
             "mgnifam": {
               "description": "Python package for iterative HMM-based protein family generation over large sequence databases, building an HMM from each cluster, recruiting new members, re-aligning, and either converging on a family or discarding the cluster",
               "homepage": "https://github.com/vagkaratzas/mgnifam",
-              "documentation": "https://github.com/vagkaratzas/mgnifam",
+              "documentation": "https://vagkaratzas.github.io/mgnifam/",
               "tool_dev_url": "https://github.com/vagkaratzas/mgnifam",
               "licence": [
                 "MIT"
@@ -227636,6 +227684,28 @@
               }
             ]
           ],
+          "stats": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_mgnifam_stats.json": {
+                  "type": "file",
+                  "description": "Optional. MultiQC-ready summary of the run - family counts, discard reasons, and histograms of seed and full MSA size, model length and representative length. Written only after a completed run",
+                  "pattern": "*/*_mgnifam_stats.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "versions_mgnifam": [
             [
               {
@@ -227690,7 +227760,7 @@
           "@vagkaratzas"
         ]
       },
-      "git_sha": "ed7d93ace52c604b5a78af2b4a5af49868adfd69",
+      "git_sha": "228410a8391d1994a606a7ad5c449e077c17018d",
       "pipelines": [
         {
           "name": "proteinfamilies",
@@ -227701,7 +227771,7 @@
     {
       "name": "mgnifam_updatefamilies",
       "path": "modules/nf-core/mgnifam/updatefamilies/meta.yml",
-      "tree_sha": "7afacdaa5c53c264151a01f97bafeab43bc6b6a4",
+      "tree_sha": "5f29236917ffced5cae18e94747d7e0e7c604a74",
       "files": [
         "modules/nf-core/mgnifam/updatefamilies/environment.yml",
         "modules/nf-core/mgnifam/updatefamilies/main.nf",
@@ -227730,7 +227800,7 @@
             "mgnifam": {
               "description": "Python package for iterative HMM-based protein family generation over large sequence databases, building an HMM from each cluster, recruiting new members, re-aligning, and either converging on a family or discarding the cluster",
               "homepage": "https://github.com/vagkaratzas/mgnifam",
-              "documentation": "https://github.com/vagkaratzas/mgnifam",
+              "documentation": "https://vagkaratzas.github.io/mgnifam/",
               "tool_dev_url": "https://github.com/vagkaratzas/mgnifam",
               "licence": [
                 "MIT"
@@ -228036,11 +228106,33 @@
               {
                 "${prefix}/${prefix}_updated_delta.csv": {
                   "type": "file",
-                  "description": "Optional. One row per input family describing the change against the new database. Columns `family_id` (the model name, e.g. `1_7`, not a rank), `model_length_before`, `model_length_after`, `round1_recruits`, `full_msa_size`, `retention`, `rounds_run`, `converged`, `outcome`",
+                  "description": "Optional. One row per input family describing the change against the new database. Columns `family_id` (the model name, e.g. `1_7`, not a rank), `model_length_before`, `model_length_after`, `round1_recruits`, `full_msa_size`, `retention`, `rounds_run`, `converged` (empty under `--skip_refine`), `outcome`",
                   "pattern": "*/*_updated_delta.csv",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "stats": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_updated_mgnifam_stats.json": {
+                  "type": "file",
+                  "description": "Optional. MultiQC-ready summary of the run - family counts, discard reasons, and histograms of seed and full MSA size, model length and representative length, plus model length change, rounds run and retention. Written only after a completed run",
+                  "pattern": "*/*_updated_mgnifam_stats.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
                     }
                   ]
                 }
@@ -228101,7 +228193,7 @@
           "@vagkaratzas"
         ]
       },
-      "git_sha": "d550e1da9436d4cc3b6489872e10dfe082cb811e"
+      "git_sha": "b2b539f0e91c55f67502cf389eac872766bcc915"
     },
     {
       "name": "midas_run",
@@ -241213,6 +241305,10 @@
           "version": "dev"
         },
         {
+          "name": "hadge",
+          "version": "1.0.0"
+        },
+        {
           "name": "hgtseq",
           "version": "1.1.0"
         },
@@ -242244,7 +242340,13 @@
           "@LuisHeinzlmeier"
         ]
       },
-      "git_sha": "d0794a2b287285437a4a2b2a399656fc35c919e3"
+      "git_sha": "d0794a2b287285437a4a2b2a399656fc35c919e3",
+      "pipelines": [
+        {
+          "name": "hadge",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "multivcfanalyzer",
@@ -282422,6 +282524,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -282729,6 +282835,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -290061,7 +290171,13 @@
           "@Zethson"
         ]
       },
-      "git_sha": "81be600585675b699a4279b20cb1617f01f57ab1"
+      "git_sha": "81be600585675b699a4279b20cb1617f01f57ab1",
+      "pipelines": [
+        {
+          "name": "hadge",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "popscle_dscpileup",
@@ -290275,7 +290391,13 @@
           "@Zethson"
         ]
       },
-      "git_sha": "81be600585675b699a4279b20cb1617f01f57ab1"
+      "git_sha": "81be600585675b699a4279b20cb1617f01f57ab1",
+      "pipelines": [
+        {
+          "name": "hadge",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "popscle_freemuxlet",
@@ -290497,7 +290619,13 @@
           "@wxicu"
         ]
       },
-      "git_sha": "81be600585675b699a4279b20cb1617f01f57ab1"
+      "git_sha": "81be600585675b699a4279b20cb1617f01f57ab1",
+      "pipelines": [
+        {
+          "name": "hadge",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "porechop_abi",
@@ -331937,6 +332065,10 @@
           "version": "dev"
         },
         {
+          "name": "hadge",
+          "version": "1.0.0"
+        },
+        {
           "name": "hgtseq",
           "version": "1.1.0"
         },
@@ -333810,6 +333942,10 @@
           "version": "2.0.0"
         },
         {
+          "name": "hadge",
+          "version": "1.0.0"
+        },
+        {
           "name": "hgtseq",
           "version": "1.1.0"
         },
@@ -335009,6 +335145,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "hadge",
+          "version": "1.0.0"
         },
         {
           "name": "hgtseq",
@@ -338000,7 +338140,13 @@
           "@LuisHeinzlmeier"
         ]
       },
-      "git_sha": "af26b8a2c176e49e11c15472feec62cb07b7336a"
+      "git_sha": "af26b8a2c176e49e11c15472feec62cb07b7336a",
+      "pipelines": [
+        {
+          "name": "hadge",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "scanpy_pca",
@@ -364261,7 +364407,13 @@
           "@LuisHeinzlmeier"
         ]
       },
-      "git_sha": "4d4086f146fffa0505182abfdcedb4023b190b69"
+      "git_sha": "4d4086f146fffa0505182abfdcedb4023b190b69",
+      "pipelines": [
+        {
+          "name": "hadge",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "soupx",
@@ -399286,6 +399438,10 @@
           "version": "dev"
         },
         {
+          "name": "hadge",
+          "version": "1.0.0"
+        },
+        {
           "name": "lncpipe",
           "version": "dev"
         },
@@ -400367,6 +400523,10 @@
         {
           "name": "funcscan",
           "version": "4.0.0"
+        },
+        {
+          "name": "hadge",
+          "version": "1.0.0"
         },
         {
           "name": "hgtseq",
@@ -410623,7 +410783,13 @@
           "@Zethson"
         ]
       },
-      "git_sha": "ed3d399165ee50dfbf6759de596c49dcd3f89d5b"
+      "git_sha": "ed3d399165ee50dfbf6759de596c49dcd3f89d5b",
+      "pipelines": [
+        {
+          "name": "hadge",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "virusrecom",
@@ -435403,6 +435569,10 @@
           "version": "dev"
         },
         {
+          "name": "hadge",
+          "version": "1.0.0"
+        },
+        {
           "name": "hlatyping",
           "version": "2.2.0"
         },
@@ -435889,6 +436059,10 @@
         {
           "name": "gwas",
           "version": "dev"
+        },
+        {
+          "name": "hadge",
+          "version": "1.0.0"
         },
         {
           "name": "hlatyping",
@@ -436425,6 +436599,10 @@
         {
           "name": "gwas",
           "version": "dev"
+        },
+        {
+          "name": "hadge",
+          "version": "1.0.0"
         },
         {
           "name": "hlatyping",
@@ -438216,6 +438394,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "3ccf6cbb9868aa36cf77b9490af7b47595eaab17",
-  "updated_at": "2026-09-29T02:17:35.441Z"
+  "commit_sha": "64017d8989654a65db85f8ba181a9c387ac58fad",
+  "updated_at": "2026-09-29T14:12:40.305Z"
 }
