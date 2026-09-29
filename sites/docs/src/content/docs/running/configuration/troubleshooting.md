@@ -95,6 +95,32 @@ singularity {
 
 Or update your Singularity system configuration at `/etc/singularity/singularity.conf`.
 
+### Temporary directory missing inside Singularity containers
+
+**Error message:**
+
+Varies by tool, and is sometimes hidden by the tool itself. For example:
+
+```console
+Error in tempfile() using template /scratch/job123/parXXXXX.par: Parent directory (/scratch/job123/) does not exist
+```
+
+**Cause:**
+
+Many schedulers set `$TMPDIR` to a job-specific directory.
+Nextflow passes `$TMPDIR` into Singularity and Apptainer containers but does not mount it, so any tool that writes temporary files fails ([nextflow-io/nextflow#4587](https://github.com/nextflow-io/nextflow/issues/4587)).
+
+**Solution:**
+
+Mount the directory in your Nextflow configuration:
+
+```groovy
+singularity.runOptions = '-B "$TMPDIR"'
+```
+
+Keep the single quotes, so that `$TMPDIR` is expanded on the compute node when the task starts.
+Use `apptainer.runOptions` with `-profile apptainer`, and add the option to any `runOptions` you already set.
+
 ### Container not updating
 
 **Problem:**
