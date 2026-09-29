@@ -1,5 +1,4 @@
 ---
-
 title: Metaboigniter updates and benchmarking
 category: pipelines
 slack: https://nfcore.slack.com/channels/metaboigniter
@@ -7,9 +6,9 @@ location: Barcelona
 image: "/assets/images/events/2026/hackathon-barcelona/metaboigniter.jpg"
 image_alt: "Photo showing 'project update' on Scrabble stones. Photo by Matilda Alloway (@matildaonthemove) on Unsplash."
 leaders:
-enryh:
-name: Henry Webel
-slack: https://nfcore.slack.com/archives/C010AEBQ599
+  enryh:
+    name: Henry Webel
+    slack: https://nfcore.slack.com/archives/C010AEBQ599
 ---
 
 ## Goal
