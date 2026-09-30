@@ -7,7 +7,11 @@ import MarkdownWrapper from "@components/markdown/MarkdownWrapper.svelte";
 import { renderPipelineMarkdown } from "@utils/pipelineMarkdown";
 
 export function getStaticPaths() {
-    var paths: { params: { pipeline: string; version: string }; props: { versions: string[]; md_files; meta } }[] = [];
+    var paths: {
+        params: { pipeline: string; version: string };
+        props: { versions: string[]; md_files; meta };
+        cacheKey?: string;
+    }[] = [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
         const releases = pipeline.releases;
         const extended_releases = [...releases, { tag_name: "latest", doc_files: releases[0].doc_files }];
@@ -15,6 +19,8 @@ export function getStaticPaths() {
             const md_files = release.doc_files.map((file) =>
                 file.replace("docs/", "").replace(".mdx", "").replace(".md", ""),
             );
+            // release tags are immutable, "latest" resolves to its tag; dev changes, so always render it
+            const tag_name = release.tag_name === "latest" ? releases[0].tag_name : release.tag_name;
             paths.push({
                 params: {
                     pipeline: pipeline.name,
@@ -25,6 +31,7 @@ export function getStaticPaths() {
                     md_files: md_files,
                     meta: pipeline,
                 },
+                cacheKey: tag_name !== "dev" ? tag_name : undefined,
             });
         });
     });
