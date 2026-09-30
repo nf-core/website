@@ -93,6 +93,7 @@ These guides walk through specific migrations step by step.
 
 - **[Migrating to topic channels](migration-guides/update-pipelines):** Update modules and pipelines to use Nextflow topic channels for version tracking
 - **[Migrating to strict syntax](migration-guides/strict-syntax)**: Update nf-core/configs for Nextflow strict syntax compliance
+- **[Migrating to workflow outputs, records and static typing](migration-guides/outputs-records-typing):** Draft guidance for adopting the output block, records and typed Nextflow code together
 
 ## External documentation
 
