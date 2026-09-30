@@ -154,7 +154,7 @@ All three steps have been applied across one full pipeline, but its full test su
 1. **Result records first.** Feed the `output {}` block from per-stage records, keeping the published layout identical to the old `publishDir` layout.
 2. **Type the processes,** one at a time, each emitting one record.
 3. **Records in, typed workflows.** Replace `.out`, `set`, `tap`, `|` and tuple plumbing with assigned calls and core operators (`join`, `map`, `filter`, `flatMap`, `mix`, `collect`, `groupBy`).
-4. **Replace `collectFile`** with small modules, record-based collection, or the `index` directive.
+4. **Replace `collectFile`.** The `index` directive covers samplesheets (see below).
 5. **Verify** against the pre-migration pipeline, then update tests and snapshots.
 
 ## Conventions
@@ -310,38 +310,6 @@ Rules that avoid silent failures:
 - **List a file once per closure.** Later entries win. Same-named files from different processes need separate outputs ([nextflow#6617](https://github.com/nextflow-io/nextflow/issues/6617)).
 - **Everything published lives in a record.** Per-sample files go in stage records, run-level files in small records grouped by output directory.
 - **Field names are stable API.** They appear in output docs and `index` headers.
-
-### Replacing `collectFile`
-
-Write files with a small module that takes and returns a record, using `exec:` so no container is needed:
-
-```nextflow
-record MultiqcWriteFileInput {
-    id:      String
-    meta:    Map
-    name:    String
-    content: String
-}
-
-record MultiqcWriteFileResult {
-    id:   String
-    meta: Map
-    file: Path
-}
-
-process MULTIQC_WRITE_FILE {
-    input:
-    sample: MultiqcWriteFileInput
-
-    output:
-    record(id: sample.id, meta: sample.meta, file: file(sample.name)) as MultiqcWriteFileResult
-
-    exec:
-    task.workDir.resolve(sample.name) << sample.content
-}
-```
-
-A sibling module concatenates a list of tables the same way, skipping repeated header rows.
 
 ### Workflows
 
