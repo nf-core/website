@@ -250,6 +250,22 @@ def ch_sorted: Channel<SamtoolsSortResult> = SAMTOOLS_SORT(ch_bam, ch_fasta, ch_
 - An alternative layout gives each subworkflow a sibling `types.nf`, importing from its neighbours (`include { SamtoolsStatsFiles } from '../bam_stats_samtools/types'`). Which layout suits nf-core is an open question.
 - Records that are never cast (see [nextflow#7680](https://github.com/nextflow-io/nextflow/issues/7680)) still document the expected shape.
 
+### Parameters and output directory
+
+Declare parameter types in a typed `params {}` block. A parameter that `nextflow.config` or `conf/` reads takes its default from the config, because the config is resolved before the block, so the block only declares its type. Point `outputDir` at the existing parameter:
+
+```nextflow
+// main.nf
+params {
+    input:   Path? = null
+    outdir:  String?
+    trimmer: String = 'trimgalore'
+}
+
+// nextflow.config
+outputDir = params.outdir
+```
+
 ### Output block
 
 Locals hold shared prefixes, and a list key groups files that share a destination. Top-level helpers keep prefixes consistent:
@@ -295,12 +311,69 @@ Rules that avoid silent failures:
 - **Everything published lives in a record.** Per-sample files go in stage records, run-level files in small records grouped by output directory.
 - **Field names are stable API.** They appear in output docs and `index` headers.
 
+### Replacing `collectFile`
+
+Write files with a small module that takes and returns a record, using `exec:` so no container is needed:
+
+```nextflow
+record MultiqcWriteFileInput {
+    id:      String
+    meta:    Map
+    name:    String
+    content: String
+}
+
+record MultiqcWriteFileResult {
+    id:   String
+    meta: Map
+    file: Path
+}
+
+process MULTIQC_WRITE_FILE {
+    input:
+    sample: MultiqcWriteFileInput
+
+    output:
+    record(id: sample.id, meta: sample.meta, file: file(sample.name)) as MultiqcWriteFileResult
+
+    exec:
+    task.workDir.resolve(sample.name) << sample.content
+}
+```
+
+A sibling module concatenates a list of tables the same way, skipping repeated header rows.
+
 ### Workflows
 
 - To `emit:` one result, assign the variable without `def`, or emit an expression.
 - A `take:` typed `Value<...>` should receive a real value channel, including in tests (`channel.value(...)`).
+- Annotate process call results with the result type, so the shape is visible at the call site: `def ch_sorted: Channel<SamtoolsSortResult> = SAMTOOLS_SORT(...)`.
+- For cross-cutting collectors such as a report, have each stage emit a small record of the files it contributes (`MultiqcFiles`), and let the collector take the channel of them.
 - Keep `nextflow.enable.types = true` in each script that uses typed processes or workflows.
 - Sort file lists passed to MultiQC so report inputs are deterministic.
+
+### Tests
+
+Build test inputs with `record(...)`, use `channel.value(...)` for `Value` inputs, and assert on named fields:
+
+```groovy
+when {
+    workflow {
+        """
+        input[0] = Channel.of(record(
+            id: 'test',
+            meta: [ id:'test', single_end:false ],
+            raw_bams: file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.bam', checkIfExists: true)
+        ))
+        input[1] = channel.value(file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta', checkIfExists: true))
+        """
+    }
+}
+then {
+    assert workflow.success
+    assert workflow.out[0][0].bam ==~ ".*.bam"
+}
+```
 
 ## Checking a migration
 
