@@ -7,9 +7,18 @@ import Admonition from "@components/Admonition.astro";
 import type { CollectionEntry } from "astro:content";
 import type { SidebarEntry } from "@utils/types";
 import { createLinkOrGroup } from "@utils/functions";
+import { createHash } from "node:crypto";
 
 export async function getStaticPaths() {
     const events = await getCollection("events");
+    // every page renders the sidebar list of events, so re-render all of them when that list changes
+    const sidebarHash = createHash("sha256")
+        .update(
+            JSON.stringify(
+                events.map((event) => [event.id, event.data.title, event.data.shortTitle, event.data.start]),
+            ),
+        )
+        .digest("hex");
     return events.map((event) => ({
         params: {
             event: event.id.replace(/\.[^/.]+$/, ""),
@@ -18,6 +27,7 @@ export async function getStaticPaths() {
             event: event,
             events: events,
         },
+        cacheKey: event.digest + sidebarHash,
     }));
 }
 const { event, events } = Astro.props;
@@ -146,32 +156,28 @@ sections.forEach((year) => {
     ]}
     viewTransitions={true}
 >
-    {
-        title.trim().toLowerCase().startsWith("bytesize") && (
-            <Admonition
-                title="tip"
-                titleText="Join us for our <strong>weekly series</strong> of short talks: <strong>nf-core/bytesize</strong>."
-                collapse={true}
-            >
-                <p class="small text-body-secondary">
-                    Just <strong>15 minutes</strong> + questions, we focus on topics about using and developing nf-core
-                    pipelines. These are recorded and made available at <a href="https://nf-co.re/">https://nf-co.re</a>
-                    , helping to build an archive of training material. Got an idea for a talk? Let us know on the{" "}
-                    <a href="https://nfcore.slack.com/channels/bytesize">
-                        <code>#bytesize</code>
-                    </a>{" "}
-                    Slack channel!
-                </p>
-            </Admonition>
-        )
-    }
+    {title.trim().toLowerCase().startsWith("bytesize") && (
+        <Admonition
+            title="tip"
+            titleText="Join us for our <strong>weekly series</strong> of short talks: <strong>nf-core/bytesize</strong>."
+            collapse={true}
+        >
+            <p class="small text-body-secondary">
+                Just <strong>15 minutes</strong> + questions, we focus on topics about using and developing nf-core
+                pipelines. These are recorded and made available at <a href="https://nf-co.re/">https://nf-co.re</a>,
+                helping to build an archive of training material. Got an idea for a talk? Let us know on the{" "}
+                <a href="https://nfcore.slack.com/channels/bytesize">
+                    <code>#bytesize</code>
+                </a>{" "}
+                Slack channel!
+            </p>
+        </Admonition>
+    )}
     <Content />
-    {
-        ids &&
-            ids.map((id, i) => (
-                <VideoTranscript id={id} client:idle>
-                    <YouTube id={id} poster={posters[i]} />
-                </VideoTranscript>
-            ))
-    }
+    {ids &&
+        ids.map((id, i) => (
+            <VideoTranscript id={id} client:idle>
+                <YouTube id={id} poster={posters[i]} />
+            </VideoTranscript>
+        ))}
 </MarkdownTocLayout>
