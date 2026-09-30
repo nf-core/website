@@ -203,6 +203,53 @@ Nextflow validates record inputs at runtime ([nextflow#7692](https://github.com/
 - A named record input (`sample: BamBaiInput`) means scripts, `task.ext` closures and templates read `sample.meta.id`. A destructured `record(id: String, ...)` keeps bare names. Use one variable name across modules so shared config selectors still match.
 - Emit versions on the topic channel (see [migrating to topic channels](update-pipelines)).
 
+### Where record types live
+
+A module declares its own input and result types, and imports shared ones:
+
+```nextflow
+// modules/nf-core/samtools/sort/main.nf
+include { RawBams } from '../../types'
+
+record SamtoolsSortResult {
+    id:   String
+    meta: Map
+    bam:  Path?
+    bai:  Path?
+}
+```
+
+Shared vocabulary types live in one file that modules, subworkflows and the pipeline import from:
+
+```nextflow
+// modules/nf-core/types.nf
+record Sample {
+    id:   String
+    meta: Map
+}
+
+record ReadsInput {
+    id:    String
+    meta:  Map
+    reads: List<Path>
+}
+```
+
+Workflows import types by path and use them to annotate channels:
+
+```nextflow
+// subworkflows/nf-core/bam_sort_stats_samtools/main.nf
+include { RawBams; Bam } from '../../../modules/nf-core/types'
+include { SamtoolsSortResult } from '../../../modules/nf-core/samtools/sort/main'
+
+def ch_sorted: Channel<SamtoolsSortResult> = SAMTOOLS_SORT(ch_bam, ch_fasta, ch_fai, '')
+```
+
+- Declare a type used by several components once, in the component the others already depend on, and `include` it. Do not copy it.
+- Open the shared file with a comment saying what belongs there and what stays in module files.
+- An alternative layout gives each subworkflow a sibling `types.nf`, importing from its neighbours (`include { SamtoolsStatsFiles } from '../bam_stats_samtools/types'`). Which layout suits nf-core is an open question.
+- Records that are never cast (see [nextflow#7680](https://github.com/nextflow-io/nextflow/issues/7680)) still document the expected shape.
+
 ### Output block
 
 Locals hold shared prefixes, and a list key groups files that share a destination. Top-level helpers keep prefixes consistent:
@@ -266,18 +313,27 @@ Rules that avoid silent failures:
 
 - Static typing needs the strict parser, which is the default from Nextflow 26.04, as well as `nextflow.enable.types`.
 - nf-schema's `samplesheetToList` runs in typed scripts, but `nextflow lint` rejects it ([nextflow#7720](https://github.com/nextflow-io/nextflow/issues/7720)). A small untyped helper file is a pragmatic home.
-- nf-core tooling infers dependencies from `include` paths and does not yet recognise type imports.
-- Vendored components edited in place show as diverged in `nf-core` lint. Do not run `nf-core modules update` until the changes are upstreamed (related: [nf-core/tools#3157](https://github.com/nf-core/tools/issues/3157)).
+- Do not run `nf-core modules update` or `subworkflows update` on edited vendored components until the changes are upstreamed.
 - `task.ext` and `meta` interact with record input naming. An upstream experiment replaces them with plain process inputs ([nf-core/methylseq#625](https://github.com/nf-core/methylseq/pull/625)).
 - Declare numeric field types to match what tools produce, and leave values unconverted if their text appears in an output file.
 - Workflow-level type checks are still catching up ([nextflow#7693](https://github.com/nextflow-io/nextflow/issues/7693)). Publishing directories to object storage ([nextflow#7398](https://github.com/nextflow-io/nextflow/issues/7398)) is not yet verified.
 
 User-visible changes to plan for: `process.withName:<NAME>.publishDir` overrides in user configs stop working (breaking), directories are only created when a file is published into them, and the minimum Nextflow version rises.
 
+## Changes needed in nf-core/tools
+
+Vendored components edited for this migration expose gaps in current tooling:
+
+- **Dependency inference:** `nf-core subworkflows install` infers dependencies from `include` paths and lower-cases the symbol, so `include { SamtoolsSortResult } from '.../samtools/sort/main'` is read as a module dependency. Type imports need to be recognised and ignored, or resolved as types.
+- **Patching new files:** `nf-core modules patch` and `subworkflows patch` record a new file (such as `types.nf`) as a bare "was created" note without its content. A later `update` could delete the file and leave the `include` behind (related: [nf-core/tools#3157](https://github.com/nf-core/tools/issues/3157)).
+- **Local-copy lint:** components edited without patch files fail `check_local_copy`. This is expected until the changes are upstreamed.
+- **Shared types:** a shared `types.nf` is not a module or subworkflow, so there is no way yet to install, version or update it.
+- **Component metadata:** `meta.yml` needs a way to describe record inputs and outputs. Whether lint checks these against typed process signatures is not yet confirmed.
+
 ## Open questions
 
 - How should nf-core handle `task.ext.when` alongside typed `when:`?
-- How do record-typed modules land in nf-core/modules, and where do shared types live?
+- How do record-typed modules land in nf-core/modules, and where do shared types live: one shared file or a `types.nf` per component?
 - Should record types be cast at all, given [nextflow#7680](https://github.com/nextflow-io/nextflow/issues/7680)?
 - How should new files in vendored components (such as `types.nf`) be tracked without patch files?
 - Should `task.ext` and `meta` give way to plain process inputs?
