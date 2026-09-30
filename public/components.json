@@ -81550,7 +81550,7 @@
     {
       "name": "custom_clustervisualization",
       "path": "modules/nf-core/custom/clustervisualization/meta.yml",
-      "tree_sha": "0c1b087bc7e4ee0d8a38ef83f6b334d4f9bdafbe",
+      "tree_sha": "409f690bb4578022ca6b3ba44c2caa04e50c719a",
       "files": [
         "modules/nf-core/custom/clustervisualization/environment.yml",
         "modules/nf-core/custom/clustervisualization/main.nf",
@@ -81748,7 +81748,7 @@
           "@dbaku42"
         ]
       },
-      "git_sha": "9f93628271da521143182197ebc41a3a134051cd"
+      "git_sha": "9080b14692fd80571da3bb991df5112cc3329120"
     },
     {
       "name": "custom_collectfeaturecounts",
@@ -92873,6 +92873,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -244616,7 +244624,7 @@
     {
       "name": "myloasm",
       "path": "modules/nf-core/myloasm/meta.yml",
-      "tree_sha": "5a45f26d620466cf975f136ce830d4bf4f4f0b82",
+      "tree_sha": "cbdb41a95c223f127b968e11c823257cbec87fad",
       "files": [
         "modules/nf-core/myloasm/.conda-lock/linux_amd64-bd-154a360acd2dca07_1.txt",
         "modules/nf-core/myloasm/environment.yml",
@@ -244704,10 +244712,10 @@
                 }
               },
               {
-                "${prefix}/assembly_primary.fa.gz": {
+                "${prefix}/${prefix}.assembly_primary.fa.gz": {
                   "type": "file",
                   "description": "Primary assembly contigs in FASTA format",
-                  "pattern": "assembly_primary.fa.gz",
+                  "pattern": "${prefix}.assembly_primary.fa.gz",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_1929"
@@ -244729,10 +244737,10 @@
                 }
               },
               {
-                "${prefix}/final_contig_graph.gfa.gz": {
+                "${prefix}/${prefix}.final_contig_graph.gfa.gz": {
                   "type": "file",
                   "description": "Final contig graph in GFA format",
-                  "pattern": "final_contig_graph.gfa.gz",
+                  "pattern": "${prefix}.final_contig_graph.gfa.gz",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3975"
@@ -244754,10 +244762,10 @@
                 }
               },
               {
-                "${prefix}/alternate_assemblies/assembly_alternate.fa.gz": {
+                "${prefix}/alternate_assemblies/${prefix}.assembly_alternate.fa.gz": {
                   "type": "file",
                   "description": "Alternative assembly contigs in FASTA format",
-                  "pattern": "assembly_alternate.fa.gz",
+                  "pattern": "${prefix}.assembly_alternate.fa.gz",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_1929"
@@ -244779,10 +244787,10 @@
                 }
               },
               {
-                "${prefix}/alternate_assemblies/duplicated_contigs.fa.gz": {
+                "${prefix}/alternate_assemblies/${prefix}.duplicated_contigs.fa.gz": {
                   "type": "file",
                   "description": "Duplicated contigs in FASTA format",
-                  "pattern": "duplicated_contigs.fa.gz",
+                  "pattern": "${prefix}.duplicated_contigs.fa.gz",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_1929"
@@ -244804,10 +244812,10 @@
                 }
               },
               {
-                "${prefix}/3-mapping/map_to_unitigs.paf.gz": {
+                "${prefix}/3-mapping/${prefix}.map_to_unitigs.paf.gz": {
                   "type": "file",
                   "description": "Mapping of reads to unitigs in PAF format (compressed)",
-                  "pattern": "map_to_unitigs.paf.gz",
+                  "pattern": "${prefix}.map_to_unitigs.paf.gz",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3989"
@@ -244914,7 +244922,7 @@
           }
         }
       },
-      "git_sha": "77a9e6b9af89bde2a2b472f21c6a9bfecb9c8c7d"
+      "git_sha": "2a55fbb146d13f5058756c27cbf0b2e41e2a0729"
     },
     {
       "name": "nacho_normalize",
@@ -254142,8 +254150,10 @@
     {
       "name": "octopusv_clean",
       "path": "modules/nf-core/octopusv/clean/meta.yml",
-      "tree_sha": "a5d64f9918ccb44a8230c304b1bdbf78e43f7d75",
+      "tree_sha": "48989df6119b32616b25cec8c81a516fd8bf0b12",
       "files": [
+        "modules/nf-core/octopusv/clean/.conda-lock/linux_amd64-bd-5a8c89c65098e801_1.txt",
+        "modules/nf-core/octopusv/clean/.conda-lock/linux_arm64-bd-a30223bd1e3377c0_1.txt",
         "modules/nf-core/octopusv/clean/environment.yml",
         "modules/nf-core/octopusv/clean/main.nf",
         "modules/nf-core/octopusv/clean/meta.yml",
@@ -254292,15 +254302,51 @@
         ],
         "maintainers": [
           "@manascripts"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/octopusv:1.0.0--5a8c89c65098e801",
+              "build_id": "bd-5a8c89c65098e801_1",
+              "scan_id": "sc-1b32c77c056cf15a_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/octopusv:1.0.0--a30223bd1e3377c0",
+              "build_id": "bd-a30223bd1e3377c0_1",
+              "scan_id": "sc-b83e03ac781cbcab_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/octopusv:1.0.0--9e3e373a368b3fad",
+              "build_id": "bd-9e3e373a368b3fad_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/83/8378c503810508764badf4504647ea1791fa1f585dc5b77ad5710237609b15ff/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/octopusv:1.0.0--5eb882e6dbbca795",
+              "build_id": "bd-5eb882e6dbbca795_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2d/2d85dc6e11e14188ae9dac5daddf1303bcaa6264b56f10f0a54d20e253f049cc/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/octopusv/clean/.conda-lock/linux_amd64-bd-5a8c89c65098e801_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/octopusv/clean/.conda-lock/linux_arm64-bd-a30223bd1e3377c0_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "77ac074b2ba982e853c0ec17205367a56740412f"
+      "git_sha": "934f6a362c19d84ab95ac18eaca6397dc85c7815"
     },
     {
       "name": "octopusv_correct",
       "path": "modules/nf-core/octopusv/correct/meta.yml",
-      "tree_sha": "d83af9ff6d1935301b05351e4d8aa0c97aa14008",
+      "tree_sha": "72534e55b84e5074aa892a8223f6a818680547f7",
       "files": [
+        "modules/nf-core/octopusv/correct/.conda-lock/linux_amd64-bd-5a8c89c65098e801_1.txt",
+        "modules/nf-core/octopusv/correct/.conda-lock/linux_arm64-bd-a30223bd1e3377c0_1.txt",
         "modules/nf-core/octopusv/correct/environment.yml",
         "modules/nf-core/octopusv/correct/main.nf",
         "modules/nf-core/octopusv/correct/meta.yml",
@@ -254430,14 +254476,48 @@
         ],
         "maintainers": [
           "@manascripts"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/octopusv:1.0.0--5a8c89c65098e801",
+              "build_id": "bd-5a8c89c65098e801_1",
+              "scan_id": "sc-1b32c77c056cf15a_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/octopusv:1.0.0--a30223bd1e3377c0",
+              "build_id": "bd-a30223bd1e3377c0_1",
+              "scan_id": "sc-b83e03ac781cbcab_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/octopusv:1.0.0--9e3e373a368b3fad",
+              "build_id": "bd-9e3e373a368b3fad_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/83/8378c503810508764badf4504647ea1791fa1f585dc5b77ad5710237609b15ff/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/octopusv:1.0.0--5eb882e6dbbca795",
+              "build_id": "bd-5eb882e6dbbca795_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2d/2d85dc6e11e14188ae9dac5daddf1303bcaa6264b56f10f0a54d20e253f049cc/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/octopusv/correct/.conda-lock/linux_amd64-bd-5a8c89c65098e801_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/octopusv/correct/.conda-lock/linux_arm64-bd-a30223bd1e3377c0_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "77ac074b2ba982e853c0ec17205367a56740412f"
+      "git_sha": "934f6a362c19d84ab95ac18eaca6397dc85c7815"
     },
     {
       "name": "octopusv_filter",
       "path": "modules/nf-core/octopusv/filter/meta.yml",
-      "tree_sha": "80243006d0ae783f3d6b98b160918744e665b145",
+      "tree_sha": "28a27a04cacfb20b31ca4966cc4e836951b1ac8d",
       "files": [
         "modules/nf-core/octopusv/filter/environment.yml",
         "modules/nf-core/octopusv/filter/main.nf",
@@ -254594,18 +254674,21 @@
           "@manascripts"
         ]
       },
-      "git_sha": "234d5bc9907cd8b272365eabdd6de66fd4ba925c"
+      "git_sha": "934f6a362c19d84ab95ac18eaca6397dc85c7815"
     },
     {
       "name": "octopusv_merge",
       "path": "modules/nf-core/octopusv/merge/meta.yml",
-      "tree_sha": "927d87edef9b55e35dc0618d35b3e8fd538e876d",
+      "tree_sha": "7da1e91920b94d9618d7519b4232f756a2424b6c",
       "files": [
+        "modules/nf-core/octopusv/merge/.conda-lock/linux_amd64-bd-5a8c89c65098e801_1.txt",
+        "modules/nf-core/octopusv/merge/.conda-lock/linux_arm64-bd-a30223bd1e3377c0_1.txt",
         "modules/nf-core/octopusv/merge/environment.yml",
         "modules/nf-core/octopusv/merge/main.nf",
         "modules/nf-core/octopusv/merge/meta.yml",
         "modules/nf-core/octopusv/merge/tests/main.nf.test",
-        "modules/nf-core/octopusv/merge/tests/main.nf.test.snap"
+        "modules/nf-core/octopusv/merge/tests/main.nf.test.snap",
+        "modules/nf-core/octopusv/merge/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
@@ -254643,8 +254726,34 @@
             {
               "svcfs": {
                 "type": "file",
-                "description": "List of SVCF files to merge",
+                "description": "SVCF files to stage for merging. If input_list is not supplied, these are passed as --input-file. If input_list is supplied, these must include every local SVCF referenced by the list, and list entries should use the staged filenames (for example, `sample.svcf`).",
                 "pattern": "*.svcf",
+                "optional": true,
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            },
+            {
+              "input_list": {
+                "type": "file",
+                "description": "Optional text file containing one staged SVCF filename per line, optionally\nfollowed by a tab and a caller or sample label. Relative paths are resolved\nrelative to this file. Files referenced by the list must also be supplied in\nsvcfs so Nextflow stages them.\n",
+                "pattern": "*.txt",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2330"
+                  }
+                ]
+              }
+            },
+            {
+              "specific_svcfs": {
+                "type": "string",
+                "description": "One or more of the input SVCF files to extract SVs supported by them. Only used when strategy_flag\nis specific.\n",
+                "pattern": "*.svcf",
+                "optional": true,
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_3016"
@@ -254655,7 +254764,8 @@
             {
               "strategy_flag": {
                 "type": "string",
-                "description": "Merge strategy for octopusv merge. Valid values: union, intersect, specific,\nmin-support, exact-support, max-support, expression. Defaults to union when this flag is empty.\nNOTE: Some flags require additional arguments.\n"
+                "optional": true,
+                "description": "Merge strategy. Valid values include union, intersect, specific,\nmin-support, exact-support, max-support and expression. An empty\nvalue defaults to union. Strategies taking a scalar value include\nit in this string, for example \"min-support 2\". The specific\nstrategy obtains its files from specific_svcfs.\n"
               }
             }
           ]
@@ -254757,15 +254867,51 @@
         ],
         "maintainers": [
           "@manascripts"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/octopusv:1.0.0--5a8c89c65098e801",
+              "build_id": "bd-5a8c89c65098e801_1",
+              "scan_id": "sc-1b32c77c056cf15a_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/octopusv:1.0.0--a30223bd1e3377c0",
+              "build_id": "bd-a30223bd1e3377c0_1",
+              "scan_id": "sc-b83e03ac781cbcab_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/octopusv:1.0.0--5eb882e6dbbca795",
+              "build_id": "bd-5eb882e6dbbca795_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2d/2d85dc6e11e14188ae9dac5daddf1303bcaa6264b56f10f0a54d20e253f049cc/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/octopusv:1.0.0--9e3e373a368b3fad",
+              "build_id": "bd-9e3e373a368b3fad_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/83/8378c503810508764badf4504647ea1791fa1f585dc5b77ad5710237609b15ff/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/octopusv/merge/.conda-lock/linux_amd64-bd-5a8c89c65098e801_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/octopusv/merge/.conda-lock/linux_arm64-bd-a30223bd1e3377c0_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "77ac074b2ba982e853c0ec17205367a56740412f"
+      "git_sha": "934f6a362c19d84ab95ac18eaca6397dc85c7815"
     },
     {
       "name": "octopusv_plot",
       "path": "modules/nf-core/octopusv/plot/meta.yml",
-      "tree_sha": "dc6d4007c289e9876b4dbda27ea36f65380f902c",
+      "tree_sha": "cc5e9dbba924d7ff6568d9abd0d9bdc8eec92523",
       "files": [
+        "modules/nf-core/octopusv/plot/.conda-lock/linux_amd64-bd-5a8c89c65098e801_1.txt",
+        "modules/nf-core/octopusv/plot/.conda-lock/linux_arm64-bd-a30223bd1e3377c0_1.txt",
         "modules/nf-core/octopusv/plot/environment.yml",
         "modules/nf-core/octopusv/plot/main.nf",
         "modules/nf-core/octopusv/plot/meta.yml",
@@ -255007,15 +255153,51 @@
         ],
         "maintainers": [
           "@manascripts"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/octopusv:1.0.0--5a8c89c65098e801",
+              "build_id": "bd-5a8c89c65098e801_1",
+              "scan_id": "sc-1b32c77c056cf15a_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/octopusv:1.0.0--a30223bd1e3377c0",
+              "build_id": "bd-a30223bd1e3377c0_1",
+              "scan_id": "sc-b83e03ac781cbcab_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/octopusv:1.0.0--9e3e373a368b3fad",
+              "build_id": "bd-9e3e373a368b3fad_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/83/8378c503810508764badf4504647ea1791fa1f585dc5b77ad5710237609b15ff/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/octopusv:1.0.0--5eb882e6dbbca795",
+              "build_id": "bd-5eb882e6dbbca795_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2d/2d85dc6e11e14188ae9dac5daddf1303bcaa6264b56f10f0a54d20e253f049cc/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/octopusv/plot/.conda-lock/linux_amd64-bd-5a8c89c65098e801_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/octopusv/plot/.conda-lock/linux_arm64-bd-a30223bd1e3377c0_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "77ac074b2ba982e853c0ec17205367a56740412f"
+      "git_sha": "934f6a362c19d84ab95ac18eaca6397dc85c7815"
     },
     {
       "name": "octopusv_plotcircos",
       "path": "modules/nf-core/octopusv/plotcircos/meta.yml",
-      "tree_sha": "5965cf4c3b63794789a284b85b4edcc4d05fab7e",
+      "tree_sha": "9dc93a06c82e43b7d94960b717fee7b6bd9df84c",
       "files": [
+        "modules/nf-core/octopusv/plotcircos/.conda-lock/linux_amd64-bd-5a8c89c65098e801_1.txt",
+        "modules/nf-core/octopusv/plotcircos/.conda-lock/linux_arm64-bd-a30223bd1e3377c0_1.txt",
         "modules/nf-core/octopusv/plotcircos/environment.yml",
         "modules/nf-core/octopusv/plotcircos/main.nf",
         "modules/nf-core/octopusv/plotcircos/meta.yml",
@@ -255191,15 +255373,51 @@
         ],
         "maintainers": [
           "@manascripts"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/octopusv:1.0.0--5a8c89c65098e801",
+              "build_id": "bd-5a8c89c65098e801_1",
+              "scan_id": "sc-1b32c77c056cf15a_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/octopusv:1.0.0--a30223bd1e3377c0",
+              "build_id": "bd-a30223bd1e3377c0_1",
+              "scan_id": "sc-b83e03ac781cbcab_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/octopusv:1.0.0--5eb882e6dbbca795",
+              "build_id": "bd-5eb882e6dbbca795_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2d/2d85dc6e11e14188ae9dac5daddf1303bcaa6264b56f10f0a54d20e253f049cc/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/octopusv:1.0.0--9e3e373a368b3fad",
+              "build_id": "bd-9e3e373a368b3fad_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/83/8378c503810508764badf4504647ea1791fa1f585dc5b77ad5710237609b15ff/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/octopusv/plotcircos/.conda-lock/linux_amd64-bd-5a8c89c65098e801_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/octopusv/plotcircos/.conda-lock/linux_arm64-bd-a30223bd1e3377c0_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "77ac074b2ba982e853c0ec17205367a56740412f"
+      "git_sha": "934f6a362c19d84ab95ac18eaca6397dc85c7815"
     },
     {
       "name": "octopusv_stat",
       "path": "modules/nf-core/octopusv/stat/meta.yml",
-      "tree_sha": "4cf3b132cec6d84d61038eaf8f4e0aa658cad9df",
+      "tree_sha": "62a01d7b07cde18d32117c9dad407b0bf7e827ba",
       "files": [
+        "modules/nf-core/octopusv/stat/.conda-lock/linux_amd64-bd-5a8c89c65098e801_1.txt",
+        "modules/nf-core/octopusv/stat/.conda-lock/linux_arm64-bd-a30223bd1e3377c0_1.txt",
         "modules/nf-core/octopusv/stat/environment.yml",
         "modules/nf-core/octopusv/stat/main.nf",
         "modules/nf-core/octopusv/stat/meta.yml",
@@ -255372,14 +255590,48 @@
         ],
         "maintainers": [
           "@manascripts"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/octopusv:1.0.0--a30223bd1e3377c0",
+              "build_id": "bd-a30223bd1e3377c0_1",
+              "scan_id": "sc-b83e03ac781cbcab_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/octopusv:1.0.0--5a8c89c65098e801",
+              "build_id": "bd-5a8c89c65098e801_1",
+              "scan_id": "sc-1b32c77c056cf15a_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/octopusv:1.0.0--9e3e373a368b3fad",
+              "build_id": "bd-9e3e373a368b3fad_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/83/8378c503810508764badf4504647ea1791fa1f585dc5b77ad5710237609b15ff/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/octopusv:1.0.0--5eb882e6dbbca795",
+              "build_id": "bd-5eb882e6dbbca795_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2d/2d85dc6e11e14188ae9dac5daddf1303bcaa6264b56f10f0a54d20e253f049cc/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/octopusv/stat/.conda-lock/linux_amd64-bd-5a8c89c65098e801_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/octopusv/stat/.conda-lock/linux_arm64-bd-a30223bd1e3377c0_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "77ac074b2ba982e853c0ec17205367a56740412f"
+      "git_sha": "934f6a362c19d84ab95ac18eaca6397dc85c7815"
     },
     {
       "name": "octopusv_subset",
       "path": "modules/nf-core/octopusv/subset/meta.yml",
-      "tree_sha": "ce194b43cff480c28351f54283129b95d44bf435",
+      "tree_sha": "23e74ea5b19328edad0140e58652e3040af5fd1e",
       "files": [
         "modules/nf-core/octopusv/subset/environment.yml",
         "modules/nf-core/octopusv/subset/main.nf",
@@ -255578,13 +255830,15 @@
           "@manascripts"
         ]
       },
-      "git_sha": "234d5bc9907cd8b272365eabdd6de66fd4ba925c"
+      "git_sha": "934f6a362c19d84ab95ac18eaca6397dc85c7815"
     },
     {
       "name": "octopusv_svcf2bed",
       "path": "modules/nf-core/octopusv/svcf2bed/meta.yml",
-      "tree_sha": "f449774ecf33bba0fb76ad64c64882975e5d0c1a",
+      "tree_sha": "36c8c0da9a5a3253b999a951b4824dce5a3076d6",
       "files": [
+        "modules/nf-core/octopusv/svcf2bed/.conda-lock/linux_amd64-bd-5a8c89c65098e801_1.txt",
+        "modules/nf-core/octopusv/svcf2bed/.conda-lock/linux_arm64-bd-a30223bd1e3377c0_1.txt",
         "modules/nf-core/octopusv/svcf2bed/environment.yml",
         "modules/nf-core/octopusv/svcf2bed/main.nf",
         "modules/nf-core/octopusv/svcf2bed/meta.yml",
@@ -255714,15 +255968,51 @@
         ],
         "maintainers": [
           "@manascripts"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/octopusv:1.0.0--5a8c89c65098e801",
+              "build_id": "bd-5a8c89c65098e801_1",
+              "scan_id": "sc-1b32c77c056cf15a_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/octopusv:1.0.0--a30223bd1e3377c0",
+              "build_id": "bd-a30223bd1e3377c0_1",
+              "scan_id": "sc-b83e03ac781cbcab_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/octopusv:1.0.0--5eb882e6dbbca795",
+              "build_id": "bd-5eb882e6dbbca795_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2d/2d85dc6e11e14188ae9dac5daddf1303bcaa6264b56f10f0a54d20e253f049cc/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/octopusv:1.0.0--9e3e373a368b3fad",
+              "build_id": "bd-9e3e373a368b3fad_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/83/8378c503810508764badf4504647ea1791fa1f585dc5b77ad5710237609b15ff/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/octopusv/svcf2bed/.conda-lock/linux_amd64-bd-5a8c89c65098e801_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/octopusv/svcf2bed/.conda-lock/linux_arm64-bd-a30223bd1e3377c0_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "77ac074b2ba982e853c0ec17205367a56740412f"
+      "git_sha": "934f6a362c19d84ab95ac18eaca6397dc85c7815"
     },
     {
       "name": "octopusv_svcf2vcf",
       "path": "modules/nf-core/octopusv/svcf2vcf/meta.yml",
-      "tree_sha": "4157de8a2cb901a3519dec6ba73ab67defaa4de2",
+      "tree_sha": "a1eefbe4de9c9913fa4f0d39ce2b36b76b7d712c",
       "files": [
+        "modules/nf-core/octopusv/svcf2vcf/.conda-lock/linux_amd64-bd-5a8c89c65098e801_1.txt",
+        "modules/nf-core/octopusv/svcf2vcf/.conda-lock/linux_arm64-bd-a30223bd1e3377c0_1.txt",
         "modules/nf-core/octopusv/svcf2vcf/environment.yml",
         "modules/nf-core/octopusv/svcf2vcf/main.nf",
         "modules/nf-core/octopusv/svcf2vcf/meta.yml",
@@ -255851,9 +256141,43 @@
         ],
         "maintainers": [
           "@manascripts"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/octopusv:1.0.0--5a8c89c65098e801",
+              "build_id": "bd-5a8c89c65098e801_1",
+              "scan_id": "sc-1b32c77c056cf15a_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/octopusv:1.0.0--a30223bd1e3377c0",
+              "build_id": "bd-a30223bd1e3377c0_1",
+              "scan_id": "sc-b83e03ac781cbcab_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/octopusv:1.0.0--5eb882e6dbbca795",
+              "build_id": "bd-5eb882e6dbbca795_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2d/2d85dc6e11e14188ae9dac5daddf1303bcaa6264b56f10f0a54d20e253f049cc/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/octopusv:1.0.0--9e3e373a368b3fad",
+              "build_id": "bd-9e3e373a368b3fad_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/83/8378c503810508764badf4504647ea1791fa1f585dc5b77ad5710237609b15ff/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/octopusv/svcf2vcf/.conda-lock/linux_amd64-bd-5a8c89c65098e801_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/octopusv/svcf2vcf/.conda-lock/linux_arm64-bd-a30223bd1e3377c0_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "77ac074b2ba982e853c0ec17205367a56740412f"
+      "git_sha": "934f6a362c19d84ab95ac18eaca6397dc85c7815"
     },
     {
       "name": "odgi_build",
@@ -282902,6 +283226,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -283209,6 +283537,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -438775,6 +439107,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "c99190a98f82b7c09f50e9d15d3ec2a5411b8f76",
-  "updated_at": "2026-09-30T02:19:43.433Z"
+  "commit_sha": "934f6a362c19d84ab95ac18eaca6397dc85c7815",
+  "updated_at": "2026-09-30T14:12:39.894Z"
 }
