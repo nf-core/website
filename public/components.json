@@ -93072,6 +93072,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -244927,8 +244935,9 @@
     {
       "name": "nacho_normalize",
       "path": "modules/nf-core/nacho/normalize/meta.yml",
-      "tree_sha": "2346cfe8fa38cb630ec62b766fb92295e1ba4361",
+      "tree_sha": "bf31188445c54c833ae7bd005dd941ace316189e",
       "files": [
+        "modules/nf-core/nacho/normalize/.conda-lock/linux_amd64-bd-2bcf3b351adffd77_1.txt",
         "modules/nf-core/nacho/normalize/environment.yml",
         "modules/nf-core/nacho/normalize/main.nf",
         "modules/nf-core/nacho/normalize/meta.yml",
@@ -245086,26 +245095,26 @@
         "containers": {
           "docker": {
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/r-base_r-dplyr_r-fs_r-ggplot2_pruned:bcd6d91c836e9200",
-              "build_id": "bd-bcd6d91c836e9200_1",
-              "scan_id": "sc-e5e004ec41ba8e12_1"
+              "name": "community.wave.seqera.io/library/r-base_r-dplyr_r-fs_r-ggplot2_pruned:2bcf3b351adffd77",
+              "build_id": "bd-2bcf3b351adffd77_1",
+              "scan_id": "sc-c47a97ca9aec93b4_1"
             }
           },
           "singularity": {
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/r-base_r-dplyr_r-fs_r-ggplot2_pruned:f943fc99dde5724f",
-              "build_id": "bd-f943fc99dde5724f_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/ad/ad421367a5d71eb73738675a68b5677e283686a8b0a6d5e5530f9ec203aadb30/data"
+              "name": "oras://community.wave.seqera.io/library/r-base_r-dplyr_r-fs_r-ggplot2_pruned:390d625a6878bfac",
+              "build_id": "bd-390d625a6878bfac_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/43/43e3f488da4c74d940f7f920a0be6c8d238e586ee14e7e08c24d6a8b4f682a1c/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/nacho/normalize/.conda-lock/linux_amd64-bd-bcd6d91c836e9200_1.txt"
+              "lock_file": "modules/nf-core/nacho/normalize/.conda-lock/linux_amd64-bd-2bcf3b351adffd77_1.txt"
             }
           }
         }
       },
-      "git_sha": "56d93f9fe4e0fe043a40991efa38cf5429506123",
+      "git_sha": "b999e6262a72a758d1b038160d095386f5c59e7f",
       "pipelines": [
         {
           "name": "nanostring",
@@ -245116,8 +245125,9 @@
     {
       "name": "nacho_qc",
       "path": "modules/nf-core/nacho/qc/meta.yml",
-      "tree_sha": "5cb6870aa397062e91008f027eb00616d8cf8474",
+      "tree_sha": "b50f87be3d2b09bc0f62efed6e836d19db3edd7a",
       "files": [
+        "modules/nf-core/nacho/qc/.conda-lock/linux_amd64-bd-2bcf3b351adffd77_1.txt",
         "modules/nf-core/nacho/qc/environment.yml",
         "modules/nf-core/nacho/qc/main.nf",
         "modules/nf-core/nacho/qc/meta.yml",
@@ -245283,26 +245293,26 @@
         "containers": {
           "docker": {
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/r-base_r-dplyr_r-fs_r-ggplot2_pruned:bcd6d91c836e9200",
-              "build_id": "bd-bcd6d91c836e9200_1",
-              "scan_id": "sc-e5e004ec41ba8e12_1"
+              "name": "community.wave.seqera.io/library/r-base_r-dplyr_r-fs_r-ggplot2_pruned:2bcf3b351adffd77",
+              "build_id": "bd-2bcf3b351adffd77_1",
+              "scan_id": "sc-c47a97ca9aec93b4_1"
             }
           },
           "singularity": {
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/r-base_r-dplyr_r-fs_r-ggplot2_pruned:f943fc99dde5724f",
-              "build_id": "bd-f943fc99dde5724f_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/ad/ad421367a5d71eb73738675a68b5677e283686a8b0a6d5e5530f9ec203aadb30/data"
+              "name": "oras://community.wave.seqera.io/library/r-base_r-dplyr_r-fs_r-ggplot2_pruned:390d625a6878bfac",
+              "build_id": "bd-390d625a6878bfac_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/43/43e3f488da4c74d940f7f920a0be6c8d238e586ee14e7e08c24d6a8b4f682a1c/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/nacho/normalize/.conda-lock/linux_amd64-bd-bcd6d91c836e9200_1.txt"
+              "lock_file": "modules/nf-core/nacho/qc/.conda-lock/linux_amd64-bd-2bcf3b351adffd77_1.txt"
             }
           }
         }
       },
-      "git_sha": "56d93f9fe4e0fe043a40991efa38cf5429506123",
+      "git_sha": "b999e6262a72a758d1b038160d095386f5c59e7f",
       "pipelines": [
         {
           "name": "nanostring",
@@ -283230,6 +283240,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -283537,6 +283551,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -439107,6 +439125,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "934f6a362c19d84ab95ac18eaca6397dc85c7815",
-  "updated_at": "2026-09-30T14:12:39.894Z"
+  "commit_sha": "b999e6262a72a758d1b038160d095386f5c59e7f",
+  "updated_at": "2026-10-01T02:24:00.724Z"
 }
