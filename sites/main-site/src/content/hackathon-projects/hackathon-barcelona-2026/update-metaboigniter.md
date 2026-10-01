@@ -1,5 +1,5 @@
 ---
-title: Metaboigniter updates and benchmarking
+title: nf-core/metaboigniter - Updates and benchmarking
 category: pipelines
 slack: https://nfcore.slack.com/channels/metaboigniter
 location: Barcelona
