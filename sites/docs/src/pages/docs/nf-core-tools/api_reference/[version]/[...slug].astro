@@ -243,19 +243,17 @@ sections.sort((a, b) => {
             </button>
 
             <ul class="dropdown-menu dropdown-menu-end w-100 pipeline-versions">
-                {
-                    versions &&
-                        versions.map((v) => {
-                            const url = version_url(v);
-                            return (
-                                <li>
-                                    <a class={"dropdown-item " + (v === version_tag_name ? "active" : "")} href={url}>
-                                        {v}
-                                    </a>
-                                </li>
-                            );
-                        })
-                }
+                {versions &&
+                    versions.map((v) => {
+                        const url = version_url(v);
+                        return (
+                            <li>
+                                <a class={"dropdown-item " + (v === version_tag_name ? "active" : "")} href={url}>
+                                    {v}
+                                </a>
+                            </li>
+                        );
+                    })}
             </ul>
         </div>
     </div>

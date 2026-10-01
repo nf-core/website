@@ -68,13 +68,11 @@ const locationCount = locationPages.length;
 const countryCount = new Set(locationPages.map((page) => page.countryInfo?.name).filter(Boolean)).size;
 ---
 
-{
-    showCount && (
-        <p>
-            There are currently {locationCount} local sites in {countryCount} countries!
-        </p>
-    )
-}
+{showCount && (
+    <p>
+        There are currently {locationCount} local sites in {countryCount} countries!
+    </p>
+)}
 
 <div class="table-responsive">
     <table class="table table-hover table-sm small">
@@ -87,22 +85,20 @@ const countryCount = new Set(locationPages.map((page) => page.countryInfo?.name)
             </tr>
         </thead>
         <tbody>
-            {
-                locationPages.map((page) => (
-                    <tr class="">
-                        <td class="text-nowrap">
-                            {page.countryInfo?.flag} {page.countryInfo?.name}
-                        </td>
-                        <td class="text-nowrap">{page.data.locations?.[0]?.city}</td>
-                        <td>{page.data.locations?.[0]?.name}</td>
-                        <td class="text-nowrap">
-                            <a class="" href={`/events/${page.id.replace(".mdx", "")}`}>
-                                Read more
-                            </a>
-                        </td>
-                    </tr>
-                ))
-            }
+            {locationPages.map((page) => (
+                <tr class="">
+                    <td class="text-nowrap">
+                        {page.countryInfo?.flag} {page.countryInfo?.name}
+                    </td>
+                    <td class="text-nowrap">{page.data.locations?.[0]?.city}</td>
+                    <td>{page.data.locations?.[0]?.name}</td>
+                    <td class="text-nowrap">
+                        <a class="" href={`/events/${page.id.replace(".mdx", "")}`}>
+                            Read more
+                        </a>
+                    </td>
+                </tr>
+            ))}
         </tbody>
     </table>
 </div>

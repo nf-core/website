@@ -36,84 +36,72 @@ const border_col = this_color ? { "border-left-color": this_color, "border-left-
                 <div class="d-flex justify-content-between">
                     <h3>
                         {title}
-                        {
-                            proj_url && (
-                                <a href={proj_url} target="_blank" class="btn btn-small btn-secondary ms-3">
-                                    <Icon
-                                        name="octicon:table-16"
-                                        width="12pt"
-                                        class="me-1"
-                                        style={{ "margin-top": "-3px" }}
-                                    />
-                                    Project Board
-                                    <Icon
-                                        name="octicon:link-external-16"
-                                        width="12pt"
-                                        class="ms-1"
-                                        style={{ "margin-top": "-3px" }}
-                                    />
-                                </a>
-                            )
-                        }
+                        {proj_url && (
+                            <a href={proj_url} target="_blank" class="btn btn-small btn-secondary ms-3">
+                                <Icon
+                                    name="octicon:table-16"
+                                    width="12pt"
+                                    class="me-1"
+                                    style={{ "margin-top": "-3px" }}
+                                />
+                                Project Board
+                                <Icon
+                                    name="octicon:link-external-16"
+                                    width="12pt"
+                                    class="ms-1"
+                                    style={{ "margin-top": "-3px" }}
+                                />
+                            </a>
+                        )}
                     </h3>
                     <div>
-                        {
-                            category && (
-                                <span class="small badge rounded-pill ms-2" style={`background-color: ${this_color}`}>
-                                    {category}
-                                </span>
-                            )
-                        }
+                        {category && (
+                            <span class="small badge rounded-pill ms-2" style={`background-color: ${this_color}`}>
+                                {category}
+                            </span>
+                        )}
                     </div>
                 </div>
-                {
-                    slack && (
-                        <a
-                            href={`https://nfcore.slack.com/channels/${slack_clean}`}
-                            class="badge rounded-pill text-bg-success text-decoration-none d-inline-flex align-items-center"
-                        >
-                            <Icon name="mdi:slack" width="12pt" height="10pt" /> Slack:
-                            <code class="text-bg-success pb-0">#{slack_clean}</code>
-                        </a>
-                    )
-                }
+                {slack && (
+                    <a
+                        href={`https://nfcore.slack.com/channels/${slack_clean}`}
+                        class="badge rounded-pill text-bg-success text-decoration-none d-inline-flex align-items-center"
+                    >
+                        <Icon name="mdi:slack" width="12pt" height="10pt" /> Slack:
+                        <code class="text-bg-success pb-0">#{slack_clean}</code>
+                    </a>
+                )}
 
                 <slot />
 
-                {
-                    goal && (
-                        <>
-                            <h4>Goal</h4>
-                            <p>
-                                <Markdown of={goal} />
-                            </p>
-                        </>
-                    )
-                }
+                {goal && (
+                    <>
+                        <h4>Goal</h4>
+                        <p>
+                            <Markdown of={goal} />
+                        </p>
+                    </>
+                )}
 
                 {leaders && <h4>Group Leaders</h4>}
-                {
-                    leaders && (
-                        <div class="d-flex flex-wrap">
-                            {Object.entries(leaders).map(([github, name]) => {
-                                return (
-                                    <Profile username={github} wrapperClasses="me-2">
-                                        {name}
-                                    </Profile>
-                                );
-                            })}
-                        </div>
-                    )
-                }
+                {leaders && (
+                    <div class="d-flex flex-wrap">
+                        {Object.entries(leaders).map(([github, name]) => {
+                            return (
+                                <Profile username={github} wrapperClasses="me-2">
+                                    {name}
+                                </Profile>
+                            );
+                        })}
+                    </div>
+                )}
             </div>
 
-            {
-                intro_video && (
-                    <div class="col-md-6">
-                        <YouTube id={intro_video} poster={`https://i.ytimg.com/vi/${intro_video}/hqdefault.jpg`} />
-                    </div>
-                )
-            }
+            {intro_video && (
+                <div class="col-md-6">
+                    <YouTube id={intro_video} poster={`https://i.ytimg.com/vi/${intro_video}/hqdefault.jpg`} />
+                </div>
+            )}
         </div>
     </div>
 </div>

@@ -198,419 +198,406 @@ const nfCoreTotalDev = nfCoreChartDataDev.values.reduce((sum, val) => sum + val,
     mainpage_container={false}
 >
     <div class="container-fluid main-content">
-        {
-            pipelineVersions.length === 0 ? (
-                <div class="alert alert-info" role="alert">
-                    <h4 class="alert-heading">No version data available</h4>
-                    <p>
-                        The version information file has not been generated yet. This data is updated nightly by an
-                        automated workflow.
-                    </p>
-                    <hr />
-                    <p class="mb-0">
-                        <a
-                            href="https://github.com/nf-core/website/actions/workflows/update-version-info.yml"
-                            class="btn btn-sm btn-primary"
-                            target="_blank"
-                        >
-                            View Update Workflow
-                        </a>
-                    </p>
-                </div>
-            ) : (
-                <>
-                    {/* Version Distribution Charts */}
-                    <div class="row g-3 mb-4">
-                        <div class="col-lg-6">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <div>
-                                            <h5 class="card-title mb-1">Nextflow Version Distribution</h5>
-                                            <p class="text-muted small mb-0 nextflow-subtitle">
-                                                (latest releases only)
-                                            </p>
+        {pipelineVersions.length === 0 ? (
+            <div class="alert alert-info" role="alert">
+                <h4 class="alert-heading">No version data available</h4>
+                <p>
+                    The version information file has not been generated yet. This data is updated nightly by an
+                    automated workflow.
+                </p>
+                <hr />
+                <p class="mb-0">
+                    <a
+                        href="https://github.com/nf-core/website/actions/workflows/update-version-info.yml"
+                        class="btn btn-sm btn-primary"
+                        target="_blank"
+                    >
+                        View Update Workflow
+                    </a>
+                </p>
+            </div>
+        ) : (
+            <>
+                {/* Version Distribution Charts */}
+                <div class="row g-3 mb-4">
+                    <div class="col-lg-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div>
+                                        <h5 class="card-title mb-1">Nextflow Version Distribution</h5>
+                                        <p class="text-muted small mb-0 nextflow-subtitle">(latest releases only)</p>
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <div class="btn-group btn-group-sm" role="group">
+                                            <input
+                                                type="radio"
+                                                class="btn-check"
+                                                name="nextflowVersion"
+                                                id="nextflowReleased"
+                                                autocomplete="off"
+                                                checked
+                                            />
+                                            <label class="btn btn-outline-primary" for="nextflowReleased">
+                                                Released
+                                            </label>
+                                            <input
+                                                type="radio"
+                                                class="btn-check"
+                                                name="nextflowVersion"
+                                                id="nextflowDev"
+                                                autocomplete="off"
+                                            />
+                                            <label class="btn btn-outline-primary" for="nextflowDev">
+                                                Dev
+                                            </label>
                                         </div>
-                                        <div class="d-flex gap-2">
-                                            <div class="btn-group btn-group-sm" role="group">
-                                                <input
-                                                    type="radio"
-                                                    class="btn-check"
-                                                    name="nextflowVersion"
-                                                    id="nextflowReleased"
-                                                    autocomplete="off"
-                                                    checked
-                                                />
-                                                <label class="btn btn-outline-primary" for="nextflowReleased">
-                                                    Released
-                                                </label>
-                                                <input
-                                                    type="radio"
-                                                    class="btn-check"
-                                                    name="nextflowVersion"
-                                                    id="nextflowDev"
-                                                    autocomplete="off"
-                                                />
-                                                <label class="btn btn-outline-primary" for="nextflowDev">
-                                                    Dev
-                                                </label>
-                                            </div>
-                                            <div class="btn-group btn-group-sm" role="group">
-                                                <input
-                                                    type="radio"
-                                                    class="btn-check"
-                                                    name="nextflowDisplay"
-                                                    id="nextflowCount"
-                                                    autocomplete="off"
-                                                    checked
-                                                />
-                                                <label class="btn btn-outline-secondary" for="nextflowCount">
-                                                    n
-                                                </label>
-                                                <input
-                                                    type="radio"
-                                                    class="btn-check"
-                                                    name="nextflowDisplay"
-                                                    id="nextflowPercent"
-                                                    autocomplete="off"
-                                                />
-                                                <label class="btn btn-outline-secondary" for="nextflowPercent">
-                                                    %
-                                                </label>
-                                            </div>
+                                        <div class="btn-group btn-group-sm" role="group">
+                                            <input
+                                                type="radio"
+                                                class="btn-check"
+                                                name="nextflowDisplay"
+                                                id="nextflowCount"
+                                                autocomplete="off"
+                                                checked
+                                            />
+                                            <label class="btn btn-outline-secondary" for="nextflowCount">
+                                                n
+                                            </label>
+                                            <input
+                                                type="radio"
+                                                class="btn-check"
+                                                name="nextflowDisplay"
+                                                id="nextflowPercent"
+                                                autocomplete="off"
+                                            />
+                                            <label class="btn btn-outline-secondary" for="nextflowPercent">
+                                                %
+                                            </label>
                                         </div>
                                     </div>
-                                    <table
-                                        class="w-100 text-small histogram-table"
-                                        id="nextflowChart"
-                                        data-initial-sort="version"
-                                    >
-                                        <thead>
-                                            <tr>
-                                                <th
-                                                    class="sortable histogram-sortable sort-desc user-select-none text-nowrap text-end fs-7 ms-3 py-2 border-bottom"
-                                                    data-sort="version"
-                                                    style="width: 90px;"
-                                                >
-                                                    Version
-                                                    <i class="fas fa-sort ms-1 text-muted opacity-50" />
-                                                </th>
-                                                <th
-                                                    class="sortable histogram-sortable user-select-none text-nowrap fs-7 px-3 py-2 border-bottom"
-                                                    data-sort="count"
-                                                >
-                                                    Count
-                                                    <i class="fas fa-sort ms-1 text-muted opacity-50" />
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {nextflowChartData_sorted.map(({ label, releasedValue, devValue }) => {
-                                                const maxValue = Math.max(
-                                                    ...nextflowChartData_sorted.map((item) => item.releasedValue),
-                                                );
-                                                const percentage = (releasedValue / maxValue) * 100;
-                                                const percentageValue = ((releasedValue / nextflowTotal) * 100).toFixed(
-                                                    1,
-                                                );
-                                                const devPercentageValue = (
-                                                    (devValue / nextflowTotalDev) *
-                                                    100
-                                                ).toFixed(1);
-                                                return (
-                                                    <tr
-                                                        data-version={label}
-                                                        data-count={releasedValue}
-                                                        data-count-dev={devValue}
-                                                        data-percentage={percentageValue}
-                                                        data-percentage-dev={devPercentageValue}
-                                                        class:list={[{ "d-none": releasedValue === 0 }]}
-                                                    >
-                                                        <td
-                                                            class="text-end text-nowrap pe-2 align-middle font-monospace"
-                                                            style="width: 90px;"
-                                                        >
-                                                            {label.replace(".00", ".0")}
-                                                        </td>
-                                                        <td class="w-100 align-middle px-3">
-                                                            <div
-                                                                class="d-inline-block text-center text-nowrap rounded-1 bg-info"
-                                                                style={`width: calc(${percentage}% + 1rem); min-width: 2.5rem;`}
-                                                            >
-                                                                <span class="text-white px-1">{releasedValue}</span>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                );
-                                            })}
-                                        </tbody>
-                                    </table>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <div>
-                                            <h5 class="card-title mb-1">nf-core Tools Version Distribution</h5>
-                                            <p class="text-muted small mb-0 nfcore-subtitle">(latest releases only)</p>
-                                        </div>
-                                        <div class="d-flex gap-2">
-                                            <div class="btn-group btn-group-sm" role="group">
-                                                <input
-                                                    type="radio"
-                                                    class="btn-check"
-                                                    name="nfCoreVersion"
-                                                    id="nfCoreReleased"
-                                                    autocomplete="off"
-                                                    checked
-                                                />
-                                                <label class="btn btn-outline-primary" for="nfCoreReleased">
-                                                    Released
-                                                </label>
-                                                <input
-                                                    type="radio"
-                                                    class="btn-check"
-                                                    name="nfCoreVersion"
-                                                    id="nfCoreDev"
-                                                    autocomplete="off"
-                                                />
-                                                <label class="btn btn-outline-primary" for="nfCoreDev">
-                                                    Dev
-                                                </label>
-                                            </div>
-                                            <div class="btn-group btn-group-sm" role="group">
-                                                <input
-                                                    type="radio"
-                                                    class="btn-check"
-                                                    name="nfCoreDisplay"
-                                                    id="nfCoreCount"
-                                                    autocomplete="off"
-                                                    checked
-                                                />
-                                                <label class="btn btn-outline-secondary" for="nfCoreCount">
-                                                    n
-                                                </label>
-                                                <input
-                                                    type="radio"
-                                                    class="btn-check"
-                                                    name="nfCoreDisplay"
-                                                    id="nfCorePercent"
-                                                    autocomplete="off"
-                                                />
-                                                <label class="btn btn-outline-secondary" for="nfCorePercent">
-                                                    %
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <table
-                                        class="w-100 text-small histogram-table"
-                                        id="nfCoreChart"
-                                        data-initial-sort="version"
-                                    >
-                                        <thead>
-                                            <tr>
-                                                <th
-                                                    class="sortable histogram-sortable sort-desc user-select-none text-nowrap text-end fs-7 py-2 mb-2 border-bottom"
-                                                    data-sort="version"
-                                                    style="width: 90px;"
+                                <table
+                                    class="w-100 text-small histogram-table"
+                                    id="nextflowChart"
+                                    data-initial-sort="version"
+                                >
+                                    <thead>
+                                        <tr>
+                                            <th
+                                                class="sortable histogram-sortable sort-desc user-select-none text-nowrap text-end fs-7 ms-3 py-2 border-bottom"
+                                                data-sort="version"
+                                                style="width: 90px;"
+                                            >
+                                                Version
+                                                <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                            </th>
+                                            <th
+                                                class="sortable histogram-sortable user-select-none text-nowrap fs-7 px-3 py-2 border-bottom"
+                                                data-sort="count"
+                                            >
+                                                Count
+                                                <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {nextflowChartData_sorted.map(({ label, releasedValue, devValue }) => {
+                                            const maxValue = Math.max(
+                                                ...nextflowChartData_sorted.map((item) => item.releasedValue),
+                                            );
+                                            const percentage = (releasedValue / maxValue) * 100;
+                                            const percentageValue = ((releasedValue / nextflowTotal) * 100).toFixed(1);
+                                            const devPercentageValue = ((devValue / nextflowTotalDev) * 100).toFixed(1);
+                                            return (
+                                                <tr
+                                                    data-version={label}
+                                                    data-count={releasedValue}
+                                                    data-count-dev={devValue}
+                                                    data-percentage={percentageValue}
+                                                    data-percentage-dev={devPercentageValue}
+                                                    class:list={[{ "d-none": releasedValue === 0 }]}
                                                 >
-                                                    Version
-                                                    <i class="fas fa-sort ms-1 text-muted opacity-50" />
-                                                </th>
-                                                <th
-                                                    class="sortable histogram-sortable user-select-none text-nowrap fs-7 px-3 py-2 border-bottom"
-                                                    data-sort="count"
-                                                >
-                                                    Count
-                                                    <i class="fas fa-sort ms-1 text-muted opacity-50" />
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {nfCoreChartData_sorted.map(({ label, releasedValue, devValue }) => {
-                                                const maxValue = Math.max(
-                                                    ...nfCoreChartData_sorted.map((item) => item.releasedValue),
-                                                );
-                                                const percentage = (releasedValue / maxValue) * 100;
-                                                const percentageValue = ((releasedValue / nfCoreTotal) * 100).toFixed(
-                                                    1,
-                                                );
-                                                const devPercentageValue = ((devValue / nfCoreTotalDev) * 100).toFixed(
-                                                    1,
-                                                );
-                                                return (
-                                                    <tr
-                                                        data-version={label}
-                                                        data-count={releasedValue}
-                                                        data-count-dev={devValue}
-                                                        data-percentage={percentageValue}
-                                                        data-percentage-dev={devPercentageValue}
-                                                        class:list={[{ "d-none": releasedValue === 0 }]}
+                                                    <td
+                                                        class="text-end text-nowrap pe-2 align-middle font-monospace"
+                                                        style="width: 90px;"
                                                     >
-                                                        <td
-                                                            class="text-end text-nowrap pe-2 align-middle font-monospace"
-                                                            style="width: 90px;"
+                                                        {label.replace(".00", ".0")}
+                                                    </td>
+                                                    <td class="w-100 align-middle px-3">
+                                                        <div
+                                                            class="d-inline-block text-center text-nowrap rounded-1 bg-info"
+                                                            style={`width: calc(${percentage}% + 1rem); min-width: 2.5rem;`}
                                                         >
-                                                            {label}
-                                                        </td>
-                                                        <td class="w-100 align-middle px-3">
-                                                            <div
-                                                                class="d-inline-block text-center text-nowrap rounded-1 bg-warning"
-                                                                style={`width: calc(${percentage}% + 1rem); min-width: 2.5rem;`}
-                                                            >
-                                                                <span class="text-dark px-1">{releasedValue}</span>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                );
-                                            })}
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                            <span class="text-white px-1">{releasedValue}</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-
-                    {/* Versions Table */}
-                    <div class="table-container m-auto w-100">
-                        <div class=" mb-3 d-flex justify-content-between align-items-center">
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-sm btn-primary" id="toggleReleases">
-                                    <i class="fas fa-eye me-1" />
-                                    <span class="toggle-text">Show all releases</span>
-                                </button>
-                                <button type="button" class="btn btn-sm btn-outline-primary" id="downloadCSV">
-                                    <i class="fas fa-download me-1" />
-                                    Download CSV
-                                </button>
+                    <div class="col-lg-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div>
+                                        <h5 class="card-title mb-1">nf-core Tools Version Distribution</h5>
+                                        <p class="text-muted small mb-0 nfcore-subtitle">(latest releases only)</p>
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <div class="btn-group btn-group-sm" role="group">
+                                            <input
+                                                type="radio"
+                                                class="btn-check"
+                                                name="nfCoreVersion"
+                                                id="nfCoreReleased"
+                                                autocomplete="off"
+                                                checked
+                                            />
+                                            <label class="btn btn-outline-primary" for="nfCoreReleased">
+                                                Released
+                                            </label>
+                                            <input
+                                                type="radio"
+                                                class="btn-check"
+                                                name="nfCoreVersion"
+                                                id="nfCoreDev"
+                                                autocomplete="off"
+                                            />
+                                            <label class="btn btn-outline-primary" for="nfCoreDev">
+                                                Dev
+                                            </label>
+                                        </div>
+                                        <div class="btn-group btn-group-sm" role="group">
+                                            <input
+                                                type="radio"
+                                                class="btn-check"
+                                                name="nfCoreDisplay"
+                                                id="nfCoreCount"
+                                                autocomplete="off"
+                                                checked
+                                            />
+                                            <label class="btn btn-outline-secondary" for="nfCoreCount">
+                                                n
+                                            </label>
+                                            <input
+                                                type="radio"
+                                                class="btn-check"
+                                                name="nfCoreDisplay"
+                                                id="nfCorePercent"
+                                                autocomplete="off"
+                                            />
+                                            <label class="btn btn-outline-secondary" for="nfCorePercent">
+                                                %
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table
+                                    class="w-100 text-small histogram-table"
+                                    id="nfCoreChart"
+                                    data-initial-sort="version"
+                                >
+                                    <thead>
+                                        <tr>
+                                            <th
+                                                class="sortable histogram-sortable sort-desc user-select-none text-nowrap text-end fs-7 py-2 mb-2 border-bottom"
+                                                data-sort="version"
+                                                style="width: 90px;"
+                                            >
+                                                Version
+                                                <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                            </th>
+                                            <th
+                                                class="sortable histogram-sortable user-select-none text-nowrap fs-7 px-3 py-2 border-bottom"
+                                                data-sort="count"
+                                            >
+                                                Count
+                                                <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {nfCoreChartData_sorted.map(({ label, releasedValue, devValue }) => {
+                                            const maxValue = Math.max(
+                                                ...nfCoreChartData_sorted.map((item) => item.releasedValue),
+                                            );
+                                            const percentage = (releasedValue / maxValue) * 100;
+                                            const percentageValue = ((releasedValue / nfCoreTotal) * 100).toFixed(1);
+                                            const devPercentageValue = ((devValue / nfCoreTotalDev) * 100).toFixed(1);
+                                            return (
+                                                <tr
+                                                    data-version={label}
+                                                    data-count={releasedValue}
+                                                    data-count-dev={devValue}
+                                                    data-percentage={percentageValue}
+                                                    data-percentage-dev={devPercentageValue}
+                                                    class:list={[{ "d-none": releasedValue === 0 }]}
+                                                >
+                                                    <td
+                                                        class="text-end text-nowrap pe-2 align-middle font-monospace"
+                                                        style="width: 90px;"
+                                                    >
+                                                        {label}
+                                                    </td>
+                                                    <td class="w-100 align-middle px-3">
+                                                        <div
+                                                            class="d-inline-block text-center text-nowrap rounded-1 bg-warning"
+                                                            style={`width: calc(${percentage}% + 1rem); min-width: 2.5rem;`}
+                                                        >
+                                                            <span class="text-dark px-1">{releasedValue}</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </tbody>
+                                </table>
                             </div>
-                            <span class="text-muted small">
-                                Showing {totalPipelines} latest releases
-                                <span class="hidden-count">({totalReleases - totalPipelines} hidden)</span>
-                            </span>
                         </div>
-                        <table class="table table-hover table-responsive table-sm text-small" id="versionsTable">
-                            <thead>
-                                <tr class="sticky-top-under z-1 table-active">
-                                    <th class="sortable sort-desc user-select-none text-nowrap" data-sort="pipeline">
-                                        Pipeline
-                                        <i class="fas fa-sort ms-1 text-muted opacity-50" />
-                                    </th>
-                                    <th class="sortable user-select-none text-nowrap text-end" data-sort="release">
-                                        Release
-                                        <i class="fas fa-sort ms-1 text-muted opacity-50" />
-                                    </th>
-                                    <th class="sortable user-select-none text-nowrap text-end" data-sort="nextflow">
-                                        Nextflow Version
-                                        <i class="fas fa-sort ms-1 text-muted opacity-50" />
-                                    </th>
-                                    <th class="sortable user-select-none text-nowrap text-end" data-sort="nfcore">
-                                        nf-core Version
-                                        <i class="fas fa-sort ms-1 text-muted opacity-50" />
-                                    </th>
-                                    <th class="sortable user-select-none text-nowrap" data-sort="date">
-                                        Published Date
-                                        <i class="fas fa-sort ms-1 text-muted opacity-50" />
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {pipelineVersions.map((version) => {
-                                    const isLatest = version.release === latestReleases.get(version.pipeline);
-                                    const isDev = version.release === "dev";
-                                    const showByDefault = isLatest || (isDev && !latestReleases.has(version.pipeline));
-                                    const isNonLatestNonDev = !isLatest && !isDev;
-                                    return (
-                                        <tr
-                                            class:list={[{ "hidden-release": !showByDefault }]}
-                                            data-pipeline={version.pipeline}
-                                            data-release={version.release}
-                                            data-nextflow={version.nextflow_version || ""}
-                                            data-nfcore={version.nf_core_version || ""}
-                                            data-date={version.published_at || ""}
-                                        >
-                                            <td class="fw-semibold">
+                    </div>
+                </div>
+
+                {/* Versions Table */}
+                <div class="table-container m-auto w-100">
+                    <div class="mb-3 d-flex justify-content-between align-items-center">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-sm btn-primary" id="toggleReleases">
+                                <i class="fas fa-eye me-1" />
+                                <span class="toggle-text">Show all releases</span>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-primary" id="downloadCSV">
+                                <i class="fas fa-download me-1" />
+                                Download CSV
+                            </button>
+                        </div>
+                        <span class="text-muted small">
+                            Showing {totalPipelines} latest releases
+                            <span class="hidden-count">({totalReleases - totalPipelines} hidden)</span>
+                        </span>
+                    </div>
+                    <table class="table table-hover table-responsive table-sm text-small" id="versionsTable">
+                        <thead>
+                            <tr class="sticky-top-under z-1 table-active">
+                                <th class="sortable sort-desc user-select-none text-nowrap" data-sort="pipeline">
+                                    Pipeline
+                                    <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                </th>
+                                <th class="sortable user-select-none text-nowrap text-end" data-sort="release">
+                                    Release
+                                    <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                </th>
+                                <th class="sortable user-select-none text-nowrap text-end" data-sort="nextflow">
+                                    Nextflow Version
+                                    <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                </th>
+                                <th class="sortable user-select-none text-nowrap text-end" data-sort="nfcore">
+                                    nf-core Version
+                                    <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                </th>
+                                <th class="sortable user-select-none text-nowrap" data-sort="date">
+                                    Published Date
+                                    <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {pipelineVersions.map((version) => {
+                                const isLatest = version.release === latestReleases.get(version.pipeline);
+                                const isDev = version.release === "dev";
+                                const showByDefault = isLatest || (isDev && !latestReleases.has(version.pipeline));
+                                const isNonLatestNonDev = !isLatest && !isDev;
+                                return (
+                                    <tr
+                                        class:list={[{ "hidden-release": !showByDefault }]}
+                                        data-pipeline={version.pipeline}
+                                        data-release={version.release}
+                                        data-nextflow={version.nextflow_version || ""}
+                                        data-nfcore={version.nf_core_version || ""}
+                                        data-date={version.published_at || ""}
+                                    >
+                                        <td class="fw-semibold">
+                                            <a
+                                                href={`https://nf-co.re/${version.pipeline}`}
+                                                target="_blank"
+                                                class:list={[
+                                                    "text-decoration-none",
+                                                    { "text-body-tertiary": isNonLatestNonDev },
+                                                ]}
+                                            >
+                                                {version.pipeline}
+                                            </a>
+                                        </td>
+                                        <td class="text-end">
+                                            {version.release === "dev" ? (
+                                                <span class="badge bg-secondary">{version.release}</span>
+                                            ) : (
                                                 <a
-                                                    href={`https://nf-co.re/${version.pipeline}`}
+                                                    href={`https://github.com/nf-core/${version.pipeline}/releases/tag/${version.release}`}
                                                     target="_blank"
                                                     class:list={[
                                                         "text-decoration-none",
                                                         { "text-body-tertiary": isNonLatestNonDev },
                                                     ]}
                                                 >
-                                                    {version.pipeline}
+                                                    {version.release}
                                                 </a>
-                                            </td>
-                                            <td class="text-end">
-                                                {version.release === "dev" ? (
-                                                    <span class="badge bg-secondary">{version.release}</span>
-                                                ) : (
-                                                    <a
-                                                        href={`https://github.com/nf-core/${version.pipeline}/releases/tag/${version.release}`}
-                                                        target="_blank"
-                                                        class:list={[
-                                                            "text-decoration-none",
-                                                            { "text-body-tertiary": isNonLatestNonDev },
-                                                        ]}
-                                                    >
-                                                        {version.release}
-                                                    </a>
-                                                )}
-                                            </td>
-                                            <td class="text-end">
-                                                {version.nextflow_version ? (
-                                                    <code class:list={[{ "text-body-tertiary": isNonLatestNonDev }]}>
-                                                        {version.nextflow_version.replace("!>=", ">=")}
-                                                    </code>
-                                                ) : (
-                                                    <span class="text-muted">-</span>
-                                                )}
-                                            </td>
-                                            <td class="text-end">
-                                                {version.nf_core_version ? (
-                                                    <code class:list={[{ "text-body-tertiary": isNonLatestNonDev }]}>
-                                                        v{version.nf_core_version}
-                                                    </code>
-                                                ) : (
-                                                    <code
-                                                        class:list={[
-                                                            "text-muted",
-                                                            { "text-body-tertiary": isNonLatestNonDev },
-                                                        ]}
-                                                    >
-                                                        &lt;2.14.1
-                                                    </code>
-                                                )}
-                                            </td>
-                                            <td
-                                                class:list={[
-                                                    "text-muted small",
-                                                    { "text-body-tertiary": isNonLatestNonDev },
-                                                ]}
-                                            >
-                                                {formatDate(version.published_at)}
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="text-center mt-4 mb-5">
-                        <a
-                            href="https://github.com/nf-core/website/actions/workflows/update-pipelines-json.yml"
-                            class="btn btn-sm btn-outline-primary"
-                            target="_blank"
-                        >
-                            View Update Workflow
-                        </a>
-                    </div>
-                </>
-            )
-        }
+                                            )}
+                                        </td>
+                                        <td class="text-end">
+                                            {version.nextflow_version ? (
+                                                <code class:list={[{ "text-body-tertiary": isNonLatestNonDev }]}>
+                                                    {version.nextflow_version.replace("!>=", ">=")}
+                                                </code>
+                                            ) : (
+                                                <span class="text-muted">-</span>
+                                            )}
+                                        </td>
+                                        <td class="text-end">
+                                            {version.nf_core_version ? (
+                                                <code class:list={[{ "text-body-tertiary": isNonLatestNonDev }]}>
+                                                    v{version.nf_core_version}
+                                                </code>
+                                            ) : (
+                                                <code
+                                                    class:list={[
+                                                        "text-muted",
+                                                        { "text-body-tertiary": isNonLatestNonDev },
+                                                    ]}
+                                                >
+                                                    &lt;2.14.1
+                                                </code>
+                                            )}
+                                        </td>
+                                        <td
+                                            class:list={[
+                                                "text-muted small",
+                                                { "text-body-tertiary": isNonLatestNonDev },
+                                            ]}
+                                        >
+                                            {formatDate(version.published_at)}
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center mt-4 mb-5">
+                    <a
+                        href="https://github.com/nf-core/website/actions/workflows/update-pipelines-json.yml"
+                        class="btn btn-sm btn-outline-primary"
+                        target="_blank"
+                    >
+                        View Update Workflow
+                    </a>
+                </div>
+            </>
+        )}
     </div>
 </PageLayout>
 

@@ -32,26 +32,24 @@ const { subworkflow } = Astro.props;
             <div class="mb-5">
                 <h2 id="description" class="ms-n3">
                     <i class="fa-duotone fa-swap-opacity fa-book fa-fw"></i> Description
-                    <a href="#description" class="header-link scroll_to_link"
-                        ><span class="fas fa-link" aria-hidden="true"></span></a
-                    >
+                    <a href="#description" class="header-link scroll_to_link">
+                        <span class="fas fa-link" aria-hidden="true"></span>
+                    </a>
                 </h2>
                 <div class="">
                     <Markdown of={subworkflow.meta.description || "nf-core subworkflow"} />
                 </div>
             </div>
             <div class="subworkflow-params">
-                {
-                    subworkflow.meta.input ? (
-                        <div class="subworkflow input mb-5">
-                            <SubworkflowParamTable name={"Input"} icon={"fa-sign-in"} params={subworkflow.meta.input} />
-                        </div>
-                    ) : (
-                        <div class="subworkflow input mb-5">
-                            <SubworkflowParamTable name={"Input"} icon={"fa-sign-in"} />
-                        </div>
-                    )
-                }
+                {subworkflow.meta.input ? (
+                    <div class="subworkflow input mb-5">
+                        <SubworkflowParamTable name={"Input"} icon={"fa-sign-in"} params={subworkflow.meta.input} />
+                    </div>
+                ) : (
+                    <div class="subworkflow input mb-5">
+                        <SubworkflowParamTable name={"Input"} icon={"fa-sign-in"} />
+                    </div>
+                )}
                 <div class="subworkflow output mb-5">
                     <SubworkflowParamTable name={"Output"} icon={"fa-sign-out"} params={subworkflow.meta.output} />
                 </div>

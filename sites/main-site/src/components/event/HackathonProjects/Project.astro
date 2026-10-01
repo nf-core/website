@@ -25,15 +25,13 @@ const border_col = this_color ? { "border-left-color": this_color, "border-left-
     <div class="card-body p-2">
         <div class="pe-0 d-flex align-items-center justify-content-between">
             <a href={`/hackathon-projects/${id}`}>{title}</a>
-            {
-                leaders && (
-                    <div class="d-flex flex-wrap">
-                        {Object.entries(leaders).map(([github, { name, slack }]) => (
-                            <Profile name={github} size={50} />
-                        ))}
-                    </div>
-                )
-            }
+            {leaders && (
+                <div class="d-flex flex-wrap">
+                    {Object.entries(leaders).map(([github, { name, slack }]) => (
+                        <Profile name={github} size={50} />
+                    ))}
+                </div>
+            )}
         </div>
     </div>
 </div>
