@@ -149,65 +149,55 @@ const isDsl2 = pipelineData?.is_DSL2;
         is_archived={is_archived}
         slot="sub-header"
     >
-        {
-            advisories.map((advisory) => (
-                <div class="alert alert-danger p-1 p-md-3" role="alert">
-                    <span>
-                        A{["a", "e", "i", "o", "u", "y"].includes(advisory.data.type.charAt(0)) ? "n" : ""}{" "}
-                        {advisory.data.type.replace("_", " ")} advisory with severity {advisory.data.severity} has been
-                        issued for this version of the pipeline. <br />
-                        See the <a href={`/advisories/${advisory.id}`}>advisory entry</a> for more information.
-                    </span>
-                </div>
-            ))
-        }
+        {advisories.map((advisory) => (
+            <div class="alert alert-danger p-1 p-md-3" role="alert">
+                <span>
+                    A{["a", "e", "i", "o", "u", "y"].includes(advisory.data.type.charAt(0)) ? "n" : ""}{" "}
+                    {advisory.data.type.replace("_", " ")} advisory with severity {advisory.data.severity} has been
+                    issued for this version of the pipeline. <br />
+                    See the <a href={`/advisories/${advisory.id}`}>advisory entry</a> for more information.
+                </span>
+            </div>
+        ))}
     </SubHeader>
-    {
-        tabItems.length > 0 && (
-            <TabBar items={allTabItems}>
-                {!Astro.url.pathname.endsWith("/releases_stats/") && (
-                    <div class="input-group input-group-sm justify-content-end justify-content-lg-center">
-                        <label class="input-group-text" for="version_select">
-                            <i class="fas fa-tags" />
-                        </label>
-                        <div class="dropdown">
-                            <button
-                                class="btn btn-secondary dropdown-toggle rounded-start-0"
-                                type="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                            >
-                                {tag_name}
-                            </button>
+    {tabItems.length > 0 && (
+        <TabBar items={allTabItems}>
+            {!Astro.url.pathname.endsWith("/releases_stats/") && (
+                <div class="input-group input-group-sm justify-content-end justify-content-lg-center">
+                    <label class="input-group-text" for="version_select">
+                        <i class="fas fa-tags" />
+                    </label>
+                    <div class="dropdown">
+                        <button
+                            class="btn btn-secondary dropdown-toggle rounded-start-0"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
+                            {tag_name}
+                        </button>
 
-                            <ul class="dropdown-menu dropdown-menu-end w-100 pipeline-versions">
-                                {versions &&
-                                    versions.map((v) => {
-                                        let url = Astro.url.pathname.replace(
-                                            `${pipeline}/${version}`,
-                                            `${pipeline}/${v}`,
-                                        );
-                                        if (url.includes("/results/")) {
-                                            url = `/${pipeline}/${v}/results/`;
-                                        }
-                                        return (
-                                            <li>
-                                                <a
-                                                    class={"dropdown-item " + (v === version ? "active" : "")}
-                                                    href={url}
-                                                >
-                                                    {v}
-                                                </a>
-                                            </li>
-                                        );
-                                    })}
-                            </ul>
-                        </div>
+                        <ul class="dropdown-menu dropdown-menu-end w-100 pipeline-versions">
+                            {versions &&
+                                versions.map((v) => {
+                                    let url = Astro.url.pathname.replace(`${pipeline}/${version}`, `${pipeline}/${v}`);
+                                    if (url.includes("/results/")) {
+                                        url = `/${pipeline}/${v}/results/`;
+                                    }
+                                    return (
+                                        <li>
+                                            <a class={"dropdown-item " + (v === version ? "active" : "")} href={url}>
+                                                {v}
+                                            </a>
+                                        </li>
+                                    );
+                                })}
+                        </ul>
                     </div>
-                )}
-            </TabBar>
-        )
-    }
+                </div>
+            )}
+        </TabBar>
+    )}
 
     <div transition:animate="slide">
         <slot />

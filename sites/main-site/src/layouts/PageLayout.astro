@@ -97,17 +97,15 @@ if (frontmatter) {
             <slot name="header-top" slot="header-top" />
             <slot name="sub-header" />
         </Header>
-        {
-            mainpage_container || mainpage_container == null ? (
-                <div class="container-xl main-content pt-md-4 DocSearch-content">
-                    <slot />
-                </div>
-            ) : (
-                <div class="DocSearch-content">
-                    <slot />
-                </div>
-            )
-        }
+        {mainpage_container || mainpage_container == null ? (
+            <div class="container-xl main-content pt-md-4 DocSearch-content">
+                <slot />
+            </div>
+        ) : (
+            <div class="DocSearch-content">
+                <slot />
+            </div>
+        )}
     </div>
     <slot name="pre-footer" />
     <slot name="post-footer" slot="post-footer" />

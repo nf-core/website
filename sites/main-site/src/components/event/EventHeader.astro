@@ -35,97 +35,95 @@ function getLinkIcon(link) {
         <div class="col">
             <dl>
                 <dt>Event start:</dt>
-                <dd><LocalDateTime date={start} client:visible /></dd>
+                <dd>
+                    <LocalDateTime date={start} client:visible />
+                </dd>
                 <dt>Event end:</dt>
-                <dd><LocalDateTime date={end} client:visible /></dd>
+                <dd>
+                    <LocalDateTime date={end} client:visible />
+                </dd>
             </dl>
 
-            {
-                !frontmatter.hideExportButton && (
-                    <ExportEventButton frontmatter={frontmatter} add_class="btn-outline-light col" client:idle />
-                )
-            }
+            {!frontmatter.hideExportButton && (
+                <ExportEventButton frontmatter={frontmatter} add_class="btn-outline-light col" client:idle />
+            )}
         </div>
         <div class="col">
             <dl>
                 <dt>Locations:</dt>
                 <dd>
                     <ul class="list-unstyled">
-                        {
-                            locations?.map((location) => {
-                                const locationLinks = Array.isArray(location.links) ? location.links : [location.links];
+                        {locations?.map((location) => {
+                            const locationLinks = Array.isArray(location.links) ? location.links : [location.links];
 
-                                return (
-                                    <li class="list-item">
-                                        <ul>
-                                            <li>
-                                                <strong>
-                                                    {location.name}
-                                                    {location.geoCoordinates && (
-                                                        <span>
-                                                            :
-                                                            <a
-                                                                class="m-1 ms-auto  btn btn-sm btn-outline-light"
-                                                                href={`https://www.openstreetmap.org/?mlat=${location.geoCoordinates[0]}&mlon=${location.geoCoordinates[1]}&zoom=16#map=16/${location.geoCoordinates[0]}/${location.geoCoordinates[1]}`}
-                                                                target="_blank"
-                                                            >
-                                                                <i class="fa-duotone fa-map-pin me-1" />
-                                                                See on map
-                                                            </a>
-                                                        </span>
+                            return (
+                                <li class="list-item">
+                                    <ul>
+                                        <li>
+                                            <strong>
+                                                {location.name}
+                                                {location.geoCoordinates && (
+                                                    <span>
+                                                        :
+                                                        <a
+                                                            class="m-1 ms-auto btn btn-sm btn-outline-light"
+                                                            href={`https://www.openstreetmap.org/?mlat=${location.geoCoordinates[0]}&mlon=${location.geoCoordinates[1]}&zoom=16#map=16/${location.geoCoordinates[0]}/${location.geoCoordinates[1]}`}
+                                                            target="_blank"
+                                                        >
+                                                            <i class="fa-duotone fa-map-pin me-1" />
+                                                            See on map
+                                                        </a>
+                                                    </span>
+                                                )}
+                                            </strong>
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    {location.address && (
+                                                        <ul>
+                                                            <li>
+                                                                <span>{location.address}</span>
+                                                            </li>
+                                                        </ul>
                                                     )}
-                                                </strong>
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        {location.address && (
-                                                            <ul>
-                                                                <li>
-                                                                    <span>{location.address}</span>
-                                                                </li>
-                                                            </ul>
-                                                        )}
-                                                        {locationLinks && locationLinks[0] && (
-                                                            <ul>
-                                                                {locationLinks.map((loc) => {
-                                                                    return (
-                                                                        <li class="list-item">
-                                                                            <a class="text-white underline" href={loc}>
-                                                                                {loc}
-                                                                            </a>
-                                                                        </li>
-                                                                    );
-                                                                })}
-                                                            </ul>
-                                                        )}
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                );
-                            })
-                        }
+                                                    {locationLinks && locationLinks[0] && (
+                                                        <ul>
+                                                            {locationLinks.map((loc) => {
+                                                                return (
+                                                                    <li class="list-item">
+                                                                        <a class="text-white underline" href={loc}>
+                                                                            {loc}
+                                                                        </a>
+                                                                    </li>
+                                                                );
+                                                            })}
+                                                        </ul>
+                                                    )}
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </dd>
-                {
-                    frontmatter.links && frontmatter.links.length > 0 && (
-                        <>
-                            <dt>{frontmatter.links?.length === 1 ? "Link" : "Links"}:</dt>
-                            <dd>
-                                {frontmatter.links?.map((link) => {
-                                    const iconClass = getLinkIcon(link);
-                                    return (
-                                        <span class="d-inline-block me-1">
-                                            <a class="text-white" target="_blank" href={link}>
-                                                {iconClass && <i class={iconClass} />}
-                                            </a>
-                                        </span>
-                                    );
-                                })}
-                            </dd>
-                        </>
-                    )
-                }
+                {frontmatter.links && frontmatter.links.length > 0 && (
+                    <>
+                        <dt>{frontmatter.links?.length === 1 ? "Link" : "Links"}:</dt>
+                        <dd>
+                            {frontmatter.links?.map((link) => {
+                                const iconClass = getLinkIcon(link);
+                                return (
+                                    <span class="d-inline-block me-1">
+                                        <a class="text-white" target="_blank" href={link}>
+                                            {iconClass && <i class={iconClass} />}
+                                        </a>
+                                    </span>
+                                );
+                            })}
+                        </dd>
+                    </>
+                )}
             </dl>
         </div>
     </div>

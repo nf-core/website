@@ -49,43 +49,41 @@ const event_type_icons = {
 };
 ---
 
-{
-    currentEvents.length > 0 && (
-        <div>
-            <div class="current-event-container bg-body-secondary">
-                <EventBannerElement
-                    event_time_category={"ongoing"}
-                    events={currentEvents}
-                    {event_type_classes}
-                    {event_type_icons}
-                    client:load
-                >
-                    <Icon
-                        name="fa7-solid:broadcast-tower"
-                        class="homepage-header-fa-background position-absolute mt-5 ms-1 ms-xl-5"
-                        aria-hidden="true"
-                        slot="backgroundIcon"
-                    />
-                </EventBannerElement>
-                <EventBannerElement
-                    event_time_category={"upcoming"}
-                    events={currentEvents}
-                    {event_type_classes}
-                    {event_type_icons}
-                    client:load
-                >
-                    <Icon
-                        name="fa7-solid:alarm-clock"
-                        class="homepage-header-fa-background position-absolute mt-5 ms-1 ms-xl-5"
-                        aria-hidden="true"
-                        slot="backgroundIcon"
-                    />
-                </EventBannerElement>
-            </div>
-            <div class="triangle-down bg-body-secondary d-none " />
+{currentEvents.length > 0 && (
+    <div>
+        <div class="current-event-container bg-body-secondary">
+            <EventBannerElement
+                event_time_category={"ongoing"}
+                events={currentEvents}
+                {event_type_classes}
+                {event_type_icons}
+                client:load
+            >
+                <Icon
+                    name="fa7-solid:broadcast-tower"
+                    class="homepage-header-fa-background position-absolute mt-5 ms-1 ms-xl-5"
+                    aria-hidden="true"
+                    slot="backgroundIcon"
+                />
+            </EventBannerElement>
+            <EventBannerElement
+                event_time_category={"upcoming"}
+                events={currentEvents}
+                {event_type_classes}
+                {event_type_icons}
+                client:load
+            >
+                <Icon
+                    name="fa7-solid:alarm-clock"
+                    class="homepage-header-fa-background position-absolute mt-5 ms-1 ms-xl-5"
+                    aria-hidden="true"
+                    slot="backgroundIcon"
+                />
+            </EventBannerElement>
         </div>
-    )
-}
+        <div class="triangle-down bg-body-secondary d-none" />
+    </div>
+)}
 <style lang="scss">
     @import "@styles/_variables.scss";
     .current-event-container:has(.ongoing-event, .upcoming-event) ~ .triangle-down {

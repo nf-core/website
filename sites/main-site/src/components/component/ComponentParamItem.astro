@@ -20,40 +20,36 @@ const patternColSize = hasPattern ? 3 : 1;
 const processedDescription = description ? description.replace(/\n/g, " \n").replace(/\\\*\./g, "\\\\*.") : "";
 ---
 
-{
-    shouldRender && (
-        <div class:list={[`row align-items-center ${marginClass}`, { "border-bottom": !lastItem }]}>
-            <div class="col-12 col-md-4 col-xxl-3 small-h">
-                <h4 id={anchorId} class="module-row-name-id d-flex align-items-baseline mb-0 text-start">
-                    <Markdown of={`\`${name}{:bash}\``} />
-                    {type && (
-                        <span>
-                            <code class="type rounded-start-0 text-muted ps-0 small">:{type}</code>
-                        </span>
-                    )}
-                    <a href={`#${anchorId}`} class="header-link scroll_to_link me-2 mb-2">
-                        <span class="fas fa-link" aria-hidden="true" />
-                    </a>
-                </h4>
-            </div>
-            <div class={`col-12 description py-1 small col-md-${descriptionColSize}`}>
-                {processedDescription && <Markdown of={processedDescription} />}
-            </div>
-            {hasPattern && (
-                <div class={`col-12 col-md-${patternColSize} ms-auto mt-2`}>
-                    <code class="float-end pattern">{pattern}</code>
-                </div>
-            )}
+{shouldRender && (
+    <div class:list={[`row align-items-center ${marginClass}`, { "border-bottom": !lastItem }]}>
+        <div class="col-12 col-md-4 col-xxl-3 small-h">
+            <h4 id={anchorId} class="module-row-name-id d-flex align-items-baseline mb-0 text-start">
+                <Markdown of={`\`${name}{:bash}\``} />
+                {type && (
+                    <span>
+                        <code class="type rounded-start-0 text-muted ps-0 small">:{type}</code>
+                    </span>
+                )}
+                <a href={`#${anchorId}`} class="header-link scroll_to_link me-2 mb-2">
+                    <span class="fas fa-link" aria-hidden="true" />
+                </a>
+            </h4>
         </div>
-    )
-}
-{
-    hasNestedParams && (
-        <div class="col-12 nested">
-            <ComponentParamList params={value} depth={depth + 1} />
+        <div class={`col-12 description py-1 small col-md-${descriptionColSize}`}>
+            {processedDescription && <Markdown of={processedDescription} />}
         </div>
-    )
-}
+        {hasPattern && (
+            <div class={`col-12 col-md-${patternColSize} ms-auto mt-2`}>
+                <code class="float-end pattern">{pattern}</code>
+            </div>
+        )}
+    </div>
+)}
+{hasNestedParams && (
+    <div class="col-12 nested">
+        <ComponentParamList params={value} depth={depth + 1} />
+    </div>
+)}
 <style>
     .description,
     .module-row-name-id {
