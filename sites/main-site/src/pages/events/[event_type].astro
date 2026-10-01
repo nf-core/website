@@ -1,7 +1,6 @@
 ---
 import EventLayout from "@layouts/EventLayout.astro";
 import { getCollection } from "astro:content";
-import { markdown } from "@mashehu/astropub-md";
 
 export async function getStaticPaths() {
     let events = await getCollection("events");
@@ -9,13 +8,6 @@ export async function getStaticPaths() {
         return event.id.replace(/\.[^/.]+$/, "").split("/").length === 2;
     });
 
-    events = await Promise.all(
-        events.map(async (event) => {
-            // Copy rather than mutate: getCollection() returns cached entries shared across
-            // every page in the build, so mutating them leaks rendered HTML elsewhere (e.g. the newsletter).
-            return { ...event, data: { ...event.data, subtitle: String(await markdown(event.data.subtitle)) } };
-        }),
-    );
     // reduce events to unique event types
     const event_types = [...new Set(events.map((event) => event.data.type)), "bytesize"];
 

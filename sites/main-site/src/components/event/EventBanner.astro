@@ -2,17 +2,9 @@
 import EventBannerElement from "@components/event/EventBannerElement.svelte";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import { markdown } from "@mashehu/astropub-md";
 import { Icon } from "astro-icon/components";
 
 let events: CollectionEntry<"events">[] = await getCollection("events");
-events = await Promise.all(
-    events.map(async (event) => {
-        // Copy rather than mutate: getCollection() returns cached entries shared across
-        // every page in the build, so mutating them leaks rendered HTML elsewhere (e.g. the newsletter).
-        return { ...event, data: { ...event.data, subtitle: String(await markdown(event.data.subtitle)) } };
-    }),
-);
 let now = new Date().getTime();
 events = events.sort((a, b) => {
     if (!a.data.start || !b.data.start) return 0;

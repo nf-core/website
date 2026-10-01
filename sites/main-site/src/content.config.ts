@@ -2,6 +2,7 @@ import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 import semver from "semver";
+import { markdown } from "@mashehu/astropub-md";
 
 // Define reusable schemas for common validation patterns
 const commonSchemas = {
@@ -75,7 +76,7 @@ const events = defineCollection({
         .refine((data) => !data.headerImage || data.headerImageAlt, {
             message: "Please provide alt text for your `headerImage` in `headerImageAlt`.",
         })
-        .transform((data) => {
+        .transform(async (data) => {
             // Create start and end date objects
             try {
                 data.start = data.start ?? new Date(data.startDate + "T" + data.startTime);
@@ -102,6 +103,9 @@ const events = defineCollection({
                 ...data,
                 start: data.start!,
                 end: data.end!,
+                // Subtitle rendered to HTML for listings that support inline markdown. Kept separate
+                // so `subtitle` stays plain text for everything else (e.g. the newsletter).
+                renderedSubtitle: String(await markdown(data.subtitle)),
             };
         }),
 });
@@ -279,7 +283,9 @@ const advisories = defineCollection({
                 throw new Error("Affected `subworkflows` must be named set if `category` is `subworkflows`.");
             }
             return true;
-        }),
+        })
+        // Subtitle rendered to HTML for listings; `subtitle` stays plain text (see events above).
+        .transform(async (data) => ({ ...data, renderedSubtitle: String(await markdown(data.subtitle)) })),
 });
 
 const blog = defineCollection({

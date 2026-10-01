@@ -1,20 +1,11 @@
 ---
 import EventLayout from "@layouts/EventLayout.astro";
 import { getCollection } from "astro:content";
-import { markdown } from "@mashehu/astropub-md";
 let events = await getCollection("events");
 
 events = events.filter((event) => {
     return event.id.split("/").length === 2;
 });
-
-events = await Promise.all(
-    events.map(async (event) => {
-        // Copy rather than mutate: getCollection() returns cached entries shared across
-        // every page in the build, so mutating them leaks rendered HTML elsewhere (e.g. the newsletter).
-        return { ...event, data: { ...event.data, subtitle: String(await markdown(event.data.subtitle)) } };
-    }),
-);
 
 const title = "Events";
 const subtitle = "Details of past and future events around nf-core.";
