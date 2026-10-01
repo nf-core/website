@@ -66218,7 +66218,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -67443,7 +67443,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -69571,6 +69571,155 @@
           "version": "3.10.0"
         }
       ]
+    },
+    {
+      "name": "cnvkit_purity",
+      "path": "modules/nf-core/cnvkit/purity/meta.yml",
+      "tree_sha": "6922a819ccd7ab48747023d120d44831ed1060f9",
+      "files": [
+        "modules/nf-core/cnvkit/purity/environment.yml",
+        "modules/nf-core/cnvkit/purity/main.nf",
+        "modules/nf-core/cnvkit/purity/meta.yml",
+        "modules/nf-core/cnvkit/purity/tests/main.nf.test",
+        "modules/nf-core/cnvkit/purity/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "cnvkit_purity",
+        "description": "estimates tumor purity and ploidy from a .cnr/.cns pair, using the same grid-search likelihood model as the somatic HMM methods.",
+        "keywords": [
+          "cnvkit",
+          "purity",
+          "ploidy",
+          "cns",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "cnvkit": {
+              "description": "Copy number variant detection from high-throughput sequencing.",
+              "homepage": "https://cnvkit.readthedocs.io/en/stable",
+              "documentation": "https://cnvkit.readthedocs.io/en/stable",
+              "tool_dev_url": "https://github.com/etal/cnvkit",
+              "doi": "10.1371/journal.pcbi.1004873",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": "biotools:cnvkit"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "cns": {
+                "type": "file",
+                "description": "CNVKit CNS file.",
+                "pattern": "*.cns",
+                "ontologies": []
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "Germline VCF file for BAF.",
+                "pattern": "*.vcf{,.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "purity": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.purity.tsv": {
+                  "type": "file",
+                  "description": "Table with estimated tumor purity and ploidy",
+                  "pattern": "*.purity.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_cnvkit": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cnvkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cnvkit.py version | sed -e 's/cnvkit v//g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cnvkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cnvkit.py version | sed -e 's/cnvkit v//g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@aadecock"
+        ],
+        "maintainers": [
+          "@aadecock"
+        ]
+      },
+      "git_sha": "bb3ed44194bb57c5e19187567619d6ad15b6ea9b"
     },
     {
       "name": "cnvkit_reference",
@@ -93080,6 +93229,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -111525,7 +111682,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -125198,7 +125355,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "sarek",
@@ -134437,7 +134594,7 @@
     {
       "name": "gatk4_addorreplacereadgroups",
       "path": "modules/nf-core/gatk4/addorreplacereadgroups/meta.yml",
-      "tree_sha": "9e7f904168fe0d632945aaf36a242e0aae7bc6ef",
+      "tree_sha": "0796b456376a93cda06a7712710dc4d6d0b44978",
       "files": [
         "modules/nf-core/gatk4/addorreplacereadgroups/environment.yml",
         "modules/nf-core/gatk4/addorreplacereadgroups/main.nf",
@@ -134639,7 +134796,7 @@
           "@muffato"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -134650,7 +134807,7 @@
     {
       "name": "gatk4_analyzecovariates",
       "path": "modules/nf-core/gatk4/analyzecovariates/meta.yml",
-      "tree_sha": "eec7bb8ed98b650032b421b762bb2f1c9efd8896",
+      "tree_sha": "f4c32e5e025f49e4a8b63b39e6cad1bc88d63779",
       "files": [
         "modules/nf-core/gatk4/analyzecovariates/environment.yml",
         "modules/nf-core/gatk4/analyzecovariates/main.nf",
@@ -134814,7 +134971,7 @@
           "@thomasisensee"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -134825,7 +134982,7 @@
     {
       "name": "gatk4_annotateintervals",
       "path": "modules/nf-core/gatk4/annotateintervals/meta.yml",
-      "tree_sha": "0dc6b08403bcc08268a2b9b20e8d350c84157cf2",
+      "tree_sha": "9658430898db93e7092fced52b3bab6bcf0e08fe",
       "files": [
         "modules/nf-core/gatk4/annotateintervals/environment.yml",
         "modules/nf-core/gatk4/annotateintervals/main.nf",
@@ -135066,7 +135223,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -135077,7 +135234,7 @@
     {
       "name": "gatk4_applybqsr",
       "path": "modules/nf-core/gatk4/applybqsr/meta.yml",
-      "tree_sha": "e2567d33363dc59f1ea783c92b6d64808f172ba4",
+      "tree_sha": "ee85acb831db981bf314bcf1b7045673c67040c0",
       "files": [
         "modules/nf-core/gatk4/applybqsr/environment.yml",
         "modules/nf-core/gatk4/applybqsr/main.nf",
@@ -135333,7 +135490,7 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -135360,7 +135517,7 @@
     {
       "name": "gatk4_applyvqsr",
       "path": "modules/nf-core/gatk4/applyvqsr/meta.yml",
-      "tree_sha": "bdb44b127e88c3e04df50f9a67c1805ab2c22355",
+      "tree_sha": "89cccf1aaba22a9b4340b3e600c9b067be96490c",
       "files": [
         "modules/nf-core/gatk4/applyvqsr/environment.yml",
         "modules/nf-core/gatk4/applyvqsr/main.nf",
@@ -135575,7 +135732,7 @@
           "@GCJMackenzie"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "pathogenepidemiology",
@@ -135594,7 +135751,7 @@
     {
       "name": "gatk4_asereadcounter",
       "path": "modules/nf-core/gatk4/asereadcounter/meta.yml",
-      "tree_sha": "1c8cfb30a41b36243342c882829472c541d85663",
+      "tree_sha": "e20305e74ddda39ed4931363930023d632063f0b",
       "files": [
         "modules/nf-core/gatk4/asereadcounter/environment.yml",
         "modules/nf-core/gatk4/asereadcounter/main.nf",
@@ -135786,12 +135943,12 @@
           "@Lucpen"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83"
     },
     {
       "name": "gatk4_baserecalibrator",
       "path": "modules/nf-core/gatk4/baserecalibrator/meta.yml",
-      "tree_sha": "cba8d7d561c12187e3baddac992c89f6a3aea485",
+      "tree_sha": "672a0f8a84b62112e2fb89ec973df249a2fb959a",
       "files": [
         "modules/nf-core/gatk4/baserecalibrator/environment.yml",
         "modules/nf-core/gatk4/baserecalibrator/main.nf",
@@ -136018,7 +136175,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -136041,7 +136198,7 @@
     {
       "name": "gatk4_bedtointervallist",
       "path": "modules/nf-core/gatk4/bedtointervallist/meta.yml",
-      "tree_sha": "f42a84e44f2ce8fb245578ba45b1af0318fe02b6",
+      "tree_sha": "ea11d4b46cb25c17f03aff7c9e3037ef1af825f0",
       "files": [
         "modules/nf-core/gatk4/bedtointervallist/environment.yml",
         "modules/nf-core/gatk4/bedtointervallist/main.nf",
@@ -136184,7 +136341,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -136211,7 +136368,7 @@
     {
       "name": "gatk4_calculatecontamination",
       "path": "modules/nf-core/gatk4/calculatecontamination/meta.yml",
-      "tree_sha": "d2465757c93a0df3b05946c2b0fb7ce2d22a1ba6",
+      "tree_sha": "94fb869d2df7461d5720232a85a593115ae81272",
       "files": [
         "modules/nf-core/gatk4/calculatecontamination/environment.yml",
         "modules/nf-core/gatk4/calculatecontamination/main.nf",
@@ -136368,7 +136525,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "rnadnavar",
@@ -136383,7 +136540,7 @@
     {
       "name": "gatk4_calibratedragstrmodel",
       "path": "modules/nf-core/gatk4/calibratedragstrmodel/meta.yml",
-      "tree_sha": "6b44522b12df14c62aa4d0ccec9533084ffd8135",
+      "tree_sha": "638e567feb77c65436846ed04105138eea8c3c87",
       "files": [
         "modules/nf-core/gatk4/calibratedragstrmodel/environment.yml",
         "modules/nf-core/gatk4/calibratedragstrmodel/main.nf",
@@ -136552,12 +136709,12 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83"
     },
     {
       "name": "gatk4_cleansam",
       "path": "modules/nf-core/gatk4/cleansam/meta.yml",
-      "tree_sha": "d7f66417c4f1e1fc6359fff19c817a5b625a479c",
+      "tree_sha": "e025947cafaf2f3228304dd8d535a7a324aaa9fc",
       "files": [
         "modules/nf-core/gatk4/cleansam/environment.yml",
         "modules/nf-core/gatk4/cleansam/main.nf",
@@ -136766,7 +136923,7 @@
           "@sofiademmou"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "pathogenepidemiology",
@@ -136999,7 +137156,7 @@
     {
       "name": "gatk4_collectreadcounts",
       "path": "modules/nf-core/gatk4/collectreadcounts/meta.yml",
-      "tree_sha": "22aa2da6d6b65e2429e51ded84c9f6f6d89193d2",
+      "tree_sha": "8394d282a764164c954573fad79b2c1f5fb59deb",
       "files": [
         "modules/nf-core/gatk4/collectreadcounts/environment.yml",
         "modules/nf-core/gatk4/collectreadcounts/main.nf",
@@ -137212,7 +137369,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -137227,7 +137384,7 @@
     {
       "name": "gatk4_collectsvevidence",
       "path": "modules/nf-core/gatk4/collectsvevidence/meta.yml",
-      "tree_sha": "e1dcbb06a4a177e6257185531c5344158bada540",
+      "tree_sha": "6ad21de2df91aa4b82b842fbbb2cb2c0de7e5ab4",
       "files": [
         "modules/nf-core/gatk4/collectsvevidence/environment.yml",
         "modules/nf-core/gatk4/collectsvevidence/main.nf",
@@ -137505,12 +137662,12 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83"
     },
     {
       "name": "gatk4_combinegvcfs",
       "path": "modules/nf-core/gatk4/combinegvcfs/meta.yml",
-      "tree_sha": "bc99a5ab91df77bfd2dc80ec27ffe079158cb874",
+      "tree_sha": "18bfb6a27d9dcf0c1be6c48caa041c9e6b92be9e",
       "files": [
         "modules/nf-core/gatk4/combinegvcfs/environment.yml",
         "modules/nf-core/gatk4/combinegvcfs/main.nf",
@@ -137687,7 +137844,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "rnavar",
@@ -137698,7 +137855,7 @@
     {
       "name": "gatk4_composestrtablefile",
       "path": "modules/nf-core/gatk4/composestrtablefile/meta.yml",
-      "tree_sha": "6c8af7479ef75611f1f0ec4c19b12198e3f31c8a",
+      "tree_sha": "e54b27cf8f84a37fecdc79a8b1bc30cc28db47d8",
       "files": [
         "modules/nf-core/gatk4/composestrtablefile/environment.yml",
         "modules/nf-core/gatk4/composestrtablefile/main.nf",
@@ -137824,12 +137981,12 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83"
     },
     {
       "name": "gatk4_concordance",
       "path": "modules/nf-core/gatk4/concordance/meta.yml",
-      "tree_sha": "1c59441d61c1f2ce90f57af3439ad96729b060ed",
+      "tree_sha": "21f7028b95a5b10d00b8203b486ec494c678ec94",
       "files": [
         "modules/nf-core/gatk4/concordance/environment.yml",
         "modules/nf-core/gatk4/concordance/main.nf",
@@ -138131,7 +138288,7 @@
           "@kubranarci"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "variantbenchmarking",
@@ -138142,7 +138299,7 @@
     {
       "name": "gatk4_condensedepthevidence",
       "path": "modules/nf-core/gatk4/condensedepthevidence/meta.yml",
-      "tree_sha": "d3ed0d3b105e6e5212b3075c3be4b8b39e6d507e",
+      "tree_sha": "8beb6f7c1cb41389ef0d128064301152923142b1",
       "files": [
         "modules/nf-core/gatk4/condensedepthevidence/environment.yml",
         "modules/nf-core/gatk4/condensedepthevidence/main.nf",
@@ -138322,12 +138479,12 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83"
     },
     {
       "name": "gatk4_createreadcountpanelofnormals",
       "path": "modules/nf-core/gatk4/createreadcountpanelofnormals/meta.yml",
-      "tree_sha": "9a8415ef1935fea1b4327fc82648f05cd575a4e1",
+      "tree_sha": "54c73a2d69bb9f89f919d27b5ca8ab82f93a6d66",
       "files": [
         "modules/nf-core/gatk4/createreadcountpanelofnormals/environment.yml",
         "modules/nf-core/gatk4/createreadcountpanelofnormals/main.nf",
@@ -138455,7 +138612,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -138466,7 +138623,7 @@
     {
       "name": "gatk4_createsequencedictionary",
       "path": "modules/nf-core/gatk4/createsequencedictionary/meta.yml",
-      "tree_sha": "a21e8f42179e6002d44607c62f97de72ace4f6df",
+      "tree_sha": "fe4b9b51aa6b34d3e9f29f43f9a80e15b15a7e1b",
       "files": [
         "modules/nf-core/gatk4/createsequencedictionary/environment.yml",
         "modules/nf-core/gatk4/createsequencedictionary/main.nf",
@@ -138593,7 +138750,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -138644,7 +138801,7 @@
     {
       "name": "gatk4_createsomaticpanelofnormals",
       "path": "modules/nf-core/gatk4/createsomaticpanelofnormals/meta.yml",
-      "tree_sha": "95e4d4e1eccbcf3cf2d9deed7d80e9509e845b97",
+      "tree_sha": "98dc5154343b4dad489b8af5f0359535ae44c771",
       "files": [
         "modules/nf-core/gatk4/createsomaticpanelofnormals/environment.yml",
         "modules/nf-core/gatk4/createsomaticpanelofnormals/main.nf",
@@ -138832,7 +138989,7 @@
           "@GCJMackenzie"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -138843,7 +139000,7 @@
     {
       "name": "gatk4_denoisereadcounts",
       "path": "modules/nf-core/gatk4/denoisereadcounts/meta.yml",
-      "tree_sha": "e932bea000af85969aff0cc6e39df0c01efe8b71",
+      "tree_sha": "77b96e37506f120c25bffe0370961205e374e383",
       "files": [
         "modules/nf-core/gatk4/denoisereadcounts/environment.yml",
         "modules/nf-core/gatk4/denoisereadcounts/main.nf",
@@ -139013,7 +139170,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "raredisease",
@@ -139024,7 +139181,7 @@
     {
       "name": "gatk4_determinegermlinecontigploidy",
       "path": "modules/nf-core/gatk4/determinegermlinecontigploidy/meta.yml",
-      "tree_sha": "e02776bd3bfb1c39354133d1ef2e32ae72f2720b",
+      "tree_sha": "f7919ad6e18ad5c935477f55e7bf3009333bfd0a",
       "files": [
         "modules/nf-core/gatk4/determinegermlinecontigploidy/environment.yml",
         "modules/nf-core/gatk4/determinegermlinecontigploidy/main.nf",
@@ -139210,7 +139367,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -139225,7 +139382,7 @@
     {
       "name": "gatk4_estimatelibrarycomplexity",
       "path": "modules/nf-core/gatk4/estimatelibrarycomplexity/meta.yml",
-      "tree_sha": "9fe2d92a09dcc977a16dbae8a41f824281f97230",
+      "tree_sha": "febd9b7ce2ea6d7491e6ba9c43c633b09faeb46d",
       "files": [
         "modules/nf-core/gatk4/estimatelibrarycomplexity/environment.yml",
         "modules/nf-core/gatk4/estimatelibrarycomplexity/main.nf",
@@ -139375,7 +139532,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "sarek",
@@ -139386,7 +139543,7 @@
     {
       "name": "gatk4_fastqtosam",
       "path": "modules/nf-core/gatk4/fastqtosam/meta.yml",
-      "tree_sha": "c5fd7dc791d9ea9bebd6bb0dc64585ff8abc09ff",
+      "tree_sha": "1f1c000ecfaa27c9e0024d354194848486caf26c",
       "files": [
         "modules/nf-core/gatk4/fastqtosam/environment.yml",
         "modules/nf-core/gatk4/fastqtosam/main.nf",
@@ -139514,12 +139671,12 @@
           "@ntoda03"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83"
     },
     {
       "name": "gatk4_filterintervals",
       "path": "modules/nf-core/gatk4/filterintervals/meta.yml",
-      "tree_sha": "8b62363b963c9169727dea7856f3f102babae7be",
+      "tree_sha": "ed2ef2439f5058ee3be03cf5f2d809ff6f8f9e07",
       "files": [
         "modules/nf-core/gatk4/filterintervals/environment.yml",
         "modules/nf-core/gatk4/filterintervals/main.nf",
@@ -139684,7 +139841,7 @@
           "@ViktorHy"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -139695,7 +139852,7 @@
     {
       "name": "gatk4_filtermutectcalls",
       "path": "modules/nf-core/gatk4/filtermutectcalls/meta.yml",
-      "tree_sha": "26f83860ed12bed591a447a2e26698da2a03d507",
+      "tree_sha": "46e4943b0283e8d6c7f7f6232b95b1402fb6f9e0",
       "files": [
         "modules/nf-core/gatk4/filtermutectcalls/environment.yml",
         "modules/nf-core/gatk4/filtermutectcalls/main.nf",
@@ -139985,7 +140142,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "raredisease",
@@ -140008,7 +140165,7 @@
     {
       "name": "gatk4_filtervarianttranches",
       "path": "modules/nf-core/gatk4/filtervarianttranches/meta.yml",
-      "tree_sha": "f792993a2382d68365ccc445c2feb2750b183d33",
+      "tree_sha": "948d0583d193c4e23aa9112148045070385ceb98",
       "files": [
         "modules/nf-core/gatk4/filtervarianttranches/environment.yml",
         "modules/nf-core/gatk4/filtervarianttranches/main.nf",
@@ -140210,7 +140367,7 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "sarek",
@@ -140221,7 +140378,7 @@
     {
       "name": "gatk4_gatherbqsrreports",
       "path": "modules/nf-core/gatk4/gatherbqsrreports/meta.yml",
-      "tree_sha": "f564bd4fbfc64929d68fae45e894fd5bc0e31850",
+      "tree_sha": "e409f73248455288e46c8b8a527e299998951f01",
       "files": [
         "modules/nf-core/gatk4/gatherbqsrreports/environment.yml",
         "modules/nf-core/gatk4/gatherbqsrreports/main.nf",
@@ -140345,7 +140502,7 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -140364,7 +140521,7 @@
     {
       "name": "gatk4_gatherpileupsummaries",
       "path": "modules/nf-core/gatk4/gatherpileupsummaries/meta.yml",
-      "tree_sha": "f9d6bf1d80e13796aa79c089510aac568fc9da7e",
+      "tree_sha": "599c5e2d5764aae366ae02d3bf3b518e71c20448",
       "files": [
         "modules/nf-core/gatk4/gatherpileupsummaries/environment.yml",
         "modules/nf-core/gatk4/gatherpileupsummaries/main.nf",
@@ -140497,7 +140654,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "rnadnavar",
@@ -140512,7 +140669,7 @@
     {
       "name": "gatk4_genomicsdbimport",
       "path": "modules/nf-core/gatk4/genomicsdbimport/meta.yml",
-      "tree_sha": "81fb53db4981508e63acdd7b04c026282038f9f4",
+      "tree_sha": "95411df7e0a13973ab38a87a14a5d64aad3377b9",
       "files": [
         "modules/nf-core/gatk4/genomicsdbimport/environment.yml",
         "modules/nf-core/gatk4/genomicsdbimport/main.nf",
@@ -140718,7 +140875,7 @@
           "@GCJMackenzie"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -140741,7 +140898,7 @@
     {
       "name": "gatk4_genotypegvcfs",
       "path": "modules/nf-core/gatk4/genotypegvcfs/meta.yml",
-      "tree_sha": "bceeebd56bf63d7544d278b9d41ce45e9c5c2c31",
+      "tree_sha": "fb56b4c0f908dcbd46b4126e70d8293d5ea7102b",
       "files": [
         "modules/nf-core/gatk4/genotypegvcfs/environment.yml",
         "modules/nf-core/gatk4/genotypegvcfs/main.nf",
@@ -140999,7 +141156,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -141018,7 +141175,7 @@
     {
       "name": "gatk4_germlinecnvcaller",
       "path": "modules/nf-core/gatk4/germlinecnvcaller/meta.yml",
-      "tree_sha": "96612c548c650f0491b5bcddf3c80224ec3b2b9d",
+      "tree_sha": "ce03250710382a7a7b372b438dc81dc701e7f1be",
       "files": [
         "modules/nf-core/gatk4/germlinecnvcaller/environment.yml",
         "modules/nf-core/gatk4/germlinecnvcaller/main.nf",
@@ -141202,7 +141359,7 @@
           "@ViktorHy"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -141217,7 +141374,7 @@
     {
       "name": "gatk4_getpileupsummaries",
       "path": "modules/nf-core/gatk4/getpileupsummaries/meta.yml",
-      "tree_sha": "8afa07a284748117db50fc2afd2f0b34a83a6462",
+      "tree_sha": "7d1a369a5c228e8d9a7d9e5c703d47cde6df5e1a",
       "files": [
         "modules/nf-core/gatk4/getpileupsummaries/environment.yml",
         "modules/nf-core/gatk4/getpileupsummaries/main.nf",
@@ -141424,7 +141581,7 @@
           "@GCJMackenzie"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "rnadnavar",
@@ -141439,7 +141596,7 @@
     {
       "name": "gatk4_haplotypecaller",
       "path": "modules/nf-core/gatk4/haplotypecaller/meta.yml",
-      "tree_sha": "1290b55d891801638831e4ea382a35c2e4c40028",
+      "tree_sha": "3d50f7b49c6b4205d4b62f16b6b450fb798540fa",
       "files": [
         "modules/nf-core/gatk4/haplotypecaller/environment.yml",
         "modules/nf-core/gatk4/haplotypecaller/main.nf",
@@ -141704,7 +141861,7 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -141731,7 +141888,7 @@
     {
       "name": "gatk4_indexfeaturefile",
       "path": "modules/nf-core/gatk4/indexfeaturefile/meta.yml",
-      "tree_sha": "1568d7e5458ec41de441ebc8962f896b24f62d28",
+      "tree_sha": "0b8f0e730897f84f68b4fe004540c2935e20ca79",
       "files": [
         "modules/nf-core/gatk4/indexfeaturefile/environment.yml",
         "modules/nf-core/gatk4/indexfeaturefile/main.nf",
@@ -141855,7 +142012,7 @@
           "@santiagorevale"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -141874,7 +142031,7 @@
     {
       "name": "gatk4_intervallisttobed",
       "path": "modules/nf-core/gatk4/intervallisttobed/meta.yml",
-      "tree_sha": "ba325f2118db56040076be4634b1c6aa7bdf2525",
+      "tree_sha": "1972b68dd02c0805df5e6c2f292ad8cf7a71adc8",
       "files": [
         "modules/nf-core/gatk4/intervallisttobed/environment.yml",
         "modules/nf-core/gatk4/intervallisttobed/main.nf",
@@ -141996,7 +142153,7 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "rnadnavar",
@@ -142011,7 +142168,7 @@
     {
       "name": "gatk4_intervallisttools",
       "path": "modules/nf-core/gatk4/intervallisttools/meta.yml",
-      "tree_sha": "f4091a12fd5946363aa29d52b6c54c5d9f95003b",
+      "tree_sha": "5377818e40fb4d7a75040eb87dc4a021d7a3be28",
       "files": [
         "modules/nf-core/gatk4/intervallisttools/environment.yml",
         "modules/nf-core/gatk4/intervallisttools/main.nf",
@@ -142134,7 +142291,7 @@
           "@praveenraj2018"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -142153,7 +142310,7 @@
     {
       "name": "gatk4_learnreadorientationmodel",
       "path": "modules/nf-core/gatk4/learnreadorientationmodel/meta.yml",
-      "tree_sha": "825050ca6749b00f40a6d13a0f45c9e7d1d5beb3",
+      "tree_sha": "fbb47d3aa6c373a850dd7463e11a96ad48418f87",
       "files": [
         "modules/nf-core/gatk4/learnreadorientationmodel/environment.yml",
         "modules/nf-core/gatk4/learnreadorientationmodel/main.nf",
@@ -142286,7 +142443,7 @@
           "@GCJMackenzie"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "rnadnavar",
@@ -142301,7 +142458,7 @@
     {
       "name": "gatk4_leftalignandtrimvariants",
       "path": "modules/nf-core/gatk4/leftalignandtrimvariants/meta.yml",
-      "tree_sha": "f25d0008bf636586919b685430103e4b7071ee0f",
+      "tree_sha": "b214762f72b857321f014fbc0a3fd5c5c21863ea",
       "files": [
         "modules/nf-core/gatk4/leftalignandtrimvariants/environment.yml",
         "modules/nf-core/gatk4/leftalignandtrimvariants/main.nf",
@@ -142481,7 +142638,7 @@
           "@adamrtalbot"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "variantcatalogue",
@@ -142492,7 +142649,7 @@
     {
       "name": "gatk4_markduplicates",
       "path": "modules/nf-core/gatk4/markduplicates/meta.yml",
-      "tree_sha": "4b43e1f139c69a258b58c2a02bad945e46c3a806",
+      "tree_sha": "8d9895d122894a4f63cce1a52b88252c76e192c0",
       "files": [
         "modules/nf-core/gatk4/markduplicates/environment.yml",
         "modules/nf-core/gatk4/markduplicates/main.nf",
@@ -142752,7 +142909,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -142791,7 +142948,7 @@
     {
       "name": "gatk4_mergebamalignment",
       "path": "modules/nf-core/gatk4/mergebamalignment/meta.yml",
-      "tree_sha": "37c56fcf8033815040b3469cdf857700206f0fd3",
+      "tree_sha": "95baa59d112c73c300122df65ef0f761a8f7fdc7",
       "files": [
         "modules/nf-core/gatk4/mergebamalignment/environment.yml",
         "modules/nf-core/gatk4/mergebamalignment/main.nf",
@@ -142957,7 +143114,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "raredisease",
@@ -142968,7 +143125,7 @@
     {
       "name": "gatk4_mergemutectstats",
       "path": "modules/nf-core/gatk4/mergemutectstats/meta.yml",
-      "tree_sha": "7fa2e9ef8fa2d8059c8046fc145a79c1742c350c",
+      "tree_sha": "23ec83d10c6e2755f82ee9aa84f2e6ab2648e872",
       "files": [
         "modules/nf-core/gatk4/mergemutectstats/environment.yml",
         "modules/nf-core/gatk4/mergemutectstats/main.nf",
@@ -143092,7 +143249,7 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -143115,7 +143272,7 @@
     {
       "name": "gatk4_mergevcfs",
       "path": "modules/nf-core/gatk4/mergevcfs/meta.yml",
-      "tree_sha": "43582e15e8f146dec070a6063e5be88381c46b56",
+      "tree_sha": "c3994e58fb008d70525da9761edea317bc533480",
       "files": [
         "modules/nf-core/gatk4/mergevcfs/environment.yml",
         "modules/nf-core/gatk4/mergevcfs/main.nf",
@@ -143286,7 +143443,7 @@
           "@kevinmenden"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -143321,7 +143478,7 @@
     {
       "name": "gatk4_modelsegments",
       "path": "modules/nf-core/gatk4/modelsegments/meta.yml",
-      "tree_sha": "faad96cf5d221b2104856403ac2faaafe5d80614",
+      "tree_sha": "c4e15b6ac0eb851858d0632163a2f15fb4e5e1bf",
       "files": [
         "modules/nf-core/gatk4/modelsegments/environment.yml",
         "modules/nf-core/gatk4/modelsegments/main.nf",
@@ -143445,12 +143602,12 @@
           "@lbeltrame"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83"
     },
     {
       "name": "gatk4_mutect2",
       "path": "modules/nf-core/gatk4/mutect2/meta.yml",
-      "tree_sha": "e7c66dfb21974f44324abefd26282f4952f62d47",
+      "tree_sha": "99a68a22fdba34554def6ad1ddccb730a40e448a",
       "files": [
         "modules/nf-core/gatk4/mutect2/environment.yml",
         "modules/nf-core/gatk4/mutect2/main.nf",
@@ -143770,7 +143927,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -143992,7 +144149,7 @@
     {
       "name": "gatk4_preprocessintervals",
       "path": "modules/nf-core/gatk4/preprocessintervals/meta.yml",
-      "tree_sha": "aed05c24846f46e7555ecbe7db5ba381cce7adc9",
+      "tree_sha": "37c55315d7d6774d64f17f05202d19f6cad01b5a",
       "files": [
         "modules/nf-core/gatk4/preprocessintervals/environment.yml",
         "modules/nf-core/gatk4/preprocessintervals/main.nf",
@@ -144184,7 +144341,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -144195,7 +144352,7 @@
     {
       "name": "gatk4_printreads",
       "path": "modules/nf-core/gatk4/printreads/meta.yml",
-      "tree_sha": "153f8ae5a149e6da0d9ae75ade46bc7bdb79c068",
+      "tree_sha": "b229b1ec5cb427e6f49996c8fa78b22e85a45dea",
       "files": [
         "modules/nf-core/gatk4/printreads/environment.yml",
         "modules/nf-core/gatk4/printreads/main.nf",
@@ -144411,7 +144568,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "raredisease",
@@ -144426,7 +144583,7 @@
     {
       "name": "gatk4_printsvevidence",
       "path": "modules/nf-core/gatk4/printsvevidence/meta.yml",
-      "tree_sha": "1aafbc011e5cf70914bbe2ecb4b4354d9cbd8c28",
+      "tree_sha": "bd0b4447fe77f3e6a940bb75cca6085795e9ab1a",
       "files": [
         "modules/nf-core/gatk4/printsvevidence/environment.yml",
         "modules/nf-core/gatk4/printsvevidence/main.nf",
@@ -144607,12 +144764,12 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83"
     },
     {
       "name": "gatk4_reblockgvcf",
       "path": "modules/nf-core/gatk4/reblockgvcf/meta.yml",
-      "tree_sha": "d73e9a90e933d655f7b936338725531fcb72f4f1",
+      "tree_sha": "5d2820f4375bc85f31f8f1351fa1dce5144ed8a7",
       "files": [
         "modules/nf-core/gatk4/reblockgvcf/environment.yml",
         "modules/nf-core/gatk4/reblockgvcf/main.nf",
@@ -144799,12 +144956,12 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83"
     },
     {
       "name": "gatk4_revertsam",
       "path": "modules/nf-core/gatk4/revertsam/meta.yml",
-      "tree_sha": "705a4db74cbd1f3ddbac2d17000e0a535686c71d",
+      "tree_sha": "a911a7e43dc491aabd739378a7cfa63c84491ddb",
       "files": [
         "modules/nf-core/gatk4/revertsam/environment.yml",
         "modules/nf-core/gatk4/revertsam/main.nf",
@@ -144928,7 +145085,7 @@
           "@kevinmenden"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "raredisease",
@@ -144939,7 +145096,7 @@
     {
       "name": "gatk4_samtofastq",
       "path": "modules/nf-core/gatk4/samtofastq/meta.yml",
-      "tree_sha": "9ef7f2de976c3e3c348b374396606564a9f1c4ad",
+      "tree_sha": "01bd30667e9b83c8c1bfa8cdf188c90ab1196924",
       "files": [
         "modules/nf-core/gatk4/samtofastq/environment.yml",
         "modules/nf-core/gatk4/samtofastq/main.nf",
@@ -145065,7 +145222,7 @@
           "@kevinmenden"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "raredisease",
@@ -145080,7 +145237,7 @@
     {
       "name": "gatk4_selectvariants",
       "path": "modules/nf-core/gatk4/selectvariants/meta.yml",
-      "tree_sha": "6ec56bb07ef9d340be08e2f1c64c7e0ebfd9471d",
+      "tree_sha": "ab23f31353ccb3d653106e4ee671b870daa2f5b1",
       "files": [
         "modules/nf-core/gatk4/selectvariants/environment.yml",
         "modules/nf-core/gatk4/selectvariants/main.nf",
@@ -145241,7 +145398,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -145260,7 +145417,7 @@
     {
       "name": "gatk4_shiftfasta",
       "path": "modules/nf-core/gatk4/shiftfasta/meta.yml",
-      "tree_sha": "cbf654fbe9b39ecda3dc410a588e4358853b847f",
+      "tree_sha": "e10f6057b355c98aec61029cb6d711cdf5a898ea",
       "files": [
         "modules/nf-core/gatk4/shiftfasta/environment.yml",
         "modules/nf-core/gatk4/shiftfasta/main.nf",
@@ -145508,7 +145665,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "raredisease",
@@ -145519,7 +145676,7 @@
     {
       "name": "gatk4_sitedepthtobaf",
       "path": "modules/nf-core/gatk4/sitedepthtobaf/meta.yml",
-      "tree_sha": "6467ea7d0cc3a48ca91f8d027bff3d1ff98e2677",
+      "tree_sha": "e4c2a563a2d8ec8574329c990adc3936c9fe3e87",
       "files": [
         "modules/nf-core/gatk4/sitedepthtobaf/environment.yml",
         "modules/nf-core/gatk4/sitedepthtobaf/main.nf",
@@ -145723,12 +145880,12 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83"
     },
     {
       "name": "gatk4_splitcram",
       "path": "modules/nf-core/gatk4/splitcram/meta.yml",
-      "tree_sha": "550a47c3e1cc39fc06e62aeae2ff848723ceaf02",
+      "tree_sha": "8bae0ca762e0a9820b64aed98c6a43e2d4b874d2",
       "files": [
         "modules/nf-core/gatk4/splitcram/environment.yml",
         "modules/nf-core/gatk4/splitcram/main.nf",
@@ -145852,12 +146009,12 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83"
     },
     {
       "name": "gatk4_splitintervals",
       "path": "modules/nf-core/gatk4/splitintervals/meta.yml",
-      "tree_sha": "df50f3a09f31939e15356ca11dd21e3e4e1fd5fe",
+      "tree_sha": "00bb6d472ec78dc2c1ee033552d5a49f332ecc3b",
       "files": [
         "modules/nf-core/gatk4/splitintervals/environment.yml",
         "modules/nf-core/gatk4/splitintervals/main.nf",
@@ -146031,7 +146188,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -146046,7 +146203,7 @@
     {
       "name": "gatk4_splitncigarreads",
       "path": "modules/nf-core/gatk4/splitncigarreads/meta.yml",
-      "tree_sha": "53c607359ee033518e82edfcf77a575a4c80c1f0",
+      "tree_sha": "bcfad5241e9ca6e35a0dc247b3466a27c5e8b93b",
       "files": [
         "modules/nf-core/gatk4/splitncigarreads/environment.yml",
         "modules/nf-core/gatk4/splitncigarreads/main.nf",
@@ -146231,7 +146388,7 @@
           "@kevinmenden"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "rnadnavar",
@@ -146246,7 +146403,7 @@
     {
       "name": "gatk4_svannotate",
       "path": "modules/nf-core/gatk4/svannotate/meta.yml",
-      "tree_sha": "764160034982dacdc56760a2046f23473189b807",
+      "tree_sha": "6bd117be867da716f9d0070921ef13c04cec2083",
       "files": [
         "modules/nf-core/gatk4/svannotate/environment.yml",
         "modules/nf-core/gatk4/svannotate/main.nf",
@@ -146485,12 +146642,12 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83"
     },
     {
       "name": "gatk4_svcluster",
       "path": "modules/nf-core/gatk4/svcluster/meta.yml",
-      "tree_sha": "d0bccb3d0fa68ec02235e77829777a6fb2ef8434",
+      "tree_sha": "036a3f0541f948a20b7048be5cdb6bfbaed0afe8",
       "files": [
         "modules/nf-core/gatk4/svcluster/environment.yml",
         "modules/nf-core/gatk4/svcluster/main.nf",
@@ -146683,12 +146840,12 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5"
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83"
     },
     {
       "name": "gatk4_unmarkduplicates",
       "path": "modules/nf-core/gatk4/unmarkduplicates/meta.yml",
-      "tree_sha": "bacb43010fb4cca4fafaeebfd91584046c553f1a",
+      "tree_sha": "131c4ef01b3e95229c76d6507c99468fddda18eb",
       "files": [
         "modules/nf-core/gatk4/unmarkduplicates/environment.yml",
         "modules/nf-core/gatk4/unmarkduplicates/main.nf",
@@ -146834,12 +146991,12 @@
           "@mikefeixu"
         ]
       },
-      "git_sha": "23cc7f9a23084488947f9f3311cfb0b868bdc203"
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83"
     },
     {
       "name": "gatk4_variantfiltration",
       "path": "modules/nf-core/gatk4/variantfiltration/meta.yml",
-      "tree_sha": "0c6f7f46eaeb21b17c438b7e7a4106b1a5b8698d",
+      "tree_sha": "524bfbd664320532387bef4d71739fb916a97884",
       "files": [
         "modules/nf-core/gatk4/variantfiltration/environment.yml",
         "modules/nf-core/gatk4/variantfiltration/main.nf",
@@ -147068,7 +147225,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -147099,7 +147256,7 @@
     {
       "name": "gatk4_variantrecalibrator",
       "path": "modules/nf-core/gatk4/variantrecalibrator/meta.yml",
-      "tree_sha": "216fc2c2ccbca21979e9a8173b675a7e0a9d8004",
+      "tree_sha": "e9f9aed0767f4a1ad315819548c3a875f8b80110",
       "files": [
         "modules/nf-core/gatk4/variantrecalibrator/environment.yml",
         "modules/nf-core/gatk4/variantrecalibrator/main.nf",
@@ -147350,7 +147507,7 @@
           "@nickhsmith"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "pathogenepidemiology",
@@ -147373,7 +147530,7 @@
     {
       "name": "gatk4_variantstotable",
       "path": "modules/nf-core/gatk4/variantstotable/meta.yml",
-      "tree_sha": "abb94f697d2af565ab862a82d0ca4a187de4e28e",
+      "tree_sha": "dec2959c8a629db168758530f858f9f509870dbb",
       "files": [
         "modules/nf-core/gatk4/variantstotable/environment.yml",
         "modules/nf-core/gatk4/variantstotable/main.nf",
@@ -147587,7 +147744,7 @@
           "@lindenb"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "tbanalyzer",
@@ -168149,7 +168306,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "proteinfold",
@@ -172681,7 +172838,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -178854,7 +179011,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -179216,7 +179373,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "taxmarker",
@@ -179394,7 +179551,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -180450,7 +180607,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -212609,7 +212766,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "viralmetagenome",
@@ -227982,7 +228139,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -234266,7 +234423,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "viralmetagenome",
@@ -234414,7 +234571,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "viralmetagenome",
@@ -234887,7 +235044,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "viralmetagenome",
@@ -235488,7 +235645,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "viralmetagenome",
@@ -241680,7 +241837,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "proteinfold",
@@ -283244,6 +283401,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -283551,6 +283712,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -348873,7 +349038,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "seqinspector",
@@ -349919,7 +350084,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "riboseq",
@@ -350097,7 +350262,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -350551,7 +350716,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -401313,7 +401478,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "proteinfold",
@@ -409369,6 +409534,343 @@
         ]
       },
       "git_sha": "765d520d9098f8bc49173d2d7b4c47fcc0268289"
+    },
+    {
+      "name": "vepyr_annotate",
+      "path": "modules/nf-core/vepyr/annotate/meta.yml",
+      "tree_sha": "742bbaa469386e11d74f54f9b6541b6be1ba3342",
+      "files": [
+        "modules/nf-core/vepyr/annotate/.conda-lock/linux_amd64-bd-408f2021357958aa_1.txt",
+        "modules/nf-core/vepyr/annotate/.conda-lock/linux_arm64-bd-ebb29e9a21ff05c9_1.txt",
+        "modules/nf-core/vepyr/annotate/environment.yml",
+        "modules/nf-core/vepyr/annotate/main.nf",
+        "modules/nf-core/vepyr/annotate/meta.yml",
+        "modules/nf-core/vepyr/annotate/tests/main.nf.test",
+        "modules/nf-core/vepyr/annotate/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "vepyr_annotate",
+        "description": "Annotate a VCF with Ensembl VEP consequences using vepyr, a Rust reimplementation of the Variant Effect Predictor. Annotation features are controlled through `task.ext.args`.",
+        "keywords": [
+          "annotation",
+          "vcf",
+          "variant",
+          "vep"
+        ],
+        "tools": [
+          {
+            "vepyr": {
+              "description": "vepyr (VEP Yielding Performant Results) is a Python interface to a Rust\nreimplementation of Ensembl's Variant Effect Predictor, built on Apache\nArrow and DataFusion. It annotates variants against a Parquet cache\nconverted from an Ensembl VEP offline cache.\n",
+              "homepage": "https://biodatageeks.org/vepyr/",
+              "documentation": "https://biodatageeks.org/vepyr/cli/",
+              "tool_dev_url": "https://github.com/biodatageeks/vepyr",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": ""
+            }
+          },
+          {
+            "tabix": {
+              "description": "Generic indexer for TAB-delimited genome position files.",
+              "homepage": "https://www.htslib.org/doc/tabix.html",
+              "documentation": "https://www.htslib.org/doc/tabix.html",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "VCF to annotate",
+                "pattern": "*.{vcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            },
+            {
+              "tbi": {
+                "type": "file",
+                "description": "tabix/CSI index of the input VCF (optional). Built with tabix when\nabsent from a bgzipped input; a plain `.vcf` runs a single pipeline.\n",
+                "pattern": "*.{tbi,csi}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3616"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing cache information\ne.g. [ id:'116_GRCh38_ensembl' ]\n"
+              }
+            },
+            {
+              "cache": {
+                "type": "directory",
+                "description": "Parquet cache directory produced by vepyr's cache build"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'GRCh38' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "reference FASTA. Required: vepyr always annotates with\n`--everything`, which needs it.\n",
+                "pattern": "*.{fasta,fa,fasta.gz,fa.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "samtools/faidx index of the reference FASTA. Required: vepyr opens\nthe reference through its index and does not build one.\n",
+                "pattern": "*.fai",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "gzi": {
+                "type": "file",
+                "description": "bgzip index of the reference FASTA (optional). Required when the\nFASTA is bgzip-compressed: vepyr cannot open it without the `.gzi`.\nPass `[]` for an uncompressed FASTA.\n",
+                "pattern": "*.gzi",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3326"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "cache_version": {
+              "type": "integer",
+              "description": "Ensembl cache version to assert against the cache metadata (optional)\n"
+            }
+          },
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing plugin cache information\ne.g. [ id:'plugin_cache_v0.1.1' ]\n"
+              }
+            },
+            {
+              "plugin_cache": {
+                "type": "directory",
+                "description": "root of a vepyr plugin cache tree holding plugin/<name>/ directories\n(optional)\n"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n"
+                }
+              },
+              {
+                "${prefix}.vcf.gz": {
+                  "type": "file",
+                  "description": "annotated VCF",
+                  "pattern": "*.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tbi": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n"
+                }
+              },
+              {
+                "${prefix}.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "tabix index of the annotated VCF",
+                  "pattern": "*.vcf.gz.tbi",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3616"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_vepyr": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process"
+                }
+              },
+              {
+                "vepyr": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "vepyr --version | cut -d' ' -f2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_tabix": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process"
+                }
+              },
+              {
+                "tabix": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "tabix -h 2>&1 | grep -oP 'Version:\\s*\\K[^\\s]+'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process"
+                }
+              },
+              {
+                "vepyr": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "vepyr --version | cut -d' ' -f2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process"
+                }
+              },
+              {
+                "tabix": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "tabix -h 2>&1 | grep -oP 'Version:\\s*\\K[^\\s]+'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@mwiewior"
+        ],
+        "maintainers": [
+          "@mwiewior"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_vepyr:408f2021357958aa",
+              "build_id": "bd-408f2021357958aa_1",
+              "scan_id": "sc-11eca31149c24174_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_vepyr:ebb29e9a21ff05c9",
+              "build_id": "bd-ebb29e9a21ff05c9_1",
+              "scan_id": "sc-1f6bd919679e30b4_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_vepyr:5f4d3201731219a4",
+              "build_id": "bd-5f4d3201731219a4_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/bb/bbf0f7f5a0c6b6586735b7636b219e3b788b9c9c1a86994b776556c63892fb4b/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_vepyr:76a3378692bb013e",
+              "build_id": "bd-76a3378692bb013e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/77/7737675bdbd1f3f0bf0093c28e38b80a854a04d242613b42313cb08a4d644bda/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/vepyr/annotate/.conda-lock/linux_amd64-bd-408f2021357958aa_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/vepyr/annotate/.conda-lock/linux_arm64-bd-ebb29e9a21ff05c9_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "34cb2d997fa3c684d12a8e48b6b21dff4271f605"
     },
     {
       "name": "verifybamid_verifybamid",
@@ -421480,7 +421982,7 @@
     {
       "name": "bam_create_som_pon_gatk",
       "path": "subworkflows/nf-core/bam_create_som_pon_gatk/meta.yml",
-      "tree_sha": "b0d9c4d3c7798e4c903a39cbdaef40fc7227fbcc",
+      "tree_sha": "dea62ac3d6c35aa76420e0714ade2d677e32109d",
       "files": [
         "subworkflows/nf-core/bam_create_som_pon_gatk/main.nf",
         "subworkflows/nf-core/bam_create_som_pon_gatk/meta.yml",
@@ -421605,7 +422107,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
+      "git_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -427159,7 +427661,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -434406,7 +434908,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "viralmetagenome",
@@ -436449,7 +436951,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "proteinfold",
@@ -436941,7 +437443,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "proteinfold",
@@ -437092,7 +437594,7 @@
     {
       "name": "utils_nfschema_plugin",
       "path": "subworkflows/nf-core/utils_nfschema_plugin/meta.yml",
-      "tree_sha": "ec2dc7683afe4271dc89d8d41d435f7afc97c415",
+      "tree_sha": "f3b641dfb9c1e124311eae9b8746b8e94cec3173",
       "files": [
         "subworkflows/nf-core/utils_nfschema_plugin/main.nf",
         "subworkflows/nf-core/utils_nfschema_plugin/meta.yml",
@@ -437189,7 +437691,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "a7b27fd25bfa8dcc07d299e88bd790585901a436",
+      "git_sha": "f6d4527ae18ee2e3276e6965ac64ee798e12d24b",
       "pipelines": [
         {
           "name": "abotyper",
@@ -437473,7 +437975,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "proteinfold",
@@ -439125,6 +439627,6 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
     }
   ],
-  "commit_sha": "b999e6262a72a758d1b038160d095386f5c59e7f",
-  "updated_at": "2026-10-01T02:24:00.724Z"
+  "commit_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
+  "updated_at": "2026-10-01T14:36:37.105Z"
 }
