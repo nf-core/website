@@ -11,8 +11,9 @@ export async function getStaticPaths() {
 
     events = await Promise.all(
         events.map(async (event) => {
-            event.data.subtitle = String(await markdown(event.data.subtitle));
-            return event;
+            // Copy rather than mutate: getCollection() returns cached entries shared across
+            // every page in the build, so mutating them leaks rendered HTML elsewhere (e.g. the newsletter).
+            return { ...event, data: { ...event.data, subtitle: String(await markdown(event.data.subtitle)) } };
         }),
     );
     // reduce events to unique event types
