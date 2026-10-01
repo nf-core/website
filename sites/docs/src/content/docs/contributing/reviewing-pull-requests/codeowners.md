@@ -42,7 +42,6 @@ Pipelines in nf-core use different levels of granularity.
 A single catch-all rule that assigns all files to the pipeline maintainers.
 This is the simplest and most common pattern:
 
-```github-actions
 # Maintainers
 * @maintainer1 @maintainer2
 ```
@@ -82,7 +81,7 @@ tests/pipeline/default/tool_b*.nf.test @tool-b-maintainer
 conf/test_tool_b.config @tool-b-maintainer
 ```
 
-Used by: [demultiplex](https://github.com/nf-core/demultiplex/blob/master/.github/CODEOWNERS), [rnafusion](https://github.com/nf-core/rnafusion/blob/master/.github/CODEOWNERS), [sarek](https://github.com/nf-core/sarek/blob/master/.github/CODEOWNERS).
+Used by: [demultiplex](https://github.com/nf-core/demultiplex/blob/daade37c4a75a4c1709ccf12434deb3424141319/.github/CODEOWNERS), [rnafusion](https://github.com/nf-core/rnafusion/blob/1c315381be24f5afb9a55464517a6bc522bf5071/.github/CODEOWNERS), [sarek](https://github.com/nf-core/sarek/blob/8ccac7ad37b05dd792447763bf9671b719824587/.github/CODEOWNERS).
 
 ## References
 
