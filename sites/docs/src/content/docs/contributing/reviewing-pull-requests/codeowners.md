@@ -13,25 +13,7 @@ CODEOWNERS is opt-in for nf-core pipelines.
 It is not required by the nf-core template, but pipelines are free to use it.
 :::
 
-## Pattern matching
-
-Each line is a file pattern followed by one or more GitHub usernames or team names.
-Patterns follow most of the same rules as [gitignore](https://git-scm.com/docs/gitignore#_pattern_format) files.
-
-- Order matters: the last matching pattern takes precedence.
-- `*` matches any file but not `/`.
-- `**` matches zero or more directories.
-- `/` at the end matches only files directly in that directory.
-- Paths are case sensitive.
-
-:::warning
-Some gitignore syntax rules do **not** work in CODEOWNERS:
-
-- Escaping a pattern starting with `#` using `\`
-- Using `!` to negate a pattern
-- Using `[ ]` to define a character range
-
-:::
+You can read more information about such files [here](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners).
 
 ## Common patterns in nf-core
 
