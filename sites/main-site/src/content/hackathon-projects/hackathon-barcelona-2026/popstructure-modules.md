@@ -42,7 +42,6 @@ Two design points we want to get right from the start:
 - **Scientific choices stay explicit.** The number of migration edges, root population, block size and random seed are exposed as inputs rather than hidden defaults, so analytical choices are recorded and reproducible.
 - **Species independence.** Non-standard chromosome sets (for example `--chr-set`) and population labels should work across organisms rather than assuming human chromosome conventions.
 
-We checked nf-core/modules for existing work: there is currently no TreeMix module, and no PLINK module for per-population allele frequencies (`--freq`), runs of homozygosity (`--homozyg`) or genetic distances (`--distance`), with no open issue or PR for these components at the time of proposal.
 
 ## Tasks
 
