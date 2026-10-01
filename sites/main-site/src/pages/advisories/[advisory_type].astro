@@ -10,7 +10,10 @@ export async function getStaticPaths() {
         advisories.map(async (advisory) => {
             // Copy rather than mutate: getCollection() returns cached entries shared across
             // every page in the build, so mutating them leaks rendered HTML elsewhere (e.g. the newsletter).
-            return { ...advisory, data: { ...advisory.data, subtitle: String(await markdown(advisory.data.subtitle)) } };
+            return {
+                ...advisory,
+                data: { ...advisory.data, subtitle: String(await markdown(advisory.data.subtitle)) },
+            };
         }),
     );
     // Get all unique advisory types from all advisories
