@@ -1,5 +1,5 @@
 ---
-title: Finalising nf-core/dartseq for its first stable release
+title: nf-core/dartseq - Finalise for its first stable release
 category: pipelines
 slack: https://nfcore.slack.com/archives/C0AU7NUHQHW
 location: Barcelona
