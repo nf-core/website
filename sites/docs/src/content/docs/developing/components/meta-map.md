@@ -31,12 +31,13 @@ A meta map sits in a tuple within a Nextflow channel object, next to the one or 
 
 nf-core developers may define and within a pipelines or local subworkflows any name for a meta map key, and record any metadata they require for the execution of the pipeline.
 
-nf-core only defines 2 'standard' meta map keys.
+nf-core defines only two 'standard' meta map keys and one additional permitted key.
 
-| key               | purpose                                                                                          |
-| ----------------- | ------------------------------------------------------------------------------------------------ |
-| `meta.id`         | recording unique file identifiers associated with a file (e.g. 'sample' names in bioinformatics) |
-| `meta.single_end` | genomic sequencing pipelines handling paired-end sequencing data.                                |
+| key                 | purpose                                                                                          |
+| ------------------- | ------------------------------------------------------------------------------------------------ |
+| `meta.id`           | recording unique file identifiers associated with a file (e.g. 'sample' names in bioinformatics) |
+| `meta.single_end`   | genomic sequencing pipelines handling paired-end sequencing data.                                |
+| `meta.strandedness` | RNA-seq and other stranded library protocols. Permitted in modules, but not a standard key.      |
 
 There are no other standard or required key names that nf-core developers need to use.
 
@@ -47,11 +48,16 @@ No other 'standard' meta keys will be officially defined in the future.
 This is to provide maximum flexibility to pipeline developers.
 :::
 
+:::warning
+New modules SHOULD NOT use `meta.strandedness` directly. Use `ext.args` in `modules.config` instead.
+The only exception is sibling modules of a tool that already uses the pattern (e.g., RNA-seq alignment tools in the same family).
+:::
+
 ## Usage in nf-core components
 
 ### Modules
 
-The two standard meta map keys (`id` and `single_end`) are the [only keys allowed](../../specifications/components/modules/general#types-of-meta-fields) to be explicitly referred to in an nf-core/module.
+The keys `id`, `single_end`, and `strandedness` are the [only keys allowed](../../specifications/components/modules/general#types-of-meta-fields) to be explicitly referred to in an nf-core/module.
 
 nf-core/modules refer to meta maps in process `input:` blocks via an entry within a tuple.
 
@@ -82,7 +88,7 @@ All other usage of meta map keys within a module must come via the `ext.args` va
 
 ### Subworkflows
 
-No meta maps keys are to be assumed to be present in input channels other than the standard [key names](#key-names), similarly to [modules](#modules).
+No meta maps keys are to be assumed to be present in input channels beyond the [permitted key names](#key-names), similarly to [modules](#modules).
 
 In contrast to modules, nf-core/subworkflows are allowed to generate new meta map keys, that can be optionally emitted at the end of the subworkflow.
 
