@@ -62,91 +62,85 @@ const sections: SidebarEntry[] = years.map((year) => {
 
         <div class="col">
             {blogPosts.length === 0 && <div class="">Nothing to see her yet! Come back soon</div>}
-            {
-                years.map((year) => (
-                    <div id={"year-" + year} class="d-flex align-items-stretch flex-wrap">
-                        {year !== new Date().getFullYear() && <h2 class="w-100 mb-0 mt-3">{year}</h2>}
-                        {blogPosts
-                            .filter((post) => new Date(post.data.pubDate).getFullYear() === year)
-                            .map((post) => (
-                                <div
-                                    class:list={[
-                                        "card m-xl-3 m-1 ",
-                                        new Date(Date.now()) > new Date(post.data.pubDate) &&
-                                        new Date(post.data.pubDate) > new Date(Date.now() - 2 * 24 * 60 * 60 * 1000)
-                                            ? "border-primary"
-                                            : "",
-                                    ]}
-                                >
-                                    <div class=" card-body p-0 position-relative">
-                                        <a
-                                            href={"/blog/" + post.id.replace(/\.[^/.]+$/, "")}
-                                            class:list={[
-                                                "post-badge text-decoration-none badge text-bg-primary fs-6 mb-0  rounded-top-0 w-25 m-auto position-absolute top-0 start-0 end-0",
-                                                new Date(Date.now()) > new Date(post.data.pubDate) &&
-                                                new Date(post.data.pubDate) >
-                                                    new Date(Date.now() - 2 * 24 * 60 * 60 * 1000)
-                                                    ? "d-block"
-                                                    : "d-none",
-                                            ]}
-                                        >
-                                            New post!
-                                        </a>
-                                        {post.data.headerImage && (
-                                            <Image
-                                                src={
-                                                    post.data.headerImage.startsWith("/assets/")
-                                                        ? images["../.." + post.data.headerImage]()
-                                                        : post.data.headerImage
-                                                }
-                                                class="card-img-top object-fit-cover"
-                                                alt={post.data.headerImageAlt || ""}
-                                                height={240}
-                                                width={512}
-                                            />
-                                        )}
-                                        <div class="card-text px-3 pt-2">
-                                            <h2>{post.data.title}</h2>
-                                            <p class="lead">
-                                                <Markdown of={post.data.subtitle} />
-                                            </p>
-                                            <p class="small">
-                                                {async () => {
-                                                    const { remarkPluginFrontmatter } = await render(post);
-                                                    return remarkPluginFrontmatter.excerpt;
-                                                }}
-                                            </p>
-                                            <a
-                                                href={"/blog/" + post.id.replace(/\.[^/.]+$/, "")}
-                                                class="stretched-link"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="card-footer d-flex justify-content-between">
-                                        <div class="me-auto authors w-100 d-flex">
-                                            {post.data.authors.map((author) => (
-                                                <GitHubProfilePictureExtended
-                                                    username={author}
-                                                    size={40}
-                                                    containerQuery={true}
-                                                />
-                                            ))}
-                                        </div>
-                                        <span class="text-body-secondary text-small text-end flex-grow-1 text-nowrap">
-                                            published on
-                                            <br />
-                                            {new Date(post.data.pubDate).toLocaleDateString("en-GB", {
-                                                year: "numeric",
-                                                month: "short",
-                                                day: "numeric",
-                                            })}
-                                        </span>
+            {years.map((year) => (
+                <div id={"year-" + year} class="d-flex align-items-stretch flex-wrap">
+                    {year !== new Date().getFullYear() && <h2 class="w-100 mb-0 mt-3">{year}</h2>}
+                    {blogPosts
+                        .filter((post) => new Date(post.data.pubDate).getFullYear() === year)
+                        .map((post) => (
+                            <div
+                                class:list={[
+                                    "card m-xl-3 m-1 ",
+                                    new Date(Date.now()) > new Date(post.data.pubDate) &&
+                                    new Date(post.data.pubDate) > new Date(Date.now() - 2 * 24 * 60 * 60 * 1000)
+                                        ? "border-primary"
+                                        : "",
+                                ]}
+                            >
+                                <div class="card-body p-0 position-relative">
+                                    <a
+                                        href={"/blog/" + post.id.replace(/\.[^/.]+$/, "")}
+                                        class:list={[
+                                            "post-badge text-decoration-none badge text-bg-primary fs-6 mb-0  rounded-top-0 w-25 m-auto position-absolute top-0 start-0 end-0",
+                                            new Date(Date.now()) > new Date(post.data.pubDate) &&
+                                            new Date(post.data.pubDate) > new Date(Date.now() - 2 * 24 * 60 * 60 * 1000)
+                                                ? "d-block"
+                                                : "d-none",
+                                        ]}
+                                    >
+                                        New post!
+                                    </a>
+                                    {post.data.headerImage && (
+                                        <Image
+                                            src={
+                                                post.data.headerImage.startsWith("/assets/")
+                                                    ? images["../.." + post.data.headerImage]()
+                                                    : post.data.headerImage
+                                            }
+                                            class="card-img-top object-fit-cover"
+                                            alt={post.data.headerImageAlt || ""}
+                                            height={240}
+                                            width={512}
+                                        />
+                                    )}
+                                    <div class="card-text px-3 pt-2">
+                                        <h2>{post.data.title}</h2>
+                                        <p class="lead">
+                                            <Markdown of={post.data.subtitle} />
+                                        </p>
+                                        <p class="small">
+                                            {async () => {
+                                                const { remarkPluginFrontmatter } = await render(post);
+                                                return remarkPluginFrontmatter.excerpt;
+                                            }}
+                                        </p>
+                                        <a href={"/blog/" + post.id.replace(/\.[^/.]+$/, "")} class="stretched-link" />
                                     </div>
                                 </div>
-                            ))}
-                    </div>
-                ))
-            }
+                                <div class="card-footer d-flex justify-content-between">
+                                    <div class="me-auto authors w-100 d-flex">
+                                        {post.data.authors.map((author) => (
+                                            <GitHubProfilePictureExtended
+                                                username={author}
+                                                size={40}
+                                                containerQuery={true}
+                                            />
+                                        ))}
+                                    </div>
+                                    <span class="text-body-secondary text-small text-end flex-grow-1 text-nowrap">
+                                        published on
+                                        <br />
+                                        {new Date(post.data.pubDate).toLocaleDateString("en-GB", {
+                                            year: "numeric",
+                                            month: "short",
+                                            day: "numeric",
+                                        })}
+                                    </span>
+                                </div>
+                            </div>
+                        ))}
+                </div>
+            ))}
         </div>
     </div>
 </PageLayout>

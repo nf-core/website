@@ -185,379 +185,364 @@ const pipelinesAndProposals: { title: string; url: string; sub: string; labels: 
                     style="max-width: 100%; height: auto; display: none; margin: 0 auto;"
                 />
                 <p class="nl-muted" style="margin: 12px 0 0; font-size: 18px; color: #666666;">
-                    1st {monthName}
-                    {" "}{year}
+                    1st {monthName} {year}
                 </p>
             </td>
         </tr>
     </table>
 
     {/* ----- 1. BLOG POSTS THIS MONTH (primary, full width with images) ----- */}
-    {
-        thisMonthBlogPosts.length > 0 && (
-            <>
-                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
-                    Blog posts
-                </h2>
-                {thisMonthBlogPosts.map((post) => (
-                    <div style="font-size: 0; padding: 12px 0; border-bottom: 1px solid #eeeeee; margin-bottom: 16px;">
-                        <div
-                            class="nl-blog-text"
-                            style="display: inline-block; vertical-align: middle; width: 100%; max-width: calc(100% - 256px); font-size: 14px;"
+    {thisMonthBlogPosts.length > 0 && (
+        <>
+            <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
+                Blog posts
+            </h2>
+            {thisMonthBlogPosts.map((post) => (
+                <div style="font-size: 0; padding: 12px 0; border-bottom: 1px solid #eeeeee; margin-bottom: 16px;">
+                    <div
+                        class="nl-blog-text"
+                        style="display: inline-block; vertical-align: middle; width: 100%; max-width: calc(100% - 256px); font-size: 14px;"
+                    >
+                        <a
+                            href={blogUrl(post.id)}
+                            style="color: #333333; text-decoration: none; font-weight: 600; font-size: 16px;"
                         >
+                            {post.data.title}
+                        </a>
+                        <br />
+                        <span class="nl-muted" style="font-size: 14px; color: #555555;">
+                            {post.data.subtitle}
+                        </span>
+                        <br />
+                        <span class="nl-muted" style="font-size: 13px; color: #888888;">
+                            {formatDate(post.data.pubDate)} &middot; by {post.data.authors.join(", ")}
+                        </span>
+                    </div>
+                    <div
+                        class="nl-blog-img"
+                        style="display: inline-block; vertical-align: middle; width: 100%; max-width: 240px; font-size: 14px; padding-top: 8px;"
+                    >
+                        <a href={blogUrl(post.id)} style="text-decoration: none;">
+                            <img
+                                src={imageUrl(imgSrc(blogImageSrcs.get(post.id)))}
+                                alt={post.data.headerImageAlt}
+                                width="240"
+                                height="135"
+                                style="width: 100%; height: auto; display: block; border-radius: 6px; object-fit: cover;"
+                            />
+                        </a>
+                    </div>
+                </div>
+            ))}
+        </>
+    )}
+
+    {/* ----- ADVISORIES ----- */}
+    {monthAdvisories.length > 0 && (
+        <>
+            <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
+                Advisories
+            </h2>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                {monthAdvisories.map((advisory) => (
+                    <tr>
+                        <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
+                            <span style={advisoryBadgeStyle(advisory.data.severity)}>{advisory.data.severity}</span>
+                            {formatAdvisoryTypes(advisory.data.type).map((label: string) => (
+                                <span style="display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 4px; color: #666666; background-color: #f0f0f0;">
+                                    {label}
+                                </span>
+                            ))}
+                            <br />
                             <a
-                                href={blogUrl(post.id)}
-                                style="color: #333333; text-decoration: none; font-weight: 600; font-size: 16px;"
+                                class="nl-green"
+                                href={advisoryUrl(advisory.id)}
+                                style="color: #22ae63; text-decoration: none; font-weight: 600; font-size: 16px;"
                             >
-                                {post.data.title}
+                                {advisory.data.title}
                             </a>
+                            <br />
+                            <span class="nl-muted" style="font-size: 13px; color: #666666; line-height: 1.4;">
+                                {advisory.data.subtitle}
+                            </span>
+                        </td>
+                    </tr>
+                ))}
+            </table>
+        </>
+    )}
+
+    {/* ----- 2. FIRST PIPELINE RELEASES (primary, full width) ----- */}
+    {firstReleases.length > 0 && (
+        <>
+            <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
+                New pipeline first releases! &#127881;
+            </h2>
+            <p class="nl-muted" style="font-size: 14px; color: #666666; margin-bottom: 12px;">
+                These pipelines just had their very first release.
+            </p>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                {firstReleases.map((release) => (
+                    <tr>
+                        <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
+                            <a
+                                class="nl-green"
+                                href={pipelineUrl(release.pipelineName)}
+                                style="color: #22ae63; text-decoration: none; font-weight: 700; font-size: 16px;"
+                            >
+                                nf-core/{release.pipelineName}
+                            </a>
+                            {release.tagNames.map((tag: string) => (
+                                <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #fefefe; background-color: #22ae63;">
+                                    v{tag}
+                                </span>
+                            ))}
                             <br />
                             <span class="nl-muted" style="font-size: 14px; color: #555555;">
-                                {post.data.subtitle}
+                                {release.description}
                             </span>
-                            <br />
-                            <span class="nl-muted" style="font-size: 13px; color: #888888;">
-                                {formatDate(post.data.pubDate)} &middot; by {post.data.authors.join(", ")}
-                            </span>
-                        </div>
-                        <div
-                            class="nl-blog-img"
-                            style="display: inline-block; vertical-align: middle; width: 100%; max-width: 240px; font-size: 14px; padding-top: 8px;"
-                        >
-                            <a href={blogUrl(post.id)} style="text-decoration: none;">
-                                <img
-                                    src={imageUrl(imgSrc(blogImageSrcs.get(post.id)))}
-                                    alt={post.data.headerImageAlt}
-                                    width="240"
-                                    height="135"
-                                    style="width: 100%; height: auto; display: block; border-radius: 6px; object-fit: cover;"
-                                />
+                        </td>
+                    </tr>
+                ))}
+            </table>
+        </>
+    )}
+
+    {/* ----- 3. OTHER PIPELINE RELEASES (secondary, 2-column) ----- */}
+    {otherReleases.length > 0 && (
+        <>
+            <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
+                Pipeline releases
+            </h2>
+            <div class="nl-grid" style="font-size: 0; margin-bottom: 16px;">
+                {otherReleases.map((release) => (
+                    <div
+                        class="nl-col"
+                        style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
+                    >
+                        <div style="padding: 10px 12px; border-bottom: 1px solid #eeeeee;">
+                            <a
+                                href={pipelineUrl(release.pipelineName)}
+                                style="color: #333333; text-decoration: none; font-weight: 600; font-size: 15px;"
+                            >
+                                nf-core/{release.pipelineName}
                             </a>
+                            <br />
+                            {release.tagNames.map((tag: string) => (
+                                <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-right: 4px; margin-top: 4px; color: #fefefe; background-color: #6c757d;">
+                                    v{tag}
+                                </span>
+                            ))}
+                            <span class="nl-muted" style="font-size: 13px; color: #888888; margin-left: 4px;">
+                                {formatDate(new Date(release.publishedAt))}
+                            </span>
                         </div>
                     </div>
                 ))}
-            </>
-        )
-    }
-
-    {/* ----- ADVISORIES ----- */}
-    {
-        monthAdvisories.length > 0 && (
-            <>
-                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
-                    Advisories
-                </h2>
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                    {monthAdvisories.map((advisory) => (
-                        <tr>
-                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
-                                <span style={advisoryBadgeStyle(advisory.data.severity)}>{advisory.data.severity}</span>
-                                {formatAdvisoryTypes(advisory.data.type).map((label: string) => (
-                                    <span style="display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 4px; color: #666666; background-color: #f0f0f0;">
-                                        {label}
-                                    </span>
-                                ))}
-                                <br />
-                                <a
-                                    class="nl-green"
-                                    href={advisoryUrl(advisory.id)}
-                                    style="color: #22ae63; text-decoration: none; font-weight: 600; font-size: 16px;"
-                                >
-                                    {advisory.data.title}
-                                </a>
-                                <br />
-                                <span class="nl-muted" style="font-size: 13px; color: #666666; line-height: 1.4;">
-                                    {advisory.data.subtitle}
-                                </span>
-                            </td>
-                        </tr>
-                    ))}
-                </table>
-            </>
-        )
-    }
-
-    {/* ----- 2. FIRST PIPELINE RELEASES (primary, full width) ----- */}
-    {
-        firstReleases.length > 0 && (
-            <>
-                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
-                    New pipeline first releases! &#127881;
-                </h2>
-                <p class="nl-muted" style="font-size: 14px; color: #666666; margin-bottom: 12px;">
-                    These pipelines just had their very first release.
-                </p>
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                    {firstReleases.map((release) => (
-                        <tr>
-                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
-                                <a
-                                    class="nl-green"
-                                    href={pipelineUrl(release.pipelineName)}
-                                    style="color: #22ae63; text-decoration: none; font-weight: 700; font-size: 16px;"
-                                >
-                                    nf-core/{release.pipelineName}
-                                </a>
-                                {release.tagNames.map((tag: string) => (
-                                    <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #fefefe; background-color: #22ae63;">
-                                        v{tag}
-                                    </span>
-                                ))}
-                                <br />
-                                <span class="nl-muted" style="font-size: 14px; color: #555555;">
-                                    {release.description}
-                                </span>
-                            </td>
-                        </tr>
-                    ))}
-                </table>
-            </>
-        )
-    }
-
-    {/* ----- 3. OTHER PIPELINE RELEASES (secondary, 2-column) ----- */}
-    {
-        otherReleases.length > 0 && (
-            <>
-                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
-                    Pipeline releases
-                </h2>
-                <div class="nl-grid" style="font-size: 0; margin-bottom: 16px;">
-                    {otherReleases.map((release) => (
-                        <div
-                            class="nl-col"
-                            style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
-                        >
-                            <div style="padding: 10px 12px; border-bottom: 1px solid #eeeeee;">
-                                <a
-                                    href={pipelineUrl(release.pipelineName)}
-                                    style="color: #333333; text-decoration: none; font-weight: 600; font-size: 15px;"
-                                >
-                                    nf-core/{release.pipelineName}
-                                </a>
-                                <br />
-                                {release.tagNames.map((tag: string) => (
-                                    <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-right: 4px; margin-top: 4px; color: #fefefe; background-color: #6c757d;">
-                                        v{tag}
-                                    </span>
-                                ))}
-                                <span class="nl-muted" style="font-size: 13px; color: #888888; margin-left: 4px;">
-                                    {formatDate(new Date(release.publishedAt))}
-                                </span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </>
-        )
-    }
+            </div>
+        </>
+    )}
 
     {/* ----- 4. UPCOMING EVENTS (primary, full width with images) ----- */}
-    {
-        upcomingEvents.length > 0 && (
-            <>
-                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
-                    Upcoming events
-                </h2>
-                {upcomingEvents.map((event) => (
-                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 0;">
+    {upcomingEvents.length > 0 && (
+        <>
+            <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
+                Upcoming events
+            </h2>
+            {upcomingEvents.map((event) => (
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 0;">
+                    <tr>
+                        {/* Row 1: tag + title + date right-aligned */}
+                        <td style="padding: 12px 0 0; vertical-align: middle;">
+                            <span
+                                style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 8px; color: ${EVENT_TYPES[event.data.type]?.textColor || "#fefefe"}; background-color: ${EVENT_TYPES[event.data.type]?.color || "#6c757d"};`}
+                            >
+                                {eventTypeLabel[event.data.type] || event.data.type}
+                            </span>
+                            <a
+                                href={eventUrl(event.id)}
+                                style="color: #333333; text-decoration: none; font-weight: 600; font-size: 16px;"
+                            >
+                                {event.data.title}
+                            </a>
+                        </td>
+                        <td
+                            class="nl-muted"
+                            style="padding: 12px 0 0; vertical-align: middle; text-align: right; white-space: nowrap; font-size: 13px; color: #666666; padding-left: 12px;"
+                        >
+                            {formatDate(event.data.start)}
+                            {event.data.start.toDateString() !== event.data.end.toDateString() && (
+                                <> &ndash; {formatDate(event.data.end)}</>
+                            )}
+                        </td>
+                    </tr>
+                    {/* Row 2: subtitle */}
+                    {event.data.subtitle && (
                         <tr>
-                            {/* Row 1: tag + title + date right-aligned */}
-                            <td style="padding: 12px 0 0; vertical-align: middle;">
-                                <span
-                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 8px; color: ${EVENT_TYPES[event.data.type]?.textColor || "#fefefe"}; background-color: ${EVENT_TYPES[event.data.type]?.color || "#6c757d"};`}
-                                >
-                                    {eventTypeLabel[event.data.type] || event.data.type}
+                            <td colspan={2} style="padding: 4px 0 8px;">
+                                <span class="nl-muted" style="font-size: 14px; color: #555555;">
+                                    {event.data.subtitle}
                                 </span>
-                                <a
-                                    href={eventUrl(event.id)}
-                                    style="color: #333333; text-decoration: none; font-weight: 600; font-size: 16px;"
-                                >
-                                    {event.data.title}
+                            </td>
+                        </tr>
+                    )}
+                    {/* Row 3: image if present */}
+                    {event.data.headerImage && (
+                        <tr>
+                            <td colspan={2} style="padding: 8px 0 0;">
+                                <a href={eventUrl(event.id)} style="text-decoration: none;">
+                                    <img
+                                        src={imageUrl(imgSrc(eventImageSrcs.get(event.id)))}
+                                        alt={event.data.title}
+                                        width="240"
+                                        height="135"
+                                        style="width: 240px; height: auto; display: block; border-radius: 6px;"
+                                    />
                                 </a>
                             </td>
-                            <td
-                                class="nl-muted"
-                                style="padding: 12px 0 0; vertical-align: middle; text-align: right; white-space: nowrap; font-size: 13px; color: #666666; padding-left: 12px;"
-                            >
-                                {formatDate(event.data.start)}
-                                {event.data.start.toDateString() !== event.data.end.toDateString() && (
-                                    <> &ndash; {formatDate(event.data.end)}</>
-                                )}
-                            </td>
                         </tr>
-                        {/* Row 2: subtitle */}
-                        {event.data.subtitle && (
-                            <tr>
-                                <td colspan={2} style="padding: 4px 0 8px;">
-                                    <span class="nl-muted" style="font-size: 14px; color: #555555;">
-                                        {event.data.subtitle}
-                                    </span>
-                                </td>
-                            </tr>
-                        )}
-                        {/* Row 3: image if present */}
-                        {event.data.headerImage && (
-                            <tr>
-                                <td colspan={2} style="padding: 8px 0 0;">
-                                    <a href={eventUrl(event.id)} style="text-decoration: none;">
-                                        <img
-                                            src={imageUrl(imgSrc(eventImageSrcs.get(event.id)))}
-                                            alt={event.data.title}
-                                            width="240"
-                                            height="135"
-                                            style="width: 240px; height: auto; display: block; border-radius: 6px;"
-                                        />
-                                    </a>
-                                </td>
-                            </tr>
-                        )}
-                        <tr>
-                            <td colspan={2} style="border-bottom: 1px solid #eeeeee;" />
-                        </tr>
-                    </table>
-                ))}
-            </>
-        )
-    }
+                    )}
+                    <tr>
+                        <td colspan={2} style="border-bottom: 1px solid #eeeeee;" />
+                    </tr>
+                </table>
+            ))}
+        </>
+    )}
 
     {/* ----- 5. IN CASE YOU MISSED IT (recent events + older blog posts + older advisories) ----- */}
-    {
-        icymiItems.length > 0 && (
-            <>
-                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
-                    In case you missed it
-                </h2>
-                <div class="nl-grid" style="font-size: 0; margin-top: 16px; margin-bottom: 16px;">
-                    {icymiItems.map(({ kind, item }) => (
-                        <div
-                            class="nl-col"
-                            style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
-                        >
-                            <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
-                                {kind === "event" && (
-                                    <>
-                                        <a
-                                            href={eventUrl(item.id)}
-                                            style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                        >
-                                            {item.data.title}
-                                        </a>
-                                        <br />
-                                        <span class="nl-muted" style="font-size: 12px; color: #888888;">
-                                            {formatDate(item.data.start)}
-                                            {item.data.start.toDateString() !== item.data.end.toDateString() && (
-                                                <> &ndash; {formatDate(item.data.end)}</>
-                                            )}
-                                        </span>
-                                        <span
-                                            style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 4px; color: ${EVENT_TYPES[item.data.type]?.textColor || "#fefefe"}; background-color: ${EVENT_TYPES[item.data.type]?.color || "#6c757d"};`}
-                                        >
-                                            {eventTypeLabel[item.data.type] || item.data.type}
-                                        </span>
-                                    </>
-                                )}
-                                {kind === "blog" && (
-                                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-                                        <tr>
-                                            <td style="vertical-align: top; padding-right: 8px;">
-                                                <a
-                                                    href={blogUrl(item.id)}
-                                                    style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                                >
-                                                    {item.data.title}
-                                                </a>
-                                                <br />
-                                                <span class="nl-muted" style="font-size: 12px; color: #999999;">
-                                                    {formatDate(item.data.pubDate)}
-                                                </span>
-                                            </td>
-                                            <td style="vertical-align: middle; width: 80px;">
-                                                <a href={blogUrl(item.id)} style="text-decoration: none;">
-                                                    <img
-                                                        src={imageUrl(imgSrc(blogImageSrcs.get(item.id)))}
-                                                        alt={item.data.headerImageAlt}
-                                                        width="80"
-                                                        height="45"
-                                                        style="width: 80px; height: 45px; display: block; border-radius: 4px; object-fit: cover;"
-                                                    />
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                )}
-                                {kind === "advisory" && (
-                                    <>
-                                        <span style={advisoryBadgeStyle(item.data.severity, true)}>
-                                            {item.data.severity}
-                                        </span>
-                                        <a
-                                            href={advisoryUrl(item.id)}
-                                            style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                        >
-                                            {item.data.title}
-                                        </a>
-                                        <br />
-                                        <span class="nl-muted" style="font-size: 12px; color: #999999;">
-                                            {formatDate(item.data.publishedDate)}
-                                        </span>
-                                    </>
-                                )}
-                            </div>
+    {icymiItems.length > 0 && (
+        <>
+            <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
+                In case you missed it
+            </h2>
+            <div class="nl-grid" style="font-size: 0; margin-top: 16px; margin-bottom: 16px;">
+                {icymiItems.map(({ kind, item }) => (
+                    <div
+                        class="nl-col"
+                        style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
+                    >
+                        <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
+                            {kind === "event" && (
+                                <>
+                                    <a
+                                        href={eventUrl(item.id)}
+                                        style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                    >
+                                        {item.data.title}
+                                    </a>
+                                    <br />
+                                    <span class="nl-muted" style="font-size: 12px; color: #888888;">
+                                        {formatDate(item.data.start)}
+                                        {item.data.start.toDateString() !== item.data.end.toDateString() && (
+                                            <> &ndash; {formatDate(item.data.end)}</>
+                                        )}
+                                    </span>
+                                    <span
+                                        style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 4px; color: ${EVENT_TYPES[item.data.type]?.textColor || "#fefefe"}; background-color: ${EVENT_TYPES[item.data.type]?.color || "#6c757d"};`}
+                                    >
+                                        {eventTypeLabel[item.data.type] || item.data.type}
+                                    </span>
+                                </>
+                            )}
+                            {kind === "blog" && (
+                                <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td style="vertical-align: top; padding-right: 8px;">
+                                            <a
+                                                href={blogUrl(item.id)}
+                                                style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                            >
+                                                {item.data.title}
+                                            </a>
+                                            <br />
+                                            <span class="nl-muted" style="font-size: 12px; color: #999999;">
+                                                {formatDate(item.data.pubDate)}
+                                            </span>
+                                        </td>
+                                        <td style="vertical-align: middle; width: 80px;">
+                                            <a href={blogUrl(item.id)} style="text-decoration: none;">
+                                                <img
+                                                    src={imageUrl(imgSrc(blogImageSrcs.get(item.id)))}
+                                                    alt={item.data.headerImageAlt}
+                                                    width="80"
+                                                    height="45"
+                                                    style="width: 80px; height: 45px; display: block; border-radius: 4px; object-fit: cover;"
+                                                />
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            )}
+                            {kind === "advisory" && (
+                                <>
+                                    <span style={advisoryBadgeStyle(item.data.severity, true)}>
+                                        {item.data.severity}
+                                    </span>
+                                    <a
+                                        href={advisoryUrl(item.id)}
+                                        style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                    >
+                                        {item.data.title}
+                                    </a>
+                                    <br />
+                                    <span class="nl-muted" style="font-size: 12px; color: #999999;">
+                                        {formatDate(item.data.publishedDate)}
+                                    </span>
+                                </>
+                            )}
                         </div>
-                    ))}
-                </div>
-            </>
-        )
-    }
+                    </div>
+                ))}
+            </div>
+        </>
+    )}
 
     {/* ----- 7. NEW PIPELINES & PROPOSALS (single list; type shown via labels) ----- */}
-    {
-        pipelinesAndProposals.length > 0 && (
-            <>
-                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
-                    New pipelines &amp; proposals
-                </h2>
-                {(pipelineProposals.length > 0 || otherProposals.length > 0) && (
-                    <p class="nl-muted" style="font-size: 13px; color: #888888; margin: 8px 0 0;">
-                        Proposals from{" "}
-                        <a class="nl-green" href="https://github.com/nf-core/proposals/issues" style="color: #22ae63;">
-                            nf-core/proposals
-                        </a>
-                        .
-                    </p>
-                )}
-                <div class="nl-grid" style="font-size: 0; margin-top: 12px; margin-bottom: 16px;">
-                    {pipelinesAndProposals.map((item) => (
-                        <div
-                            class="nl-col"
-                            style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
-                        >
-                            <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
-                                <a
-                                    href={item.url}
-                                    style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
+    {pipelinesAndProposals.length > 0 && (
+        <>
+            <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
+                New pipelines &amp; proposals
+            </h2>
+            {(pipelineProposals.length > 0 || otherProposals.length > 0) && (
+                <p class="nl-muted" style="font-size: 13px; color: #888888; margin: 8px 0 0;">
+                    Proposals from{" "}
+                    <a class="nl-green" href="https://github.com/nf-core/proposals/issues" style="color: #22ae63;">
+                        nf-core/proposals
+                    </a>
+                    .
+                </p>
+            )}
+            <div class="nl-grid" style="font-size: 0; margin-top: 12px; margin-bottom: 16px;">
+                {pipelinesAndProposals.map((item) => (
+                    <div
+                        class="nl-col"
+                        style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
+                    >
+                        <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
+                            <a
+                                href={item.url}
+                                style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
+                            >
+                                {item.title}
+                            </a>
+                            {item.labels.map((label) => (
+                                <span
+                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: ${label.color}; background-color: ${label.bg};`}
                                 >
-                                    {item.title}
-                                </a>
-                                {item.labels.map((label) => (
-                                    <span
-                                        style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: ${label.color}; background-color: ${label.bg};`}
-                                    >
-                                        {label.text}
-                                    </span>
-                                ))}
-                                <br />
-                                <span class="nl-muted" style="font-size: 12px; color: #999999;">
-                                    {item.sub}
+                                    {label.text}
                                 </span>
-                            </div>
+                            ))}
+                            <br />
+                            <span class="nl-muted" style="font-size: 12px; color: #999999;">
+                                {item.sub}
+                            </span>
                         </div>
-                    ))}
-                </div>
-            </>
-        )
-    }
+                    </div>
+                ))}
+            </div>
+        </>
+    )}
 
     {/* ----- FOOTER ----- */}
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top: 32px;">
@@ -567,26 +552,37 @@ const pipelinesAndProposals: { title: string; url: string; sub: string; labels: 
         <tr>
             <td class="nl-green" style="text-align: center; padding: 24px 0;">
                 <p class="nl-muted" style="font-size: 14px; color: #666666; margin: 0;">
-                    This newsletter is brought to you by the <a
-                        href="https://nf-co.re"
-                        style="color: #22ae63; text-decoration: none; font-weight: 600;">nf-core</a
-                    > community.{
-                        email && (
-                            <Fragment>
-                                {" "}
-                                <a href={unsubscribeUrl} style="color: #22ae63;">
-                                    Unsubscribe here
-                                </a>
-                                .
-                            </Fragment>
-                        )
-                    }
+                    This newsletter is brought to you by the{" "}
+                    <a href="https://nf-co.re" style="color: #22ae63; text-decoration: none; font-weight: 600;">
+                        nf-core
+                    </a>{" "}
+                    community.
+                    {email && (
+                        <Fragment>
+                            {" "}
+                            <a href={unsubscribeUrl} style="color: #22ae63;">
+                                Unsubscribe here
+                            </a>
+                            .
+                        </Fragment>
+                    )}
                 </p>
                 <p class="nl-muted" style="font-size: 13px; color: #999999; margin: 8px 0 0;">
-                    <a href="https://nf-co.re/join" style="color: #22ae63;">Join us</a> &middot;
-                    <a href="https://nf-co.re/blog" style="color: #22ae63;">Blog</a> &middot;
-                    <a href="https://nf-co.re/events" style="color: #22ae63;">Events</a> &middot;
-                    <a href="https://github.com/nf-core" style="color: #22ae63;">GitHub</a>
+                    <a href="https://nf-co.re/join" style="color: #22ae63;">
+                        Join us
+                    </a>{" "}
+                    &middot;
+                    <a href="https://nf-co.re/blog" style="color: #22ae63;">
+                        Blog
+                    </a>{" "}
+                    &middot;
+                    <a href="https://nf-co.re/events" style="color: #22ae63;">
+                        Events
+                    </a>{" "}
+                    &middot;
+                    <a href="https://github.com/nf-core" style="color: #22ae63;">
+                        GitHub
+                    </a>
                 </p>
             </td>
         </tr>

@@ -49,21 +49,17 @@ const categoryCount = new Set(projects.map((project) => project.data.category)).
 ---
 
 <div>
-    {
-        showCount && (
-            <p>
-                There are currently {projectCount} registered projects across {categoryCount} categories!
-            </p>
-        )
-    }
-    {
-        projectsByGroup.map(({ group, projects }) => (
-            <>
-                {group && <h3 class="text-capitalize mb-3 mt-4">{group.replaceAll("-", " ")}</h3>}
-                {projects.map((project) => (
-                    <Project id={project.id} {...project.data} />
-                ))}
-            </>
-        ))
-    }
+    {showCount && (
+        <p>
+            There are currently {projectCount} registered projects across {categoryCount} categories!
+        </p>
+    )}
+    {projectsByGroup.map(({ group, projects }) => (
+        <>
+            {group && <h3 class="text-capitalize mb-3 mt-4">{group.replaceAll("-", " ")}</h3>}
+            {projects.map((project) => (
+                <Project id={project.id} {...project.data} />
+            ))}
+        </>
+    ))}
 </div>

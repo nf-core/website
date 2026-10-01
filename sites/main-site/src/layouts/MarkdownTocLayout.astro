@@ -111,42 +111,38 @@ if (showRightSidebar) {
                 </div>
             </div>
 
-            {
-                showRightSidebar && (
-                    <div class={`col-12 col-xl-${rightSidebarWidth} sidebar-right toc order-3`}>
-                        <SidebarToc
-                            headings={headings}
-                            minNumHeadings={minNumHeadings}
-                            minHeadingDepth={minHeadingDepth}
-                            maxHeadingDepth={maxHeadingDepth}
-                            client:idle
-                        >
-                            <slot slot="rightSidebarTop" name="right-sidebar-top" />
-                            <slot slot="defaultContent" name="right-sidebar-bottom" />
-                            <a class="text-small text-body-secondary" href={md_github_url} slot="rightSidebarLinkBar">
-                                <i class="fas fa-pencil-alt" /> Edit this page
-                            </a>
-                        </SidebarToc>
-                    </div>
-                )
-            }
-            {
-                leftSidebar && (
-                    <div
-                        class={`col-12 col-xl-${leftSidebarWidth} sticky-top-under d-none d-xl-inline sidebar-left order-1`}
+            {showRightSidebar && (
+                <div class={`col-12 col-xl-${rightSidebarWidth} sidebar-right toc order-3`}>
+                    <SidebarToc
+                        headings={headings}
+                        minNumHeadings={minNumHeadings}
+                        minHeadingDepth={minHeadingDepth}
+                        maxHeadingDepth={maxHeadingDepth}
+                        client:idle
                     >
-                        {sidebarTitle && (
-                            <a
-                                href={sections[0].href?.split("/").slice(0, 2).join("/").split("#")[0]}
-                                class="sidebar-title text-decoration-none"
-                            >
-                                <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
-                            </a>
-                        )}
-                        <SidebarNav items={sections} />
-                    </div>
-                )
-            }
+                        <slot slot="rightSidebarTop" name="right-sidebar-top" />
+                        <slot slot="defaultContent" name="right-sidebar-bottom" />
+                        <a class="text-small text-body-secondary" href={md_github_url} slot="rightSidebarLinkBar">
+                            <i class="fas fa-pencil-alt" /> Edit this page
+                        </a>
+                    </SidebarToc>
+                </div>
+            )}
+            {leftSidebar && (
+                <div
+                    class={`col-12 col-xl-${leftSidebarWidth} sticky-top-under d-none d-xl-inline sidebar-left order-1`}
+                >
+                    {sidebarTitle && (
+                        <a
+                            href={sections[0].href?.split("/").slice(0, 2).join("/").split("#")[0]}
+                            class="sidebar-title text-decoration-none"
+                        >
+                            <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
+                        </a>
+                    )}
+                    <SidebarNav items={sections} />
+                </div>
+            )}
         </div>
     </div>
     <slot name="pre-footer" slot="pre-footer" />

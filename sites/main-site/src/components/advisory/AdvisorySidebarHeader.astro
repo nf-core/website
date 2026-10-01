@@ -192,13 +192,12 @@ const impactSections = [
         ]}
     />
 
-    {
-        metadataItems.length > 0 && (
-            <SidebarStatsRow
-                content={[
-                    {
-                        title: "Technical Details",
-                        value: `<div class="">
+    {metadataItems.length > 0 && (
+        <SidebarStatsRow
+            content={[
+                {
+                    title: "Technical Details",
+                    value: `<div class="">
                         ${metadataItems
                             .map(
                                 (item) => `
@@ -219,68 +218,61 @@ const impactSections = [
                             )
                             .join("")}
                     </div>`,
-                    },
-                ]}
-            />
-        )
-    }
+                },
+            ]}
+        />
+    )}
 
-    {
-        impactSections.map((section) => (
-            <SidebarStatsRow
-                content={[
-                    {
-                        title: section.title,
-                        icon: section.icon,
-                        value: formatImpactItems(section.items!, section.urlPrefix, section.type),
-                    },
-                ]}
-            />
-        ))
-    }
+    {impactSections.map((section) => (
+        <SidebarStatsRow
+            content={[
+                {
+                    title: section.title,
+                    icon: section.icon,
+                    value: formatImpactItems(section.items!, section.urlPrefix, section.type),
+                },
+            ]}
+        />
+    ))}
 
-    {
-        frontmatter.reporter && (
-            <SidebarStatsRow
-                content={[
-                    {
-                        title: sameReporterAndReviewer ? "Reported by and reviewed by" : "Reported by",
-                    },
-                ]}
-                lastChild={sameReporterAndReviewer ?? false}
-            >
-                {frontmatter.reporter.map((reporter) => {
-                    const info = getPersonInfo(reporter);
-                    return (
-                        <GitHubProfilePictureExtended
-                            username={info.username}
-                            affiliation={info.affiliation}
-                            size={40}
-                            wrapperClasses="mt-1"
-                        />
-                    );
-                })}
-            </SidebarStatsRow>
-        )
-    }
+    {frontmatter.reporter && (
+        <SidebarStatsRow
+            content={[
+                {
+                    title: sameReporterAndReviewer ? "Reported by and reviewed by" : "Reported by",
+                },
+            ]}
+            lastChild={sameReporterAndReviewer ?? false}
+        >
+            {frontmatter.reporter.map((reporter) => {
+                const info = getPersonInfo(reporter);
+                return (
+                    <GitHubProfilePictureExtended
+                        username={info.username}
+                        affiliation={info.affiliation}
+                        size={40}
+                        wrapperClasses="mt-1"
+                    />
+                );
+            })}
+        </SidebarStatsRow>
+    )}
 
-    {
-        frontmatter.reviewer && !sameReporterAndReviewer && (
-            <SidebarStatsRow content={[{ title: "Reviewed by" }]}>
-                {frontmatter.reviewer.map((reviewer) => {
-                    const info = getPersonInfo(reviewer);
-                    return (
-                        <GitHubProfilePictureExtended
-                            username={info.username}
-                            affiliation={info.affiliation}
-                            size={40}
-                            wrapperClasses="mt-1"
-                        />
-                    );
-                })}
-            </SidebarStatsRow>
-        )
-    }
+    {frontmatter.reviewer && !sameReporterAndReviewer && (
+        <SidebarStatsRow content={[{ title: "Reviewed by" }]}>
+            {frontmatter.reviewer.map((reviewer) => {
+                const info = getPersonInfo(reviewer);
+                return (
+                    <GitHubProfilePictureExtended
+                        username={info.username}
+                        affiliation={info.affiliation}
+                        size={40}
+                        wrapperClasses="mt-1"
+                    />
+                );
+            })}
+        </SidebarStatsRow>
+    )}
 </div>
 
 <style lang="scss">

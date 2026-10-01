@@ -204,22 +204,20 @@ const trainingCards = [
                     <h2 class="section-heading mb-2">Get started</h2>
                     <p class="mb-4">New to nf-core? Start here to learn the basics and run your first pipeline.</p>
                     <div class="grid gap-2">
-                        {
-                            featuredEntries.map((page) => (
-                                <a href={page.href} class="text-decoration-none g-col-12 g-col-md-6 g-col-lg-4">
-                                    <div class="card h-100 p-2">
-                                        <div class="card-body">
-                                            <Icon name={page.customIcon} class="fs-3 mb-2 text-body" />
-                                            <h4 class="mb-1"> {page.metadata?.data.title || page.label}</h4>
-                                            <p class="card-description mb-0">{page.description}</p>
-                                            {/* <div class="bg-icon">
+                        {featuredEntries.map((page) => (
+                            <a href={page.href} class="text-decoration-none g-col-12 g-col-md-6 g-col-lg-4">
+                                <div class="card h-100 p-2">
+                                    <div class="card-body">
+                                        <Icon name={page.customIcon} class="fs-3 mb-2 text-body" />
+                                        <h4 class="mb-1"> {page.metadata?.data.title || page.label}</h4>
+                                        <p class="card-description mb-0">{page.description}</p>
+                                        {/* <div class="bg-icon">
                                                 <Icon name={page.customIcon} />
                                             </div> */}
-                                        </div>
                                     </div>
-                                </a>
-                            ))
-                        }
+                                </div>
+                            </a>
+                        ))}
                     </div>
                 </div>
 
@@ -228,22 +226,20 @@ const trainingCards = [
                     <h2 class="section-heading">Topics</h2>
                     <p class="">Explore documentation by topic.</p>
                     <div class="grid gap-3">
-                        {
-                            mainSections.map((section) => (
-                                <a href={section.href} class="text-decoration-none g-col-12 g-col-md-6 g-col-lg-4">
-                                    <div class="card h-100">
-                                        <div class="card-body">
-                                            <Icon name={section.icon} class="fs-3 mb-2 text-body" />
-                                            <h4 class="mb-1"> {section.title}</h4>
-                                            <p class="card-description mb-0">{section.description}</p>
-                                            {/* <div class="bg-icon">
+                        {mainSections.map((section) => (
+                            <a href={section.href} class="text-decoration-none g-col-12 g-col-md-6 g-col-lg-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <Icon name={section.icon} class="fs-3 mb-2 text-body" />
+                                        <h4 class="mb-1"> {section.title}</h4>
+                                        <p class="card-description mb-0">{section.description}</p>
+                                        {/* <div class="bg-icon">
 
                                             </div> */}
-                                        </div>
                                     </div>
-                                </a>
-                            ))
-                        }
+                                </div>
+                            </a>
+                        ))}
                     </div>
                 </div>
 
@@ -254,22 +250,20 @@ const trainingCards = [
                         Learn Nextflow and nf-core through comprehensive documentation and hands-on training materials.
                     </p>
                     <div class="grid gap-2">
-                        {
-                            trainingCards.map((card) => (
-                                <a href={card.href} class="text-decoration-none g-col-12 g-col-md-6">
-                                    <div class="card h-100">
-                                        <div class="card-body">
-                                            <Icon name={card.icon} class="fs-3 mb-2 text-body" />
-                                            <h4 class="mb-1"> {card.title}</h4>
-                                            <p class="card-description mb-0">{card.description}</p>
-                                            {/* <div class="bg-icon">
+                        {trainingCards.map((card) => (
+                            <a href={card.href} class="text-decoration-none g-col-12 g-col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <Icon name={card.icon} class="fs-3 mb-2 text-body" />
+                                        <h4 class="mb-1"> {card.title}</h4>
+                                        <p class="card-description mb-0">{card.description}</p>
+                                        {/* <div class="bg-icon">
                                                 <Icon name={card.icon} />
                                             </div> */}
-                                        </div>
                                     </div>
-                                </a>
-                            ))
-                        }
+                                </div>
+                            </a>
+                        ))}
                     </div>
                 </div>
             </div>

@@ -4,23 +4,23 @@ export interface Props {
 }
 
 const { title } = Astro.props;
+
+// make item title case
+const toTitleCase = (item: string) =>
+    item
+        .toString()
+        .replace(/_/g, " ")
+        .replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase());
 ---
 
 <div class="d-flex align-items-end">
-    {
-        title?.map((item, i) => {
-            if (!item) return;
-            item = item.toString();
-            // make item title case
-            item = item?.replace(/_/g, " ").replace(/\w\S*/g, function (txt) {
-                return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
-            });
-            return (
-                <span class="align-middle">
-                    {i === 0 ? "" : <i class="fa-solid fa-chevron-right fa-xs mx-1 " />}
-                    {item}
-                </span>
-            );
-        })
-    }
+    {title?.map((item, i) => {
+        if (!item) return;
+        return (
+            <span class="align-middle">
+                {i === 0 ? "" : <i class="fa-solid fa-chevron-right fa-xs mx-1" />}
+                {toTitleCase(item)}
+            </span>
+        );
+    })}
 </div>
