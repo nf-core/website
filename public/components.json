@@ -838,7 +838,7 @@
     {
       "name": "abra2",
       "path": "modules/nf-core/abra2/meta.yml",
-      "tree_sha": "8ef418b5f4011dcad0a0c0a5fa8f375f04141a69",
+      "tree_sha": "08457bc7c492282e86a4c5c43ea4a7b2820de1b1",
       "files": [
         "modules/nf-core/abra2/environment.yml",
         "modules/nf-core/abra2/main.nf",
@@ -1042,10 +1042,10 @@
                 }
               },
               {
-                "*.bam.bai": {
+                "*.bai": {
                   "type": "file",
                   "description": "BAM index file (optional)",
-                  "pattern": "*.abra.bam.bai",
+                  "pattern": "*.bai",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3327"
@@ -1109,7 +1109,7 @@
           "@adamrtalbot"
         ]
       },
-      "git_sha": "4dd270e412e2a7e78761be38aafa5cfa1dcdf891"
+      "git_sha": "d8519701300f99de0ff6db954df2e20dadb77717"
     },
     {
       "name": "abricate_run",
@@ -93022,6 +93022,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -283405,6 +283413,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -283712,6 +283724,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -439409,7 +439425,7 @@
     {
       "name": "vcf_phase_shapeit5",
       "path": "subworkflows/nf-core/vcf_phase_shapeit5/meta.yml",
-      "tree_sha": "7c7ef41d55a1a5a842552e4b4010c1cae388769d",
+      "tree_sha": "570a85655851f4c3fb5bff0c9181612c6565503c",
       "files": [
         "subworkflows/nf-core/vcf_phase_shapeit5/main.nf",
         "subworkflows/nf-core/vcf_phase_shapeit5/meta.yml",
@@ -439420,7 +439436,7 @@
       "type": "subworkflow",
       "meta": {
         "name": "VCF_PHASE_SHAPEIT5",
-        "description": "Subworkflow to phase a reference panel VCF file using SHAPEIT5.\nThe panel is first chunked by chromosome by glimpse2/chunk,\nthen genotypes are phased with shapeit5/phasecommon and\nfinally the chunks are merged back together by shapeit5/ligate by chromosomes.\nMeta map of all channels will be used to perform joint operations.\n\"regionout\", \"regionoutPadded\", \"regionSize\" keys will be added to the meta map to distinguish\nthe different files before ligation and therefore should not be used.\n",
+        "description": "Subworkflow to phase a reference panel VCF file using SHAPEIT5.\nThe panel is first chunked by chromosome by glimpse2/chunk (if no chunks provided),\nthen genotypes are phased with shapeit5/phasecommon and\nfinally the chunks are merged back together by shapeit5/ligate by chromosomes.\nMeta map of all channels will be used to perform joint operations.\n\"regionout\", \"regionoutPadded\", \"regionSize\" keys will be added to the meta map to distinguish\nthe different files before ligation and therefore should not be used.\n",
         "keywords": [
           "VCF",
           "phase",
@@ -439435,7 +439451,7 @@
         ],
         "input": [
           {
-            "ch_vcf": {
+            "ch_input": {
               "description": "Channel with target VCF files",
               "structure": [
                 {
@@ -439464,102 +439480,48 @@
                   "pattern": "*.{txt, tsv}"
                 },
                 {
-                  "region": null,
-                  "type": "string",
-                  "description": "Region to perform the chunking on for GLIMPSE2_chunk",
-                  "pattern": "[chr]+[0-9]+:[0-9]+-[0-9]+"
-                }
-              ]
-            }
-          },
-          {
-            "ch_chunks": {
-              "description": "Channel with region data",
-              "structure": [
-                {
-                  "meta": null,
-                  "type": "map",
-                  "description": "Metadata map that will be combined with the input data map"
-                },
-                {
-                  "regionout": null,
-                  "type": "string",
-                  "description": "Region to perform the phasing on",
-                  "pattern": "[chr]+[0-9]+:[0-9]+-[0-9]+"
-                }
-              ]
-            }
-          },
-          {
-            "ch_ref": {
-              "description": "Channel with reference phased VCF files",
-              "structure": [
-                {
-                  "meta": null,
-                  "type": "map",
-                  "description": "Metadata map"
-                },
-                {
-                  "vcf": null,
+                  "reference_vcf": null,
                   "type": "file",
-                  "description": "VCF file",
+                  "description": "Reference panel VCF file",
                   "pattern": "*.{vcf,bcf,vcf.gz}"
                 },
                 {
-                  "index": null,
+                  "reference_index": null,
                   "type": "file",
-                  "description": "VCF index file",
+                  "description": "Reference panel VCF index file",
                   "pattern": "*.{tbi,csi}"
-                }
-              ]
-            }
-          },
-          {
-            "ch_scaffold": {
-              "description": "Channel with reference scaffold VCF files",
-              "structure": [
-                {
-                  "meta": null,
-                  "type": "map",
-                  "description": "Metadata map"
                 },
                 {
-                  "vcf": null,
+                  "scaffold_vcf": null,
                   "type": "file",
-                  "description": "VCF file",
+                  "description": "Scaffold VCF file",
                   "pattern": "*.{vcf,bcf,vcf.gz}"
                 },
                 {
-                  "index": null,
+                  "scaffold_index": null,
                   "type": "file",
-                  "description": "VCF index file",
+                  "description": "Scaffold VCF index file",
                   "pattern": "*.{tbi,csi}"
-                }
-              ]
-            }
-          },
-          {
-            "ch_map": {
-              "description": "Channel with genetic map data (optional)",
-              "structure": [
-                {
-                  "meta": null,
-                  "type": "map",
-                  "description": "Metadata map"
                 },
                 {
                   "map": null,
                   "type": "file",
                   "description": "Map file in GLIMPSE format",
                   "pattern": "*.map"
+                },
+                {
+                  "region": null,
+                  "type": "string",
+                  "description": "Region to perform the chunking on using GLIMPSE2_chunk",
+                  "pattern": "[chr]+[0-9]+:[0-9]+-[0-9]+"
+                },
+                {
+                  "chunks": null,
+                  "type": "array",
+                  "description": "List of region to perform the phasing on",
+                  "pattern": "[([chr]+[0-9]+:[0-9]+-[0-9]+)(,[chr]+[0-9]+:[0-9]+-[0-9]+)+]"
                 }
               ]
-            }
-          },
-          {
-            "chunk": {
-              "type": "boolean",
-              "description": "Whether to perform chunking of the input data before imputation."
             }
           },
           {
@@ -439586,7 +439548,7 @@
                 {
                   "regionout": null,
                   "type": "string",
-                  "description": "Region to perform the phasing on",
+                  "description": "Chunks regions obtained from GLIMPSE2_chunk",
                   "pattern": "[chr]+[0-9]+:[0-9]+-[0-9]+"
                 }
               ]
@@ -439624,9 +439586,9 @@
           "@louislenezet"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
+      "git_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657"
     }
   ],
-  "commit_sha": "b2bcd8312599aacd849e69721e20ac8138018f83",
-  "updated_at": "2026-10-01T14:36:37.105Z"
+  "commit_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657",
+  "updated_at": "2026-10-02T02:19:06.075Z"
 }
