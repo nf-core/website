@@ -27475,7 +27475,7 @@
         },
         {
           "name": "tumourevo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "viralmetagenome",
@@ -31026,7 +31026,7 @@
         },
         {
           "name": "tumourevo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "variantbenchmarking",
@@ -67871,7 +67871,7 @@
       "pipelines": [
         {
           "name": "tumourevo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -80836,7 +80836,7 @@
       "pipelines": [
         {
           "name": "tumourevo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -93245,6 +93245,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -104728,7 +104736,13 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "fab9e45e452a3087c9647f036437b7df35a43700"
+      "git_sha": "fab9e45e452a3087c9647f036437b7df35a43700",
+      "pipelines": [
+        {
+          "name": "mhcquant",
+          "version": "3.3.0"
+        }
+      ]
     },
     {
       "name": "easypqp_library",
@@ -104890,7 +104904,13 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "86eb20853edff4bc85fa21104c87920270eac92e"
+      "git_sha": "86eb20853edff4bc85fa21104c87920270eac92e",
+      "pipelines": [
+        {
+          "name": "mhcquant",
+          "version": "3.3.0"
+        }
+      ]
     },
     {
       "name": "eautils_fastqstats",
@@ -108265,7 +108285,7 @@
         },
         {
           "name": "tumourevo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -108912,7 +108932,7 @@
         },
         {
           "name": "tumourevo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "variantcatalogue",
@@ -115676,7 +115696,7 @@
         },
         {
           "name": "tumourevo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "variantcatalogue",
@@ -168282,7 +168302,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.2.0"
+          "version": "3.3.0"
         },
         {
           "name": "mspepid",
@@ -183921,20 +183941,24 @@
     {
       "name": "huggingface_download",
       "path": "modules/nf-core/huggingface/download/meta.yml",
-      "tree_sha": "63c7fc20a85b33d9e097f77ab001849d93aa154a",
+      "tree_sha": "ad55ddad57cb7543b89f300629b51804f1438abf",
       "files": [
+        "modules/nf-core/huggingface/download/.conda-lock/linux_amd64-bd-d5830d12561fd965_1.txt",
+        "modules/nf-core/huggingface/download/.conda-lock/linux_arm64-bd-5f10f5c90bd896e0_1.txt",
         "modules/nf-core/huggingface/download/environment.yml",
         "modules/nf-core/huggingface/download/main.nf",
         "modules/nf-core/huggingface/download/meta.yml",
         "modules/nf-core/huggingface/download/tests/main.nf.test",
-        "modules/nf-core/huggingface/download/tests/main.nf.test.snap"
+        "modules/nf-core/huggingface/download/tests/main.nf.test.snap",
+        "modules/nf-core/huggingface/download/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
         "name": "huggingface_download",
-        "description": "Download a file from a Hugging Face Hub repository using the `hf` CLI",
+        "description": "Download a file or an entire Hugging Face Hub repository using the `hf` CLI.\nPass an empty list or empty string for hf_file to download the repository into\na directory named by ext.prefix (default: meta.id). Repository type, revision\nand include/exclude filters can be supplied through ext.args, for example\n--repo-type dataset --revision <commit> --include 'data/*'.\nIf SSL_CERT_FILE is unset, the certifi CA bundle is used; export SSL_CERT_FILE\nto trust custom (e.g. proxy) certificate authorities.\n",
         "keywords": [
           "download",
+          "dataset",
           "gguf",
           "huggingface",
           "hub",
@@ -183973,7 +183997,7 @@
             {
               "hf_file": {
                 "type": "string",
-                "description": "Path of the file to download within the repository,\ne.g. `gemma-3-1b-it-Q4_K_M.gguf`. The downloaded file is emitted\nwith this name in the task work directory.\n"
+                "description": "Path of the file to download within the repository,\ne.g. `gemma-3-1b-it-Q4_K_M.gguf`. The downloaded file is emitted\nwith this name in the task work directory. Pass [] or an empty string\nto download the entire repository, optionally filtered by ext.args.\n"
               }
             }
           ]
@@ -183988,9 +184012,9 @@
                 }
               },
               {
-                "hf_file": {
+                "output_path": {
                   "type": "file",
-                  "description": "Downloaded file from the Hugging Face repository",
+                  "description": "Downloaded file, or the repository directory when hf_file is empty.\nRepository directories are named by ext.prefix (default: meta.id).\nSingle-file downloads retain the path specified by hf_file.\n",
                   "ontologies": []
                 }
               }
@@ -184045,14 +184069,49 @@
         },
         "authors": [
           "@toniher",
-          "@lucacozzuto"
+          "@lucacozzuto",
+          "@mwiewior"
         ],
         "maintainers": [
           "@toniher",
           "@lucacozzuto"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/huggingface_hub:1.18.0--d5830d12561fd965",
+              "build_id": "bd-d5830d12561fd965_1",
+              "scan_id": "sc-11208a9756f8dea8_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/huggingface_hub:1.18.0--5f10f5c90bd896e0",
+              "build_id": "bd-5f10f5c90bd896e0_1",
+              "scan_id": "sc-3fd62e75cc737a5f_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/huggingface_hub:1.18.0--dda4191df86a01ba",
+              "build_id": "bd-dda4191df86a01ba_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/ed/ede89b6c560efe66ea1fc29f93947d4f9fe9f529de23929fb5cc55394c53bf5c/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/huggingface_hub:1.18.0--39ff147b2093f045",
+              "build_id": "bd-39ff147b2093f045_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2a/2acc547c3aa5f09cf77fb20111e684c404972387d57bd34f67f9147a29b52152/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/huggingface/download/.conda-lock/linux_amd64-bd-d5830d12561fd965_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/huggingface/download/.conda-lock/linux_arm64-bd-5f10f5c90bd896e0_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9dda6400653c85e5f8febce2822ee8dcc1c35ce9"
+      "git_sha": "e06e2807c55b9c72232d422d13ab6d019b97824c"
     },
     {
       "name": "humann3_humann",
@@ -236411,7 +236470,7 @@
       "pipelines": [
         {
           "name": "tumourevo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -241765,7 +241824,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.2.0"
+          "version": "3.3.0"
         },
         {
           "name": "mitodetect",
@@ -241981,7 +242040,7 @@
         },
         {
           "name": "tumourevo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "variantbenchmarking",
@@ -258089,7 +258148,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.2.0"
+          "version": "3.3.0"
         },
         {
           "name": "mspepid",
@@ -258264,7 +258323,13 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "d32895bb4b4be064a93fcb7c60f5ba0e94443b73"
+      "git_sha": "d32895bb4b4be064a93fcb7c60f5ba0e94443b73",
+      "pipelines": [
+        {
+          "name": "mhcquant",
+          "version": "3.3.0"
+        }
+      ]
     },
     {
       "name": "openms_fileconverter",
@@ -258413,7 +258478,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.2.0"
+          "version": "3.3.0"
         }
       ]
     },
@@ -258585,7 +258650,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.2.0"
+          "version": "3.3.0"
         }
       ]
     },
@@ -258725,7 +258790,13 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "4a071f825fcfa127954a1bcc210e0ea3678f9753"
+      "git_sha": "4a071f825fcfa127954a1bcc210e0ea3678f9753",
+      "pipelines": [
+        {
+          "name": "mhcquant",
+          "version": "3.3.0"
+        }
+      ]
     },
     {
       "name": "openms_idfilter",
@@ -258866,7 +258937,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.2.0"
+          "version": "3.3.0"
         }
       ]
     },
@@ -259159,7 +259230,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.2.0"
+          "version": "3.3.0"
         }
       ]
     },
@@ -259295,7 +259366,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.2.0"
+          "version": "3.3.0"
         }
       ]
     },
@@ -259432,7 +259503,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.2.0"
+          "version": "3.3.0"
         }
       ]
     },
@@ -259572,7 +259643,13 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "972faf6f783fe9685267220965a91690741465f9"
+      "git_sha": "972faf6f783fe9685267220965a91690741465f9",
+      "pipelines": [
+        {
+          "name": "mhcquant",
+          "version": "3.3.0"
+        }
+      ]
     },
     {
       "name": "openms_maprttransformer",
@@ -259722,7 +259799,13 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "c1a970a6ad9cbb0b7209a927feb21e1f39c1841a"
+      "git_sha": "c1a970a6ad9cbb0b7209a927feb21e1f39c1841a",
+      "pipelines": [
+        {
+          "name": "mhcquant",
+          "version": "3.3.0"
+        }
+      ]
     },
     {
       "name": "openms_mztabexporter",
@@ -259859,7 +259942,13 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "d8c8c4cb1c4e1a38c7619cf905e8701ff00a8580"
+      "git_sha": "d8c8c4cb1c4e1a38c7619cf905e8701ff00a8580",
+      "pipelines": [
+        {
+          "name": "mhcquant",
+          "version": "3.3.0"
+        }
+      ]
     },
     {
       "name": "openms_peakpickerhires",
@@ -259993,7 +260082,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.2.0"
+          "version": "3.3.0"
         }
       ]
     },
@@ -260137,7 +260226,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.2.0"
+          "version": "3.3.0"
         }
       ]
     },
@@ -260271,7 +260360,13 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "pipelines": [
+        {
+          "name": "mhcquant",
+          "version": "3.3.0"
+        }
+      ]
     },
     {
       "name": "openms_textexporter",
@@ -260405,7 +260500,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.2.0"
+          "version": "3.3.0"
         }
       ]
     },
@@ -260630,7 +260725,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.2.0"
+          "version": "3.3.0"
         }
       ]
     },
@@ -269317,7 +269412,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.2.0"
+          "version": "3.3.0"
         }
       ]
     },
@@ -283417,6 +283512,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -283724,6 +283823,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -293844,7 +293947,13 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "e49c41bed2a652f2859a3309e6609160408c321e"
+      "git_sha": "e49c41bed2a652f2859a3309e6609160408c321e",
+      "pipelines": [
+        {
+          "name": "mhcquant",
+          "version": "3.3.0"
+        }
+      ]
     },
     {
       "name": "pridepy_fetchsdrf",
@@ -293974,7 +294083,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.2.0"
+          "version": "3.3.0"
         }
       ]
     },
@@ -299948,7 +300057,7 @@
       "pipelines": [
         {
           "name": "tumourevo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -357834,7 +357943,7 @@
       "pipelines": [
         {
           "name": "tumourevo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -367790,7 +367899,7 @@
       "pipelines": [
         {
           "name": "tumourevo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -390311,7 +390420,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.2.0"
+          "version": "3.3.0"
         },
         {
           "name": "mspepid",
@@ -391525,7 +391634,7 @@
       "pipelines": [
         {
           "name": "tumourevo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -401574,7 +401683,7 @@
         },
         {
           "name": "tumourevo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "variantprioritization",
@@ -405533,7 +405642,7 @@
         },
         {
           "name": "tumourevo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -411119,7 +411228,7 @@
       "pipelines": [
         {
           "name": "tumourevo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -436883,7 +436992,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.2.0"
+          "version": "3.3.0"
         },
         {
           "name": "mitodetect",
@@ -437095,7 +437204,7 @@
         },
         {
           "name": "tumourevo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "variantbenchmarking",
@@ -437375,7 +437484,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.2.0"
+          "version": "3.3.0"
         },
         {
           "name": "mitodetect",
@@ -437587,7 +437696,7 @@
         },
         {
           "name": "tumourevo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "variantbenchmarking",
@@ -437907,7 +438016,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.2.0"
+          "version": "3.3.0"
         },
         {
           "name": "mitodetect",
@@ -438115,7 +438224,7 @@
         },
         {
           "name": "tumourevo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "variantbenchmarking",
@@ -439589,6 +439698,6 @@
       "git_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657"
     }
   ],
-  "commit_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657",
-  "updated_at": "2026-10-02T02:19:06.075Z"
+  "commit_sha": "e06e2807c55b9c72232d422d13ab6d019b97824c",
+  "updated_at": "2026-10-02T14:12:12.982Z"
 }
