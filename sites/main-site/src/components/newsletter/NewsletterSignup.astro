@@ -33,13 +33,11 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 
 <div class="nl-signup">
     {!compact && <h3 class="mb-2">{heading}</h3>}
-    {
-        !compact && (
-            <p class="text-body-secondary mb-3">
-                {description} <a href="/newsletter/subscribe">See details</a>.
-            </p>
-        )
-    }
+    {!compact && (
+        <p class="text-body-secondary mb-3">
+            {description} <a href="/newsletter/subscribe">See details</a>.
+        </p>
+    )}
     <form class="nl-signup-form" data-endpoint={SUBSCRIBE_URL} novalidate>
         <div class="input-group">
             <input
@@ -60,22 +58,24 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     </form>
 </div>
 
-{
-    TURNSTILE_SITE_KEY && (
-        <Fragment>
-            {/* Stub so api.js finds a callback on load, silencing a console warning —
+{TURNSTILE_SITE_KEY && (
+    <Fragment>
+        {/* Stub so api.js finds a callback on load, silencing a console warning —
                 the deferred module below can't win that race. It replaces this with the
                 real renderer, and renders any widget already in the DOM. */}
-            <script is:inline>{"window.onloadTurnstileCallback = function () {};"}</script>
-            <script
-                is:inline
-                src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback&render=explicit"
-                async
-                defer
-            />
-        </Fragment>
-    )
-}
+        <script is:inline>
+            {
+                ("window.onloadTurnstileCallback = function () {};");
+            }
+        </script>
+        <script
+            is:inline
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback&render=explicit"
+            async
+            defer
+        />
+    </Fragment>
+)}
 
 <script>
     // Renders the Turnstile widget in every `.nl-signup-turnstile` container that

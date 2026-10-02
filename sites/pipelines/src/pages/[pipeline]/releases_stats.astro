@@ -79,65 +79,63 @@ for (const release of releases) {
         <div class="col-12 col-md-9 pt-3">
             <h1>Version history</h1>
             <div class="accordion" id="releases">
-                {
-                    releases &&
-                        releases.map((release, i) => {
-                            return (
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button
-                                            class="accordion-button"
-                                            type="button"
-                                            data-bs-toggle="collapse"
-                                            data-bs-target={`#collapse${release.tag_name.replaceAll(".", "_")}`}
-                                            aria-expanded="true"
-                                            aria-controls="collapseOne"
-                                        >
-                                            {release.tag_name}
-                                            <span class="text-body-secondary ms-auto small">
-                                                {formatDistance(new Date(release.published_at), new Date(), {
-                                                    addSuffix: true,
-                                                })}
-                                            </span>
-                                        </button>
-                                    </h2>
-                                    <div
-                                        id={`collapse${release.tag_name.replaceAll(".", "_")}`}
-                                        class:list={[
-                                            "accordion-collapse collapse",
-                                            release.tag_name === version ? "show" : "",
-                                        ]}
+                {releases &&
+                    releases.map((release, i) => {
+                        return (
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target={`#collapse${release.tag_name.replaceAll(".", "_")}`}
+                                        aria-expanded="true"
+                                        aria-controls="collapseOne"
                                     >
-                                        <div class="accordion-body">
-                                            <div class="btn-group float-end" role="group" aria-label="Basic example">
-                                                <a
-                                                    href={`https://api.github.com/repos/nf-core/${pipeline}/zipball/${release.tag_name}`}
-                                                    class="btn btn-sm btn-outline-secondary"
-                                                >
-                                                    Download .zip
-                                                </a>
+                                        {release.tag_name}
+                                        <span class="text-body-secondary ms-auto small">
+                                            {formatDistance(new Date(release.published_at), new Date(), {
+                                                addSuffix: true,
+                                            })}
+                                        </span>
+                                    </button>
+                                </h2>
+                                <div
+                                    id={`collapse${release.tag_name.replaceAll(".", "_")}`}
+                                    class:list={[
+                                        "accordion-collapse collapse",
+                                        release.tag_name === version ? "show" : "",
+                                    ]}
+                                >
+                                    <div class="accordion-body">
+                                        <div class="btn-group float-end" role="group" aria-label="Basic example">
+                                            <a
+                                                href={`https://api.github.com/repos/nf-core/${pipeline}/zipball/${release.tag_name}`}
+                                                class="btn btn-sm btn-outline-secondary"
+                                            >
+                                                Download .zip
+                                            </a>
 
-                                                <a
-                                                    href={`https://api.github.com/repos/nf-core/${pipeline}/tarball/${release.tag_name}`}
-                                                    class="btn btn-sm btn-outline-secondary"
-                                                >
-                                                    Download .tar.gz
-                                                </a>
-                                                <a
-                                                    href={`https://github.com/nf-core/${pipeline}/releases/tag/${release.tag_name}`}
-                                                    class="btn btn-sm btn-outline-secondary"
-                                                >
-                                                    <i class="fa-brands fa-github me-2" />
-                                                    View on GitHub
-                                                </a>
-                                            </div>
-                                            {gh_releases[i] ? <Fragment set:html={gh_releases[i]} /> : ""}
+                                            <a
+                                                href={`https://api.github.com/repos/nf-core/${pipeline}/tarball/${release.tag_name}`}
+                                                class="btn btn-sm btn-outline-secondary"
+                                            >
+                                                Download .tar.gz
+                                            </a>
+                                            <a
+                                                href={`https://github.com/nf-core/${pipeline}/releases/tag/${release.tag_name}`}
+                                                class="btn btn-sm btn-outline-secondary"
+                                            >
+                                                <i class="fa-brands fa-github me-2" />
+                                                View on GitHub
+                                            </a>
                                         </div>
+                                        {gh_releases[i] ? <Fragment set:html={gh_releases[i]} /> : ""}
                                     </div>
                                 </div>
-                            );
-                        })
-                }
+                            </div>
+                        );
+                    })}
             </div>
         </div>
         <div class="col-12 col-md-3 toc order-first order-md-last">

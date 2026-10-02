@@ -63,47 +63,45 @@ const group_name = entry.data.groupName;
     {sections}
     viewTransitions={true}
 >
-    {
-        entry.id.includes("index.md") && (
-            <div slot="right-sidebar-top">
-                {(entry.data.pipelines?.length ?? 0) > 0 && (
-                    <SidebarStatsRow
-                        content={[
-                            {
-                                title: "Pipelines in use",
-                            },
-                        ]}
-                    >
-                        <div class="mb-2">
-                            {entry.data.pipelines?.map((pipeline) => (
-                                <a
-                                    href={"/" + pipeline}
-                                    class="badge fw-normal border border-warning-subtle bg-warning-subtle text-body me-1 text-decoration-none"
-                                >
-                                    {pipeline}
-                                </a>
-                            ))}
-                        </div>
-                    </SidebarStatsRow>
-                )}
+    {entry.id.includes("index.md") && (
+        <div slot="right-sidebar-top">
+            {(entry.data.pipelines?.length ?? 0) > 0 && (
                 <SidebarStatsRow
-                    lastChild={true}
-                    content={[{ title: "Group lead" + (entry.data.leads?.length > 1 ? "s" : "") }]}
+                    content={[
+                        {
+                            title: "Pipelines in use",
+                        },
+                    ]}
                 >
-                    {entry.data.leads?.map((lead) => {
-                        if (typeof lead === "string") {
-                            return <GitHubProfilePictureExtended username={lead} size={40} />;
-                        } else {
-                            return (
-                                <GitHubProfilePictureExtended username={Object.keys(lead)[0]} size={40}>
-                                    {Object.values(lead)[0]}
-                                </GitHubProfilePictureExtended>
-                            );
-                        }
-                    })}
+                    <div class="mb-2">
+                        {entry.data.pipelines?.map((pipeline) => (
+                            <a
+                                href={"/" + pipeline}
+                                class="badge fw-normal border border-warning-subtle bg-warning-subtle text-body me-1 text-decoration-none"
+                            >
+                                {pipeline}
+                            </a>
+                        ))}
+                    </div>
                 </SidebarStatsRow>
-            </div>
-        )
-    }
+            )}
+            <SidebarStatsRow
+                lastChild={true}
+                content={[{ title: "Group lead" + (entry.data.leads?.length > 1 ? "s" : "") }]}
+            >
+                {entry.data.leads?.map((lead) => {
+                    if (typeof lead === "string") {
+                        return <GitHubProfilePictureExtended username={lead} size={40} />;
+                    } else {
+                        return (
+                            <GitHubProfilePictureExtended username={Object.keys(lead)[0]} size={40}>
+                                {Object.values(lead)[0]}
+                            </GitHubProfilePictureExtended>
+                        );
+                    }
+                })}
+            </SidebarStatsRow>
+        </div>
+    )}
     <Content />
 </MarkdownTocLayout>

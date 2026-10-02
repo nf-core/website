@@ -43,15 +43,13 @@ import HomepageCard from "@components/homepage/HomepageCard.astro";
                 Choose your shop's region
             </button>
             <ul class="dropdown-menu">
-                {
-                    spreadshopLocales.map((data) => (
-                        <li>
-                            <a class="dropdown-item" href={"/shop/" + data[1].toLowerCase()}>
-                                {data[0]}
-                            </a>
-                        </li>
-                    ))
-                }
+                {spreadshopLocales.map((data) => (
+                    <li>
+                        <a class="dropdown-item" href={"/shop/" + data[1].toLowerCase()}>
+                            {data[0]}
+                        </a>
+                    </li>
+                ))}
             </ul>
         </div>
     </div>
@@ -59,8 +57,12 @@ import HomepageCard from "@components/homepage/HomepageCard.astro";
         Something funky going on? Here are the direct links to the shops without any clever website embeds:
     </p>
     <p class="text-center mb-5">
-        <a href="https://nf-core.myspreadshop.net" class="btn btn-outline-secondary me-2">🇪🇺 Direct link to EU shop</a>
-        <a href="https://nf-core.myspreadshop.com" class="btn btn-outline-secondary">🇺🇸 Direct link to USA shop</a>
+        <a href="https://nf-core.myspreadshop.net" class="btn btn-outline-secondary me-2">
+            🇪🇺 Direct link to EU shop
+        </a>
+        <a href="https://nf-core.myspreadshop.com" class="btn btn-outline-secondary">
+            🇺🇸 Direct link to USA shop
+        </a>
     </p>
     <div class="grid mb-4">
         <div class="card g-col-4">
@@ -104,9 +106,8 @@ import HomepageCard from "@components/homepage/HomepageCard.astro";
             <div class="card-body">
                 <h5>Can I suggest new products or designs?</h5>
                 <p class="card-text small">
-                    Yes, please do! We are always open to new ideas. If you have a suggestion, please post it in the <code
-                        >#shop</code
-                    > channel on the nf-core Slack.
+                    Yes, please do! We are always open to new ideas. If you have a suggestion, please post it in the{" "}
+                    <code>#shop</code> channel on the nf-core Slack.
                 </p>
             </div>
         </div>

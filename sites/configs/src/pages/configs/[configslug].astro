@@ -116,37 +116,29 @@ if (pipelineConfigs.length > 0) {
                 <Markdown of={raw_config} />
             </div>
 
-            {
-                pipelineConfigs.length > 0 && (
-                    <div>
-                        <h1>Pipeline configs</h1>
-                        {pipelineConfigs.map((pipelineConfig) => (
-                            <div>
-                                <p class="my-3 scroll-target" id={pipelineConfig.id.split("/").slice(-2, -1).join("/")}>
-                                    <a
-                                        href={`https://github.com/nf-core/configs/tree/master/${pipelineConfig.id}.config`}
-                                        target="_blank"
-                                    >
-                                        <i class="fab fa-github me-2" />
-                                        See config file on GitHub
-                                    </a>
-                                </p>
-                                <div class="config-code ">
-                                    <Markdown
-                                        of={
-                                            '```groovy title="' +
-                                            pipelineConfig.id +
-                                            '"\n' +
-                                            pipelineConfig.body +
-                                            "\n```"
-                                        }
-                                    />
-                                </div>
+            {pipelineConfigs.length > 0 && (
+                <div>
+                    <h1>Pipeline configs</h1>
+                    {pipelineConfigs.map((pipelineConfig) => (
+                        <div>
+                            <p class="my-3 scroll-target" id={pipelineConfig.id.split("/").slice(-2, -1).join("/")}>
+                                <a
+                                    href={`https://github.com/nf-core/configs/tree/master/${pipelineConfig.id}.config`}
+                                    target="_blank"
+                                >
+                                    <i class="fab fa-github me-2" />
+                                    See config file on GitHub
+                                </a>
+                            </p>
+                            <div class="config-code">
+                                <Markdown
+                                    of={'```groovy title="' + pipelineConfig.id + '"\n' + pipelineConfig.body + "\n```"}
+                                />
                             </div>
-                        ))}
-                    </div>
-                )
-            }
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
         <div class="col-none col-md-3 sidebar">
             <SidebarToc
@@ -157,15 +149,14 @@ if (pipelineConfigs.length > 0) {
                 client:idle
             >
                 <div slot="rightSidebarTop">
-                    {
-                        metadata.executor && (
-                            <SidebarStatsRow
-                                content={[
-                                    { title: "executor", value: metadata.executor?.toString() },
-                                    {
-                                        title: contact ? "contact" : "",
-                                        value: contact
-                                            ? `<a
+                    {metadata.executor && (
+                        <SidebarStatsRow
+                            content={[
+                                { title: "executor", value: metadata.executor?.toString() },
+                                {
+                                    title: contact ? "contact" : "",
+                                    value: contact
+                                        ? `<a
                                     href="https://github.com/${contact}"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -173,43 +164,39 @@ if (pipelineConfigs.length > 0) {
                                 >
                                     <Image class="me-2 pb-2" src="https://github.com/${contact}.png?size=50" height="50" alt="${contact}" />
                                 </a>`
-                                            : "",
-                                    },
-                                    {
-                                        title: "Last modified",
-                                        value: new Date(config.data.lastCommit?.toString()).toISOString().split("T")[0],
-                                    },
-                                ]}
-                            />
-                        )
-                    }
-                    {
-                        metadata.config_profile_url && (
-                            <SidebarStatsRow
-                                content={[
-                                    {
-                                        title: "homepage",
-                                    },
-                                ]}
+                                        : "",
+                                },
+                                {
+                                    title: "Last modified",
+                                    value: new Date(config.data.lastCommit?.toString()).toISOString().split("T")[0],
+                                },
+                            ]}
+                        />
+                    )}
+                    {metadata.config_profile_url && (
+                        <SidebarStatsRow
+                            content={[
+                                {
+                                    title: "homepage",
+                                },
+                            ]}
+                        >
+                            <a
+                                class="text-truncate text-nowrap overflow-x-auto"
+                                href={metadata.config_profile_url?.toString()}
                             >
-                                <a
-                                    class="text-truncate text-nowrap overflow-x-auto"
-                                    href={metadata.config_profile_url?.toString()}
-                                >
-                                    {metadata.config_profile_url?.toString()}
-                                </a>
-                            </SidebarStatsRow>
-                        )
-                    }
-                    {
-                        !metadata.executor && contact && (
-                            <SidebarStatsRow
-                                content={[
-                                    ...(contact
-                                        ? [
-                                              {
-                                                  title: "contact",
-                                                  value: `<a
+                                {metadata.config_profile_url?.toString()}
+                            </a>
+                        </SidebarStatsRow>
+                    )}
+                    {!metadata.executor && contact && (
+                        <SidebarStatsRow
+                            content={[
+                                ...(contact
+                                    ? [
+                                          {
+                                              title: "contact",
+                                              value: `<a
                                     href="https://github.com/${contact}"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -217,27 +204,24 @@ if (pipelineConfigs.length > 0) {
                                 >
                                     <Image class="me-2 pb-2" src="https://github.com/${contact}.png?size=50" alt="${contact}" />
                                 </a>`,
-                                              },
-                                          ]
-                                        : []),
-                                ]}
-                            />
-                        )
-                    }
-                    {
-                        pipelineConfigs.length > 0 && (
-                            <SidebarStatsRow content={[{ title: "pipeline configs" }]}>
-                                {pipelineConfigs.map((pipelineConfig) => (
-                                    <a
-                                        class="badge bg-secondary me-2 fw-normal"
-                                        href={`#${pipelineConfig.id.split("/").slice(-2, -1).join("/")}`}
-                                    >
-                                        {pipelineConfig.id.split("/").slice(-2, -1).join("/")}
-                                    </a>
-                                ))}
-                            </SidebarStatsRow>
-                        )
-                    }
+                                          },
+                                      ]
+                                    : []),
+                            ]}
+                        />
+                    )}
+                    {pipelineConfigs.length > 0 && (
+                        <SidebarStatsRow content={[{ title: "pipeline configs" }]}>
+                            {pipelineConfigs.map((pipelineConfig) => (
+                                <a
+                                    class="badge bg-secondary me-2 fw-normal"
+                                    href={`#${pipelineConfig.id.split("/").slice(-2, -1).join("/")}`}
+                                >
+                                    {pipelineConfig.id.split("/").slice(-2, -1).join("/")}
+                                </a>
+                            ))}
+                        </SidebarStatsRow>
+                    )}
                     <SidebarStatsRow content={[{ title: "get in touch" }]} lastChild={true}>
                         <div class="d-flex flex-column">
                             <a

@@ -155,24 +155,22 @@ function getLinkIcon(url: string) {
     sidebarTitle="Advisories"
 >
     <Content />
-    {
-        frontmatter.references?.length > 0 && (
-            <div class="advisory-references">
-                <h1 class="mb-3">References</h1>
-                <ul class="list-unstyled">
-                    {frontmatter.references.map((ref) => (
-                        <li class="reference-item mb-3">
-                            <a href={ref.url} target="_blank" rel="noopener noreferrer">
-                                <i class={`${getLinkIcon(ref.url)} fa-fw me-1`} />
-                                <span class="reference-title">{ref.title}</span>
-                            </a>
-                            {ref.description && <p class="reference-description ms-1">{ref.description}</p>}
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        )
-    }
+    {frontmatter.references?.length > 0 && (
+        <div class="advisory-references">
+            <h1 class="mb-3">References</h1>
+            <ul class="list-unstyled">
+                {frontmatter.references.map((ref) => (
+                    <li class="reference-item mb-3">
+                        <a href={ref.url} target="_blank" rel="noopener noreferrer">
+                            <i class={`${getLinkIcon(ref.url)} fa-fw me-1`} />
+                            <span class="reference-title">{ref.title}</span>
+                        </a>
+                        {ref.description && <p class="reference-description ms-1">{ref.description}</p>}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    )}
     <div slot="right-sidebar-top">
         <AdvisorySidebarHeader frontmatter={frontmatter} />
     </div>
