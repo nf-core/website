@@ -15,7 +15,7 @@ timeout: 60
 working_dir: tmp/nf-core-nextbigthing
 before_command: >
   echo "lint: { pipeline_todos: false }" >> .nf-core.yml
-fake_command: nf-core lint
+fake_command: nf-core pipelines lint
 -->
 
 ![`nf-core pipelines lint`](../../../../../assets/images/tools/nf-core-lint.svg)
