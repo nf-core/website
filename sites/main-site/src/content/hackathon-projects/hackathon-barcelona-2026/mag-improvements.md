@@ -23,9 +23,13 @@ There is also a discussion to be had regarding the feasibility and pertinence of
 
 ## Tasks
 
-- Pick tools from [nf-core/mag#1022](https://github.com/nf-core/mag/issues/1022) to add to the pipeline
-- Look at replacing tools that no longer pull their weight (e.g. QUAST)
-- Discuss the feasibility of an additional entry point that takes bins directly, for bin refinement
+* Pick tools from [nf-core/mag#1022](https://github.com/nf-core/mag/issues/1022) to add to the pipeline. For example, these all already have an nf-core module published:
+    * Adding the [BAKTA modules](https://nf-co.re/modules/bakta_bakta/) as a new annotation tool alternative to Prokka
+    * Adding the [binette module](https://nf-co.re/modules/binette/), as a (yet another) new binner option
+    * Adding the [fairy](https://nf-co.re/modules/fairy_coverage/) modules as a superfast substitute for coverage calculation
+    * Adding the [myloasm](https://nf-co.re/modules/myloasm/) modules as an alternative long reads assembler
+* Look at replacing tools that no longer pull their weight (e.g. QUAST)
+* Discuss the feasibility of an additional entry point that takes bins directly, for bin refinement
 
 :::note
 Keep an eye on this page for more updates.
