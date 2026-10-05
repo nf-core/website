@@ -1,6 +1,7 @@
 ---
 title: New container syntax and Wave adoption
 category: components
+slack: https://nfcore.slack.com/archives/CJRH30T6V
 location: Barcelona
 leaders:
   mribeirodantas:
