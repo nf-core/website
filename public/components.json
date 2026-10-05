@@ -93307,6 +93307,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -144037,7 +144045,7 @@
     {
       "name": "gatk4_postprocessgermlinecnvcalls",
       "path": "modules/nf-core/gatk4/postprocessgermlinecnvcalls/meta.yml",
-      "tree_sha": "ac081508ef9c96f26b9bda1798901db1b14b0c27",
+      "tree_sha": "3ba3d518cbb15a5270a02de9dc62090de3fa2e19",
       "files": [
         "modules/nf-core/gatk4/postprocessgermlinecnvcalls/environment.yml",
         "modules/nf-core/gatk4/postprocessgermlinecnvcalls/main.nf",
@@ -144154,13 +144162,13 @@
                 }
               },
               {
-                "*_denoised.vcf.gz": {
+                "*_denoised.tsv": {
                   "type": "file",
-                  "description": "Denoised copy ratio file",
-                  "pattern": "*.vcf.gz",
+                  "description": "Denoised copy ratio file (tab-separated values)",
+                  "pattern": "*.tsv",
                   "ontologies": [
                     {
-                      "edam": "http://edamontology.org/format_3989"
+                      "edam": "http://edamontology.org/format_3475"
                     }
                   ]
                 }
@@ -144221,7 +144229,7 @@
           "@ryanjameskennedy"
         ]
       },
-      "git_sha": "d5de7a949aa84689f4098c958f05733a6c3804f5",
+      "git_sha": "37d472286462f856e1bb3ce9e865850b648eac29",
       "pipelines": [
         {
           "name": "raredisease",
@@ -283575,6 +283583,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -283882,6 +283894,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -366728,7 +366744,7 @@
     {
       "name": "sourmash_sketch",
       "path": "modules/nf-core/sourmash/sketch/meta.yml",
-      "tree_sha": "3e7672c0571c1c4652f733261254d5065c876788",
+      "tree_sha": "7fddc5992617c0b9d4b4273fa53bc4740cea6d41",
       "files": [
         "modules/nf-core/sourmash/sketch/environment.yml",
         "modules/nf-core/sourmash/sketch/main.nf",
@@ -366865,7 +366881,7 @@
           "@Midnighter"
         ]
       },
-      "git_sha": "6eaecd6ef9bfc7faf313b1abeaae9b129795291d",
+      "git_sha": "c98a14d32fc13603d68be1d16d3214e17a4404a0",
       "pipelines": [
         {
           "name": "createtaxdb",
@@ -440377,6 +440393,6 @@
       "git_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657"
     }
   ],
-  "commit_sha": "20c2ecf0b645dc4900938cffe3d0a0f15965cdc2",
-  "updated_at": "2026-10-05T09:25:26.664Z"
+  "commit_sha": "37d472286462f856e1bb3ce9e865850b648eac29",
+  "updated_at": "2026-10-05T14:14:04.168Z"
 }
