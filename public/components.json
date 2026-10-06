@@ -93315,6 +93315,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -241735,7 +241743,7 @@
         },
         {
           "name": "datasync",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "deepmutscan",
@@ -265285,7 +265293,7 @@
     {
       "name": "parabricks_fq2bam",
       "path": "modules/nf-core/parabricks/fq2bam/meta.yml",
-      "tree_sha": "d6845d9bea630cf2fb739e21ba05a712590835fb",
+      "tree_sha": "72dcc401a389f8c5d77a6dd96bbfad15eba11ec8",
       "files": [
         "modules/nf-core/parabricks/fq2bam/main.nf",
         "modules/nf-core/parabricks/fq2bam/meta.yml",
@@ -265412,6 +265420,14 @@
                     "edam": "http://edamontology.org/format_3989"
                   }
                 ]
+              }
+            },
+            {
+              "known_sites_index": {
+                "type": "file",
+                "description": "(optional) known sites file(s) index for calculating BQSR. markdups must be true to perform BQSR.",
+                "pattern": "*.vcf.gz.tbi",
+                "ontologies": []
               }
             }
           ],
@@ -265621,7 +265637,7 @@
           "@famosab"
         ]
       },
-      "git_sha": "3e0ec6464725c64d81abe928e15a6750d5fdd272",
+      "git_sha": "4bfaaac6e5818b452040366ed85a42eeddcf46a2",
       "pipelines": [
         {
           "name": "sarek",
@@ -283587,6 +283603,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -283894,6 +283914,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -309357,7 +309381,7 @@
       "pipelines": [
         {
           "name": "datasync",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -309687,7 +309711,7 @@
       "pipelines": [
         {
           "name": "datasync",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -309873,7 +309897,7 @@
       "pipelines": [
         {
           "name": "datasync",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -431043,7 +431067,7 @@
     {
       "name": "fastq_align_dedup_bwamem",
       "path": "subworkflows/nf-core/fastq_align_dedup_bwamem/meta.yml",
-      "tree_sha": "78221ae27243170c1112b78c1a011a3a79ae24b4",
+      "tree_sha": "3a93b00fc078c26fc21d7f3bbbcf294ea56a623c",
       "files": [
         "subworkflows/nf-core/fastq_align_dedup_bwamem/main.nf",
         "subworkflows/nf-core/fastq_align_dedup_bwamem/meta.yml",
@@ -431189,7 +431213,7 @@
           "@eduard-watchmaker"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
+      "git_sha": "4bfaaac6e5818b452040366ed85a42eeddcf46a2",
       "pipelines": [
         {
           "name": "methylseq",
@@ -437450,7 +437474,7 @@
         },
         {
           "name": "datasync",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "deepmodeloptim",
@@ -437942,7 +437966,7 @@
         },
         {
           "name": "datasync",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "deepmodeloptim",
@@ -438482,7 +438506,7 @@
         },
         {
           "name": "datasync",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "deepmodeloptim",
@@ -440393,6 +440417,6 @@
       "git_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657"
     }
   ],
-  "commit_sha": "37d472286462f856e1bb3ce9e865850b648eac29",
-  "updated_at": "2026-10-05T14:14:04.168Z"
+  "commit_sha": "4bfaaac6e5818b452040366ed85a42eeddcf46a2",
+  "updated_at": "2026-10-06T02:17:06.966Z"
 }
