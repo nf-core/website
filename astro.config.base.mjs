@@ -1,4 +1,4 @@
-import { resolve } from "node:path";
+import { basename, resolve } from "node:path";
 import mdx from '@astrojs/mdx';
 import netlify from "@astrojs/netlify";
 import partytown from "@astrojs/partytown";
@@ -19,6 +19,10 @@ import { createSatteriPluginSets, satteriSharedMarkdownConfig } from "./bin/satt
 export default {
     site: "https://nf-co.re/",
     output: "static",
+    // Netlify only caches node_modules in the base directory (the repo root), not in the
+    // workspace package dirs, so keep each site's cache (incremental build manifest, content
+    // data store) under the root node_modules to have it survive between deploys.
+    cacheDir: resolve(process.cwd(), "../../node_modules/.astro", basename(process.cwd())),
     adapter: netlify(),
     prefetch: false,
     env: {
