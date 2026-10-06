@@ -36,11 +36,16 @@ const stickersByCategory = uniqueCategories.reduce(
     {} as Record<string, Props["stickers"]>,
 );
 
+const YEAR_ROW_CATEGORIES = ["nextflow-summit"];
+
 // Function to format category name for display
 function formatCategoryName(category: string): string {
     if (!category) return "Other Stickers";
     // Ensure all category names end with "Stickers"
-    const baseName = category.charAt(0).toUpperCase() + category.slice(1);
+    // Singular before "Stickers" (hackathons -> Hackathon), but keep words like "miscellaneous"
+    const baseName = category
+        .replace(/(?<![su])s$/, "")
+        .replace(/(^|-)(\w)/g, (_, sep, c) => (sep ? " " : "") + c.toUpperCase());
     return baseName.endsWith("Stickers") ? baseName : `${baseName} Stickers`;
 }
 
@@ -110,7 +115,12 @@ const hasValidStickers = validStickers.length > 0;
                             </svg>
                         </a>
                     </h2>
-                    <HexGrid class="hex-gallery" id={`hexGallery-${category}`} data-category={category}>
+                    <HexGrid
+                        class="hex-gallery"
+                        id={`hexGallery-${category}`}
+                        data-category={category}
+                        groupByYear={YEAR_ROW_CATEGORIES.includes(category)}
+                    >
                         {stickersByCategory[category].map((sticker) => (
                             <HexSticker {...sticker.rendered.metadata} />
                         ))}

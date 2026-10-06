@@ -15,22 +15,34 @@ interface Props {
 const { imageUrl, alt, category = "uncategorized", link, description } = Astro.props;
 
 const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
+const isHolographic = imageUrl.includes("holographic") || category === "champions";
 ---
 
 <div
     class="hex-container sticker-trigger"
     data-category={category}
+    data-year={imageUrl
+        .split("/")
+        .pop()
+        ?.match(/20\d\d/)?.[0]}
     data-sticker-img={imageUrl}
     data-sticker-light-img={lightModeUrl}
     data-sticker-alt={alt}
+    data-sticker-holographic={isHolographic ? "" : undefined}
+    data-sticker-gold={category === "champions" ? "" : undefined}
     data-sticker-link={link}
     data-sticker-description={description}
     tabindex="0"
     role="button"
     aria-label={`View ${alt} sticker`}
 >
-    <div class="hex-sticker">
-        <div class="holographic-foil" aria-hidden="true"></div>
+    <div class:list={["hex-sticker", { "is-holographic": isHolographic, "is-gold": category === "champions" }]}>
+        <div
+            class="holographic-foil"
+            aria-hidden="true"
+            style={isHolographic ? `--sticker-mask: url(${imageUrl})` : undefined}
+        >
+        </div>
         <div class="shine-effect" aria-hidden="true"></div>
         <Image src={imageUrl} alt={alt} class="hide-light" width="150" height="173" />
         <Image src={lightModeUrl} alt={alt} class="hide-dark" width="150" height="173" />
@@ -187,7 +199,77 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
         mix-blend-mode: color-burn;
     }
 
+    /* Real holographic stickers (styles global so StickerModal reuses them): strong rainbow that lights up the pale foil areas, always visible */
+    :global(.is-holographic .holographic-foil),
+    .hex-container:hover :global(.is-holographic .holographic-foil),
+    .hex-container:focus :global(.is-holographic .holographic-foil) {
+        background: linear-gradient(
+            115deg,
+            #ff4d6d 0%,
+            #ffb703 14%,
+            #8ac926 28%,
+            #00d4ff 42%,
+            #7b5cff 56%,
+            #ff4dd8 70%,
+            #ffb703 84%,
+            #ff4d6d 100%
+        );
+        background-size: 300% 300%;
+        mix-blend-mode: overlay;
+        mask: var(--sticker-mask) center / 100% 100% no-repeat;
+        opacity: 0.55;
+        animation: rotate-gradient 6s ease-in-out infinite alternate;
+    }
+
+    /* Gold foil: light/dark gold bands keep it yellow while it shimmers, a rainbow would turn it orange/pink */
+    :global(.is-gold .holographic-foil),
+    .hex-container:hover :global(.is-gold .holographic-foil),
+    .hex-container:focus :global(.is-gold .holographic-foil) {
+        background: linear-gradient(
+            115deg,
+            #fff8d6 0%,
+            #c9971a 18%,
+            #fff3b0 34%,
+            #e8c34a 50%,
+            #fffbe8 66%,
+            #b8860b 82%,
+            #fff8d6 100%
+        );
+        background-size: 300% 300%;
+        opacity: 0.6;
+    }
+
+    :global(.is-gold) {
+        animation: gold-glint 4s ease-in-out infinite alternate;
+    }
+
+    /* Idle sheen sweep for gold; the hover JS drives the shine itself */
+    .hex-container:not(:hover, :focus) .is-gold .shine-effect {
+        animation: gold-sheen 5s ease-in-out infinite;
+    }
+
     /* Animations */
+    @keyframes gold-glint {
+        0% {
+            filter: brightness(0.85) contrast(1.1);
+        }
+        100% {
+            filter: brightness(1.15) contrast(1.15);
+        }
+    }
+
+    @keyframes gold-sheen {
+        0%,
+        100% {
+            opacity: 0;
+            transform: rotate(30deg) translateX(-30%);
+        }
+        50% {
+            opacity: 0.45;
+            transform: rotate(30deg) translateX(30%);
+        }
+    }
+
     @keyframes rotate-gradient {
         0% {
             background-position: 0% 0%;
@@ -206,7 +288,8 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
         }
 
         .hex-container:hover .holographic-foil,
-        .hex-container:focus .holographic-foil {
+        .hex-container:focus .holographic-foil,
+        :global(.is-holographic .holographic-foil) {
             animation: none;
         }
 
@@ -214,6 +297,11 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
         .hex-container:focus .shine-effect {
             animation: none;
             opacity: 0.5;
+        }
+
+        .hex-container .is-gold .shine-effect,
+        :global(.is-gold) {
+            animation: none;
         }
     }
 
@@ -270,7 +358,10 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
                     hexSticker.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
 
                     // Adjust holographic effect opacity based on tilt
-                    if (holographicFoil) {
+                    if (holographicFoil && hexSticker.classList.contains("is-holographic")) {
+                        holographicFoil.style.animation = "none";
+                        holographicFoil.style.backgroundPosition = `${50 + xPercent * 50}% ${50 + yPercent * 50}%`;
+                    } else if (holographicFoil) {
                         const tiltMagnitude = Math.sqrt(tiltX * tiltX + tiltY * tiltY) / maxTilt;
                         holographicFoil.style.opacity = 0.3 + tiltMagnitude * 0.4;
                     }
@@ -316,6 +407,8 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
 
                     if (holographicFoil) {
                         holographicFoil.style.opacity = "";
+                        holographicFoil.style.animation = "";
+                        holographicFoil.style.backgroundPosition = "";
                     }
 
                     if (shineEffect) {
