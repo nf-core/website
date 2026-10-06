@@ -1,4 +1,5 @@
 import baseConfig from "../../astro.config.base.mjs";
+import netlify from "@astrojs/netlify";
 import icon from "astro-icon";
 import { defineConfig } from "astro/config";
 import pipelines_json from "./public/pipelines.json";
@@ -14,6 +15,11 @@ pipelines_json.remote_workflows.map((pipeline) => {
 // https://astro.build/config
 export default defineConfig({
     ...baseConfig,
+    // satori (og.png.ts) loads harfbuzzjs, which reads hb.wasm via fs at runtime; the function
+    // bundler can't trace that, so ship the wasm with the SSR function explicitly.
+    adapter: netlify({
+        includeFiles: ["../../node_modules/harfbuzzjs/hb.wasm"],
+    }),
     redirects: {
         ...pipelineRedirects,
     },
