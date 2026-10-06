@@ -2,6 +2,7 @@
 import { html } from "satori-html";
 import satori from "satori";
 import sharp from "sharp";
+import { ogFonts, ogImageHeaders } from "@utils/og-image";
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 import pipelines_json from "@public/pipelines.json";
@@ -51,27 +52,15 @@ export const GET: APIRoute = async ({ params, request }) => {
 
     return new Response(buffer, {
         status: 200,
-        headers: {
-            "Content-Type": "image/png",
-            "Cache-Control": "max-age=31536000, immutable",
-        },
+        headers: ogImageHeaders,
     });
 };
 
 async function generateImage(jsx: any, { width, height }: { width: number; height: number }) {
-    const mavenpro = await fetch(
-        "https://fonts.gstatic.com/s/mavenpro/v32/7Auup_AqnyWWAxW2Wk3swUz56MS91Eww8cLx1nejpBh8CvRBOA.woff",
-    ).then((res) => res.arrayBuffer());
-    const inter = await fetch(
-        `https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff`,
-    ).then((res) => res.arrayBuffer());
     const svg = await satori(jsx, {
         width,
         height,
-        fonts: [
-            { name: "mavenpro", data: mavenpro, weight: 700, style: "normal" },
-            { name: "inter", data: inter, weight: 400, style: "normal" },
-        ],
+        fonts: ogFonts,
     });
     return await sharp(Buffer.from(svg)).png().toBuffer();
 }
