@@ -38,7 +38,7 @@
 
         {#snippet cardBody()}
             {#if showDescription}
-                <div class="mb-4">{@html frontmatter.subtitle}</div>
+                <div class="mb-4">{@html frontmatter.renderedSubtitle}</div>
             {/if}
             {#if metadataItems.length > 0}
                 <div class="mt-2 small">

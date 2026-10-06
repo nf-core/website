@@ -225,104 +225,97 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, "").split("/");
     <div slot="header-top" class="d-none d-md-block">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                {
-                    splitUrl.slice(0, -1).map((slug, i) => (
-                        <>
-                            <li class="breadcrumb-item">
-                                <a class="text-white" href={"/" + splitUrl.slice(0, i + 1).join("/")}>
-                                    {slug.replaceAll("_", " ").replace(/(^|\s)\S/g, (match) => match.toUpperCase())}
-                                </a>
-                            </li>
-                            <Icon name="octicon:chevron-right-16" class={"mt-1"} />
-                        </>
-                    ))
-                }
+                {splitUrl.slice(0, -1).map((slug, i) => (
+                    <>
+                        <li class="breadcrumb-item">
+                            <a class="text-white" href={"/" + splitUrl.slice(0, i + 1).join("/")}>
+                                {slug.replaceAll("_", " ").replace(/(^|\s)\S/g, (match) => match.toUpperCase())}
+                            </a>
+                        </li>
+                        <Icon name="octicon:chevron-right-16" class={"mt-1"} />
+                    </>
+                ))}
             </ol>
         </nav>
     </div>
     <div class="container-fluid main-content">
         <div class="row">
             <div class="col-12 col-xl-8 order-2 doc-subsection-masonry">
-                {
-                    pageSections.map((block) => (
-                        <div class="section-block mb-2">
-                            <h2 class="section-heading mb-2">{block.sectionTitle}</h2>
-                            {block.kind === "single" ? (
-                                <ul class="doc-subpage-list list-unstyled mb-0 border-start border-2 ps-3 ms-2">
-                                    <li class="doc-subpage-item mb-2">
-                                        <a
-                                            href={block.link.href}
-                                            class="link-offset-2 fw-semibold text-decoration-none"
-                                        >
-                                            {block.link.label}
-                                        </a>
-                                        {block.link.subtitle && (
-                                            <div class="doc-subpage-subtitle text-secondary small mt-0">
-                                                {block.link.subtitle}
-                                            </div>
-                                        )}
-                                    </li>
-                                </ul>
-                            ) : (
-                                <div class="section-content">
-                                    {block.directPages.length > 0 && (
-                                        <ul class="doc-subpage-list list-unstyled mb-0 border-start border-2 ps-3 ms-2">
-                                            {block.directPages.map((page) => (
-                                                <li class="doc-subpage-item mb-2">
-                                                    <a
-                                                        href={page.href}
-                                                        class="link-offset-2 fw-semibold text-decoration-none"
-                                                    >
-                                                        {page.label}
-                                                    </a>
-                                                    {page.subtitle && (
-                                                        <div class="doc-subpage-subtitle text-secondary small mt-0 mb-2">
-                                                            {page.subtitle}
-                                                        </div>
-                                                    )}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    )}
-                                    {block.nestedGroups.length > 0 && (
-                                        <div
-                                            class:list={
-                                                block.directPages.length > 0
-                                                    ? ["doc-subpage-nested-groups", "mt-4"]
-                                                    : undefined
-                                            }
-                                        >
-                                            {block.nestedGroups.map((group) => (
-                                                <>
-                                                    <h3 class="subsection-heading mb-1">{group.heading}</h3>
-                                                    <div class="nested-content">
-                                                        <ul class="doc-subpage-list list-unstyled mb-0 border-start border-2 ps-3 ms-2">
-                                                            {group.pages.map((page) => (
-                                                                <li class="doc-subpage-item mb-3">
-                                                                    <a
-                                                                        href={page.href}
-                                                                        class="link-offset-2 fw-semibold text-decoration-none"
-                                                                    >
-                                                                        {page.label}
-                                                                    </a>
-                                                                    {page.subtitle && (
-                                                                        <div class="doc-subpage-subtitle text-secondary small mt-0">
-                                                                            {page.subtitle}
-                                                                        </div>
-                                                                    )}
-                                                                </li>
-                                                            ))}
-                                                        </ul>
-                                                    </div>
-                                                </>
-                                            ))}
+                {pageSections.map((block) => (
+                    <div class="section-block mb-2">
+                        <h2 class="section-heading mb-2">{block.sectionTitle}</h2>
+                        {block.kind === "single" ? (
+                            <ul class="doc-subpage-list list-unstyled mb-0 border-start border-2 ps-3 ms-2">
+                                <li class="doc-subpage-item mb-2">
+                                    <a href={block.link.href} class="link-offset-2 fw-semibold text-decoration-none">
+                                        {block.link.label}
+                                    </a>
+                                    {block.link.subtitle && (
+                                        <div class="doc-subpage-subtitle text-secondary small mt-0">
+                                            {block.link.subtitle}
                                         </div>
                                     )}
-                                </div>
-                            )}
-                        </div>
-                    ))
-                }
+                                </li>
+                            </ul>
+                        ) : (
+                            <div class="section-content">
+                                {block.directPages.length > 0 && (
+                                    <ul class="doc-subpage-list list-unstyled mb-0 border-start border-2 ps-3 ms-2">
+                                        {block.directPages.map((page) => (
+                                            <li class="doc-subpage-item mb-2">
+                                                <a
+                                                    href={page.href}
+                                                    class="link-offset-2 fw-semibold text-decoration-none"
+                                                >
+                                                    {page.label}
+                                                </a>
+                                                {page.subtitle && (
+                                                    <div class="doc-subpage-subtitle text-secondary small mt-0 mb-2">
+                                                        {page.subtitle}
+                                                    </div>
+                                                )}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                                {block.nestedGroups.length > 0 && (
+                                    <div
+                                        class:list={
+                                            block.directPages.length > 0
+                                                ? ["doc-subpage-nested-groups", "mt-4"]
+                                                : undefined
+                                        }
+                                    >
+                                        {block.nestedGroups.map((group) => (
+                                            <>
+                                                <h3 class="subsection-heading mb-1">{group.heading}</h3>
+                                                <div class="nested-content">
+                                                    <ul class="doc-subpage-list list-unstyled mb-0 border-start border-2 ps-3 ms-2">
+                                                        {group.pages.map((page) => (
+                                                            <li class="doc-subpage-item mb-3">
+                                                                <a
+                                                                    href={page.href}
+                                                                    class="link-offset-2 fw-semibold text-decoration-none"
+                                                                >
+                                                                    {page.label}
+                                                                </a>
+                                                                {page.subtitle && (
+                                                                    <div class="doc-subpage-subtitle text-secondary small mt-0">
+                                                                        {page.subtitle}
+                                                                    </div>
+                                                                )}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            </>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                ))}
             </div>
 
             <div class="col-12 col-xl-3 sticky-top-under d-none d-xl-inline sidebar-left order-1">

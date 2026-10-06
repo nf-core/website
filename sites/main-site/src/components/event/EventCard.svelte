@@ -41,7 +41,7 @@
     {/snippet}
     {#snippet cardBody()}
         {#if showDescription}
-            <div class="mb-0">{@html frontmatter.subtitle}</div>
+            <div class="mb-0">{@html frontmatter.renderedSubtitle}</div>
         {/if}
         <div
             class="d-flex align-items-center mt-2 flex-wrap justify-content-start"

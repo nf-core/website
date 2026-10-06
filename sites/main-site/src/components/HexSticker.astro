@@ -21,10 +21,12 @@ const isHolographic = imageUrl.includes("holographic") || category === "champion
 <div
     class="hex-container sticker-trigger"
     data-category={category}
-    data-year={imageUrl
-        .split("/")
-        .pop()
-        ?.match(/20\d\d/)?.[0]}
+    data-year={
+        imageUrl
+            .split("/")
+            .pop()
+            ?.match(/20\d\d/)?.[0]
+    }
     data-sticker-img={imageUrl}
     data-sticker-light-img={lightModeUrl}
     data-sticker-alt={alt}
@@ -41,8 +43,7 @@ const isHolographic = imageUrl.includes("holographic") || category === "champion
             class="holographic-foil"
             aria-hidden="true"
             style={isHolographic ? `--sticker-mask: url(${imageUrl})` : undefined}
-        >
-        </div>
+        ></div>
         <div class="shine-effect" aria-hidden="true"></div>
         <Image src={imageUrl} alt={alt} class="hide-light" width="150" height="173" />
         <Image src={lightModeUrl} alt={alt} class="hide-dark" width="150" height="173" />

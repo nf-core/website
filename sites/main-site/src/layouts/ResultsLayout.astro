@@ -79,81 +79,77 @@ if (!isTruncated) {
     viewTransitions={false}
 >
     <div class="mt-3">
-        {
-            directories.length === 0 && files.length === 0 && (
-                <div class="alert alert-warning mt-3 " role="alert">
-                    <h4 class="text-warning">No AWS results found!</h4>
-                    <p>
-                        It seems like there is not yet any AWS results for this version of {pipeline}. Please check
-                        newer releases of this pipeline.
-                    </p>
-                </div>
-            )
-        }
-        {
-            (directories.length > 0 || files.length > 0) && (
-                <div>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <span>
-                                    <i class="fa-brands fa-aws me-2" />
-                                    {bucketName}
-                                </span>
-                            </li>
-                            <li class="breadcrumb-item">
-                                <span>{pipeline}</span>
-                            </li>
-                            {path &&
-                                pathParts.slice(1, -1).map((item, i) => (
-                                    <li class="breadcrumb-item">
-                                        <a href={baseURL + "results/" + pathParts.slice(0, i + 2).join("/") + "/"}>
-                                            {item}
-                                        </a>
-                                    </li>
-                                ))}
-                            <li class="breadcrumb-item active">
-                                <span>{pathParts.slice(-1) + "/"}</span>
-                            </li>
-                        </ol>
-                    </nav>
-                    <div class="file-browser list-group">
-                        <li class="list-group-item fw-bold">
-                            <div class="row">
-                                <span class="col">Name</span>
-                                <span class="col">Last Modified</span>
-                                <span class="col-1 text-end">Size</span>
-                                <span class="col" />
-                            </div>
+        {directories.length === 0 && files.length === 0 && (
+            <div class="alert alert-warning mt-3" role="alert">
+                <h4 class="text-warning">No AWS results found!</h4>
+                <p>
+                    It seems like there is not yet any AWS results for this version of {pipeline}. Please check newer
+                    releases of this pipeline.
+                </p>
+            </div>
+        )}
+        {(directories.length > 0 || files.length > 0) && (
+            <div>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <span>
+                                <i class="fa-brands fa-aws me-2" />
+                                {bucketName}
+                            </span>
                         </li>
-                        {depth > 2 && (
+                        <li class="breadcrumb-item">
+                            <span>{pipeline}</span>
+                        </li>
+                        {path &&
+                            pathParts.slice(1, -1).map((item, i) => (
+                                <li class="breadcrumb-item">
+                                    <a href={baseURL + "results/" + pathParts.slice(0, i + 2).join("/") + "/"}>
+                                        {item}
+                                    </a>
+                                </li>
+                            ))}
+                        <li class="breadcrumb-item active">
+                            <span>{pathParts.slice(-1) + "/"}</span>
+                        </li>
+                    </ol>
+                </nav>
+                <div class="file-browser list-group">
+                    <li class="list-group-item fw-bold">
+                        <div class="row">
+                            <span class="col">Name</span>
+                            <span class="col">Last Modified</span>
+                            <span class="col-1 text-end">Size</span>
+                            <span class="col" />
+                        </div>
+                    </li>
+                    {depth > 2 && (
+                        <a
+                            href={baseURL + "results/" + pathParts.slice(0, -1).join("/") + "/"}
+                            class="list-group-item list-group-item-action"
+                        >
+                            <span class="">
+                                <i class="fa-regular fa-folder-open me-2" />
+                                ..
+                            </span>
+                        </a>
+                    )}
+                    {directories &&
+                        directories.map((item) => (
                             <a
-                                href={baseURL + "results/" + pathParts.slice(0, -1).join("/") + "/"}
+                                href={baseURL + "results/" + path + "/" + item.name}
                                 class="list-group-item list-group-item-action"
                             >
                                 <span class="">
-                                    <i class="fa-regular fa-folder-open me-2" />
-                                    ..
+                                    <i class="fa-solid fa-folder me-2" />
+                                    {item.name}
                                 </span>
                             </a>
-                        )}
-                        {directories &&
-                            directories.map((item) => (
-                                <a
-                                    href={baseURL + "results/" + path + "/" + item.name}
-                                    class="list-group-item list-group-item-action"
-                                >
-                                    <span class="">
-                                        <i class="fa-solid fa-folder me-2" />
-                                        {item.name}
-                                    </span>
-                                </a>
-                            ))}
-                        {files && files.map((item) => <AWSFile item={item} />)}
-                    </div>
-                    {filename && <AWSFilePreview file={files.find((file) => file.name === filename)} />}
+                        ))}
+                    {files && files.map((item) => <AWSFile item={item} />)}
                 </div>
-            )
-        }
+                {filename && <AWSFilePreview file={files.find((file) => file.name === filename)} />}
+            </div>
+        )}
     </div>
 </PipelinePageLayout>

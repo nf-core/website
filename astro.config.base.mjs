@@ -48,6 +48,7 @@ export default {
     ],
     experimental: {
         svgOptimizer: svgoOptimizer(),
+        incrementalBuild: true,
     },
     integrations: [
         svelte(),

@@ -157,7 +157,7 @@
                                     </span>
                                 </h5>
                                 <a href={"events/" + event.id + "/"} class="text-body text-decoration-none lead"
-                                    >{@html event.data.subtitle}</a
+                                    >{@html event.data.renderedSubtitle}</a
                                 >
                                 {#if event.data.duration}
                                     <p class="mb-1">
@@ -220,7 +220,7 @@
                         </h4>
                         <div class="d-sm-none mb-1">
                             <a href={"events/" + event.id + "/"} class="text-body text-decoration-none"
-                                >{@html event.data.subtitle}</a
+                                >{@html event.data.renderedSubtitle}</a
                             ><span class={"badge bg-" + event_type_classes[event.data.type] + " small ms-3"}
                                 ><i class={event_type_icons[event.data.type] + " me-1"} aria-hidden="true"></i>
                                 {event.data.type}</span

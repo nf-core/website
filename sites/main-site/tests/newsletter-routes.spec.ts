@@ -46,3 +46,21 @@ test("alternate formats (markdown / simple / rss) render", async ({ request }) =
     expect(rssBody).toContain("<rss");
     expect(rssBody).toContain("nf-core Newsletter");
 });
+
+// Regression: pages that render subtitles as markdown used to mutate the cached
+// getCollection() entries in place, so depending on build order the newsletter
+// picked up "<p>…</p>" subtitles and printed them as escaped text.
+test("newsletter variants contain no escaped HTML tags", async ({ request }) => {
+    const month = await latestMonthPath(request);
+    const escapedTag = /&lt;\/?(p|a|code|em|strong)\b/i;
+
+    for (const path of [month, `${month}/email`, `${month}/simple`]) {
+        const res = await request.get(path);
+        expect(res.ok()).toBeTruthy();
+        expect(await res.text(), `escaped HTML tag in ${path}`).not.toMatch(escapedTag);
+    }
+
+    const md = await request.get(`${month}/markdown`);
+    expect(md.ok()).toBeTruthy();
+    expect(await md.text(), "HTML <p> tag in markdown").not.toMatch(/<\/?p>/);
+});

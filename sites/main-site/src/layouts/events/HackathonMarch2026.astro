@@ -8,26 +8,24 @@ const { frontmatter } = Astro.props;
 
 <Admonition title="tip" titleText="Hackathon - March 2026">
     <p class="small text-body-secondary">
-        This is a subpage of the main event page: <a href="/events/2026/hackathon-march-2026">Hackathon - March 2026</a
-        >.
+        This is a subpage of the main event page: <a href="/events/2026/hackathon-march-2026">Hackathon - March 2026</a>
+        .
     </p>
     <p class="small text-body-secondary">
         See the main event page for event registration and information about the event.
     </p>
 </Admonition>
 
-{
-    frontmatter.locations?.[0] && (
-        <Admonition title="info" titleText="Location">
-            <h5 class="mt-0">{frontmatter.locations[0].name}</h5>
-            {frontmatter.locations[0].address && <p>{frontmatter.locations[0].address}</p>}
-            {frontmatter.locations[0].links && (
-                <p>
-                    <a href={frontmatter.locations[0].links[0]}>{frontmatter.locations[0].links[0]}</a>
-                </p>
-            )}
-        </Admonition>
-    )
-}
+{frontmatter.locations?.[0] && (
+    <Admonition title="info" titleText="Location">
+        <h5 class="mt-0">{frontmatter.locations[0].name}</h5>
+        {frontmatter.locations[0].address && <p>{frontmatter.locations[0].address}</p>}
+        {frontmatter.locations[0].links && (
+            <p>
+                <a href={frontmatter.locations[0].links[0]}>{frontmatter.locations[0].links[0]}</a>
+            </p>
+        )}
+    </Admonition>
+)}
 
 <slot />

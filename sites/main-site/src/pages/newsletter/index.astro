@@ -37,38 +37,35 @@ const latest = months[0];
                     target="_blank"
                     rel="noopener"
                 >
-                    <i class="fab fa-linkedin mx-1"></i>LinkedIn</a
-                >.
+                    <i class="fab fa-linkedin mx-1"></i>LinkedIn
+                </a>
+                .
             </p>
         </div>
     </div>
 
-    {
-        latest && (
-            <div class="alert alert-success mb-4">
-                <strong>Latest newsletter: </strong>
-                <a href={`/newsletter/${latest.year}/${String(latest.month).padStart(2, "0")}`}>
-                    {getMonthName(latest.month)} {latest.year}
-                </a>
-            </div>
-        )
-    }
+    {latest && (
+        <div class="alert alert-success mb-4">
+            <strong>Latest newsletter: </strong>
+            <a href={`/newsletter/${latest.year}/${String(latest.month).padStart(2, "0")}`}>
+                {getMonthName(latest.month)} {latest.year}
+            </a>
+        </div>
+    )}
 
-    {
-        years.map((year) => (
-            <div class="mb-4">
-                <h2>{year}</h2>
-                <div class="list-group">
-                    {byYear.get(year)!.map((m) => (
-                        <a
-                            href={`/newsletter/${m.year}/${String(m.month).padStart(2, "0")}`}
-                            class="list-group-item list-group-item-action"
-                        >
-                            {getMonthName(m.month)} {m.year}
-                        </a>
-                    ))}
-                </div>
+    {years.map((year) => (
+        <div class="mb-4">
+            <h2>{year}</h2>
+            <div class="list-group">
+                {byYear.get(year)!.map((m) => (
+                    <a
+                        href={`/newsletter/${m.year}/${String(m.month).padStart(2, "0")}`}
+                        class="list-group-item list-group-item-action"
+                    >
+                        {getMonthName(m.month)} {m.year}
+                    </a>
+                ))}
             </div>
-        ))
-    }
+        </div>
+    ))}
 </PageLayout>
