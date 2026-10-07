@@ -1,162 +1,21 @@
 name: Fix linting from a comment
 on:
   issue_comment:
-    types: [created]
+    types: [created] # Add "@nf-core-bot fix linting" as a PR comment to trigger this workflow.
 
-permissions: {}
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.issue.number }}
 
 jobs:
-  prepare-fix:
-    if: >
-      contains(github.event.comment.html_url, '/pull/') &&
-      contains(github.event.comment.body, '@nf-core-bot fix linting') &&
-      github.repository == 'nf-core/website'
-    permissions:
-      contents: read
-      issues: write
-      pull-requests: read
-    runs-on: ubuntu-latest
-    outputs:
-      head_sha: ${{ steps.pr.outputs.head_sha }}
-      has_patch: ${{ steps.patch.outputs.has_patch }}
-      prek_outcome: ${{ steps.prek.outcome }}
-    steps:
-      - name: React on comment
-        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5
-        with:
-          comment-id: ${{ github.event.comment.id }}
-          reactions: eyes
-
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        with:
-          persist-credentials: false
-
-      - name: Checkout pull request
-        id: pr
-        env:
-          GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ github.event.issue.number }}
-        run: |
-          gh pr checkout "$PR_NUMBER"
-          echo "head_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-
-      - name: Set up node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
-        with:
-          node-version: 24
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci --ignore-scripts
-
-      - name: Run prek
-        id: prek
-        uses: j178/prek-action@1382ad72dea72f9d53832f2bcb65b3e87a947204 # v3.0.1
-        continue-on-error: true
-
-      - name: Create lint fix patch
-        id: patch
-        if: steps.prek.outcome == 'failure'
-        run: |
-          git add --all
-          git diff --cached --binary --full-index --no-ext-diff > "${RUNNER_TEMP}/lint-fix.patch"
-          if [ ! -s "${RUNNER_TEMP}/lint-fix.patch" ]; then
-            echo "Prek failed without producing a fix."
-            exit 1
-          fi
-          echo "has_patch=true" >> "$GITHUB_OUTPUT"
-
-      - name: Upload lint fix patch
-        if: steps.patch.outputs.has_patch == 'true'
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
-        with:
-          name: lint-fix
-          path: ${{ runner.temp }}/lint-fix.patch
-          if-no-files-found: error
-          retention-days: 1
-
-  push-fix:
-    needs: prepare-fix
-    if: ${{ always() && needs.prepare-fix.result != 'skipped' }}
+  fix-linting:
+    uses: nf-core/actions/.github/workflows/fix-linting.yml@v1
+    with:
+      nextflow-versions: '["25.10.4","latest-everything"]'
     permissions:
       actions: read
       contents: read
       issues: write
-      pull-requests: read
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        if: needs.prepare-fix.outputs.has_patch == 'true'
-        with:
-          persist-credentials: false
+      pull-requests: write
 
-      - name: Checkout exact pull request head
-        if: needs.prepare-fix.outputs.has_patch == 'true'
-        env:
-          EXPECTED_HEAD_SHA: ${{ needs.prepare-fix.outputs.head_sha }}
-          GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ github.event.issue.number }}
-        run: |
-          gh pr checkout "$PR_NUMBER"
-          if [ "$(git rev-parse HEAD)" != "$EXPECTED_HEAD_SHA" ]; then
-            echo "Pull request head changed after linting completed."
-            exit 1
-          fi
-
-      - name: Download lint fix patch
-        if: needs.prepare-fix.outputs.has_patch == 'true'
-        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
-        with:
-          name: lint-fix
-          path: ${{ runner.temp }}/lint-fix
-
-      - name: Apply lint fix patch
-        if: needs.prepare-fix.outputs.has_patch == 'true'
-        env:
-          PATCH_FILE: ${{ runner.temp }}/lint-fix/lint-fix.patch
-        run: |
-          if [ ! -f "$PATCH_FILE" ] || [ -L "$PATCH_FILE" ]; then
-            echo "The lint fix artifact does not contain a regular patch file."
-            exit 1
-          fi
-          git apply --index "$PATCH_FILE"
-
-      - name: Commit and push changes
-        id: commit-and-push
-        if: needs.prepare-fix.outputs.has_patch == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.nf_core_bot_auth_token }}
-        run: |
-          gh auth setup-git
-          git config user.email "core@nf-co.re"
-          git config user.name "nf-core-bot"
-          git config push.default upstream
-          git status
-          git -c core.hooksPath=/dev/null -c commit.gpgsign=false commit -m "[automated] Fix code linting"
-          git -c core.hooksPath=/dev/null push
-
-      - name: React if linting finished successfully
-        if: needs.prepare-fix.outputs.prek_outcome == 'success'
-        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5
-        with:
-          comment-id: ${{ github.event.comment.id }}
-          reactions: "+1"
-
-      - name: React if linting errors were fixed
-        if: steps.commit-and-push.outcome == 'success'
-        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5
-        with:
-          comment-id: ${{ github.event.comment.id }}
-          reactions: hooray
-
-      - name: Report failure
-        if: ${{ always() && (failure() || needs.prepare-fix.result != 'success') }}
-        env:
-          ACTOR: ${{ github.actor }}
-          COMMENT_ID: ${{ github.event.comment.id }}
-          GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ github.event.issue.number }}
-        run: |
-          gh api --method POST "repos/${GITHUB_REPOSITORY}/issues/comments/${COMMENT_ID}/reactions" -f content="confused"
-          gh pr comment "$PR_NUMBER" --body "@${ACTOR} I tried to fix the linting errors, but it didn't work. Please fix them manually.
-          See [CI log](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}) for more details."
+    secrets:
+      BOT_TOKEN: ${{ secrets.nf_core_bot_auth_token }}
