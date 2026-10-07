@@ -23406,7 +23406,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         }
       ]
     },
@@ -23576,7 +23576,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "pathogenepidemiology",
@@ -23942,7 +23942,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "viralmetagenome",
@@ -24645,7 +24645,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         }
       ]
     },
@@ -33710,6 +33710,10 @@
           "version": "3.2.2"
         },
         {
+          "name": "epigenomesegmentation",
+          "version": "dev"
+        },
+        {
           "name": "methylseq",
           "version": "4.2.0"
         },
@@ -34029,6 +34033,10 @@
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
         {
+          "name": "epigenomesegmentation",
+          "version": "dev"
+        },
+        {
           "name": "phaseimpute",
           "version": "1.1.0"
         },
@@ -34196,7 +34204,13 @@
           "@ekushele"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "pipelines": [
+        {
+          "name": "epigenomesegmentation",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bedtools_maskfasta",
@@ -35424,6 +35438,10 @@
         {
           "name": "hicar",
           "version": "1.0.0"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "2.0.0"
         },
         {
           "name": "nascent",
@@ -53706,7 +53724,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "methylseq",
@@ -53718,7 +53736,7 @@
         },
         {
           "name": "pixelator",
-          "version": "5.0.2"
+          "version": "5.0.3"
         },
         {
           "name": "raredisease",
@@ -82041,7 +82059,13 @@
           }
         }
       },
-      "git_sha": "7574f3f0316ceab3da2a6c87af1f41f692884636"
+      "git_sha": "7574f3f0316ceab3da2a6c87af1f41f692884636",
+      "pipelines": [
+        {
+          "name": "metatdenovo",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "custom_collectstats",
@@ -82234,7 +82258,13 @@
           }
         }
       },
-      "git_sha": "93fba8b93fd34ecf1a8f45fe792a7abd420bdde4"
+      "git_sha": "93fba8b93fd34ecf1a8f45fe792a7abd420bdde4",
+      "pipelines": [
+        {
+          "name": "metatdenovo",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "custom_dumpsoftwareversions",
@@ -91587,6 +91617,135 @@
       ]
     },
     {
+      "name": "deeptools_computematrixoperations",
+      "path": "modules/nf-core/deeptools/computematrixoperations/meta.yml",
+      "tree_sha": "d4ddfddfa90f2fb7a6609cd0b48df3a5ae251455",
+      "files": [
+        "modules/nf-core/deeptools/computematrixoperations/environment.yml",
+        "modules/nf-core/deeptools/computematrixoperations/main.nf",
+        "modules/nf-core/deeptools/computematrixoperations/meta.yml",
+        "modules/nf-core/deeptools/computematrixoperations/tests/main.nf.test",
+        "modules/nf-core/deeptools/computematrixoperations/tests/main.nf.test.snap",
+        "modules/nf-core/deeptools/computematrixoperations/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "deeptools_computematrixoperations",
+        "description": "Modify computeMatrix output with computeMatrixOperations, e.g. filterStrand, filterValues, relabel, subset or sort. The subcommand is set with `ext.args`, its options with `ext.args2`. Subcommands that take several matrices (rbind, cbind) or write no matrix (info, dataRange) are not supported.",
+        "keywords": [
+          "genome",
+          "regions",
+          "genomics",
+          "matrix"
+        ],
+        "tools": [
+          {
+            "deeptools": {
+              "description": "A set of user-friendly tools for normalization and visualization of deep-sequencing data",
+              "documentation": "https://deeptools.readthedocs.io/en/develop/index.html",
+              "tool_dev_url": "https://github.com/deeptools/deepTools",
+              "doi": "10.1093/nar/gku365",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:deeptools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information e.g. [ id:'test', single_end:false ]"
+              }
+            },
+            {
+              "matrix": {
+                "type": "file",
+                "description": "gzipped matrix file produced by deeptools_computematrix",
+                "pattern": "*.mat.gz",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "matrix": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information e.g. [ id:'test', single_end:false ]"
+                }
+              },
+              {
+                "*.mat.gz": {
+                  "type": "file",
+                  "description": "modified gzipped matrix file needed by the plotHeatmap and plotProfile deeptools utilities",
+                  "pattern": "*.mat.gz",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_deeptools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deeptools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deeptools --version | sed \"s/deeptools //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deeptools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deeptools --version | sed \"s/deeptools //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@Kevin-Brockers"
+        ],
+        "maintainers": [
+          "@Kevin-Brockers"
+        ]
+      },
+      "git_sha": "30c7f689f02dd3078cb8f1488f9acc79e6dfe12f"
+    },
+    {
       "name": "deeptools_multibamsummary",
       "path": "modules/nf-core/deeptools/multibamsummary/meta.yml",
       "tree_sha": "493b8376d7f103b2e167aa20768ccf9fd67ae9e8",
@@ -93068,6 +93227,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -95146,7 +95313,7 @@
     {
       "name": "deseq2_differential",
       "path": "modules/nf-core/deseq2/differential/meta.yml",
-      "tree_sha": "602b15e484c4119baac836f10b2f7f22e9b37e03",
+      "tree_sha": "434596a6d9dbaff3e2e021b9a1cc8edb4c70747e",
       "files": [
         "modules/nf-core/deseq2/differential/environment.yml",
         "modules/nf-core/deseq2/differential/main.nf",
@@ -95526,7 +95693,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "3ee90f6092b63bbdcb2218687c7bf6dcda1967b8",
+      "git_sha": "103e34a7c2eb5d2862f97c6225793ddad6f4e0bd",
       "pipelines": [
         {
           "name": "differentialabundance",
@@ -95835,7 +96002,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         }
       ]
     },
@@ -103332,6 +103499,10 @@
           "version": "1.2.0"
         },
         {
+          "name": "metatdenovo",
+          "version": "2.0.0"
+        },
+        {
           "name": "phyloplace",
           "version": "2.3.0"
         }
@@ -105886,6 +106057,10 @@
         {
           "name": "funcprofiler",
           "version": "1.0.0"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "2.0.0"
         }
       ]
     },
@@ -115651,7 +115826,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "methylarray",
@@ -125474,7 +125649,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "proteinfamilies",
@@ -180457,6 +180632,10 @@
           "version": "2.18.0"
         },
         {
+          "name": "metatdenovo",
+          "version": "2.0.0"
+        },
+        {
           "name": "phyloplace",
           "version": "2.3.0"
         }
@@ -180718,7 +180897,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "phyloplace",
@@ -200858,7 +201037,13 @@
           "@toniher"
         ]
       },
-      "git_sha": "9d675a431e1fcd9dc4043edcc9b1c26b5c2377c0"
+      "git_sha": "9d675a431e1fcd9dc4043edcc9b1c26b5c2377c0",
+      "pipelines": [
+        {
+          "name": "metatdenovo",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "kraken2_add",
@@ -219471,6 +219656,10 @@
           "version": "5.5.0"
         },
         {
+          "name": "metatdenovo",
+          "version": "2.0.0"
+        },
+        {
           "name": "viralmetagenome",
           "version": "1.2.0"
         }
@@ -224231,6 +224420,10 @@
         {
           "name": "mag",
           "version": "5.5.0"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "2.0.0"
         }
       ]
     },
@@ -234584,6 +234777,10 @@
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
         {
+          "name": "metatdenovo",
+          "version": "2.0.0"
+        },
+        {
           "name": "proteinfamilies",
           "version": "2.6.0"
         },
@@ -234730,6 +234927,10 @@
         {
           "name": "funcscan",
           "version": "4.0.0"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "2.0.0"
         },
         {
           "name": "proteinfamilies",
@@ -235203,6 +235404,10 @@
         {
           "name": "funcscan",
           "version": "4.0.0"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "2.0.0"
         },
         {
           "name": "proteinfamilies",
@@ -235805,6 +236010,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "metatdenovo",
+          "version": "2.0.0"
+        },
         {
           "name": "proteinfamilies",
           "version": "2.6.0"
@@ -241903,7 +242112,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "methylarray",
@@ -242115,7 +242324,7 @@
         },
         {
           "name": "stableexpression",
-          "version": "v1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "taxmarker",
@@ -281530,7 +281739,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "methylong",
@@ -281679,6 +281888,10 @@
         {
           "name": "genomeqc",
           "version": "1.0.1"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "2.0.0"
         },
         {
           "name": "multiplesequencealign",
@@ -283643,6 +283856,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -283950,6 +284167,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -294841,7 +295062,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         }
       ]
     },
@@ -295244,7 +295465,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "viralmetagenome",
@@ -304910,6 +305131,10 @@
         {
           "name": "genomeqc",
           "version": "1.0.1"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "2.0.0"
         },
         {
           "name": "pathogensurveillance",
@@ -323909,6 +324134,10 @@
         {
           "name": "funcscan",
           "version": "4.0.0"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "2.0.0"
         }
       ]
     },
@@ -324019,6 +324248,10 @@
         {
           "name": "funcscan",
           "version": "4.0.0"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "2.0.0"
         }
       ]
     },
@@ -332440,7 +332673,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "methylong",
@@ -332837,7 +333070,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "methylseq",
@@ -333285,6 +333518,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "epigenomesegmentation",
+          "version": "dev"
+        },
+        {
           "name": "evexplorer",
           "version": "dev"
         },
@@ -333326,7 +333563,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "methylong",
@@ -334434,6 +334671,10 @@
       "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
       "pipelines": [
         {
+          "name": "epigenomesegmentation",
+          "version": "dev"
+        },
+        {
           "name": "phaseimpute",
           "version": "1.1.0"
         },
@@ -335199,7 +335440,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "methylong",
@@ -335716,7 +335957,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "methylseq",
@@ -336007,7 +336248,13 @@
           }
         }
       },
-      "git_sha": "6ea7380463eee30a9792c0199aed8fd976abbdc0"
+      "git_sha": "6ea7380463eee30a9792c0199aed8fd976abbdc0",
+      "pipelines": [
+        {
+          "name": "metatdenovo",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "samtools_view",
@@ -342530,8 +342777,10 @@
     {
       "name": "sentieon_applyvarcal",
       "path": "modules/nf-core/sentieon/applyvarcal/meta.yml",
-      "tree_sha": "b2647dde6b5fc31a4000be1f6fac8416c1d28b83",
+      "tree_sha": "a042dcd6a2e93eece7cc95952fd5a2d27e01776a",
       "files": [
+        "modules/nf-core/sentieon/applyvarcal/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt",
+        "modules/nf-core/sentieon/applyvarcal/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt",
         "modules/nf-core/sentieon/applyvarcal/environment.yml",
         "modules/nf-core/sentieon/applyvarcal/main.nf",
         "modules/nf-core/sentieon/applyvarcal/meta.yml",
@@ -342734,9 +342983,43 @@
         ],
         "maintainers": [
           "@assp8200"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/sentieon:202503.03--493a9352fdfbacc5",
+              "build_id": "bd-493a9352fdfbacc5_1",
+              "scan_id": "sc-cb424814848a20d9_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/sentieon:202503.03--5e34aa16344b911c",
+              "build_id": "bd-5e34aa16344b911c_1",
+              "scan_id": "sc-8746dd39a4711178_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/sentieon:202503.03--95eea6ffae22db3c",
+              "build_id": "bd-95eea6ffae22db3c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2c/2c157e27981ec529b03e7ae5cfc88e51b6158332d2a82db399eef8dd8f2b1d5d/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/sentieon:202503.03--5a01457f1db078c1",
+              "build_id": "bd-5a01457f1db078c1_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/af/af478c78e4ddb4fc9c570e47f3d64d86bb02e5c5467c6c095f21f95f59a7c3ab/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/sentieon/applyvarcal/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/sentieon/applyvarcal/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
+      "git_sha": "efe38e7feaa4267f8bdb3a707b5734ec2d85fb36",
       "pipelines": [
         {
           "name": "sarek",
@@ -344256,8 +344539,10 @@
     {
       "name": "sentieon_dnamodelapply",
       "path": "modules/nf-core/sentieon/dnamodelapply/meta.yml",
-      "tree_sha": "39cfc1a4d312561ce01820f04cadd69edbdf666b",
+      "tree_sha": "1f13141066fb38151b4d7622cf7db996eb754d5c",
       "files": [
+        "modules/nf-core/sentieon/dnamodelapply/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt",
+        "modules/nf-core/sentieon/dnamodelapply/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt",
         "modules/nf-core/sentieon/dnamodelapply/environment.yml",
         "modules/nf-core/sentieon/dnamodelapply/main.nf",
         "modules/nf-core/sentieon/dnamodelapply/meta.yml",
@@ -344448,9 +344733,43 @@
         ],
         "maintainers": [
           "@ramprasadn"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/sentieon:202503.03--493a9352fdfbacc5",
+              "build_id": "bd-493a9352fdfbacc5_1",
+              "scan_id": "sc-cb424814848a20d9_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/sentieon:202503.03--5e34aa16344b911c",
+              "build_id": "bd-5e34aa16344b911c_1",
+              "scan_id": "sc-8746dd39a4711178_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/sentieon:202503.03--5a01457f1db078c1",
+              "build_id": "bd-5a01457f1db078c1_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/af/af478c78e4ddb4fc9c570e47f3d64d86bb02e5c5467c6c095f21f95f59a7c3ab/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/sentieon:202503.03--95eea6ffae22db3c",
+              "build_id": "bd-95eea6ffae22db3c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2c/2c157e27981ec529b03e7ae5cfc88e51b6158332d2a82db399eef8dd8f2b1d5d/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/sentieon/dnamodelapply/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/sentieon/dnamodelapply/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
+      "git_sha": "efe38e7feaa4267f8bdb3a707b5734ec2d85fb36",
       "pipelines": [
         {
           "name": "raredisease",
@@ -344465,8 +344784,10 @@
     {
       "name": "sentieon_dnascope",
       "path": "modules/nf-core/sentieon/dnascope/meta.yml",
-      "tree_sha": "cd2887db1519d35e0297d2f4a7a09bfd7179a7b6",
+      "tree_sha": "c933eff93d7b96d10c311d3183f6d97b587cf8a8",
       "files": [
+        "modules/nf-core/sentieon/dnascope/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt",
+        "modules/nf-core/sentieon/dnascope/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt",
         "modules/nf-core/sentieon/dnascope/environment.yml",
         "modules/nf-core/sentieon/dnascope/main.nf",
         "modules/nf-core/sentieon/dnascope/meta.yml",
@@ -344762,9 +345083,43 @@
         ],
         "maintainers": [
           "@ramprasadn"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/sentieon:202503.03--5e34aa16344b911c",
+              "build_id": "bd-5e34aa16344b911c_1",
+              "scan_id": "sc-8746dd39a4711178_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/sentieon:202503.03--493a9352fdfbacc5",
+              "build_id": "bd-493a9352fdfbacc5_1",
+              "scan_id": "sc-cb424814848a20d9_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/sentieon:202503.03--5a01457f1db078c1",
+              "build_id": "bd-5a01457f1db078c1_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/af/af478c78e4ddb4fc9c570e47f3d64d86bb02e5c5467c6c095f21f95f59a7c3ab/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/sentieon:202503.03--95eea6ffae22db3c",
+              "build_id": "bd-95eea6ffae22db3c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2c/2c157e27981ec529b03e7ae5cfc88e51b6158332d2a82db399eef8dd8f2b1d5d/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/sentieon/dnascope/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/sentieon/dnascope/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
+      "git_sha": "efe38e7feaa4267f8bdb3a707b5734ec2d85fb36",
       "pipelines": [
         {
           "name": "raredisease",
@@ -344779,8 +345134,10 @@
     {
       "name": "sentieon_gvcftyper",
       "path": "modules/nf-core/sentieon/gvcftyper/meta.yml",
-      "tree_sha": "a9a9416a4c4c81432d6db67bcbcfff4b444c8aaa",
+      "tree_sha": "400b2b7fec95a143f4bcd6e61b72886027db9dba",
       "files": [
+        "modules/nf-core/sentieon/gvcftyper/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt",
+        "modules/nf-core/sentieon/gvcftyper/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt",
         "modules/nf-core/sentieon/gvcftyper/environment.yml",
         "modules/nf-core/sentieon/gvcftyper/main.nf",
         "modules/nf-core/sentieon/gvcftyper/meta.yml",
@@ -345001,9 +345358,43 @@
         ],
         "maintainers": [
           "@asp8200"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/sentieon:202503.03--5e34aa16344b911c",
+              "build_id": "bd-5e34aa16344b911c_1",
+              "scan_id": "sc-8746dd39a4711178_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/sentieon:202503.03--493a9352fdfbacc5",
+              "build_id": "bd-493a9352fdfbacc5_1",
+              "scan_id": "sc-cb424814848a20d9_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/sentieon:202503.03--5a01457f1db078c1",
+              "build_id": "bd-5a01457f1db078c1_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/af/af478c78e4ddb4fc9c570e47f3d64d86bb02e5c5467c6c095f21f95f59a7c3ab/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/sentieon:202503.03--95eea6ffae22db3c",
+              "build_id": "bd-95eea6ffae22db3c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2c/2c157e27981ec529b03e7ae5cfc88e51b6158332d2a82db399eef8dd8f2b1d5d/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/sentieon/gvcftyper/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/sentieon/gvcftyper/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
+      "git_sha": "efe38e7feaa4267f8bdb3a707b5734ec2d85fb36",
       "pipelines": [
         {
           "name": "sarek",
@@ -345014,8 +345405,10 @@
     {
       "name": "sentieon_haplotyper",
       "path": "modules/nf-core/sentieon/haplotyper/meta.yml",
-      "tree_sha": "4aa60e559e935fb27884c722985f6fc20b6f6551",
+      "tree_sha": "13fae9ec4fd63e6044aeb701399393651161dc15",
       "files": [
+        "modules/nf-core/sentieon/haplotyper/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt",
+        "modules/nf-core/sentieon/haplotyper/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt",
         "modules/nf-core/sentieon/haplotyper/environment.yml",
         "modules/nf-core/sentieon/haplotyper/main.nf",
         "modules/nf-core/sentieon/haplotyper/meta.yml",
@@ -345289,9 +345682,43 @@
         ],
         "maintainers": [
           "@asp8200"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/sentieon:202503.03--5e34aa16344b911c",
+              "build_id": "bd-5e34aa16344b911c_1",
+              "scan_id": "sc-8746dd39a4711178_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/sentieon:202503.03--493a9352fdfbacc5",
+              "build_id": "bd-493a9352fdfbacc5_1",
+              "scan_id": "sc-cb424814848a20d9_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/sentieon:202503.03--95eea6ffae22db3c",
+              "build_id": "bd-95eea6ffae22db3c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2c/2c157e27981ec529b03e7ae5cfc88e51b6158332d2a82db399eef8dd8f2b1d5d/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/sentieon:202503.03--5a01457f1db078c1",
+              "build_id": "bd-5a01457f1db078c1_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/af/af478c78e4ddb4fc9c570e47f3d64d86bb02e5c5467c6c095f21f95f59a7c3ab/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/sentieon/haplotyper/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/sentieon/haplotyper/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
+      "git_sha": "efe38e7feaa4267f8bdb3a707b5734ec2d85fb36",
       "pipelines": [
         {
           "name": "sarek",
@@ -346570,8 +346997,10 @@
     {
       "name": "sentieon_staralign",
       "path": "modules/nf-core/sentieon/staralign/meta.yml",
-      "tree_sha": "c312077f259d45b2f817fe335dfa4d60895e1c10",
+      "tree_sha": "915adb786c286dd4e392da3c000f6281b4e57d6b",
       "files": [
+        "modules/nf-core/sentieon/staralign/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt",
+        "modules/nf-core/sentieon/staralign/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt",
         "modules/nf-core/sentieon/staralign/environment.yml",
         "modules/nf-core/sentieon/staralign/main.nf",
         "modules/nf-core/sentieon/staralign/meta.yml",
@@ -347054,9 +347483,43 @@
         ],
         "maintainers": [
           "@FriederikeHanssen"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/sentieon:202503.03--493a9352fdfbacc5",
+              "build_id": "bd-493a9352fdfbacc5_1",
+              "scan_id": "sc-cb424814848a20d9_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/sentieon:202503.03--5e34aa16344b911c",
+              "build_id": "bd-5e34aa16344b911c_1",
+              "scan_id": "sc-8746dd39a4711178_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/sentieon:202503.03--95eea6ffae22db3c",
+              "build_id": "bd-95eea6ffae22db3c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2c/2c157e27981ec529b03e7ae5cfc88e51b6158332d2a82db399eef8dd8f2b1d5d/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/sentieon:202503.03--5a01457f1db078c1",
+              "build_id": "bd-5a01457f1db078c1_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/af/af478c78e4ddb4fc9c570e47f3d64d86bb02e5c5467c6c095f21f95f59a7c3ab/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/sentieon/staralign/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/sentieon/staralign/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
+      "git_sha": "efe38e7feaa4267f8bdb3a707b5734ec2d85fb36",
       "pipelines": [
         {
           "name": "rnaseq",
@@ -347067,8 +347530,10 @@
     {
       "name": "sentieon_tnfilter",
       "path": "modules/nf-core/sentieon/tnfilter/meta.yml",
-      "tree_sha": "ff6bcda5f06bde912c26084b2a7ca8df6eee0c79",
+      "tree_sha": "60f9eb7eb7c6550166db14715364d6c88fd96995",
       "files": [
+        "modules/nf-core/sentieon/tnfilter/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt",
+        "modules/nf-core/sentieon/tnfilter/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt",
         "modules/nf-core/sentieon/tnfilter/environment.yml",
         "modules/nf-core/sentieon/tnfilter/main.nf",
         "modules/nf-core/sentieon/tnfilter/meta.yml",
@@ -347325,15 +347790,51 @@
         },
         "authors": [
           "@asp8200"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/sentieon:202503.03--493a9352fdfbacc5",
+              "build_id": "bd-493a9352fdfbacc5_1",
+              "scan_id": "sc-cb424814848a20d9_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/sentieon:202503.03--5e34aa16344b911c",
+              "build_id": "bd-5e34aa16344b911c_1",
+              "scan_id": "sc-8746dd39a4711178_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/sentieon:202503.03--5a01457f1db078c1",
+              "build_id": "bd-5a01457f1db078c1_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/af/af478c78e4ddb4fc9c570e47f3d64d86bb02e5c5467c6c095f21f95f59a7c3ab/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/sentieon:202503.03--95eea6ffae22db3c",
+              "build_id": "bd-95eea6ffae22db3c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2c/2c157e27981ec529b03e7ae5cfc88e51b6158332d2a82db399eef8dd8f2b1d5d/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/sentieon/tnfilter/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/sentieon/tnfilter/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053"
+      "git_sha": "efe38e7feaa4267f8bdb3a707b5734ec2d85fb36"
     },
     {
       "name": "sentieon_tnhaplotyper2",
       "path": "modules/nf-core/sentieon/tnhaplotyper2/meta.yml",
-      "tree_sha": "b847e80b227947a5a7a93189c161d2fe64e76bbd",
+      "tree_sha": "fa20b7aab5ee60f5f93af09836435d7dd7c15a9b",
       "files": [
+        "modules/nf-core/sentieon/tnhaplotyper2/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt",
+        "modules/nf-core/sentieon/tnhaplotyper2/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt",
         "modules/nf-core/sentieon/tnhaplotyper2/environment.yml",
         "modules/nf-core/sentieon/tnhaplotyper2/main.nf",
         "modules/nf-core/sentieon/tnhaplotyper2/meta.yml",
@@ -347695,15 +348196,51 @@
         ],
         "maintainers": [
           "@asp8200"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/sentieon:202503.03--493a9352fdfbacc5",
+              "build_id": "bd-493a9352fdfbacc5_1",
+              "scan_id": "sc-cb424814848a20d9_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/sentieon:202503.03--5e34aa16344b911c",
+              "build_id": "bd-5e34aa16344b911c_1",
+              "scan_id": "sc-8746dd39a4711178_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/sentieon:202503.03--95eea6ffae22db3c",
+              "build_id": "bd-95eea6ffae22db3c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2c/2c157e27981ec529b03e7ae5cfc88e51b6158332d2a82db399eef8dd8f2b1d5d/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/sentieon:202503.03--5a01457f1db078c1",
+              "build_id": "bd-5a01457f1db078c1_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/af/af478c78e4ddb4fc9c570e47f3d64d86bb02e5c5467c6c095f21f95f59a7c3ab/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/sentieon/tnhaplotyper2/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/sentieon/tnhaplotyper2/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053"
+      "git_sha": "efe38e7feaa4267f8bdb3a707b5734ec2d85fb36"
     },
     {
       "name": "sentieon_tnscope",
       "path": "modules/nf-core/sentieon/tnscope/meta.yml",
-      "tree_sha": "8e57b02135f6b23929c0a2cebe7a0e91512a75f0",
+      "tree_sha": "6fd64f77ce74afe929cd2547c52b345d396a9eb6",
       "files": [
+        "modules/nf-core/sentieon/tnscope/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt",
+        "modules/nf-core/sentieon/tnscope/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt",
         "modules/nf-core/sentieon/tnscope/environment.yml",
         "modules/nf-core/sentieon/tnscope/main.nf",
         "modules/nf-core/sentieon/tnscope/meta.yml",
@@ -347993,9 +348530,43 @@
         ],
         "maintainers": [
           "@ramprasadn"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/sentieon:202503.03--493a9352fdfbacc5",
+              "build_id": "bd-493a9352fdfbacc5_1",
+              "scan_id": "sc-cb424814848a20d9_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/sentieon:202503.03--5e34aa16344b911c",
+              "build_id": "bd-5e34aa16344b911c_1",
+              "scan_id": "sc-8746dd39a4711178_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/sentieon:202503.03--5a01457f1db078c1",
+              "build_id": "bd-5a01457f1db078c1_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/af/af478c78e4ddb4fc9c570e47f3d64d86bb02e5c5467c6c095f21f95f59a7c3ab/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/sentieon:202503.03--95eea6ffae22db3c",
+              "build_id": "bd-95eea6ffae22db3c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2c/2c157e27981ec529b03e7ae5cfc88e51b6158332d2a82db399eef8dd8f2b1d5d/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/sentieon/tnscope/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/sentieon/tnscope/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "0876454197c2f191a937b664658c7a1d9ef64053",
+      "git_sha": "efe38e7feaa4267f8bdb3a707b5734ec2d85fb36",
       "pipelines": [
         {
           "name": "sarek",
@@ -349957,6 +350528,10 @@
       },
       "git_sha": "504cddfc189c20124336b8f2c88cc97dbd543928",
       "pipelines": [
+        {
+          "name": "metatdenovo",
+          "version": "2.0.0"
+        },
         {
           "name": "smrnaseq",
           "version": "2.4.1"
@@ -352497,7 +353072,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         }
       ]
     },
@@ -352930,7 +353505,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "radseq",
@@ -367858,7 +368433,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "pathogensurveillance",
@@ -377050,7 +377625,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "nascent",
@@ -385773,7 +386348,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         }
       ]
     },
@@ -393739,7 +394314,13 @@
           "@Danilo2771"
         ]
       },
-      "git_sha": "f9b05e226409f21226a46d95d2d26c58d68958e6"
+      "git_sha": "f9b05e226409f21226a46d95d2d26c58d68958e6",
+      "pipelines": [
+        {
+          "name": "metatdenovo",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "transdecoder_predict",
@@ -393929,7 +394510,13 @@
           "@Danilo2771"
         ]
       },
-      "git_sha": "863a36f28b3c3c39b182be6f977799fb8de49598"
+      "git_sha": "863a36f28b3c3c39b182be6f977799fb8de49598",
+      "pipelines": [
+        {
+          "name": "metatdenovo",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "transrate",
@@ -394915,6 +395502,143 @@
       ]
     },
     {
+      "name": "trident_fetch",
+      "path": "modules/nf-core/trident/fetch/meta.yml",
+      "tree_sha": "a9b01eebe02f4dc1952675676908618cfd828744",
+      "files": [
+        "modules/nf-core/trident/fetch/environment.yml",
+        "modules/nf-core/trident/fetch/main.nf",
+        "modules/nf-core/trident/fetch/meta.yml",
+        "modules/nf-core/trident/fetch/tests/main.nf.test",
+        "modules/nf-core/trident/fetch/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "trident_fetch",
+        "description": "Download data from a remote Poseidon repository",
+        "keywords": [
+          "poseidon-trident",
+          "poseidon",
+          "trident",
+          "fetch"
+        ],
+        "tools": [
+          {
+            "trident": {
+              "description": "A tool to work with modular genotype databases formatted using Poseidon.",
+              "homepage": "https://www.poseidon-adna.org/",
+              "documentation": "https://www.poseidon-adna.org/#/trident?id=fetch-command",
+              "tool_dev_url": "https://github.com/poseidon-framework/poseidon-hs/",
+              "doi": "10.7554/eLife.98317.1",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "archive_dir": {
+                "type": "directory",
+                "description": "The path to the directories containing any previously downloaded Poseidon archive files.\nIf this is provided, trident fetch will check these directories, and only download missing packages from the Poseidon-Framework server.\n"
+              }
+            },
+            {
+              "fetch_s": {
+                "type": "string",
+                "description": "The fetchString provided to trident fetch (`--fetchString`), if any."
+              }
+            },
+            {
+              "fetch_fn": {
+                "type": "file",
+                "description": "A file containing a list of fetchStrings provided to trident fetch (`--fetchFile`), if any.",
+                "pattern": "*.txt",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2330"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "local_archive": [
+            {
+              "${output_archive_dir}": {
+                "type": "directory",
+                "description": "The local archive directory containing the downloaded Poseidon archive files. If no `archive_dir` is provided as input, this will default to \"output_archive\"."
+              }
+            }
+          ],
+          "downloaded_packages": [
+            {
+              "output_archive/*": {
+                "type": "directory",
+                "description": "A list containing the paths to downloaded Poseidon packages."
+              }
+            }
+          ],
+          "versions_trident": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "trident": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "trident --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "trident": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "trident --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@TCLamnidis"
+        ],
+        "maintainers": [
+          "@TCLamnidis"
+        ]
+      },
+      "git_sha": "a0af195ccf98f5eb24a57d24a869407e460599ad"
+    },
+    {
       "name": "trimal",
       "path": "modules/nf-core/trimal/meta.yml",
       "tree_sha": "8990b2389980942d386a90772ed9ad4cb4f25e47",
@@ -395383,7 +396107,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "methylseq",
@@ -401778,7 +402502,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "methylseq",
@@ -426043,10 +426767,6 @@
           "version": "1.2.0"
         },
         {
-          "name": "metatdenovo",
-          "version": "1.4.1"
-        },
-        {
           "name": "methylseq",
           "version": "4.2.0"
         },
@@ -435714,6 +436434,10 @@
       "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
       "pipelines": [
         {
+          "name": "metatdenovo",
+          "version": "2.0.0"
+        },
+        {
           "name": "proteinfamilies",
           "version": "2.6.0"
         },
@@ -437565,6 +438289,10 @@
           "version": "1.2.2"
         },
         {
+          "name": "epigenomesegmentation",
+          "version": "dev"
+        },
+        {
           "name": "epitopeprediction",
           "version": "3.1.1"
         },
@@ -437658,7 +438386,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "methylarray",
@@ -437746,7 +438474,7 @@
         },
         {
           "name": "pixelator",
-          "version": "5.0.2"
+          "version": "5.0.3"
         },
         {
           "name": "plasmodiumdrugres",
@@ -437862,7 +438590,7 @@
         },
         {
           "name": "stableexpression",
-          "version": "v1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "taxmarker",
@@ -438057,6 +438785,10 @@
           "version": "1.2.2"
         },
         {
+          "name": "epigenomesegmentation",
+          "version": "dev"
+        },
+        {
           "name": "epitopeprediction",
           "version": "3.1.1"
         },
@@ -438150,7 +438882,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "methylarray",
@@ -438238,7 +438970,7 @@
         },
         {
           "name": "pixelator",
-          "version": "5.0.2"
+          "version": "5.0.3"
         },
         {
           "name": "plasmodiumdrugres",
@@ -438354,7 +439086,7 @@
         },
         {
           "name": "stableexpression",
-          "version": "v1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "taxmarker",
@@ -438597,6 +439329,10 @@
           "version": "1.2.2"
         },
         {
+          "name": "epigenomesegmentation",
+          "version": "dev"
+        },
+        {
           "name": "epitopeprediction",
           "version": "3.1.1"
         },
@@ -438682,7 +439418,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.4.1"
+          "version": "2.0.0"
         },
         {
           "name": "methylarray",
@@ -438770,7 +439506,7 @@
         },
         {
           "name": "pixelator",
-          "version": "5.0.2"
+          "version": "5.0.3"
         },
         {
           "name": "plasmodiumdrugres",
@@ -438882,7 +439618,7 @@
         },
         {
           "name": "stableexpression",
-          "version": "v1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "taxmarker",
@@ -440465,6 +441201,6 @@
       "git_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657"
     }
   ],
-  "commit_sha": "93fba8b93fd34ecf1a8f45fe792a7abd420bdde4",
-  "updated_at": "2026-10-07T02:22:21.396Z"
+  "commit_sha": "103e34a7c2eb5d2862f97c6225793ddad6f4e0bd",
+  "updated_at": "2026-10-07T14:12:28.835Z"
 }
