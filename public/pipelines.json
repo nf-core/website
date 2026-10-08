@@ -19779,10 +19779,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/genomeannotator",
             "created_at": "2022-02-01T12:47:25Z",
-            "updated_at": "2026-09-15T10:35:05Z",
-            "pushed_at": "2026-10-08T11:43:53Z",
+            "updated_at": "2026-10-08T15:18:14Z",
+            "pushed_at": "2026-10-08T15:17:26Z",
             "homepage": "https://nf-co.re/genomeannotator",
-            "size": 101763,
+            "size": 101764,
             "stargazers_count": 44,
             "watchers_count": 44,
             "language": "Nextflow",
@@ -19793,9 +19793,9 @@
             "has_pages": false,
             "has_discussions": false,
             "forks_count": 18,
-            "archived": false,
+            "archived": true,
             "disabled": false,
-            "open_issues_count": 10,
+            "open_issues_count": 8,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -19811,7 +19811,7 @@
             ],
             "visibility": "public",
             "forks": 18,
-            "open_issues": 10,
+            "open_issues": 8,
             "watchers": 44,
             "default_branch": "dev",
             "temp_clone_token": "",
@@ -19832,7 +19832,7 @@
                     "status": "enabled"
                 },
                 "secret_scanning_push_protection": {
-                    "status": "enabled"
+                    "status": "disabled"
                 },
                 "dependabot_security_updates": {
                     "status": "disabled"
@@ -19847,9 +19847,6 @@
                     "status": "enabled"
                 },
                 "secret_scanning_delegated_alert_dismissal": {
-                    "status": "disabled"
-                },
-                "secret_scanning_delegated_bypass": {
                     "status": "disabled"
                 }
             },
@@ -19886,7 +19883,7 @@
             "dev_branch_protection_enforce_admins": false,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 2,
+            "open_pr_count": 0,
             "repository_url": "https://github.com/nf-core/genomeannotator",
             "contributors": [
                 {
@@ -19895,13 +19892,18 @@
                     "avatar_url": "https://avatars.githubusercontent.com/u/22975?v=4"
                 },
                 {
+                    "name": "maxulysse",
+                    "count": 2,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/1019628?v=4"
+                },
+                {
                     "name": "mashehu",
                     "count": 1,
                     "avatar_url": "https://avatars.githubusercontent.com/u/6169021?v=4"
                 }
             ],
             "released_after_tools": false,
-            "head_sha": "d80105de179fec01765ad3c84ea26c9330e29fb0",
+            "head_sha": "1af305a6fbe247186db4eef2eecc9fbb7f487c5f",
             "last_release_is_head": false,
             "last_release_vs_default_compare_url": "",
             "commits_to_dev": 30,
@@ -19919,8 +19921,8 @@
             "releases": [
                 {
                     "tag_name": "dev",
-                    "published_at": "2026-07-28T13:34:19Z",
-                    "tag_sha": "d80105de179fec01765ad3c84ea26c9330e29fb0",
+                    "published_at": "2026-10-08T15:17:21Z",
+                    "tag_sha": "1af305a6fbe247186db4eef2eecc9fbb7f487c5f",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
