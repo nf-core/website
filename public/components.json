@@ -57947,7 +57947,7 @@
     {
       "name": "cellranger_multi",
       "path": "modules/nf-core/cellranger/multi/meta.yml",
-      "tree_sha": "03d7ee3269d97631be110955af2e22d2b0eecadf",
+      "tree_sha": "80fe2a06a99b95f743d08584a09b5edaf064597b",
       "files": [
         "modules/nf-core/cellranger/multi/main.nf",
         "modules/nf-core/cellranger/multi/meta.yml",
@@ -58027,7 +58027,7 @@
             {
               "vdj_fastqs": {
                 "type": "file",
-                "description": "FASTQ files",
+                "description": "V(D)J FASTQ files, with the chain type auto-detected by Cell Ranger (feature type VDJ)",
                 "pattern": "*.fastq.gz",
                 "ontologies": [
                   {
@@ -58039,7 +58039,7 @@
             {
               "vdj_options": {
                 "type": "map",
-                "description": "Optional Cell Ranger VDJ section options as a Map.\nSupported keys: r1-length, r2-length.\n"
+                "description": "Optional Cell Ranger VDJ section options as a Map.\nSupported keys: r1-length, r2-length.\nAll V(D)J libraries share a single [vdj] section, so only the options of the\nfirst V(D)J library present (in the order vdj, vdj_t, vdj_t_gd, vdj_b) are used.\n"
               }
             }
           ],
@@ -58157,7 +58157,85 @@
             {
               "gex_reference": {
                 "type": "directory",
-                "description": "Folder containing Cellranger gene expression reference"
+                "description": "Folder containing Cellranger gene expression reference.\nAlso required for feature barcode libraries without GEX FASTQs.\n"
+              }
+            }
+          ],
+          [
+            {
+              "meta9": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\n"
+              }
+            },
+            {
+              "vdj_t_fastqs": {
+                "type": "file",
+                "description": "T cell receptor (alpha/beta) V(D)J FASTQ files (feature type VDJ-T)",
+                "pattern": "*.fastq.gz",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            },
+            {
+              "vdj_t_options": {
+                "type": "map",
+                "description": "Optional Cell Ranger VDJ section options as a Map. See vdj_options.\n"
+              }
+            }
+          ],
+          [
+            {
+              "meta10": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\n"
+              }
+            },
+            {
+              "vdj_t_gd_fastqs": {
+                "type": "file",
+                "description": "T cell receptor (gamma/delta) V(D)J FASTQ files (feature type VDJ-T-GD).\nCell Ranger requires custom inner enrichment primers (vdj_primer_index) for this library type.\n",
+                "pattern": "*.fastq.gz",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            },
+            {
+              "vdj_t_gd_options": {
+                "type": "map",
+                "description": "Optional Cell Ranger VDJ section options as a Map. See vdj_options.\n"
+              }
+            }
+          ],
+          [
+            {
+              "meta11": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\n"
+              }
+            },
+            {
+              "vdj_b_fastqs": {
+                "type": "file",
+                "description": "B cell receptor V(D)J FASTQ files (feature type VDJ-B)",
+                "pattern": "*.fastq.gz",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            },
+            {
+              "vdj_b_options": {
+                "type": "map",
+                "description": "Optional Cell Ranger VDJ section options as a Map. See vdj_options.\n"
               }
             }
           ],
@@ -58194,7 +58272,7 @@
           {
             "vdj_primer_index": {
               "type": "file",
-              "description": "List of custom V(D)J inner enrichment primers",
+              "description": "List of custom V(D)J inner enrichment primers; required for VDJ-T-GD libraries",
               "pattern": "*.csv",
               "ontologies": [
                 {
@@ -58401,7 +58479,7 @@
           "@klkeys"
         ]
       },
-      "git_sha": "e2d5e8b2dae7def341a95b5205beb21882641241",
+      "git_sha": "ae6ab25b17d50a9da90e7236115c939f2c453b1e",
       "pipelines": [
         {
           "name": "scrnaseq",
@@ -93227,6 +93305,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -283860,6 +283946,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -284167,6 +284257,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -372393,6 +372487,10 @@
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
         {
+          "name": "alleleexpression",
+          "version": "dev"
+        },
+        {
           "name": "circrna",
           "version": "dev"
         },
@@ -441201,6 +441299,6 @@
       "git_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657"
     }
   ],
-  "commit_sha": "103e34a7c2eb5d2862f97c6225793ddad6f4e0bd",
-  "updated_at": "2026-10-07T14:12:28.835Z"
+  "commit_sha": "ae6ab25b17d50a9da90e7236115c939f2c453b1e",
+  "updated_at": "2026-10-08T02:22:28.486Z"
 }
