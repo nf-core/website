@@ -11,6 +11,7 @@ of every month, usually at 4 PM CET / 10 AM ET / 7 AM PT for 1h.
 
 |                     Date | Speaker                                                                                                                         | Event                                                        |
 | -----------------------: | :------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
+|             Oct 21, 2026 | Marco Sollitto (University of Florence, Italy)                                                                                  | [October Meeting](/events/2026/SIG_animalgenomics_Oct)       |
 |             Jun 17, 2026 | Miguel Pérez-Enciso (Centre for Research in Agricultural Genomics (CRAG), UAB campus, Spain)                                    | [June Meeting](/events/2026/SIG_animalgenomics_Jun)          |
 |             May 20, 2026 | Wansheng Liu (Department of Animal Science, Center for Reproductive Biology and Health, The Pennsylvania State University, USA) | [May Meeting](/events/2026/SIG_animalgenomics_May)           |
 |             Apr 15, 2026 | David MacHugh (UCD School of Agriculture and Food Science, University College Dublin, Ireland)                                  | [April Meeting](/events/2026/SIG_animalgenomics_Apr)         |
