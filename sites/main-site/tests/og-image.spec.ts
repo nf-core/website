@@ -6,7 +6,7 @@ import type { APIResponse } from "@playwright/test";
 async function expectPng(res: APIResponse, width: number, height: number) {
     expect(res.ok(), `status ${res.status()}`).toBeTruthy();
     expect(res.headers()["content-type"]).toBe("image/png");
-    expect(res.headers()["netlify-cdn-cache-control"]).toContain("durable");
+    expect(res.headers()["cache-status"]).toContain("Netlify Durable");
 
     const body = await res.body();
     // PNG signature, then the IHDR chunk holds width and height as big-endian uint32s.
