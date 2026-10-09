@@ -21,6 +21,7 @@ export async function getStaticPaths() {
             actual_md_file?: string;
             doc_file: string;
         };
+        cacheKey?: string;
     }[] = [];
 
     for (const pipeline of pipelines_json.remote_workflows) {
@@ -29,6 +30,9 @@ export async function getStaticPaths() {
         const allVersions = [...releases, { tag_name: "latest", doc_files: releases[0].doc_files }];
 
         for (const release of allVersions) {
+            // release tags are immutable, "latest" resolves to its tag; dev changes, so always render it
+            const tag_name = release.tag_name === "latest" ? releases[0].tag_name : release.tag_name;
+            const cacheKey = tag_name !== "dev" ? tag_name : undefined;
             // Process each doc file
             for (const file of release.doc_files) {
                 const slug = file.replace("docs/", "").replace(".mdx", "").replace(".md", "");
@@ -52,6 +56,7 @@ export async function getStaticPaths() {
                         md_file: slug,
                     },
                     props: { ...sharedProps, doc_file: file },
+                    cacheKey,
                 });
 
                 // For index files, also serve the directory-style URL (e.g. usage/DEanalysis/ → usage/DEanalysis/index)
@@ -64,6 +69,7 @@ export async function getStaticPaths() {
                             md_file: dirSlug,
                         },
                         props: { ...sharedProps, actual_md_file: slug, doc_file: file },
+                        cacheKey,
                     });
                 }
             }
@@ -142,9 +148,9 @@ let headings = rawHeadings.filter((h) => h.depth <= 3);
 
 <PipelinePageLayout
     pipeline={pipeline}
-    meta_title={pipeline +
-        ": " +
-        section.replace(/-/g, " ").replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()))}
+    meta_title={
+        pipeline + ": " + section.replace(/-/g, " ").replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()))
+    }
     subtitle={description || undefined}
     headings={headings as { text: string; slug: string; depth: number; fa_icon?: string }[]}
     version={version}
@@ -158,22 +164,20 @@ let headings = rawHeadings.filter((h) => h.depth <= 3);
     ]}
 >
     <div class="row">
-        {
-            leftSidebar && (
-                <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-3">
-                    <SidebarNav items={sections} />
-                </div>
-            )
-        }
+        {leftSidebar && (
+            <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-3">
+                <SidebarNav items={sections} />
+            </div>
+        )}
         <div class:list={["col-12 pt-3 markdown-content", { "col-md-9": !leftSidebar, "col-md-8": leftSidebar }]}>
             <MarkdownWrapper client:load headings={headings}>
                 <Fragment set:html={Content} />
             </MarkdownWrapper>
         </div>
         <div class:list={["col-12 toc", { "col-md-3": !leftSidebar, "col-md-2": leftSidebar }]}>
-            <SidebarToc headings={headings} client:idle
-                ><ExpandDetailsButton client:idle slot="defaultContent" /></SidebarToc
-            >
+            <SidebarToc headings={headings} client:idle>
+                <ExpandDetailsButton client:idle slot="defaultContent" />
+            </SidebarToc>
         </div>
     </div>
 </PipelinePageLayout>

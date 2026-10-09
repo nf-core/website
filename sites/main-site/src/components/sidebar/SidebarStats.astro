@@ -20,83 +20,79 @@ const modules = included_components?.filter((x) => !subworkflows?.includes(x));
 ---
 
 <div class="sidebar overflow-y-auto">
-    {
-        included_pipelines && (
-            <SidebarStatsRow
-                content={[
-                    {
-                        title: "included in",
-                    },
-                ]}
-            >
-                <TagSection tags={included_pipelines.map((x) => x.name)} type="pipelines" client:load />
-            </SidebarStatsRow>
-        )
-    }
-    {
-        included_subworkflows && (
-            <SidebarStatsRow
-                content={[
-                    {
-                        title: "part of",
-                    },
-                ]}
-            >
-                <TagSection tags={included_subworkflows} type="subworkflows" client:load />
-            </SidebarStatsRow>
-        )
-    }
-    {
-        included_components && (
-            <SidebarStatsRow
-                content={[
-                    {
-                        title: "included modules and subworkflows",
-                    },
-                ]}
-            >
-                <TagSection tags={modules} type="modules" maxShown={3} client:load />
-                <TagSection tags={subworkflows} type="subworkflows" maxShown={3} client:load />
-            </SidebarStatsRow>
-        )
-    }
+    {included_pipelines && (
+        <SidebarStatsRow
+            content={[
+                {
+                    title: "included in",
+                },
+            ]}
+        >
+            <TagSection tags={included_pipelines.map((x) => x.name)} type="pipelines" client:load />
+        </SidebarStatsRow>
+    )}
+    {included_subworkflows && (
+        <SidebarStatsRow
+            content={[
+                {
+                    title: "part of",
+                },
+            ]}
+        >
+            <TagSection tags={included_subworkflows} type="subworkflows" client:load />
+        </SidebarStatsRow>
+    )}
+    {included_components && (
+        <SidebarStatsRow
+            content={[
+                {
+                    title: "included modules and subworkflows",
+                },
+            ]}
+        >
+            <TagSection tags={modules} type="modules" maxShown={3} client:load />
+            <TagSection tags={subworkflows} type="subworkflows" maxShown={3} client:load />
+        </SidebarStatsRow>
+    )}
     <SidebarStatsRow content={[{ title: "maintainer" + (contributors.length > 1 ? "s" : "") }]}>
         <div class="contrib-avatars d-flex flex-wrap">
-            {
-                contributors &&
-                    contributors.map(
-                        (contributor) => (
-                            (contributor = contributor.replace("@", "")),
-                            (
-                                <a
-                                    href={"https://github.com/" + contributor}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="me-2 mb-2"
-                                >
-                                    <GitHubUser
-                                        name={contributor}
-                                        image={`https://github.com/${contributor}.png`}
-                                        size={50}
-                                    />
-                                </a>
-                            )
-                        ),
-                    )
-            }
+            {contributors &&
+                contributors.map(
+                    (contributor) => (
+                        (contributor = contributor.replace("@", "")),
+                        (
+                            <a
+                                href={"https://github.com/" + contributor}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="me-2 mb-2"
+                            >
+                                <GitHubUser
+                                    name={contributor}
+                                    image={`https://github.com/${contributor}.png`}
+                                    size={50}
+                                />
+                            </a>
+                        )
+                    ),
+                )}
         </div>
     </SidebarStatsRow>
     <SidebarStatsRow content={[{ title: "get in touch" }]} lastChild={true}>
         <div class="d-flex flex-column">
-            <a class="btn btn-sm btn-outline-info mb-2" href={"https://nfcore.slack.com/channels/" + component_type}
-                ><i class="fab fa-slack me-1"></i> Ask a question on Slack</a
-            >
+            <a class="btn btn-sm btn-outline-info mb-2" href={"https://nfcore.slack.com/channels/" + component_type}>
+                <i class="fab fa-slack me-1"></i> Ask a question on Slack
+            </a>
             <a
                 class="btn btn-sm btn-outline-secondary"
-                href={"https://github.com/nf-core/" +
+                href={
+                    "https://github.com/nf-core/" +
                     (component_type === "subworkflows" ? "modules" : component_type) +
-                    "/issues"}><i class="fab fa-github me-1"></i> Open an issue on GitHub</a
+                    "/issues"
+                }
             >
+                <i class="fab fa-github me-1"></i> Open an issue on GitHub
+            </a>
         </div>
     </SidebarStatsRow>
 </div>

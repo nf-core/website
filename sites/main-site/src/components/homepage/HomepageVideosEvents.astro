@@ -62,55 +62,45 @@ let eventPreviewPast = eventPreview
 
         <div class="col-lg-4">
             {eventPreviewCurrent.length > 0 && <h2>Current Events</h2>}
-            {
-                eventPreviewCurrent.map((event) => (
+            {eventPreviewCurrent.map((event) => (
+                <EventCard
+                    frontmatter={event.data}
+                    slug={event.id.replace(/\.[^/.]+$/, "")}
+                    type={event.data.type}
+                    time_category="current"
+                    showDescription={false}
+                    narrow={true}
+                    client:idle
+                />
+            ))}
+            {eventPreviewFuture.length > 0 && <h2>Upcoming Events</h2>}
+            {eventPreviewFuture.slice(0, Math.max(0, 3 - eventPreviewCurrent.length)).map((event) => (
+                <EventCard
+                    frontmatter={event.data}
+                    slug={event.id.replace(/\.[^/.]+$/, "")}
+                    type={event.data.type}
+                    time_category="future"
+                    showDescription={false}
+                    narrow={true}
+                    client:idle
+                />
+            ))}
+            {eventPreviewPast.length > 0 && eventPreviewCurrent.length + eventPreviewFuture.length < 3 && (
+                <h2>Past Events</h2>
+            )}
+            {eventPreviewPast
+                .slice(0, Math.max(0, 3 - (eventPreviewCurrent.length + eventPreviewFuture.length)))
+                .map((event) => (
                     <EventCard
                         frontmatter={event.data}
                         slug={event.id.replace(/\.[^/.]+$/, "")}
                         type={event.data.type}
-                        time_category="current"
+                        time_category="past"
                         showDescription={false}
                         narrow={true}
                         client:idle
                     />
-                ))
-            }
-            {eventPreviewFuture.length > 0 && <h2>Upcoming Events</h2>}
-            {
-                eventPreviewFuture
-                    .slice(0, Math.max(0, 3 - eventPreviewCurrent.length))
-                    .map((event) => (
-                        <EventCard
-                            frontmatter={event.data}
-                            slug={event.id.replace(/\.[^/.]+$/, "")}
-                            type={event.data.type}
-                            time_category="future"
-                            showDescription={false}
-                            narrow={true}
-                            client:idle
-                        />
-                    ))
-            }
-            {
-                eventPreviewPast.length > 0 && eventPreviewCurrent.length + eventPreviewFuture.length < 3 && (
-                    <h2>Past Events</h2>
-                )
-            }
-            {
-                eventPreviewPast
-                    .slice(0, Math.max(0, 3 - (eventPreviewCurrent.length + eventPreviewFuture.length)))
-                    .map((event) => (
-                        <EventCard
-                            frontmatter={event.data}
-                            slug={event.id.replace(/\.[^/.]+$/, "")}
-                            type={event.data.type}
-                            time_category="past"
-                            showDescription={false}
-                            narrow={true}
-                            client:idle
-                        />
-                    ))
-            }
+                ))}
         </div>
         <div class="col-lg-4">
             <h2>Latest bytesize</h2>
