@@ -57947,7 +57947,7 @@
     {
       "name": "cellranger_multi",
       "path": "modules/nf-core/cellranger/multi/meta.yml",
-      "tree_sha": "80fe2a06a99b95f743d08584a09b5edaf064597b",
+      "tree_sha": "123e6894d22e84291082fbc4d22dd97652d232f9",
       "files": [
         "modules/nf-core/cellranger/multi/main.nf",
         "modules/nf-core/cellranger/multi/meta.yml",
@@ -58242,7 +58242,7 @@
           {
             "gex_frna_probeset": {
               "type": "file",
-              "description": "Fixed RNA profiling information containing custom probes in CSV format",
+              "description": "Fixed RNA profiling information containing custom probes in CSV format.\nIgnored when CMO or OCM barcodes or V(D)J libraries are present, as Flex is incompatible with them.\n",
               "pattern": "*.csv",
               "ontologies": [
                 {
@@ -58479,7 +58479,7 @@
           "@klkeys"
         ]
       },
-      "git_sha": "ae6ab25b17d50a9da90e7236115c939f2c453b1e",
+      "git_sha": "7effa53d6abdeca831d4969839c652986662cc8e",
       "pipelines": [
         {
           "name": "scrnaseq",
@@ -93317,6 +93317,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -284190,6 +284198,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -284497,6 +284509,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -305503,7 +305519,7 @@
     {
       "name": "quilt_quilt",
       "path": "modules/nf-core/quilt/quilt/meta.yml",
-      "tree_sha": "d4b1fc280ab729289772154bc6d9c68694b3e5d8",
+      "tree_sha": "c8ec87507864c1b2665314a97578f39d3a43bed0",
       "files": [
         "modules/nf-core/quilt/quilt/environment.yml",
         "modules/nf-core/quilt/quilt/main.nf",
@@ -305653,7 +305669,11 @@
                 "type": "file",
                 "description": "(Optional) File with genetic map information, a file with 3 white-space delimited entries giving position (1-based), genetic rate map in cM/Mbp, and genetic map in cM. If no file included, rate is based on physical distance and expected rate (expRate).",
                 "pattern": "*.{txt,map}{,gz}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
               }
             }
           ],
@@ -305849,7 +305869,7 @@
           "@atrigila"
         ]
       },
-      "git_sha": "7844e96252d0693fb2331969a1c9790eb831b0f6",
+      "git_sha": "79f59f34008aa403b409acd90df0cd9328023653",
       "pipelines": [
         {
           "name": "phaseimpute",
@@ -305860,7 +305880,7 @@
     {
       "name": "quilt_quilt2",
       "path": "modules/nf-core/quilt/quilt2/meta.yml",
-      "tree_sha": "7c745646ec8105a5aae2c1fcef44c1dffca621d3",
+      "tree_sha": "cbfb10ea214348c2314925ab3a5d9509a5864b68",
       "files": [
         "modules/nf-core/quilt/quilt2/environment.yml",
         "modules/nf-core/quilt/quilt2/main.nf",
@@ -306010,7 +306030,11 @@
                 "type": "file",
                 "description": "(Optional) File with genetic map information, a file with 3 white-space delimited entries giving position (1-based), genetic rate map in cM/Mbp, and genetic map in cM. If no file included, rate is based on physical distance and expected rate (expRate).",
                 "pattern": "*.{txt,map}{,gz}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
               }
             }
           ],
@@ -306206,7 +306230,7 @@
           "@atrigila"
         ]
       },
-      "git_sha": "7844e96252d0693fb2331969a1c9790eb831b0f6"
+      "git_sha": "79f59f34008aa403b409acd90df0cd9328023653"
     },
     {
       "name": "racon",
@@ -331496,7 +331520,7 @@
     {
       "name": "samtools_depth",
       "path": "modules/nf-core/samtools/depth/meta.yml",
-      "tree_sha": "a245832aaccd877cbced1ace8d92c299ea344dea",
+      "tree_sha": "ed75e9672519c200dde005091b56bf15d0875350",
       "files": [
         "modules/nf-core/samtools/depth/environment.yml",
         "modules/nf-core/samtools/depth/main.nf",
@@ -331558,6 +331582,30 @@
                 "type": "file",
                 "description": "list of positions or regions in specified bed file",
                 "pattern": "*.{bed}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'test', genome:'hg38' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome in FASTA format",
+                "pattern": "*.{fasta,fa,fna}",
+                "ontologies": []
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Index file for the reference genome",
+                "pattern": "*.{fai}",
                 "ontologies": []
               }
             }
@@ -331643,7 +331691,7 @@
           "@matthdsm"
         ]
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "c813781fc152ecada5ea801a768a73bdd2cdf7dd",
       "pipelines": [
         {
           "name": "phaseimpute",
@@ -355540,7 +355588,7 @@
     {
       "name": "sexdeterrmine",
       "path": "modules/nf-core/sexdeterrmine/meta.yml",
-      "tree_sha": "70d01dd2d44ae30b3166b1b00792d122e9fe2cbe",
+      "tree_sha": "7796303fa0e8330a9dfefeb77c18c4fb675004c1",
       "files": [
         "modules/nf-core/sexdeterrmine/environment.yml",
         "modules/nf-core/sexdeterrmine/main.nf",
@@ -355698,7 +355746,7 @@
           "@TCLamnidis"
         ]
       },
-      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
+      "git_sha": "c813781fc152ecada5ea801a768a73bdd2cdf7dd"
     },
     {
       "name": "sgdemux",
@@ -424898,7 +424946,7 @@
     {
       "name": "bam_impute_quilt",
       "path": "subworkflows/nf-core/bam_impute_quilt/meta.yml",
-      "tree_sha": "5724d313834b6ad9ea1e1f0600cd0c5f759bed23",
+      "tree_sha": "8434482474a3c69a1afdce39b3db0b9992dbfcd4",
       "files": [
         "subworkflows/nf-core/bam_impute_quilt/main.nf",
         "subworkflows/nf-core/bam_impute_quilt/meta.yml",
@@ -424964,7 +425012,7 @@
             }
           },
           {
-            "ch_hap_legend_posfile": {
+            "ch_reference_panel": {
               "description": "Channel with reference panel variants data",
               "structure": [
                 {
@@ -424985,12 +425033,6 @@
                     "type": "file",
                     "description": "Panel VCF legend files by chromosomes",
                     "pattern": "*.legend[.gz]+"
-                  }
-                },
-                {
-                  "posfile": {
-                    "type": "file",
-                    "description": "Position to impute variants file in TSV format (chromosome, position, ref, alt)"
                   }
                 }
               ]
@@ -425123,12 +425165,12 @@
           "@louislenezet"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
+      "git_sha": "79f59f34008aa403b409acd90df0cd9328023653"
     },
     {
       "name": "bam_impute_quilt2",
       "path": "subworkflows/nf-core/bam_impute_quilt2/meta.yml",
-      "tree_sha": "2d91aecef40c96bd8e5130b7f5d505c0284dedcf",
+      "tree_sha": "2d46941351f5771b92013a6125799ee77534a31b",
       "files": [
         "subworkflows/nf-core/bam_impute_quilt2/main.nf",
         "subworkflows/nf-core/bam_impute_quilt2/meta.yml",
@@ -425349,7 +425391,7 @@
           "@atrigila"
         ]
       },
-      "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
+      "git_sha": "79f59f34008aa403b409acd90df0cd9328023653"
     },
     {
       "name": "bam_impute_stitch",
@@ -441555,6 +441597,6 @@
       "git_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657"
     }
   ],
-  "commit_sha": "3388c6ac0f4bff2d5f21b7e3e9c545df07396125",
-  "updated_at": "2026-10-09T14:12:54.837Z"
+  "commit_sha": "79f59f34008aa403b409acd90df0cd9328023653",
+  "updated_at": "2026-10-10T02:21:24.169Z"
 }
