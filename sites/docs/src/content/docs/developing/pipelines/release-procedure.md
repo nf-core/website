@@ -72,7 +72,8 @@ Once all checks pass and pipeline version updated you are now ready to get your 
 - [ ] (**First release only**) Ask a core team member on [#release-review-trading](https://nfcore.slack.com/channels/release-review-trading) to remove the **"Block releases"** GitHub repository ruleset.
 - [ ] Once your PR is approved by two reviewers, update `CHANGELOG.md` for any further changes and the release date, and merge your PR into `main`.
 - [ ] (**First release only**) Delete any label of types: "under development", "under construction" or variants of these on the GitHub repository itself.
-- [ ] (**First release only**) Ask on the [#request-core](https://nfcore.slack.com/archives/C09H6NYHR9T) channel to activate the Zenodo functionality to generate DOIs for this repository .
+- [ ] (**First release only**) Ask on the [#request-core](https://nfcore.slack.com/archives/C09H6NYHR9T) channel to activate the Zenodo functionality to generate DOIs for this repository.
+- [ ] (**First release only**) Ask on the [#request-core](https://nfcore.slack.com/archives/C09H6NYHR9T) channel to remove release blocking protections.
 - [ ] (**First release only**) Ask on the [#request-core](https://nfcore.slack.com/archives/C09H6NYHR9T) channel to be added to the nf-core Seqera Platform AWS Megatest workspace.
 
 ### Make release

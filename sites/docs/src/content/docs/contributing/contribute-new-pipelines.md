@@ -362,8 +362,10 @@ See the documentation pinned in [#release-review-trading](https://nfcore.slack.c
 
 Once reviewers approve your pull request:
 
-1. Ask a core team member on [#release-review-trading](https://nfcore.slack.com/channels/release-review-trading) to remove the **"Block releases"** GitHub repository ruleset.
+1. Ask a core team member on [#request-core](https://nfcore.slack.com/channels/request-core) to remove the **"Block releases"** GitHub repository ruleset.
    - All unreleased nf-core pipelines have this ruleset applied, which prevents tag creation until the pipeline is ready for its first release.
+
+1. Ask a core team member on [#request-core](https://nfcore.slack.com/channels/request-core) to activate Zenodo archiving of the GitHub repository.
 
 1. Add a changelog entry describing the pipeline functionality at release.
    - Describe the general features and capabilities.
