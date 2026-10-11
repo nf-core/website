@@ -8180,7 +8180,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.1"
+          "version": "5.1.2"
         }
       ]
     },
@@ -8697,7 +8697,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.1"
+          "version": "5.1.2"
         }
       ]
     },
@@ -53664,7 +53664,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.1"
+          "version": "5.1.2"
         },
         {
           "name": "bacass",
@@ -57936,7 +57936,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.1"
+          "version": "5.1.2"
         },
         {
           "name": "scrnaseq",
@@ -57947,7 +57947,7 @@
     {
       "name": "cellranger_multi",
       "path": "modules/nf-core/cellranger/multi/meta.yml",
-      "tree_sha": "80fe2a06a99b95f743d08584a09b5edaf064597b",
+      "tree_sha": "123e6894d22e84291082fbc4d22dd97652d232f9",
       "files": [
         "modules/nf-core/cellranger/multi/main.nf",
         "modules/nf-core/cellranger/multi/meta.yml",
@@ -58242,7 +58242,7 @@
           {
             "gex_frna_probeset": {
               "type": "file",
-              "description": "Fixed RNA profiling information containing custom probes in CSV format",
+              "description": "Fixed RNA profiling information containing custom probes in CSV format.\nIgnored when CMO or OCM barcodes or V(D)J libraries are present, as Flex is incompatible with them.\n",
               "pattern": "*.csv",
               "ontologies": [
                 {
@@ -58479,7 +58479,7 @@
           "@klkeys"
         ]
       },
-      "git_sha": "ae6ab25b17d50a9da90e7236115c939f2c453b1e",
+      "git_sha": "7effa53d6abdeca831d4969839c652986662cc8e",
       "pipelines": [
         {
           "name": "scrnaseq",
@@ -58628,7 +58628,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.1"
+          "version": "5.1.2"
         }
       ]
     },
@@ -93636,6 +93636,38 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -115262,7 +115294,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.1"
+          "version": "5.1.2"
         },
         {
           "name": "bacass",
@@ -115808,7 +115840,7 @@
         },
         {
           "name": "airrflow",
-          "version": "5.1.1"
+          "version": "5.1.2"
         },
         {
           "name": "alleleexpression",
@@ -242054,7 +242086,7 @@
         },
         {
           "name": "airrflow",
-          "version": "5.1.1"
+          "version": "5.1.2"
         },
         {
           "name": "alleleexpression",
@@ -284190,6 +284222,22 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -284497,6 +284545,22 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -305503,7 +305567,7 @@
     {
       "name": "quilt_quilt",
       "path": "modules/nf-core/quilt/quilt/meta.yml",
-      "tree_sha": "d4b1fc280ab729289772154bc6d9c68694b3e5d8",
+      "tree_sha": "c8ec87507864c1b2665314a97578f39d3a43bed0",
       "files": [
         "modules/nf-core/quilt/quilt/environment.yml",
         "modules/nf-core/quilt/quilt/main.nf",
@@ -305653,7 +305717,11 @@
                 "type": "file",
                 "description": "(Optional) File with genetic map information, a file with 3 white-space delimited entries giving position (1-based), genetic rate map in cM/Mbp, and genetic map in cM. If no file included, rate is based on physical distance and expected rate (expRate).",
                 "pattern": "*.{txt,map}{,gz}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
               }
             }
           ],
@@ -305849,7 +305917,7 @@
           "@atrigila"
         ]
       },
-      "git_sha": "7844e96252d0693fb2331969a1c9790eb831b0f6",
+      "git_sha": "79f59f34008aa403b409acd90df0cd9328023653",
       "pipelines": [
         {
           "name": "phaseimpute",
@@ -305860,7 +305928,7 @@
     {
       "name": "quilt_quilt2",
       "path": "modules/nf-core/quilt/quilt2/meta.yml",
-      "tree_sha": "7c745646ec8105a5aae2c1fcef44c1dffca621d3",
+      "tree_sha": "cbfb10ea214348c2314925ab3a5d9509a5864b68",
       "files": [
         "modules/nf-core/quilt/quilt2/environment.yml",
         "modules/nf-core/quilt/quilt2/main.nf",
@@ -306010,7 +306078,11 @@
                 "type": "file",
                 "description": "(Optional) File with genetic map information, a file with 3 white-space delimited entries giving position (1-based), genetic rate map in cM/Mbp, and genetic map in cM. If no file included, rate is based on physical distance and expected rate (expRate).",
                 "pattern": "*.{txt,map}{,gz}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
               }
             }
           ],
@@ -306206,7 +306278,7 @@
           "@atrigila"
         ]
       },
-      "git_sha": "7844e96252d0693fb2331969a1c9790eb831b0f6"
+      "git_sha": "79f59f34008aa403b409acd90df0cd9328023653"
     },
     {
       "name": "racon",
@@ -306701,13 +306773,16 @@
     {
       "name": "ragtag_scaffold",
       "path": "modules/nf-core/ragtag/scaffold/meta.yml",
-      "tree_sha": "5c51a2d4083a62d7b06570f1e37c25b6c2bef665",
+      "tree_sha": "0c00a5e31e94a15d36b056fe7304e29bec67eb37",
       "files": [
+        "modules/nf-core/ragtag/scaffold/.conda-lock/linux_amd64-bd-5de7cc3ac89b3ac4_1.txt",
+        "modules/nf-core/ragtag/scaffold/.conda-lock/linux_arm64-bd-dfef69773e1e2e60_1.txt",
         "modules/nf-core/ragtag/scaffold/environment.yml",
         "modules/nf-core/ragtag/scaffold/main.nf",
         "modules/nf-core/ragtag/scaffold/meta.yml",
         "modules/nf-core/ragtag/scaffold/tests/main.nf.test",
-        "modules/nf-core/ragtag/scaffold/tests/main.nf.test.snap"
+        "modules/nf-core/ragtag/scaffold/tests/main.nf.test.snap",
+        "modules/nf-core/ragtag/scaffold/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
@@ -306818,10 +306893,10 @@
                 }
               },
               {
-                "*.fasta": {
+                "*.fasta.gz": {
                   "type": "file",
                   "description": "FASTA file containing the patched assembly",
-                  "pattern": "*.fasta",
+                  "pattern": "*.fasta.gz",
                   "ontologies": []
                 }
               }
@@ -306858,6 +306933,96 @@
                   "type": "file",
                   "description": "Statistics on the scaffold",
                   "pattern": "*.stats",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "ragtag_paf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.paf.gz": {
+                  "type": "file",
+                  "description": "PAF file of alignments between reference and input",
+                  "pattern": "*.paf.gz",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "ragtag_paf_log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.paf.log": {
+                  "type": "file",
+                  "description": "Log file of the ragtag alignment when using minimap2",
+                  "pattern": "*.paf.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "ragtag_delta": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.delta.gz": {
+                  "type": "file",
+                  "description": "Nucmer delta file of alignments between reference and input",
+                  "pattern": "*.delta.gz",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "ragtag_delta_log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.delta.log": {
+                  "type": "file",
+                  "description": "Log file of the ragtag alignment when using nucmer",
+                  "pattern": "*.paf.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "confidence_txt": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.confidence.txt": {
+                  "type": "file",
+                  "description": "Confidence scores used in scaffolding",
+                  "pattern": "*.confidence.txt",
                   "ontologies": []
                 }
               }
@@ -306915,9 +307080,43 @@
         ],
         "maintainers": [
           "@nschan"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/ragtag_gzip:5de7cc3ac89b3ac4",
+              "build_id": "bd-5de7cc3ac89b3ac4_1",
+              "scan_id": "sc-9004a78dd58fb85b_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/ragtag_gzip:dfef69773e1e2e60",
+              "build_id": "bd-dfef69773e1e2e60_1",
+              "scan_id": "sc-1bd2a9d95d9b669e_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/ragtag_gzip:6c49af651b260c0f",
+              "build_id": "bd-6c49af651b260c0f_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/38/3836fefb293bbbf2be52f760b1833819ae30fe71cd3becf270a4bd5149e5b9b6/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/ragtag_gzip:a3315c68605fff45",
+              "build_id": "bd-a3315c68605fff45_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/81/81c52d2b24a8d43d151f8eec1bd3379cb614f28134604c90224d5393a985bf33/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/ragtag/scaffold/.conda-lock/linux_amd64-bd-5de7cc3ac89b3ac4_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/ragtag/scaffold/.conda-lock/linux_arm64-bd-dfef69773e1e2e60_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "82513832e72b92a435eeed53097674286b558915",
       "pipelines": [
         {
           "name": "genomeassembler",
@@ -331496,7 +331695,7 @@
     {
       "name": "samtools_depth",
       "path": "modules/nf-core/samtools/depth/meta.yml",
-      "tree_sha": "a245832aaccd877cbced1ace8d92c299ea344dea",
+      "tree_sha": "ed75e9672519c200dde005091b56bf15d0875350",
       "files": [
         "modules/nf-core/samtools/depth/environment.yml",
         "modules/nf-core/samtools/depth/main.nf",
@@ -331558,6 +331757,30 @@
                 "type": "file",
                 "description": "list of positions or regions in specified bed file",
                 "pattern": "*.{bed}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'test', genome:'hg38' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome in FASTA format",
+                "pattern": "*.{fasta,fa,fna}",
+                "ontologies": []
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Index file for the reference genome",
+                "pattern": "*.{fai}",
                 "ontologies": []
               }
             }
@@ -331643,7 +331866,7 @@
           "@matthdsm"
         ]
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "c813781fc152ecada5ea801a768a73bdd2cdf7dd",
       "pipelines": [
         {
           "name": "phaseimpute",
@@ -355540,7 +355763,7 @@
     {
       "name": "sexdeterrmine",
       "path": "modules/nf-core/sexdeterrmine/meta.yml",
-      "tree_sha": "70d01dd2d44ae30b3166b1b00792d122e9fe2cbe",
+      "tree_sha": "7796303fa0e8330a9dfefeb77c18c4fb675004c1",
       "files": [
         "modules/nf-core/sexdeterrmine/environment.yml",
         "modules/nf-core/sexdeterrmine/main.nf",
@@ -355698,7 +355921,7 @@
           "@TCLamnidis"
         ]
       },
-      "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
+      "git_sha": "c813781fc152ecada5ea801a768a73bdd2cdf7dd"
     },
     {
       "name": "sgdemux",
@@ -378186,7 +378409,7 @@
     {
       "name": "suppa_clusterevents",
       "path": "modules/nf-core/suppa/clusterevents/meta.yml",
-      "tree_sha": "bc2d0171138db29e90f4a37c2d2446255daf47cd",
+      "tree_sha": "5e100d4fbeda9d0a925addf99ee115a8ea78301e",
       "files": [
         "modules/nf-core/suppa/clusterevents/environment.yml",
         "modules/nf-core/suppa/clusterevents/main.nf",
@@ -378338,6 +378561,28 @@
                 }
               }
             ]
+          ],
+          "versions_statsmodels": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "statsmodels": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import statsmodels; print(statsmodels.__version__)'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "topics": {
@@ -378361,6 +378606,26 @@
                   "description": "The expression to obtain the version of the tool"
                 }
               }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "statsmodels": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import statsmodels; print(statsmodels.__version__)'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
             ]
           ]
         },
@@ -378372,12 +378637,12 @@
           "@piplus2"
         ]
       },
-      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec"
+      "git_sha": "290607b218569c8c96afb7b8ad9f1fd80ca9d7bd"
     },
     {
       "name": "suppa_diffsplice",
       "path": "modules/nf-core/suppa/diffsplice/meta.yml",
-      "tree_sha": "5afeba39866c00b2fc83555d1c6f3cbfa63e0623",
+      "tree_sha": "329a8a40395be6d2239f51282edf3997e4ea6c59",
       "files": [
         "modules/nf-core/suppa/diffsplice/environment.yml",
         "modules/nf-core/suppa/diffsplice/main.nf",
@@ -378644,6 +378909,28 @@
                 }
               }
             ]
+          ],
+          "versions_statsmodels": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "statsmodels": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import statsmodels; print(statsmodels.__version__)'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "topics": {
@@ -378667,6 +378954,26 @@
                   "description": "The expression to obtain the version of the tool"
                 }
               }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "statsmodels": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import statsmodels; print(statsmodels.__version__)'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
             ]
           ]
         },
@@ -378678,12 +378985,12 @@
           "@piplus2"
         ]
       },
-      "git_sha": "3f2df8501fbed848b9ce51e906c021a56f1f51bc"
+      "git_sha": "290607b218569c8c96afb7b8ad9f1fd80ca9d7bd"
     },
     {
       "name": "suppa_generateevents",
       "path": "modules/nf-core/suppa/generateevents/meta.yml",
-      "tree_sha": "2303bcf6054fa45b952dd53f15e951ac92ddaff9",
+      "tree_sha": "724bd83e08021520c809469093344299e6742872",
       "files": [
         "modules/nf-core/suppa/generateevents/environment.yml",
         "modules/nf-core/suppa/generateevents/main.nf",
@@ -378835,6 +379142,28 @@
                 }
               }
             ]
+          ],
+          "versions_statsmodels": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "statsmodels": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import statsmodels; print(statsmodels.__version__)'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "topics": {
@@ -378858,6 +379187,26 @@
                   "description": "The expression to obtain the version of the tool"
                 }
               }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "statsmodels": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import statsmodels; print(statsmodels.__version__)'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
             ]
           ]
         },
@@ -378868,12 +379217,12 @@
           "@piplus2"
         ]
       },
-      "git_sha": "2080397432fcb0d079121dbacf22ce42ef175cec"
+      "git_sha": "290607b218569c8c96afb7b8ad9f1fd80ca9d7bd"
     },
     {
       "name": "suppa_psiperevent",
       "path": "modules/nf-core/suppa/psiperevent/meta.yml",
-      "tree_sha": "ad62598a6e63bdfda34baf0f8575340ca39a676d",
+      "tree_sha": "6b281845c9f20a588422a48fe209d5ab3f92b494",
       "files": [
         "modules/nf-core/suppa/psiperevent/environment.yml",
         "modules/nf-core/suppa/psiperevent/main.nf",
@@ -378986,6 +379335,28 @@
                 }
               }
             ]
+          ],
+          "versions_statsmodels": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "statsmodels": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import statsmodels; print(statsmodels.__version__)'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "topics": {
@@ -379009,6 +379380,26 @@
                   "description": "The expression to obtain the version of the tool"
                 }
               }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "statsmodels": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import statsmodels; print(statsmodels.__version__)'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
             ]
           ]
         },
@@ -379020,12 +379411,12 @@
           "@piplus2"
         ]
       },
-      "git_sha": "6a06fc880f6be6eb16f79e929a5ed50b915029dd"
+      "git_sha": "290607b218569c8c96afb7b8ad9f1fd80ca9d7bd"
     },
     {
       "name": "suppa_psiperisoform",
       "path": "modules/nf-core/suppa/psiperisoform/meta.yml",
-      "tree_sha": "c3b5e0ba3afd5c0f348283a2678cc55fc7423b7b",
+      "tree_sha": "45a96a5cbf874538f094ed1afb19885bb5498bd7",
       "files": [
         "modules/nf-core/suppa/psiperisoform/environment.yml",
         "modules/nf-core/suppa/psiperisoform/main.nf",
@@ -379136,6 +379527,28 @@
                 }
               }
             ]
+          ],
+          "versions_statsmodels": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "statsmodels": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import statsmodels; print(statsmodels.__version__)'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "topics": {
@@ -379159,6 +379572,26 @@
                   "description": "The expression to obtain the version of the tool"
                 }
               }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "statsmodels": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import statsmodels; print(statsmodels.__version__)'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
             ]
           ]
         },
@@ -379170,7 +379603,7 @@
           "@piplus2"
         ]
       },
-      "git_sha": "e5a841a89c93a4dfae13de26d884a4dd86cd1b8f"
+      "git_sha": "290607b218569c8c96afb7b8ad9f1fd80ca9d7bd"
     },
     {
       "name": "survivor_bedpetovcf",
@@ -397940,7 +398373,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.1.1"
+          "version": "5.1.2"
         }
       ]
     },
@@ -424898,7 +425331,7 @@
     {
       "name": "bam_impute_quilt",
       "path": "subworkflows/nf-core/bam_impute_quilt/meta.yml",
-      "tree_sha": "5724d313834b6ad9ea1e1f0600cd0c5f759bed23",
+      "tree_sha": "8434482474a3c69a1afdce39b3db0b9992dbfcd4",
       "files": [
         "subworkflows/nf-core/bam_impute_quilt/main.nf",
         "subworkflows/nf-core/bam_impute_quilt/meta.yml",
@@ -424964,7 +425397,7 @@
             }
           },
           {
-            "ch_hap_legend_posfile": {
+            "ch_reference_panel": {
               "description": "Channel with reference panel variants data",
               "structure": [
                 {
@@ -424985,12 +425418,6 @@
                     "type": "file",
                     "description": "Panel VCF legend files by chromosomes",
                     "pattern": "*.legend[.gz]+"
-                  }
-                },
-                {
-                  "posfile": {
-                    "type": "file",
-                    "description": "Position to impute variants file in TSV format (chromosome, position, ref, alt)"
                   }
                 }
               ]
@@ -425123,12 +425550,12 @@
           "@louislenezet"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686"
+      "git_sha": "79f59f34008aa403b409acd90df0cd9328023653"
     },
     {
       "name": "bam_impute_quilt2",
       "path": "subworkflows/nf-core/bam_impute_quilt2/meta.yml",
-      "tree_sha": "2d91aecef40c96bd8e5130b7f5d505c0284dedcf",
+      "tree_sha": "2d46941351f5771b92013a6125799ee77534a31b",
       "files": [
         "subworkflows/nf-core/bam_impute_quilt2/main.nf",
         "subworkflows/nf-core/bam_impute_quilt2/meta.yml",
@@ -425349,7 +425776,7 @@
           "@atrigila"
         ]
       },
-      "git_sha": "9edc097c4904d60808b5c4c9978934e091aded1a"
+      "git_sha": "79f59f34008aa403b409acd90df0cd9328023653"
     },
     {
       "name": "bam_impute_stitch",
@@ -438548,7 +438975,7 @@
         },
         {
           "name": "airrflow",
-          "version": "5.1.1"
+          "version": "5.1.2"
         },
         {
           "name": "ampliseq",
@@ -439044,7 +439471,7 @@
         },
         {
           "name": "airrflow",
-          "version": "5.1.1"
+          "version": "5.1.2"
         },
         {
           "name": "ampliseq",
@@ -439592,7 +440019,7 @@
         },
         {
           "name": "airrflow",
-          "version": "5.1.1"
+          "version": "5.1.2"
         },
         {
           "name": "ampliseq",
@@ -441555,6 +441982,6 @@
       "git_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657"
     }
   ],
-  "commit_sha": "3388c6ac0f4bff2d5f21b7e3e9c545df07396125",
-  "updated_at": "2026-10-09T14:12:54.837Z"
+  "commit_sha": "290607b218569c8c96afb7b8ad9f1fd80ca9d7bd",
+  "updated_at": "2026-10-11T14:12:42.962Z"
 }
