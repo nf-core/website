@@ -82494,7 +82494,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "genomeannotator",
@@ -93317,6 +93317,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -208011,7 +208019,7 @@
     {
       "name": "llamacpppython_run",
       "path": "modules/nf-core/llamacpppython/run/meta.yml",
-      "tree_sha": "b2a207a87c0a86ff7573df21f44e621cebff166a",
+      "tree_sha": "e8c2eb6b6354ca6624c35d2725451185ee4645d8",
       "files": [
         "modules/nf-core/llamacpppython/run/environment.gpu.yml",
         "modules/nf-core/llamacpppython/run/environment.yml",
@@ -208130,7 +208138,7 @@
           "@lucacozzuto"
         ]
       },
-      "git_sha": "972faf6f783fe9685267220965a91690741465f9"
+      "git_sha": "c831de669c90ad69f564b1572f4cf9a1b6f80643"
     },
     {
       "name": "localcdsearch_annotate",
@@ -265034,7 +265042,7 @@
     {
       "name": "parabricks_applybqsr",
       "path": "modules/nf-core/parabricks/applybqsr/meta.yml",
-      "tree_sha": "6ef234f216a6eb6927a49457d6874c2b34721e50",
+      "tree_sha": "5d14c18a6d8c6163ea36600c730a6fcf3991753b",
       "files": [
         "modules/nf-core/parabricks/applybqsr/main.nf",
         "modules/nf-core/parabricks/applybqsr/meta.yml",
@@ -265074,7 +265082,7 @@
               }
             },
             {
-              "bam": {
+              "input": {
                 "type": "file",
                 "description": "Input BAM / CRAM file",
                 "pattern": "*.{bam,cram}",
@@ -265089,19 +265097,11 @@
               }
             },
             {
-              "bai": {
+              "input_index": {
                 "type": "file",
                 "description": "BAM / CRAM index file",
                 "pattern": "*.{bam.bai,cram.crai}",
                 "ontologies": []
-              }
-            }
-          ],
-          [
-            {
-              "meta3": {
-                "type": "map",
-                "description": "Groovy Map containing sample information.\ne.g. [ id:'test' ]\n"
               }
             },
             {
@@ -265110,14 +265110,6 @@
                 "description": "Table from calculating BQSR. Output from parabricks/fq2bam or gatk4/baserecalibrator.",
                 "pattern": "*.table",
                 "ontologies": []
-              }
-            }
-          ],
-          [
-            {
-              "meta4": {
-                "type": "map",
-                "description": "Groovy Map containing sample information.\ne.g. [ id:'test' ]\n"
               }
             },
             {
@@ -265292,7 +265284,7 @@
           "@famosab"
         ]
       },
-      "git_sha": "006a6142690e2f4a455f77a1bc7d71459d78deb5"
+      "git_sha": "541af7c6735edaae882567b910071b563e9b1317"
     },
     {
       "name": "parabricks_dbsnp",
@@ -284262,6 +284254,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -284569,6 +284565,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -337311,7 +337311,7 @@
     {
       "name": "savana_classify",
       "path": "modules/nf-core/savana/classify/meta.yml",
-      "tree_sha": "dfed3739b20b1ae202b6a0f09df806476c4dad34",
+      "tree_sha": "1889a71f8a94695b905cdb9b6497d7bc729a1ca4",
       "files": [
         "modules/nf-core/savana/classify/environment.yml",
         "modules/nf-core/savana/classify/main.nf",
@@ -337535,7 +337535,7 @@
           "@manascripts"
         ]
       },
-      "git_sha": "7e612460bcb5aaf9c6f146cfb6475064c2d062ee"
+      "git_sha": "d77cf6df64675efb86799a47d15878153b173312"
     },
     {
       "name": "savana_cna",
@@ -337974,7 +337974,7 @@
     {
       "name": "savana_run",
       "path": "modules/nf-core/savana/run/meta.yml",
-      "tree_sha": "c01865adc1817c451580ef33e51961879acf3b02",
+      "tree_sha": "81ca528b207ba14fa0ce521d3e9640f9a076c135",
       "files": [
         "modules/nf-core/savana/run/environment.yml",
         "modules/nf-core/savana/run/main.nf",
@@ -338086,6 +338086,27 @@
                 "description": "Reference FASTA index",
                 "pattern": "*.fai",
                 "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing contigs file information\ne.g. `[ id:'contigs' ]`\n"
+              }
+            },
+            {
+              "contigs": {
+                "type": "file",
+                "description": "Optional file listing the contigs to analyse, one contig per line. All contigs in the bam files are analysed when not given.",
+                "pattern": "*.txt",
+                "optional": true,
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2330"
+                  }
+                ]
               }
             }
           ]
@@ -338233,7 +338254,7 @@
           "@manascripts"
         ]
       },
-      "git_sha": "8226aa5748298be6c00661fe611e231c64f88e71"
+      "git_sha": "d77cf6df64675efb86799a47d15878153b173312"
     },
     {
       "name": "savana_to",
@@ -362564,9 +362585,245 @@
       "git_sha": "c565f1b27c06a1e8b726e2a646d4c822ae3b514a"
     },
     {
+      "name": "smudgeplot_all",
+      "path": "modules/nf-core/smudgeplot/all/meta.yml",
+      "tree_sha": "a462c3a33bfdb623458bc3327bab5b01212139f8",
+      "files": [
+        "modules/nf-core/smudgeplot/all/environment.yml",
+        "modules/nf-core/smudgeplot/all/main.nf",
+        "modules/nf-core/smudgeplot/all/meta.yml",
+        "modules/nf-core/smudgeplot/all/tests/main.nf.test",
+        "modules/nf-core/smudgeplot/all/tests/main.nf.test.snap",
+        "modules/nf-core/smudgeplot/all/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "smudgeplot_all",
+        "description": "Generating smudgeplot k-mer inference plots",
+        "keywords": [
+          "Smudgeplot",
+          "reference-free",
+          "kmer",
+          "plots"
+        ],
+        "tools": [
+          {
+            "smudgeplot": {
+              "description": "Generating smudgeplot kmer counts",
+              "homepage": "https://github.com/KamilSJaron/smudgeplot",
+              "tool_dev_url": "https://github.com/KamilSJaron/smudgeplot",
+              "licence": [
+                "https://github.com/KamilSJaron/smudgeplot/blob/master/LICENSE.md"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "smu": {
+                "type": "file",
+                "description": "Smudgeplot kmer coverage flat file",
+                "pattern": "*.smu",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "png": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.png": {
+                  "type": "file",
+                  "description": "Collection of output PNG files",
+                  "pattern": "*.png",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3603"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "centrality_txt": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*_centralities.txt": {
+                  "type": "file",
+                  "description": "Centrality of kmers text file",
+                  "pattern": "*_centralities.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "smudge_report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.smudge_report.tsv": {
+                  "type": "file",
+                  "description": "Full smudgeplot report of smudges",
+                  "pattern": "*.smudge_report.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "sma": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.sma": {
+                  "type": "file",
+                  "description": "Smudgeplot Kmer coverage file",
+                  "pattern": "*.sma",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_smudgeplot": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the process"
+                }
+              },
+              {
+                "smudgeplot": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "smudgeplot -v |& grep -i smudgeplot | sed \"s/.*v//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_fastk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the process"
+                }
+              },
+              {
+                "fastk": {
+                  "type": "string",
+                  "description": "Name of the tool"
+                }
+              },
+              {
+                "1.2": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the process"
+                }
+              },
+              {
+                "smudgeplot": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "smudgeplot -v |& grep -i smudgeplot | sed \"s/.*v//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the process"
+                }
+              },
+              {
+                "fastk": {
+                  "type": "string",
+                  "description": "Name of the tool"
+                }
+              },
+              {
+                "1.2": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@DLBPointon"
+        ],
+        "maintainers": [
+          "@DLBPointon"
+        ]
+      },
+      "git_sha": "2b8500257dff6f19410339d7e787b0d22253f706"
+    },
+    {
       "name": "smudgeplot_hetmers",
       "path": "modules/nf-core/smudgeplot/hetmers/meta.yml",
-      "tree_sha": "099caf7cb13b0eb75d1c578907a0111a70cfdbfd",
+      "tree_sha": "28e6d57dc5197d9723254240d17e56125243eda4",
       "files": [
         "modules/nf-core/smudgeplot/hetmers/environment.yml",
         "modules/nf-core/smudgeplot/hetmers/main.nf",
@@ -362732,7 +362989,7 @@
           "@DLBPointon"
         ]
       },
-      "git_sha": "0bb7f49c8635272952501a45b7074075694df629"
+      "git_sha": "2b8500257dff6f19410339d7e787b0d22253f706"
     },
     {
       "name": "snakemake",
@@ -403744,7 +404001,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "lsmquant",
@@ -411888,10 +412145,10 @@
     {
       "name": "vepyr_annotate",
       "path": "modules/nf-core/vepyr/annotate/meta.yml",
-      "tree_sha": "742bbaa469386e11d74f54f9b6541b6be1ba3342",
+      "tree_sha": "d7901dce486fbbc68f69fa0ac5f7af4befb34d48",
       "files": [
-        "modules/nf-core/vepyr/annotate/.conda-lock/linux_amd64-bd-408f2021357958aa_1.txt",
-        "modules/nf-core/vepyr/annotate/.conda-lock/linux_arm64-bd-ebb29e9a21ff05c9_1.txt",
+        "modules/nf-core/vepyr/annotate/.conda-lock/linux_amd64-bd-219c82c59dd69e35_1.txt",
+        "modules/nf-core/vepyr/annotate/.conda-lock/linux_arm64-bd-10daaf4733f8235f_1.txt",
         "modules/nf-core/vepyr/annotate/environment.yml",
         "modules/nf-core/vepyr/annotate/main.nf",
         "modules/nf-core/vepyr/annotate/meta.yml",
@@ -412188,39 +412445,39 @@
         "containers": {
           "docker": {
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/htslib_vepyr:408f2021357958aa",
-              "build_id": "bd-408f2021357958aa_1",
-              "scan_id": "sc-11eca31149c24174_1"
+              "name": "community.wave.seqera.io/library/htslib_vepyr:219c82c59dd69e35",
+              "build_id": "bd-219c82c59dd69e35_1",
+              "scan_id": "sc-99382fad6cf14995_1"
             },
             "linux/arm64": {
-              "name": "community.wave.seqera.io/library/htslib_vepyr:ebb29e9a21ff05c9",
-              "build_id": "bd-ebb29e9a21ff05c9_1",
-              "scan_id": "sc-1f6bd919679e30b4_1"
+              "name": "community.wave.seqera.io/library/htslib_vepyr:10daaf4733f8235f",
+              "build_id": "bd-10daaf4733f8235f_1",
+              "scan_id": "sc-64860dd4bcbabecf_1"
             }
           },
           "singularity": {
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/htslib_vepyr:5f4d3201731219a4",
-              "build_id": "bd-5f4d3201731219a4_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/bb/bbf0f7f5a0c6b6586735b7636b219e3b788b9c9c1a86994b776556c63892fb4b/data"
+              "name": "oras://community.wave.seqera.io/library/htslib_vepyr:5ab606e4ce3cef4b",
+              "build_id": "bd-5ab606e4ce3cef4b_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/d4/d4eac4a987b908cc4cc7a0a078e25966e35c4347607d8fdfb0203ad738caea04/data"
             },
             "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/htslib_vepyr:76a3378692bb013e",
-              "build_id": "bd-76a3378692bb013e_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/77/7737675bdbd1f3f0bf0093c28e38b80a854a04d242613b42313cb08a4d644bda/data"
+              "name": "oras://community.wave.seqera.io/library/htslib_vepyr:5869429a196b32d4",
+              "build_id": "bd-5869429a196b32d4_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/14/14b8ca6d5260c3426be456d8dd3d27b0912765865cc1406c60a01dbf48c05f5b/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/vepyr/annotate/.conda-lock/linux_amd64-bd-408f2021357958aa_1.txt"
+              "lock_file": "modules/nf-core/vepyr/annotate/.conda-lock/linux_amd64-bd-219c82c59dd69e35_1.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/vepyr/annotate/.conda-lock/linux_arm64-bd-ebb29e9a21ff05c9_1.txt"
+              "lock_file": "modules/nf-core/vepyr/annotate/.conda-lock/linux_arm64-bd-10daaf4733f8235f_1.txt"
             }
           }
         }
       },
-      "git_sha": "34cb2d997fa3c684d12a8e48b6b21dff4271f605"
+      "git_sha": "74166f90ed68fb085edd6e6edd26e424d475c082"
     },
     {
       "name": "verifybamid_verifybamid",
@@ -439099,7 +439356,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "epigenomesegmentation",
@@ -439599,7 +439856,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "epigenomesegmentation",
@@ -440147,7 +440404,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.2.2"
+          "version": "1.3.0"
         },
         {
           "name": "epigenomesegmentation",
@@ -442026,6 +442283,6 @@
       "git_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657"
     }
   ],
-  "commit_sha": "8990c99a667c5b7386a118718445a0d2154743e3",
-  "updated_at": "2026-10-12T09:16:38.974Z"
+  "commit_sha": "541af7c6735edaae882567b910071b563e9b1317",
+  "updated_at": "2026-10-12T14:19:54.381Z"
 }
