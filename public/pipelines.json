@@ -41248,9 +41248,9 @@
             "url": "https://api.github.com/repos/nf-core/plasmodiumdrugres",
             "created_at": "2025-01-17T19:30:44Z",
             "updated_at": "2026-10-09T17:12:43Z",
-            "pushed_at": "2026-10-09T17:08:33Z",
+            "pushed_at": "2026-10-12T17:00:16Z",
             "homepage": "https://nf-co.re/plasmodiumdrugres",
-            "size": 6688,
+            "size": 6614,
             "stargazers_count": 2,
             "watchers_count": 2,
             "language": "Nextflow",
@@ -41382,10 +41382,10 @@
                     "avatar_url": "https://avatars.githubusercontent.com/u/465550?v=4"
                 }
             ],
-            "released_after_tools": false,
+            "released_after_tools": true,
             "head_sha": "a333327a245ccb3c0f1a37167a7afe670c35894e",
-            "last_release_is_head": false,
-            "last_release_vs_default_compare_url": "",
+            "last_release_is_head": true,
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/plasmodiumdrugres/compare/a333327a245ccb3c0f1a37167a7afe670c35894e...a333327a245ccb3c0f1a37167a7afe670c35894e",
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": true,
@@ -41407,6 +41407,30 @@
             "dev_uses_params_block": false,
             "dev_has_pr_comment_workflow": true,
             "releases": [
+                {
+                    "tag_name": "1.0.0",
+                    "published_at": "2026-10-12T17:00:17Z",
+                    "tag_sha": "a333327a245ccb3c0f1a37167a7afe670c35894e",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [],
+                        "subworkflows": [
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfschema_plugin"
+                        ]
+                    },
+                    "nextflow_version": "!>=25.10.4",
+                    "nf_core_version": "4.1.0",
+                    "plugins": [
+                        "nf-schema@2.5.1"
+                    ],
+                    "co2footprint_files": null
+                },
                 {
                     "tag_name": "dev",
                     "published_at": "2026-10-09T16:37:28Z",
