@@ -1176,8 +1176,8 @@ Launch Page
     height: 1.2rem;
     fill: currentColor;
   }
-  // Special admonitions containing *only* a code block figure
-  .admonition-body-content:has(figure:first-child:last-child) {
+  // Special admonitions containing *only* a code block
+  .admonition-body-content:has(> .expressive-code:only-child) {
     padding: 0 !important;
     code {
       border: none !important;
@@ -1208,6 +1208,13 @@ Launch Page
   }
   .admonition-body-content {
     font-size: 90%;
+    // optically balance the gap below the title bar with the gap above the bottom border
+    padding-top: 0.75rem !important;
+
+    // beats `.main-content .expressive-code` margin
+    > :last-child {
+      margin-bottom: 0;
+    }
   }
 }
 
