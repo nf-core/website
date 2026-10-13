@@ -57152,7 +57152,7 @@
     {
       "name": "cellranger_count",
       "path": "modules/nf-core/cellranger/count/meta.yml",
-      "tree_sha": "7b1cd976fa5b4dae4b75a76e9ed0ca337ba1ac2c",
+      "tree_sha": "1e068c72bb7df59be5c4ee589548b0899abf4062",
       "files": [
         "modules/nf-core/cellranger/count/README.md",
         "modules/nf-core/cellranger/count/main.nf",
@@ -57284,7 +57284,7 @@
           }
         ]
       },
-      "git_sha": "c8dedc22e3d32b7213aac563e04c969b34b496fc",
+      "git_sha": "1c45397a5eaae632234d32a6608731456033091a",
       "pipelines": [
         {
           "name": "scrnaseq",
@@ -57548,7 +57548,7 @@
     {
       "name": "cellranger_mkgtf",
       "path": "modules/nf-core/cellranger/mkgtf/meta.yml",
-      "tree_sha": "d65ca823801f97288f7a0cf674716b9dd1ab7817",
+      "tree_sha": "dd45f46d6e0ab574e7d83d5aee00228396e3baca",
       "files": [
         "modules/nf-core/cellranger/mkgtf/main.nf",
         "modules/nf-core/cellranger/mkgtf/meta.yml",
@@ -57671,7 +57671,7 @@
           "@edmundmiller"
         ]
       },
-      "git_sha": "c8dedc22e3d32b7213aac563e04c969b34b496fc",
+      "git_sha": "1c45397a5eaae632234d32a6608731456033091a",
       "pipelines": [
         {
           "name": "scrnaseq",
@@ -57682,7 +57682,7 @@
     {
       "name": "cellranger_mkref",
       "path": "modules/nf-core/cellranger/mkref/meta.yml",
-      "tree_sha": "8968091ae3d969f70e8088069a8efd62a8f23346",
+      "tree_sha": "fafcc768ea47a6aa382182bc763e95bf54eb7b2f",
       "files": [
         "modules/nf-core/cellranger/mkref/main.nf",
         "modules/nf-core/cellranger/mkref/meta.yml",
@@ -57825,7 +57825,7 @@
           "@ggabernet"
         ]
       },
-      "git_sha": "c8dedc22e3d32b7213aac563e04c969b34b496fc",
+      "git_sha": "1c45397a5eaae632234d32a6608731456033091a",
       "pipelines": [
         {
           "name": "scrnaseq",
@@ -57836,7 +57836,7 @@
     {
       "name": "cellranger_mkvdjref",
       "path": "modules/nf-core/cellranger/mkvdjref/meta.yml",
-      "tree_sha": "e156a1f7d33161824e9beb65ca9b31228e1a9c57",
+      "tree_sha": "ab30cf66b1969d14c089a5aadcb8fcba2c901c0e",
       "files": [
         "modules/nf-core/cellranger/mkvdjref/main.nf",
         "modules/nf-core/cellranger/mkvdjref/meta.yml",
@@ -57968,7 +57968,7 @@
           "@klkeys"
         ]
       },
-      "git_sha": "21e4662ae927fdbc5fc04eec9bde38b0689d4954",
+      "git_sha": "1c45397a5eaae632234d32a6608731456033091a",
       "pipelines": [
         {
           "name": "airrflow",
@@ -57983,7 +57983,7 @@
     {
       "name": "cellranger_multi",
       "path": "modules/nf-core/cellranger/multi/meta.yml",
-      "tree_sha": "123e6894d22e84291082fbc4d22dd97652d232f9",
+      "tree_sha": "95a2f4bee99bc7086fc2f6dd3cc385df2aaf96fe",
       "files": [
         "modules/nf-core/cellranger/multi/main.nf",
         "modules/nf-core/cellranger/multi/meta.yml",
@@ -58515,7 +58515,7 @@
           "@klkeys"
         ]
       },
-      "git_sha": "7effa53d6abdeca831d4969839c652986662cc8e",
+      "git_sha": "1c45397a5eaae632234d32a6608731456033091a",
       "pipelines": [
         {
           "name": "scrnaseq",
@@ -58526,12 +58526,13 @@
     {
       "name": "cellranger_vdj",
       "path": "modules/nf-core/cellranger/vdj/meta.yml",
-      "tree_sha": "c51d554a4d992a023b8cf57f5adc63f89840fbbb",
+      "tree_sha": "122a694577a316b34dc466423f7b40144ccc0663",
       "files": [
         "modules/nf-core/cellranger/vdj/main.nf",
         "modules/nf-core/cellranger/vdj/meta.yml",
         "modules/nf-core/cellranger/vdj/tests/main.nf.test",
-        "modules/nf-core/cellranger/vdj/tests/main.nf.test.snap"
+        "modules/nf-core/cellranger/vdj/tests/main.nf.test.snap",
+        "modules/nf-core/cellranger/vdj/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
@@ -58660,7 +58661,7 @@
           "@klkeys"
         ]
       },
-      "git_sha": "21e4662ae927fdbc5fc04eec9bde38b0689d4954",
+      "git_sha": "1c45397a5eaae632234d32a6608731456033091a",
       "pipelines": [
         {
           "name": "airrflow",
@@ -93736,6 +93737,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -95926,6 +95935,1122 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "dexseq_count",
+      "path": "modules/nf-core/dexseq/count/meta.yml",
+      "tree_sha": "9215094254358a15a27c6bc256df70db6ceb562a",
+      "files": [
+        "modules/nf-core/dexseq/count/.conda-lock/linux_amd64-bd-4266bf085c9883ac_1.txt",
+        "modules/nf-core/dexseq/count/.conda-lock/linux_arm64-bd-9b5f827f6c3a27bd_1.txt",
+        "modules/nf-core/dexseq/count/environment.yml",
+        "modules/nf-core/dexseq/count/main.nf",
+        "modules/nf-core/dexseq/count/meta.yml",
+        "modules/nf-core/dexseq/count/tests/main.nf.test",
+        "modules/nf-core/dexseq/count/tests/main.nf.test.snap",
+        "modules/nf-core/dexseq/count/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "dexseq_count",
+        "description": "Count the reads overlapping the exonic counting bins of a DEXSeq annotation",
+        "keywords": [
+          "dexseq",
+          "exon",
+          "count",
+          "alternative splicing",
+          "differential exon usage"
+        ],
+        "tools": [
+          {
+            "dexseq": {
+              "description": "Inference of differential exon usage in RNA-Seq",
+              "homepage": "https://bioconductor.org/packages/release/bioc/html/DEXSeq.html",
+              "documentation": "https://bioconductor.org/packages/release/bioc/vignettes/DEXSeq/inst/doc/DEXSeq.html",
+              "tool_dev_url": "https://git.bioconductor.org/packages/DEXSeq",
+              "doi": "10.1101/gr.133744.111",
+              "licence": [
+                "GPL >=3"
+              ],
+              "identifier": "biotools:dexseq"
+            }
+          },
+          {
+            "htseq": {
+              "description": "HTSeq is a Python library to facilitate processing and analysis of data from high-throughput sequencing (HTS) experiments.",
+              "homepage": "https://htseq.readthedocs.io/en/latest/",
+              "documentation": "https://htseq.readthedocs.io/en/latest/index.html",
+              "doi": "10.1093/bioinformatics/btu638",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:htseq"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM file of the aligned reads, sorted by position. For a BAM sorted\nby name, pass `--order name` through `ext.args`; a mismatched sort\norder gives wrong counts without any error.\n",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing annotation information\ne.g. `[ id:'genome' ]`\n"
+              }
+            },
+            {
+              "gff": {
+                "type": "file",
+                "description": "Flattened DEXSeq annotation, as created by dexseq/prepareannotation",
+                "pattern": "*.gff",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2305"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "counts": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "Read counts for each exonic counting bin",
+                  "pattern": "*.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_dexseq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bioconductor-dexseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "Rscript -e \"cat(as.character(packageVersion('DEXSeq')))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_htseq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "htseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import HTSeq; print(HTSeq.__version__)\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bioconductor-dexseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "Rscript -e \"cat(as.character(packageVersion('DEXSeq')))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "htseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import HTSeq; print(HTSeq.__version__)\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@piplus2"
+        ],
+        "maintainers": [
+          "@piplus2"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bioconductor-dexseq_htseq:4266bf085c9883ac",
+              "build_id": "bd-4266bf085c9883ac_1",
+              "scan_id": "sc-4708b8becf379188_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/bioconductor-dexseq_htseq:9b5f827f6c3a27bd",
+              "build_id": "bd-9b5f827f6c3a27bd_1",
+              "scan_id": "sc-a0afda38e905622c_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/bioconductor-dexseq_htseq:352e956c655d59ed",
+              "build_id": "bd-352e956c655d59ed_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/8b/8bc6abdbe86c2adaae51e133b0d859871b4157448989b9b81cce7de80b1d3d71/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bioconductor-dexseq_htseq:9a3361a5c6257844",
+              "build_id": "bd-9a3361a5c6257844_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/07/0718f75da083443fe7acb310d3f8ef8216fb4561395226a48fff870d17323f4e/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/dexseq/count/.conda-lock/linux_amd64-bd-4266bf085c9883ac_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/dexseq/count/.conda-lock/linux_arm64-bd-9b5f827f6c3a27bd_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "fefdbf9dc2f108a2c9a401af1f0b5bb1c3a60754"
+    },
+    {
+      "name": "dexseq_dtu",
+      "path": "modules/nf-core/dexseq/dtu/meta.yml",
+      "tree_sha": "7ba51c95e7812e18b1bdaea62ba9329f557fe4fb",
+      "files": [
+        "modules/nf-core/dexseq/dtu/.conda-lock/linux_amd64-bd-548bf2f0349db29a_1.txt",
+        "modules/nf-core/dexseq/dtu/.conda-lock/linux_arm64-bd-67969e95327c513f_1.txt",
+        "modules/nf-core/dexseq/dtu/environment.yml",
+        "modules/nf-core/dexseq/dtu/main.nf",
+        "modules/nf-core/dexseq/dtu/meta.yml",
+        "modules/nf-core/dexseq/dtu/templates/dexseq_dtu.R",
+        "modules/nf-core/dexseq/dtu/tests/main.nf.test",
+        "modules/nf-core/dexseq/dtu/tests/main.nf.test.snap",
+        "modules/nf-core/dexseq/dtu/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "dexseq_dtu",
+        "description": "Test a contrast for differential transcript usage with DEXSeq, from a table of transcript counts",
+        "keywords": [
+          "dexseq",
+          "transcript",
+          "differential transcript usage",
+          "alternative splicing",
+          "rna-seq"
+        ],
+        "tools": [
+          {
+            "dexseq": {
+              "description": "Inference of differential exon usage in RNA-Seq",
+              "homepage": "https://bioconductor.org/packages/release/bioc/html/DEXSeq.html",
+              "documentation": "https://bioconductor.org/packages/release/bioc/vignettes/DEXSeq/inst/doc/DEXSeq.html",
+              "tool_dev_url": "https://git.bioconductor.org/packages/DEXSeq",
+              "doi": "10.1101/gr.133744.111",
+              "licence": [
+                "GPL >=3"
+              ],
+              "identifier": "biotools:dexseq"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing contrast information\ne.g. `[ id:'treated_vs_control' ]`\n"
+              }
+            },
+            {
+              "contrast_variable": {
+                "type": "string",
+                "description": "The column of the sample sheet that defines the groups to compare\n"
+              }
+            },
+            {
+              "reference": {
+                "type": "string",
+                "description": "The value of `contrast_variable` that defines the reference samples\n"
+              }
+            },
+            {
+              "target": {
+                "type": "string",
+                "description": "The value of `contrast_variable` that defines the target samples. The\nfold changes are those of the target over the reference\n"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing study-wide information\ne.g. `[ id:'study' ]`\n"
+              }
+            },
+            {
+              "samplesheet": {
+                "type": "file",
+                "description": "CSV or TSV sample sheet with a sample ID column (`--sample_id_col`,\ndefault `sample`) and the `contrast_variable` column\n",
+                "pattern": "*.{csv,tsv,txt}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "counts": {
+                "type": "file",
+                "description": "CSV or TSV table of transcript counts, e.g. filtered with DRIMSeq, with a\ntranscript ID column (`--feature_id_col`, default `feature_id`), a gene ID\ncolumn (`--gene_id_col`, default `gene_id`) and one column per sample.\nEstimated counts are rounded\n",
+                "pattern": "*.{csv,tsv,txt}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "results": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, same as input meta\n"
+                }
+              },
+              {
+                "*.dexseq.results.tsv": {
+                  "type": "file",
+                  "description": "Transcript level DEXSeq results, without the list columns of the DEXSeqResults object",
+                  "pattern": "*.dexseq.results.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "gene_qvalues": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, same as input meta\n"
+                }
+              },
+              {
+                "*.dexseq.gene_qvalues.tsv": {
+                  "type": "file",
+                  "description": "Gene level q-values from DEXSeq perGeneQValue",
+                  "pattern": "*.dexseq.gene_qvalues.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "dataset_rds": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, same as input meta\n"
+                }
+              },
+              {
+                "*.dexseq.dataset.rds": {
+                  "type": "file",
+                  "description": "Serialised DEXSeqDataSet object",
+                  "pattern": "*.dexseq.dataset.rds",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "results_rds": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, same as input meta\n"
+                }
+              },
+              {
+                "*.dexseq.results.rds": {
+                  "type": "file",
+                  "description": "Serialised DEXSeqResults object",
+                  "pattern": "*.dexseq.results.rds",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "gene_qvalues_rds": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, same as input meta\n"
+                }
+              },
+              {
+                "*.dexseq.gene_qvalues.rds": {
+                  "type": "file",
+                  "description": "Serialised named vector of the gene level q-values",
+                  "pattern": "*.dexseq.gene_qvalues.rds",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "session_info": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, same as input meta\n"
+                }
+              },
+              {
+                "*.R_sessionInfo.log": {
+                  "type": "file",
+                  "description": "Dump of the R sessionInfo",
+                  "pattern": "*.R_sessionInfo.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "YAML file containing versions of tools used in the module",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "YAML file containing versions of tools used in the module",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@piplus2"
+        ],
+        "maintainers": [
+          "@piplus2"
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/bioconductor-dexseq:1.56.0--67969e95327c513f",
+              "build_id": "bd-67969e95327c513f_1",
+              "scan_id": "sc-a5ab2ee96f9b89b4_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bioconductor-dexseq:1.56.0--548bf2f0349db29a",
+              "build_id": "bd-548bf2f0349db29a_1",
+              "scan_id": "sc-193504248b0b9b1f_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bioconductor-dexseq:1.56.0--1e6406dafe30519b",
+              "build_id": "bd-1e6406dafe30519b_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e4/e42feb37a257a80b9a48a628d05a6f3a1283bed077b0bb0a6a97bb7a57c25c5f/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/bioconductor-dexseq:1.56.0--f47df91b5de8abc9",
+              "build_id": "bd-f47df91b5de8abc9_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/f5/f55adfb9b57806acfb7d48892631d9f09e1a54e417c1930db12ccce9d4eb066d/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/dexseq/dtu/.conda-lock/linux_amd64-bd-548bf2f0349db29a_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/dexseq/dtu/.conda-lock/linux_arm64-bd-67969e95327c513f_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "6ec19c227668f806a4150248f90b34346be90310"
+    },
+    {
+      "name": "dexseq_exon",
+      "path": "modules/nf-core/dexseq/exon/meta.yml",
+      "tree_sha": "a5249b5fb5290d2bf23c352709ddcde1a79289eb",
+      "files": [
+        "modules/nf-core/dexseq/exon/.conda-lock/linux_amd64-bd-548bf2f0349db29a_1.txt",
+        "modules/nf-core/dexseq/exon/.conda-lock/linux_arm64-bd-67969e95327c513f_1.txt",
+        "modules/nf-core/dexseq/exon/environment.yml",
+        "modules/nf-core/dexseq/exon/main.nf",
+        "modules/nf-core/dexseq/exon/meta.yml",
+        "modules/nf-core/dexseq/exon/templates/dexseq_exon.R",
+        "modules/nf-core/dexseq/exon/tests/main.nf.test",
+        "modules/nf-core/dexseq/exon/tests/main.nf.test.snap",
+        "modules/nf-core/dexseq/exon/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "dexseq_exon",
+        "description": "Test a contrast for differential exon usage with DEXSeq, from the exon counts of dexseq/count",
+        "keywords": [
+          "dexseq",
+          "exon",
+          "differential exon usage",
+          "alternative splicing",
+          "rna-seq"
+        ],
+        "tools": [
+          {
+            "dexseq": {
+              "description": "Inference of differential exon usage in RNA-Seq",
+              "homepage": "https://bioconductor.org/packages/release/bioc/html/DEXSeq.html",
+              "documentation": "https://bioconductor.org/packages/release/bioc/vignettes/DEXSeq/inst/doc/DEXSeq.html",
+              "tool_dev_url": "https://git.bioconductor.org/packages/DEXSeq",
+              "doi": "10.1101/gr.133744.111",
+              "licence": [
+                "GPL >=3"
+              ],
+              "identifier": "biotools:dexseq"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing contrast information\ne.g. `[ id:'treated_vs_control' ]`\n"
+              }
+            },
+            {
+              "contrast_variable": {
+                "type": "string",
+                "description": "The column of the sample sheet that defines the groups to compare\n"
+              }
+            },
+            {
+              "reference": {
+                "type": "string",
+                "description": "The value of `contrast_variable` that defines the reference samples\n"
+              }
+            },
+            {
+              "target": {
+                "type": "string",
+                "description": "The value of `contrast_variable` that defines the target samples. The\nfold changes are those of the target over the reference\n"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing study-wide information\ne.g. `[ id:'study' ]`\n"
+              }
+            },
+            {
+              "samplesheet": {
+                "type": "file",
+                "description": "CSV or TSV sample sheet with a sample ID column (`--sample_id_col`,\ndefault `sample`) and the `contrast_variable` column\n",
+                "pattern": "*.{csv,tsv,txt}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "counts": {
+                "type": "file",
+                "description": "Exon counts of each sample as written by dexseq/count, named after the\nsample ID followed by `--count_suffix` (default `.txt`)\n",
+                "pattern": "*.txt",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing annotation information\ne.g. `[ id:'genome' ]`\n"
+              }
+            },
+            {
+              "gff": {
+                "type": "file",
+                "description": "Flattened DEXSeq annotation, as created by dexseq/prepareannotation",
+                "pattern": "*.{gff,gff.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2305"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "results": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, same as input meta\n"
+                }
+              },
+              {
+                "*.dexseq.results.tsv": {
+                  "type": "file",
+                  "description": "Exon level DEXSeq results, without the list columns of the DEXSeqResults object",
+                  "pattern": "*.dexseq.results.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "gene_qvalues": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, same as input meta\n"
+                }
+              },
+              {
+                "*.dexseq.gene_qvalues.tsv": {
+                  "type": "file",
+                  "description": "Gene level q-values from DEXSeq perGeneQValue",
+                  "pattern": "*.dexseq.gene_qvalues.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "dataset_rds": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, same as input meta\n"
+                }
+              },
+              {
+                "*.dexseq.dataset.rds": {
+                  "type": "file",
+                  "description": "Serialised DEXSeqDataSet object",
+                  "pattern": "*.dexseq.dataset.rds",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "results_rds": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, same as input meta\n"
+                }
+              },
+              {
+                "*.dexseq.results.rds": {
+                  "type": "file",
+                  "description": "Serialised DEXSeqResults object",
+                  "pattern": "*.dexseq.results.rds",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "gene_qvalues_rds": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, same as input meta\n"
+                }
+              },
+              {
+                "*.dexseq.gene_qvalues.rds": {
+                  "type": "file",
+                  "description": "Serialised named vector of the gene level q-values",
+                  "pattern": "*.dexseq.gene_qvalues.rds",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "plots": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, same as input meta\n"
+                }
+              },
+              {
+                "*.dexseq.plots.pdf": {
+                  "type": "file",
+                  "description": "plotDEXSeq plots of the `--n_plot` genes with the smallest p-values. Not written when `--n_plot` is 0 or no result is valid",
+                  "pattern": "*.dexseq.plots.pdf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3508"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "session_info": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, same as input meta\n"
+                }
+              },
+              {
+                "*.R_sessionInfo.log": {
+                  "type": "file",
+                  "description": "Dump of the R sessionInfo",
+                  "pattern": "*.R_sessionInfo.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "YAML file containing versions of tools used in the module",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "YAML file containing versions of tools used in the module",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@piplus2"
+        ],
+        "maintainers": [
+          "@piplus2"
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/bioconductor-dexseq:1.56.0--67969e95327c513f",
+              "build_id": "bd-67969e95327c513f_1",
+              "scan_id": "sc-a5ab2ee96f9b89b4_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bioconductor-dexseq:1.56.0--548bf2f0349db29a",
+              "build_id": "bd-548bf2f0349db29a_1",
+              "scan_id": "sc-193504248b0b9b1f_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bioconductor-dexseq:1.56.0--1e6406dafe30519b",
+              "build_id": "bd-1e6406dafe30519b_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e4/e42feb37a257a80b9a48a628d05a6f3a1283bed077b0bb0a6a97bb7a57c25c5f/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/bioconductor-dexseq:1.56.0--f47df91b5de8abc9",
+              "build_id": "bd-f47df91b5de8abc9_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/f5/f55adfb9b57806acfb7d48892631d9f09e1a54e417c1930db12ccce9d4eb066d/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/dexseq/exon/.conda-lock/linux_amd64-bd-548bf2f0349db29a_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/dexseq/exon/.conda-lock/linux_arm64-bd-67969e95327c513f_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "7d863b147abf8128c3f5ed996ef2631ce7fe99ba"
+    },
+    {
+      "name": "dexseq_prepareannotation",
+      "path": "modules/nf-core/dexseq/prepareannotation/meta.yml",
+      "tree_sha": "95ab6b36c4d798dbd9f137d186c83eff8058f9bb",
+      "files": [
+        "modules/nf-core/dexseq/prepareannotation/.conda-lock/linux_amd64-bd-dfa2c806cf6767c6_1.txt",
+        "modules/nf-core/dexseq/prepareannotation/.conda-lock/linux_arm64-bd-70a0f1dc1bc4a8c0_1.txt",
+        "modules/nf-core/dexseq/prepareannotation/environment.yml",
+        "modules/nf-core/dexseq/prepareannotation/main.nf",
+        "modules/nf-core/dexseq/prepareannotation/meta.yml",
+        "modules/nf-core/dexseq/prepareannotation/tests/main.nf.test",
+        "modules/nf-core/dexseq/prepareannotation/tests/main.nf.test.snap",
+        "modules/nf-core/dexseq/prepareannotation/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "dexseq_prepareannotation",
+        "description": "Flatten a GTF annotation into the exonic counting bins used by DEXSeq",
+        "keywords": [
+          "dexseq",
+          "exon",
+          "annotation",
+          "gtf",
+          "alternative splicing",
+          "differential exon usage"
+        ],
+        "tools": [
+          {
+            "dexseq": {
+              "description": "Inference of differential exon usage in RNA-Seq",
+              "homepage": "https://bioconductor.org/packages/release/bioc/html/DEXSeq.html",
+              "documentation": "https://bioconductor.org/packages/release/bioc/vignettes/DEXSeq/inst/doc/DEXSeq.html",
+              "tool_dev_url": "https://git.bioconductor.org/packages/DEXSeq",
+              "doi": "10.1101/gr.133744.111",
+              "licence": [
+                "GPL >=3"
+              ],
+              "identifier": "biotools:dexseq"
+            }
+          },
+          {
+            "htseq": {
+              "description": "HTSeq is a Python library to facilitate processing and analysis of data from high-throughput sequencing (HTS) experiments.",
+              "homepage": "https://htseq.readthedocs.io/en/latest/",
+              "documentation": "https://htseq.readthedocs.io/en/latest/index.html",
+              "doi": "10.1093/bioinformatics/btu638",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:htseq"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing annotation information\ne.g. `[ id:'genome' ]`\n"
+              }
+            },
+            {
+              "gtf": {
+                "type": "file",
+                "description": "Gene annotation in GTF format",
+                "pattern": "*.gtf",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2306"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "random_seed": {
+              "type": "integer",
+              "description": "Optional seed for the Python hash function (`PYTHONHASHSEED`), which sets the order of\nthe aggregate gene IDs and of the transcripts attribute. Pass `[]` to leave it unset,\nin which case the order may change between runs.\n"
+            }
+          }
+        ],
+        "output": {
+          "gff": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing annotation information\ne.g. `[ id:'genome' ]`\n"
+                }
+              },
+              {
+                "*.gff": {
+                  "type": "file",
+                  "description": "Flattened annotation of exonic counting bins for DEXSeq",
+                  "pattern": "*.gff",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2305"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_dexseq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bioconductor-dexseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "Rscript -e \"cat(as.character(packageVersion('DEXSeq')))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_htseq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "htseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import HTSeq; print(HTSeq.__version__)\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bioconductor-dexseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "Rscript -e \"cat(as.character(packageVersion('DEXSeq')))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "htseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import HTSeq; print(HTSeq.__version__)\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@piplus2"
+        ],
+        "maintainers": [
+          "@piplus2"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bioconductor-dexseq_htseq_python:dfa2c806cf6767c6",
+              "build_id": "bd-dfa2c806cf6767c6_1",
+              "scan_id": "sc-ff756100b59116e1_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/bioconductor-dexseq_htseq_python:70a0f1dc1bc4a8c0",
+              "build_id": "bd-70a0f1dc1bc4a8c0_1",
+              "scan_id": "sc-ca11ab6d4762870a_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/bioconductor-dexseq_htseq_python:cf876663f687f306",
+              "build_id": "bd-cf876663f687f306_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/12/12dc33fb9d91fbf709d07cd14bbf55c19e5ec034acb18da4056d7acb522cadd0/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bioconductor-dexseq_htseq_python:92d0c81650091ca7",
+              "build_id": "bd-92d0c81650091ca7_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/5f/5f3e6fbbab7a2e4b6e1d57be3e4aa40b18810e3a72b7d6a8c0fcbb2bf0cc7c63/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/dexseq/prepareannotation/.conda-lock/linux_amd64-bd-dfa2c806cf6767c6_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/dexseq/prepareannotation/.conda-lock/linux_arm64-bd-70a0f1dc1bc4a8c0_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "5b6aacd2394742aa94443f446797c58c322c6453"
     },
     {
       "name": "diamond_blastp",
@@ -199268,6 +200393,269 @@
       ]
     },
     {
+      "name": "kivvi",
+      "path": "modules/nf-core/kivvi/meta.yml",
+      "tree_sha": "f492fddbe7d2e2a932fe0890133318e8feff06b7",
+      "files": [
+        "modules/nf-core/kivvi/.conda-lock/linux_amd64-bd-0ab7895bae051106_1.txt",
+        "modules/nf-core/kivvi/environment.yml",
+        "modules/nf-core/kivvi/main.nf",
+        "modules/nf-core/kivvi/meta.yml",
+        "modules/nf-core/kivvi/tests/main.nf.test",
+        "modules/nf-core/kivvi/tests/main.nf.test.snap",
+        "modules/nf-core/kivvi/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "kivvi",
+        "description": "Calls copy number and sequence variants in large-unit variable number tandem repeats from PacBio HiFi reads",
+        "keywords": [
+          "kivvi",
+          "genotyper",
+          "tandem repeat",
+          "vntr",
+          "hifi"
+        ],
+        "tools": [
+          {
+            "kivvi": {
+              "description": "HiFi-based genotyper for large-unit VNTRs including KIV2 and D4Z4",
+              "homepage": "https://github.com/PacificBiosciences/kivvi",
+              "documentation": "https://github.com/PacificBiosciences/kivvi/blob/main/README.md",
+              "tool_dev_url": "https://github.com/PacificBiosciences/kivvi",
+              "doi": "10.64898/2026.04.10.717730",
+              "licence": [
+                "Pacific Biosciences Software License (https://github.com/PacificBiosciences/kivvi/blob/main/LICENSE.md)"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM file containing PacBio HiFi whole-genome reads aligned to GRCh38,\nor a subset covering the target KIV2 or D4Z4 regions\n",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAI index file corresponding to the BAM file\n",
+                "pattern": "*.bai",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2573"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "command": {
+              "type": "string",
+              "description": "The command used to run the tool, i.e. kiv2 (LPA KIV2 repeat) or d4z4 (D4Z4 repeat)"
+            }
+          }
+        ],
+        "output": {
+          "json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.kivvi.*.json": {
+                  "type": "file",
+                  "description": "JSON report containing genotyping results for the target KIV2 or D4Z4 region",
+                  "pattern": "*.kivvi.*.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.kivvi.*.vcf": {
+                  "type": "file",
+                  "description": "Variant calls for the target KIV2 or D4Z4 region",
+                  "pattern": "*.kivvi.*.vcf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "svg": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.kivvi.*.svg": {
+                  "type": "file",
+                  "description": "Optional SVG visualisation of genotyping results for the target KIV2 or D4Z4 region",
+                  "pattern": "*.kivvi.*.svg",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.kivvi.*.bam": {
+                  "type": "file",
+                  "description": "Reads realigned to a single repeat unit of the target KIV2 or D4Z4\nregion, with HP tags identifying repeat copies\n",
+                  "pattern": "*.kivvi.*.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "bai": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.kivvi.*.bam.bai": {
+                  "type": "file",
+                  "description": "BAI index file corresponding to the realigned BAM file",
+                  "pattern": "*.kivvi.*.bam.bai",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2573"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_kivvi": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kivvi": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kivvi --version | sed 's/.* //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kivvi": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kivvi --version | sed 's/.* //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@sofiademmou"
+        ],
+        "maintainers": [
+          "@sofiademmou"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/kivvi:1.1.0--0ab7895bae051106",
+              "build_id": "bd-0ab7895bae051106_1",
+              "scan_id": "sc-ad3d1b149c0da9d7_2"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/kivvi:1.1.0--fd0e9004280a5067",
+              "build_id": "bd-fd0e9004280a5067_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e7/e7fd42f324e6d2711bf04f023e7a50494bb96d20b440cb410402e2ea7f4e707f/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/kivvi/.conda-lock/linux_amd64-bd-0ab7895bae051106_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "8e856f6a9903b9e6bf7ded6b58f7324d4e4fa2ce"
+    },
+    {
       "name": "kleborate",
       "path": "modules/nf-core/kleborate/meta.yml",
       "tree_sha": "b283bd655be4ecdd41e77efe5908ec92ecd4904c",
@@ -258736,7 +260124,7 @@
     {
       "name": "openms_decoydatabase",
       "path": "modules/nf-core/openms/decoydatabase/meta.yml",
-      "tree_sha": "9563e47c2aa09f5dc29c2a19ccdfff6d61ad9bae",
+      "tree_sha": "360bc0804c9161341601977dc14be20c0ed670a3",
       "files": [
         "modules/nf-core/openms/decoydatabase/environment.yml",
         "modules/nf-core/openms/decoydatabase/main.nf",
@@ -258862,7 +260250,7 @@
           "@gallvp"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "580647c817abec76fbb780e1ea537504c7543a99",
       "pipelines": [
         {
           "name": "mhcquant",
@@ -258877,7 +260265,7 @@
     {
       "name": "openms_featurefinderidentification",
       "path": "modules/nf-core/openms/featurefinderidentification/meta.yml",
-      "tree_sha": "452fd083ac8bcdaa149742ace344c01966783c38",
+      "tree_sha": "e1e7f402f3be7b25267fd51725e85b2973694bfe",
       "files": [
         "modules/nf-core/openms/featurefinderidentification/environment.yml",
         "modules/nf-core/openms/featurefinderidentification/main.nf",
@@ -259041,7 +260429,7 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "d32895bb4b4be064a93fcb7c60f5ba0e94443b73",
+      "git_sha": "580647c817abec76fbb780e1ea537504c7543a99",
       "pipelines": [
         {
           "name": "mhcquant",
@@ -259052,7 +260440,7 @@
     {
       "name": "openms_fileconverter",
       "path": "modules/nf-core/openms/fileconverter/meta.yml",
-      "tree_sha": "faa2381afafead788667691475ae14e6b554d77f",
+      "tree_sha": "9ad198c985872c3a304d90b00953704ebee8c664",
       "files": [
         "modules/nf-core/openms/fileconverter/environment.yml",
         "modules/nf-core/openms/fileconverter/main.nf",
@@ -259192,7 +260580,7 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "924841ecdeb9b2aea108eda13cacf45a2452d35f",
+      "git_sha": "580647c817abec76fbb780e1ea537504c7543a99",
       "pipelines": [
         {
           "name": "mhcquant",
@@ -259203,7 +260591,7 @@
     {
       "name": "openms_filefilter",
       "path": "modules/nf-core/openms/filefilter/meta.yml",
-      "tree_sha": "f22f798159cd6fa32707796b27243bdaba2ef554",
+      "tree_sha": "8c0e1d8a75ebbf31426ef2643155cf0cffe95e4f",
       "files": [
         "modules/nf-core/openms/filefilter/environment.yml",
         "modules/nf-core/openms/filefilter/main.nf",
@@ -259364,7 +260752,7 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "580647c817abec76fbb780e1ea537504c7543a99",
       "pipelines": [
         {
           "name": "mhcquant",
@@ -259375,7 +260763,7 @@
     {
       "name": "openms_idconflictresolver",
       "path": "modules/nf-core/openms/idconflictresolver/meta.yml",
-      "tree_sha": "1f26cc2f2f044fb4c38f7e1565e30b43fd7384b3",
+      "tree_sha": "68af55b4ccb9fae43fee8c82f28d472af9a165e5",
       "files": [
         "modules/nf-core/openms/idconflictresolver/environment.yml",
         "modules/nf-core/openms/idconflictresolver/main.nf",
@@ -259508,7 +260896,7 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "4a071f825fcfa127954a1bcc210e0ea3678f9753",
+      "git_sha": "580647c817abec76fbb780e1ea537504c7543a99",
       "pipelines": [
         {
           "name": "mhcquant",
@@ -259519,7 +260907,7 @@
     {
       "name": "openms_idfilter",
       "path": "modules/nf-core/openms/idfilter/meta.yml",
-      "tree_sha": "79abeb2d0a825c40c12b1ff5f397bb6cdf00847e",
+      "tree_sha": "7b95a076ab895458da8999ca82565df88d9fd32b",
       "files": [
         "modules/nf-core/openms/idfilter/environment.yml",
         "modules/nf-core/openms/idfilter/main.nf",
@@ -259651,7 +261039,7 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "580647c817abec76fbb780e1ea537504c7543a99",
       "pipelines": [
         {
           "name": "mhcquant",
@@ -259823,7 +261211,7 @@
     {
       "name": "openms_idmerger",
       "path": "modules/nf-core/openms/idmerger/meta.yml",
-      "tree_sha": "33b6f27b40284fb7316ac200f4d2f991c180ba39",
+      "tree_sha": "4cd8fea3e0a073113245e285128f725a1e9dcba7",
       "files": [
         "modules/nf-core/openms/idmerger/environment.yml",
         "modules/nf-core/openms/idmerger/main.nf",
@@ -259944,7 +261332,7 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "580647c817abec76fbb780e1ea537504c7543a99",
       "pipelines": [
         {
           "name": "mhcquant",
@@ -259955,7 +261343,7 @@
     {
       "name": "openms_idripper",
       "path": "modules/nf-core/openms/idripper/meta.yml",
-      "tree_sha": "4e1737db3548db4a9597d000a4838d6263b27a92",
+      "tree_sha": "f744e7f3050991dbb39dfd1678a97ae082772016",
       "files": [
         "modules/nf-core/openms/idripper/environment.yml",
         "modules/nf-core/openms/idripper/main.nf",
@@ -260080,7 +261468,7 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "580647c817abec76fbb780e1ea537504c7543a99",
       "pipelines": [
         {
           "name": "mhcquant",
@@ -260091,7 +261479,7 @@
     {
       "name": "openms_idscoreswitcher",
       "path": "modules/nf-core/openms/idscoreswitcher/meta.yml",
-      "tree_sha": "143476be02e5745b9184d0e8be361197fb6893c9",
+      "tree_sha": "cacd521ae1b54b9591c232c4ad06d1c72d183cc1",
       "files": [
         "modules/nf-core/openms/idscoreswitcher/environment.yml",
         "modules/nf-core/openms/idscoreswitcher/main.nf",
@@ -260217,7 +261605,7 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "580647c817abec76fbb780e1ea537504c7543a99",
       "pipelines": [
         {
           "name": "mhcquant",
@@ -260228,7 +261616,7 @@
     {
       "name": "openms_mapaligneridentification",
       "path": "modules/nf-core/openms/mapaligneridentification/meta.yml",
-      "tree_sha": "ed8d894203bc7b28785ded5423e1473f1ba26c77",
+      "tree_sha": "9f5eb9ee969c2fc8fecb20af95d5f32f58e1e45b",
       "files": [
         "modules/nf-core/openms/mapaligneridentification/environment.yml",
         "modules/nf-core/openms/mapaligneridentification/main.nf",
@@ -260361,7 +261749,7 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "972faf6f783fe9685267220965a91690741465f9",
+      "git_sha": "580647c817abec76fbb780e1ea537504c7543a99",
       "pipelines": [
         {
           "name": "mhcquant",
@@ -260372,7 +261760,7 @@
     {
       "name": "openms_maprttransformer",
       "path": "modules/nf-core/openms/maprttransformer/meta.yml",
-      "tree_sha": "dade6fa07f5a0605d86c8c7d0cb2a22ea0122084",
+      "tree_sha": "8a1464a764de52e6aa70e3d96c459f90b53cf7ce",
       "files": [
         "modules/nf-core/openms/maprttransformer/environment.yml",
         "modules/nf-core/openms/maprttransformer/main.nf",
@@ -260517,7 +261905,7 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "c1a970a6ad9cbb0b7209a927feb21e1f39c1841a",
+      "git_sha": "580647c817abec76fbb780e1ea537504c7543a99",
       "pipelines": [
         {
           "name": "mhcquant",
@@ -260528,7 +261916,7 @@
     {
       "name": "openms_mztabexporter",
       "path": "modules/nf-core/openms/mztabexporter/meta.yml",
-      "tree_sha": "9759e9fd72e1749f7bfa21da96d42ace82ba7633",
+      "tree_sha": "b299ae6416af6963616fdb509a97f335153c5d73",
       "files": [
         "modules/nf-core/openms/mztabexporter/environment.yml",
         "modules/nf-core/openms/mztabexporter/main.nf",
@@ -260660,7 +262048,7 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "d8c8c4cb1c4e1a38c7619cf905e8701ff00a8580",
+      "git_sha": "580647c817abec76fbb780e1ea537504c7543a99",
       "pipelines": [
         {
           "name": "mhcquant",
@@ -260671,7 +262059,7 @@
     {
       "name": "openms_peakpickerhires",
       "path": "modules/nf-core/openms/peakpickerhires/meta.yml",
-      "tree_sha": "1477bb75a3a34193e52b5b5d259bdc6320fef7b5",
+      "tree_sha": "e0572bdc2513a21831bedcc8856b6008e8ac18f6",
       "files": [
         "modules/nf-core/openms/peakpickerhires/environment.yml",
         "modules/nf-core/openms/peakpickerhires/main.nf",
@@ -260796,7 +262184,7 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "580647c817abec76fbb780e1ea537504c7543a99",
       "pipelines": [
         {
           "name": "mhcquant",
@@ -260807,7 +262195,7 @@
     {
       "name": "openms_peptideindexer",
       "path": "modules/nf-core/openms/peptideindexer/meta.yml",
-      "tree_sha": "b2706568f32a0823161a16c383e994203e170c45",
+      "tree_sha": "80673137d94265c8b56fab6e137cfd8b53202539",
       "files": [
         "modules/nf-core/openms/peptideindexer/environment.yml",
         "modules/nf-core/openms/peptideindexer/main.nf",
@@ -260940,7 +262328,7 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "580647c817abec76fbb780e1ea537504c7543a99",
       "pipelines": [
         {
           "name": "mhcquant",
@@ -260951,7 +262339,7 @@
     {
       "name": "openms_psmfeatureextractor",
       "path": "modules/nf-core/openms/psmfeatureextractor/meta.yml",
-      "tree_sha": "6a45de86b3a2ffa8bcddc439dfda34264cc88bf1",
+      "tree_sha": "69486cd10fa1b757c8b6daf7f0e281e31ff624ef",
       "files": [
         "modules/nf-core/openms/psmfeatureextractor/environment.yml",
         "modules/nf-core/openms/psmfeatureextractor/main.nf",
@@ -261078,7 +262466,7 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "580647c817abec76fbb780e1ea537504c7543a99",
       "pipelines": [
         {
           "name": "mhcquant",
@@ -261089,7 +262477,7 @@
     {
       "name": "openms_textexporter",
       "path": "modules/nf-core/openms/textexporter/meta.yml",
-      "tree_sha": "3921db7da9530970864f39b78b4449906efafff6",
+      "tree_sha": "35b3ea3da3e2f75880cfc0753d79dbed45ce331c",
       "files": [
         "modules/nf-core/openms/textexporter/environment.yml",
         "modules/nf-core/openms/textexporter/main.nf",
@@ -261214,7 +262602,7 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "580647c817abec76fbb780e1ea537504c7543a99",
       "pipelines": [
         {
           "name": "mhcquant",
@@ -261225,7 +262613,7 @@
     {
       "name": "openmsthirdparty_cometadapter",
       "path": "modules/nf-core/openmsthirdparty/cometadapter/meta.yml",
-      "tree_sha": "2bd3a4d03c5fd9b27c69c91b2bf46d20eb3a8a1f",
+      "tree_sha": "47cca26afd9ee3c93b7bf6d3918828322f299bf6",
       "files": [
         "modules/nf-core/openmsthirdparty/cometadapter/environment.yml",
         "modules/nf-core/openmsthirdparty/cometadapter/main.nf",
@@ -261439,7 +262827,7 @@
           "@jonasscheid"
         ]
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "580647c817abec76fbb780e1ea537504c7543a99",
       "pipelines": [
         {
           "name": "mhcquant",
@@ -284306,6 +285694,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -284613,6 +286005,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -403300,16 +404696,16 @@
     {
       "name": "universc",
       "path": "modules/nf-core/universc/meta.yml",
-      "tree_sha": "3256e603ff8c8425ab240d68b77db58ae5efffaa",
+      "tree_sha": "449eda8de2b948c7de44afdfa758bc3ddfacc760",
       "files": [
-        "modules/nf-core/universc/CITATION.cff",
-        "modules/nf-core/universc/CITATION.md",
+        "modules/nf-core/universc/Dockerfile",
         "modules/nf-core/universc/README.md",
         "modules/nf-core/universc/main.nf",
         "modules/nf-core/universc/meta.yml",
         "modules/nf-core/universc/tests/main.nf.test",
         "modules/nf-core/universc/tests/main.nf.test.snap",
-        "modules/nf-core/universc/tests/nextflow.config"
+        "modules/nf-core/universc/tests/nextflow.config",
+        "modules/nf-core/universc/universc.patch"
       ],
       "type": "module",
       "meta": {
@@ -403400,19 +404796,93 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software version",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_cellranger": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cellranger": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cellranger --version | sed 's/cellranger //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ],
+          "versions_universc": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "universc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sed -n 's/^universcversion=\"\\(.*\\)\"/\\1/p' \\$(which launch_universc.sh)": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cellranger": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cellranger --version | sed 's/cellranger //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "universc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sed -n 's/^universcversion=\"\\(.*\\)\"/\\1/p' \\$(which launch_universc.sh)": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -403424,7 +404894,7 @@
           "@tomkellygenetics"
         ]
       },
-      "git_sha": "21e4662ae927fdbc5fc04eec9bde38b0689d4954"
+      "git_sha": "dd555ac45c617a993e9a9d1465849c4df06bc92d"
     },
     {
       "name": "untar",
@@ -417883,9 +419353,9 @@
     {
       "name": "vuegen",
       "path": "modules/nf-core/vuegen/meta.yml",
-      "tree_sha": "3297cfe9050c2b67673ce8ec814c0ce89d66e02b",
+      "tree_sha": "09bd353da2f17fbcb0e16a689ab0d6255d964ada",
       "files": [
-        "modules/nf-core/vuegen/.conda-lock/linux_amd64-bd-9eebdec0448f6563_1.txt",
+        "modules/nf-core/vuegen/.conda-lock/linux_amd64-bd-33502ed02f7198e6_1.txt",
         "modules/nf-core/vuegen/environment.yml",
         "modules/nf-core/vuegen/main.nf",
         "modules/nf-core/vuegen/meta.yml",
@@ -418010,26 +419480,39 @@
         "containers": {
           "docker": {
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/python_pytinytex_quarto_r-tinytex_pruned:9eebdec0448f6563",
-              "build_id": "bd-9eebdec0448f6563_1",
-              "scan_id": "sc-fdc3fb6bcec30409_1"
+              "name": "community.wave.seqera.io/library/python_pytinytex_quarto_r-tinytex_pruned:33502ed02f7198e6",
+              "build_id": "bd-33502ed02f7198e6_1",
+              "scan_id": "sc-62d157213d7c3779_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/python_pytinytex_quarto_r-tinytex_pruned:d7b6474781d51616",
+              "build_id": "bd-d7b6474781d51616_1",
+              "scan_id": "sc-e884f5e8a6a27a05_1"
             }
           },
           "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/python_pytinytex_quarto_r-tinytex_pruned:f76993d208230ed7",
+              "build_id": "bd-f76993d208230ed7_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/da/dada1a9a7ab8e21358f85b1df80c2ba2aa5e8ae0f977b477e895f2cc23405fbe/data"
+            },
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/python_pytinytex_quarto_r-tinytex_pruned:dee5e2966278494d",
-              "build_id": "bd-dee5e2966278494d_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a0/a0ff4f778cefa7ae78c684ba2b97dc4a1fac3d49ffc958c532bfe06e19e23807/data"
+              "name": "oras://community.wave.seqera.io/library/python_pytinytex_quarto_r-tinytex_pruned:7972cae1cb81070a",
+              "build_id": "bd-7972cae1cb81070a_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/36/36930e2052335dcdddb0d3ec8c78609d459762110428df99c7e3fe72901db7d2/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/vuegen/.conda-lock/linux_amd64-bd-9eebdec0448f6563_1.txt"
+              "lock_file": "modules/nf-core/vuegen/.conda-lock/linux_amd64-bd-33502ed02f7198e6_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/vuegen/.conda-lock/linux_arm64-bd-d7b6474781d51616_1.txt"
             }
           }
         }
       },
-      "git_sha": "4182cdf0c0ccdf775159422ad1b7e41dcc848b06"
+      "git_sha": "71295b9791907bf9ec79fce1d1d1533bcc198890"
     },
     {
       "name": "wfmash",
@@ -424474,7 +425957,7 @@
     {
       "name": "bam_applybqsr",
       "path": "subworkflows/nf-core/bam_applybqsr/meta.yml",
-      "tree_sha": "77028f73a41bb88a4d276cbaee91aa59d520eb5c",
+      "tree_sha": "38c181e374408430563587e4d948ea7201f79ddb",
       "files": [
         "subworkflows/nf-core/bam_applybqsr/main.nf",
         "subworkflows/nf-core/bam_applybqsr/meta.yml",
@@ -424519,9 +426002,10 @@
             }
           },
           {
-            "output_suffix": {
-              "type": "string",
-              "description": "Output file type, either 'bam' or 'cram'.\n"
+            "output_format": {
+              "type": "tuple",
+              "description": "Output file type and index format as a two-element tuple.\nFirst element: 'bam' or 'cram' (passed to GATK4 ApplyBQSR).\nSecond element: 'bai', 'csi', or 'crai' (passed to samtools merge).\n\nValid combinations: ['bam', 'bai'], ['bam', 'csi'], ['cram', 'crai'].\n",
+              "pattern": "{bam,cram}"
             }
           }
         ],
@@ -424542,7 +426026,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "8fd5fe1c1e410ea530995d243bf49cd91e401d87"
+      "git_sha": "c4e7d264970da039c66ca29deb7de99d6a40a3a0"
     },
     {
       "name": "bam_cnv_wisecondorx",
@@ -442335,6 +443819,6 @@
       "git_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657"
     }
   ],
-  "commit_sha": "74a0d090960b52c2d02bb76bc3cc67a899994a4e",
-  "updated_at": "2026-10-13T02:26:48.502Z"
+  "commit_sha": "6ec19c227668f806a4150248f90b34346be90310",
+  "updated_at": "2026-10-13T14:16:21.673Z"
 }
