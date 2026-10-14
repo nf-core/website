@@ -20056,7 +20056,7 @@
         },
         {
           "name": "bacmodel",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "funcscan",
@@ -20186,7 +20186,7 @@
         },
         {
           "name": "bacmodel",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "funcscan",
@@ -53380,7 +53380,7 @@
       "pipelines": [
         {
           "name": "bacmodel",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -93354,6 +93354,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -135018,7 +135026,7 @@
       "pipelines": [
         {
           "name": "bacmodel",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -135247,7 +135255,7 @@
       "pipelines": [
         {
           "name": "bacmodel",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -135472,7 +135480,7 @@
       "pipelines": [
         {
           "name": "bacmodel",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -135707,7 +135715,7 @@
       "pipelines": [
         {
           "name": "bacmodel",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -135917,7 +135925,7 @@
       "pipelines": [
         {
           "name": "bacmodel",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -136118,7 +136126,7 @@
       "pipelines": [
         {
           "name": "bacmodel",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -136236,7 +136244,7 @@
       "pipelines": [
         {
           "name": "bacmodel",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -214107,7 +214115,7 @@
       "pipelines": [
         {
           "name": "bacmodel",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -214396,7 +214404,7 @@
       "pipelines": [
         {
           "name": "bacmodel",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -222001,7 +222009,7 @@
       "pipelines": [
         {
           "name": "bacmodel",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -222162,7 +222170,7 @@
       "pipelines": [
         {
           "name": "bacmodel",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -285698,6 +285706,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -286005,6 +286017,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -297343,7 +297359,7 @@
         },
         {
           "name": "bacmodel",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "funcscan",
@@ -325970,7 +325986,7 @@
     {
       "name": "rundbcan_cazymeannotation",
       "path": "modules/nf-core/rundbcan/cazymeannotation/meta.yml",
-      "tree_sha": "b39486e2e87f689b7b64e71459f67abc83035428",
+      "tree_sha": "d027e41b164a4d41b97bee6eba5fbdd8d240ddc3",
       "files": [
         "modules/nf-core/rundbcan/cazymeannotation/environment.yml",
         "modules/nf-core/rundbcan/cazymeannotation/main.nf",
@@ -326158,7 +326174,7 @@
           "@Xinpeng021001"
         ]
       },
-      "git_sha": "5e0b34c7ad0841e3e160b15a0180bf2b9be0e3bf",
+      "git_sha": "7f44b7c0164e9e389ffa37fed78dd25d580b21c2",
       "pipelines": [
         {
           "name": "funcscan",
@@ -326287,7 +326303,7 @@
     {
       "name": "rundbcan_easycgc",
       "path": "modules/nf-core/rundbcan/easycgc/meta.yml",
-      "tree_sha": "9435f8deef54db6f4d7753a0d628f02cde111efb",
+      "tree_sha": "b97d733f5a6e428754a5cd1f4fabf11eeb21e976",
       "files": [
         "modules/nf-core/rundbcan/easycgc/environment.yml",
         "modules/nf-core/rundbcan/easycgc/main.nf",
@@ -326581,7 +326597,7 @@
           "@Xinpeng021001"
         ]
       },
-      "git_sha": "5e0b34c7ad0841e3e160b15a0180bf2b9be0e3bf",
+      "git_sha": "7f44b7c0164e9e389ffa37fed78dd25d580b21c2",
       "pipelines": [
         {
           "name": "funcscan",
@@ -326592,7 +326608,7 @@
     {
       "name": "rundbcan_easysubstrate",
       "path": "modules/nf-core/rundbcan/easysubstrate/meta.yml",
-      "tree_sha": "4372725ed68a1d8faa5839ab106e3546fa193868",
+      "tree_sha": "0bec24b8836a7642b025e124e12b40db6a07da94",
       "files": [
         "modules/nf-core/rundbcan/easysubstrate/environment.yml",
         "modules/nf-core/rundbcan/easysubstrate/main.nf",
@@ -326936,7 +326952,7 @@
           "@Xinpeng021001"
         ]
       },
-      "git_sha": "5e0b34c7ad0841e3e160b15a0180bf2b9be0e3bf",
+      "git_sha": "7f44b7c0164e9e389ffa37fed78dd25d580b21c2",
       "pipelines": [
         {
           "name": "funcscan",
@@ -396410,7 +396426,7 @@
       "pipelines": [
         {
           "name": "bacmodel",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -396646,7 +396662,7 @@
       "pipelines": [
         {
           "name": "bacmodel",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -440812,7 +440828,7 @@
         },
         {
           "name": "bacmodel",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "bamtofastq",
@@ -441312,7 +441328,7 @@
         },
         {
           "name": "bacmodel",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "bamtofastq",
@@ -441864,7 +441880,7 @@
         },
         {
           "name": "bacmodel",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "bamtofastq",
@@ -443819,6 +443835,6 @@
       "git_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657"
     }
   ],
-  "commit_sha": "6ec19c227668f806a4150248f90b34346be90310",
-  "updated_at": "2026-10-13T14:16:21.673Z"
+  "commit_sha": "7f44b7c0164e9e389ffa37fed78dd25d580b21c2",
+  "updated_at": "2026-10-14T02:13:50.263Z"
 }
