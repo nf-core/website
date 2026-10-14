@@ -19,7 +19,7 @@
                     <div class="col-md-6 mb-4 mb-md-0">
                         <div class="sticker-hex-container">
                             <div class="sticker-modal-hex">
-                                <div class="sticker-modal-holographic-foil" aria-hidden="true"></div>
+                                <div class="sticker-modal-holographic-foil holographic-foil" aria-hidden="true"></div>
                                 <div class="shine-effect" aria-hidden="true"></div>
                                 <img src="" alt="" class="sticker-modal-img dark-mode-img" width="300" height="346" />
                                 <img src="" alt="" class="sticker-modal-img light-mode-img" width="300" height="346" />
@@ -105,25 +105,13 @@
         pointer-events: none;
     }
 
-    /* Holographic effect - match main page default state */
+    /* Empty unless HexSticker's global .is-holographic / .is-gold foil styles apply */
     .sticker-modal-holographic-foil {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.2) 0%,
-            rgba(255, 0, 0, 0.15) 20%,
-            rgba(255, 255, 0, 0.15) 40%,
-            rgba(0, 255, 255, 0.15) 60%,
-            rgba(0, 0, 255, 0.15) 80%,
-            rgba(255, 0, 255, 0.15) 100%
-        );
-        background-size: 200% 200%;
-        mix-blend-mode: soft-light;
-        opacity: 0; /* Set to 0 to match main page default state */
         z-index: 2;
     }
 
@@ -355,6 +343,10 @@
                 )
                     return;
 
+                elements.hex?.classList.toggle("is-holographic", stickerData.holographic || stickerData.gold);
+                elements.hex?.classList.toggle("is-gold", stickerData.gold);
+                elements.holographicFoil?.style.setProperty("--sticker-mask", `url(${stickerData.imageUrl})`);
+
                 // Set images
                 elements.darkImg.src = stickerData.imageUrl;
                 elements.lightImg.src = stickerData.lightImageUrl || stickerData.imageUrl;
@@ -432,6 +424,8 @@
                     link: trigger.dataset.stickerLink,
                     category: trigger.dataset.category,
                     description: trigger.dataset.stickerDescription,
+                    holographic: "stickerHolographic" in trigger.dataset,
+                    gold: "stickerGold" in trigger.dataset,
                 });
 
                 // Click handler
