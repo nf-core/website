@@ -17,7 +17,15 @@ Improve the nf-core/seqinspector pipeline with bug fixes, performance enhancemen
 
 ## Tasks
 
-_Tasks will be added closer to the event. Check back for updates._
+Possible tasks may be as follows:
+
+- review and optimize tool bundles (make sure they make sense!)
+- optimize MultiQC outputs (order, what is displayed etc)
+- write a module for ONT/Element Biosciences runfolder parsing
+- add support for (u)BAM file input (PacBio/ONT)
+- improve and update the metro map (we will at some point need a way to have a metromap that will not display all possible tools and that is still useful!)
+
+Please find the full list of issues on the [nf-core/seqinspector project board (milestone 1.2.0)](https://github.com/orgs/nf-core/projects/77/views/1?filterQuery=milestone%3A1.2.0).
 
 :::note
 Keep an eye on this page for more updates.
