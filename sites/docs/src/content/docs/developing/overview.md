@@ -31,6 +31,7 @@ Each module wraps a single tool and follows strict guidelines for metadata, cont
 - **[ext arguments](components/ext-args):** Use the `ext` directive to inject custom command-line arguments into module scripts
 - **[Cross-organisational components](components/cross-org-components):** Combine modules from different organisations within a single subworkflow
 - **[Setting custom remotes](components/custom-remotes):** Configure custom git repositories and branches when installing modules and subworkflows
+- **[Workflow modules and the Nextflow registry](components/workflow-modules-registry):** Compare Nextflow workflow modules from the Nextflow registry with nf-core subworkflows
 - **[Writing pipeline methods text for MultiQC](components/automated-methods):** Customise automated methods descriptions in MultiQC reports with pipeline and tool citations
 - **[Deprecating modules](components/deprecating-components):** Deprecate outdated modules or subworkflows while maintaining backward compatibility
 
