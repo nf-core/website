@@ -39,7 +39,7 @@ Our format revolves around our community blog and a [monthly meeting](/special-i
 
 # Blog Posts
 
-We will use the blog to share group updates, benchmarking related projects, summarize technical findings, and highlight community needs.
+We will use the [nf-core blogs](sites/main-site/src/content/blog/2026/benchmarking-sig-launch.md) to share group updates, benchmarking related projects, summarize technical findings, and highlight community needs.
 
 - Launcing the active group and calling for contributers(TODO)
 
