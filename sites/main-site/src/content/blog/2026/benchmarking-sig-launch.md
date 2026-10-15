@@ -2,7 +2,7 @@
 title: "Kicking off the Benchmarking SIG Monthly Meetings"
 subtitle: "Join us for our new monthly meetings, starting with variant benchmarking"
 pubDate: 2026-10-15T09:00:00+01:00
-headerImage: "sites/main-site/src/assets/images/blog/benchmarking-sig-launch/benchmarking-special-interest.jpg"
+headerImage: "/assets/images/blog/benchmarking-sig-launch/benchmarking-special-interest.jpg"
 headerImageAlt: "Benchmarking special interest group"
 authors:
   - kubranarci
