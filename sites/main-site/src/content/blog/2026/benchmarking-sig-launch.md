@@ -20,13 +20,13 @@ Our vision for this group is built around three main ideas. First, we want to he
 
 ## Join Our First Monthly Meeting
 
-To get the momentum going, our very first monthly meeting will focus on the nf-core/variantbenchmarking pipeline. Main developer of the pipeline, @kubranarci, will be sharing some insights on classical variant benchmarking and might run through a quick live demo. 
+To get the momentum going, our very first monthly meeting will focus on the nf-core/variantbenchmarking pipeline. Main developer of the pipeline, @kubranarci, will be sharing some insights on classical variant benchmarking and might run through a quick live demo.
 
 However, the presentation is only half the event. The real purpose of this first meeting is to bring everyone together for an open roundtable discussion. We want to hear directly from you. This is the perfect time to talk about pipeline feature requests, share new ideas, and explore the broader problems and solutions you face in variant benchmarking.
 
 ## What to Expect Next
 
-While we are starting with variant benchmarking, our scope is completely open to any type of method comparison, validation, or resource efficiency study. 
+While we are starting with variant benchmarking, our scope is completely open to any type of method comparison, validation, or resource efficiency study.
 
 Going forward, our monthly meetings will follow a split format: a 30 minute presentation followed by a 30 minute open discussion. We are lining up a diverse range of topics for the future, including deep dives into benchmarking projects, reviews of new software tools, infrastructure benchmarking, and inspiring talks from leading genomics researchers. You can explore our full roadmap on the [main SIG page](/special-interest-groups/benchmarking/).
 

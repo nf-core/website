@@ -30,12 +30,12 @@ The Benchmarking Special Interest Group provides a centralized home within nf-co
 
 Our format revolves around our community blog and a [monthly meeting](/special-interest-groups/benchmarking/meetings.md). Each meeting features a 30 minute presentation followed by 30 minutes of round table discussions and feedback on selected topics. Presentations will cover a diverse range of areas, including:
 
-* Benchmarking projects detailing both methods and results
-* New software tools in the field
-* Infrastructure benchmarking
-* Inspiring talks from leading genomics researchers
-* Ongoing novel efforts in benchmarking
-* Technical sessions providing practical examples of applying nf-core pipelines to benchmarking
+- Benchmarking projects detailing both methods and results
+- New software tools in the field
+- Infrastructure benchmarking
+- Inspiring talks from leading genomics researchers
+- Ongoing novel efforts in benchmarking
+- Technical sessions providing practical examples of applying nf-core pipelines to benchmarking
 
 # Blog Posts
 
