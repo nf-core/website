@@ -611,19 +611,15 @@ export const writePipelinesJson = async () => {
       }
     });
 
-    // Get the AWS megatest status of the latest release (results on S3 + Nextflow run outcome),
-    // reusing the reports already parsed in the previous build.
-    // The latest release is taken from the GitHub list (newest first, as for `last_release_is_head`), as sorting
-    // by `published_at` can pick an outdated entry when a release was renamed (e.g. bacass 2.6.0 -> 2.6.1)
-    const latestRelease = data.releases.find((release) => release.tag_name === releases[0]?.tag_name);
-    data["megatest"] = latestRelease
-      ? await fetchMegatestStatus(
-          name,
-          latestRelease.tag_name,
-          latestRelease.tag_sha,
-          pipelines.remote_workflows[pipelineIndex]?.megatest,
-        )
-      : null;
+    // Get the AWS megatest status of each release (results on S3 + Nextflow run outcome),
+    // reusing the runs already parsed in the previous build
+    await Promise.all(
+      data.releases
+        .filter((release) => release.tag_name !== "dev")
+        .map(async (release) => {
+          release.megatest = await fetchMegatestStatus(name, release.tag_sha, release.megatest?.runs);
+        }),
+    );
 
     if (!pipelines.remote_workflows) {
       pipelines.remote_workflows = [];
