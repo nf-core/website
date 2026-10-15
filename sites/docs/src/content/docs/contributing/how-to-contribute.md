@@ -23,11 +23,12 @@ You can search pipeline names in the channel browser.
 
 See [Join nf-core](https://nf-co.re/join) for instructions on how to join the nf-core Slack.
 
-After joining Slack, [join the nf-core GitHub organization](https://nf-co.re/join#github).
-The GitHub organization is open to everyone and gives you reviewing and merging rights on most repositories.
+After joining Slack, [join the nf-core GitHub organisation](https://nf-co.re/join#github).
+The GitHub organisation is open to everyone and gives you reviewing and merging rights on most repositories.
+Members must enable [two-factor authentication](/docs/contributing/two-factor-authentication).
 
 :::tip
-Join the Slack workspace before joining the GitHub organization.
+Join the Slack workspace before joining the GitHub organisation.
 :::
 
 ## Asking for help
@@ -112,7 +113,7 @@ Reviews and comments can be technical (code), conceptual (for example, purpose/b
 
 Everyone is welcome to review or leave a comment on an nf-core pull request.
 You do not need to be in the nf-core community to give feedback.
-You also do not need to be in the nf-core GitHub organization (although this is recommended).
+You also do not need to be in the nf-core GitHub organisation (although this is recommended).
 
 However, if you review a PR about a conceptual question, another community member must also provide a technical review.
 Seek reviews from community members outside your development team.
@@ -171,4 +172,4 @@ If the community can't help, reach out to the relevant team:
 - [Safety team](https://nf-co.re/governance#safety) for interpersonal conflict with another community member
   :::
 
-See the [Governance](https://nf-co.re/governance#governance) page for an overview of the community's organizational structure.
+See the [Governance](https://nf-co.re/governance#governance) page for an overview of the community's organisational structure.
