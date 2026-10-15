@@ -66,7 +66,7 @@ nf-core core team will not ban or prohibit the use of AI or LLM tools in code co
 
 Our position is that the human using the AI tools remains responsible for any code they submit[^3].
 
-[^3]: Something adopted by other projects, a good guidance document is that of [FastAPI](https://fastapi.tiangolo.com/contributing/#closing-automated-and-ai-prs).
+[^3]: Something adopted by other projects, a good guidance document is that of [FastAPI](https://tiangolo.com/open-source/contributing/#automated-code-and-ai).
 
 As with any other code, **nf-core community members reserve the right to reject contributions that do not meet our guidelines**.
 This therefore includes cases where PRs, reviews, or other content have been obviously AI-generated without due care.
