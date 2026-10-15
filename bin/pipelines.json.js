@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 import { octokit, getDocFiles, getGitHubFile } from "../sites/main-site/src/components/octokit.js";
-import { fetchCO2FootprintFiles } from "./s3Utils.js";
+import { fetchCO2FootprintFiles, fetchMegatestStatus } from "./s3Utils.js";
 
 import { promises as fs, writeFileSync, existsSync } from "fs";
 import yaml from "js-yaml";
@@ -610,6 +610,19 @@ export const writePipelinesJson = async () => {
         return new Date(b.published_at) - new Date(a.published_at);
       }
     });
+
+    // Get the AWS megatest status of the latest release (results on S3 + Nextflow run outcome),
+    // reusing the reports already parsed in the previous build
+    const latestRelease = data.releases.find((release) => release.tag_name !== "dev");
+    data["megatest"] = latestRelease
+      ? await fetchMegatestStatus(
+          name,
+          latestRelease.tag_name,
+          latestRelease.tag_sha,
+          pipelines.remote_workflows[pipelineIndex]?.megatest,
+        )
+      : null;
+
     if (!pipelines.remote_workflows) {
       pipelines.remote_workflows = [];
     }

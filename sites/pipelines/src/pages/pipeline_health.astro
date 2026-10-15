@@ -24,6 +24,38 @@ const countTrue = (fn) => {
         " (" + Math.round((activePipelines.filter(fn).length / activePipelines.length) * 100) + "%)",
     ];
 };
+
+// AWS megatest of the latest release: true if all runs succeeded, false if no results or a run failed, -1 if unknown
+const megatestStatus = (p) => {
+    const m = p.megatest;
+    if (!m) return -1;
+    if (!m.has_results || m.runs.some((run) => run.status === "failed")) return false;
+    if (m.runs.length > 0 && m.runs.every((run) => run.status === "success")) return true;
+    return -1;
+};
+const megatestMessage = (p) => {
+    const m = p.megatest;
+    if (!m) return "no megatest information";
+    if (!m.has_results) return `no AWS megatest results for ${m.tag_name}`;
+    if (m.runs.length === 0) return `AWS megatest results for ${m.tag_name}, but no Nextflow execution report`;
+    const succeeded = m.runs.filter((run) => run.status === "success").length;
+    const failedRun = m.runs.find((run) => run.status === "failed");
+    return (
+        `AWS megatest for ${m.tag_name} (launched ${m.runs[0].started.slice(0, 10)}): ` +
+        `${succeeded}/${m.runs.length} runs completed successfully` +
+        (failedRun ? `. Error: ${failedRun.error}` : "")
+    );
+};
+// Link to the execution report of the first failed run, the results of the release, or the megatest workflow runs
+const megatestLink = (p) => {
+    const m = p.megatest;
+    if (!m?.has_results) return p.repository_url + "/actions/workflows/awsfulltest.yml";
+    const failedRun = m.runs.find((run) => run.status === "failed");
+    if (!failedRun) return `/${p.name}/${m.tag_name}/results/`;
+    const dir = failedRun.report.slice(0, failedRun.report.lastIndexOf("/"));
+    const file = failedRun.report.slice(failedRun.report.lastIndexOf("/") + 1);
+    return `/${p.name}/${m.tag_name}/results/${dir}/?file=${file}`;
+};
 ---
 
 <PageLayout
@@ -99,6 +131,14 @@ const countTrue = (fn) => {
                         data-bs-placement="top"
                     >
                         nf-test in dev
+                    </th>
+                    <th
+                        class="small fw-normal p-1"
+                        title="Latest release has AWS megatest results and all runs completed successfully (from the Nextflow execution report)"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                    >
+                        AWS megatest
                     </th>
                     <th
                         class="small fw-normal p-1"
@@ -323,6 +363,22 @@ const countTrue = (fn) => {
                             {getCell(pipeline.has_nf_test, pipeline.repository_url, "uses nf-test")}
                             {/* nf-test in dev */}
                             {getCell(pipeline.has_nf_test_dev, pipeline.repository_url, "uses nf-test in dev branch")}
+                            {/* AWS megatest */}
+                            {pipeline.releases?.length > 1 && !pipeline.archived ? (
+                                getCell(megatestStatus(pipeline), megatestLink(pipeline), megatestMessage(pipeline))
+                            ) : (
+                                <td
+                                    class="text-center status status--unknown"
+                                    data-bs-toggle="tooltip"
+                                    title={
+                                        pipeline.name +
+                                        (pipeline.archived ? ": archived" : ": not yet released") +
+                                        ", check not applicable"
+                                    }
+                                >
+                                    <span class="text-secondary">-</span>
+                                </td>
+                            )}
                             {/* wikis */}
                             {getCell(!pipeline.has_wiki, pipeline.repository_url + "/settings", "disable wiki")}
                             {/* issues */}
@@ -524,6 +580,7 @@ const countTrue = (fn) => {
                     <td class="text-center">{countTrue((p) => p.is_DSL2)}</td>
                     <td class="text-center">{countTrue((p) => p.has_nf_test)}</td>
                     <td class="text-center">{countTrue((p) => p.has_nf_test_dev)}</td>
+                    <td class="text-center">{countTrue((p) => megatestStatus(p) === true)}</td>
                     <td class="text-center">{countTrue((p) => !p.has_wiki)}</td>
                     <td class="text-center">{countTrue((p) => p.has_issues)}</td>
                     <td class="text-center">{countTrue((p) => p.allow_merge_commit)}</td>
