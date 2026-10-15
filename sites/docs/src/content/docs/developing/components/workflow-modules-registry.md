@@ -192,6 +192,8 @@ Because Nextflow vendors dependencies for each workflow module, two workflow mod
 
 ## Which to use
 
+The following sections describe the requirements for nf-core pipelines and the options for other Nextflow pipelines.
+
 ### nf-core pipeline developers
 
 The nf-core pipeline lint test [`modules_json`](../../nf-core-tools/api_reference/latest/pipeline_lint_tests/modules_json) requires every module installed from `nf-core/modules` to have an entry in `modules.json` with its commit hash.
