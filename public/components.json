@@ -30775,6 +30775,10 @@
           "version": "dev"
         },
         {
+          "name": "pathogenepidemiology",
+          "version": "dev"
+        },
+        {
           "name": "phaseimpute",
           "version": "1.1.0"
         },
@@ -68989,7 +68993,7 @@
     {
       "name": "cnvkit_coverage",
       "path": "modules/nf-core/cnvkit/coverage/meta.yml",
-      "tree_sha": "a8a3f742ac09e655178fee81881c7b70faad37d1",
+      "tree_sha": "b4097729919708209e5ad0c435eb10024e349dee",
       "files": [
         "modules/nf-core/cnvkit/coverage/.conda-lock/linux_amd64-bd-288e98d6210b7304_1.txt",
         "modules/nf-core/cnvkit/coverage/environment.yml",
@@ -69053,6 +69057,21 @@
               }
             },
             {
+              "alignment_index": {
+                "type": "file",
+                "description": "Index file for sorted BAM/CRAM or bedGraph",
+                "pattern": "*.{bai,crai,csi,tbi}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3616"
+                  }
+                ]
+              }
+            },
+            {
               "interval": {
                 "type": "file",
                 "description": "bed file containing the target or antitarget regions.",
@@ -69062,6 +69081,34 @@
                     "edam": "http://edamontology.org/format_3003"
                   }
                 ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy map containing reference information\ne.g. `[ id: 'reference']`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "reference genome in FASTA format, only needed for CRAM input",
+                "pattern": "*.{fasta,fa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "index for the FASTA file, only needed for CRAM input",
+                "pattern": "*.fai",
+                "ontologies": []
               }
             }
           ]
@@ -69170,7 +69217,7 @@
           }
         }
       },
-      "git_sha": "8e4cc14bb069daefdcb5e7c44736cefddecad4c0"
+      "git_sha": "8e7fdb471faf987492dfe54e1a963b4388cf0968"
     },
     {
       "name": "cnvkit_export",
@@ -93354,6 +93401,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -286041,6 +286096,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -286348,6 +286407,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -444387,6 +444450,6 @@
       "git_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657"
     }
   ],
-  "commit_sha": "6cd9d8e13a2d5b03f4d46a5ca48d4d69567204e4",
-  "updated_at": "2026-10-14T14:13:58.802Z"
+  "commit_sha": "8e7fdb471faf987492dfe54e1a963b4388cf0968",
+  "updated_at": "2026-10-15T02:14:00.578Z"
 }
