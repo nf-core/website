@@ -14,7 +14,7 @@ label:
 
 ## A New Chapter for Benchmarking SIG
 
-Benchmarking is an essential part of bioinformatics, but setting up fair, reproducible, and standardized comparisons is often a massive challenge. To tackle this together, we are officially relaunching the Benchmarking Special Interest Group. We are kicking things off with a brand new series of monthly meetings and regular blog updates to keep the community connected.
+Benchmarking is an essential part of bioinformatics, but setting up fair, reproducible, and standardized comparisons is often a massive challenge. To tackle this together, we are officially activating the Benchmarking Special Interest Group. We are kicking things off with a brand new series of monthly meetings and regular blog updates to keep the community connected.
 
 Our vision for this group is built around three main ideas. First, we want to help developers by building modular benchmarking components in nf-core so that validation steps are simple to plug and play into any pipeline. Second, we want to act as a community forum to find out exactly what researchers need to compare, whether that is metagenomics, spatial transcriptomics, or drug response prediction. Finally, we want to make sure our efforts stay aligned with external standards and platforms like NCBench and openEBench.
 
