@@ -58,11 +58,11 @@ nf-core provides these basic profiles for software dependency managers:
 - `shifter`: Uses [Shifter](https://docs.nersc.gov/development/containers/shifter/how-to-use/)
 - `charliecloud`: Uses [Charliecloud](https://hpc.github.io/charliecloud/)
 - `conda`: Uses [Conda](https://conda.io/docs/) and pulls most software from [Bioconda](https://bioconda.github.io/)
-- `wave`: Enables [Wave](https://seqera.io/wave/) containers. Use together with one of the container profiles above. Requires Nextflow `24.03.0-edge` or later.
+- `wave`: Enables [Wave](https://seqera.io/wave/) containers. Use with one of the container profiles above. Requires Nextflow `24.03.0-edge` or later.
 
 :::note
-Use Docker or Singularity containers for full pipeline reproducibility where possible.
-Use Conda only as a last resort (that is, when you cannot run the pipeline with Docker, Singularity, Podman, Shifter, Charliecloud, or Apptainer).
+Use Docker or Singularity where possible, as containers give full pipeline reproducibility.
+Use Conda only when you cannot use any of the container profiles.
 :::
 
 Without a specified profile, the pipeline runs locally and expects all software to be installed and available on the `$PATH`.

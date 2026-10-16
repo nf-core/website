@@ -33,7 +33,7 @@ Pipeline parameters such as `--input` and `--outdir` use a double hyphen.
 
 The following sections cover common operations for running nf-core pipelines.
 
-### Testing with test data
+### Run with test data
 
 All nf-core pipelines include a `test` profile with small datasets for verifying your setup:
 
@@ -62,7 +62,7 @@ nf-core test profiles require an internet connection.
 
 Results are written to the `results/` directory, organized by analysis step. All pipelines include a `pipeline_info/` subdirectory with execution logs and metadata.
 
-### Running with your own data
+### Run with your own data
 
 Most nf-core pipelines use a samplesheet to specify input files:
 
@@ -95,12 +95,12 @@ Each pipeline's documentation includes:
 Consult the pipeline's usage and parameter documentation before preparing your data.
 :::
 
-### Specifying a pipeline version
+### Specify a pipeline version
 
 Specify the pipeline version with `-r` when you run a pipeline on your data.
-A pinned version ensures that the same pipeline code and software versions are used each time you run the pipeline, even if the pipeline code changes later.
+A pinned version keeps the pipeline code and software versions the same for every run, even after the pipeline changes on GitHub.
 
-1. Go to the pipeline's GitHub releases page (for example, `https://github.com/nf-core/<pipeline>/releases`) and find the version you want. Use the numeric tag only (for example, `1.3.1`).
+1. Find the version you want on the pipeline's GitHub releases page, at `https://github.com/nf-core/<pipeline>/releases`. Use the numeric tag only, for example `1.3.1`.
 
 2. Add the version to your command with `-r`:
 
@@ -114,10 +114,10 @@ A pinned version ensures that the same pipeline code and software versions are u
 
 To switch to another version, change the value after `-r`.
 
-The version is recorded in the execution reports in the `pipeline_info/` results subdirectory and, for pipelines that use MultiQC, at the bottom of the MultiQC report.
-This lets you check which version produced a set of results when you look back later.
+The pipeline records the version in the execution reports in the `pipeline_info/` subdirectory of your results, and at the bottom of the MultiQC report for pipelines that use MultiQC.
+Use these to check which version produced a set of results.
 
-### Using parameter files
+### Use parameter files
 
 Parameter files let you specify pipeline options in a structured format rather than on the command line:
 
@@ -145,11 +145,11 @@ Parameter files make runs easier to reproduce and share, for example as suppleme
 Before you share a parameter file, remove any paths that are specific to your cluster and any institutional profiles.
 :::
 
-### Configuring pipelines
+### Configure pipelines
 
 For complex execution environments or custom compute resource requirements (for example, memory or CPU adjustments), use configuration files to override default settings.
 
-#### Using configuration files
+#### Use configuration files
 
 Create a custom configuration file to specify execution settings:
 
@@ -231,7 +231,7 @@ Configuration files are applied in order and later files override earlier settin
 
 For detailed configuration options, see the [Configuration guide](./configuration/configuration-options).
 
-### Resuming runs
+### Resume runs
 
 Add `-resume` to continue from where a pipeline stopped (due to errors or cancellation):
 
@@ -244,14 +244,14 @@ nextflow run nf-core/<pipeline> \
 ```
 
 Nextflow caches completed steps and only re-runs processes with changed inputs, saving time and resources.
-For an input to count as unchanged, both the file name and the file contents must be identical.
+Nextflow treats an input as unchanged only if both the file name and the file contents are identical.
 For more information, see the [Demystifying Nextflow resume](https://www.nextflow.io/blog/2019/demystifying-nextflow-resume.html) blog post.
 
 :::tip
 Always use `-resume` when re-running a pipeline after fixing errors or updating parameters. Nextflow automatically determines which steps need to re-execute.
 :::
 
-To resume a specific earlier run rather than the most recent one, supply its run name:
+To resume an earlier run instead of the most recent one, add its run name:
 
 ```bash
 nextflow run nf-core/<pipeline> \
@@ -261,16 +261,16 @@ nextflow run nf-core/<pipeline> \
   -resume <run-name>
 ```
 
-Use `nextflow log` to list the names of previous runs.
+Run `nextflow log` to list the names of previous runs.
 
-### Running in the background
+### Run in the background
 
-Nextflow submits and supervises the jobs of a pipeline, so the Nextflow process must keep running until the pipeline finishes.
-If you log out of a terminal session while Nextflow runs in the foreground, the pipeline stops.
+Nextflow submits and supervises pipeline jobs, and must keep running until the pipeline finishes.
+If you log out while Nextflow runs in the foreground, the pipeline stops.
 
 To keep a pipeline running after you log out, use one of these options:
 
-- Add the `-bg` flag to launch Nextflow in the background, detached from your terminal. Nextflow saves the log output to a file instead of printing it to the terminal.
+- Add `-bg` to launch Nextflow in the background, detached from your terminal. Nextflow writes the log output to a file instead of the terminal.
 
   ```bash
   nextflow run nf-core/<pipeline> \
@@ -281,14 +281,14 @@ To keep a pipeline running after you log out, use one of these options:
   ```
 
 - Use `screen`, `tmux`, or a similar tool to create a detached session that you can reattach to later.
-- On some HPC systems, submit Nextflow itself as a job to the cluster scheduler. Nextflow then submits the pipeline jobs from within that job.
+- On some high-performance computing (HPC) systems, submit Nextflow itself as a job to the cluster scheduler. Nextflow then submits the pipeline jobs from inside that job.
 
-### Updating pipelines
+### Update pipelines
 
-When you run a pipeline for the first time, Nextflow pulls the pipeline code from GitHub and stores a cached copy in `~/.nextflow/assets/`.
-Later runs use the cached copy if one is available, even if the pipeline has been updated on GitHub since.
+The first time you run a pipeline, Nextflow pulls the code from GitHub and caches a copy in `~/.nextflow/assets/`.
+Later runs use the cached copy, even if the pipeline has changed on GitHub since.
 
-To make sure you run the latest version of a pipeline, update the cached copy regularly:
+To run the latest version of a pipeline, update the cached copy regularly:
 
 ```bash
 nextflow pull nf-core/<pipeline>

@@ -473,7 +473,7 @@ The `NXF_*` variables nf-core users reach for most often are:
 - `NXF_WORK`: Override the work directory for intermediate files
 - `NXF_OFFLINE`: Run without contacting the network (see [Running pipelines offline](../run-pipelines-offline.md))
 - `NXF_SINGULARITY_CACHEDIR` / `NXF_APPTAINER_CACHEDIR`: Reuse downloaded container images across runs
-- `NXF_OPTS`: Pass options to the Nextflow Java virtual machine, for example `-Xms1g -Xmx4g` to limit its memory use (see [Limit Nextflow memory usage](../configuration/nextflow-for-your-system.md#limit-nextflow-memory-usage))
+- `NXF_OPTS`: Pass options to the Nextflow Java virtual machine, for example `-Xms1g -Xmx4g` to limit the memory Nextflow uses (see [Limit Nextflow memory usage](../configuration/nextflow-for-your-system.md#limit-nextflow-memory-usage))
 
 For the full list, see the [Nextflow environment variables reference](https://docs.seqera.io/nextflow/reference/env-vars).
 :::

@@ -174,15 +174,15 @@ The `--max_<resource>` parameters represent the maximum for a single pipeline jo
 ## Limit Nextflow memory usage
 
 The resource settings above apply to pipeline jobs, not to the Nextflow process that launches and supervises them.
-In some cases, the Java virtual machine that runs Nextflow can start to request a large amount of memory.
+The Java virtual machine (JVM) that runs Nextflow can itself request a large amount of memory.
 
-To limit this, set the `NXF_OPTS` environment variable in your shell startup file (typically `~/.bashrc` or `~/.bash_profile`):
+To cap the memory Nextflow uses, set the `NXF_OPTS` environment variable in your shell startup file, such as `~/.bashrc` or `~/.bash_profile`:
 
 ```bash
 export NXF_OPTS='-Xms1g -Xmx4g'
 ```
 
-The `-Xms` value sets the initial heap size and the `-Xmx` value sets the maximum heap size for the Nextflow Java virtual machine.
+`-Xms` sets the initial heap size and `-Xmx` sets the maximum heap size for the Nextflow JVM.
 
 ## Customize Docker registries
 
