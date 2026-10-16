@@ -140,7 +140,7 @@ Help make a smooth reviewing process by:
 See the following for general reviewing checklists:
 
 - [Reviewing nf-core components](../contributing/reviewing-pull-requests/review_checklists/component)
-- [Reviewing pipeline releases](../contributing/reviewing-pull-requests/review_checklists/pipeline-releases)
+- [Reviewing pipeline releases](../contributing/reviewing-pull-requests/review_checklists/pipeline-release)
 - [Reviewing nf-core/tools](../contributing/reviewing-pull-requests/review_checklists/nf-core-tools.md)
 
 ## Use of AI and LLMs

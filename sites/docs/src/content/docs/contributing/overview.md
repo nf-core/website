@@ -26,6 +26,7 @@ nf-core pipelines are end-to-end bioinformatics workflows built using the nf-cor
 
 - **[Contributing a new pipeline](./contribute-new-pipelines):** Propose, develop, and release a new nf-core pipeline, from initial proposal through to your first release
 - **[Contributing to existing pipelines](./contribute-existing-pipelines):** Add features, fix bugs, or improve documentation in existing nf-core pipelines
+- **[Release procedure](./release-procedure):** Step-by-step checklist for preparing and publishing a new pipeline release
 
 ## Components
 
