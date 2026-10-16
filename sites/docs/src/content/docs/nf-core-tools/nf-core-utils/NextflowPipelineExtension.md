@@ -92,7 +92,7 @@ Each function serves a specific purpose in pipeline management. Let's explore th
 
 The `getWorkflowVersion` function creates consistent, git-aware version strings for your pipeline. It combines your manifest version with git commit information to provide traceable version identifiers.
 
-#### Basic Usage
+**Basic Usage**
 
 Let's start with a simple version string generation:
 
@@ -110,7 +110,7 @@ log.info "Version: ${version_str}"
 Version: v1.0.0
 ```
 
-#### Git-Aware Versioning
+**Git-Aware Versioning**
 
 For better traceability, include git commit information:
 
@@ -128,14 +128,14 @@ log.info "Full version: ${version_str}"
 Full version: v1.0.0-gabc1234
 ```
 
-#### Function Parameters
+**Function Parameters**
 
 | Parameter         | Type              | Description                           | Example                 |
 | ----------------- | ----------------- | ------------------------------------- | ----------------------- |
 | `manifestVersion` | String            | Version from nextflow.config manifest | `"1.0.0"` or `"v1.0.0"` |
 | `commitId`        | String (optional) | Full git SHA hash                     | `"abc1234def5678..."`   |
 
-#### Version Format Rules
+**Version Format Rules**
 
 The function applies these formatting rules:
 
@@ -153,7 +153,7 @@ Always use `workflow.manifest.version` and `workflow.commitId` for automatic ver
 
 The `dumpParametersToJSON` function creates JSON documentation of your pipeline run parameters, essential for reproducibility and troubleshooting. It automatically timestamps and organizes parameter files for easy reference, serializes common Nextflow parameter types, and writes via Nextflow file handling so local and cloud-backed output paths are supported.
 
-#### Understanding Parameter Documentation
+**Understanding Parameter Documentation**
 
 Before diving into usage, let's understand why parameter documentation matters:
 
@@ -166,7 +166,7 @@ Before diving into usage, let's understand why parameter documentation matters:
 
 Parameter documentation solves these challenges by creating a permanent record.
 
-#### Basic Parameter Export
+**Basic Parameter Export**
 
 Let's implement basic parameter logging:
 
@@ -212,14 +212,14 @@ results/
 }
 ```
 
-#### Function Parameters
+**Function Parameters**
 
 | Parameter | Type        | Required | Description                         |
 | --------- | ----------- | -------- | ----------------------------------- |
 | `outdir`  | Path/String | Yes      | Output directory for parameter file |
 | `params`  | Map         | Yes      | Pipeline parameters to document     |
 
-#### File Organization
+**File Organization**
 
 The function follows nf-core conventions for file organization:
 
@@ -239,7 +239,7 @@ The function safely handles null `outdir` values by returning immediately withou
 
 The `checkCondaChannels` function validates your conda environment setup, ensuring that required bioinformatics channels are properly configured. This prevents common dependency resolution issues in conda-based pipelines.
 
-#### Understanding Conda Channel Priority
+**Understanding Conda Channel Priority**
 
 Conda channels have priority order that affects package resolution:
 
@@ -257,7 +257,7 @@ Wrong channel order can lead to:
 - Outdated software versions
 - Failed environment creation
 
-#### Basic Channel Validation
+**Basic Channel Validation**
 
 Let's implement conda channel checking:
 
@@ -284,7 +284,7 @@ workflow {
 }
 ```
 
-#### Example Output Scenarios
+**Example Output Scenarios**
 
 **Correct Configuration:**
 
@@ -302,7 +302,7 @@ WARN  [main] - Expected channel order: [conda-forge, bioconda]
 WARN  [main] - Current channel order: [bioconda, conda-forge]
 ```
 
-#### Function Return Values
+**Function Return Values**
 
 | Return Value | Condition          | Description                                          |
 | ------------ | ------------------ | ---------------------------------------------------- |
@@ -310,7 +310,7 @@ WARN  [main] - Current channel order: [bioconda, conda-forge]
 | `true`       | Conda unavailable  | Conda not installed or command failed (non-blocking) |
 | `false`      | Channels incorrect | Required channels missing or wrong order             |
 
-#### Validation Process
+**Validation Process**
 
 The function performs these steps:
 

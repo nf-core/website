@@ -27,7 +27,7 @@ This migration strategy ensures backward compatibility while enabling pipelines 
 
 ### Modern Approach Functions (Recommended)
 
-### `getCitation(String metaYmlPath)`
+### `getCitation()`
 
 **Description:**  
 Extracts citation information from a module's meta.yml file and formats it for topic channel emission. This is the modern approach for automatic citation collection that only includes citations for tools that actually execute.
@@ -92,7 +92,7 @@ workflow {
 
 ---
 
-### `autoToolCitationText(List topicCitations = [])`
+### `autoToolCitationText()`
 
 **Description:**  
 Automatically generates formatted citation text from topic channel citation data. This processes the automatic citation collection from executed processes, ensuring runtime accuracy.
@@ -133,7 +133,7 @@ workflow {
 
 ---
 
-### `autoToolBibliographyText(List topicCitations = [])`
+### `autoToolBibliographyText()`
 
 **Description:**  
 Automatically generates HTML bibliography from topic channel citation data. Creates bibliography entries for tools that were actually executed.
@@ -173,7 +173,7 @@ workflow {
 
 ### Legacy Functions (Still Supported)
 
-### `generateModuleToolCitation(Object metaFilePath)`
+### `generateModuleToolCitation()`
 
 **Description:**  
 Extracts citation information from a module's meta.yml file using the traditional approach. This function processes all tools in the meta.yml regardless of execution.
@@ -206,7 +206,7 @@ log.info "FASTQC citations: ${fastqcCitations}"
 
 ---
 
-### `toolCitationText(Map collectedCitations)`
+### `toolCitationText()`
 
 **Description:**  
 Generates formatted citation text from collected citations map (legacy approach).
@@ -242,7 +242,7 @@ log.info "Citations: ${citationText}"
 
 ---
 
-### `toolBibliographyText(Map collectedCitations)`
+### `toolBibliographyText()`
 
 **Description:**  
 Generates HTML bibliography from collected citations (legacy approach).
@@ -275,7 +275,7 @@ file("${params.outdir}/bibliography.html").text = bibliography
 
 ---
 
-### `methodsDescriptionText(String mqcMethodsYamlPath, Map collectedCitations = [:], Map meta = [:])`
+### `methodsDescriptionText()`
 
 **Description:**  
 Generates methods description text using collected citations and a MultiQC methods template. This function substitutes citation and bibliography variables into the template.
@@ -329,7 +329,7 @@ description: |
 
 ---
 
-### `collectCitationsFromFiles(List<String> metaFilePaths)`
+### `collectCitationsFromFiles()`
 
 **Description:**  
 Collects citations from multiple meta.yml files (legacy batch processing approach).
@@ -368,7 +368,7 @@ log.info "Collected ${allCitations.size()} tool citations"
 
 ### Migration Functions
 
-### `processMixedCitationSources(List<List> topicCitations, List<String> citationFiles)`
+### `processMixedCitationSources()`
 
 **Description:**  
 Processes citations from both topic channels (modern approach) and legacy files for progressive migration.
@@ -414,7 +414,7 @@ workflow {
 
 ---
 
-### `convertMetaYamlToTopicFormat(String metaFilePath, String moduleName = null)`
+### `convertMetaYamlToTopicFormat()`
 
 **Description:**  
 Converts legacy meta.yml data to new topic channel format for migration purposes.
@@ -452,7 +452,7 @@ channel.fromList(topicFormatCitations)
 
 ### Topic Channel Processing Functions
 
-### `processCitationsFromTopic(List<List> topicData)`
+### `processCitationsFromTopic()`
 
 **Description:**  
 Processes citations exclusively from topic channel format (modern approach).
@@ -495,7 +495,7 @@ workflow {
 
 ---
 
-### `processCitationsFromFile(List<String> citationFiles)`
+### `processCitationsFromFile()`
 
 **Description:**  
 Processes citations exclusively from traditional YAML files (legacy approach).

@@ -31,7 +31,7 @@ Structured reporting solves these challenges by consolidating information into s
 
 ## Available Functions
 
-### `paramsSummaryMultiqc(Map summaryParams)`
+### `paramsSummaryMultiqc()`
 
 **Description:**  
 Generates a YAML-formatted string from a map of summary parameters for MultiQC workflow summary integration. This function creates properly structured YAML that MultiQC can parse and display in its workflow summary section.
@@ -110,7 +110,7 @@ process MULTIQC {
 
 ---
 
-### `workflowSummaryMQC(Map summary, List<String> nfMetadataList, Map results)`
+### `workflowSummaryMQC()`
 
 **Description:**  
 Creates a comprehensive workflow summary template for MultiQC with both HTML and text formats. This function generates detailed workflow metadata including execution information, parameters, and results.
@@ -227,7 +227,7 @@ workflow COMPREHENSIVE_REPORTING {
 
 ---
 
-### `sectionLogs(Map sections, boolean monochrome = false)`
+### `sectionLogs()`
 
 **Description:**  
 Generates formatted log messages for different pipeline sections with optional color coding. This function creates consistent, readable terminal output for section-based logging.

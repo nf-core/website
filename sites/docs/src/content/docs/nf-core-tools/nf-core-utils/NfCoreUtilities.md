@@ -219,7 +219,7 @@ workflow {
 
 Citation management comes in two flavors: modern topic-channel based (recommended) and legacy file-based approaches.
 
-#### Modern Topic Channel Citations (Recommended)
+**Modern Topic Channel Citations (Recommended)**
 
 These functions work with the new topic channel citation system:
 
@@ -258,7 +258,7 @@ workflow {
 }
 ```
 
-#### Legacy File-Based Citations
+**Legacy File-Based Citations**
 
 These functions support the older meta.yml file approach:
 
@@ -269,7 +269,7 @@ These functions support the older meta.yml file approach:
 | `toolBibliographyText(citationsMap)`       | Generate bibliography HTML from citations       | Anywhere      |
 | `collectCitationsFromFiles(metaFilePaths)` | Collect citations from multiple meta.yml files  | Anywhere      |
 
-#### Migration and Mixed Approaches
+**Migration and Mixed Approaches**
 
 For pipelines transitioning between approaches:
 
@@ -344,7 +344,7 @@ Start by converting high-priority modules to topic channels while keeping legacy
 
 The `softwareVersionsToYAML()` function provides a unified way to collect and format software versions from any source. It's the recommended approach for version management in both new and migrating pipelines.
 
-#### Basic Usage Pattern
+**Basic Usage Pattern**
 
 ```nextflow title="simple_versions.nf"
 include { softwareVersionsToYAML } from 'plugin/nf-core-utils'
@@ -365,7 +365,7 @@ workflow {
 }
 ```
 
-#### With Custom Nextflow Version
+**With Custom Nextflow Version**
 
 ```nextflow title="custom_nf_version.nf"
 // Override detected Nextflow version (useful for testing)
@@ -381,7 +381,7 @@ ch_versions_yaml = softwareVersionsToYAML(
 )
 ```
 
-#### Mixed Input Types (Migration Scenario)
+**Mixed Input Types (Migration Scenario)**
 
 The function automatically handles different version formats, making it perfect for pipelines in transition:
 
@@ -412,7 +412,7 @@ workflow {
 }
 ```
 
-#### Direct Processing (No Channel)
+**Direct Processing (No Channel)**
 
 For use cases where you already have collected versions as a list:
 
@@ -436,7 +436,7 @@ workflow.onComplete {
 }
 ```
 
-#### Output Format
+**Output Format**
 
 The function generates structured, sorted YAML:
 

@@ -24,7 +24,7 @@ The `NfcoreReportingOrchestrator` utility provides high-level orchestration of r
 
 ## Available Functions
 
-### `generateComprehensiveReport(List<List> topicVersions, List<String> legacyVersions = [], List<String> metaFilePaths = [], String mqcMethodsYamlPath = null)`
+### `generateComprehensiveReport()`
 
 **Description:**  
 Generates a complete pipeline report including version information, tool citations, bibliography, and methods description. This is the primary function for full pipeline reporting that combines all available reporting capabilities.
@@ -123,7 +123,7 @@ workflow {
 
 ---
 
-### `generateVersionReport(List<List> topicVersions, List<String> legacyVersions = [])`
+### `generateVersionReport()`
 
 **Description:**  
 Generates a version-only report when citations are not needed or handled separately. This function focuses exclusively on version aggregation and formatting.
@@ -184,7 +184,7 @@ workflow VERSION_TRACKING {
 
 ---
 
-### `generateCitationReport(List<String> metaFilePaths, String mqcMethodsYamlPath = null)`
+### `generateCitationReport()`
 
 **Description:**  
 Generates a citation-only report when versions are handled separately. This function focuses exclusively on citation extraction, processing, and methods description generation.

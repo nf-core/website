@@ -33,7 +33,7 @@ This function is used to retrieve genome attributes in the nf-core TEMPLATE.
 
 It retrieves a specific attribute (such as `fasta`, `gtf`, or index paths) for the selected genome from the `params.genomes` map. It is useful for pipelines that support multiple genomes and need to access reference files or metadata for the currently selected genome.
 
-#### Function Signature
+**Function Signature**
 
 ```groovy
 Object getGenomeAttribute(String attribute)
@@ -45,18 +45,18 @@ or (static utility):
 Object ReferencesUtils.getGenomeAttribute(Map params, String attribute)
 ```
 
-#### Parameters
+**Parameters**
 
 | Parameter   | Type   | Required | Description                                                        |
 | ----------- | ------ | -------- | ------------------------------------------------------------------ |
 | `attribute` | String | Yes      | The attribute name to retrieve (e.g. 'fasta', 'gtf', 'star')       |
 | `params`    | Map    | Yes      | (static) The Nextflow params map containing `genome` and `genomes` |
 
-#### Return Value
+**Return Value**
 
 Returns the value of the requested attribute for the selected genome, or `null` if not found.
 
-#### Practical Example
+**Practical Example**
 
 ```groovy
 // Example params structure
@@ -87,7 +87,7 @@ def missing = ReferencesUtils.getGenomeAttribute(params, 'star')
 // Returns: null
 ```
 
-#### Usage in Nextflow
+**Usage in Nextflow**
 
 ```nextflow
 include { getGenomeAttribute } from 'plugin/nf-core-utils'
@@ -179,7 +179,7 @@ workflow {
 
 This function intelligently resolves file paths based on user parameters and reference metadata.
 
-#### Parameters
+**Parameters**
 
 | Parameter    | Type        | Required | Description                                   |
 | ------------ | ----------- | -------- | --------------------------------------------- |
@@ -188,7 +188,7 @@ This function intelligently resolves file paths based on user parameters and ref
 | `attribute`  | String      | Yes      | Metadata attribute name to extract            |
 | `basepath`   | String      | No       | Base path for relative path resolution        |
 
-#### Practical Example
+**Practical Example**
 
 ```nextflow title="file_resolution_example.nf"
 #!/usr/bin/env nextflow
@@ -225,7 +225,7 @@ workflow {
 }
 ```
 
-#### Practical Example
+**Practical Example**
 
 ```nextflow title="file_resolution_example.nf"
 #!/usr/bin/env nextflow
@@ -266,7 +266,7 @@ workflow {
 
 This function extracts metadata values with user parameter override support.
 
-#### Function Signature
+**Function Signature**
 
 ```groovy
 Object getReferencesValue(
@@ -276,7 +276,7 @@ Object getReferencesValue(
 )
 ```
 
-#### Parameters
+**Parameters**
 
 | Parameter    | Type     | Required | Description                               |
 | ------------ | -------- | -------- | ----------------------------------------- |
@@ -284,7 +284,7 @@ Object getReferencesValue(
 | `param`      | Any/null | Yes      | User-provided value (null = use metadata) |
 | `attribute`  | String   | Yes      | Metadata attribute name to extract        |
 
-#### Practical Example
+**Practical Example**
 
 ```nextflow title="value_resolution_example.nf"
 #!/usr/bin/env nextflow
