@@ -3860,69 +3860,6 @@
             "dev_has_pr_comment_workflow": true,
             "releases": [
                 {
-                    "tag_name": "2.6.0",
-                    "published_at": "2026-05-05T09:14:48Z",
-                    "tag_sha": "61b9413bc0531a79190806fde34538fdfbbe15f6",
-                    "has_schema": true,
-                    "doc_files": [
-                        "docs/output.md",
-                        "docs/usage.md"
-                    ],
-                    "components": {
-                        "modules": [
-                            "autocycler_cluster",
-                            "autocycler_combine",
-                            "autocycler_compress",
-                            "autocycler_resolve",
-                            "autocycler_subsample",
-                            "autocycler_trim",
-                            "bakta_bakta",
-                            "bakta_baktadbdownload",
-                            "busco_busco",
-                            "canu",
-                            "cat_fastq",
-                            "dragonflye",
-                            "fastp",
-                            "fastqc",
-                            "filtlong",
-                            "flye",
-                            "gunzip",
-                            "kraken2_kraken2",
-                            "liftoff",
-                            "megahit",
-                            "miniasm",
-                            "minimap2_align",
-                            "multiqc",
-                            "nanoplot",
-                            "porechop_porechop",
-                            "prokka",
-                            "quast",
-                            "racon",
-                            "rasusa",
-                            "raven",
-                            "samtools_index",
-                            "samtools_sort",
-                            "toulligqc",
-                            "unicycler",
-                            "untar"
-                        ],
-                        "subworkflows": [
-                            "fasta_consensus_autocycler",
-                            "fastq_trim_fastp_fastqc",
-                            "utils_nextflow_pipeline",
-                            "utils_nfcore_pipeline",
-                            "utils_nfschema_plugin"
-                        ]
-                    },
-                    "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.5.2",
-                    "plugins": [
-                        "nf-schema@2.5.1"
-                    ],
-                    "co2footprint_files": null,
-                    "megatest": null
-                },
-                {
                     "tag_name": "2.6.1",
                     "published_at": "2026-05-05T09:14:48Z",
                     "tag_sha": "5ed7c2dd9a05d2434d8ba39ace1116368a4ba570",

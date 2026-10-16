@@ -344,10 +344,11 @@ export const writePipelinesJson = async () => {
         return { name: contributor.login, count: contributor.contributions, avatar_url: contributor.avatar_url };
       });
 
-    // get the releases
-    let { data: releases } = await octokit.rest.repos.listReleases({
+    // get all the releases (paginated, as the stored releases not on GitHub anymore are removed below)
+    let releases = await octokit.paginate(octokit.rest.repos.listReleases, {
       owner: "nf-core",
       repo: name,
+      per_page: 100,
     });
 
     // remove empty values from releases (usually from draft releases)
@@ -361,7 +362,11 @@ export const writePipelinesJson = async () => {
 
     let old_releases = [];
     if (pipelineIndex > -1) {
-      old_releases = pipelines.remote_workflows[pipelineIndex].releases.filter((release) => release.tag_name !== "dev");
+      // keep only the stored releases still on GitHub (e.g. drop bacass 2.6.0, renamed to 2.6.1)
+      const github_releases = releases.map((release) => release.tag_name);
+      old_releases = pipelines.remote_workflows[pipelineIndex].releases.filter(
+        (release) => release.tag_name !== "dev" && github_releases.includes(release.tag_name),
+      );
       const existing_releases = old_releases.map((release) => release.tag_name);
       new_releases = new_releases.filter((release) => !existing_releases.includes(release.tag_name));
     }
@@ -617,7 +622,7 @@ export const writePipelinesJson = async () => {
       data.releases
         .filter((release) => release.tag_name !== "dev")
         .map(async (release) => {
-          release.megatest = await fetchMegatestStatus(name, release.tag_sha, release.megatest?.runs);
+          release.megatest = await fetchMegatestStatus(name, release.tag_sha, release.megatest);
         }),
     );
 
