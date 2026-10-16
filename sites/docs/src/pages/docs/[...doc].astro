@@ -168,7 +168,13 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, "").split("/");
 // check if markdown file starts with a heading (markdown or html)
 const firstHeading = Astro.props.doc.body?.trim().match(/^(#|<h1)/);
 
-let extendedHeadings = headings.map((heading) => {
+let extendedHeadings = headings.map((renderedHeading) => {
+    // the table of contents shows the text as HTML, so `List<String>` would be a tag; on a copy, as the rendered
+    // headings are cached between renders
+    const heading = {
+        ...renderedHeading,
+        text: renderedHeading.text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"),
+    };
     heading.checkboxes = remarkPluginFrontmatter.checkboxes
         ?.filter((checkbox) => checkbox.headingId.startsWith(heading.slug))
         .map((checkbox) => ({ id: checkbox.id, checked: checkbox.checked }));

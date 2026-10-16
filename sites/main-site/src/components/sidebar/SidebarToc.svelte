@@ -1,6 +1,6 @@
 <script lang="ts">
     import { currentHeading, showHidden, Checkboxes } from "@components/store";
-    import { onMount } from "svelte";
+    import { onMount, tick } from "svelte";
     import ProgressIndicator from "@components/sidebar/ProgressIndicator.svelte";
 
     // Add snippet props to replace slots
@@ -63,12 +63,10 @@
             //check if any heading has the same slug as the currentHeading
             const heading = headings.find((h) => h.slug === slug);
             activeHeading = heading?.slug || $currentHeading;
-            // wait 1 second for sidebar selection animation to finish
-
-            const active = document.querySelector(".toc nav-item.active");
-            if (active) {
-                active.scrollIntoView({ block: "nearest" });
-            }
+            // keep the active heading in view in a table of contents longer than the screen, once it is marked active
+            tick().then(() =>
+                document.querySelector("#TableOfContents li.active")?.scrollIntoView({ block: "nearest" }),
+            );
         });
         if (hCheckboxes) {
             Checkboxes.subscribe((checks) => {
