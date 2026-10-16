@@ -3,6 +3,7 @@
 title: "References Extension Guide"
 shortTitle: "References Extension Guide"
 weight: 3
+parentWeight: 3
 ---
 
 # References Extension Guide

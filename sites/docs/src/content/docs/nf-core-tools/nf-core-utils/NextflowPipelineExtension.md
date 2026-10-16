@@ -3,6 +3,7 @@
 title: "Nextflow Pipeline Extension"
 shortTitle: "Nextflow Pipeline Extension"
 weight: 2
+parentWeight: 3
 ---
 
 # Nextflow Pipeline Extension

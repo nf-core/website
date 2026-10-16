@@ -3,6 +3,7 @@
 title: "nf-core Utilities Guide"
 shortTitle: "nf-core Utilities Guide"
 weight: 1
+parentWeight: 3
 ---
 
 # nf-core Utilities Guide

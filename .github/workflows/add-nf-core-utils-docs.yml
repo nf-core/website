@@ -22,11 +22,12 @@ jobs:
 
       # The user docs, the other files in docs/ are for the developers of the plugin. Each doc gets the frontmatter of
       # the docs pages: its first heading as title and label in the sidebar, and its place in the list as weight.
+      # In the nf-core/tools section, nf-core-utils comes after the CLI and API docs (parentWeight).
       - name: Copy the docs
         env:
           REF_NAME: ${{ inputs.ref_name }}
         run: |
-          target="$PWD/sites/docs/src/content/docs/developing/nf-core-utils"
+          target="$PWD/sites/docs/src/content/docs/nf-core-tools/nf-core-utils"
           rm -rf "$target"
           cd nf-core-utils/docs
           weight=0
@@ -40,6 +41,7 @@ jobs:
               echo "title: \"$title\""
               echo "shortTitle: \"$title\""
               echo "weight: $weight"
+              case "$file" in */*) ;; *) echo "parentWeight: 3" ;; esac
               echo "---"
               echo
               cat "$file"
