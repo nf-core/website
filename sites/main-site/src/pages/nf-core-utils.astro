@@ -8,37 +8,76 @@ const title = "nf-core-utils";
 const subtitle = "Nextflow plugin with nf-core utility functions";
 const repo_url = "https://github.com/nf-core/nf-core-utils";
 
-const docs = await fetchNfCoreUtilsDocs();
+// The docs number their own sections, from 1 in each doc and not all of them. Number them across the page instead,
+// each doc as a chapter (`4.`) and its sections (`4.1.`), keeping the original content to map the links to its headings.
+let chapter = 0;
+const docs = (await fetchNfCoreUtilsDocs()).map((doc) => {
+    let section = 0;
+    let fence: string | undefined;
+    const content = doc.content
+        .split("\n")
+        .map((line) => {
+            const fence_match = line.match(/^ *(`{3,}|~{3,})/);
+            if (fence_match && (!fence || fence_match[1].startsWith(fence))) {
+                fence = fence ? undefined : fence_match[1];
+                return line;
+            }
+            const heading = fence ? null : line.match(/^(#{1,6})[ \t]+(.*)$/);
+            if (!heading) {
+                return line;
+            }
+            const [, hashes, text] = heading;
+            const title = text.replace(/^\d+(\.\d+)*\.?[ \t]+/, "");
+            if (hashes.length === 1) {
+                chapter++;
+                section = 0;
+                return `# ${chapter}. ${title}`;
+            }
+            if (hashes.length === 2) {
+                section++;
+                return `## ${chapter}.${section}. ${title}`;
+            }
+            return `${hashes} ${title}`;
+        })
+        .join("\n");
+    return { file: doc.file, original: doc.content, content };
+});
 
-// headings outside of code blocks, with the ids given by the heading anchors plugin on the joined docs
+// headings outside of code blocks, with the ids given by the heading anchors plugin on the joined docs,
+// and in the table of contents only the docs and their sections
+const headingLines = /^(#{1,6})[ \t]+(.*)$/gm;
+const plainText = (heading: string) => heading.replace(/\[([^\]]*)\]\([^)]*\)/g, "$1").trim();
 const slugger = new GithubSlugger();
 const escapeHtml = (text: string) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const headings: { text: string; slug: string; depth: number }[] = [];
-// per file, the id of each heading in the file alone mapped to its id on this page
+// per file, the id of each heading in the original file mapped to its id on this page
 const anchors = new Map<string, Map<string, string>>();
 for (const doc of docs) {
     const file_slugger = new GithubSlugger();
     const file_anchors = new Map<string, string>();
-    for (const [, hashes, heading] of stripCodeBlocks(doc.content).matchAll(/^(#{1,6})[ \t]+(.*)$/gm)) {
-        const text = heading.replace(/\[([^\]]*)\]\([^)]*\)/g, "$1").trim();
+    const original = [...stripCodeBlocks(doc.original).matchAll(headingLines)];
+    [...stripCodeBlocks(doc.content).matchAll(headingLines)].forEach(([, hashes, heading], index) => {
+        const text = plainText(heading);
         const slug = slugger.slug(text.replace(/`/g, ""));
-        file_anchors.set(file_slugger.slug(text.replace(/`/g, "")), slug);
-        headings.push({
-            // code only for headings that are code, like function signatures, as text and code don't wrap together
-            text: /^`[^`]+`$/.test(text)
-                ? `<code>${escapeHtml(text.slice(1, -1))}</code>`
-                : escapeHtml(text.replace(/`/g, "")),
-            slug,
-            depth: hashes.length,
-        });
-    }
+        file_anchors.set(file_slugger.slug(plainText(original[index][2]).replace(/`/g, "")), slug);
+        if (hashes.length <= 2) {
+            headings.push({
+                // code only for headings that are code, as text and code don't wrap together
+                text: /^`[^`]+`$/.test(text)
+                    ? `<code>${escapeHtml(text.slice(1, -1))}</code>`
+                    : escapeHtml(text.replace(/`/g, "")),
+                slug,
+                depth: hashes.length,
+            });
+        }
+    });
     anchors.set(doc.file, file_anchors);
 }
 
-// point links to the other docs to their section on this page, and other relative links to GitHub
+// point links within a doc and to the other docs to their section on this page, and other relative links to GitHub
 const md_content = docs
     .map((doc) =>
-        doc.content.replace(/\]\((?!https?:|#|mailto:)([^)\s]+)\)/g, (match, link) => {
+        doc.content.replace(/\]\((?!https?:|mailto:)([^)\s]+)\)/g, (match, link) => {
             const url = new URL(link, docs_blob_url + doc.file);
             const target = docs.find((d) => docs_blob_url + d.file === url.origin + url.pathname)?.file;
             if (!target) {
