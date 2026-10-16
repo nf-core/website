@@ -2,43 +2,13 @@
 import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
 import { Markdown } from "@mashehu/astropub-md";
 import GithubSlugger from "github-slugger";
+import { docs_blob_url, fetchNfCoreUtilsDocs, stripCodeBlocks } from "@utils/nf-core-utils";
 
 const title = "nf-core-utils";
 const subtitle = "Nextflow plugin with nf-core utility functions";
 const repo_url = "https://github.com/nf-core/nf-core-utils";
-const docs_blob_url = `${repo_url}/blob/main/docs/`;
 
-const raw_url = "https://raw.githubusercontent.com/nf-core/nf-core-utils/refs/heads/main/docs/";
-
-// start from the guide and follow its links to the docs of the extensions and utilities,
-// the other files in docs/ are for the developers of the plugin
-const entry = "NfCoreUtilities.md";
-const docs: { file: string; content: string }[] = [];
-const queue = [entry];
-while (queue.length) {
-    const file = queue.shift()!;
-    if (docs.some((d) => d.file === file)) {
-        continue;
-    }
-    const content = await fetch(raw_url + file)
-        .then((res) => (res.ok ? res.text() : Promise.reject(`Failed to fetch: ${res.status}`)))
-        .catch(() => (file === entry ? "# Error loading content\n\nUnable to load documentation from GitHub." : null));
-    // a broken link keeps pointing to GitHub
-    if (content === null) {
-        continue;
-    }
-    docs.push({ file, content });
-    for (const [, link] of content
-        .replace(/^ *(```|~~~)[\s\S]*?^ *\1/gm, "")
-        .matchAll(/\]\(([^)\s#]+\.md)(#[^)\s]*)?\)/g)) {
-        const path = new URL(link, raw_url + file).href;
-        if (path.startsWith(raw_url)) {
-            queue.push(path.slice(raw_url.length));
-        }
-    }
-}
-// docs at the top of docs/ first, then those of each subfolder
-docs.sort((a, b) => Number(a.file.includes("/")) - Number(b.file.includes("/")));
+const docs = await fetchNfCoreUtilsDocs();
 
 // headings outside of code blocks, with the ids given by the heading anchors plugin on the joined docs
 const slugger = new GithubSlugger();
@@ -49,13 +19,18 @@ const anchors = new Map<string, Map<string, string>>();
 for (const doc of docs) {
     const file_slugger = new GithubSlugger();
     const file_anchors = new Map<string, string>();
-    for (const [, hashes, heading] of doc.content
-        .replace(/^ *(```|~~~)[\s\S]*?^ *\1/gm, "")
-        .matchAll(/^(#{1,6})[ \t]+(.*)$/gm)) {
+    for (const [, hashes, heading] of stripCodeBlocks(doc.content).matchAll(/^(#{1,6})[ \t]+(.*)$/gm)) {
         const text = heading.replace(/\[([^\]]*)\]\([^)]*\)/g, "$1").trim();
         const slug = slugger.slug(text.replace(/`/g, ""));
         file_anchors.set(file_slugger.slug(text.replace(/`/g, "")), slug);
-        headings.push({ text: escapeHtml(text).replace(/`([^`]+)`/g, "<code>$1</code>"), slug, depth: hashes.length });
+        headings.push({
+            // code only for headings that are code, like function signatures, as text and code don't wrap together
+            text: /^`[^`]+`$/.test(text)
+                ? `<code>${escapeHtml(text.slice(1, -1))}</code>`
+                : escapeHtml(text.replace(/`/g, "")),
+            slug,
+            depth: hashes.length,
+        });
     }
     anchors.set(doc.file, file_anchors);
 }
