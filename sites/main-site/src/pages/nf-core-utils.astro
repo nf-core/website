@@ -8,27 +8,37 @@ const subtitle = "Nextflow plugin with nf-core utility functions";
 const repo_url = "https://github.com/nf-core/nf-core-utils";
 const docs_blob_url = `${repo_url}/blob/main/docs/`;
 
-// user-facing docs of the plugin, the other files in docs/ are for its developers
-const files = [
-    "NfCoreUtilities.md",
-    "NextflowPipelineExtension.md",
-    "ReferencesExtension.md",
-    "utilities/NfcoreConfigValidator.md",
-    "utilities/NfcoreNotificationUtils.md",
-    "utilities/NfcoreReportingUtils.md",
-    "utilities/NfcoreVersionUtils.md",
-    "utilities/NfcoreCitationUtils.md",
-    "utilities/NfcoreReportingOrchestrator.md",
-];
+const raw_url = "https://raw.githubusercontent.com/nf-core/nf-core-utils/refs/heads/main/docs/";
 
-const docs = await Promise.all(
-    files.map(async (file) => ({
-        file,
-        content: await fetch(`https://raw.githubusercontent.com/nf-core/nf-core-utils/refs/heads/main/docs/${file}`)
-            .then((res) => (res.ok ? res.text() : Promise.reject(`Failed to fetch: ${res.status}`)))
-            .catch(() => `# Error loading content\n\nUnable to load ${file} from GitHub.`),
-    })),
-);
+// start from the guide and follow its links to the docs of the extensions and utilities,
+// the other files in docs/ are for the developers of the plugin
+const entry = "NfCoreUtilities.md";
+const docs: { file: string; content: string }[] = [];
+const queue = [entry];
+while (queue.length) {
+    const file = queue.shift()!;
+    if (docs.some((d) => d.file === file)) {
+        continue;
+    }
+    const content = await fetch(raw_url + file)
+        .then((res) => (res.ok ? res.text() : Promise.reject(`Failed to fetch: ${res.status}`)))
+        .catch(() => (file === entry ? "# Error loading content\n\nUnable to load documentation from GitHub." : null));
+    // a broken link keeps pointing to GitHub
+    if (content === null) {
+        continue;
+    }
+    docs.push({ file, content });
+    for (const [, link] of content
+        .replace(/^ *(```|~~~)[\s\S]*?^ *\1/gm, "")
+        .matchAll(/\]\(([^)\s#]+\.md)(#[^)\s]*)?\)/g)) {
+        const path = new URL(link, raw_url + file).href;
+        if (path.startsWith(raw_url)) {
+            queue.push(path.slice(raw_url.length));
+        }
+    }
+}
+// docs at the top of docs/ first, then those of each subfolder
+docs.sort((a, b) => Number(a.file.includes("/")) - Number(b.file.includes("/")));
 
 // headings outside of code blocks, with the ids given by the heading anchors plugin on the joined docs
 const slugger = new GithubSlugger();
@@ -55,7 +65,7 @@ const md_content = docs
     .map((doc) =>
         doc.content.replace(/\]\((?!https?:|#|mailto:)([^)\s]+)\)/g, (match, link) => {
             const url = new URL(link, docs_blob_url + doc.file);
-            const target = files.find((file) => docs_blob_url + file === url.origin + url.pathname);
+            const target = docs.find((d) => docs_blob_url + d.file === url.origin + url.pathname)?.file;
             if (!target) {
                 return `](${url.href})`;
             }
