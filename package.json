@@ -10,7 +10,7 @@
         "check-api-catalog": "node bin/check-api-catalog.js",
         "update": "npx npm-check-updates --interactive --format group --workspaces",
         "test-all": "for dir in sites/*; do (cd $dir && npm run test); done",
-        "test-unit": "node --test bin/satteri/*.test.ts"
+        "test-unit": "node --test bin/satteri/*.test.ts sites/main-site/utils/*.test.ts"
     },
     "workspaces": [
         "sites/*"
