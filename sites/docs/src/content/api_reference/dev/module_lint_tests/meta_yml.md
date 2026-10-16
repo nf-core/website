@@ -10,6 +10,13 @@ to the nf-core JSON schema, and that its contents are consistent with
 
 The following checks are performed:
 
+## meta\_yml\_patch\_reversible
+
+If the module is patched, the patch must be reverse-applicable to the
+current `meta.yml` so the pre-patch content can be linted. A warning is
+issued, and the remaining `meta_yml` checks are skipped for this module,
+if the patch is outdated or has been edited and can no longer be applied.
+
 ## meta\_yml\_exists
 
 The `meta.yml` file must exist.
