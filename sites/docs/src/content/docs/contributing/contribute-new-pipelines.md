@@ -371,7 +371,7 @@ Once reviewers approve your pull request:
    - Describe the general features and capabilities.
    - Tag contributors with their GitHub handles so their icons appear on the release page.
 
-1. Follow the [pipeline release checklist](../developing/pipelines/release-procedure) to complete the release process.
+1. Follow the [release procedure](./release-procedure) to complete the release process.
 
 The nf-core website and tools will automatically detect and display your new release.
 
@@ -406,6 +406,8 @@ After your first release, continue development following these practices:
    - Update the version number using `nf-core pipelines bump-version`.
    - Create a pull request against `master`.
    - If tests pass, the pull request can be merged and a new release made.
+
+See the [release procedure](./release-procedure) for the full checklist.
 
 :::note
 The `master` branch should only contain the commit from the latest release.

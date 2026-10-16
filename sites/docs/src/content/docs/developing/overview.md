@@ -16,7 +16,6 @@ The template enforces consistent file structure, CI/CD workflows, and coding con
 
 - **[Pipeline file structure](pipelines/template-files):** Understand the files and directories that the nf-core pipeline template generates and their purpose
 - **[Adding modules](pipelines/adding-modules):** Integrate standardised nf-core modules into your pipeline using nf-core tools
-- **[Release procedure](pipelines/release-procedure):** Step-by-step checklist for preparing and publishing a new pipeline release
 - **[External use of nf-core resources](pipelines/external-use):** Guidelines for using nf-core code in non-nf-core pipelines with proper attribution and branding
 - **[Renaming branches](pipelines/master_to_main):** Instructions for switching a pipeline's default branch from `master` to `main`
 
