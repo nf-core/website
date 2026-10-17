@@ -111,7 +111,7 @@ workflow.onComplete {
 
 Let's build up from basic terminal output to comprehensive notifications:
 
-```nextflow title="progressive_notifications.nf" hl_lines="15-23"
+```nextflow title="progressive_notifications.nf" {15-23}
 #!/usr/bin/env nextflow
 
 include {
@@ -345,7 +345,7 @@ void completionEmail(
 
 For production pipelines, include MultiQC reports as attachments:
 
-```nextflow title="advanced_email_notification.nf" hl_lines="25-30"
+```nextflow title="advanced_email_notification.nf" {25-30}
 #!/usr/bin/env nextflow
 
 include { completionEmail } from 'plugin/nf-core-utils'

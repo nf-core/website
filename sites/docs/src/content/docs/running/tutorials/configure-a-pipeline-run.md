@@ -268,7 +268,7 @@ These settings sit alongside the `process` scope you used above, with a few sibl
 
 Edit `custom.config` to add automatic retries and redirect the work directory:
 
-```groovy title="custom.config" {1,6-7}
+```groovy title="custom.config" {1,5-7}
 workDir = 'nf-work'
 
 process {

@@ -79,7 +79,7 @@ This verifies the existence of a specific file (`IndexMetricsOut.bin`) in the pr
 
 #### File contains check
 
-```groovy {4} {title="bismark/align/tests/main.nf.test"}
+```groovy {4} title="bismark/align/tests/main.nf.test"
 with(process.out.report) {
     with(get(0)) {
         assert get(1).endsWith("hisat2_SE_report.txt")

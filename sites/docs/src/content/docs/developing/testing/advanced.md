@@ -189,11 +189,10 @@ Instead of writing:
 
 ```groovy
 assert process.out.imputed_plink2.size() == 1
-        assert process.out.imputed_plink2[0][0] == "example.vcf"
-        assert process.out.imputed_plink2[0][1] ==~ ".*/example.vcf.pgen"
-        assert process.out.imputed_plink2[0][2] ==~ ".*/example.vcf.psam"
-        assert process.out.imputed_plink2[0][3] ==~ ".*/example.vcf.pvar"
-}
+assert process.out.imputed_plink2[0][0] == "example.vcf"
+assert process.out.imputed_plink2[0][1] ==~ ".*/example.vcf.pgen"
+assert process.out.imputed_plink2[0][2] ==~ ".*/example.vcf.psam"
+assert process.out.imputed_plink2[0][3] ==~ ".*/example.vcf.pvar"
 ```
 
 You can reduce redundancy using the `with()` command:

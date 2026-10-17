@@ -78,7 +78,7 @@ INFO: Pipeline started with proper validation!
 
 Let's expand our example to include completion summaries:
 
-```nextflow title="notification_example.nf" hl_lines="5 14-16"
+```nextflow title="notification_example.nf" {5,14-16}
 #!/usr/bin/env nextflow
 
 nextflow.enable.dsl = 2
@@ -111,7 +111,7 @@ Succeeded   : 3
 
 For production pipelines, you'll typically need multiple utilities. Here's a recommended import pattern:
 
-```nextflow title="production_imports.nf" hl_lines="4-10"
+```nextflow title="production_imports.nf" {4-10}
 #!/usr/bin/env nextflow
 
 nextflow.enable.dsl = 2
@@ -469,7 +469,7 @@ Use `softwareVersionsToYAML()` as your primary version collection function. It h
 
 Let's put everything together in a comprehensive example that shows a production-ready nf-core pipeline using all major utility functions:
 
-```nextflow title="complete_nfcore_pipeline.nf" hl_lines="5-12 17-19 26-28 41-43 60-76"
+```nextflow title="complete_nfcore_pipeline.nf" {5-12,17-19,26-28,41-43,60-76}
 #!/usr/bin/env nextflow
 
 nextflow.enable.dsl = 2
