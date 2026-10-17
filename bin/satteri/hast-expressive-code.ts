@@ -13,6 +13,7 @@
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
 import nextflowSvg from "../../sites/main-site/src/icons/logos/nextflow.svg?raw";
 import { ExpressiveCode, ExpressiveCodeTheme, loadShikiTheme } from "expressive-code";
+import { pluginCodeblocks } from "starlight-codeblocks/expressive-code";
 import { defineHastPlugin } from "satteri";
 import { pluginCaptions } from "./ec-plugin-captions.ts";
 import { pluginFileIcons } from "./ec-plugin-file-icons.ts";
@@ -53,6 +54,10 @@ export function createEcConfig() {
         },
         plugins: [
             pluginLineNumbers(),
+            // starlight-codeblocks (https://ewels.github.io/starlight-codeblocks/): focus,
+            // line states, annotations, comment notation and more. Its file icons stay off,
+            // as pluginFileIcons below already covers them.
+            ...pluginCodeblocks({ fileIcons: false }),
             pluginCaptions(),
             pluginFileIcons([
                 {
