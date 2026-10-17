@@ -70,7 +70,7 @@ Let's get to work. Grab any nf-core module
 
 No need to write to `version.yml` files any more, we emit a topic channel in the output section instead.
 
-```diff title="main.nf"
+```diff lang="groovy" title="main.nf"
 output:
 tuple val(meta), path("*.html"), emit: html
 tuple val(meta), path("*.zip") , emit: zip
