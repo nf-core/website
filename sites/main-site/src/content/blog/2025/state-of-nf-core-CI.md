@@ -74,7 +74,7 @@ It was so smooth I had to check several times that the tests are actually runnin
 
 Switching to the new solution was as simple as changing:
 
-```diff title="nf-core/modules/.github/workflows/nf-test.yml"
+```diff lang="yaml" title="nf-core/modules/.github/workflows/nf-test.yml"
 - runs-on: "self-hosted"
 + runs-on:
 +      - runs-on=${{ github.run_id }}
