@@ -511,7 +511,7 @@ These are usually boolean checks such as file existence, and nf-test prints fail
 
 :::tip{title="Examples" collapse}
 
-```nextflow
+```nextflow expandable
 {
     "sarscov2 nanopore [fastq_gz]": {
         "content": [

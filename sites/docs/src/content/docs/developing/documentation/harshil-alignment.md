@@ -12,9 +12,9 @@ There are many places where the format can be applied - it's not just code, it c
 
 ## Curly brackets
 
-:BadL
+Bad:
 
-```groovy
+```groovy error={1-3} whitespace="all"
 include { SAMTOOLS_SORT } from '../../../modules/nf-core/samtools/sort/main'
 include { SAMTOOLS_INDEX } from '../../../modules/nf-core/samtools/index/main'
 include { BAM_STATS_SAMTOOLS } from '../bam_stats_samtools/main'
@@ -22,7 +22,7 @@ include { BAM_STATS_SAMTOOLS } from '../bam_stats_samtools/main'
 
 Good:
 
-```groovy
+```groovy success={1-3} whitespace="all"
 include { SAMTOOLS_SORT      } from '../../../modules/nf-core/samtools/sort/main'
 include { SAMTOOLS_INDEX     } from '../../../modules/nf-core/samtools/index/main'
 include { BAM_STATS_SAMTOOLS } from '../bam_stats_samtools/main'
@@ -32,7 +32,7 @@ include { BAM_STATS_SAMTOOLS } from '../bam_stats_samtools/main'
 
 Bad:
 
-```groovy
+```groovy error={1-3} whitespace="all"
 stats = BAM_STATS_SAMTOOLS.out.stats    // channel: [ val(meta), [ stats ] ]
 flagstat = BAM_STATS_SAMTOOLS.out.flagstat // channel: [ val(meta), [ flagstat ] ]
 idxstats = BAM_STATS_SAMTOOLS.out.idxstats // channel: [ val(meta), [ idxstats ] ]
@@ -40,7 +40,7 @@ idxstats = BAM_STATS_SAMTOOLS.out.idxstats // channel: [ val(meta), [ idxstats ]
 
 Good:
 
-```groovy
+```groovy success={1-3} whitespace="all"
 stats    = BAM_STATS_SAMTOOLS.out.stats    // channel: [ val(meta), [ stats    ] ]
 flagstat = BAM_STATS_SAMTOOLS.out.flagstat // channel: [ val(meta), [ flagstat ] ]
 idxstats = BAM_STATS_SAMTOOLS.out.idxstats // channel: [ val(meta), [ idxstats ] ]
@@ -50,7 +50,7 @@ idxstats = BAM_STATS_SAMTOOLS.out.idxstats // channel: [ val(meta), [ idxstats ]
 
 Bad:
 
-```groovy
+```groovy error={1-4} whitespace="all"
 tuple val(meta), path("*.bam"), emit: bam, optional:true
 tuple val(meta), path("*.log"), emit: log
 tuple val(meta), path("*fastq.gz"), emit: fastq, optional:true
@@ -59,7 +59,7 @@ path  "versions.yml", emit: versions
 
 Good:
 
-```groovy
+```groovy success={1-4} whitespace="all"
 tuple val(meta), path("*.bam")    , emit: bam     , optional:true
 tuple val(meta), path("*.log")    , emit: log
 tuple val(meta), path("*fastq.gz"), emit: fastq   , optional:true
@@ -70,7 +70,7 @@ path  "versions.yml"              , emit: versions
 
 Bad:
 
-```groovy
+```groovy error={4} whitespace="all"
 take:
 print_version        // boolean: print version
 dump_parameters      // boolean: dump parameters
@@ -80,7 +80,7 @@ check_conda_channels // boolean: check conda channels
 
 Good:
 
-```groovy
+```groovy success={4} whitespace="all"
 take:
 print_version        // boolean: print version
 dump_parameters      // boolean: dump parameters

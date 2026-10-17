@@ -19,7 +19,7 @@ git switch -c <MY_NEW_MODULE_BRANCH>
 
 From the root of the repository, run:
 
-```bash
+```bash placeholder="<toolname>,<subcommand>"
 nf-core modules create <toolname>/<subcommand>
 ```
 

@@ -15,7 +15,7 @@ It assumes you have already contributed your module to the nf-core/modules repos
 If you generated your pipeline with [nf-core tools](https://nf-co.re/docs/nf-core-tools/pipelines/create) ([whether the pipeline is official or not](https://nf-co.re/docs/developing/external-use)), you can install a module directly.
 Run the following from the root of the repository, or pass `--dir`:
 
-```bash
+```bash placeholder="<toolname>,<subcommand>"
 nf-core modules install <toolname>/<subcommand>
 ```
 
