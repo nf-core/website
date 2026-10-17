@@ -120,10 +120,7 @@ export function expressiveCodePlugin() {
                 // and the rest on data.meta.
                 const lang: string = code.data?.lang ?? "";
                 const meta: string = code.data?.meta ?? "";
-                const value = ctx
-                    .textContent(code)
-                    .replace(/\n$/, "")
-                    .replace(/\t/g, " ".repeat(TAB_WIDTH));
+                const value = ctx.textContent(code).replace(/\n$/, "").replace(/\t/g, " ".repeat(TAB_WIDTH));
 
                 const { ec, baseStyles, themeStyles, jsModules } = await getRenderer();
                 const { renderedGroupAst, styles } = await ec.render({
