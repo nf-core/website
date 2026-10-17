@@ -1,5 +1,5 @@
 ---
-# Copied from docs/ReferencesExtension.md of nf-core/nf-core-utils 0.5.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+# Copied from docs/ReferencesExtension.md of nf-core/nf-core-utils 0.6.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
 title: "References Extension Guide"
 shortTitle: "References Extension Guide"
 weight: 3
