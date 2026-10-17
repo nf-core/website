@@ -345,7 +345,7 @@ void completionEmail(
 
 For production pipelines, include MultiQC reports as attachments:
 
-```nextflow title="advanced_email_notification.nf" {25-30}
+```nextflow title="advanced_email_notification.nf" focus={33-35,44}
 #!/usr/bin/env nextflow
 
 include { completionEmail } from 'plugin/nf-core-utils'
@@ -534,7 +534,7 @@ workflow.onError {
 
 Here's a comprehensive example showing all notification functions working together:
 
-```nextflow
+```nextflow expandable={62}
 #!/usr/bin/env nextflow
 
 include { completionSummary; completionEmail; imNotification } from 'plugin/nf-core-utils'

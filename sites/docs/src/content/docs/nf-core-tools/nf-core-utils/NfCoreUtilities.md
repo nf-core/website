@@ -469,7 +469,7 @@ Use `softwareVersionsToYAML()` as your primary version collection function. It h
 
 Let's put everything together in a comprehensive example that shows a production-ready nf-core pipeline using all major utility functions:
 
-```nextflow title="complete_nfcore_pipeline.nf" {5-12,17-19,26-28,41-43,60-76}
+```nextflow title="complete_nfcore_pipeline.nf" {5-12,17-19,21-22,42-43,53,60-81} expandable={45}
 #!/usr/bin/env nextflow
 
 nextflow.enable.dsl = 2

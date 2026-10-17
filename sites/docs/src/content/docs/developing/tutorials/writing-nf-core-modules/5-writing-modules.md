@@ -605,7 +605,7 @@ Run `nf-core modules lint` to auto-populate placeholders for every input and out
 :::tip{title="Examples" collapse}
 A complete `meta.yml` with ontologies and multiple meta entries (see below for `outputs:`):
 
-```yml
+```yml expandable
 name: bwamem2_mem
 description: Performs fastq alignment to a fasta reference using BWA
 keywords:

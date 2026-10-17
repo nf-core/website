@@ -331,7 +331,7 @@ The function is designed to be non-blocking. If conda is not available or checki
 
 Here's a comprehensive example showing all functions working together in a real pipeline:
 
-```nextflow title="complete_pipeline.nf" {7-9,15-17,27-35}
+```nextflow title="complete_pipeline.nf" {5-9,14-15,28-34,40-44}
 #!/usr/bin/env nextflow
 
 nextflow.enable.dsl = 2
