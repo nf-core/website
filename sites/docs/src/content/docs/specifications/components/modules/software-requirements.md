@@ -56,7 +56,7 @@ It is also possible for a new multi-tool container to be built and added to BioC
 - Once the PR has been accepted a container will get built and you can find it using a search tool in the `galaxy-tool-util conda` package
 
   ```console
-  mulled-search --destination quay singularity conda  --search pysam biopython  | grep "mulled"
+  $ mulled-search --destination quay singularity conda  --search pysam biopython  | grep "mulled"
   quay         mulled-v2-3a59640f3fe1ed11819984087d31d68600200c3f  185a25ca79923df85b58f42deb48f5ac4481e91f-0  docker pull quay.io/biocontainers/mulled-v2-3a59640f3fe1ed11819984087d31d68600200c3f:185a25ca79923df85b58f42deb48f5ac4481e91f-0
   singularity  mulled-v2-3a59640f3fe1ed11819984087d31d68600200c3f  185a25ca79923df85b58f42deb48f5ac4481e91f-0  wget https://depot.galaxyproject.org/singularity/mulled-v2-3a59640f3fe1ed11819984087d31d68600200c3f:185a25ca79923df85b58f42deb48f5ac4481e91f-0
   ```

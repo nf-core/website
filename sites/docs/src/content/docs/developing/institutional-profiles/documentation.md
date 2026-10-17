@@ -185,7 +185,7 @@ For issues with nf-core pipelines, see the [nf-core website](https://nf-co.re).
 
 Here is a complete example combining all sections:
 
-````markdown
+````markdown expandable={20}
 # Big University HPC Configuration
 
 Configuration profile for the Big University HPC cluster.
