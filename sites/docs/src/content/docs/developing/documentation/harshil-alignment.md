@@ -12,7 +12,7 @@ There are many places where the format can be applied - it's not just code, it c
 
 ## Curly brackets
 
-:BadL
+Bad:
 
 ```groovy
 include { SAMTOOLS_SORT } from '../../../modules/nf-core/samtools/sort/main'
