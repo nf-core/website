@@ -16,7 +16,6 @@ import { ExpressiveCode, ExpressiveCodeTheme, loadShikiTheme } from "expressive-
 import { pluginCodeblocks } from "starlight-codeblocks/expressive-code";
 import { defineHastPlugin } from "satteri";
 import { pluginCaptions } from "./ec-plugin-captions.ts";
-import { pluginFileIcons } from "./ec-plugin-file-icons.ts";
 
 const TAB_WIDTH = 2;
 
@@ -55,17 +54,15 @@ export function createEcConfig() {
         plugins: [
             pluginLineNumbers(),
             // starlight-codeblocks (https://ewels.github.io/starlight-codeblocks/): focus,
-            // line states, annotations, comment notation and more. Its file icons stay off,
-            // as pluginFileIcons below already covers them.
-            ...pluginCodeblocks({ fileIcons: false }),
-            pluginCaptions(),
-            pluginFileIcons([
-                {
-                    name: "nextflow",
-                    svg: nextflowSvg,
-                    extensions: [".nf", ".nf.test", ".config"],
+            // line states, annotations, comment notation, file icons and more. File icons
+            // use vscode-icons, with the Nextflow logo for Nextflow files.
+            ...pluginCodeblocks({
+                fileIcons: {
+                    icons: { nextflow: nextflowSvg },
+                    files: { ".nf": "nextflow", ".nf.test": "nextflow", ".config": "nextflow" },
                 },
-            ]),
+            }),
+            pluginCaptions(),
         ],
         shiki: {
             langAlias: LANG_ALIAS,
