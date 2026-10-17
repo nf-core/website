@@ -234,7 +234,7 @@ workflow {
 
 The function supports color formatting for better user experience:
 
-```nextflow title="colored_validation.nf" hl_lines="5"
+```nextflow title="colored_validation.nf" {5}
 #!/usr/bin/env nextflow
 
 include { checkProfileProvided } from 'plugin/nf-core-utils'
@@ -315,7 +315,7 @@ Let's explore how to integrate configuration validation into different types of 
 
 Here's the standard integration pattern for nf-core pipelines:
 
-```nextflow title="standard_nfcore_pipeline.nf" hl_lines="5-8"
+```nextflow title="standard_nfcore_pipeline.nf" {5-8}
 #!/usr/bin/env nextflow
 
 nextflow.enable.dsl = 2
@@ -509,7 +509,7 @@ When implementing configuration validation in your pipeline:
 
 Follow this standard pattern for nf-core pipelines:
 
-```nextflow title="recommended_pattern.nf" hl_lines="5-7"
+```nextflow title="recommended_pattern.nf" {5-7}
 #!/usr/bin/env nextflow
 
 nextflow.enable.dsl = 2
