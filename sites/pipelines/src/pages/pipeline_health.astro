@@ -25,9 +25,6 @@ const countTrue = (fn) => {
     ];
 };
 
-// AWS megatest of the latest release, from the Nextflow execution reports on S3: `success` (all runs of the latest
-// launch succeeded), `failed`, `no_report` (results but no execution report yet: still running, or stopped before
-// writing it), `not_tested` (no results: not launched, or still queued) or `unknown`
 const megatest = (p) => {
     const { tag_name: tag, tag_sha: sha, megatest: m } = p.releases?.find((r) => r.tag_name !== "dev") ?? {};
     const release = `${tag} (commit ${sha?.slice(0, 7)})`;
