@@ -53,7 +53,6 @@ export default {
     experimental: {
         svgOptimizer: svgoOptimizer(),
         incrementalBuild: true,
-        parallelPrerender: true,
     },
     integrations: [
         svelte(),
