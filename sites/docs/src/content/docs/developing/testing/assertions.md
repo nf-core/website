@@ -71,7 +71,7 @@ This checks a specific element (in this case `versions`) in the output channel o
 
 - [BCLCONVERT](https://github.com/nf-core/modules/blob/master/modules/nf-core/bclconvert/tests/main.nf.test)
 
-```groovy!
+```groovy
 assert file(process.out.interop[0][1].find { file(it).name == "IndexMetricsOut.bin" }).exists()
 ```
 
