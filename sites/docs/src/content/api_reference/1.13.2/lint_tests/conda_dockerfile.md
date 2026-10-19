@@ -16,7 +16,7 @@ environment inside the container.
 This linting test checks for the following:
 
 - All of the following lines are present in the file (where `PIPELINE` is your pipeline name):
-  > ```Dockerfile
+  > ```docker
   > FROM nfcore/base:VERSION
   > COPY environment.yml /
   > RUN conda env create --quiet -f /environment.yml && conda clean -a
