@@ -15,13 +15,13 @@ For a hands-on introduction, see the [Run your first pipeline](../get_started/ru
 
 All nf-core pipelines follow a consistent command structure:
 
-```bash placeholder="<pipeline>,<version>,<config-name>,<pipeline-parameters>"
+```bash placeholder="<pipeline>,<version>,<config>,<pipeline-parameters>"
 # [!ref] The pipeline name (for example, `nf-core/rnaseq` or `nf-core/sarek`).
 nextflow run nf-core/<pipeline> \
   # [!ref] The version, tag, or commit of the pipeline to execute (for example, `1.2.0`, `b52fa53`). Optional but recommended.
   -r <version> \
   # [!ref] Configuration profile(s) for software dependencies and execution environment.
-  -profile <config-name> \
+  -profile <config> \
   # [!ref] Pipeline-specific parameters and Nextflow options.
   <pipeline-parameters>
 ```
