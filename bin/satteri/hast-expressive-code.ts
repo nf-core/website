@@ -58,7 +58,8 @@ export function createEcConfig() {
             // use vscode-icons, with the Nextflow logo for Nextflow files.
             ...pluginCodeblocks({
                 fileIcons: {
-                    icons: { nextflow: nextflowSvg },
+                    // The logo uses currentColor; give it the Nextflow green.
+                    icons: { nextflow: nextflowSvg.replaceAll("currentColor", "rgb(13, 192, 157)") },
                     files: { ".nf": "nextflow", ".nf.test": "nextflow", ".config": "nextflow" },
                 },
             }),
