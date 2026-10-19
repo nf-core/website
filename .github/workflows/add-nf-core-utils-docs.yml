@@ -1,0 +1,84 @@
+name: Open PR with nf-core-utils docs based on webhook call
+# Called by .github/workflows/website-docs.yml of nf-core/nf-core-utils on each release, as for the nf-core/tools API docs
+on:
+  workflow_dispatch:
+    inputs:
+      ref_name:
+        description: "The nf-core-utils release tag"
+        required: true
+
+jobs:
+  nf-core-utils-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Checkout nf-core-utils code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          repository: "nf-core/nf-core-utils"
+          ref: ${{ inputs.ref_name }}
+          path: "nf-core-utils"
+
+      # The user docs, the other files in docs/ are for the developers of the plugin. Each doc gets the frontmatter of
+      # the docs pages: its first heading as title and label in the sidebar, and its place in the list as weight.
+      # In the nf-core/tools section, nf-core-utils comes after the CLI and API docs (parentWeight).
+      - name: Copy the docs
+        env:
+          REF_NAME: ${{ inputs.ref_name }}
+        run: |
+          target="$PWD/sites/docs/src/content/docs/nf-core-tools/nf-core-utils"
+          rm -rf "$target"
+          cd nf-core-utils/docs
+          weight=0
+          for file in NfCoreUtilities.md NextflowPipelineExtension.md ReferencesExtension.md utilities/*.md; do
+            weight=$((weight + 1))
+            title=$(grep -m 1 '^# ' "$file" | sed -e 's/^# *//' -e 's/\\/\\\\/g' -e 's/"/\\"/g')
+            mkdir -p "$target/$(dirname "$file")"
+            {
+              echo "---"
+              echo "# Copied from docs/$file of nf-core/nf-core-utils $REF_NAME by .github/workflows/add-nf-core-utils-docs.yml: edit it there"
+              echo "title: \"$title\""
+              echo "shortTitle: \"$title\""
+              echo "weight: $weight"
+              case "$file" in */*) ;; *) echo "parentWeight: 3" ;; esac
+              echo "---"
+              echo
+              cat "$file"
+            } > "$target/$file"
+          done
+
+      - name: remove nf-core-utils code
+        run: rm -rf nf-core-utils
+
+      - uses: j178/prek-action@1382ad72dea72f9d53832f2bcb65b3e87a947204 # v3.0.1
+        with:
+          install-only: true
+
+      - name: Run prek
+        id: pre-commit
+        run: git add . && prek run --all-files
+        continue-on-error: true
+
+      - name: Commit & push changes
+        id: commit-and-push
+        run: |
+          git config user.email "core@nf-co.re"
+          git config user.name "nf-core-bot"
+          git add .
+          git status
+          git commit -m "[automated] Update nf-core-utils docs for ${{ inputs.ref_name }}"
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Update nf-core-utils docs for ${{inputs.ref_name}}
+          title: Update nf-core-utils docs for ${{inputs.ref_name}}
+          body: |
+            This PR updates the nf-core-utils docs for ${{inputs.ref_name}}.
+            Please review the changes and merge if they look good.
+          branch: "update-nf-core-utils-docs-${{inputs.ref_name}}"
+          delete-branch: true
+          base: "main"
+          draft: false
