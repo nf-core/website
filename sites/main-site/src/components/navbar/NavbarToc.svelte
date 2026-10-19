@@ -16,7 +16,8 @@
     // indent the headings by level, as in the sidebar
     const minDepth = $derived(Math.min(...headings.map((heading) => heading.depth)));
 
-    // Bootstrap doesn't position the dropdowns of a navbar: shift the menu left when it would go past the screen
+    // Bootstrap turns Popper off for dropdowns inside a .navbar (the menu gets data-bs-popper="static"),
+    // so the menu stays aligned to the left of the button: shift it left when it would go past the screen
     let dropdown: HTMLElement;
     onMount(() => {
         const keepOnScreen = () => {
