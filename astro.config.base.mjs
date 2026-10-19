@@ -47,7 +47,7 @@ export default {
             name: "Maven Pro",
             cssVariable: "--font-maven-pro",
             fallbacks: ["sans-serif"],
-            weights: ["300 700"],
+            weights: ["400 700"],
         },
     ],
     experimental: {
