@@ -12,15 +12,15 @@ function rewriteHref(href: string): string {
     return node.properties.href;
 }
 
-test("links to markdown files become directory-style URLs", () => {
-    assert.equal(rewriteHref("page.md"), "page/");
-    assert.equal(rewriteHref("../subdir/page.mdx"), "../subdir/page/");
+test("links to markdown files lose their extension", () => {
+    assert.equal(rewriteHref("page.md"), "page");
+    assert.equal(rewriteHref("../subdir/page.mdx"), "../subdir/page");
 });
 
 test("anchors and queries are kept", () => {
     // nf-core/website#4484: these used to keep the .md and 404
-    assert.equal(rewriteHref("./vs-code.md#nf-core-extension-pack"), "./vs-code/#nf-core-extension-pack");
-    assert.equal(rewriteHref("page.md?tab=usage#a-note"), "page/?tab=usage#a-note");
+    assert.equal(rewriteHref("./vs-code.md#nf-core-extension-pack"), "./vs-code#nf-core-extension-pack");
+    assert.equal(rewriteHref("page.md?tab=usage#a-note"), "page?tab=usage#a-note");
 });
 
 test("other links are left alone", () => {
