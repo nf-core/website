@@ -15,6 +15,13 @@ The module must represent a single command
 as `<tool>` or single subcommand with distinct functionality as
 `<tool/subtool>`.
 
+## main\_nf\_patch\_reversible
+
+If the module is patched, the patch must be reverse-applicable to the
+current `main.nf` so the pre-patch content can be linted. A warning is
+issued, and the remaining `main_nf` checks are skipped for this module,
+if the patch is outdated or has been edited and can no longer be applied.
+
 ## main\_nf\_exists
 
 The `main.nf` file must exist.
