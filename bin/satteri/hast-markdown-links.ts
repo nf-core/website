@@ -6,6 +6,8 @@ import { defineHastPlugin } from "satteri";
 const GITHUB_URL = /^https:\/\/(raw\.)*github/;
 // the .md/.mdx extension, followed by the end of the link, an #anchor or a ?query
 const MARKDOWN_FILE = /\.mdx?(?=[#?]|$)/;
+// a path ending in .md/.mdx, followed by the end of the link, an #anchor or a ?query
+const MARKDOWN_FILE = /^([^?#]*)\.mdx?(?=[?#]|$)/;
 
 export const markdownLinksPlugin = defineHastPlugin({
     name: "markdown-links",

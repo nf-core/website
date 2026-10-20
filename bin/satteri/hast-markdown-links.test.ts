@@ -30,5 +30,7 @@ test("other links are left alone", () => {
         "https://github.com/nf-core/rnaseq/blob/3.14.0/docs/usage.md#a",
     );
     assert.equal(rewriteHref("notes.md.backup"), "notes.md.backup");
+    assert.equal(rewriteHref("page?file=notes.md"), "page?file=notes.md");
+    assert.equal(rewriteHref("#notes.md"), "#notes.md");
     assert.equal(rewriteHref("https://example.com/readme.mdown"), "https://example.com/readme.mdown");
 });
