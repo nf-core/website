@@ -18804,8 +18804,9 @@
     {
       "name": "authentict_deam2cont",
       "path": "modules/nf-core/authentict/deam2cont/meta.yml",
-      "tree_sha": "ffd8c4b8166ce33beebaea5e2fdf8b79615f88a3",
+      "tree_sha": "3759ce0bc299e1a154e405f397ae8e9976d34d64",
       "files": [
+        "modules/nf-core/authentict/deam2cont/.conda-lock/linux_amd64-bd-0a39db47b015fde7_1.txt",
         "modules/nf-core/authentict/deam2cont/environment.yml",
         "modules/nf-core/authentict/deam2cont/main.nf",
         "modules/nf-core/authentict/deam2cont/meta.yml",
@@ -19004,9 +19005,30 @@
         "maintainers": [
           "@scarlhoff",
           "@StephanePeyregne"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/authentict_samtools_numdifftools:0a39db47b015fde7",
+              "build_id": "bd-0a39db47b015fde7_1",
+              "scan_id": "sc-dae983fb1b2ffa43_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/authentict_samtools_numdifftools:e4af75e371bbe24e",
+              "build_id": "bd-e4af75e371bbe24e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/1e/1ee0e786f920e00278deca2cd60fef436b905fcd62f90e21edc7190ab16bc9e7/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/authentict/deam2cont/.conda-lock/linux_amd64-bd-0a39db47b015fde7_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "5909fc046b4b2062e4b4173808aacd2424e0866a"
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323"
     },
     {
       "name": "autocycler_cluster",
@@ -91598,8 +91620,10 @@
     {
       "name": "datavzrd",
       "path": "modules/nf-core/datavzrd/meta.yml",
-      "tree_sha": "b0dac2edd050b45bc0567d18901e9cd2d563ce5b",
+      "tree_sha": "0e8670c3a4367a281d2729e5cc0b6c3927c81275",
       "files": [
+        "modules/nf-core/datavzrd/.conda-lock/linux_amd64-bd-58fb85a496607c2e_2.txt",
+        "modules/nf-core/datavzrd/.conda-lock/linux_arm64-bd-ea056c1eb19e673d_2.txt",
         "modules/nf-core/datavzrd/environment.yml",
         "modules/nf-core/datavzrd/main.nf",
         "modules/nf-core/datavzrd/meta.yml",
@@ -91737,9 +91761,43 @@
         ],
         "maintainers": [
           "@famosab"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/datavzrd:2.75.3--58fb85a496607c2e",
+              "build_id": "bd-58fb85a496607c2e_2",
+              "scan_id": "sc-c45611f5e9c5e9d5_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/datavzrd:2.75.3--ea056c1eb19e673d",
+              "build_id": "bd-ea056c1eb19e673d_2",
+              "scan_id": "sc-94442d6d12353905_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/datavzrd:2.75.3--85f7f2f17cff24cf",
+              "build_id": "bd-85f7f2f17cff24cf_2",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/60/600b32995bbb9788982b9321aa24aec837819b9fccca915591a927c54724f4f6/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/datavzrd:2.75.3--0847a89d181f96be",
+              "build_id": "bd-0847a89d181f96be_2",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a1/a11d2125889dc943de75067c08ebd6848e37b11b35eea630351019b9bea8644f/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/datavzrd/.conda-lock/linux_amd64-bd-58fb85a496607c2e_2.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/datavzrd/.conda-lock/linux_arm64-bd-ea056c1eb19e673d_2.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "f9002b528cd66d4f0b787a0bd039bb04579a154a",
       "pipelines": [
         {
           "name": "variantbenchmarking",
@@ -98724,6 +98782,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -99736,6 +99802,10 @@
         {
           "name": "pacvar",
           "version": "1.1.0"
+        },
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
         },
         {
           "name": "raredisease",
@@ -133698,7 +133768,7 @@
     {
       "name": "fmhfunprofiler",
       "path": "modules/nf-core/fmhfunprofiler/meta.yml",
-      "tree_sha": "d6272f3b33df9af277c166979b39fe9e1ab9ab7c",
+      "tree_sha": "c959d00b0a8722c4a4beca9377091e1a09d488fb",
       "files": [
         "modules/nf-core/fmhfunprofiler/environment.yml",
         "modules/nf-core/fmhfunprofiler/main.nf",
@@ -133851,7 +133921,7 @@
           "@miraep8"
         ]
       },
-      "git_sha": "6eaecd6ef9bfc7faf313b1abeaae9b129795291d",
+      "git_sha": "bc6e6b1a6de4bbdabed41381dd0b4add635271b1",
       "pipelines": [
         {
           "name": "funcprofiler",
@@ -249165,6 +249235,185 @@
       ]
     },
     {
+      "name": "modkit_validate",
+      "path": "modules/nf-core/modkit/validate/meta.yml",
+      "tree_sha": "b60b224172f85da351f59a9536f1baf6f80a63ca",
+      "files": [
+        "modules/nf-core/modkit/validate/environment.yml",
+        "modules/nf-core/modkit/validate/main.nf",
+        "modules/nf-core/modkit/validate/meta.yml",
+        "modules/nf-core/modkit/validate/tests/main.nf.test",
+        "modules/nf-core/modkit/validate/tests/main.nf.test.snap",
+        "modules/nf-core/modkit/validate/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "modkit_validate",
+        "description": "Validate base modification calls in one or more mod-BAMs against a matched\nground-truth BED file containing the expected modification state at\nreference positions. Reports per-sample and combined confusion-matrix style\nstatistics (accuracy, filtered calls, probability distribution) as a\ntab-separated machine-parseable table.\n",
+        "keywords": [
+          "modkit",
+          "methylation",
+          "validate",
+          "nanopore",
+          "ont",
+          "modbam",
+          "ground-truth",
+          "benchmark"
+        ],
+        "tools": [
+          {
+            "modkit": {
+              "description": "A bioinformatics tool for working with modified bases in Oxford Nanopore sequencing data.",
+              "homepage": "https://github.com/nanoporetech/modkit",
+              "documentation": "https://nanoporetech.github.io/modkit/",
+              "tool_dev_url": "https://github.com/nanoporetech/modkit",
+              "licence": [
+                "Oxford Nanopore Technologies PLC. Public License Version 1.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample (or cohort) information\ne.g. `[ id:'test_run' ]`. The output inherits this meta.\n"
+              }
+            },
+            {
+              "bams": {
+                "type": "list",
+                "description": "One or more modBAM files. BAMs are paired 1:1 with `truth_beds`\nby list index and passed as repeated `--bam-and-bed <BAM> <BED>`\narguments to `modkit validate`.\n",
+                "pattern": "*.{bam,cram}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bais": {
+                "type": "list",
+                "description": "BAM indices (`.bai` or `.csi`) matching each input BAM.\n",
+                "pattern": "*.{bai,csi}",
+                "ontologies": []
+              }
+            },
+            {
+              "truth_beds": {
+                "type": "list",
+                "description": "Ground-truth BED files (one per BAM). The name field must be the\nshort modified base code (single letter or ChEBI ID) or `-` to\nmark a canonical reference position. Paired 1:1 with `bams`.\n",
+                "pattern": "*.{bed,bed.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test_run' ]`.\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "Machine-parseable validation summary produced by\n`modkit validate --out-filepath`. Columns include counts of\ncorrect / incorrect / filtered calls per class.\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test_run' ]`.\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "Optional modkit debug log (only emitted when `--log-filepath\n<name>.log` is passed via `ext.args`).\n",
+                  "pattern": "*.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_modkit": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "modkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "modkit --version | sed 's/modkit //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "modkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "modkit --version | sed 's/modkit //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@sahuno"
+        ],
+        "maintainers": [
+          "@sahuno"
+        ]
+      },
+      "git_sha": "b358e004a6f10277a0d1f7cda7036df7fc05b356"
+    },
+    {
       "name": "molkartgarage_clahe",
       "path": "modules/nf-core/molkartgarage/clahe/meta.yml",
       "tree_sha": "0be59ff87127178608e439dc052f5bece6b6344c",
@@ -296413,6 +296662,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -296720,6 +296973,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -343624,8 +343881,10 @@
     {
       "name": "samtools_addreplacerg",
       "path": "modules/nf-core/samtools/addreplacerg/meta.yml",
-      "tree_sha": "71eb3086ba0522e56157aa762ba4c1e35b9a814e",
+      "tree_sha": "c802e76ed0708f9318f8ef5fae7546d41cd396c3",
       "files": [
+        "modules/nf-core/samtools/addreplacerg/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/addreplacerg/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/addreplacerg/environment.yml",
         "modules/nf-core/samtools/addreplacerg/main.nf",
         "modules/nf-core/samtools/addreplacerg/meta.yml",
@@ -343849,15 +344108,51 @@
         "maintainers": [
           "@sainsachiko",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/addreplacerg/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/addreplacerg/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002"
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323"
     },
     {
       "name": "samtools_ampliconclip",
       "path": "modules/nf-core/samtools/ampliconclip/meta.yml",
-      "tree_sha": "97afc176fc638cbf362bc8e62d08f2d2c8ae840d",
+      "tree_sha": "67c8bfa048d2fb3f085ccc35dafdb6df1dce2f81",
       "files": [
+        "modules/nf-core/samtools/ampliconclip/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/ampliconclip/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/ampliconclip/environment.yml",
         "modules/nf-core/samtools/ampliconclip/main.nf",
         "modules/nf-core/samtools/ampliconclip/meta.yml",
@@ -344034,15 +344329,51 @@
         "maintainers": [
           "@bjohnnyd",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/ampliconclip/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/ampliconclip/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "4dd270e412e2a7e78761be38aafa5cfa1dcdf891"
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323"
     },
     {
       "name": "samtools_bam2fq",
       "path": "modules/nf-core/samtools/bam2fq/meta.yml",
-      "tree_sha": "9ae31188f8500bb5631799b1947ffb84f883f694",
+      "tree_sha": "26bbf5d66a52c188deeee0e286603b7ed5747250",
       "files": [
+        "modules/nf-core/samtools/bam2fq/.conda-lock/linux_amd64-bd-63148285647cb8e3_1.txt",
+        "modules/nf-core/samtools/bam2fq/.conda-lock/linux_arm64-bd-c19e08fccce0b773_1.txt",
         "modules/nf-core/samtools/bam2fq/environment.yml",
         "modules/nf-core/samtools/bam2fq/main.nf",
         "modules/nf-core/samtools/bam2fq/meta.yml",
@@ -344213,9 +344544,43 @@
         "maintainers": [
           "@lescai",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools_xz:c19e08fccce0b773",
+              "build_id": "bd-c19e08fccce0b773_1",
+              "scan_id": "sc-df980c754573bbc4_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools_xz:63148285647cb8e3",
+              "build_id": "bd-63148285647cb8e3_1",
+              "scan_id": "sc-a69a101ed715ded3_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools_xz:151918a69591dd1c",
+              "build_id": "bd-151918a69591dd1c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/39/39db574ae6434e35bfb06db773f8bb7496a8109e7cc49bedc9e9947b3c87c797/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools_xz:76020b13c810bb59",
+              "build_id": "bd-76020b13c810bb59_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/30/3046611514c8623f9e93fc5ae9811e6dd50a37c12b294c8b173f2be7d3468efd/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/bam2fq/.conda-lock/linux_amd64-bd-63148285647cb8e3_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/bam2fq/.conda-lock/linux_arm64-bd-c19e08fccce0b773_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "rnadnavar",
@@ -344230,8 +344595,10 @@
     {
       "name": "samtools_bedcov",
       "path": "modules/nf-core/samtools/bedcov/meta.yml",
-      "tree_sha": "ffb62fe2ad238d3f6626e177663da8c88dec6843",
+      "tree_sha": "96e3ebd1c7402414cd3f1f9acad5b81a3d35673e",
       "files": [
+        "modules/nf-core/samtools/bedcov/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/bedcov/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/bedcov/environment.yml",
         "modules/nf-core/samtools/bedcov/main.nf",
         "modules/nf-core/samtools/bedcov/meta.yml",
@@ -344427,15 +344794,51 @@
         "maintainers": [
           "@ToonRosseel",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/bedcov/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/bedcov/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002"
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323"
     },
     {
       "name": "samtools_bgzip",
       "path": "modules/nf-core/samtools/bgzip/meta.yml",
-      "tree_sha": "a447d6cb9b49da5f302ad4081fa78e472954721c",
+      "tree_sha": "8e79db12c832cf250278e82c8463be216626267d",
       "files": [
+        "modules/nf-core/samtools/bgzip/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/bgzip/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/bgzip/environment.yml",
         "modules/nf-core/samtools/bgzip/main.nf",
         "modules/nf-core/samtools/bgzip/meta.yml",
@@ -344566,15 +344969,51 @@
           "@charles-plessy",
           "@matthdsm",
           "@itrujnara"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/bgzip/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/bgzip/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002"
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323"
     },
     {
       "name": "samtools_calmd",
       "path": "modules/nf-core/samtools/calmd/meta.yml",
-      "tree_sha": "272d7003f81d57e418a74af3e87a62bd6cb4c544",
+      "tree_sha": "adfbe5d0bdffc558792b28fae59a6f93ee9f56eb",
       "files": [
+        "modules/nf-core/samtools/calmd/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/calmd/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/calmd/environment.yml",
         "modules/nf-core/samtools/calmd/main.nf",
         "modules/nf-core/samtools/calmd/meta.yml",
@@ -344719,9 +345158,43 @@
         "maintainers": [
           "@JackCurragh",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/calmd/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/calmd/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "rnastructurome",
@@ -344732,8 +345205,10 @@
     {
       "name": "samtools_cat",
       "path": "modules/nf-core/samtools/cat/meta.yml",
-      "tree_sha": "69207f7d8c03e452cc61e16e3be44b00a539805e",
+      "tree_sha": "f02a4b5621491818b383a2a69dca6448acbc994d",
       "files": [
+        "modules/nf-core/samtools/cat/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/cat/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/cat/environment.yml",
         "modules/nf-core/samtools/cat/main.nf",
         "modules/nf-core/samtools/cat/meta.yml",
@@ -344871,15 +345346,51 @@
         ],
         "maintainers": [
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/cat/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/cat/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002"
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323"
     },
     {
       "name": "samtools_collate",
       "path": "modules/nf-core/samtools/collate/meta.yml",
-      "tree_sha": "90e5748eb1376ce705e3b2c1f03e5a616a75ca02",
+      "tree_sha": "b5fc5d2b4bf6c1ee97a0a305c32bf240319d2cd6",
       "files": [
+        "modules/nf-core/samtools/collate/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/collate/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/collate/environment.yml",
         "modules/nf-core/samtools/collate/main.nf",
         "modules/nf-core/samtools/collate/meta.yml",
@@ -345061,9 +345572,43 @@
         "maintainers": [
           "@priyanka-surana",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/collate/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/collate/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "raredisease",
@@ -345074,8 +345619,10 @@
     {
       "name": "samtools_collatefastq",
       "path": "modules/nf-core/samtools/collatefastq/meta.yml",
-      "tree_sha": "766920049b07f52e793c4edae7f354e857060084",
+      "tree_sha": "16985e96747e4e8ebd45c341ad1e46808c49c1f4",
       "files": [
+        "modules/nf-core/samtools/collatefastq/.conda-lock/linux_amd64-bd-63148285647cb8e3_1.txt",
+        "modules/nf-core/samtools/collatefastq/.conda-lock/linux_arm64-bd-c19e08fccce0b773_1.txt",
         "modules/nf-core/samtools/collatefastq/environment.yml",
         "modules/nf-core/samtools/collatefastq/main.nf",
         "modules/nf-core/samtools/collatefastq/meta.yml",
@@ -345291,9 +345838,43 @@
           "@lescai",
           "@maxulysse",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools_xz:63148285647cb8e3",
+              "build_id": "bd-63148285647cb8e3_1",
+              "scan_id": "sc-a69a101ed715ded3_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools_xz:c19e08fccce0b773",
+              "build_id": "bd-c19e08fccce0b773_1",
+              "scan_id": "sc-df980c754573bbc4_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools_xz:76020b13c810bb59",
+              "build_id": "bd-76020b13c810bb59_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/30/3046611514c8623f9e93fc5ae9811e6dd50a37c12b294c8b173f2be7d3468efd/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools_xz:151918a69591dd1c",
+              "build_id": "bd-151918a69591dd1c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/39/39db574ae6434e35bfb06db773f8bb7496a8109e7cc49bedc9e9947b3c87c797/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/collatefastq/.conda-lock/linux_amd64-bd-63148285647cb8e3_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/collatefastq/.conda-lock/linux_arm64-bd-c19e08fccce0b773_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "bamtofastq",
@@ -345320,8 +345901,10 @@
     {
       "name": "samtools_consensus",
       "path": "modules/nf-core/samtools/consensus/meta.yml",
-      "tree_sha": "9a1b647eca59ba428b670e349ff53cfc3c12d979",
+      "tree_sha": "4d01d938557c4b03ceb075360d4636a6223d1134",
       "files": [
+        "modules/nf-core/samtools/consensus/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/consensus/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/consensus/environment.yml",
         "modules/nf-core/samtools/consensus/main.nf",
         "modules/nf-core/samtools/consensus/meta.yml",
@@ -345493,15 +346076,51 @@
         "maintainers": [
           "@LilyAnderssonLee",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/consensus/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/consensus/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002"
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323"
     },
     {
       "name": "samtools_convert",
       "path": "modules/nf-core/samtools/convert/meta.yml",
-      "tree_sha": "7ed34d79eafd674f6045d86854d5f7ab20d9a011",
+      "tree_sha": "bb563c003665ec3c60c003b3f81ab536b84d21ca",
       "files": [
+        "modules/nf-core/samtools/convert/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/convert/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/convert/environment.yml",
         "modules/nf-core/samtools/convert/main.nf",
         "modules/nf-core/samtools/convert/meta.yml",
@@ -345710,9 +346329,43 @@
           "@FriederikeHanssen",
           "@maxulysse",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/convert/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/convert/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "drop",
@@ -345739,8 +346392,10 @@
     {
       "name": "samtools_coverage",
       "path": "modules/nf-core/samtools/coverage/meta.yml",
-      "tree_sha": "fb9ea15ba65edd1fc6222f5ae9023537d5eb356e",
+      "tree_sha": "b6bb182fdf319b19ee7609f2baac0cf9aa05d7bb",
       "files": [
+        "modules/nf-core/samtools/coverage/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/coverage/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/coverage/environment.yml",
         "modules/nf-core/samtools/coverage/main.nf",
         "modules/nf-core/samtools/coverage/meta.yml",
@@ -345892,9 +346547,43 @@
         "maintainers": [
           "@LouisLeNezet",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/coverage/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/coverage/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "abotyper",
@@ -345909,8 +346598,10 @@
     {
       "name": "samtools_cramsize",
       "path": "modules/nf-core/samtools/cramsize/meta.yml",
-      "tree_sha": "1588e5bc67efb99c329c7dd6a5fb08c728479776",
+      "tree_sha": "3599ec6f2aae5c908ae802f00fae0605cedec04a",
       "files": [
+        "modules/nf-core/samtools/cramsize/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/cramsize/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/cramsize/environment.yml",
         "modules/nf-core/samtools/cramsize/main.nf",
         "modules/nf-core/samtools/cramsize/meta.yml",
@@ -346026,15 +346717,51 @@
         },
         "authors": [
           "@limrp"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/cramsize/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/cramsize/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002"
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323"
     },
     {
       "name": "samtools_depth",
       "path": "modules/nf-core/samtools/depth/meta.yml",
-      "tree_sha": "ed75e9672519c200dde005091b56bf15d0875350",
+      "tree_sha": "62a19c56c687061c6dd66c3230c8bbbeef05e307",
       "files": [
+        "modules/nf-core/samtools/depth/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/depth/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/depth/environment.yml",
         "modules/nf-core/samtools/depth/main.nf",
         "modules/nf-core/samtools/depth/meta.yml",
@@ -346202,9 +346929,43 @@
           "@louperelo",
           "@nevinwu",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/depth/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/depth/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "c813781fc152ecada5ea801a768a73bdd2cdf7dd",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "phaseimpute",
@@ -346215,8 +346976,10 @@
     {
       "name": "samtools_dict",
       "path": "modules/nf-core/samtools/dict/meta.yml",
-      "tree_sha": "57733e64296e2e3374dba73f0394f40cfb2a5a6a",
+      "tree_sha": "0ea047716985e6d647dbe6239d78b0e5c8f6cc37",
       "files": [
+        "modules/nf-core/samtools/dict/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/dict/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/dict/environment.yml",
         "modules/nf-core/samtools/dict/main.nf",
         "modules/nf-core/samtools/dict/meta.yml",
@@ -346336,9 +347099,43 @@
         "maintainers": [
           "@muffato",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/dict/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/dict/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "fastquorum",
@@ -346361,8 +347158,10 @@
     {
       "name": "samtools_faidx",
       "path": "modules/nf-core/samtools/faidx/meta.yml",
-      "tree_sha": "bc3710b4031d7dde829605bd24168b5ce17ab1da",
+      "tree_sha": "522ed0fd1b840e7707366bda8755823cb27d18e8",
       "files": [
+        "modules/nf-core/samtools/faidx/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/faidx/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/faidx/environment.yml",
         "modules/nf-core/samtools/faidx/main.nf",
         "modules/nf-core/samtools/faidx/meta.yml",
@@ -346555,9 +347354,43 @@
           "@maxulysse",
           "@phue",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/faidx/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/faidx/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "bamtofastq",
@@ -346708,8 +347541,10 @@
     {
       "name": "samtools_fasta",
       "path": "modules/nf-core/samtools/fasta/meta.yml",
-      "tree_sha": "47e41501dff9229f2540c2f55ccc79460394aa67",
+      "tree_sha": "0f2e78dda1b2bc5cf5861048aa0f403132bb8e29",
       "files": [
+        "modules/nf-core/samtools/fasta/.conda-lock/linux_amd64-bd-63148285647cb8e3_1.txt",
+        "modules/nf-core/samtools/fasta/.conda-lock/linux_arm64-bd-c19e08fccce0b773_1.txt",
         "modules/nf-core/samtools/fasta/environment.yml",
         "modules/nf-core/samtools/fasta/main.nf",
         "modules/nf-core/samtools/fasta/meta.yml",
@@ -346903,15 +347738,51 @@
         "maintainers": [
           "@priyanka-surana",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools_xz:c19e08fccce0b773",
+              "build_id": "bd-c19e08fccce0b773_1",
+              "scan_id": "sc-df980c754573bbc4_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools_xz:63148285647cb8e3",
+              "build_id": "bd-63148285647cb8e3_1",
+              "scan_id": "sc-a69a101ed715ded3_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools_xz:151918a69591dd1c",
+              "build_id": "bd-151918a69591dd1c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/39/39db574ae6434e35bfb06db773f8bb7496a8109e7cc49bedc9e9947b3c87c797/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools_xz:76020b13c810bb59",
+              "build_id": "bd-76020b13c810bb59_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/30/3046611514c8623f9e93fc5ae9811e6dd50a37c12b294c8b173f2be7d3468efd/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/fasta/.conda-lock/linux_amd64-bd-63148285647cb8e3_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/fasta/.conda-lock/linux_arm64-bd-c19e08fccce0b773_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002"
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323"
     },
     {
       "name": "samtools_fastq",
       "path": "modules/nf-core/samtools/fastq/meta.yml",
-      "tree_sha": "c1181e99bb055ef9471d10c3d05b4cbc73376dcf",
+      "tree_sha": "eecb91ad39324f596ae8cb3e5fdedc8cb2df68c9",
       "files": [
+        "modules/nf-core/samtools/fastq/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/fastq/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/fastq/environment.yml",
         "modules/nf-core/samtools/fastq/main.nf",
         "modules/nf-core/samtools/fastq/meta.yml",
@@ -347106,9 +347977,43 @@
           "@priyanka-surana",
           "@suzannejin",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/fastq/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/fastq/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "genomeassembler",
@@ -347147,8 +348052,10 @@
     {
       "name": "samtools_fixmate",
       "path": "modules/nf-core/samtools/fixmate/meta.yml",
-      "tree_sha": "b99af42613df3b3542b63b86b6ca433122fd44f1",
+      "tree_sha": "5aaec03f7536bfd7e71a70e899547d38638fc63e",
       "files": [
+        "modules/nf-core/samtools/fixmate/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/fixmate/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/fixmate/environment.yml",
         "modules/nf-core/samtools/fixmate/main.nf",
         "modules/nf-core/samtools/fixmate/meta.yml",
@@ -347377,9 +348284,43 @@
           "@sppearce",
           "@GallVp",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/fixmate/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/fixmate/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "rnastructurome",
@@ -347390,8 +348331,10 @@
     {
       "name": "samtools_flagstat",
       "path": "modules/nf-core/samtools/flagstat/meta.yml",
-      "tree_sha": "e7b08e7da092f7f59cd2c1b4c0a6b5fcb961c194",
+      "tree_sha": "4c8666388886e2ab7d12e36edc079fb53c10ddca",
       "files": [
+        "modules/nf-core/samtools/flagstat/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/flagstat/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/flagstat/environment.yml",
         "modules/nf-core/samtools/flagstat/main.nf",
         "modules/nf-core/samtools/flagstat/meta.yml",
@@ -347522,9 +348465,43 @@
         "maintainers": [
           "@drpatelh",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/flagstat/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/flagstat/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "abotyper",
@@ -347667,8 +348644,10 @@
     {
       "name": "samtools_getrg",
       "path": "modules/nf-core/samtools/getrg/meta.yml",
-      "tree_sha": "3cffdacd7996ff762a1afaf33027a8fcf3a994f2",
+      "tree_sha": "5ef342d4e12fea0f0a6dd9cf83bba1bd9670e811",
       "files": [
+        "modules/nf-core/samtools/getrg/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/getrg/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/getrg/environment.yml",
         "modules/nf-core/samtools/getrg/main.nf",
         "modules/nf-core/samtools/getrg/meta.yml",
@@ -347779,15 +348758,51 @@
         ],
         "maintainers": [
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/getrg/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/getrg/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002"
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323"
     },
     {
       "name": "samtools_idxstats",
       "path": "modules/nf-core/samtools/idxstats/meta.yml",
-      "tree_sha": "f936838060584f8e0385dc23d32ef6a3371d0d85",
+      "tree_sha": "2a484a84edfad734d3041fda59f3ea7b2658047a",
       "files": [
+        "modules/nf-core/samtools/idxstats/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/idxstats/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/idxstats/environment.yml",
         "modules/nf-core/samtools/idxstats/main.nf",
         "modules/nf-core/samtools/idxstats/meta.yml",
@@ -347919,9 +348934,43 @@
         "maintainers": [
           "@drpatelh",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/idxstats/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/idxstats/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "atacseq",
@@ -348064,8 +349113,10 @@
     {
       "name": "samtools_import",
       "path": "modules/nf-core/samtools/import/meta.yml",
-      "tree_sha": "10e3413716ad8a5bc4a4c24d9b7249d625da8847",
+      "tree_sha": "c50e5ddf90c34b68044b39d6e4da3f1e65216b61",
       "files": [
+        "modules/nf-core/samtools/import/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/import/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/import/environment.yml",
         "modules/nf-core/samtools/import/main.nf",
         "modules/nf-core/samtools/import/meta.yml",
@@ -348226,9 +349277,43 @@
         ],
         "maintainers": [
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/import/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/import/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "methylong",
@@ -348239,8 +349324,10 @@
     {
       "name": "samtools_index",
       "path": "modules/nf-core/samtools/index/meta.yml",
-      "tree_sha": "ae4ace569f289d3db9928c4050adbcf08fad3490",
+      "tree_sha": "b89425a03d8bcf0c950f0d1db81f1c5c8ab82217",
       "files": [
+        "modules/nf-core/samtools/index/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/index/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/index/environment.yml",
         "modules/nf-core/samtools/index/main.nf",
         "modules/nf-core/samtools/index/meta.yml",
@@ -348364,9 +349451,43 @@
           "@ewels",
           "@maxulysse",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/index/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/index/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "alleleexpression",
@@ -348613,8 +349734,10 @@
     {
       "name": "samtools_markdup",
       "path": "modules/nf-core/samtools/markdup/meta.yml",
-      "tree_sha": "380168d934aa2bec25c24160d431f027065601d6",
+      "tree_sha": "ad5daf42a0c3cc784531094e1392a5b29fe8b4eb",
       "files": [
+        "modules/nf-core/samtools/markdup/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/markdup/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/markdup/environment.yml",
         "modules/nf-core/samtools/markdup/main.nf",
         "modules/nf-core/samtools/markdup/meta.yml",
@@ -348797,9 +349920,43 @@
         "maintainers": [
           "@priyanka-surana",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/markdup/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/markdup/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "rnastructurome",
@@ -348810,8 +349967,10 @@
     {
       "name": "samtools_merge",
       "path": "modules/nf-core/samtools/merge/meta.yml",
-      "tree_sha": "06c91ade7aff05662968dd168f1635cd931715d1",
+      "tree_sha": "709a4548423d949937656813b424f95aa39f1b2c",
       "files": [
+        "modules/nf-core/samtools/merge/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/merge/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/merge/environment.yml",
         "modules/nf-core/samtools/merge/main.nf",
         "modules/nf-core/samtools/merge/meta.yml",
@@ -349022,9 +350181,43 @@
           "@FriederikeHanssen",
           "@ramprasadn",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/merge/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/merge/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "972faf6f783fe9685267220965a91690741465f9",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "bamtofastq",
@@ -349099,8 +350292,10 @@
     {
       "name": "samtools_mpileup",
       "path": "modules/nf-core/samtools/mpileup/meta.yml",
-      "tree_sha": "16558259dff72c44586c282c36f09944e4001f0a",
+      "tree_sha": "7e6e9b56ebd939f06dcbdb1f1b5219fe311db84b",
       "files": [
+        "modules/nf-core/samtools/mpileup/.conda-lock/linux_amd64-bd-63148285647cb8e3_1.txt",
+        "modules/nf-core/samtools/mpileup/.conda-lock/linux_arm64-bd-c19e08fccce0b773_1.txt",
         "modules/nf-core/samtools/mpileup/environment.yml",
         "modules/nf-core/samtools/mpileup/main.nf",
         "modules/nf-core/samtools/mpileup/meta.yml",
@@ -349264,9 +350459,43 @@
           "@joseespinosa",
           "@krannich479",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools_xz:63148285647cb8e3",
+              "build_id": "bd-63148285647cb8e3_1",
+              "scan_id": "sc-a69a101ed715ded3_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools_xz:c19e08fccce0b773",
+              "build_id": "bd-c19e08fccce0b773_1",
+              "scan_id": "sc-df980c754573bbc4_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools_xz:76020b13c810bb59",
+              "build_id": "bd-76020b13c810bb59_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/30/3046611514c8623f9e93fc5ae9811e6dd50a37c12b294c8b173f2be7d3468efd/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools_xz:151918a69591dd1c",
+              "build_id": "bd-151918a69591dd1c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/39/39db574ae6434e35bfb06db773f8bb7496a8109e7cc49bedc9e9947b3c87c797/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/mpileup/.conda-lock/linux_amd64-bd-63148285647cb8e3_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/mpileup/.conda-lock/linux_arm64-bd-c19e08fccce0b773_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "rnadnavar",
@@ -349281,8 +350510,10 @@
     {
       "name": "samtools_quickcheck",
       "path": "modules/nf-core/samtools/quickcheck/meta.yml",
-      "tree_sha": "1343527c2441c816b0df2403009db621a70cf382",
+      "tree_sha": "4ec135bfb77e57abaa267abc72ba38ce8decc33c",
       "files": [
+        "modules/nf-core/samtools/quickcheck/.conda-lock/linux_amd64-bd-e186722e17fa9b47_1.txt",
+        "modules/nf-core/samtools/quickcheck/.conda-lock/linux_arm64-bd-1cf42f16660c71d7_1.txt",
         "modules/nf-core/samtools/quickcheck/environment.yml",
         "modules/nf-core/samtools/quickcheck/main.nf",
         "modules/nf-core/samtools/quickcheck/meta.yml",
@@ -349439,15 +350670,51 @@
         "maintainers": [
           "@Krannich479",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/samtools_htslib:1.24--1cf42f16660c71d7",
+              "build_id": "bd-1cf42f16660c71d7_1",
+              "scan_id": "sc-93ebf9710e561449_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/samtools_htslib:1.24--e186722e17fa9b47",
+              "build_id": "bd-e186722e17fa9b47_1",
+              "scan_id": "sc-ccf0e6dad00be863_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/samtools_htslib:1.24--3f679c294c21f28a",
+              "build_id": "bd-3f679c294c21f28a_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/46/462b5db8b8a4a1a76a627a056a56a3c9ab344d51db27dee8fc89109d23bfea71/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/samtools_htslib:1.24--14d592495d129dba",
+              "build_id": "bd-14d592495d129dba_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e2/e24a5fac63cbb01e4f46d69e5e95de91157cc8caeb9fd9e50d5bad911b378bc3/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/quickcheck/.conda-lock/linux_amd64-bd-e186722e17fa9b47_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/quickcheck/.conda-lock/linux_arm64-bd-1cf42f16660c71d7_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002"
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323"
     },
     {
       "name": "samtools_reheader",
       "path": "modules/nf-core/samtools/reheader/meta.yml",
-      "tree_sha": "0e15538f2a7dd3893817f3d66596cb6ca7d1e139",
+      "tree_sha": "a549e8faf74dca44644d0c882191461eca344c8e",
       "files": [
+        "modules/nf-core/samtools/reheader/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/reheader/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/reheader/environment.yml",
         "modules/nf-core/samtools/reheader/main.nf",
         "modules/nf-core/samtools/reheader/meta.yml",
@@ -349577,9 +350844,43 @@
         "maintainers": [
           "@louislenezet",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/reheader/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/reheader/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "epigenomesegmentation",
@@ -349598,8 +350899,10 @@
     {
       "name": "samtools_samples",
       "path": "modules/nf-core/samtools/samples/meta.yml",
-      "tree_sha": "0a3d91cacfae00d7b681e82a854d23b8f25d54cb",
+      "tree_sha": "aa4a73cb2fbcd8a6d9cdb4c8a7d72453b5c60160",
       "files": [
+        "modules/nf-core/samtools/samples/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/samples/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/samples/environment.yml",
         "modules/nf-core/samtools/samples/main.nf",
         "modules/nf-core/samtools/samples/meta.yml",
@@ -349763,15 +351066,51 @@
         "maintainers": [
           "@Schmytzi",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/samples/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/samples/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002"
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323"
     },
     {
       "name": "samtools_sormadup",
       "path": "modules/nf-core/samtools/sormadup/meta.yml",
-      "tree_sha": "a2f4d3f94fa6705b8a81aa63fac11e65026110fe",
+      "tree_sha": "4571694273ee21141043024fe4ecdf8610dd8bca",
       "files": [
+        "modules/nf-core/samtools/sormadup/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/sormadup/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/sormadup/environment.yml",
         "modules/nf-core/samtools/sormadup/main.nf",
         "modules/nf-core/samtools/sormadup/meta.yml",
@@ -350047,15 +351386,51 @@
         ],
         "maintainers": [
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/sormadup/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/sormadup/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002"
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323"
     },
     {
       "name": "samtools_sort",
       "path": "modules/nf-core/samtools/sort/meta.yml",
-      "tree_sha": "3f3df2565cf3084ac4a4cf6c9915385b44d2b216",
+      "tree_sha": "e29ea459fb8b2703312c42c09921b5847ef39424",
       "files": [
+        "modules/nf-core/samtools/sort/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/sort/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/sort/environment.yml",
         "modules/nf-core/samtools/sort/main.nf",
         "modules/nf-core/samtools/sort/meta.yml",
@@ -350269,9 +351644,43 @@
           "@drpatelh",
           "@ewels",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/sort/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/sort/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "alleleexpression",
@@ -350450,8 +351859,10 @@
     {
       "name": "samtools_splitheader",
       "path": "modules/nf-core/samtools/splitheader/meta.yml",
-      "tree_sha": "f4ca94ee695facfd6dcff61a18117c53df89f403",
+      "tree_sha": "5b39a6702a012d0ee630c58b55fad259b4647508",
       "files": [
+        "modules/nf-core/samtools/splitheader/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/splitheader/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/splitheader/environment.yml",
         "modules/nf-core/samtools/splitheader/main.nf",
         "modules/nf-core/samtools/splitheader/meta.yml",
@@ -350632,15 +352043,51 @@
         "maintainers": [
           "@matthdsm",
           "@prototaxites"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/splitheader/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/splitheader/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002"
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323"
     },
     {
       "name": "samtools_stats",
       "path": "modules/nf-core/samtools/stats/meta.yml",
-      "tree_sha": "03398edd7db8e167bb6850e0ee98c5c34e27b94f",
+      "tree_sha": "977a6c37d4ab17ef543277c8ef17f4ee01fe77ce",
       "files": [
+        "modules/nf-core/samtools/stats/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/stats/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/stats/environment.yml",
         "modules/nf-core/samtools/stats/main.nf",
         "modules/nf-core/samtools/stats/meta.yml",
@@ -350798,9 +352245,43 @@
           "@FriederikeHanssen",
           "@ramprasadn",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/stats/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/stats/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "abotyper",
@@ -350967,10 +352448,10 @@
     {
       "name": "samtools_trimheader",
       "path": "modules/nf-core/samtools/trimheader/meta.yml",
-      "tree_sha": "cec7bc431321888e2515faf1ca0c39adcb6cb5f2",
+      "tree_sha": "3451924ef8cc7eec3920dedc0062ccbfb4717289",
       "files": [
-        "modules/nf-core/samtools/trimheader/.conda-lock/linux_amd64-bd-908360748e8474ae_1.txt",
-        "modules/nf-core/samtools/trimheader/.conda-lock/linux_arm64-bd-b51955e87a26cfe5_1.txt",
+        "modules/nf-core/samtools/trimheader/.conda-lock/linux_amd64-bd-6f88a5f6186c9e3d_1.txt",
+        "modules/nf-core/samtools/trimheader/.conda-lock/linux_arm64-bd-17eecc26054feffd_1.txt",
         "modules/nf-core/samtools/trimheader/environment.yml",
         "modules/nf-core/samtools/trimheader/main.nf",
         "modules/nf-core/samtools/trimheader/meta.yml",
@@ -351127,39 +352608,39 @@
         "containers": {
           "docker": {
             "linux/arm64": {
-              "name": "community.wave.seqera.io/library/gawk_htslib_samtools:b51955e87a26cfe5",
-              "build_id": "bd-b51955e87a26cfe5_1",
-              "scan_id": "sc-ab868510acd1f1e1_1"
+              "name": "community.wave.seqera.io/library/htslib_samtools_gawk:17eecc26054feffd",
+              "build_id": "bd-17eecc26054feffd_1",
+              "scan_id": "sc-e59f8b428c33730c_1"
             },
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/gawk_htslib_samtools:908360748e8474ae",
-              "build_id": "bd-908360748e8474ae_1",
-              "scan_id": "sc-ce0c86e6aa44a470_1"
+              "name": "community.wave.seqera.io/library/htslib_samtools_gawk:6f88a5f6186c9e3d",
+              "build_id": "bd-6f88a5f6186c9e3d_1",
+              "scan_id": "sc-f4b73dda40033e46_1"
             }
           },
           "singularity": {
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/gawk_htslib_samtools:4213d948f3b62e99",
-              "build_id": "bd-4213d948f3b62e99_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e9/e9b1a71ab018f22bcae5f800c93b0a6627516210c2f3bcf6c5a5af8cfdfb1d99/data"
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools_gawk:ab3d82dbcd65fb9f",
+              "build_id": "bd-ab3d82dbcd65fb9f_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a9/a95118435ca30f8b667ca92f1ba45a26abb58c1f09e96a9e7e8431c73ff9a299/data"
             },
             "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/gawk_htslib_samtools:090ced7c1f7ec6bd",
-              "build_id": "bd-090ced7c1f7ec6bd_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/3b/3bb445ced9ac40e4d726fd8bcdb86925f0bc813c51a1f8936323735a12e5c85d/data"
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools_gawk:843117b3b0fef205",
+              "build_id": "bd-843117b3b0fef205_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/b2/b203a5afcbd0ac1715e827dd847aefa3a6f8549e98542f199a161bb057eec055/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/samtools/trimheader/.conda-lock/linux_amd64-bd-908360748e8474ae_1.txt"
+              "lock_file": "modules/nf-core/samtools/trimheader/.conda-lock/linux_amd64-bd-6f88a5f6186c9e3d_1.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/samtools/trimheader/.conda-lock/linux_arm64-bd-b51955e87a26cfe5_1.txt"
+              "lock_file": "modules/nf-core/samtools/trimheader/.conda-lock/linux_arm64-bd-17eecc26054feffd_1.txt"
             }
           }
         }
       },
-      "git_sha": "6ea7380463eee30a9792c0199aed8fd976abbdc0",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "metatdenovo",
@@ -351170,8 +352651,10 @@
     {
       "name": "samtools_view",
       "path": "modules/nf-core/samtools/view/meta.yml",
-      "tree_sha": "3a5b73759de6ec51501cd4821f2efb17670e27e3",
+      "tree_sha": "1afb85aeea9ea2a5e48457c5ec142d2dff776d80",
       "files": [
+        "modules/nf-core/samtools/view/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt",
+        "modules/nf-core/samtools/view/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt",
         "modules/nf-core/samtools/view/environment.yml",
         "modules/nf-core/samtools/view/main.nf",
         "modules/nf-core/samtools/view/meta.yml",
@@ -351508,9 +352991,43 @@
           "@FriederikeHanssen",
           "@priyanka-surana",
           "@matthdsm"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--4003425f22200067",
+              "build_id": "bd-4003425f22200067_1",
+              "scan_id": "sc-e4e98f3040c05cc1_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools:1.24--8a3ddf262165ba23",
+              "build_id": "bd-8a3ddf262165ba23_1",
+              "scan_id": "sc-d80d6dd51882efb8_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--780d5da12d0c564c",
+              "build_id": "bd-780d5da12d0c564c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c2f02ceb8cbe5aa37930dcbc0de6f1d07dfb292178c7e780c44ab2f556bf829f/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools:1.24--b75d2385b98b4033",
+              "build_id": "bd-b75d2385b98b4033_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/24bce03b37817d335921ac9bf9d9ca0d485d3b18926413f643b10e45ec1f5c6b/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/samtools/view/.conda-lock/linux_amd64-bd-8a3ddf262165ba23_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/samtools/view/.conda-lock/linux_arm64-bd-4003425f22200067_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "4dd270e412e2a7e78761be38aafa5cfa1dcdf891",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "alleleexpression",
@@ -364892,8 +366409,10 @@
     {
       "name": "seqkit_concat",
       "path": "modules/nf-core/seqkit/concat/meta.yml",
-      "tree_sha": "172a291bc6bcdfd0deda6ec40375c3191a1b139f",
+      "tree_sha": "645024882900021dfa18beaf01eec9f82844f9d9",
       "files": [
+        "modules/nf-core/seqkit/concat/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
+        "modules/nf-core/seqkit/concat/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
         "modules/nf-core/seqkit/concat/environment.yml",
         "modules/nf-core/seqkit/concat/main.nf",
         "modules/nf-core/seqkit/concat/meta.yml",
@@ -365023,15 +366542,51 @@
         ],
         "maintainers": [
           "@DLBPointon"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--3bacfb68370dd835",
+              "build_id": "bd-3bacfb68370dd835_1",
+              "scan_id": "sc-6db894ea42d80db1_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--2c3127bb2c908a0f",
+              "build_id": "bd-2c3127bb2c908a0f_1",
+              "scan_id": "sc-2b1a53b788f59b66_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--8ff773a329ad66fe",
+              "build_id": "bd-8ff773a329ad66fe_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a2/a291e8a167829fe03cbd3072209b7c2a1f38a9bdb4908f764b4ca71868a954f1/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--e9990c3bf4e9909e",
+              "build_id": "bd-e9990c3bf4e9909e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/29/297e985dd395d87f9089b314dbe685ddce59fa0770c4d1f5e1009bc7b6ec7a8d/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/seqkit/concat/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/seqkit/concat/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "d07a945f421a4a91ce4e5a22db63e0e7f8741607"
+      "git_sha": "8fff8cfa10626a5acb7652f2212dec0cbc18b47e"
     },
     {
       "name": "seqkit_fq2fa",
       "path": "modules/nf-core/seqkit/fq2fa/meta.yml",
-      "tree_sha": "ca8035512c3701e5187c18885c9098b8eec18c42",
+      "tree_sha": "3e723631ddc44936942340528ec3b1008bc71e2d",
       "files": [
+        "modules/nf-core/seqkit/fq2fa/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
+        "modules/nf-core/seqkit/fq2fa/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
         "modules/nf-core/seqkit/fq2fa/environment.yml",
         "modules/nf-core/seqkit/fq2fa/main.nf",
         "modules/nf-core/seqkit/fq2fa/meta.yml",
@@ -365151,9 +366706,43 @@
         },
         "authors": [
           "@d-jch"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--3bacfb68370dd835",
+              "build_id": "bd-3bacfb68370dd835_1",
+              "scan_id": "sc-6db894ea42d80db1_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--2c3127bb2c908a0f",
+              "build_id": "bd-2c3127bb2c908a0f_1",
+              "scan_id": "sc-2b1a53b788f59b66_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--8ff773a329ad66fe",
+              "build_id": "bd-8ff773a329ad66fe_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a2/a291e8a167829fe03cbd3072209b7c2a1f38a9bdb4908f764b4ca71868a954f1/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--e9990c3bf4e9909e",
+              "build_id": "bd-e9990c3bf4e9909e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/29/297e985dd395d87f9089b314dbe685ddce59fa0770c4d1f5e1009bc7b6ec7a8d/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/seqkit/fq2fa/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/seqkit/fq2fa/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "d07a945f421a4a91ce4e5a22db63e0e7f8741607",
+      "git_sha": "8fff8cfa10626a5acb7652f2212dec0cbc18b47e",
       "pipelines": [
         {
           "name": "funcprofiler",
@@ -365168,8 +366757,10 @@
     {
       "name": "seqkit_fx2tab",
       "path": "modules/nf-core/seqkit/fx2tab/meta.yml",
-      "tree_sha": "5e8896d2ffcd9deac6e4a30497f7a30ea0f16470",
+      "tree_sha": "b1ea5545669a77fde0ad85244865b1c299460926",
       "files": [
+        "modules/nf-core/seqkit/fx2tab/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
+        "modules/nf-core/seqkit/fx2tab/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
         "modules/nf-core/seqkit/fx2tab/environment.yml",
         "modules/nf-core/seqkit/fx2tab/main.nf",
         "modules/nf-core/seqkit/fx2tab/meta.yml",
@@ -365300,9 +366891,43 @@
         ],
         "maintainers": [
           "@heuermh"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--2c3127bb2c908a0f",
+              "build_id": "bd-2c3127bb2c908a0f_1",
+              "scan_id": "sc-2b1a53b788f59b66_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--3bacfb68370dd835",
+              "build_id": "bd-3bacfb68370dd835_1",
+              "scan_id": "sc-6db894ea42d80db1_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--8ff773a329ad66fe",
+              "build_id": "bd-8ff773a329ad66fe_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a2/a291e8a167829fe03cbd3072209b7c2a1f38a9bdb4908f764b4ca71868a954f1/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--e9990c3bf4e9909e",
+              "build_id": "bd-e9990c3bf4e9909e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/29/297e985dd395d87f9089b314dbe685ddce59fa0770c4d1f5e1009bc7b6ec7a8d/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/seqkit/fx2tab/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/seqkit/fx2tab/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "d07a945f421a4a91ce4e5a22db63e0e7f8741607",
+      "git_sha": "8fff8cfa10626a5acb7652f2212dec0cbc18b47e",
       "pipelines": [
         {
           "name": "circrna",
@@ -365313,8 +366938,10 @@
     {
       "name": "seqkit_grep",
       "path": "modules/nf-core/seqkit/grep/meta.yml",
-      "tree_sha": "c1e1ff8378c0a75c398ea650aadb5833fb02500e",
+      "tree_sha": "18750a9764de5725ac66ad7915fc05a3b15c7473",
       "files": [
+        "modules/nf-core/seqkit/grep/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
+        "modules/nf-core/seqkit/grep/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
         "modules/nf-core/seqkit/grep/environment.yml",
         "modules/nf-core/seqkit/grep/main.nf",
         "modules/nf-core/seqkit/grep/meta.yml",
@@ -365456,9 +367083,43 @@
         ],
         "maintainers": [
           "@Joon-Klaps"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--3bacfb68370dd835",
+              "build_id": "bd-3bacfb68370dd835_1",
+              "scan_id": "sc-6db894ea42d80db1_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--2c3127bb2c908a0f",
+              "build_id": "bd-2c3127bb2c908a0f_1",
+              "scan_id": "sc-2b1a53b788f59b66_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--e9990c3bf4e9909e",
+              "build_id": "bd-e9990c3bf4e9909e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/29/297e985dd395d87f9089b314dbe685ddce59fa0770c4d1f5e1009bc7b6ec7a8d/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--8ff773a329ad66fe",
+              "build_id": "bd-8ff773a329ad66fe_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a2/a291e8a167829fe03cbd3072209b7c2a1f38a9bdb4908f764b4ca71868a954f1/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/seqkit/grep/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/seqkit/grep/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "504cddfc189c20124336b8f2c88cc97dbd543928",
+      "git_sha": "8fff8cfa10626a5acb7652f2212dec0cbc18b47e",
       "pipelines": [
         {
           "name": "metatdenovo",
@@ -365477,8 +367138,10 @@
     {
       "name": "seqkit_head",
       "path": "modules/nf-core/seqkit/head/meta.yml",
-      "tree_sha": "bdf31c6c730f45571e92bb95da7d63be9a1af5f2",
+      "tree_sha": "4130ac116cd1fe69a475899ab8c0ee75862ce541",
       "files": [
+        "modules/nf-core/seqkit/head/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
+        "modules/nf-core/seqkit/head/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
         "modules/nf-core/seqkit/head/environment.yml",
         "modules/nf-core/seqkit/head/main.nf",
         "modules/nf-core/seqkit/head/meta.yml",
@@ -365615,9 +367278,43 @@
         ],
         "maintainers": [
           "@zachary-foster"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--2c3127bb2c908a0f",
+              "build_id": "bd-2c3127bb2c908a0f_1",
+              "scan_id": "sc-2b1a53b788f59b66_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--3bacfb68370dd835",
+              "build_id": "bd-3bacfb68370dd835_1",
+              "scan_id": "sc-6db894ea42d80db1_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--e9990c3bf4e9909e",
+              "build_id": "bd-e9990c3bf4e9909e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/29/297e985dd395d87f9089b314dbe685ddce59fa0770c4d1f5e1009bc7b6ec7a8d/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--8ff773a329ad66fe",
+              "build_id": "bd-8ff773a329ad66fe_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a2/a291e8a167829fe03cbd3072209b7c2a1f38a9bdb4908f764b4ca71868a954f1/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/seqkit/head/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/seqkit/head/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "d07a945f421a4a91ce4e5a22db63e0e7f8741607",
+      "git_sha": "8fff8cfa10626a5acb7652f2212dec0cbc18b47e",
       "pipelines": [
         {
           "name": "pathogensurveillance",
@@ -365628,8 +367325,10 @@
     {
       "name": "seqkit_pair",
       "path": "modules/nf-core/seqkit/pair/meta.yml",
-      "tree_sha": "83c17332a0c7d6b75834efa8db4fb0fc2a046f77",
+      "tree_sha": "7cc2839093ca63270ab42fa5101ba122a0e633e4",
       "files": [
+        "modules/nf-core/seqkit/pair/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
+        "modules/nf-core/seqkit/pair/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
         "modules/nf-core/seqkit/pair/environment.yml",
         "modules/nf-core/seqkit/pair/main.nf",
         "modules/nf-core/seqkit/pair/meta.yml",
@@ -365779,15 +367478,51 @@
           "@sateeshperi",
           "@mjcipriano",
           "@hseabolt"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--3bacfb68370dd835",
+              "build_id": "bd-3bacfb68370dd835_1",
+              "scan_id": "sc-6db894ea42d80db1_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--2c3127bb2c908a0f",
+              "build_id": "bd-2c3127bb2c908a0f_1",
+              "scan_id": "sc-2b1a53b788f59b66_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--e9990c3bf4e9909e",
+              "build_id": "bd-e9990c3bf4e9909e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/29/297e985dd395d87f9089b314dbe685ddce59fa0770c4d1f5e1009bc7b6ec7a8d/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--8ff773a329ad66fe",
+              "build_id": "bd-8ff773a329ad66fe_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a2/a291e8a167829fe03cbd3072209b7c2a1f38a9bdb4908f764b4ca71868a954f1/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/seqkit/pair/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/seqkit/pair/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "d07a945f421a4a91ce4e5a22db63e0e7f8741607"
+      "git_sha": "8fff8cfa10626a5acb7652f2212dec0cbc18b47e"
     },
     {
       "name": "seqkit_replace",
       "path": "modules/nf-core/seqkit/replace/meta.yml",
-      "tree_sha": "bda66673735ddebe1f124af4b9151775ae1e79fe",
+      "tree_sha": "4e638d80880ef89bf0243945288b3de59d46dbc9",
       "files": [
+        "modules/nf-core/seqkit/replace/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
+        "modules/nf-core/seqkit/replace/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
         "modules/nf-core/seqkit/replace/environment.yml",
         "modules/nf-core/seqkit/replace/main.nf",
         "modules/nf-core/seqkit/replace/meta.yml",
@@ -365921,9 +367656,43 @@
         ],
         "maintainers": [
           "@mjcipriano"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--3bacfb68370dd835",
+              "build_id": "bd-3bacfb68370dd835_1",
+              "scan_id": "sc-6db894ea42d80db1_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--2c3127bb2c908a0f",
+              "build_id": "bd-2c3127bb2c908a0f_1",
+              "scan_id": "sc-2b1a53b788f59b66_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--e9990c3bf4e9909e",
+              "build_id": "bd-e9990c3bf4e9909e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/29/297e985dd395d87f9089b314dbe685ddce59fa0770c4d1f5e1009bc7b6ec7a8d/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--8ff773a329ad66fe",
+              "build_id": "bd-8ff773a329ad66fe_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a2/a291e8a167829fe03cbd3072209b7c2a1f38a9bdb4908f764b4ca71868a954f1/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/seqkit/replace/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/seqkit/replace/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "d07a945f421a4a91ce4e5a22db63e0e7f8741607",
+      "git_sha": "8fff8cfa10626a5acb7652f2212dec0cbc18b47e",
       "pipelines": [
         {
           "name": "proteinannotator",
@@ -365950,8 +367719,10 @@
     {
       "name": "seqkit_rmdup",
       "path": "modules/nf-core/seqkit/rmdup/meta.yml",
-      "tree_sha": "146a047c8999727681d182e4ec2599ca0465e229",
+      "tree_sha": "e3e4ae009fb37405bfe0bb9adbd300cd5e4d2d65",
       "files": [
+        "modules/nf-core/seqkit/rmdup/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
+        "modules/nf-core/seqkit/rmdup/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
         "modules/nf-core/seqkit/rmdup/environment.yml",
         "modules/nf-core/seqkit/rmdup/main.nf",
         "modules/nf-core/seqkit/rmdup/meta.yml",
@@ -366099,9 +367870,43 @@
         ],
         "maintainers": [
           "@GallVp"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--2c3127bb2c908a0f",
+              "build_id": "bd-2c3127bb2c908a0f_1",
+              "scan_id": "sc-2b1a53b788f59b66_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--3bacfb68370dd835",
+              "build_id": "bd-3bacfb68370dd835_1",
+              "scan_id": "sc-6db894ea42d80db1_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--e9990c3bf4e9909e",
+              "build_id": "bd-e9990c3bf4e9909e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/29/297e985dd395d87f9089b314dbe685ddce59fa0770c4d1f5e1009bc7b6ec7a8d/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--8ff773a329ad66fe",
+              "build_id": "bd-8ff773a329ad66fe_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a2/a291e8a167829fe03cbd3072209b7c2a1f38a9bdb4908f764b4ca71868a954f1/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/seqkit/rmdup/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/seqkit/rmdup/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "d07a945f421a4a91ce4e5a22db63e0e7f8741607",
+      "git_sha": "8fff8cfa10626a5acb7652f2212dec0cbc18b47e",
       "pipelines": [
         {
           "name": "proteinannotator",
@@ -366116,8 +367921,10 @@
     {
       "name": "seqkit_sample",
       "path": "modules/nf-core/seqkit/sample/meta.yml",
-      "tree_sha": "74d9bd7466537f39af154334a85814cdb82954e0",
+      "tree_sha": "1583402767ff65edf6f80c6e741a1910ba5f9402",
       "files": [
+        "modules/nf-core/seqkit/sample/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
+        "modules/nf-core/seqkit/sample/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
         "modules/nf-core/seqkit/sample/environment.yml",
         "modules/nf-core/seqkit/sample/main.nf",
         "modules/nf-core/seqkit/sample/meta.yml",
@@ -366249,15 +368056,51 @@
         ],
         "maintainers": [
           "@emmcauley"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--3bacfb68370dd835",
+              "build_id": "bd-3bacfb68370dd835_1",
+              "scan_id": "sc-6db894ea42d80db1_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--2c3127bb2c908a0f",
+              "build_id": "bd-2c3127bb2c908a0f_1",
+              "scan_id": "sc-2b1a53b788f59b66_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--e9990c3bf4e9909e",
+              "build_id": "bd-e9990c3bf4e9909e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/29/297e985dd395d87f9089b314dbe685ddce59fa0770c4d1f5e1009bc7b6ec7a8d/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--8ff773a329ad66fe",
+              "build_id": "bd-8ff773a329ad66fe_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a2/a291e8a167829fe03cbd3072209b7c2a1f38a9bdb4908f764b4ca71868a954f1/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/seqkit/sample/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/seqkit/sample/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "d07a945f421a4a91ce4e5a22db63e0e7f8741607"
+      "git_sha": "8fff8cfa10626a5acb7652f2212dec0cbc18b47e"
     },
     {
       "name": "seqkit_sana",
       "path": "modules/nf-core/seqkit/sana/meta.yml",
-      "tree_sha": "dcd24248540ec13073cad68df3fafc8c49d315a2",
+      "tree_sha": "d4a7b19291ca51f93c4a4a1b28f8d90cb8e883cc",
       "files": [
+        "modules/nf-core/seqkit/sana/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
+        "modules/nf-core/seqkit/sana/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
         "modules/nf-core/seqkit/sana/environment.yml",
         "modules/nf-core/seqkit/sana/main.nf",
         "modules/nf-core/seqkit/sana/meta.yml",
@@ -366404,15 +368247,51 @@
         ],
         "maintainers": [
           "@vagkaratzas"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--2c3127bb2c908a0f",
+              "build_id": "bd-2c3127bb2c908a0f_1",
+              "scan_id": "sc-2b1a53b788f59b66_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--3bacfb68370dd835",
+              "build_id": "bd-3bacfb68370dd835_1",
+              "scan_id": "sc-6db894ea42d80db1_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--e9990c3bf4e9909e",
+              "build_id": "bd-e9990c3bf4e9909e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/29/297e985dd395d87f9089b314dbe685ddce59fa0770c4d1f5e1009bc7b6ec7a8d/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--8ff773a329ad66fe",
+              "build_id": "bd-8ff773a329ad66fe_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a2/a291e8a167829fe03cbd3072209b7c2a1f38a9bdb4908f764b4ca71868a954f1/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/seqkit/sana/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/seqkit/sana/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "d07a945f421a4a91ce4e5a22db63e0e7f8741607"
+      "git_sha": "8fff8cfa10626a5acb7652f2212dec0cbc18b47e"
     },
     {
       "name": "seqkit_seq",
       "path": "modules/nf-core/seqkit/seq/meta.yml",
-      "tree_sha": "3bf3a084ed35c325d4a8cd4f9bcbce6320c565d0",
+      "tree_sha": "d871c5259af0d3a52414bcec98857b9c2f808366",
       "files": [
+        "modules/nf-core/seqkit/seq/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
+        "modules/nf-core/seqkit/seq/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
         "modules/nf-core/seqkit/seq/environment.yml",
         "modules/nf-core/seqkit/seq/main.nf",
         "modules/nf-core/seqkit/seq/meta.yml",
@@ -366545,9 +368424,43 @@
         ],
         "maintainers": [
           "@GallVp"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--3bacfb68370dd835",
+              "build_id": "bd-3bacfb68370dd835_1",
+              "scan_id": "sc-6db894ea42d80db1_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--2c3127bb2c908a0f",
+              "build_id": "bd-2c3127bb2c908a0f_1",
+              "scan_id": "sc-2b1a53b788f59b66_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--e9990c3bf4e9909e",
+              "build_id": "bd-e9990c3bf4e9909e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/29/297e985dd395d87f9089b314dbe685ddce59fa0770c4d1f5e1009bc7b6ec7a8d/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--8ff773a329ad66fe",
+              "build_id": "bd-8ff773a329ad66fe_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a2/a291e8a167829fe03cbd3072209b7c2a1f38a9bdb4908f764b4ca71868a954f1/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/seqkit/seq/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/seqkit/seq/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "d07a945f421a4a91ce4e5a22db63e0e7f8741607",
+      "git_sha": "8fff8cfa10626a5acb7652f2212dec0cbc18b47e",
       "pipelines": [
         {
           "name": "funcscan",
@@ -366570,8 +368483,10 @@
     {
       "name": "seqkit_sliding",
       "path": "modules/nf-core/seqkit/sliding/meta.yml",
-      "tree_sha": "7f550377d8c001db55a2cfb7b9c88a82963119ab",
+      "tree_sha": "ce5980d40d224cb792da8676900b221329ce1e93",
       "files": [
+        "modules/nf-core/seqkit/sliding/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
+        "modules/nf-core/seqkit/sliding/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
         "modules/nf-core/seqkit/sliding/environment.yml",
         "modules/nf-core/seqkit/sliding/main.nf",
         "modules/nf-core/seqkit/sliding/meta.yml",
@@ -366697,9 +368612,43 @@
         ],
         "maintainers": [
           "@DLBPointon"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--2c3127bb2c908a0f",
+              "build_id": "bd-2c3127bb2c908a0f_1",
+              "scan_id": "sc-2b1a53b788f59b66_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--3bacfb68370dd835",
+              "build_id": "bd-3bacfb68370dd835_1",
+              "scan_id": "sc-6db894ea42d80db1_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--e9990c3bf4e9909e",
+              "build_id": "bd-e9990c3bf4e9909e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/29/297e985dd395d87f9089b314dbe685ddce59fa0770c4d1f5e1009bc7b6ec7a8d/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--8ff773a329ad66fe",
+              "build_id": "bd-8ff773a329ad66fe_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a2/a291e8a167829fe03cbd3072209b7c2a1f38a9bdb4908f764b4ca71868a954f1/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/seqkit/sliding/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/seqkit/sliding/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "d07a945f421a4a91ce4e5a22db63e0e7f8741607",
+      "git_sha": "8fff8cfa10626a5acb7652f2212dec0cbc18b47e",
       "pipelines": [
         {
           "name": "pathogensurveillance",
@@ -366710,8 +368659,10 @@
     {
       "name": "seqkit_sort",
       "path": "modules/nf-core/seqkit/sort/meta.yml",
-      "tree_sha": "7e69bbc975291032fa4beec6abc5e24a17e2eeff",
+      "tree_sha": "94fd4db83f7ad4859abe75c196b7b720b9661ac5",
       "files": [
+        "modules/nf-core/seqkit/sort/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
+        "modules/nf-core/seqkit/sort/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
         "modules/nf-core/seqkit/sort/environment.yml",
         "modules/nf-core/seqkit/sort/main.nf",
         "modules/nf-core/seqkit/sort/meta.yml",
@@ -366837,9 +368788,43 @@
         ],
         "maintainers": [
           "@GallVp"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--3bacfb68370dd835",
+              "build_id": "bd-3bacfb68370dd835_1",
+              "scan_id": "sc-6db894ea42d80db1_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--2c3127bb2c908a0f",
+              "build_id": "bd-2c3127bb2c908a0f_1",
+              "scan_id": "sc-2b1a53b788f59b66_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--e9990c3bf4e9909e",
+              "build_id": "bd-e9990c3bf4e9909e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/29/297e985dd395d87f9089b314dbe685ddce59fa0770c4d1f5e1009bc7b6ec7a8d/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--8ff773a329ad66fe",
+              "build_id": "bd-8ff773a329ad66fe_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a2/a291e8a167829fe03cbd3072209b7c2a1f38a9bdb4908f764b4ca71868a954f1/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/seqkit/sort/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/seqkit/sort/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "d07a945f421a4a91ce4e5a22db63e0e7f8741607",
+      "git_sha": "8fff8cfa10626a5acb7652f2212dec0cbc18b47e",
       "pipelines": [
         {
           "name": "genomeqc",
@@ -366850,8 +368835,10 @@
     {
       "name": "seqkit_split2",
       "path": "modules/nf-core/seqkit/split2/meta.yml",
-      "tree_sha": "bbc9dae668e8df33963eaa8f8024815856a9e39a",
+      "tree_sha": "4fe4c875c16d1775648daf1a2fca4cb0ac4b5bc9",
       "files": [
+        "modules/nf-core/seqkit/split2/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
+        "modules/nf-core/seqkit/split2/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
         "modules/nf-core/seqkit/split2/environment.yml",
         "modules/nf-core/seqkit/split2/main.nf",
         "modules/nf-core/seqkit/split2/meta.yml",
@@ -366973,9 +368960,43 @@
         "maintainers": [
           "@FriederikeHanssen",
           "@heuermh"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--3bacfb68370dd835",
+              "build_id": "bd-3bacfb68370dd835_1",
+              "scan_id": "sc-6db894ea42d80db1_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--2c3127bb2c908a0f",
+              "build_id": "bd-2c3127bb2c908a0f_1",
+              "scan_id": "sc-2b1a53b788f59b66_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--e9990c3bf4e9909e",
+              "build_id": "bd-e9990c3bf4e9909e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/29/297e985dd395d87f9089b314dbe685ddce59fa0770c4d1f5e1009bc7b6ec7a8d/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--8ff773a329ad66fe",
+              "build_id": "bd-8ff773a329ad66fe_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a2/a291e8a167829fe03cbd3072209b7c2a1f38a9bdb4908f764b4ca71868a954f1/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/seqkit/split2/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/seqkit/split2/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "d07a945f421a4a91ce4e5a22db63e0e7f8741607",
+      "git_sha": "8fff8cfa10626a5acb7652f2212dec0cbc18b47e",
       "pipelines": [
         {
           "name": "callingcards",
@@ -366990,8 +369011,10 @@
     {
       "name": "seqkit_stats",
       "path": "modules/nf-core/seqkit/stats/meta.yml",
-      "tree_sha": "925fb3773084c6792792621e25386df4b2cc0a38",
+      "tree_sha": "ffdd48408bc65eb93dfcc897411af8edfa31ef1a",
       "files": [
+        "modules/nf-core/seqkit/stats/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
+        "modules/nf-core/seqkit/stats/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
         "modules/nf-core/seqkit/stats/environment.yml",
         "modules/nf-core/seqkit/stats/main.nf",
         "modules/nf-core/seqkit/stats/meta.yml",
@@ -367121,9 +369144,43 @@
         "maintainers": [
           "@Midnighter",
           "@heuermh"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--2c3127bb2c908a0f",
+              "build_id": "bd-2c3127bb2c908a0f_1",
+              "scan_id": "sc-2b1a53b788f59b66_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--3bacfb68370dd835",
+              "build_id": "bd-3bacfb68370dd835_1",
+              "scan_id": "sc-6db894ea42d80db1_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--e9990c3bf4e9909e",
+              "build_id": "bd-e9990c3bf4e9909e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/29/297e985dd395d87f9089b314dbe685ddce59fa0770c4d1f5e1009bc7b6ec7a8d/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--8ff773a329ad66fe",
+              "build_id": "bd-8ff773a329ad66fe_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a2/a291e8a167829fe03cbd3072209b7c2a1f38a9bdb4908f764b4ca71868a954f1/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/seqkit/stats/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/seqkit/stats/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "d07a945f421a4a91ce4e5a22db63e0e7f8741607",
+      "git_sha": "8fff8cfa10626a5acb7652f2212dec0cbc18b47e",
       "pipelines": [
         {
           "name": "circrna",
@@ -367154,8 +369211,10 @@
     {
       "name": "seqkit_tab2fx",
       "path": "modules/nf-core/seqkit/tab2fx/meta.yml",
-      "tree_sha": "5ccbe4d37a874d5d23743c96745ce95c8052b145",
+      "tree_sha": "2140a57e2f9df886a15b80b1c75819b3c3faabda",
       "files": [
+        "modules/nf-core/seqkit/tab2fx/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
+        "modules/nf-core/seqkit/tab2fx/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
         "modules/nf-core/seqkit/tab2fx/environment.yml",
         "modules/nf-core/seqkit/tab2fx/main.nf",
         "modules/nf-core/seqkit/tab2fx/meta.yml",
@@ -367286,15 +369345,51 @@
         ],
         "maintainers": [
           "@heuermh"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--2c3127bb2c908a0f",
+              "build_id": "bd-2c3127bb2c908a0f_1",
+              "scan_id": "sc-2b1a53b788f59b66_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--3bacfb68370dd835",
+              "build_id": "bd-3bacfb68370dd835_1",
+              "scan_id": "sc-6db894ea42d80db1_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--e9990c3bf4e9909e",
+              "build_id": "bd-e9990c3bf4e9909e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/29/297e985dd395d87f9089b314dbe685ddce59fa0770c4d1f5e1009bc7b6ec7a8d/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--8ff773a329ad66fe",
+              "build_id": "bd-8ff773a329ad66fe_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a2/a291e8a167829fe03cbd3072209b7c2a1f38a9bdb4908f764b4ca71868a954f1/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/seqkit/tab2fx/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/seqkit/tab2fx/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "d07a945f421a4a91ce4e5a22db63e0e7f8741607"
+      "git_sha": "8fff8cfa10626a5acb7652f2212dec0cbc18b47e"
     },
     {
       "name": "seqkit_translate",
       "path": "modules/nf-core/seqkit/translate/meta.yml",
-      "tree_sha": "97bac32345ac8f08f31407df287b15e9018020e3",
+      "tree_sha": "d49fe69f46d7bef28ec62667bedb602a7eb7e2d0",
       "files": [
+        "modules/nf-core/seqkit/translate/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
+        "modules/nf-core/seqkit/translate/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
         "modules/nf-core/seqkit/translate/environment.yml",
         "modules/nf-core/seqkit/translate/main.nf",
         "modules/nf-core/seqkit/translate/meta.yml",
@@ -367422,9 +369517,43 @@
         ],
         "maintainers": [
           "@delfiterradas"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--3bacfb68370dd835",
+              "build_id": "bd-3bacfb68370dd835_1",
+              "scan_id": "sc-6db894ea42d80db1_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/seqkit:2.13.0--2c3127bb2c908a0f",
+              "build_id": "bd-2c3127bb2c908a0f_1",
+              "scan_id": "sc-2b1a53b788f59b66_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--e9990c3bf4e9909e",
+              "build_id": "bd-e9990c3bf4e9909e_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/29/297e985dd395d87f9089b314dbe685ddce59fa0770c4d1f5e1009bc7b6ec7a8d/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/seqkit:2.13.0--8ff773a329ad66fe",
+              "build_id": "bd-8ff773a329ad66fe_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a2/a291e8a167829fe03cbd3072209b7c2a1f38a9bdb4908f764b4ca71868a954f1/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/seqkit/translate/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/seqkit/translate/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "d07a945f421a4a91ce4e5a22db63e0e7f8741607",
+      "git_sha": "8fff8cfa10626a5acb7652f2212dec0cbc18b47e",
       "pipelines": [
         {
           "name": "riboseq",
@@ -382135,7 +384264,7 @@
     {
       "name": "sourmash_compare",
       "path": "modules/nf-core/sourmash/compare/meta.yml",
-      "tree_sha": "d5035dd05edbb262a674f0931acc04c73c580f20",
+      "tree_sha": "332adb6ade412949cb955656cfae424ecd2cb722",
       "files": [
         "modules/nf-core/sourmash/compare/environment.yml",
         "modules/nf-core/sourmash/compare/main.nf",
@@ -382322,7 +384451,7 @@
           "@taylorreiter"
         ]
       },
-      "git_sha": "6eaecd6ef9bfc7faf313b1abeaae9b129795291d",
+      "git_sha": "bc6e6b1a6de4bbdabed41381dd0b4add635271b1",
       "pipelines": [
         {
           "name": "pathogensurveillance",
@@ -382333,7 +384462,7 @@
     {
       "name": "sourmash_gather",
       "path": "modules/nf-core/sourmash/gather/meta.yml",
-      "tree_sha": "fa494f608499d67e703868fd9c2cce9812eced68",
+      "tree_sha": "01a8801ed83453ecc7c7c1bba9a7931cc8b6584f",
       "files": [
         "modules/nf-core/sourmash/gather/environment.yml",
         "modules/nf-core/sourmash/gather/main.nf",
@@ -382568,7 +384697,7 @@
           "@taylorreiter"
         ]
       },
-      "git_sha": "6eaecd6ef9bfc7faf313b1abeaae9b129795291d",
+      "git_sha": "bc6e6b1a6de4bbdabed41381dd0b4add635271b1",
       "pipelines": [
         {
           "name": "magmap",
@@ -382579,7 +384708,7 @@
     {
       "name": "sourmash_index",
       "path": "modules/nf-core/sourmash/index/meta.yml",
-      "tree_sha": "b88e3894f67572f06d9b86c14c5c20206a51dbc2",
+      "tree_sha": "5b26b4e2cfdbb8eb5e759d3df4ab8e65d7a54491",
       "files": [
         "modules/nf-core/sourmash/index/environment.yml",
         "modules/nf-core/sourmash/index/main.nf",
@@ -382711,7 +384840,7 @@
           "@emnilsson"
         ]
       },
-      "git_sha": "6eaecd6ef9bfc7faf313b1abeaae9b129795291d",
+      "git_sha": "bc6e6b1a6de4bbdabed41381dd0b4add635271b1",
       "pipelines": [
         {
           "name": "createtaxdb",
@@ -382726,7 +384855,7 @@
     {
       "name": "sourmash_pairwise",
       "path": "modules/nf-core/sourmash/pairwise/meta.yml",
-      "tree_sha": "a94cafbd9015f92d79550d4d9aec7333b62f06f6",
+      "tree_sha": "bbf433940155c7f2f53d63c9175910943fecec6f",
       "files": [
         "modules/nf-core/sourmash/pairwise/environment.yml",
         "modules/nf-core/sourmash/pairwise/main.nf",
@@ -382884,12 +385013,12 @@
           "@zachary-foster"
         ]
       },
-      "git_sha": "972faf6f783fe9685267220965a91690741465f9"
+      "git_sha": "bc6e6b1a6de4bbdabed41381dd0b4add635271b1"
     },
     {
       "name": "sourmash_sketch",
       "path": "modules/nf-core/sourmash/sketch/meta.yml",
-      "tree_sha": "7fddc5992617c0b9d4b4273fa53bc4740cea6d41",
+      "tree_sha": "7514d7a9a8b0b2a2bef2359a37e927e072fb08f4",
       "files": [
         "modules/nf-core/sourmash/sketch/environment.yml",
         "modules/nf-core/sourmash/sketch/main.nf",
@@ -383026,7 +385155,7 @@
           "@Midnighter"
         ]
       },
-      "git_sha": "c98a14d32fc13603d68be1d16d3214e17a4404a0",
+      "git_sha": "bc6e6b1a6de4bbdabed41381dd0b4add635271b1",
       "pipelines": [
         {
           "name": "createtaxdb",
@@ -383045,7 +385174,7 @@
     {
       "name": "sourmash_taxannotate",
       "path": "modules/nf-core/sourmash/taxannotate/meta.yml",
-      "tree_sha": "b10e57e8b28cfcd42db6fbd6d1d445fd1550fe13",
+      "tree_sha": "4d659803489be829064da1af288f682ec1ba0ec2",
       "files": [
         "modules/nf-core/sourmash/taxannotate/environment.yml",
         "modules/nf-core/sourmash/taxannotate/main.nf",
@@ -383183,7 +385312,7 @@
           "@taylorreiter"
         ]
       },
-      "git_sha": "6eaecd6ef9bfc7faf313b1abeaae9b129795291d"
+      "git_sha": "bc6e6b1a6de4bbdabed41381dd0b4add635271b1"
     },
     {
       "name": "spaceranger_count",
@@ -390891,8 +393020,10 @@
     {
       "name": "strdrop_build",
       "path": "modules/nf-core/strdrop/build/meta.yml",
-      "tree_sha": "f4ee63a4e58769b68597915216bd1ae592e8bf3f",
+      "tree_sha": "e945efe68d18495e96b8622d181a1ad9997b1c42",
       "files": [
+        "modules/nf-core/strdrop/build/.conda-lock/linux_amd64-bd-de2d4e2fcc806913_1.txt",
+        "modules/nf-core/strdrop/build/.conda-lock/linux_arm64-bd-95f1c5459d42f2f0_1.txt",
         "modules/nf-core/strdrop/build/environment.yml",
         "modules/nf-core/strdrop/build/main.nf",
         "modules/nf-core/strdrop/build/meta.yml",
@@ -391022,15 +393153,51 @@
         ],
         "maintainers": [
           "@fellen31"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/pip_python_typing_extensions_numpy_strdrop:de2d4e2fcc806913",
+              "build_id": "bd-de2d4e2fcc806913_1",
+              "scan_id": "sc-2afdbcd85e17061d_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/pip_python_typing_extensions_numpy_strdrop:95f1c5459d42f2f0",
+              "build_id": "bd-95f1c5459d42f2f0_1",
+              "scan_id": "sc-9719cc37f2a86e73_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/pip_python_typing_extensions_numpy_strdrop:bc4ea6d86ee98a91",
+              "build_id": "bd-bc4ea6d86ee98a91_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/99/9915c87a51b3c5af344c3044ac79c7badb8b44a1aed0eeba4363bc10e2a4bc95/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/pip_python_typing_extensions_numpy_strdrop:6268cf45bdf8be19",
+              "build_id": "bd-6268cf45bdf8be19_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/95/95c57ab0dff54240e98a3ddbb23503bee80649ac4b2282a46b82125e0b822b9b/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/strdrop/build/.conda-lock/linux_amd64-bd-de2d4e2fcc806913_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/strdrop/build/.conda-lock/linux_arm64-bd-95f1c5459d42f2f0_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323"
     },
     {
       "name": "strdrop_call",
       "path": "modules/nf-core/strdrop/call/meta.yml",
-      "tree_sha": "bc90e22d343c98b959853d16a48f04112d07bceb",
+      "tree_sha": "0a21dc45fc5925c47072fb0038d681873c231a61",
       "files": [
+        "modules/nf-core/strdrop/call/.conda-lock/linux_amd64-bd-de2d4e2fcc806913_1.txt",
+        "modules/nf-core/strdrop/call/.conda-lock/linux_arm64-bd-95f1c5459d42f2f0_1.txt",
         "modules/nf-core/strdrop/call/environment.yml",
         "modules/nf-core/strdrop/call/main.nf",
         "modules/nf-core/strdrop/call/meta.yml",
@@ -391202,9 +393369,43 @@
         ],
         "maintainers": [
           "@fellen31"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/pip_python_typing_extensions_numpy_strdrop:95f1c5459d42f2f0",
+              "build_id": "bd-95f1c5459d42f2f0_1",
+              "scan_id": "sc-9719cc37f2a86e73_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/pip_python_typing_extensions_numpy_strdrop:de2d4e2fcc806913",
+              "build_id": "bd-de2d4e2fcc806913_1",
+              "scan_id": "sc-2afdbcd85e17061d_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/pip_python_typing_extensions_numpy_strdrop:6268cf45bdf8be19",
+              "build_id": "bd-6268cf45bdf8be19_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/95/95c57ab0dff54240e98a3ddbb23503bee80649ac4b2282a46b82125e0b822b9b/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/pip_python_typing_extensions_numpy_strdrop:bc4ea6d86ee98a91",
+              "build_id": "bd-bc4ea6d86ee98a91_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/99/9915c87a51b3c5af344c3044ac79c7badb8b44a1aed0eeba4363bc10e2a4bc95/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/strdrop/call/.conda-lock/linux_amd64-bd-de2d4e2fcc806913_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/strdrop/call/.conda-lock/linux_arm64-bd-95f1c5459d42f2f0_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323"
     },
     {
       "name": "strdust",
@@ -435129,7 +437330,7 @@
     {
       "name": "whatshap_haplotag",
       "path": "modules/nf-core/whatshap/haplotag/meta.yml",
-      "tree_sha": "10663e59191952f21c55a9aa08ee4a865b4b5032",
+      "tree_sha": "50f5067a3c470b8d65fc8f27718d2766b6dd18e1",
       "files": [
         "modules/nf-core/whatshap/haplotag/environment.yml",
         "modules/nf-core/whatshap/haplotag/main.nf",
@@ -435356,7 +437557,7 @@
           "@sofiademmou"
         ]
       },
-      "git_sha": "a7735076dd500fe17c7a87297e52f98e83b21a38"
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323"
     },
     {
       "name": "whatshap_phase",
@@ -444361,7 +446562,7 @@
     {
       "name": "bam_sort_stats_samtools",
       "path": "subworkflows/nf-core/bam_sort_stats_samtools/meta.yml",
-      "tree_sha": "905f378be837d1ce12118a60cda8546c7af871a8",
+      "tree_sha": "0fd223e3c9f121afd50c7b5b286196a7ecacc1af",
       "files": [
         "subworkflows/nf-core/bam_sort_stats_samtools/main.nf",
         "subworkflows/nf-core/bam_sort_stats_samtools/meta.yml",
@@ -444448,7 +446649,7 @@
           "@ewels"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "atacseq",
@@ -444684,7 +446885,7 @@
     {
       "name": "bam_stats_samtools",
       "path": "subworkflows/nf-core/bam_stats_samtools/meta.yml",
-      "tree_sha": "cde18b023ec63566a6ef88949d5cb566a5608e36",
+      "tree_sha": "98830fa1c262ae9d78ccaaf9b2071d89dd2129f4",
       "files": [
         "subworkflows/nf-core/bam_stats_samtools/main.nf",
         "subworkflows/nf-core/bam_stats_samtools/meta.yml",
@@ -444743,7 +446944,7 @@
           "@drpatelh"
         ]
       },
-      "git_sha": "6ef220fd9252b42fb3c50348bbdbcb6246730686",
+      "git_sha": "5f344f0e41fdfaf2506f89400e42a2689d6ab323",
       "pipelines": [
         {
           "name": "atacseq",
@@ -459343,6 +461544,6 @@
       "git_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657"
     }
   ],
-  "commit_sha": "6e35088c79c7cf8fe69a83f8fe4264ec18d2b787",
-  "updated_at": "2026-10-19T14:13:37.487Z"
+  "commit_sha": "8fff8cfa10626a5acb7652f2212dec0cbc18b47e",
+  "updated_at": "2026-10-20T02:13:50.725Z"
 }
