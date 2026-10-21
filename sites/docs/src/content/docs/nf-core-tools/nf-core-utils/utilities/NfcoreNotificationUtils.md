@@ -1,5 +1,5 @@
 ---
-# Copied from docs/utilities/NfcoreNotificationUtils.md of nf-core/nf-core-utils 0.5.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+# Copied from docs/utilities/NfcoreNotificationUtils.md of nf-core/nf-core-utils 0.6.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
 title: "Pipeline Notifications Tutorial"
 shortTitle: "Pipeline Notifications Tutorial"
 weight: 6
@@ -251,6 +251,10 @@ workflow.onComplete {
 
 Email notifications provide comprehensive pipeline reports that users can refer to later.
 
+HTML emails try `sendmail` first, then `mail` if the command cannot run, exits with a nonzero status, or exceeds its 30-second deadline. Plaintext emails use `mail` directly. Input is supplied through a temporary file so a command that stops reading cannot block the caller. Timed-out commands are terminated, with up to five seconds allowed for process cleanup.
+
+Success means the local mail command exited successfully, not that the recipient received the email. HTML and text reports are saved under `outdir/pipeline_info` before delivery is attempted. If all attempts fail, the function logs a warning. Temporary attachment copies are removed after rendering; cleanup failures are warnings and do not prevent saving reports or attempting delivery.
+
 **Understanding Email Structure**
 
 Before implementing email notifications, let's understand what information needs to be organized:
@@ -457,6 +461,8 @@ Ignored     : 0
 
 **Description:**  
 Sends JSON notifications to instant messaging webhooks (Slack, Microsoft Teams) with pipeline summary and workflow metadata. Supports rich formatting for better readability.
+
+Notification logs omit webhook URLs, response bodies, and exception messages because they can contain credentials. HTTP failures report the status code; other failures report the exception type.
 
 **Function Signature:**
 
@@ -854,4 +860,4 @@ def teams_summary = [
 ]
 ```
 
-For more information on setting up external service integrations, see the [nf-core documentation](https://nf-co.re/docs/usage/configuration#notifications).
+For more information on setting up external service integrations, see the [nf-core documentation](https://nf-co.re/docs/running/run-pipelines#notifications).

@@ -1,5 +1,5 @@
 ---
-# Copied from docs/utilities/NfcoreReportingUtils.md of nf-core/nf-core-utils 0.5.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+# Copied from docs/utilities/NfcoreReportingUtils.md of nf-core/nf-core-utils 0.6.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
 title: "MultiQC Integration Tutorial"
 shortTitle: "MultiQC Integration Tutorial"
 weight: 8
@@ -743,4 +743,4 @@ workflow MEMORY_EFFICIENT_REPORTING {
 }
 ```
 
-For more information on MultiQC integration and pipeline reporting, see the [MultiQC documentation](https://multiqc.info/) and [nf-core reporting guidelines](https://nf-co.re/docs/contributing/pipelines/reporting).
+For more information on MultiQC integration and pipeline reporting, see the [MultiQC documentation](https://multiqc.info/) and [nf-core reporting guidelines](https://nf-co.re/docs/developing/components/automated-methods-text).

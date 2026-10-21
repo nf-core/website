@@ -1,5 +1,5 @@
 ---
-# Copied from docs/utilities/NfcoreReportingOrchestrator.md of nf-core/nf-core-utils 0.5.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+# Copied from docs/utilities/NfcoreReportingOrchestrator.md of nf-core/nf-core-utils 0.6.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
 title: "NfcoreReportingOrchestrator"
 shortTitle: "NfcoreReportingOrchestrator"
 weight: 7
@@ -654,4 +654,4 @@ workflow BENCHMARK_REPORTING {
 }
 ```
 
-For more information on orchestrated reporting and utility coordination, see the individual utility documentation and [nf-core reporting best practices](https://nf-co.re/docs/contributing/pipelines/reporting).
+For more information on orchestrated reporting and utility coordination, see the individual utility documentation and [nf-core reporting best practices](https://nf-co.re/docs/developing/components/automated-methods-text).
