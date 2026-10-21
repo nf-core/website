@@ -94784,7 +94784,7 @@
     {
       "name": "deepsomatic",
       "path": "modules/nf-core/deepsomatic/meta.yml",
-      "tree_sha": "a7729e539d151f23ef8c1341cee697aca339d763",
+      "tree_sha": "7b73453098c77ed5c27ac9c23bcd14d8e73f5c81",
       "files": [
         "modules/nf-core/deepsomatic/main.nf",
         "modules/nf-core/deepsomatic/meta.yml",
@@ -94795,7 +94795,7 @@
       "type": "module",
       "meta": {
         "name": "deepsomatic",
-        "description": "DeepSomatic is an extension of deep learning-based variant caller DeepVariant that takes aligned reads (in BAM or CRAM format) from tumor and normal data, produces pileup image tensors from them, classifies each tensor using a convolutional neural network, and finally reports somatic variants in a standard VCF or gVCF file.",
+        "description": "DeepSomatic is an extension of deep learning-based variant caller DeepVariant that takes aligned reads (in BAM or CRAM format) from tumour and normal data, produces pileup image tensors from them, classifies each tensor using a convolutional neural network, and finally reports somatic variants in a standard VCF file and a tumour somatic gVCF.",
         "keywords": [
           "variant calling",
           "machine learning",
@@ -94827,7 +94827,7 @@
             {
               "input_normal": {
                 "type": "file",
-                "description": "BAM/CRAM file",
+                "description": "Normal BAM/CRAM file",
                 "pattern": "*.bam/cram",
                 "ontologies": []
               }
@@ -94843,7 +94843,7 @@
             {
               "input_tumor": {
                 "type": "file",
-                "description": "BAM/CRAM file",
+                "description": "Tumour BAM/CRAM file. DeepSomatic infers the sample name from read groups\nunless --sample_name_tumor is supplied in ext.args.\n",
                 "pattern": "*.bam/cram",
                 "ontologies": []
               }
@@ -94855,26 +94855,18 @@
                 "pattern": "*.bai/crai",
                 "ontologies": []
               }
-            }
-          ],
-          [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-              }
             },
             {
               "intervals": {
                 "type": "file",
-                "description": "file containing intervals",
+                "description": "Optional interval file; use [] for unrestricted calling",
                 "ontologies": []
               }
             }
           ],
           [
             {
-              "meta3": {
+              "meta2": {
                 "type": "map",
                 "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
               }
@@ -94890,7 +94882,7 @@
           ],
           [
             {
-              "meta4": {
+              "meta3": {
                 "type": "map",
                 "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
               }
@@ -94906,7 +94898,7 @@
           ],
           [
             {
-              "meta5": {
+              "meta4": {
                 "type": "map",
                 "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
               }
@@ -94934,7 +94926,7 @@
                 "${prefix}.vcf.gz": {
                   "type": "file",
                   "description": "Compressed VCF file",
-                  "pattern": "*.vcf.gz",
+                  "pattern": "${prefix}.vcf.gz",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3989"
@@ -94956,7 +94948,7 @@
                 "${prefix}.vcf.gz.tbi": {
                   "type": "file",
                   "description": "Index of compressed VCF file",
-                  "pattern": "*.vcf.gz.tbi",
+                  "pattern": "${prefix}.vcf.gz.tbi",
                   "ontologies": []
                 }
               }
@@ -94973,8 +94965,8 @@
               {
                 "${prefix}.g.vcf.gz": {
                   "type": "file",
-                  "description": "Compressed GVCF file",
-                  "pattern": "*.g.vcf.gz",
+                  "description": "Tumour somatic gVCF with reference-confidence records",
+                  "pattern": "${prefix}.g.vcf.gz",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3989"
@@ -94995,8 +94987,8 @@
               {
                 "${prefix}.g.vcf.gz.tbi": {
                   "type": "file",
-                  "description": "Index of compressed Genotyped VCF file",
-                  "pattern": "*.g.vcf.gz.tbi",
+                  "description": "Index of the tumour somatic gVCF",
+                  "pattern": "${prefix}.g.vcf.gz.tbi",
                   "ontologies": []
                 }
               }
@@ -95017,7 +95009,7 @@
                 }
               },
               {
-                "1.7.0": {
+                "1.10.0": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -95041,7 +95033,7 @@
                 }
               },
               {
-                "1.7.0": {
+                "1.10.0": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -95056,7 +95048,7 @@
           "@vaxyzek"
         ]
       },
-      "git_sha": "c604daf6b1fd88f72b93d96beb7d456ad82ef468",
+      "git_sha": "a064a845f0c2afec03e02ae7e8cfb832486a2ea1",
       "pipelines": [
         {
           "name": "pacsomatic",
@@ -98461,6 +98453,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -298049,6 +298049,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -298356,6 +298360,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -422085,6 +422093,10 @@
           "version": "2.1.0"
         },
         {
+          "name": "circrna",
+          "version": "dev"
+        },
+        {
           "name": "lncpipe",
           "version": "dev"
         },
@@ -455592,6 +455604,10 @@
           "version": "2.1.0"
         },
         {
+          "name": "circrna",
+          "version": "dev"
+        },
+        {
           "name": "lncpipe",
           "version": "dev"
         },
@@ -463185,6 +463201,6 @@
       "git_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657"
     }
   ],
-  "commit_sha": "a5d9a308a02bd89513807098b0e77cad44424c0b",
-  "updated_at": "2026-10-20T14:14:10.509Z"
+  "commit_sha": "a064a845f0c2afec03e02ae7e8cfb832486a2ea1",
+  "updated_at": "2026-10-21T02:16:11.581Z"
 }
