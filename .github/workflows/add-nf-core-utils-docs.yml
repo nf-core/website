@@ -20,13 +20,15 @@ jobs:
           ref: ${{ inputs.ref_name }}
           path: "nf-core-utils"
 
-      # scripts/website-docs.sh of nf-core-utils writes its user docs as docs pages, with their frontmatter
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+
+      # scripts/website-docs.py of nf-core-utils writes its user docs as docs pages, with their frontmatter
       - name: Copy the docs
         env:
           REF_NAME: ${{ inputs.ref_name }}
         run: |
           cd nf-core-utils
-          bash scripts/website-docs.sh --release "$REF_NAME"
+          uv run scripts/website-docs.py --release "$REF_NAME"
 
       - name: remove nf-core-utils code
         run: rm -rf nf-core-utils
