@@ -3,6 +3,7 @@
 title: "NfcoreVersionUtils"
 shortTitle: "NfcoreVersionUtils"
 weight: 9
+md_github_url: https://github.com/nf-core/nf-core-utils/blob/main/docs/utilities/NfcoreVersionUtils.md
 ---
 
 # NfcoreVersionUtils

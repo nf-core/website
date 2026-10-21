@@ -3,6 +3,7 @@
 title: "MultiQC Integration Tutorial"
 shortTitle: "MultiQC Integration Tutorial"
 weight: 8
+md_github_url: https://github.com/nf-core/nf-core-utils/blob/main/docs/utilities/NfcoreReportingUtils.md
 ---
 
 # MultiQC Integration Tutorial

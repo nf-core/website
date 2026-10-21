@@ -4,6 +4,7 @@ title: "nf-core Utilities Guide"
 shortTitle: "nf-core Utilities Guide"
 weight: 1
 parentWeight: 3
+md_github_url: https://github.com/nf-core/nf-core-utils/blob/main/docs/NfCoreUtilities.md
 ---
 
 # nf-core Utilities Guide
