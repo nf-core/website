@@ -20,35 +20,13 @@ jobs:
           ref: ${{ inputs.ref_name }}
           path: "nf-core-utils"
 
-      # The user docs, the other files in docs/ are for the developers of the plugin. Each doc gets the frontmatter of
-      # the docs pages: its first heading as title and label in the sidebar, and its place in the list as weight.
-      # In the nf-core/tools section, nf-core-utils comes after the CLI and API docs (parentWeight). "Edit this page"
-      # links to the doc in nf-core/nf-core-utils (md_github_url), as changes to the copy are overwritten.
+      # scripts/website-docs.sh of nf-core-utils writes its user docs as docs pages, with their frontmatter
       - name: Copy the docs
         env:
           REF_NAME: ${{ inputs.ref_name }}
         run: |
-          target="$PWD/sites/docs/src/content/docs/nf-core-tools/nf-core-utils"
-          rm -rf "$target"
-          cd nf-core-utils/docs
-          weight=0
-          for file in NfCoreUtilities.md NextflowPipelineExtension.md ReferencesExtension.md utilities/*.md; do
-            weight=$((weight + 1))
-            title=$(grep -m 1 '^# ' "$file" | sed -e 's/^# *//' -e 's/\\/\\\\/g' -e 's/"/\\"/g')
-            mkdir -p "$target/$(dirname "$file")"
-            {
-              echo "---"
-              echo "# Copied from docs/$file of nf-core/nf-core-utils $REF_NAME by .github/workflows/add-nf-core-utils-docs.yml: edit it there"
-              echo "title: \"$title\""
-              echo "shortTitle: \"$title\""
-              echo "weight: $weight"
-              case "$file" in */*) ;; *) echo "parentWeight: 3" ;; esac
-              echo "md_github_url: https://github.com/nf-core/nf-core-utils/blob/main/docs/$file"
-              echo "---"
-              echo
-              cat "$file"
-            } > "$target/$file"
-          done
+          cd nf-core-utils
+          bash scripts/website-docs.sh --release "$REF_NAME"
 
       - name: remove nf-core-utils code
         run: rm -rf nf-core-utils
