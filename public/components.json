@@ -98964,6 +98964,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -184253,7 +184261,7 @@
     {
       "name": "hiphase",
       "path": "modules/nf-core/hiphase/meta.yml",
-      "tree_sha": "3fb717ff3d27b10583e7368abea57c9eb6ff45be",
+      "tree_sha": "ec986f07ea9b7609421ea797c9a0e8cc32c399c9",
       "files": [
         "modules/nf-core/hiphase/environment.yml",
         "modules/nf-core/hiphase/main.nf",
@@ -184701,7 +184709,7 @@
               {
                 "*.bam": {
                   "type": "file",
-                  "description": "Haplotagged BAM file(s) with haplotype information in the HP tag (optional, only emitted when output_bam is true)",
+                  "description": "Haplotagged BAM file(s) with haplotype information in the HP tag, one per input BAM, named `<input BAM basename>_haplotagged.bam` without the prefix (optional, only emitted when output_bam is true)",
                   "pattern": "*.bam",
                   "ontologies": [
                     {
@@ -184723,7 +184731,7 @@
               {
                 "*.bam.{bai,csi}": {
                   "type": "file",
-                  "description": "Index file(s) for the haplotagged BAM file(s) (optional, only emitted when output_bam is true)",
+                  "description": "Index file(s) for the haplotagged BAM file(s), named `<input BAM basename>_haplotagged.bam.{bai,csi}` (optional, only emitted when output_bam is true)",
                   "pattern": "*.bam.{bai,csi}",
                   "ontologies": []
                 }
@@ -184785,7 +184793,7 @@
           "@fellen31"
         ]
       },
-      "git_sha": "32d9d7b17b837f68b7f3916f53bfa90d1b434fdd",
+      "git_sha": "d340ff25bde432e420681e7ab822c53664c7f61a",
       "pipelines": [
         {
           "name": "pacsomatic",
@@ -298053,6 +298061,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -298360,6 +298372,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -332746,7 +332762,7 @@
     {
       "name": "riker_multi",
       "path": "modules/nf-core/riker/multi/meta.yml",
-      "tree_sha": "68781e123fce1d79aade17f30f84825d83d2df3c",
+      "tree_sha": "1fef6be8bf4d868a5c5991c20e66e0012ea192d1",
       "files": [
         "modules/nf-core/riker/multi/.conda-lock/linux_amd64-bd-fc5310a356298f75_1.txt",
         "modules/nf-core/riker/multi/.conda-lock/linux_arm64-bd-b407026cbdb7f300_1.txt",
@@ -333428,6 +333444,28 @@
               }
             ]
           ],
+          "wgs_per_base_bw": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.wgs-per-base.bw": {
+                  "type": "file",
+                  "description": "Whole-genome per-base coverage BigWig (wgs tool)",
+                  "pattern": "*.wgs-per-base.bw",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3006"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "versions_riker": [
             [
               {
@@ -333519,7 +333557,7 @@
           }
         }
       },
-      "git_sha": "1e13247023de6bb84f06459e2c4fae1028364a36",
+      "git_sha": "0ee1b0ff3aea883f4087973c2600413bc09d4d8f",
       "pipelines": [
         {
           "name": "seqinspector",
@@ -463201,6 +463239,6 @@
       "git_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657"
     }
   ],
-  "commit_sha": "a064a845f0c2afec03e02ae7e8cfb832486a2ea1",
-  "updated_at": "2026-10-21T02:16:11.581Z"
+  "commit_sha": "0ee1b0ff3aea883f4087973c2600413bc09d4d8f",
+  "updated_at": "2026-10-21T14:13:53.175Z"
 }
