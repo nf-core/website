@@ -10,28 +10,30 @@
 //   rehype-urls (urlTransformer)               → hast-markdown-links.ts
 //   bin/rehype-checkbox-parser.ts              → hast-checkbox-parser.ts
 //   bin/rehype-heading-numbers.ts              → hast-heading-numbers.ts
-//   rehype-katex                               → mdast-math-katex.ts
+//   rehype-katex                               → @nullpinter/satteri-katex
 //
 // Code blocks are rendered by Expressive Code: the astro-expressive-code
 // integration (astro.config.base.mjs) pushes its satteri plugin into the shared
 // processor's options, and the standalone paths below (createSatteriPluginSets,
-// renderMarkdown) append hast-expressive-code.ts, which wraps the same engine.
+// renderMarkdown) append satteri-expressive-code with the same config
+// (expressive-code-config.ts).
 // `syntaxHighlight: false` keeps @astrojs/markdown-satteri's own highlight plugin
 // out of the pipeline. Astro's wrapper appends its image plugins and a heading-ids plugin after
 // our hast plugins; the heading-ids plugin respects the ids hast-heading-anchors.ts
 // already set, so the `headings` metadata (TOCs) stays in sync.
 import { createSatteriMarkdownProcessor, satteri } from "@astrojs/markdown-satteri";
+import { katex } from "@nullpinter/satteri-katex";
 import { markdownToHtml } from "satteri";
+import expressiveCode from "satteri-expressive-code";
 import { admonitionsHastPlugin, admonitionsMdastPlugin, directiveTextMergePlugin } from "./admonitions.ts";
+import { createEcConfig } from "./expressive-code-config.ts";
 import { createCheckboxParser } from "./hast-checkbox-parser.ts";
 import { headingNumbersPlugin } from "./hast-heading-numbers.ts";
 import { headingAnchorsPlugin } from "./hast-heading-anchors.ts";
-import { expressiveCodePlugin } from "./hast-expressive-code.ts";
 import { inlineCodePlugin } from "./hast-inline-code.ts";
 import { markdownLinksPlugin } from "./hast-markdown-links.ts";
 import { tablesPlugin } from "./hast-tables.ts";
 import { emojiPlugin } from "./mdast-emoji.ts";
-import { mathKatexPlugin } from "./mdast-math-katex.ts";
 import { mermaidPlugin } from "./mdast-mermaid.ts";
 
 const features = {
@@ -41,12 +43,17 @@ const features = {
     // markdown config defaults (both on), matching the old unified pipeline.
 };
 
+// A plugin factory: satteri calls it per document, so the once-per-document
+// style/script bookkeeping resets, while the engine (theme loading is expensive)
+// is created lazily once and shared by all documents.
+const expressiveCodePlugin = expressiveCode(createEcConfig());
+
 const sharedMdastPlugins = [
     emojiPlugin,
     directiveTextMergePlugin,
     admonitionsMdastPlugin,
     mermaidPlugin,
-    mathKatexPlugin,
+    katex,
 ] as any[];
 
 // The checkbox parser and heading numbers are opt-in per document (markdownPlugin:

@@ -5,7 +5,7 @@
 // variables (no inline color); main.scss switches the variables per theme.
 import { defineHastPlugin } from "satteri";
 import { codeToHast } from "shiki";
-import { LANG_ALIAS, THEMES } from "./hast-expressive-code.ts";
+import { LANG_ALIAS, THEMES } from "./expressive-code-config.ts";
 
 const INLINE_LANG = /\{:([\w.+#-]+)\}\s*$/;
 
