@@ -23,7 +23,7 @@ As always, if you have any problems or run into any bugs, reach out on the [#too
 
 ## Metro maps with `manifest.diagram{:groovy}`
 
-Nextflow 26.10.0 added a `manifest.diagram{:groovy}` field, which points to a workflow diagram of the pipeline. This will help different tools to easier pick up the tube maps, e.g. the RO-crates or [Seqera Platform](https://docs.seqera.io/platform-enterprise/launch/launchpad#pipeline-diagram)
+Nextflow 26.10.0 added a `manifest.diagram{:groovy}` field, which points to a workflow diagram of the pipeline. This makes it easier for other tools to pick up the metro maps, e.g. the RO-crates or [Seqera Platform](https://docs.seqera.io/platform-enterprise/launch/launchpad#pipeline-diagram)
 The template now has a commented-out `manifest.diagram{:groovy}` in `nextflow.config`, ready for your [metro map](/docs/community/brand/workflow-schematics):
 
 ```groovy title="nextflow.config"
@@ -51,12 +51,12 @@ nf-core pipelines containers create-configs
 
 ## Miscellaneous
 
-- `ext.use_gpu{:groovy}` has been superseded by Nextflow's `accelerator` directive. We removed it from the `process_gpu` label in the template, and it is no longer a permitted `ext` key in module linting. Use `task.accelerator{:groovy}` instead, as described in [the docs](/docs/developing/components/gpu-modules)
+- `ext.use_gpu{:groovy}` has been superseded by Nextflow's `accelerator` directive. We removed it from the `process_gpu` label in the template, and it is no longer a permitted `ext` key in module linting. Use `task.accelerator{:groovy}` instead, as described in [the docs](/docs/developing/components/gpu-modules).
 - nf-schema is bumped to 2.7.3, which is needed to run pipelines with Nextflow 26.04. The nf-schema version used in the `awsfulltest` workflow is now pinned as well, [to avoid an annoying `Missing process or function paramsSummaryLog(...){:console}` error](https://github.com/nf-core/tools/issues/4487).
 - The `fix_linting.yml` workflow is now `fix-linting.yml` and uses the reusable workflow from the [nf-core/actions](https://github.com/nf-core/actions) repository, so the nf-core bot token can't leak. This was already patched into the `main`/`master` branch of all nf-core pipelines, so now the `dev` branch will also have it.
 - `workflow.onComplete` no longer waits for the MultiQC report. If no report was produced, the pipeline doesn't hang at the end anymore.
 - nf-test files are now git-ignored in the template.
-- The template's VS Code settings recommend now extensions useful for developing for nf-core.
+- The template's VS Code settings now recommend useful extensions for contributing to nf-core.
 - `strandedness{:groovy}` is now a permitted meta key in module linting (again).
 
 # Changelog
