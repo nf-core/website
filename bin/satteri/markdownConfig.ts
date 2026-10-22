@@ -52,8 +52,10 @@ const sharedMdastPlugins = [
 // The checkbox parser and heading numbers are opt-in per document (markdownPlugin:
 // checklist / addNumbersToHeadings in the frontmatter); the opt-in renderer below
 // appends them to the pipeline of documents that ask for them.
+// inlineCodePlugin runs before headingAnchorsPlugin so the `{:lang}` markers of
+// inline code in headings are gone before the heading text is slugged.
 const buildHastPlugins = () =>
-    [admonitionsHastPlugin, headingAnchorsPlugin, tablesPlugin, markdownLinksPlugin, inlineCodePlugin] as any[];
+    [admonitionsHastPlugin, inlineCodePlugin, headingAnchorsPlugin, tablesPlugin, markdownLinksPlugin] as any[];
 
 /**
  * A fresh set of the shared satteri plugins. Use this to build additional processors
