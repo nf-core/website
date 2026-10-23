@@ -19,9 +19,10 @@ export function createS3Client() {
  * @param {string} bucketName - S3 bucket name
  * @param {string} prefix - Object key prefix
  * @param {string} [delimiter] - Optional delimiter for folder-like structure
+ * @param {{throwOnError?: boolean}} [options] - Rethrow S3 errors instead of returning empty arrays
  * @returns {Promise<{bucketContents: Array, commonPrefixes: Array}>} Object containing Contents and CommonPrefixes arrays
  */
-export async function fetchS3Objects(bucketName, prefix, delimiter) {
+export async function fetchS3Objects(bucketName, prefix, delimiter, { throwOnError = false } = {}) {
   const client = createS3Client();
 
   let bucketContents = [];
@@ -58,6 +59,9 @@ export async function fetchS3Objects(bucketName, prefix, delimiter) {
 
     return { bucketContents, commonPrefixes };
   } catch (error) {
+    if (throwOnError) {
+      throw error;
+    }
     console.warn(`Failed to fetch S3 objects for prefix ${prefix}:`, error);
     return { bucketContents: [], commonPrefixes: [] };
   }
@@ -119,4 +123,83 @@ export async function fetchCO2FootprintFiles(pipelineName, commitSha) {
     console.warn(`Failed to fetch CO2 footprint file ${co2FootprintFile.Key}:`, error);
     return null;
   }
+}
+
+/**
+ * Fetches the AWS megatest status of a pipeline release from the Nextflow execution reports on S3.
+ * Reports are looked up in `pipeline_info/` of the results folder, or of its direct subfolders if it has none
+ * (e.g. rnaseq runs each test configuration with its own outdir). Per folder, only the runs of the latest launch are
+ * kept: the runs of a test matrix start within seconds of each other, a relaunch minutes or days later.
+ * Reports parsed in a previous build are not downloaded again (their file name contains the start time).
+ * If listing the results fails, the status of the previous build is kept, so an S3 error doesn't look like no results.
+ * @param {string} pipelineName - Name of the pipeline (e.g., 'rnaseq')
+ * @param {string} commitSha - Git commit SHA of the release
+ * @param {{status: string, runs: Array<{report: string, status: string, error?: string}>}|null} [previous] - Megatest
+ * status of the previous build
+ * @returns {Promise<{status: string, runs: Array<{report: string, status: string, error?: string}>}|null|undefined>}
+ * Megatest status (`success`, `failed`, `unknown` or `no_report`) and runs, null if the release has no results, or
+ * `previous` if listing the results failed
+ */
+export async function fetchMegatestStatus(pipelineName, commitSha, previous) {
+  const bucketName = "nf-core-awsmegatests";
+  const prefix = `${pipelineName}/results-${commitSha}/`;
+  const previousRuns = previous?.runs ?? [];
+  let listings;
+  try {
+    const { bucketContents, commonPrefixes } = await fetchS3Objects(bucketName, prefix, "/", { throwOnError: true });
+    if (bucketContents.length === 0 && commonPrefixes.length === 0) {
+      return null;
+    }
+    const subDirs = commonPrefixes.map((p) => p.Prefix);
+    const runDirs = subDirs.includes(`${prefix}pipeline_info/`) ? [prefix] : subDirs;
+    listings = await Promise.all(
+      runDirs.map((dir) =>
+        fetchS3Objects(bucketName, `${dir}pipeline_info/execution_report`, undefined, { throwOnError: true }),
+      ),
+    );
+  } catch (error) {
+    console.warn(`Failed to list AWS megatest results ${prefix}, keeping the previous status:`, error);
+    return previous;
+  }
+  const reports = listings.flatMap(({ bucketContents: files }) => {
+    // Start time from the file name (e.g. `execution_report_2026-09-23_13-00-35.html`), else the upload time
+    const starts = files.map(({ Key, LastModified }) => {
+      const [, day, h, m, s] = Key.match(/(\d{4}-\d\d-\d\d)_(\d\d)-(\d\d)-(\d\d)\.html$/) ?? [];
+      return day ? Date.parse(`${day}T${h}:${m}:${s}Z`) : LastModified.getTime();
+    });
+    const latestStart = Math.max(...starts);
+    return files.filter((_, i) => latestStart - starts[i] < 5 * 60 * 1000).map((file) => file.Key.slice(prefix.length));
+  });
+
+  const client = createS3Client();
+  const runs = await Promise.all(
+    reports.map(async (report) => {
+      const cached = previousRuns.find((run) => run.report === report && run.status !== "unknown");
+      if (cached) {
+        return cached;
+      }
+      try {
+        // The status banner is near the top of the report, so only fetch the first 512 kB
+        const response = await client.send(
+          new GetObjectCommand({ Bucket: bucketName, Key: prefix + report, Range: "bytes=0-524287" }),
+        );
+        const html = (await response.Body?.transformToString()) ?? "";
+        const outcome = html.match(/Workflow execution completed (un)?successfully/);
+        if (!outcome?.[1]) {
+          return { report, status: outcome ? "success" : "unknown" };
+        }
+        // First non-empty line of the error message, without terminal colour codes (e.g. `\x1b[0;31m` or `[0;31m`)
+        const error = html
+          .match(/full error message was:<\/p>\s*<pre[^>]*>([\s\S]*?)<\/pre>/)?.[1]
+          .replace(/\x1b?\[[0-9;]*m/g, "")
+          .match(/\S.*/)?.[0];
+        return { report, status: "failed", error: error?.trim().slice(0, 200) ?? "" };
+      } catch (error) {
+        console.warn(`Failed to fetch execution report ${prefix + report}:`, error);
+        return { report, status: "unknown" };
+      }
+    }),
+  );
+  const status = ["failed", "unknown", "success"].find((s) => runs.some((run) => run.status === s)) ?? "no_report";
+  return { status, runs };
 }
