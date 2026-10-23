@@ -2,7 +2,7 @@
 //
 // Plugin mapping from the old unified pipeline:
 //   remark-gfm, remark-math, remark-directive  → built-in `features` (no plugin needed)
-//   remark-emoji                               → mdast-emoji.ts
+//   remark-emoji                               → satteri-emoji
 //   bin/remark-admonitions.js                  → admonitions.ts (mdast + hast halves)
 //   bin/remark-mermaid.ts                      → mdast-mermaid.ts
 //   rehype-slug + rehype-autolink-headings     → satteri-slug + satteri-autolink-headings
@@ -25,6 +25,7 @@ import { createSatteriMarkdownProcessor, satteri } from "@astrojs/markdown-satte
 import { h } from "hastscript";
 import { markdownToHtml } from "satteri";
 import { satteriAutolinkHeadings } from "satteri-autolink-headings";
+import { satteriEmoji } from "satteri-emoji";
 import expressiveCode from "satteri-expressive-code";
 import { satteriKatex } from "satteri-katex";
 import { satteriSlug } from "satteri-slug";
@@ -35,7 +36,6 @@ import { headingNumbersPlugin } from "./hast-heading-numbers.ts";
 import { inlineCodePlugin } from "./hast-inline-code.ts";
 import { markdownLinksPlugin } from "./hast-markdown-links.ts";
 import { tablesPlugin } from "./hast-tables.ts";
-import { emojiPlugin } from "./mdast-emoji.ts";
 import { mermaidPlugin } from "./mdast-mermaid.ts";
 
 const features = {
@@ -51,7 +51,8 @@ const features = {
 const expressiveCodePlugin = expressiveCode(createEcConfig());
 
 const sharedMdastPlugins = [
-    emojiPlugin,
+    // GitHub shortcode names (:tada:, :heart:, …), as used by node-emoji/remark-emoji before
+    satteriEmoji({ shortcodes: ["github"] }),
     directiveTextMergePlugin,
     admonitionsMdastPlugin,
     mermaidPlugin,
