@@ -80,7 +80,7 @@ First, check whether the variable is used multiple times.
 If it isn't, remove the variable entirely and use its contents directly where the variable was being used.
 If the variable is used multiple times, convert it to a parameter:
 
-```diff groovy
+```diff lang="groovy"
 - def variable_name = <code>
 + params.variable_name = <code>
 ```
