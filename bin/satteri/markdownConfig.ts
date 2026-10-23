@@ -5,7 +5,7 @@
 //   remark-emoji                               → mdast-emoji.ts
 //   bin/remark-admonitions.js                  → admonitions.ts (mdast + hast halves)
 //   bin/remark-mermaid.ts                      → mdast-mermaid.ts
-//   rehype-slug + rehype-autolink-headings     → hast-heading-anchors.ts
+//   rehype-slug + rehype-autolink-headings     → satteri-slug + satteri-autolink-headings
 //   rehype-class-names + rehype-wrap-all       → hast-tables.ts
 //   rehype-urls (urlTransformer)               → hast-markdown-links.ts
 //   bin/rehype-checkbox-parser.ts              → hast-checkbox-parser.ts
@@ -19,17 +19,19 @@
 // (expressive-code-config.ts).
 // `syntaxHighlight: false` keeps @astrojs/markdown-satteri's own highlight plugin
 // out of the pipeline. Astro's wrapper appends its image plugins and a heading-ids plugin after
-// our hast plugins; the heading-ids plugin respects the ids hast-heading-anchors.ts
+// our hast plugins; the heading-ids plugin respects the ids satteri-slug
 // already set, so the `headings` metadata (TOCs) stays in sync.
 import { createSatteriMarkdownProcessor, satteri } from "@astrojs/markdown-satteri";
+import { h } from "hastscript";
 import { markdownToHtml } from "satteri";
+import { satteriAutolinkHeadings } from "satteri-autolink-headings";
 import expressiveCode from "satteri-expressive-code";
 import { satteriKatex } from "satteri-katex";
+import { satteriSlug } from "satteri-slug";
 import { admonitionsHastPlugin, admonitionsMdastPlugin, directiveTextMergePlugin } from "./admonitions.ts";
 import { createEcConfig } from "./expressive-code-config.ts";
 import { createCheckboxParser } from "./hast-checkbox-parser.ts";
 import { headingNumbersPlugin } from "./hast-heading-numbers.ts";
-import { headingAnchorsPlugin } from "./hast-heading-anchors.ts";
 import { inlineCodePlugin } from "./hast-inline-code.ts";
 import { markdownLinksPlugin } from "./hast-markdown-links.ts";
 import { tablesPlugin } from "./hast-tables.ts";
@@ -59,10 +61,21 @@ const sharedMdastPlugins = [
 // The checkbox parser and heading numbers are opt-in per document (markdownPlugin:
 // checklist / addNumbersToHeadings in the frontmatter); the opt-in renderer below
 // appends them to the pipeline of documents that ask for them.
-// inlineCodePlugin runs before headingAnchorsPlugin so the `{:lang}` markers of
-// inline code in headings are gone before the heading text is slugged.
+// inlineCodePlugin runs before satteriSlug so the `{:lang}` markers of inline code
+// in headings are gone before the heading text is slugged.
 const buildHastPlugins = () =>
-    [admonitionsHastPlugin, inlineCodePlugin, headingAnchorsPlugin, tablesPlugin, markdownLinksPlugin] as any[];
+    [
+        admonitionsHastPlugin,
+        inlineCodePlugin,
+        // A factory, so the slugger's duplicate counter resets between documents.
+        satteriSlug(),
+        satteriAutolinkHeadings({
+            behavior: "append",
+            content: () => h("i", { class: "ms-1 fas fa-link fa-xs invisible" }),
+        }),
+        tablesPlugin,
+        markdownLinksPlugin,
+    ] as any[];
 
 /**
  * A fresh set of the shared satteri plugins. Use this to build additional processors
