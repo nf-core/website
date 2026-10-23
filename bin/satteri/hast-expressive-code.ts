@@ -13,9 +13,9 @@
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
 import nextflowSvg from "../../sites/main-site/src/icons/logos/nextflow.svg?raw";
 import { ExpressiveCode, ExpressiveCodeTheme, loadShikiTheme } from "expressive-code";
+import { pluginCodeblocks } from "starlight-codeblocks/expressive-code";
 import { defineHastPlugin } from "satteri";
 import { pluginCaptions } from "./ec-plugin-captions.ts";
-import { pluginFileIcons } from "./ec-plugin-file-icons.ts";
 
 const TAB_WIDTH = 2;
 
@@ -53,14 +53,17 @@ export function createEcConfig() {
         },
         plugins: [
             pluginLineNumbers(),
-            pluginCaptions(),
-            pluginFileIcons([
-                {
-                    name: "nextflow",
-                    svg: nextflowSvg,
-                    extensions: [".nf", ".nf.test", ".config"],
+            // starlight-codeblocks (https://ewels.github.io/starlight-codeblocks/): focus,
+            // line states, annotations, comment notation, file icons and more. File icons
+            // use vscode-icons, with the Nextflow logo for Nextflow files.
+            ...pluginCodeblocks({
+                fileIcons: {
+                    // The logo uses currentColor; give it the Nextflow green.
+                    icons: { nextflow: nextflowSvg.replaceAll("currentColor", "rgb(13, 192, 157)") },
+                    files: { ".nf": "nextflow", ".nf.test": "nextflow", ".config": "nextflow" },
                 },
-            ]),
+            }),
+            pluginCaptions(),
         ],
         shiki: {
             langAlias: LANG_ALIAS,
@@ -118,10 +121,7 @@ export function expressiveCodePlugin() {
                 // and the rest on data.meta.
                 const lang: string = code.data?.lang ?? "";
                 const meta: string = code.data?.meta ?? "";
-                const value = ctx
-                    .textContent(code)
-                    .replace(/\n$/, "")
-                    .replace(/\t/g, " ".repeat(TAB_WIDTH));
+                const value = ctx.textContent(code).replace(/\n$/, "").replace(/\t/g, " ".repeat(TAB_WIDTH));
 
                 const { ec, baseStyles, themeStyles, jsModules } = await getRenderer();
                 const { renderedGroupAst, styles } = await ec.render({

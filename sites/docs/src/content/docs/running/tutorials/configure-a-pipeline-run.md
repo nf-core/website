@@ -268,7 +268,7 @@ These settings sit alongside the `process` scope you used above, with a few sibl
 
 Edit `custom.config` to add automatic retries and redirect the work directory:
 
-```groovy title="custom.config" {1,6-7}
+```groovy title="custom.config" ins={1,5-7}
 workDir = 'nf-work'
 
 process {
@@ -312,7 +312,7 @@ Nextflow gives you two selectors for this:
 
 Edit your `custom.config` to include both in the `process` block:
 
-```groovy title="custom.config" {8-16}
+```groovy title="custom.config" ins={9-16}
 workDir = 'nf-work'
 
 process {
@@ -377,7 +377,7 @@ This is why the `multiqc_title` value from your `params.yaml` flowed through int
 
 To pass your own flags without editing the module code, override `ext.args` in `custom.config`:
 
-```groovy title="custom.config" {12,19-21}
+```groovy title="custom.config" ins={12,19-21}
 workDir = 'nf-work'
 
 process {

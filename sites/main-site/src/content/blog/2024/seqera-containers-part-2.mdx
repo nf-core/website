@@ -159,7 +159,7 @@ The `container` string is **never edited by hand** and is fully handled by the m
 With [the FastQC module](https://github.com/nf-core/modules/blob/f768b283dbd8fc79d0d92b0f68665d7bed94cabc/modules/nf-core/fastqc/main.nf#L6-L8)
 as an example:
 
-```diff title="main.nf"
+```diff lang="groovy" title="main.nf"
 process FASTQC {
      label 'process_medium'
 
@@ -493,7 +493,7 @@ specifications we've laid out in a [common config](https://github.com/nf-core/op
 
 The magic starts with some nf-core automation to add renovate comments to the `environment.yml` file:
 
-```yml {5,7,9}
+```yml title="environment.yml" {5,7,9}
 channels:
     - conda-forge
     - bioconda
