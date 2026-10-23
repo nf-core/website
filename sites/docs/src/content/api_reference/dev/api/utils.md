@@ -2,6 +2,15 @@
 
 Common utility functions for the nf-core python package.
 
+### _`exception{:python}`_`nf_core.utils.CommandError(cmd: str, returncode: int, stdout: bytes, stderr: bytes){:python}`
+
+Bases: `RuntimeError`
+
+Raised by run\_cmd when a command exits with a non-zero code.
+
+Keeps the captured streams, so callers can inspect the command’s output instead of parsing the error message.
+output holds both streams decoded, since Nextflow prints error details to stdout and only a summary to stderr.
+
 ### _`class{:python}`_`nf_core.utils.ContainerRegistryUrls(*values){:python}`
 
 Bases: `Enum`
@@ -316,6 +325,16 @@ Sets the value in a nested dict using a list of keys to traverse
 Given a response from the anaconda API using anaconda\_package, parse the software licences.
 
 Returns: Set of licence types
+
+### `nf_core.utils.parse_nextflow_json(text: str) → Any{:python}`
+
+Parse the JSON output of a Nextflow command, ignoring status lines printed around it.
+
+Nextflow can print status lines to stdout next to the JSON, e.g. \[PIPELINE] …
+or, before 26.05, the Seqera Platform monitoring URL.
+
+- **Raises:**
+  **json.JSONDecodeError** – If the text contains no valid JSON object.
 
 ### `nf_core.utils.pip_package(dep){:python}`
 
