@@ -11447,8 +11447,10 @@
     {
       "name": "annotsv_annotsv",
       "path": "modules/nf-core/annotsv/annotsv/meta.yml",
-      "tree_sha": "2a4b192157da39966f94e243f50ba330b6f99f25",
+      "tree_sha": "b9917dcfc947bb3b6bc7a0027e6b99fcd0eeb923",
       "files": [
+        "modules/nf-core/annotsv/annotsv/.conda-lock/linux_amd64-bd-28ac84a07bcbf122_1.txt",
+        "modules/nf-core/annotsv/annotsv/.conda-lock/linux_arm64-bd-8ac092906065ea38_1.txt",
         "modules/nf-core/annotsv/annotsv/environment.yml",
         "modules/nf-core/annotsv/annotsv/main.nf",
         "modules/nf-core/annotsv/annotsv/meta.yml",
@@ -11724,9 +11726,43 @@
         ],
         "maintainers": [
           "@nvnieuwk"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/annotsv:3.5.10--8ac092906065ea38",
+              "build_id": "bd-8ac092906065ea38_1",
+              "scan_id": "sc-29818db8bf91269f_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/annotsv:3.5.10--28ac84a07bcbf122",
+              "build_id": "bd-28ac84a07bcbf122_1",
+              "scan_id": "sc-71a30c6e17a45dfa_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/annotsv:3.5.10--6216a0366b416c30",
+              "build_id": "bd-6216a0366b416c30_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/b5/b5d84e7cd8d2dcfec68c7d289f8984fdeaf64aae4ce67b8b3d96617f85ab5dfe/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/annotsv:3.5.10--fe8d299c7e2f9e18",
+              "build_id": "bd-fe8d299c7e2f9e18_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/66/664c800960f1b08bcae320959b20db6b606f3c5de2488d63376eed58f32b1a10/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/annotsv/annotsv/.conda-lock/linux_amd64-bd-28ac84a07bcbf122_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/annotsv/annotsv/.conda-lock/linux_arm64-bd-8ac092906065ea38_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "b6b65c96c716b3ac325628220c8aaffc75383e8c",
+      "git_sha": "c4bde164db456df7c77535801fa04e67e4b000bc",
       "pipelines": [
         {
           "name": "longraredisease",
@@ -11741,8 +11777,10 @@
     {
       "name": "annotsv_installannotations",
       "path": "modules/nf-core/annotsv/installannotations/meta.yml",
-      "tree_sha": "0461882087e5f22465a68ca3dd46558323036a80",
+      "tree_sha": "9ad3ac450068f8166ae27c73489a21bfbaf77d3d",
       "files": [
+        "modules/nf-core/annotsv/installannotations/.conda-lock/linux_amd64-bd-28ac84a07bcbf122_1.txt",
+        "modules/nf-core/annotsv/installannotations/.conda-lock/linux_arm64-bd-8ac092906065ea38_1.txt",
         "modules/nf-core/annotsv/installannotations/environment.yml",
         "modules/nf-core/annotsv/installannotations/main.nf",
         "modules/nf-core/annotsv/installannotations/meta.yml",
@@ -11866,9 +11904,43 @@
         ],
         "maintainers": [
           "@nvnieuwk"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/annotsv:3.5.10--28ac84a07bcbf122",
+              "build_id": "bd-28ac84a07bcbf122_1",
+              "scan_id": "sc-71a30c6e17a45dfa_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/annotsv:3.5.10--8ac092906065ea38",
+              "build_id": "bd-8ac092906065ea38_1",
+              "scan_id": "sc-29818db8bf91269f_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/annotsv:3.5.10--6216a0366b416c30",
+              "build_id": "bd-6216a0366b416c30_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/b5/b5d84e7cd8d2dcfec68c7d289f8984fdeaf64aae4ce67b8b3d96617f85ab5dfe/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/annotsv:3.5.10--fe8d299c7e2f9e18",
+              "build_id": "bd-fe8d299c7e2f9e18_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/66/664c800960f1b08bcae320959b20db6b606f3c5de2488d63376eed58f32b1a10/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/annotsv/installannotations/.conda-lock/linux_amd64-bd-28ac84a07bcbf122_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/annotsv/installannotations/.conda-lock/linux_arm64-bd-8ac092906065ea38_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "b6b65c96c716b3ac325628220c8aaffc75383e8c",
+      "git_sha": "c4bde164db456df7c77535801fa04e67e4b000bc",
       "pipelines": [
         {
           "name": "longraredisease",
@@ -35028,7 +35100,7 @@
       "pipelines": [
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -48357,7 +48429,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -48614,7 +48686,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -48923,7 +48995,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "smrnaseq",
@@ -49078,7 +49150,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "smrnaseq",
@@ -52147,10 +52219,6 @@
         {
           "name": "crisprseq",
           "version": "2.3.0"
-        },
-        {
-          "name": "deepmutscan",
-          "version": "dev"
         },
         {
           "name": "hgtseq",
@@ -58007,7 +58075,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "rnavar",
@@ -76548,6 +76616,198 @@
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
     },
     {
+      "name": "cogaps",
+      "path": "modules/nf-core/cogaps/meta.yml",
+      "tree_sha": "58973db5a9aa954fe536fc0d2dc0bcfed08d0d33",
+      "files": [
+        "modules/nf-core/cogaps/.conda-lock/linux_amd64-bd-9d268f422491d706_1.txt",
+        "modules/nf-core/cogaps/.conda-lock/linux_arm64-bd-ca6e3cfff2ac4c5a_1.txt",
+        "modules/nf-core/cogaps/environment.yml",
+        "modules/nf-core/cogaps/main.nf",
+        "modules/nf-core/cogaps/meta.yml",
+        "modules/nf-core/cogaps/templates/cogaps.R",
+        "modules/nf-core/cogaps/tests/main.nf.test",
+        "modules/nf-core/cogaps/tests/main.nf.test.snap",
+        "modules/nf-core/cogaps/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "cogaps",
+        "description": "Bayesian non-negative matrix factorisation of an expression matrix with CoGAPS, identifying patterns (e.g. gene programs) and their activity across samples",
+        "keywords": [
+          "nmf",
+          "matrix factorisation",
+          "gene programs",
+          "patterns",
+          "transcriptomics"
+        ],
+        "tools": [
+          {
+            "cogaps": {
+              "description": "Coordinated Gene Activity in Pattern Sets (CoGAPS) implements a Bayesian MCMC matrix factorization algorithm, GAPS, and links it to gene set statistic methods to infer biological process activity.",
+              "homepage": "https://bioconductor.org/packages/CoGAPS",
+              "documentation": "https://bioconductor.org/packages/release/bioc/vignettes/CoGAPS/inst/doc/CoGAPS.html",
+              "tool_dev_url": "https://github.com/FertigLab/CoGAPS",
+              "doi": "10.1093/bioinformatics/btq503",
+              "licence": [
+                "BSD-3-Clause"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "matrix": {
+                "type": "file",
+                "description": "Features x samples expression matrix with feature names in the first column\nand sample names in the header (csv, tsv or txt, optionally gzipped), or an\nrds file containing a dense matrix or data.frame. A SummarizedExperiment or\nSingleCellExperiment is also accepted if it has a dense assay named \"counts\".\nSparse matrices are not supported and must be converted before the call.\nCoGAPS options, including the required nPatterns, are\npassed via ext.args, e.g. '--nPatterns 7 --nIterations 50000 --seed 42'.\nOnly scalar CogapsParams values can be set this way; non-scalar parameters\nsuch as fixedPatterns, explicitSets, subsetIndices and geneNames are not supported.\n",
+                "pattern": "*.{csv,tsv,txt,csv.gz,tsv.gz,txt.gz,rds}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "rds": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.cogaps.rds": {
+                  "type": "file",
+                  "description": "CogapsResult object",
+                  "pattern": "*.cogaps.rds"
+                }
+              }
+            ]
+          ],
+          "feature_loadings": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.feature_loadings.csv": {
+                  "type": "file",
+                  "description": "Feature loadings (amplitude matrix, A), features x patterns",
+                  "pattern": "*.feature_loadings.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "sample_factors": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.sample_factors.csv": {
+                  "type": "file",
+                  "description": "Sample factors (pattern matrix, P), samples x patterns",
+                  "pattern": "*.sample_factors.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml"
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml"
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@Jessica-ovabor"
+        ],
+        "maintainers": [
+          "@Jessica-ovabor"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bioconductor-cogaps:3.33.0--9d268f422491d706",
+              "build_id": "bd-9d268f422491d706_1",
+              "scan_id": "sc-5d3fceee156aa902_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/bioconductor-cogaps:3.33.0--ca6e3cfff2ac4c5a",
+              "build_id": "bd-ca6e3cfff2ac4c5a_1",
+              "scan_id": "sc-cd150a8e179006a8_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/bioconductor-cogaps:3.33.0--eca56ead3c1b8a6d",
+              "build_id": "bd-eca56ead3c1b8a6d_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2d/2dadbfb057a1ce1b3e77c54c6afd278d60c6a70bfe5033567c333d71b190f111/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bioconductor-cogaps:3.33.0--35546e865592f283",
+              "build_id": "bd-35546e865592f283_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/b7/b766b163b9a8410332bc4691ea5d738ad2a718dda806e10cc332d5e10fee0a96/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/cogaps/.conda-lock/linux_amd64-bd-9d268f422491d706_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/cogaps/.conda-lock/linux_arm64-bd-ca6e3cfff2ac4c5a_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "6c40a87f46caed4ee50aa568f57e4cf6f83be0e6"
+    },
+    {
       "name": "comebin_runcomebin",
       "path": "modules/nf-core/comebin/runcomebin/meta.yml",
       "tree_sha": "35a5076541199347c2668164764c04696bdefa4c",
@@ -91587,7 +91847,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "viralrecon",
@@ -99267,6 +99527,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -112384,6 +112652,10 @@
         {
           "name": "rnaseq",
           "version": "3.27.0"
+        },
+        {
+          "name": "rnaseq",
+          "version": "3.27.0"
         }
       ]
     },
@@ -124553,7 +124825,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "rnavar",
@@ -169234,7 +169506,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "rnavar",
@@ -255225,7 +255497,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "rnavar",
@@ -267464,8 +267736,9 @@
     {
       "name": "oatk",
       "path": "modules/nf-core/oatk/meta.yml",
-      "tree_sha": "f37899d92e058a429ed028f0dabe13c7f90fdbb3",
+      "tree_sha": "ce0f006d8e4061174042578dee54d1b05b5bc94d",
       "files": [
+        "modules/nf-core/oatk/.conda-lock/linux_amd64-bd-a8817603c2ec042f_1.txt",
         "modules/nf-core/oatk/environment.yml",
         "modules/nf-core/oatk/main.nf",
         "modules/nf-core/oatk/meta.yml",
@@ -267511,7 +267784,7 @@
             {
               "reads": {
                 "type": "file",
-                "description": "HiFi reads in FASTA format",
+                "description": "HiFi reads in FASTA format for organellar assembly",
                 "pattern": "*.{fasta,fasta.gz,fa,fa.gz}",
                 "ontologies": []
               }
@@ -267527,7 +267800,7 @@
             {
               "mito_hmm_files": {
                 "type": "file",
-                "description": "HMM profile for mitochondrial gene annotation, with corresponding\n.h3i, h3f, .h3p, .h3m files from hmmpress\n",
+                "description": "HMM profile for mitochondrial gene annotation, with corresponding\n.h3i, h3f, .h3p, .h3m files from hmmpress. Can be generated using\nOatkDB (https://github.com/c-zhou/OatkDB/).\n",
                 "pattern": "*.{fam,h3i,h3f,h3p,h3m}",
                 "ontologies": []
               }
@@ -267543,7 +267816,7 @@
             {
               "pltd_hmm_files": {
                 "type": "file",
-                "description": "HMM profile for plastid gene annotation, with corresponding\n.h3i, h3f, .h3p, .h3m files from hmmpress\n",
+                "description": "HMM profile for plastid gene annotation, with corresponding\n.h3i, h3f, .h3p, .h3m files from hmmpress. Can be generated using\nOatkDB (https://github.com/c-zhou/OatkDB/).\n",
                 "pattern": "*.{fam,h3i,h3f,h3p,h3m}",
                 "ontologies": []
               }
@@ -267562,9 +267835,13 @@
               {
                 "*mito.ctg.fasta": {
                   "type": "file",
-                  "description": "the structure-solved MT contigs",
+                  "description": "Linearised mitochondrial contigs in FASTA format",
                   "pattern": "*mito.ctg.fasta",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
                 }
               }
             ]
@@ -267580,9 +267857,13 @@
               {
                 "*pltd.ctg.fasta": {
                   "type": "file",
-                  "description": "the structure-solved PT contigs",
+                  "description": "Linearised plastid contigs in FASTA format",
                   "pattern": "*pltd.ctg.fasta",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
                 }
               }
             ]
@@ -267598,9 +267879,13 @@
               {
                 "*mito.ctg.bed": {
                   "type": "file",
-                  "description": "the gene annotation for the MT sequences",
+                  "description": "Gene annotations for the mito contigs",
                   "pattern": "*mito.ctg.bed",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
                 }
               }
             ]
@@ -267616,9 +267901,57 @@
               {
                 "*pltd.ctg.bed": {
                   "type": "file",
-                  "description": "the gene annotation for the PT sequences",
+                  "description": "Gene annotations for the plastid contigs",
                   "pattern": "*pltd.ctg.bed",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "mito_utg_bed": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*mito.bed": {
+                  "type": "file",
+                  "description": "Gene annotations for the mito unitigs",
+                  "pattern": "*mito.bed",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "pltd_utg_bed": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*pltd.bed": {
+                  "description": "Gene annotations for the plastid unitigs",
+                  "type": "file",
+                  "pattern": "*pltd.bed",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
                 }
               }
             ]
@@ -267634,7 +267967,7 @@
               {
                 "*mito.gfa": {
                   "type": "file",
-                  "description": "the subgraph for the MT genome",
+                  "description": "The mitochondrial genome assembly subgraph in GFA format",
                   "pattern": "*mito.gfa",
                   "ontologies": [
                     {
@@ -267656,7 +267989,7 @@
               {
                 "*pltd.gfa": {
                   "type": "file",
-                  "description": "the subgraph for the PT genome",
+                  "description": "The plastid genome assembly subgraph in GFA format",
                   "pattern": "*pltd.gfa",
                   "ontologies": [
                     {
@@ -267678,9 +268011,13 @@
               {
                 "*annot_mito.txt": {
                   "type": "file",
-                  "description": "the MT gene annotation file over all assembled sequences",
+                  "description": "The MT gene annotation file from nhmmscan for all unitigs",
                   "pattern": "*annot_mito.txt",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
                 }
               }
             ]
@@ -267696,9 +268033,13 @@
               {
                 "*annot_pltd.txt": {
                   "type": "file",
-                  "description": "the PT gene annotation file over all assembled sequences",
+                  "description": "The PT gene annotation file from nhmmscan for all unitigs",
                   "pattern": "*annot_pltd.txt",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
                 }
               }
             ]
@@ -267714,7 +268055,7 @@
               {
                 "*utg.final.gfa": {
                   "type": "file",
-                  "description": "the GFA file for the final genome assembly",
+                  "description": "The GFA file for the final genome assembly",
                   "pattern": "*utg.final.gfa",
                   "ontologies": [
                     {
@@ -267736,7 +268077,7 @@
               {
                 "*utg.gfa": {
                   "type": "file",
-                  "description": "the GFA file for the initial genome assembly",
+                  "description": "The GFA file for the initial genome assembly",
                   "pattern": "*utg.gfa",
                   "ontologies": [
                     {
@@ -267747,7 +268088,7 @@
               }
             ]
           ],
-          "log": [
+          "oatk_log": [
             [
               {
                 "meta": {
@@ -267758,7 +268099,7 @@
               {
                 "*.log": {
                   "type": "file",
-                  "description": "log file describing oatk run",
+                  "description": "The log file describing oatk run",
                   "pattern": "*.log",
                   "ontologies": [
                     {
@@ -267818,9 +268159,30 @@
         },
         "authors": [
           "@ksenia-krasheninnikova"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/oatk:1.0--a8817603c2ec042f",
+              "build_id": "bd-a8817603c2ec042f_1",
+              "scan_id": "sc-f1e069d187d0493f_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/oatk:1.0--cd6a3fe033cd2aa8",
+              "build_id": "bd-cd6a3fe033cd2aa8_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/b0/b0c742ba43df9d7be62c96beb1425f558de8744b125fe3f1f4b7781e1064a7e1/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/oatk/.conda-lock/linux_amd64-bd-a8817603c2ec042f_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120"
+      "git_sha": "ffd1a93ab6f47daae9b0b834ecf024c7af6e223e"
     },
     {
       "name": "octopusv_clean",
@@ -299506,6 +299868,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -299813,6 +300179,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -338542,7 +338912,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -348413,7 +348783,7 @@
       "pipelines": [
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -350725,7 +351095,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "rnavar",
@@ -351543,7 +351913,7 @@
       "pipelines": [
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -351832,7 +352202,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "rnavar",
@@ -352297,7 +352667,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "rnavar",
@@ -352761,10 +353131,6 @@
           "version": "dev"
         },
         {
-          "name": "deepmutscan",
-          "version": "dev"
-        },
-        {
           "name": "drop",
           "version": "1.0.0"
         },
@@ -352894,7 +353260,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "rnavar",
@@ -353179,7 +353545,7 @@
       "pipelines": [
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -354942,10 +355308,6 @@
           "version": "dev"
         },
         {
-          "name": "deepmutscan",
-          "version": "dev"
-        },
-        {
           "name": "evexplorer",
           "version": "dev"
         },
@@ -355047,7 +355409,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "rnavar",
@@ -355624,7 +355986,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "rnavar",
@@ -356318,7 +356680,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -393071,7 +393433,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "rnavar",
@@ -393372,7 +393734,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "rnavar",
@@ -422387,7 +422749,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -423697,7 +424059,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "scnanoseq",
@@ -423894,7 +424256,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "rnavar",
@@ -429851,8 +430213,10 @@
     {
       "name": "vcfanno",
       "path": "modules/nf-core/vcfanno/meta.yml",
-      "tree_sha": "37eadeaa7f09be79d7bfb097857024da9450cf95",
+      "tree_sha": "ac5650eee3fd2eec7926e0eb3fb061f9a23e0d36",
       "files": [
+        "modules/nf-core/vcfanno/.conda-lock/linux_amd64-bd-45841ba023524097_1.txt",
+        "modules/nf-core/vcfanno/.conda-lock/linux_arm64-bd-680ad92b8154e54c_1.txt",
         "modules/nf-core/vcfanno/environment.yml",
         "modules/nf-core/vcfanno/main.nf",
         "modules/nf-core/vcfanno/meta.yml",
@@ -430033,9 +430397,43 @@
           "@projectoriented",
           "@matthdsm",
           "@nvnieuwk"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_vcfanno:680ad92b8154e54c",
+              "build_id": "bd-680ad92b8154e54c_1",
+              "scan_id": "sc-2833a3113ef6bce8_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_vcfanno:45841ba023524097",
+              "build_id": "bd-45841ba023524097_1",
+              "scan_id": "sc-71707e42e8d9bb3b_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_vcfanno:5ba60ddc80813a17",
+              "build_id": "bd-5ba60ddc80813a17_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/b8/b87398769a3d9ed0bb3f2604d5ee9d024a636e5312cfbfd9ec105a5de2b59282/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_vcfanno:2d3608b08c8c205c",
+              "build_id": "bd-2d3608b08c8c205c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/4d/4dfbd18cafada90478cf28fcdd1df0933e2fc87a24b8a95b537f7302b0b8e5b4/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/vcfanno/.conda-lock/linux_amd64-bd-45841ba023524097_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/vcfanno/.conda-lock/linux_arm64-bd-680ad92b8154e54c_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "5ed90b42e78410e7411e9c6bdfeff33226d6c58e",
       "pipelines": [
         {
           "name": "raredisease",
@@ -462191,7 +462589,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -462699,7 +463097,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -463243,7 +463641,7 @@
         },
         {
           "name": "rnastructurome",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -464973,6 +465371,6 @@
       "git_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657"
     }
   ],
-  "commit_sha": "78522f4889133e32443c76ba9b4703cbdf3ac331",
-  "updated_at": "2026-10-23T02:16:41.534Z"
+  "commit_sha": "ffd1a93ab6f47daae9b0b834ecf024c7af6e223e",
+  "updated_at": "2026-10-23T14:13:31.394Z"
 }
