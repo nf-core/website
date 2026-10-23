@@ -10,7 +10,7 @@
 //   rehype-urls (urlTransformer)               → hast-markdown-links.ts
 //   bin/rehype-checkbox-parser.ts              → hast-checkbox-parser.ts
 //   bin/rehype-heading-numbers.ts              → hast-heading-numbers.ts
-//   rehype-katex                               → @nullpinter/satteri-katex
+//   rehype-katex                               → satteri-katex
 //
 // Code blocks are rendered by Expressive Code: the astro-expressive-code
 // integration (astro.config.base.mjs) pushes its satteri plugin into the shared
@@ -22,9 +22,9 @@
 // our hast plugins; the heading-ids plugin respects the ids hast-heading-anchors.ts
 // already set, so the `headings` metadata (TOCs) stays in sync.
 import { createSatteriMarkdownProcessor, satteri } from "@astrojs/markdown-satteri";
-import { katex } from "@nullpinter/satteri-katex";
 import { markdownToHtml } from "satteri";
 import expressiveCode from "satteri-expressive-code";
+import { satteriKatex } from "satteri-katex";
 import { admonitionsHastPlugin, admonitionsMdastPlugin, directiveTextMergePlugin } from "./admonitions.ts";
 import { createEcConfig } from "./expressive-code-config.ts";
 import { createCheckboxParser } from "./hast-checkbox-parser.ts";
@@ -53,7 +53,7 @@ const sharedMdastPlugins = [
     directiveTextMergePlugin,
     admonitionsMdastPlugin,
     mermaidPlugin,
-    katex,
+    satteriKatex(),
 ] as any[];
 
 // The checkbox parser and heading numbers are opt-in per document (markdownPlugin:
