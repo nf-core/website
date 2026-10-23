@@ -21,4 +21,4 @@ The following specifications define standards for developing nf-core configs:
 
 ## Additional resources
 
-- [Migration to strict syntax](../../developing/migration-guides/config-strict-syntax.md)
+- [Migration to strict syntax](../../developing/migration-guides/strict-syntax.md)
