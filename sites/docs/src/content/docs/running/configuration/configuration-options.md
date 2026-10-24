@@ -49,17 +49,20 @@ Profiles load in sequence.
 Later profiles overwrite earlier ones.
 :::
 
-nf-core provides these basic profiles for container engines:
+nf-core provides these basic profiles for software dependency managers:
 
 - `docker`: Uses [Docker](http://docker.com/) and pulls software from quay.io
-- `apptainer`: Uses [Singularity](https://apptainer.org/) and pulls software from quay.io
+- `singularity`: Uses [Singularity](https://sylabs.io/docs/)
+- `apptainer`: Uses [Apptainer](https://apptainer.org/) and pulls software from quay.io
 - `podman`: Uses [Podman](https://podman.io/)
 - `shifter`: Uses [Shifter](https://docs.nersc.gov/development/containers/shifter/how-to-use/)
 - `charliecloud`: Uses [Charliecloud](https://hpc.github.io/charliecloud/)
 - `conda`: Uses [Conda](https://conda.io/docs/) and pulls most software from [Bioconda](https://bioconda.github.io/)
+- `wave`: Enables [Wave](https://seqera.io/wave/) containers. Use with one of the container profiles above. Requires Nextflow `24.03.0-edge` or later.
 
 :::note
-Use Conda only as a last resort (that is, when you cannot run the pipeline with Docker or Singularity).
+Use Docker or Singularity where possible, as containers give full pipeline reproducibility.
+Use Conda only when you cannot use any of the container profiles.
 :::
 
 Without a specified profile, the pipeline runs locally and expects all software to be installed and available on the `$PATH`.

@@ -15,7 +15,7 @@ This section covers everything you need to run nf-core pipelines effectively, fr
 All nf-core pipelines follow a consistent command structure and execution pattern.
 Start here to learn the essential commands for running any nf-core pipeline with your own data.
 
-- **[Running pipelines](run-pipelines):** Essential commands and patterns for running nf-core pipelines, including testing with sample data, using parameter files, and resuming failed runs
+- **[Running pipelines](run-pipelines):** Essential commands and patterns for running nf-core pipelines, including testing with sample data, pinning pipeline versions, using parameter files, resuming failed runs, running in the background, and updating cached pipelines
 
 ## Configuration
 

@@ -171,6 +171,19 @@ The `--max_<resource>` parameters represent the maximum for a single pipeline jo
 
 :::
 
+## Limit Nextflow memory usage
+
+The resource settings above apply to pipeline jobs, not to the Nextflow process that launches and supervises them.
+The Java virtual machine (JVM) that runs Nextflow can itself request a large amount of memory.
+
+To cap the memory Nextflow uses, set the `NXF_OPTS` environment variable in your shell startup file, such as `~/.bashrc` or `~/.bash_profile`:
+
+```bash
+export NXF_OPTS='-Xms1g -Xmx4g'
+```
+
+`-Xms` sets the initial heap size and `-Xmx` sets the maximum heap size for the Nextflow JVM.
+
 ## Customize Docker registries
 
 Most nf-core pipelines use `quay.io` as the default Docker registry for Docker and Podman images.
