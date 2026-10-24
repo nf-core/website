@@ -50869,7 +50869,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "genomeqc",
@@ -53383,7 +53383,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "genomicrelatedness",
@@ -53762,7 +53762,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "genomicrelatedness",
@@ -100078,6 +100078,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -111338,7 +111346,7 @@
     {
       "name": "duckdb_table2parquet",
       "path": "modules/nf-core/duckdb/table2parquet/meta.yml",
-      "tree_sha": "4306461b52c2669c38d6f12f4943e8e80959572d",
+      "tree_sha": "45ddc0c188b9486a667c36c05539fa778b258a4e",
       "files": [
         "modules/nf-core/duckdb/table2parquet/.conda-lock/linux_amd64-bd-9c6d18d9f687a45d_1.txt",
         "modules/nf-core/duckdb/table2parquet/environment.yml",
@@ -111351,7 +111359,7 @@
       "type": "module",
       "meta": {
         "name": "duckdb_table2parquet",
-        "description": "Convert a delimited text table (CSV or TSV, gzipped or not) to Parquet",
+        "description": "Convert a delimited text table (CSV or TSV, gzipped or not) to Parquet.\nDuckDB types each column from the first 20480 rows and reads only the empty string as missing.\nPass `read_csv` options through `ext.args`, for example `nullstr=['NA','']` for tables written by R.\n",
         "keywords": [
           "parquet",
           "csv",
@@ -111501,7 +111509,7 @@
           }
         }
       },
-      "git_sha": "64017d8989654a65db85f8ba181a9c387ac58fad",
+      "git_sha": "f407d5c00e870aa43ee5662af40c15f07474061e",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -112637,6 +112645,10 @@
       },
       "git_sha": "1298fbd2004c2913d6682ce4a419647d97a8fc3f",
       "pipelines": [
+        {
+          "name": "rnaseq",
+          "version": "3.27.0"
+        },
         {
           "name": "rnaseq",
           "version": "3.27.0"
@@ -124079,7 +124091,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "genomicrelatedness",
@@ -124397,7 +124409,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -124681,7 +124693,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "genomeqc",
@@ -135246,7 +135258,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "mag",
@@ -167026,7 +167038,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -168826,7 +168838,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -179415,7 +179427,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "genomicrelatedness",
@@ -185068,7 +185080,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -195388,7 +195400,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "pairgenomealign",
@@ -206491,7 +206503,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -218888,7 +218900,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -219877,7 +219889,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -222695,7 +222707,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -233816,7 +233828,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "genomeqc",
@@ -235300,7 +235312,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "genomeqc",
@@ -235573,7 +235585,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "genomeqc",
@@ -243230,7 +243242,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "isoseq",
@@ -291824,7 +291836,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "methylseq",
@@ -295480,7 +295492,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "methylseq",
@@ -298021,7 +298033,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -299872,6 +299884,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -300179,6 +300195,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -322471,7 +322491,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "genomeqc",
@@ -323755,7 +323775,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -324109,7 +324129,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -351007,7 +351027,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "genomicrelatedness",
@@ -351606,7 +351626,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "hgtseq",
@@ -352126,7 +352146,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "hgtseq",
@@ -352595,7 +352615,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "hgtseq",
@@ -353144,7 +353164,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "genomicrelatedness",
@@ -355313,7 +355333,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "hadge",
@@ -355898,7 +355918,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "genomicrelatedness",
@@ -445984,7 +446004,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -450476,7 +450496,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "lncpipe",
@@ -450779,7 +450799,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "lncpipe",
@@ -462361,7 +462381,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "genomeqc",
@@ -462869,7 +462889,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "genomeqc",
@@ -463425,7 +463445,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "genomeqc",
@@ -465371,6 +465391,6 @@
       "git_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657"
     }
   ],
-  "commit_sha": "ffd1a93ab6f47daae9b0b834ecf024c7af6e223e",
-  "updated_at": "2026-10-23T14:13:31.394Z"
+  "commit_sha": "f407d5c00e870aa43ee5662af40c15f07474061e",
+  "updated_at": "2026-10-24T02:13:42.109Z"
 }
