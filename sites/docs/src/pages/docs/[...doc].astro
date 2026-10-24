@@ -162,7 +162,9 @@ if (currentGroup.length > 0) {
 }
 
 const docType = Astro.props.doc.data.type;
-const md_github_url = "https://github.com/nf-core/website/blob/main/sites/docs/" + Astro.props.doc.filePath;
+const md_github_url =
+    Astro.props.doc.data.md_github_url ??
+    "https://github.com/nf-core/website/blob/main/sites/docs/" + Astro.props.doc.filePath;
 // remove leading and trailing slash
 const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, "").split("/");
 // check if markdown file starts with a heading (markdown or html)
@@ -219,10 +221,10 @@ const parentSections = getSectionParents(sections, currentElement);
                         <li class="breadcrumb-item">
                             {section.href ? (
                                 <a class="" href={section.href}>
-                                    {section.label}
+                                    {sanitizeNfCoreLabels(section.label)}
                                 </a>
                             ) : (
-                                <span class="text-reset">{section.label}</span>
+                                <span class="text-reset">{sanitizeNfCoreLabels(section.label)}</span>
                             )}
                         </li>
                         <Icon name="octicon:chevron-right-16" class={"mt-1"} />

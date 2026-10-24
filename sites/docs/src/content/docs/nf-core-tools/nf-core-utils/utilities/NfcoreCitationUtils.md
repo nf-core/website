@@ -3,6 +3,7 @@
 title: "NfcoreCitationUtils"
 shortTitle: "NfcoreCitationUtils"
 weight: 4
+md_github_url: https://github.com/nf-core/nf-core-utils/blob/main/docs/utilities/NfcoreCitationUtils.md
 ---
 
 # NfcoreCitationUtils
