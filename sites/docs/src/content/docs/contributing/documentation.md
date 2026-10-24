@@ -20,6 +20,11 @@ Contact the nf-core docs-team on Slack at **#team-docs**.
 We're here to help! [Join the Slack](https://nf-co.re/join#slack).
 :::
 
+:::tip
+Looking for how to format pages, such admonitions, for the nf-core website?
+See the [Website markdown](../developing/documentation/website-markdown) page in the Developing section.
+:::
+
 ## How to contribute
 
 Contributing to nf-core documentation follows a straightforward process:
