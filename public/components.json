@@ -100102,6 +100102,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -112661,6 +112669,10 @@
       },
       "git_sha": "1298fbd2004c2913d6682ce4a419647d97a8fc3f",
       "pipelines": [
+        {
+          "name": "rnaseq",
+          "version": "3.27.0"
+        },
         {
           "name": "rnaseq",
           "version": "3.27.0"
@@ -282152,7 +282164,7 @@
     {
       "name": "parabricks_rnafq2bam",
       "path": "modules/nf-core/parabricks/rnafq2bam/meta.yml",
-      "tree_sha": "01b220dbc596a386aef531ccbe85a94e171705f1",
+      "tree_sha": "919c3ba03d0ae4fce0f0bc596687d2e79ea9b1bc",
       "files": [
         "modules/nf-core/parabricks/rnafq2bam/main.nf",
         "modules/nf-core/parabricks/rnafq2bam/meta.yml",
@@ -282193,7 +282205,7 @@
             {
               "reads": {
                 "type": "file",
-                "description": "fastq.gz files",
+                "description": "List of fastq.gz files. Multiple files (e.g. lanes) are aligned together.\nPaired-end files must be ordered R1, R2 per pair, e.g.\n[ L1_R1, L1_R2, L2_R1, L2_R2 ].\n",
                 "pattern": "*.fastq.gz",
                 "ontologies": [
                   {
@@ -282668,7 +282680,7 @@
           "@gburnett-nvidia"
         ]
       },
-      "git_sha": "78522f4889133e32443c76ba9b4703cbdf3ac331",
+      "git_sha": "a6d01717745062df38395b45979c1f0e15b1df0c",
       "pipelines": [
         {
           "name": "rnaseq",
@@ -299920,6 +299932,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -300227,6 +300243,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -465716,6 +465736,6 @@
       "git_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657"
     }
   ],
-  "commit_sha": "ec5a9ed8d87a584915e6444f3f97424087f67084",
-  "updated_at": "2026-10-25T02:15:51.610Z"
+  "commit_sha": "a6d01717745062df38395b45979c1f0e15b1df0c",
+  "updated_at": "2026-10-25T14:13:02.170Z"
 }
