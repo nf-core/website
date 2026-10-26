@@ -11,10 +11,10 @@ However, you remain responsible for any code you publish and we are responsible 
 
 If you’re using AI tools, try to stick by these guidelines:
 
--  Keep PRs as small and focussed as possible
--  Avoid any unnecessary changes, such as moving or refactoring code (unless that is the explicit intention of the PR)
--  Review all generated code yourself before opening a PR, and ensure that you understand it
--  Engage with the community review process and expect to make revisions
+- Keep PRs as small and focussed as possible
+- Avoid any unnecessary changes, such as moving or refactoring code (unless that is the explicit intention of the PR)
+- Review all generated code yourself before opening a PR, and ensure that you understand it
+- Engage with the community review process and expect to make revisions
 - Do not flood repositories with many PRs or Issues
 
 _The nf-core community members reserve the right to reject contributions that do not meet our guidelines_
