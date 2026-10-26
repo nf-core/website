@@ -5,6 +5,8 @@ on:
   pull_request:
     paths:
       - "sites/main-site/**"
+      # Content-only PRs (blog posts, events, ...) barely move build time; pushes to main still benchmark them
+      - "!sites/main-site/src/content/**"
       - "sites/pipelines/**"
       - "astro.config.base.mjs"
       - "bin/satteri/**"
