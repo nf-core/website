@@ -1,7 +1,7 @@
 ---
-title: Deprecating modules or subworkflows
+title: Deprecating components
 subtitle: Deprecate a module or subworkflow
-shortTitle: Deprecating modules or subworkflows
+shortTitle: Deprecating components
 ---
 
 Sometimes modules or subworkflows become outdated and need to be deprecated (available, but no longer recommended).
