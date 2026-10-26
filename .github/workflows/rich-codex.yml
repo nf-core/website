@@ -46,6 +46,7 @@ jobs:
           NXF_ANSI_LOG: false
         with:
           commit_changes: "false"
+          error_changes: "false"
           terminal_width: 100
           skip_git_checks: "true"
           search_include: ".github/workflows/rich-codex.yml"
@@ -66,7 +67,7 @@ jobs:
         run: |
           git config user.email "core@nf-co.re"
           git config user.name "nf-core-bot"
-          git add --all
+          git add sites/docs/src/assets/images/.
           git diff --staged --quiet || git commit -m "[automated] Update rich-codex images"
           git push
 
