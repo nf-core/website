@@ -1,14 +1,15 @@
 ---
-title: Deprecating modules
+title: Deprecating modules or subworkflows
 subtitle: Deprecate a module or subworkflow
-shortTitle: Deprecating modules
+shortTitle: Deprecating modules or subworkflows
 ---
-
-## Deprecating a module
 
 Sometimes modules or subworkflows become outdated and need to be deprecated (available, but no longer recommended).
 These modules or subworkflows should not be deleted as they could be used in private repositories, or used on other
 platforms.
+
+## Deprecating a module
+
 The recommended procedure is, once the alternative is available on nf-core modules, add a message to the
 top of the module code saying this module is deprecated, and an `assert` in the code body to print a deprecation
 message like so:
@@ -62,4 +63,16 @@ The `then` part of the nf-test should be updated with the following code:
     )
   }
 ...
+```
+
+## Deprecating a subworkflow
+
+The recommended procedure is, once the alternative is available on nf-core modules, remove the subworkflow files and in their place add a
+`README.md` file with the followoing content:
+
+```markdown title="README.md"
+> [!WARNING]
+> This subworkflow has been deprecated. Please use subworkflows/nf-core/path/to/new/subworkflow
+>
+> **Reason:** This subworkflow is no longer fit for purpose because ...
 ```
