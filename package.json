@@ -10,7 +10,8 @@
         "check-api-catalog": "node bin/check-api-catalog.js",
         "update": "npx npm-check-updates --interactive --format group --workspaces",
         "test-all": "for dir in sites/*; do (cd $dir && npm run test); done",
-        "test-unit": "node --test bin/satteri/*.test.ts"
+        "test-unit": "node --test bin/satteri/*.test.ts",
+        "bench": "node bench/build.bench.mjs"
     },
     "workspaces": [
         "sites/*"
@@ -83,6 +84,7 @@
         "zod": "^4.6.7"
     },
     "devDependencies": {
+        "@codspeed/tinybench-plugin": "^5.7.1",
         "@j178/prek": "^0.5.7",
         "@playwright/test": "^1.64.1",
         "@types/leaflet": "^1.9.22",
@@ -93,7 +95,8 @@
         "prettier-plugin-astro": "^1.1.2",
         "prettier-plugin-svelte": "^4.1.1",
         "progress": "^2.0.3",
-        "sass-embedded": "^1.106.1"
+        "sass-embedded": "^1.106.1",
+        "tinybench": "^6.2.0"
     },
     "overrides": {
         "satteri-expressive-code": {
