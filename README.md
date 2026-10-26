@@ -6,6 +6,8 @@
 
 # [nf-co.re](https://github.com/nf-core/website)
 
+[![CodSpeed](https://img.shields.io/endpoint?url=https://codspeed.io/badge.json)](https://app.codspeed.io/nf-core/website?utm_source=badge)
+
 This repository contains code for the nf-core website: **<http://nf-co.re/>**
 
 ## Packages used

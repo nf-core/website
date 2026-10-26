@@ -28,6 +28,7 @@ npm install --workspaces                 # install dependencies for all sub-site
 npm run dev --workspace sites/main-site  # dev server for one sub-site (astro dev)
 npm run build --workspace sites/docs     # production build for one sub-site
 npm run test-all                         # Playwright tests across all sub-sites
+npm run bench                            # vitest benchmarks for the shared markdown pipeline (bench/), tracked by CodSpeed in CI
 ```
 
 Tests are **Playwright** (`npm run test --workspace sites/<name>`, or `npx playwright test <file>` within a sub-site for a single test).
