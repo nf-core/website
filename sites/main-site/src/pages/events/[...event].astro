@@ -34,8 +34,12 @@ export async function getStaticPaths() {
     await Promise.all(
         [...new Set(events.flatMap((event) => getVideoIds(event.data.youtubeEmbed)))].map(async (id) => {
             const maxresPoster = `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
-            const response = await fetch(maxresPoster, { method: "HEAD" }).catch(() => null);
-            posters.set(id, response?.ok ? maxresPoster : `https://i.ytimg.com/vi/${id}/hqdefault.jpg`);
+            // only fall back when YouTube says there is no maxres thumbnail: on a timeout or network error assume
+            // it exists (most videos have one), so a flaky request can't hang the build or flip the page's cacheKey
+            const response = await fetch(maxresPoster, { method: "HEAD", signal: AbortSignal.timeout(5000) }).catch(
+                () => null,
+            );
+            posters.set(id, response?.status === 404 ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : maxresPoster);
         }),
     );
 
