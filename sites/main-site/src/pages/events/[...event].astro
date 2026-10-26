@@ -19,49 +19,48 @@ export async function getStaticPaths() {
             ),
         )
         .digest("hex");
-    return events.map((event) => ({
-        params: {
-            event: event.id.replace(/\.[^/.]+$/, ""),
-        },
-        props: {
-            event: event,
-            events: events,
-        },
-        cacheKey: event.digest + sidebarHash,
-    }));
+
+    const getVideoIds = (video: string | string[] | undefined) =>
+        (typeof video === "string" ? [video] : (video ?? [])).map(
+            (v) =>
+                v
+                    .replace("https://www.youtube.com/watch?v=", "")
+                    .replace("https://youtu.be/", "")
+                    .replace("https://www.youtube.com/embed/", "")
+                    .split("&list")[0],
+        );
+    // check once for all videos (in parallel) if a maxres thumbnail is available, instead of once per page render
+    const posters = new Map<string, string>();
+    await Promise.all(
+        [...new Set(events.flatMap((event) => getVideoIds(event.data.youtubeEmbed)))].map(async (id) => {
+            const maxresPoster = `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+            const response = await fetch(maxresPoster, { method: "HEAD" }).catch(() => null);
+            posters.set(id, response?.ok ? maxresPoster : `https://i.ytimg.com/vi/${id}/hqdefault.jpg`);
+        }),
+    );
+
+    return events.map((event) => {
+        const videos = getVideoIds(event.data.youtubeEmbed).map((id) => ({ id, poster: posters.get(id) }));
+        return {
+            params: {
+                event: event.id.replace(/\.[^/.]+$/, ""),
+            },
+            props: {
+                event: event,
+                events: events,
+                videos: videos,
+            },
+            cacheKey: event.digest + sidebarHash + JSON.stringify(videos),
+        };
+    });
 }
-const { event, events } = Astro.props;
+const { event, events, videos } = Astro.props;
 const title = event.data.title;
 const subtitle = event.data.subtitle;
 let frontmatter = event.data;
 const { headings, Content } = await render(event);
 
 const md_github_url = "https://github.com/nf-core/website/blob/main/sites/main-site/" + event.filePath;
-
-let video = event.data.youtubeEmbed;
-// convert video to array if it is string
-if (typeof video === "string") {
-    video = [video];
-}
-const ids = video?.map(
-    (v) =>
-        v
-            .replace("https://www.youtube.com/watch?v=", "")
-            .replace("https://youtu.be/", "")
-            .replace("https://www.youtube.com/embed/", "")
-            .split("&list")[0],
-);
-// Check if maxres thumbnail is available
-let posters = await Promise.all(
-    Array.from(ids || []).map(async (id) => {
-        const maxresPoster = `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
-        const response = await fetch(maxresPoster);
-        if (response.status === 404) {
-            return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
-        }
-        return maxresPoster;
-    }),
-);
 
 events
     .map((event) => {
@@ -174,10 +173,9 @@ sections.forEach((year) => {
         </Admonition>
     )}
     <Content />
-    {ids &&
-        ids.map((id, i) => (
-            <VideoTranscript id={id} client:idle>
-                <YouTube id={id} poster={posters[i]} />
-            </VideoTranscript>
-        ))}
+    {videos.map(({ id, poster }) => (
+        <VideoTranscript id={id} client:idle>
+            <YouTube id={id} poster={poster} />
+        </VideoTranscript>
+    ))}
 </MarkdownTocLayout>
