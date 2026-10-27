@@ -104,6 +104,20 @@ const md_github_url =
         ? `https://github.com/nf-core/tools/blob/${version_tag_name}/${source_dirs[section]}/${source_file}`
         : "";
 
+// Index pages are served without a trailing slash (e.g. .../latest/api/pipelines), so the browser would resolve
+// their relative links against the parent directory. Resolve them against the index page's own directory instead.
+const is_index = (doc_path.at(-1) ?? section) === "index";
+const index_dir = new URL(
+    [version, ...[section, ...doc_path].slice(0, -1)].join("/") + "/",
+    new URL("/docs/nf-core-tools/api_reference/", Astro.site),
+);
+const index_html = is_index
+    ? entry.rendered?.html.replace(/href="(?![a-z][a-z0-9+.-]*:|\/|#)([^"]+)"/gi, (_, href) => {
+          const url = new URL(href, index_dir);
+          return `href="${url.pathname.replace(/\/$/, "")}${url.search}${url.hash}"`;
+      })
+    : undefined;
+
 let tools: CollectionEntry<"api_reference">[] = await getCollection("api_reference");
 // replace tools.id with tools.filePath
 tools = tools.map((tool) => {
@@ -257,7 +271,7 @@ sections.sort((a, b) => {
             </ul>
         </div>
     </div>
-    <Content />
+    {index_html !== undefined ? <Fragment set:html={index_html} /> : <Content />}
 </MarkdownTocLayout>
 <style lang="scss">
     :global(h3:not(:first-of-type), h4) {

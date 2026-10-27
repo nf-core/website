@@ -526,5 +526,8 @@ export async function getNewsletterStaticPaths(
             prevMonth: months[index + 1] || null,
             nextMonth: months[index - 1] || null,
         },
+        // A past newsletter's content is fixed, so only re-render it when the month list (shown in the
+        // month picker) changes. The latest one has no cacheKey: its upcoming events can still change.
+        cacheKey: index === 0 ? undefined : JSON.stringify(months),
     }));
 }

@@ -57,7 +57,7 @@
             },
         );
         headings.forEach((heading) => {
-            const element = document.querySelector("#" + heading.slug);
+            const element = document.getElementById(heading.slug);
             if (element) {
                 observer.observe(element);
             }

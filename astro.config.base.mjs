@@ -9,7 +9,7 @@ import { envField, fontProviders, svgoOptimizer } from "astro/config";
 import markdownIntegration from "@mashehu/astropub-md";
 import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
-import { createEcConfig } from "./bin/satteri/hast-expressive-code.ts";
+import { createEcConfig } from "./bin/satteri/expressive-code-config.ts";
 import { createSatteriPluginSets, satteriSharedMarkdownConfig } from "./bin/satteri/markdownConfig.ts";
 
 /**
@@ -47,7 +47,7 @@ export default {
             name: "Maven Pro",
             cssVariable: "--font-maven-pro",
             fallbacks: ["sans-serif"],
-            weights: ["300 700"],
+            weights: ["400 700"],
         },
     ],
     experimental: {

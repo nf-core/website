@@ -2,36 +2,40 @@
 //
 // Plugin mapping from the old unified pipeline:
 //   remark-gfm, remark-math, remark-directive  → built-in `features` (no plugin needed)
-//   remark-emoji                               → mdast-emoji.ts
+//   remark-emoji                               → satteri-emoji
 //   bin/remark-admonitions.js                  → admonitions.ts (mdast + hast halves)
 //   bin/remark-mermaid.ts                      → mdast-mermaid.ts
-//   rehype-slug + rehype-autolink-headings     → hast-heading-anchors.ts
+//   rehype-slug + rehype-autolink-headings     → satteri-slug + satteri-autolink-headings
 //   rehype-class-names + rehype-wrap-all       → hast-tables.ts
 //   rehype-urls (urlTransformer)               → hast-markdown-links.ts
 //   bin/rehype-checkbox-parser.ts              → hast-checkbox-parser.ts
 //   bin/rehype-heading-numbers.ts              → hast-heading-numbers.ts
-//   rehype-katex                               → mdast-math-katex.ts
+//   rehype-katex                               → satteri-katex
 //
 // Code blocks are rendered by Expressive Code: the astro-expressive-code
 // integration (astro.config.base.mjs) pushes its satteri plugin into the shared
 // processor's options, and the standalone paths below (createSatteriPluginSets,
-// renderMarkdown) append hast-expressive-code.ts, which wraps the same engine.
+// renderMarkdown) append satteri-expressive-code with the same config
+// (expressive-code-config.ts).
 // `syntaxHighlight: false` keeps @astrojs/markdown-satteri's own highlight plugin
 // out of the pipeline. Astro's wrapper appends its image plugins and a heading-ids plugin after
-// our hast plugins; the heading-ids plugin respects the ids hast-heading-anchors.ts
+// our hast plugins; the heading-ids plugin respects the ids satteri-slug
 // already set, so the `headings` metadata (TOCs) stays in sync.
 import { createSatteriMarkdownProcessor, satteri } from "@astrojs/markdown-satteri";
+import { h } from "hastscript";
 import { markdownToHtml } from "satteri";
+import { satteriAutolinkHeadings } from "satteri-autolink-headings";
+import { satteriEmoji } from "satteri-emoji";
+import expressiveCode from "satteri-expressive-code";
+import { satteriKatex } from "satteri-katex";
+import { satteriSlug } from "satteri-slug";
 import { admonitionsHastPlugin, admonitionsMdastPlugin, directiveTextMergePlugin } from "./admonitions.ts";
+import { createEcConfig } from "./expressive-code-config.ts";
 import { createCheckboxParser } from "./hast-checkbox-parser.ts";
 import { headingNumbersPlugin } from "./hast-heading-numbers.ts";
-import { headingAnchorsPlugin } from "./hast-heading-anchors.ts";
-import { expressiveCodePlugin } from "./hast-expressive-code.ts";
 import { inlineCodePlugin } from "./hast-inline-code.ts";
 import { markdownLinksPlugin } from "./hast-markdown-links.ts";
 import { tablesPlugin } from "./hast-tables.ts";
-import { emojiPlugin } from "./mdast-emoji.ts";
-import { mathKatexPlugin } from "./mdast-math-katex.ts";
 import { mermaidPlugin } from "./mdast-mermaid.ts";
 
 const features = {
@@ -41,19 +45,38 @@ const features = {
     // markdown config defaults (both on), matching the old unified pipeline.
 };
 
+// A plugin factory: satteri calls it per document, so the once-per-document
+// style/script bookkeeping resets, while the engine (theme loading is expensive)
+// is created lazily once and shared by all documents.
+const expressiveCodePlugin = expressiveCode(createEcConfig());
+
 const sharedMdastPlugins = [
-    emojiPlugin,
+    // GitHub shortcode names (:tada:, :heart:, …), as used by node-emoji/remark-emoji before
+    satteriEmoji({ shortcodes: ["github"] }),
     directiveTextMergePlugin,
     admonitionsMdastPlugin,
     mermaidPlugin,
-    mathKatexPlugin,
+    satteriKatex(),
 ] as any[];
 
 // The checkbox parser and heading numbers are opt-in per document (markdownPlugin:
 // checklist / addNumbersToHeadings in the frontmatter); the opt-in renderer below
 // appends them to the pipeline of documents that ask for them.
+// inlineCodePlugin runs before satteriSlug so the `{:lang}` markers of inline code
+// in headings are gone before the heading text is slugged.
 const buildHastPlugins = () =>
-    [admonitionsHastPlugin, headingAnchorsPlugin, tablesPlugin, markdownLinksPlugin, inlineCodePlugin] as any[];
+    [
+        admonitionsHastPlugin,
+        inlineCodePlugin,
+        // A factory, so the slugger's duplicate counter resets between documents.
+        satteriSlug(),
+        satteriAutolinkHeadings({
+            behavior: "append",
+            content: () => h("i", { class: "ms-1 fas fa-link fa-xs invisible" }),
+        }),
+        tablesPlugin,
+        markdownLinksPlugin,
+    ] as any[];
 
 /**
  * A fresh set of the shared satteri plugins. Use this to build additional processors
