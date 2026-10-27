@@ -100310,6 +100310,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -112916,6 +112924,10 @@
         {
           "name": "rnaseq",
           "version": "3.27.0"
+        },
+        {
+          "name": "rnaseq",
+          "version": "3.27.0"
         }
       ]
     },
@@ -124664,7 +124676,7 @@
     {
       "name": "fastqc",
       "path": "modules/nf-core/fastqc/meta.yml",
-      "tree_sha": "ca403fb87a1cd7833a381ba68145df7b8ea7b0a0",
+      "tree_sha": "2d85f8f99e839cd0d44df434c3228babeaf4f021",
       "files": [
         "modules/nf-core/fastqc/.conda-lock/linux_amd64-bd-b342db7b694c9af4_1.txt",
         "modules/nf-core/fastqc/.conda-lock/linux_arm64-bd-7c8a53b986d9a000_1.txt",
@@ -124845,7 +124857,7 @@
           }
         }
       },
-      "git_sha": "18eb358065b06f2d3419e37383b002fe7db3da02",
+      "git_sha": "2c2d159951605a1e815f1236616201353138c073",
       "pipelines": [
         {
           "name": "airrflow",
@@ -300186,6 +300198,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -300493,6 +300509,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -393834,8 +393854,10 @@
     {
       "name": "star_genomegenerate",
       "path": "modules/nf-core/star/genomegenerate/meta.yml",
-      "tree_sha": "a443cd00ef53d1a35f229fd2104090889f7b95f4",
+      "tree_sha": "d31812e513d59dcb407c526681cf478f39f508a6",
       "files": [
+        "modules/nf-core/star/genomegenerate/.conda-lock/linux_amd64-bd-3ffb3e46ac3bf2ea_1.txt",
+        "modules/nf-core/star/genomegenerate/.conda-lock/linux_arm64-bd-adccd64be154a89d_1.txt",
         "modules/nf-core/star/genomegenerate/environment.yml",
         "modules/nf-core/star/genomegenerate/main.nf",
         "modules/nf-core/star/genomegenerate/meta.yml",
@@ -393850,7 +393872,11 @@
           "index",
           "fasta",
           "genome",
-          "reference"
+          "reference",
+          "multi-tool",
+          "star",
+          "samtools",
+          "gawk"
         ],
         "tools": [
           {
@@ -393862,7 +393888,34 @@
               "licence": [
                 "MIT"
               ],
+              "args_id": "$args",
               "identifier": "biotools:star"
+            }
+          },
+          {
+            "samtools": {
+              "description": "SAMtools is a set of utilities for interacting with and post-processing\nshort DNA sequence read alignments in the SAM, BAM and CRAM formats, written by Heng Li.\nThese files are generated as output by short read aligners like BWA.\n",
+              "homepage": "http://www.htslib.org/",
+              "documentation": "http://www.htslib.org/doc/samtools.html",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "args_id": "$args2",
+              "identifier": "biotools:samtools"
+            }
+          },
+          {
+            "gawk": {
+              "description": "GNU awk",
+              "homepage": "https://www.gnu.org/software/gawk/",
+              "documentation": "https://www.gnu.org/software/gawk/manual/",
+              "tool_dev_url": "https://www.gnu.org/prep/ftp.html",
+              "licence": [
+                "GPL v3"
+              ],
+              "args_id": "$args3",
+              "identifier": ""
             }
           }
         ],
@@ -393878,7 +393931,11 @@
               "fasta": {
                 "type": "file",
                 "description": "Fasta file of the reference genome",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -393892,8 +393949,12 @@
             {
               "gtf": {
                 "type": "file",
-                "description": "GTF file of the reference genome",
-                "ontologies": []
+                "description": "Optional GTF file of the reference genome, used to build the splice junction database",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2306"
+                  }
+                ]
               }
             }
           ]
@@ -394054,9 +394115,43 @@
         "maintainers": [
           "@kevinmenden",
           "@drpatelh"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools_star_gawk:3ffb3e46ac3bf2ea",
+              "build_id": "bd-3ffb3e46ac3bf2ea_1",
+              "scan_id": "sc-358dbd3ae33fcfe8_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/htslib_samtools_star_gawk:adccd64be154a89d",
+              "build_id": "bd-adccd64be154a89d_1",
+              "scan_id": "sc-eded997b1e8b73d4_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools_star_gawk:6b13f5b00438e1ec",
+              "build_id": "bd-6b13f5b00438e1ec_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/d8/d807965783d3d20f9a33f37da72e62223d217a042a0a8615744fae0a34457b48/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_samtools_star_gawk:9e6bab8437bc6b09",
+              "build_id": "bd-9e6bab8437bc6b09_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/dd/dd20b752594d7c3764bf7128d4cb88efb2978429f995d30bc2c286e0ef3bec69/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/star/genomegenerate/.conda-lock/linux_amd64-bd-3ffb3e46ac3bf2ea_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/star/genomegenerate/.conda-lock/linux_arm64-bd-adccd64be154a89d_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+      "git_sha": "ce1737528113e7c77263d416377241fe9a9f7119",
       "pipelines": [
         {
           "name": "alleleexpression",
@@ -466354,6 +466449,6 @@
       "git_sha": "066da9c5f80fbc42ec51bb720956e5213a4aa657"
     }
   ],
-  "commit_sha": "381b86e0b09dfd83d5234f620f9a20d77b3f8a3a",
-  "updated_at": "2026-10-27T02:18:20.842Z"
+  "commit_sha": "ce1737528113e7c77263d416377241fe9a9f7119",
+  "updated_at": "2026-10-27T14:14:39.347Z"
 }
