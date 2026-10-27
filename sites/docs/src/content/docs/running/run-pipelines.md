@@ -98,9 +98,14 @@ Consult the pipeline's usage and parameter documentation before preparing your d
 ### Specify a pipeline version
 
 Specify the pipeline version with `-r` when you run a pipeline on your data.
-A pinned version keeps the pipeline code and software versions the same for every run, even after the pipeline changes on GitHub.
+This ensures reproducibility of your runs, for example when publishing your analysis.
+:::warning
+The first time you pin a version it keeps the pipeline code and software versions the same for every run, even after the pipeline changes on GitHub.
 
-1. Find the version you want on the pipeline's GitHub releases page, at `https://github.com/nf-core/<pipeline>/releases`. Use the numeric tag only, for example `1.3.1`.
+Make sure to explicitly update the version when you want to use a new version of the pipeline.
+:::
+
+1. Find the version you want on the pipeline's nf-core page under the 'Releases' tab at https://nf-co.re/<pipeline>/releases_stats/, or on the pipeline's GitHub releases page, at `https://github.com/nf-core/<pipeline>/releases`. Use the numeric tag only, for example `1.3.1`.
 
 2. Add the version to your command with `-r`:
 
@@ -266,9 +271,9 @@ Run `nextflow log` to list the names of previous runs.
 ### Run in the background
 
 Nextflow submits and supervises pipeline jobs, and must keep running until the pipeline finishes.
-If you log out while Nextflow runs in the foreground, the pipeline stops.
+If you exit a terminal while Nextflow runs in the foreground, the pipeline stops.
 
-To keep a pipeline running after you log out, use one of these options:
+To keep a pipeline running after you exit a terminal, use one of these options:
 
 - Add `-bg` to launch Nextflow in the background, detached from your terminal. Nextflow writes the log output to a file instead of the terminal.
 
@@ -281,7 +286,7 @@ To keep a pipeline running after you log out, use one of these options:
   ```
 
 - Use `screen`, `tmux`, or a similar tool to create a detached session that you can reattach to later.
-- On some high-performance computing (HPC) systems, submit Nextflow itself as a job to the cluster scheduler. Nextflow then submits the pipeline jobs from inside that job.
+- On some high-performance computing (HPC) systems, it is required to submit Nextflow itself as a job to the cluster scheduler. Nextflow then submits the pipeline jobs from inside that job.
 
 ### Update pipelines
 

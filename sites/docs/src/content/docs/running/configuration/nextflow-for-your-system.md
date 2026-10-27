@@ -174,7 +174,7 @@ The `--max_<resource>` parameters represent the maximum for a single pipeline jo
 ## Limit Nextflow memory usage
 
 The resource settings above apply to pipeline jobs, not to the Nextflow process that launches and supervises them.
-The Java virtual machine (JVM) that runs Nextflow can itself request a large amount of memory.
+The Java virtual machine (JVM) that runs Nextflow can occasionally itself request a large amount of memory.
 
 To cap the memory Nextflow uses, set the `NXF_OPTS` environment variable in your shell startup file, such as `~/.bashrc` or `~/.bash_profile`:
 

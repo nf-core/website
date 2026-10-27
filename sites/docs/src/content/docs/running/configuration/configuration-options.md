@@ -61,7 +61,7 @@ nf-core provides these basic profiles for software dependency managers:
 - `wave`: Enables [Wave](https://seqera.io/wave/) containers. Use with one of the container profiles above. Requires Nextflow `24.03.0-edge` or later.
 
 :::note
-Use Docker or Singularity where possible, as containers give full pipeline reproducibility.
+Use Docker or Singularity/Apptainer where possible, as containers give full pipeline reproducibility.
 Use Conda only when you cannot use any of the container profiles.
 :::
 
