@@ -18,7 +18,7 @@ This blog post gives an overview of all the upcoming changes that are coming to 
 
 ## Singular inputs and outputs
 
-Previously, Multiple lines were allowed in the input and output block of a process. In fact we even enforced that the output block must contain one output per file produced by the process. This will change as of now by enforcing each module to take one [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record) as an input and to emit one [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record) as the output.
+Previously, multiple lines were allowed in the input and output block of a process. In fact we even enforced that the output block must contain one output per file produced by the process. This will change as of now by enforcing each module to take one [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record) as an input and to emit one [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record) as the output.
 
 This change will be enforced due to many reasons, these are the most prominent ones:
 
@@ -66,28 +66,8 @@ This example will show the changes that need to be done for the `SAMTOOLS_STATS`
 
 This module takes two required files called `input` and `input_index` and two optional files called `fasta` and `fai`. These files are split over two input lines, that need to be merged into one record. `meta2` is removed because the two optional files are now part of the main input entry. The `id` field has been added as a required value and the required `meta` Map was turned into an optional Record. Finally, `samtools_stats_args` and `output_prefix` have been added as optional String values.
 
-Previously the input of the module looked like this:
+The input section of a module will change like this:
 
-```groovy
-input:
-tuple val(meta), path(input), path(input_index)
-tuple val(meta2), path(fasta), path(fai)
-```
-
-After updating the module, the input should look like this:
-
-```groovy
-input:
-record(
-	id: String,
-	meta: Record?,
-	input: Path,
-	input_index: Path,
-	fasta: Path?,
-	fai: Path?,
-	samtools_stats_args: String?,
-	output_prefix: String?
-)
 ```
 
 So, with inputs out of the way, let's move on to the module outputs!
@@ -225,7 +205,6 @@ process SAMTOOLS_STATS {
 
 This is full example of the `SAMTOOLS_STATS` module.
 
-```groovy
 nextflow.enable.types = true
 
 process SAMTOOLS_STATS {
