@@ -2,7 +2,7 @@
 import PageLayout from "@layouts/PageLayout.astro";
 import { getCollection } from "astro:content";
 import type { SidebarEntry } from "@utils/types";
-import { addEntriesToSection, sanitizeNfCoreLabels } from "@utils/functions";
+import { addEntriesToSection } from "@utils/functions";
 import { Icon } from "astro-icon/components";
 import SidebarNav from "@components/sidebar/SidebarNav.astro";
 
@@ -211,9 +211,6 @@ const trainingCards = [
                                         <Icon name={page.customIcon} class="fs-3 mb-2 text-body" />
                                         <h4 class="mb-1"> {page.metadata?.data.title || page.label}</h4>
                                         <p class="card-description mb-0">{page.description}</p>
-                                        {/* <div class="bg-icon">
-                                                <Icon name={page.customIcon} />
-                                            </div> */}
                                     </div>
                                 </div>
                             </a>
@@ -233,9 +230,6 @@ const trainingCards = [
                                         <Icon name={section.icon} class="fs-3 mb-2 text-body" />
                                         <h4 class="mb-1"> {section.title}</h4>
                                         <p class="card-description mb-0">{section.description}</p>
-                                        {/* <div class="bg-icon">
-
-                                            </div> */}
                                     </div>
                                 </div>
                             </a>
@@ -257,9 +251,6 @@ const trainingCards = [
                                         <Icon name={card.icon} class="fs-3 mb-2 text-body" />
                                         <h4 class="mb-1"> {card.title}</h4>
                                         <p class="card-description mb-0">{card.description}</p>
-                                        {/* <div class="bg-icon">
-                                                <Icon name={card.icon} />
-                                            </div> */}
                                     </div>
                                 </div>
                             </a>
@@ -274,17 +265,6 @@ const trainingCards = [
     </div>
 </PageLayout>
 <style>
-    .bg-icon svg {
-        font-size: 180px;
-        color: color-mix(in srgb, var(--bs-success), transparent 80%);
-        position: absolute;
-        bottom: -60px;
-        right: -20px;
-        z-index: 1;
-    }
-    :global([data-bs-theme="dark"]) .bg-icon svg {
-        color: color-mix(in srgb, var(--bs-success), transparent 80%);
-    }
     .card {
         text-wrap: pretty;
 

@@ -7,8 +7,6 @@ export interface Props {
 }
 
 let { items } = Astro.props;
-let url = Astro.url.pathname.endsWith("/") ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
-url = url.replace(/\.html$/, "");
 ---
 
 <div class="nav sticky-top-under pt-1 ms-auto">

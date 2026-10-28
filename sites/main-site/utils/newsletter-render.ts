@@ -63,7 +63,7 @@ export function sortByStatus(a: { status: string }, b: { status: string }): numb
 
 // Escape characters that would break markdown link text.
 function mdText(s: string): string {
-    return s.replace(/([\[\]])/g, "\\$1");
+    return s.replace(/([[\]])/g, "\\$1");
 }
 
 /**

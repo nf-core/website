@@ -13,7 +13,7 @@ export const inlineCodePlugin = defineHastPlugin({
     name: "inline-code-shiki",
     element: {
         filter: ["code"],
-        async visit(node: any, ctx) {
+        async visit(node: any) {
             // Fenced code blocks carry their language on data.lang and belong to
             // Expressive Code; inline code is a code element with a single text
             // child and no newlines, ending in a {:lang} marker.

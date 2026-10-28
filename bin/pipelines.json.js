@@ -81,7 +81,7 @@ export const writePipelinesJson = async () => {
         repo: singlePipelineName,
       });
       active_names = [singlePipelineName];
-    } catch (err) {
+    } catch {
       console.error(`Pipeline ${singlePipelineName} not found in nf-core organization`);
       process.exit(1);
     }
@@ -531,12 +531,8 @@ export const writePipelinesJson = async () => {
             ref: tag_name,
           })
           .catch((error) => {
-            if (error.status === 404) {
-              // console.log(`modules.json not found in ${name} ${tag_name}`);
-              return;
-            } else {
+            if (error.status !== 404) {
               console.log(error);
-              return;
             }
           })
           .then((response) => {

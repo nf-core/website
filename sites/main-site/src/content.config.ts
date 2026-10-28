@@ -81,7 +81,7 @@ const events = defineCollection({
             try {
                 data.start = data.start ?? new Date(data.startDate + "T" + data.startTime);
                 data.end = data.end ?? new Date(data.endDate + "T" + data.endTime);
-            } catch (e) {
+            } catch {
                 throw new Error("startDate and startTime must be in the format YYYY-MM-DD and HH:MM+|-HH:MM");
             }
             // Validate dates

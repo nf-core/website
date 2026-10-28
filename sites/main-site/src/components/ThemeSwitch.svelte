@@ -39,7 +39,7 @@
 
     onMount(() => {
         theme = document.documentElement.getAttribute("data-bs-theme") || "auto";
-        window.addEventListener("theme-changed", (e) => {
+        window.addEventListener("theme-changed", () => {
             theme = document.documentElement.getAttribute("data-bs-theme");
         });
     });

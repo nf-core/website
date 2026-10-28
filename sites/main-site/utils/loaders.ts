@@ -280,7 +280,7 @@ class GitHubContentFetcher {
         additionalData: Record<string, unknown> = {},
         noRenderExtensions: string[] = [],
     ): Promise<string | undefined> {
-        const { store, generateDigest, config, logger, renderMarkdown } = this.context;
+        const { store, generateDigest, config, logger } = this.context;
         logger.info(`Processing ${this.org}/${this.repo}@${this.ref}/${filepath}`);
 
         // Generate unique ID for this file

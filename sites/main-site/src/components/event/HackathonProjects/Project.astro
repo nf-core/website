@@ -27,7 +27,7 @@ const border_col = this_color ? { "border-left-color": this_color, "border-left-
             <a href={`/hackathon-projects/${id}`}>{title}</a>
             {leaders && (
                 <div class="d-flex flex-wrap">
-                    {Object.entries(leaders).map(([github, { name, slack }]) => (
+                    {Object.entries(leaders).map(([github]) => (
                         <Profile name={github} size={50} />
                     ))}
                 </div>

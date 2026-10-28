@@ -62,15 +62,3 @@ if (name === "Input" || name === "Output" || name === "Topics") {
     </div>
 )}
 {params.length > 0 ? <ComponentParamList params={params} /> : <p class="text-body-secondary">No input parameters</p>}
-
-<style>
-    h4 {
-        overflow: hidden;
-    }
-    .description :global(p) {
-        margin-bottom: 0;
-    }
-    .pattern {
-        line-break: anywhere;
-    }
-</style>

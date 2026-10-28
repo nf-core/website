@@ -132,15 +132,15 @@ addEntriesToSection(sections, events);
 
 // sort .entries by date
 sections.forEach((year) => {
-    year.type === "group" &&
-        year.entries?.sort((a, b) => {
-            const eventA = events.find((event) => "/events/" + event.id.replace(/\.[^/.]+$/, "") === a.href);
-            const eventB = events.find((event) => "/events/" + event.id.replace(/\.[^/.]+$/, "") === b.href);
-            if (eventA?.data.start && eventB?.data.start) {
-                return eventB.data.start.getTime() - eventA.data.start.getTime();
-            }
-            return 0;
-        });
+    if (year.type !== "group") return;
+    year.entries?.sort((a, b) => {
+        const eventA = events.find((event) => "/events/" + event.id.replace(/\.[^/.]+$/, "") === a.href);
+        const eventB = events.find((event) => "/events/" + event.id.replace(/\.[^/.]+$/, "") === b.href);
+        if (eventA?.data.start && eventB?.data.start) {
+            return eventB.data.start.getTime() - eventA.data.start.getTime();
+        }
+        return 0;
+    });
 });
 ---
 
