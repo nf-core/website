@@ -68,6 +68,21 @@ This module takes two required files called `input` and `input_index` and two op
 
 The input section of a module will change like this:
 
+```diff
+- input:
+- tuple val(meta), path(input), path(input_index)
+- tuple val(meta2), path(fasta), path(fai)
++ input:
++ record(
++ 	id: String,
++ 	meta: Record?,
++ 	input: Path,
++ 	input_index: Path,
++ 	fasta: Path?,
++ 	fai: Path?,
++ 	samtools_stats_args: String?,
++ 	output_prefix: String?
++ )
 ```
 
 So, with inputs out of the way, let's move on to the module outputs!
@@ -205,6 +220,7 @@ process SAMTOOLS_STATS {
 
 This is full example of the `SAMTOOLS_STATS` module.
 
+```groovy title="modules/nf-core/samtools/stats/main.nf"
 nextflow.enable.types = true
 
 process SAMTOOLS_STATS {
