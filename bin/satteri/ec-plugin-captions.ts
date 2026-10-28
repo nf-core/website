@@ -30,5 +30,3 @@ export function pluginCaptions() {
         },
     });
 }
-
-export default pluginCaptions;

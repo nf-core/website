@@ -7,7 +7,7 @@
 import { h } from "hastscript";
 import { defineHastPlugin } from "satteri";
 
-export interface CheckboxEntry {
+interface CheckboxEntry {
     id: string;
     checked: boolean | undefined;
     headingId: string | undefined;
