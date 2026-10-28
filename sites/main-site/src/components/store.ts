@@ -33,7 +33,6 @@ export const Checkboxes = isBrowser
     : atom<Array<{ id: string; checked: boolean }>>([]);
 export const currentHeading = atom("");
 export const currentPage = atom<number>(1);
-export const CurrentTab = atom<string>("");
 export const SearchQuery = atom<string>("");
 export const showHidden = atom<boolean>(false);
 export const showHelp = atom<boolean>(false);
