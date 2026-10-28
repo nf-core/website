@@ -35,7 +35,7 @@ If you use AI to avoid language barriers, please make sure the output reflects y
 If you wish to include context from an interaction with AI in your issue and pull request descriptions and comments:
 
 - Disclose that you used AI to write the text
-- We suggest must be in a quote block (e.g., using `>`) and disclosed as such.
+- We suggest AI text should ideally be in a quote block (e.g., using `>`) and disclosed as such.
 - Tell your LLM to reduce verbosity as far as possible ([example skill](https://gist.github.com/bavanws/123e0343f8a79cec825d9141124a0a83))
 
 Following these guides will make your interactions with a wider portion of community more friendly and productive.
