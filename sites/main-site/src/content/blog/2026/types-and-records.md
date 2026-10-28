@@ -68,7 +68,7 @@ This module takes two required files called `input` and `input_index` and two op
 
 The input section of a module will change like this:
 
-```diff
+```diff lang="groovy"
 - input:
 - tuple val(meta), path(input), path(input_index)
 - tuple val(meta2), path(fasta), path(fai)
@@ -104,26 +104,21 @@ Let's return to our previous example of `SAMTOOLS_STATS` and take a look at what
 
 The module outputs one file called `stats` and one version of the `samtools stats` tool (as an output and a topic). In this case no multiple outputs should be merged because the module only outputs one file. The `id` field was added to the output record, which directly uses the `id` value passed to the input of the module. Finally the versions output has also been converted to a record type and has been moved to the `topic` block.
 
-Previously the output declaration looked like this:
+The output section of the module will change like this:
 
-```groovy
-output:
-tuple val(meta), path("*.stats"), emit: stats
-tuple val("${task.process}"), val('samtools'), eval('samtools version | sed "1!d;s/.* //"'), emit: versions_samtools, topic: versions
-```
-
-After updating the module, the output should look like this:
-
-```groovy
-output:
-record(
-	id: id,
-	meta: meta,
-	stats: file("*.stats")
-)
-
-topic:
-record(process: "${task.process}", tool: 'samtools', version: eval('samtools version | sed "1!d;s/.* //"')) >> 'versions'
+```diff lang="groovy"
+- output:
+- tuple val(meta), path("*.stats"), emit: stats
+- tuple val("${task.process}"), val('samtools'), eval('samtools version | sed "1!d;s/.* //"'), emit: versions_samtools, topic: versions
++ output:
++ record(
++ 	id: id,
++ 	meta: meta,
++ 	stats: file("*.stats")
++ )
++ 
++ topic:
++ record(process: "${task.process}", tool: 'samtools', version: eval('samtools version | sed "1!d;s/.* //"')) >> 'versions'
 ```
 
 As seen in the input of the module, some extra inputs were added that have a similar function to the current `ext` variables. Let's take a look how to properly handle these variables after the migration.
@@ -142,11 +137,16 @@ Instead of defining the `prefix` and `args` variables in the `script` and `stub`
 
 Let's return to `SAMTOOLS_STATS` once again and take a look at how to handle the `ext` variables there.
 
-Previously the handling of the variables looked like this:
+The handling of `ext` variables will change like this:
 
-```groovy
+```diff lang="groovy"
 process SAMTOOLS_STATS {
 	...
+
++    ext [
++        prefix: { output_prefix ?: "${id}" },
++        args: { samtools_stats_args ?: '' }
++    ]
 
 	input:
 	...
@@ -154,66 +154,34 @@ process SAMTOOLS_STATS {
 	output:
 	...
 
-	when: task.ext.when == null || task.ext.when
++   topic:
++   ...
+
+-	when: task.ext.when == null || task.ext.when
 
 	script:
-	def args = task.ext.args ?: ''
-	def prefix = task.ext.prefix ?: "${meta.id}"
-	def reference = fasta ? "--reference ${fasta}" : ""
+-	def args = task.ext.args ?: ''
+-	def prefix = task.ext.prefix ?: "${meta.id}"
+-	def reference = fasta ? "--reference ${fasta}" : ""
 	"""
 	samtools \\
 		stats \\
-		${args} \\
+-		${args} \\
++       ${task.ext.args} \\
 		--threads ${task.cpus} \\
 		${reference} \\
 		${input} \\
-		> ${prefix}.stats
+-		> ${prefix}.stats
++       > ${task.ext.prefix}.stats
 	"""
 
 	stub:
-	def prefix = task.ext.prefix ?: "${meta.id}"
+-	def prefix = task.ext.prefix ?: "${meta.id}"
 	"""
-	touch ${prefix}.stats
+-	touch ${prefix}.stats
++   touch ${task.ext.prefix}.stats
 	"""
 }
-```
-
-After updating, the module should contain these changes:
-
-```groovy
-process SAMTOOLS_STATS {
-	...
-
-    ext [
-        prefix: { output_prefix ?: "${id}" },
-        args: { samtools_stats_args ?: '' }
-    ]
-
-    input:
-    ...
-
-    output:
-    ...
-
-    topic:
-    ...
-
-	script:
-    def reference = fasta ? "--reference ${fasta}" : ""
-    """
-    samtools \\
-        stats \\
-        ${task.ext.args} \\
-        --threads ${task.cpus} \\
-        ${reference} \\
-        ${input} \\
-        > ${task.ext.prefix}.stats
-    """
-
-    stub:
-    """
-    touch ${task.ext.prefix}.stats
-    """
 ```
 
 ## Full example
