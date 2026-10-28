@@ -53,5 +53,3 @@ export const inlineCodePlugin = defineHastPlugin({
         },
     },
 });
-
-export default inlineCodePlugin;

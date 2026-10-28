@@ -79,5 +79,3 @@ export function pluginFileIcons(icons: FileIcon[]) {
         },
     });
 }
-
-export default pluginFileIcons;
