@@ -111,12 +111,12 @@ export default {
     vite: {
         plugins: [yaml()],
         ssr: {
-            noExternal: ["@popperjs/core", "svelte-exmarkdown", "svelte-confetti", "@mashehu/astropub-md"],
+            noExternal: ["@popperjs/core", "svelte-confetti", "@mashehu/astropub-md"],
         },
         resolve: {
             preserveSymlinks: true,
             browser: true,
-            noExternal: ["@popperjs/core", "svelte-exmarkdown", "svelte-confetti", "@mashehu/astropub-md"],
+            noExternal: ["@popperjs/core", "svelte-confetti", "@mashehu/astropub-md"],
             alias: {
                 "@styles": resolve(process.cwd(), "../main-site/src/styles"),
             },
