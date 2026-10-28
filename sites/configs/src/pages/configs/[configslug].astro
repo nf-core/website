@@ -5,7 +5,6 @@ import SidebarStatsRow from "@components/sidebar/SidebarStatsRow.astro";
 import PageLayout from "@layouts/PageLayout.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import SidebarToc from "@components/sidebar/SidebarToc.svelte";
-import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
     let files = await getCollection("configs");
@@ -62,8 +61,8 @@ const metadata = config.rendered.metadata;
 const raw_config = '```groovy title="' + config.id + '"\n' + config.body + "\n```";
 
 // Extract GitHub username from contact but only if it not an email
-const contact = metadata.config_profile_contact?.match(/[\s,\(,\',\"]@([A-Za-z0-9_-]+)/)
-    ? metadata.config_profile_contact.match(/[\s,\(,\',\"]@([A-Za-z0-9_-]+)/)[1]
+const contact = metadata.config_profile_contact?.match(/[\s,('"]@([A-Za-z0-9_-]+)/)
+    ? metadata.config_profile_contact.match(/[\s,('"]@([A-Za-z0-9_-]+)/)[1]
     : "";
 
 const gh_url = `https://github.com/nf-core/configs/blob/master/docs/${configslug}.md`;

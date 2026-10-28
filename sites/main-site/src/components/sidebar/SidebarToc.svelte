@@ -41,18 +41,15 @@
         .flat()
         .filter((checkbox) => checkbox !== undefined);
     const uncheckAll = () => {
-        headings.forEach((heading) => {
-            if (hCheckboxes) {
-                hCheckboxes.forEach((checkbox) => {
-                    const checkboxElement = document.getElementById(checkbox.id);
-                    if (checkboxElement) {
-                        (checkboxElement as HTMLInputElement).checked = false;
-                    }
-                    Checkboxes.set([]);
-                });
-                hCheckboxes = hCheckboxes; // trigger reactivity
+        hCheckboxes.forEach((checkbox) => {
+            const checkboxElement = document.getElementById(checkbox.id);
+            if (checkboxElement) {
+                (checkboxElement as HTMLInputElement).checked = false;
             }
         });
+        Checkboxes.set([]);
+        // eslint-disable-next-line no-self-assign -- triggers reactivity in Svelte 4 syntax
+        hCheckboxes = hCheckboxes;
     };
     onMount(() => {
         // set the first heading as active on initial load
@@ -73,7 +70,8 @@
                 hCheckboxes.forEach((hCheckbox) => {
                     hCheckbox.checked = checks.find((check) => check.id === hCheckbox.id)?.checked || false;
                 });
-                hCheckboxes = hCheckboxes; // trigger reactivity
+                // eslint-disable-next-line no-self-assign -- triggers reactivity in Svelte 4 syntax
+                hCheckboxes = hCheckboxes;
             });
         }
     });

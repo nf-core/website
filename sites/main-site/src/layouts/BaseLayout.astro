@@ -67,7 +67,7 @@ image += category;
     </head>
 
     <body tabindex="0">
-        <Navbar navTocHeadings={navTocHeadings} title={title} sections={sections} {showHiddenBtn} />
+        <Navbar navTocHeadings={navTocHeadings} sections={sections} {showHiddenBtn} />
         <div class:list={["content", { "double-navbar": sections.length > 0 && doubleNavbar }]}>
             <slot />
         </div>

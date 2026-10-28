@@ -6,12 +6,9 @@ import sharp from "sharp";
 import { ogFonts, ogImageHeaders } from "@utils/og-image";
 
 console.log("rendering og image");
-export const GET: APIRoute = async ({ params, request }) => {
+export const GET: APIRoute = async ({ request }) => {
     const searchParams = new URL(request.url).searchParams;
     const args = Object.fromEntries(searchParams);
-    const backgroundImage =
-        args.backgroundImage ||
-        "https://raw.githubusercontent.com/nf-core/website/main/public/images/logo/nf-core-logo-darkbg.png";
     let subtitle = "";
     const authors = args.authors ? args.authors.split(",") : [];
     if (args.title !== undefined) {
