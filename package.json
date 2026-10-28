@@ -12,7 +12,8 @@
         "test-all": "for dir in sites/*; do (cd $dir && npm run test); done",
         "test-unit": "node --test bin/satteri/*.test.ts",
         "bench": "node bench/build.bench.mjs",
-        "knip": "knip"
+        "knip": "knip",
+        "lint": "eslint sites bin bench astro.config.base.mjs"
     },
     "workspaces": [
         "sites/*"
@@ -82,6 +83,9 @@
         "@types/leaflet": "^1.9.22",
         "@types/node": "^26.6.5",
         "@types/semver": "^7.8.0",
+        "eslint": "^10.13.0",
+        "eslint-plugin-astro": "^3.2.1",
+        "eslint-plugin-svelte": "^3.23.1",
         "hastscript": "^9.0.1",
         "knip": "^6.43.0",
         "prettier": "^3.9.10",
@@ -90,7 +94,8 @@
         "progress": "^2.0.3",
         "sass-embedded": "^1.106.1",
         "tinybench": "^6.2.0",
-        "typescript": "^6.0.3"
+        "typescript": "^6.0.3",
+        "typescript-eslint": "^8.72.1"
     },
     "overrides": {
         "satteri-expressive-code": {

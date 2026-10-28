@@ -3,6 +3,7 @@ repos:
     rev: "v3.1.0"
     hooks:
       - id: prettier
+        priority: 0
         entry: prettier --experimental-cli --write --ignore-unknown
         # NOTE https://github.com/pre-commit/pre-commit/issues/3133
         additional_dependencies:
@@ -14,7 +15,15 @@ repos:
     hooks:
       - id: check-api-catalog
         name: Check api-catalog discovery files
+        priority: 10
         entry: node bin/check-api-catalog.js
         language: system
         pass_filenames: false
         files: ^(sites/main-site/(public/.*|netlify\.toml)|bin/check-api-catalog\.js)$
+      - id: eslint
+        name: Check for dead code (eslint)
+        priority: 10
+        # --no-install: fail if eslint isn't installed instead of downloading it without the plugins
+        entry: npx --no-install eslint
+        language: system
+        files: \.(js|mjs|cjs|ts|mts|astro|svelte)$
