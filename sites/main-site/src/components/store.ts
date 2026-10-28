@@ -22,6 +22,7 @@ export const DisplayStyle = isBrowser
 
 export const Checkboxes = isBrowser
     ? persistentAtom<Array<{ id: string; checked: boolean }>>("Checkboxes", [], {
+        encode: JSON.stringify,
         decode: (value) => {
             try {
                 return JSON.parse(value);
