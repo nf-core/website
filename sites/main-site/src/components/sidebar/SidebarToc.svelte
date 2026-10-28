@@ -1,45 +1,54 @@
 <script lang="ts">
     import { currentHeading, showHidden, Checkboxes } from "@components/store";
-    import { onMount, tick } from "svelte";
+    import { onMount, tick, type Snippet } from "svelte";
     import ProgressIndicator from "@components/sidebar/ProgressIndicator.svelte";
 
-    // Add snippet props to replace slots
-    export let rightSidebarTop: () => any = () => null;
-    export let rightSidebarLinkBar: () => any = () => null;
-    export let defaultContent: () => any = () => null;
-
-    export let headings: {
-        text: string;
-        slug: string;
-        depth: number;
-        fa_icon?: string;
-        hidden?: boolean;
-        checkboxes?: {
-            id: string;
-            label: string;
-            checked: boolean;
+    interface Props {
+        // named Astro slots arrive as snippets
+        rightSidebarTop?: Snippet;
+        rightSidebarLinkBar?: Snippet;
+        defaultContent?: Snippet;
+        headings: {
+            text: string;
+            slug: string;
+            depth: number;
+            fa_icon?: string;
+            hidden?: boolean;
+            checkboxes?: {
+                id: string;
+                label: string;
+                checked: boolean;
+            }[];
         }[];
-    }[];
-    export let minNumHeadings: number = 2;
-    export let minHeadingDepth: number = 1;
-    export let maxHeadingDepth: number = 4;
+        minNumHeadings?: number;
+        minHeadingDepth?: number;
+        maxHeadingDepth?: number;
+    }
 
-    // filter out headings that are lower than min_heading_depth
-    headings = headings.filter((h) => h.depth >= minHeadingDepth);
+    let {
+        rightSidebarTop,
+        rightSidebarLinkBar,
+        defaultContent,
+        headings: allHeadings,
+        minNumHeadings = 2,
+        minHeadingDepth = 1,
+        maxHeadingDepth = 4,
+    }: Props = $props();
 
-    // filter out headings that are higher than max_heading_depth
-    headings = headings.filter((h) => h.depth <= maxHeadingDepth);
+    const headings = $derived(allHeadings.filter((h) => h.depth >= minHeadingDepth && h.depth <= maxHeadingDepth));
+    const topDepth = $derived(Math.min(...headings.map((h) => h.depth)));
+    const showToc = $derived(headings.length > minNumHeadings || headings.some((h) => h.checkboxes));
 
-    minHeadingDepth = Math.min(...headings.map((h) => h.depth));
+    let activeHeading = $state<string>();
+    const hCheckboxes = $derived(
+        headings
+            .flatMap((h) => h.checkboxes ?? [])
+            .map((checkbox) => ({
+                ...checkbox,
+                checked: $Checkboxes.find((check) => check.id === checkbox.id)?.checked || false,
+            })),
+    );
 
-    const showToc = headings.length > minNumHeadings || headings.some((h) => h.checkboxes);
-
-    let activeHeading = {};
-    let hCheckboxes = headings
-        .map((h) => h.checkboxes)
-        .map((c) => c)
-        .flat()
-        .filter((checkbox) => checkbox !== undefined);
     const uncheckAll = () => {
         hCheckboxes.forEach((checkbox) => {
             const checkboxElement = document.getElementById(checkbox.id);
@@ -48,15 +57,14 @@
             }
         });
         Checkboxes.set([]);
-        // eslint-disable-next-line no-self-assign -- triggers reactivity in Svelte 4 syntax
-        hCheckboxes = hCheckboxes;
     };
+
     onMount(() => {
         // set the first heading as active on initial load
         if (!$currentHeading || !headings.find((h) => h.slug === $currentHeading)) {
             currentHeading.set(headings[0]?.slug);
         }
-        currentHeading.subscribe((slug) => {
+        return currentHeading.subscribe((slug) => {
             //check if any heading has the same slug as the currentHeading
             const heading = headings.find((h) => h.slug === slug);
             activeHeading = heading?.slug || $currentHeading;
@@ -65,21 +73,12 @@
                 document.querySelector("#TableOfContents li.active")?.scrollIntoView({ block: "nearest" }),
             );
         });
-        if (hCheckboxes) {
-            Checkboxes.subscribe((checks) => {
-                hCheckboxes.forEach((hCheckbox) => {
-                    hCheckbox.checked = checks.find((check) => check.id === hCheckbox.id)?.checked || false;
-                });
-                // eslint-disable-next-line no-self-assign -- triggers reactivity in Svelte 4 syntax
-                hCheckboxes = hCheckboxes;
-            });
-        }
     });
 </script>
 
 <div class="nav flex-column sticky-top-under align-items-end pt-1">
     <div class="d-none d-xl-block w-100">
-        {@render rightSidebarTop()}
+        {@render rightSidebarTop?.()}
         {#if showToc}
             <strong class="h5 my-2 text-body">On this page</strong>
         {/if}
@@ -88,7 +87,7 @@
                 <ul class="mb-0 mt-1">
                     {#each headings as heading (heading)}
                         <li
-                            class={"nav-item ms-1 heading-padding-" + (heading.depth - minHeadingDepth)}
+                            class={"nav-item ms-1 heading-padding-" + (heading.depth - topDepth)}
                             class:active={heading.slug === activeHeading}
                             class:collapse={heading.hidden && !$showHidden}
                         >
@@ -124,23 +123,21 @@
                 </ul>
 
                 {#if hCheckboxes.length > 0}
-                    <button class="btn btn-sm btn-outline-secondary mt-2" on:click={uncheckAll} on:keydown={uncheckAll}>
-                        Uncheck all
-                    </button>
+                    <button class="btn btn-sm btn-outline-secondary mt-2" onclick={uncheckAll}> Uncheck all </button>
                 {/if}
 
                 <div class="d-flex flex-column flex-xl-row justify-content-between mt-xl-2">
                     <a
                         href="#/"
                         class="back-to-top text-body-secondary text-small mb-2"
-                        on:click={() => window.scrollTo(0, 0)}
+                        onclick={() => window.scrollTo(0, 0)}
                     >
                         <i class="fa-solid fa-arrow-up-to-line" aria-hidden="true"></i> Back to top
                     </a>
-                    {@render rightSidebarLinkBar()}
+                    {@render rightSidebarLinkBar?.()}
                 </div>
             {/if}
-            {@render defaultContent()}
+            {@render defaultContent?.()}
         </nav>
     </div>
 </div>
