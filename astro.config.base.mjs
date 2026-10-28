@@ -12,10 +12,7 @@ import icon from "astro-icon";
 import { createEcConfig } from "./bin/satteri/expressive-code-config.ts";
 import { createSatteriPluginSets, satteriSharedMarkdownConfig } from "./bin/satteri/markdownConfig.ts";
 
-// Netlify features emulated by `astro dev`. The sites have no edge functions, and emulating them fails with
-// Deno 2.9.6 and later, which Netlify downloads (https://github.com/netlify/framework-adapters/issues/67).
-// Turn edgeFunctions back on once that is fixed, or when adding edge functions.
-export const netlifyDevFeatures = { images: true, environmentVariables: false, edgeFunctions: false };
+export const netlifyDevFeatures = { edgeFunctions: false };
 
 /**
  * Base Astro configuration shared across all nf-core subsites.
