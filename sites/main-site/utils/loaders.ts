@@ -741,7 +741,9 @@ export function metroMapLoader(pipelines_json: PipelineJson): Loader {
                         }
                         if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-                        const body = isSvg ? await res.text() : undefined;
+                        // draw.io stores the editable diagram in the root <svg content="..."> attribute. It's never
+                        // rendered, and its size and escaped newlines exceed the limits of svgo's XML parser.
+                        const body = isSvg ? (await res.text()).replace(/(<svg\b[^>]*?)\s+content="[^"]*"/, "$1") : undefined;
                         const digest = generateDigest(body ?? url);
                         let svg: string | undefined;
                         if (body !== undefined) {
