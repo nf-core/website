@@ -100376,6 +100376,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -112935,6 +112943,10 @@
       },
       "git_sha": "1298fbd2004c2913d6682ce4a419647d97a8fc3f",
       "pipelines": [
+        {
+          "name": "rnaseq",
+          "version": "3.27.0"
+        },
         {
           "name": "rnaseq",
           "version": "3.27.0"
@@ -152711,6 +152723,10 @@
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
       "pipelines": [
         {
+          "name": "pathogenepidemiology",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "1.0.0"
         },
@@ -157210,6 +157226,10 @@
         {
           "name": "createpanelrefs",
           "version": "1.0.0"
+        },
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
         },
         {
           "name": "raredisease",
@@ -282852,7 +282872,7 @@
     {
       "name": "parabricks_mutectcaller",
       "path": "modules/nf-core/parabricks/mutectcaller/meta.yml",
-      "tree_sha": "e6d12a184170a02c3d8b92c0599e84c50b50285d",
+      "tree_sha": "b7023d1ac6ca90c9a776862e6d5564015ea5fd40",
       "files": [
         "modules/nf-core/parabricks/mutectcaller/main.nf",
         "modules/nf-core/parabricks/mutectcaller/meta.yml",
@@ -282907,8 +282927,8 @@
             {
               "tumor_bam_index": {
                 "type": "file",
-                "description": "(Optional) bai index corresponding to tumor bam file. Only required if intervals are provided.",
-                "pattern": "*.bam.bai",
+                "description": "(Optional) bai or csi index corresponding to tumor bam file. Only required if intervals are provided.",
+                "pattern": "*.{bai,csi}",
                 "ontologies": []
               }
             },
@@ -282927,8 +282947,8 @@
             {
               "normal_bam_index": {
                 "type": "file",
-                "description": "(Optional) bai index corresponding to normal bam file. Only required if intervals are provided.",
-                "pattern": "*.bam.bai",
+                "description": "(Optional) bai or csi index corresponding to normal bam file. Only required if intervals are provided.",
+                "pattern": "*.{bai,csi}",
                 "ontologies": []
               }
             },
@@ -282968,7 +282988,7 @@
           {
             "panel_of_normals": {
               "type": "file",
-              "description": "(Optional) panel of normals file.",
+              "description": "(Optional) bgzipped panel of normals file. When provided, the module runs\nprepon, passes it to mutectcaller via --pon and annotates the output with\npostpon. Its header must contain only contigs present in the reference,\notherwise prepon fails with \"Chromosome number of pon file doesn't match\nreference\" (see `bcftools reheader --fai`). Do not add --pon via ext.args.\n",
               "pattern": "*.vcf.gz",
               "ontologies": [
                 {
@@ -282996,13 +283016,35 @@
                 }
               },
               {
-                "*.vcf.gz": {
+                "${prefix}.vcf.gz": {
                   "type": "file",
                   "description": "Compressed variants file. Will include an annotated vcf file if panel of normals is used.",
                   "pattern": "*.vcf.gz",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tbi": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "Tabix index of the compressed variants file.",
+                  "pattern": "*.vcf.gz.tbi",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3700"
                     }
                   ]
                 }
@@ -283018,7 +283060,7 @@
                 }
               },
               {
-                "*.vcf.gz.stats": {
+                "${prefix}.vcf.gz.stats": {
                   "type": "file",
                   "description": "Variant statistics.",
                   "pattern": "*.vcf.gz.stats",
@@ -283095,12 +283137,12 @@
           "@famosab"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "810182dd17d4b2bba8ec29ad825aef0084689f5a"
     },
     {
       "name": "parabricks_rnafq2bam",
       "path": "modules/nf-core/parabricks/rnafq2bam/meta.yml",
-      "tree_sha": "63074471638a9d16027c91521516d8afe69f7e37",
+      "tree_sha": "4209d1fd91b5e8f90bb9ee5d20d822f887accf50",
       "files": [
         "modules/nf-core/parabricks/rnafq2bam/main.nf",
         "modules/nf-core/parabricks/rnafq2bam/meta.yml",
@@ -283616,7 +283658,7 @@
           "@gburnett-nvidia"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "594da9f7d2deba9fd8fc799584854e89bf3e60e6",
       "pipelines": [
         {
           "name": "rnaseq",
@@ -300896,6 +300938,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -301203,6 +301249,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -361523,6 +361573,209 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "scdblfinder",
+      "path": "modules/nf-core/scdblfinder/meta.yml",
+      "tree_sha": "b2ae4dc4ff519bb3a3ecffa5631f96dce720813a",
+      "files": [
+        "modules/nf-core/scdblfinder/.conda-lock/linux_amd64-bd-b97c9b42c2a89cba_1.txt",
+        "modules/nf-core/scdblfinder/.conda-lock/linux_arm64-bd-0e6bd131698855ce_1.txt",
+        "modules/nf-core/scdblfinder/environment.yml",
+        "modules/nf-core/scdblfinder/main.nf",
+        "modules/nf-core/scdblfinder/meta.yml",
+        "modules/nf-core/scdblfinder/templates/scdblfinder.R",
+        "modules/nf-core/scdblfinder/tests/main.nf.test",
+        "modules/nf-core/scdblfinder/tests/main.nf.test.snap",
+        "modules/nf-core/scdblfinder/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "scdblfinder",
+        "description": "Detect doublets in single-cell RNA-seq data with scDblFinder",
+        "keywords": [
+          "doublet detection",
+          "single-cell",
+          "scrnaseq",
+          "quality control"
+        ],
+        "tools": [
+          {
+            "scdblfinder": {
+              "description": "Identifies doublets in single-cell RNA-seq data by comparing each cell with artificial doublets made from the data",
+              "homepage": "https://bioconductor.org/packages/scDblFinder",
+              "documentation": "https://bioconductor.org/packages/release/bioc/vignettes/scDblFinder/inst/doc/scDblFinder.html",
+              "tool_dev_url": "https://github.com/plger/scDblFinder",
+              "doi": "10.12688/f1000research.73600.2",
+              "licence": [
+                "GPL-3.0-only"
+              ],
+              "identifier": "biotools:scdblfinder"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "h5ad": {
+                "type": "file",
+                "description": "AnnData object in h5ad format with raw counts in `X`",
+                "pattern": "*.h5ad",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3590"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "h5ad": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.h5ad": {
+                  "type": "file",
+                  "description": "Input AnnData object with the scDblFinder columns added to `obs`, stored with gzip compression",
+                  "pattern": "*.h5ad",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3590"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "predictions": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.predictions.csv": {
+                  "type": "file",
+                  "description": "One boolean column per cell (TRUE = doublet), named after the prefix",
+                  "pattern": "*.predictions.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "scores": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.scores.csv": {
+                  "type": "file",
+                  "description": "Per-cell scDblFinder results (class, score and related columns)",
+                  "pattern": "*.scores.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_scdblfinder": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@iraajgangavaram"
+        ],
+        "maintainers": [
+          "@iraajgangavaram"
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/bioconductor-anndatar_bioconductor-biocparallel_bioconductor-rhdf5_bioconductor-scdblfinder_bioconductor-singlecellexperiment:0e6bd131698855ce",
+              "build_id": "bd-0e6bd131698855ce_1",
+              "scan_id": "sc-9c1f3d5cfe40ecb0_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bioconductor-anndatar_bioconductor-biocparallel_bioconductor-rhdf5_bioconductor-scdblfinder_bioconductor-singlecellexperiment:b97c9b42c2a89cba",
+              "build_id": "bd-b97c9b42c2a89cba_1",
+              "scan_id": "sc-6a352442ef2b8297_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bioconductor-anndatar_bioconductor-biocparallel_bioconductor-rhdf5_bioconductor-scdblfinder_bioconductor-singlecellexperiment:d467a3b6af9e4d7c",
+              "build_id": "bd-d467a3b6af9e4d7c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/0b/0b7da7136d1cb87691c20da1e7b64b2b9bbd102baee2fbc803aedb7c5f634e7f/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/bioconductor-anndatar_bioconductor-biocparallel_bioconductor-rhdf5_bioconductor-scdblfinder_bioconductor-singlecellexperiment:d88863dbcee9a94d",
+              "build_id": "bd-d88863dbcee9a94d_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e6/e6e9f553f74e33b3bfa50f72ecbbee1e79e2633a5b8b59d3554f54bc8d3fde8f/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/scdblfinder/.conda-lock/linux_amd64-bd-b97c9b42c2a89cba_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/scdblfinder/.conda-lock/linux_arm64-bd-0e6bd131698855ce_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "df69bf63a03a506f513f76b18d04ad4985f002eb"
     },
     {
       "name": "scds",
@@ -467705,6 +467958,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
-  "updated_at": "2026-10-29T02:13:29.232Z"
+  "commit_sha": "df69bf63a03a506f513f76b18d04ad4985f002eb",
+  "updated_at": "2026-10-29T14:13:20.102Z"
 }
