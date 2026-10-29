@@ -10,7 +10,7 @@ Sometimes modules or subworkflows become outdated and need to be deprecated (ava
 These modules or subworkflows should not be deleted as they could be used in private repositories, or used on other
 platforms.
 
-The recommended procedure is, once the alternative is available on nf-core modules, add a message explaining that 
+The recommended procedure is, once the alternative is available on nf-core modules, add a message explaining that
 the module/subworkflow is deprecated, and an `assert` in the code body to print a deprecation
 message like.
 
