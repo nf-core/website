@@ -1,4 +1,4 @@
-# schema\_description
+# schema_description
 
 #### `PipelineLint.schema_description(){:python}`
 
