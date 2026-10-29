@@ -465,6 +465,9 @@ async function getS3KeysWithPrefixes(client: S3Client, prefixes: string[]) {
 function createConfigProcessor(): Processors {
     return {
         config: async (text: string): Promise<RenderedContent> => {
+            // Strip line comments (but not the "//" in "https://") so commented-out settings are ignored
+            // and values such as multi-line ternaries can be matched
+            const code = text.replace(/(?<!:)\/\/.*$/gm, "");
             const NFConfig = {
                 config_profile_description: "",
                 config_profile_contact: "",
@@ -472,30 +475,22 @@ function createConfigProcessor(): Processors {
                 executor: "",
             };
 
-            const descMatch = text.match(/config_profile_description\s*=\s*("+|')([\s\S]*?)\1/);
+            const descMatch = code.match(/config_profile_description\s*=\s*("+|')([\s\S]*?)\1/);
             NFConfig.config_profile_description = descMatch?.[2] ?? "";
 
-            const contactMatch = text.match(/config_profile_contact\s*=\s*(.*)/);
-            NFConfig.config_profile_contact = contactMatch?.[1] ?? "";
+            const contactMatch = code.match(/config_profile_contact\s*=\s*(.*)/);
+            NFConfig.config_profile_contact = contactMatch?.[1].trim() ?? "";
 
-            const urlMatch = text.match(/config_profile_url\s*=\s*(.*)/);
-            NFConfig.config_profile_url = urlMatch?.[1] ?? "";
+            const urlMatch = code.match(/config_profile_url\s*=\s*(.*)/);
+            NFConfig.config_profile_url = urlMatch?.[1].trim() ?? "";
 
-            const execMatch = text.match(/executor\s*=\s*(.*)/);
-            NFConfig.executor = execMatch?.[1] ?? "";
-            if (NFConfig.executor === "") {
-                const execNameMatch = text.match(/executor\s*{\s*name\s*=\s*(.*)\s*/);
-                NFConfig.executor = execNameMatch?.[1] ?? "";
-            }
-            if (NFConfig.executor?.includes("?") && NFConfig.executor?.includes(":")) {
-                const match = NFConfig.executor.match(/{.*\?(.*):(.*)}/);
-                NFConfig.executor = match
-                    ? match
-                          .slice(1, 3)
-                          .map((item) => item.trim().replace(/'/g, ""))
-                          .join(", ")
-                    : "";
-                NFConfig.executor = NFConfig.executor.replace(/\/\/.*$/, "");
+            const ternaryMatch = code.match(/executor\s*=\s*\{?\s*[^?\n]+\?\s*['"](\w+)['"]\s*:\s*['"](\w+)['"]/);
+            if (ternaryMatch) {
+                NFConfig.executor = `${ternaryMatch[1]}, ${ternaryMatch[2]}`;
+            } else {
+                const execMatch = code.match(/executor\s*=\s*(.*)/);
+                const execNameMatch = code.match(/executor\s*{\s*name\s*=\s*(.*)/);
+                NFConfig.executor = (execMatch?.[1] || execNameMatch?.[1] || "").trim();
             }
             Object.keys(NFConfig).forEach((key) => {
                 NFConfig[key] = NFConfig[key]?.replace(/'|"/g, "");
