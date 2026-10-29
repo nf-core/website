@@ -4,6 +4,7 @@ title: "Nextflow Pipeline Extension"
 shortTitle: "Nextflow Pipeline Extension"
 weight: 2
 parentWeight: 3
+md_github_url: https://github.com/nf-core/nf-core-utils/blob/main/docs/NextflowPipelineExtension.md
 ---
 
 # Nextflow Pipeline Extension
