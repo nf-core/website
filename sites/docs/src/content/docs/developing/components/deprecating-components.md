@@ -4,15 +4,17 @@ subtitle: Deprecate a module or subworkflow
 shortTitle: Deprecating components
 ---
 
+## Deprecating a module or subworkflow
+
 Sometimes modules or subworkflows become outdated and need to be deprecated (available, but no longer recommended).
 These modules or subworkflows should not be deleted as they could be used in private repositories, or used on other
 platforms.
 
-## Deprecating a module
+The recommended procedure is, once the alternative is available on nf-core modules, add a message explaining that 
+the module/subworkflow is deprecated, and an `assert` in the code body to print a deprecation
+message like.
 
-The recommended procedure is, once the alternative is available on nf-core modules, add a message to the
-top of the module code saying this module is deprecated, and an `assert` in the code body to print a deprecation
-message like so:
+For modules:
 
 ```groovy title="main.nf"
 def deprecation_message = """
@@ -27,6 +29,23 @@ process OLD_MODULE {
   ...
 
   script:
+  assert false: deprecation_message
+}
+```
+
+For subworkflows:
+
+```groovy title="main.nf"
+...
+  main:
+
+  def deprecation_message = """
+  WARNING: This subworkflow has been deprecated. Please use subworkflows/nf-core//path/to/new/module
+
+  Reason:
+  This subworkflow is no longer fit for purpose because ...
+  """
+
   assert false: deprecation_message
 }
 ```
@@ -52,7 +71,7 @@ This field is used by nf-core tools and the website to flag deprecated modules.
 
 Remove anything in the setup block.
 The addition of `assert false` will mean the nf-test will always fail.
-The `then` part of the nf-test should be updated with the following code:
+The `then` part of the nf-test should be updated with the following code for modules:
 
 ```groovy title="main.nf.test"
 ...
@@ -65,14 +84,14 @@ The `then` part of the nf-test should be updated with the following code:
 ...
 ```
 
-## Deprecating a subworkflow
+Or the following code for subworkflows:
 
-The recommended procedure is, once the alternative is available on nf-core modules, remove the subworkflow files and in their place add a
-`README.md` file with the followoing content:
-
-```markdown title="README.md"
-> [!WARNING]
-> This subworkflow has been deprecated. Please use subworkflows/nf-core/path/to/new/subworkflow
->
-> **Reason:** This subworkflow is no longer fit for purpose because ...
+```groovy title="main.nf.test"
+...
+  then {
+    assertAll(
+      { assert workflow.failed }
+    )
+  }
+...
 ```
