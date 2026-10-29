@@ -5,6 +5,7 @@ import { octokit, getCurrentRateLimitRemaining } from "@components/octokit.js";
 import ProgressBar from "progress";
 import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
 import { createMarkdownProcessor } from "@astrojs/markdown-remark";
+import { optimize } from "svgo";
 
 // ========================================
 // TYPE DEFINITIONS
@@ -16,6 +17,7 @@ interface PipelineJson {
 
 interface PipelineWorkflow {
     name: string;
+    dev_nextflow_config_manifest?: { diagram?: string } | null;
     releases: PipelineRelease[];
     archived: boolean;
     description: string;
@@ -99,6 +101,24 @@ async function parallelLimit<T>(tasks: (() => Promise<T>)[], limit: number): Pro
     });
     await Promise.all(workers);
     return results as T[];
+}
+
+// ========================================
+// FETCH HELPERS
+// ========================================
+
+/**
+ * fetch() that waits for `retry-after` and retries when rate limited (HTTP 429)
+ */
+async function fetchWithRetry(url: string, init: RequestInit = {}, retries = 3): Promise<Response> {
+    const response = await fetch(url, init);
+    if (response.status === 429 && retries > 0) {
+        const retryAfter = Number(response.headers.get("retry-after") ?? 60);
+        console.log(`[rate-limit] ${url} — retrying in ${retryAfter}s (${retries} attempts left)`);
+        await new Promise((resolve) => setTimeout(resolve, retryAfter * 1000));
+        return fetchWithRetry(url, init, retries - 1);
+    }
+    return response;
 }
 
 // ========================================
@@ -247,20 +267,14 @@ class GitHubContentFetcher {
     /**
      * Generic method to fetch data from GitHub
      */
-    private async fetchData<T extends any>(filepath: string, type: "json" | "text", retries = 3): Promise<T> {
+    private async fetchData<T extends any>(filepath: string, type: "json" | "text"): Promise<T> {
         try {
             if (filepath.startsWith("https://api.github.com")) {
                 const response = await octokit.request("GET " + filepath.replace("https://api.github.com", ""));
                 return response.data as T;
             }
 
-            const response = await fetch(filepath);
-            if (response.status === 429 && retries > 0) {
-                const retryAfter = Number(response.headers.get("retry-after") ?? 60);
-                console.log(`[rate-limit] ${filepath} — retrying in ${retryAfter}s (${retries} attempts left)`);
-                await new Promise((resolve) => setTimeout(resolve, retryAfter * 1000));
-                return this.fetchData<T>(filepath, type, retries - 1);
-            }
+            const response = await fetchWithRetry(filepath);
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
             return (type === "json" ? await response.json() : await response.text()) as T;
@@ -691,6 +705,79 @@ export function releaseLoader(pipelines_json: PipelineJson): Loader {
             }
 
             logger.info("GitHub release notes processing completed successfully");
+        },
+    };
+}
+
+/**
+ * Metro Map Loader - Fetches each pipeline's metro map diagram from its dev branch.
+ * SVGs are optimised for inlining; other formats only store their URL for astro:assets.
+ */
+export function metroMapLoader(pipelines_json: PipelineJson): Loader {
+    return {
+        name: "metro-map-loader",
+        load: async (context: LoaderContext) => {
+            const { store, meta, generateDigest, logger } = context;
+
+            const pipelines = pipelines_json.remote_workflows.filter((p) => p.dev_nextflow_config_manifest?.diagram);
+
+            await parallelLimit(
+                pipelines.map((pipeline) => async () => {
+                    const url = `https://raw.githubusercontent.com/nf-core/${pipeline.name}/dev/${pipeline.dev_nextflow_config_manifest!.diagram}`;
+                    const etagKey = `etag:${pipeline.name}`;
+                    const existingEntry = store.get(pipeline.name);
+
+                    try {
+                        const etag = meta.get(etagKey);
+                        const isSvg = url.endsWith(".svg");
+                        // Other formats are only stored by URL (astro:assets downloads them), so HEAD is enough
+                        const res = await fetchWithRetry(url, {
+                            method: isSvg ? "GET" : "HEAD",
+                            headers: existingEntry?.data.url === url && etag ? { "If-None-Match": etag } : {},
+                        });
+                        if (res.status === 304) {
+                            logger.debug(`Metro map for ${pipeline.name} unchanged, skipping`);
+                            return;
+                        }
+                        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+                        const body = isSvg ? await res.text() : undefined;
+                        const digest = generateDigest(body ?? url);
+                        let svg: string | undefined;
+                        if (body !== undefined) {
+                            // Inline SVGs share the page with each other, so prefix their ids/classes per pipeline
+                            // and strip scripts. width/height stay so the maps render at their native size.
+                            const plugins = [
+                                "preset-default" as const,
+                                "removeScripts" as const,
+                                { name: "prefixIds" as const, params: { prefix: pipeline.name } },
+                            ];
+                            svg =
+                                existingEntry?.digest === digest
+                                    ? (existingEntry.data.svg as string)
+                                    : optimize(body, { plugins }).data;
+                        }
+
+                        store.set({ id: pipeline.name, data: { name: pipeline.name, url, svg }, digest });
+                        const newEtag = res.headers.get("etag");
+                        if (newEtag) meta.set(etagKey, newEtag);
+                    } catch (error) {
+                        logger.warn(`Skipping metro map for ${pipeline.name} (${url}): ${error.message}`);
+                        store.delete(pipeline.name);
+                        meta.delete(etagKey);
+                    }
+                }),
+                10,
+            );
+
+            // Drop pipelines that no longer declare a diagram
+            const names = new Set(pipelines.map((p) => p.name));
+            for (const id of store.keys()) {
+                if (!names.has(id)) {
+                    store.delete(id);
+                    meta.delete(`etag:${id}`);
+                }
+            }
         },
     };
 }
