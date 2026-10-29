@@ -3,7 +3,7 @@ import { octokit, getDocFiles, getGitHubFile } from "../sites/main-site/src/comp
 import { fetchCO2FootprintFiles } from "./s3Utils.js";
 
 import { promises as fs, writeFileSync, existsSync } from "fs";
-import yaml from "js-yaml";
+import { load } from "js-yaml";
 import path, { join } from "path";
 import ProgressBar from "progress";
 
@@ -66,7 +66,7 @@ export const writePipelinesJson = async () => {
   const pipelines = JSON.parse(pipelinesJson);
 
   // get ignored_repos from ignored_reops.yml
-  const ignored_repos = yaml.load(ignoredTopicsYaml).ignore_repos;
+  const ignored_repos = load(ignoredTopicsYaml).ignore_repos;
 
   // get all repos for the nf-core org or use the specified pipeline
   let names = [];
@@ -122,7 +122,7 @@ export const writePipelinesJson = async () => {
   }
 
   // get ignored_topics from ignored_repos.yml
-  const ignored_topics = yaml.load(ignoredTopicsYaml).ignore_topics;
+  const ignored_topics = load(ignoredTopicsYaml).ignore_topics;
 
   // Get latest tools release
   const latest_tools_release_date = (
