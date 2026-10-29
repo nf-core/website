@@ -1,4 +1,4 @@
-# schema\_params
+# schema_params
 
 #### `PipelineLint.schema_params(){:python}`
 

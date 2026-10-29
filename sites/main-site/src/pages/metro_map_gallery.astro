@@ -1,0 +1,81 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+// SVGs come pre-optimised from the metro-maps loader; other formats still go through astro:assets
+const metro_maps = (await getCollection("metro-maps"))
+    .map(({ data }) => data)
+    .sort((a, b) => a.name.localeCompare(b.name));
+---
+
+<PageLayout
+    title="Metro map gallery"
+    subtitle="Pipeline diagrams from across nf-core. See [the docs](/docs/community/brand/workflow-schematics) to find out more on how to make them."
+    mainpage_container={false}
+>
+    <div class="container-fluid main-content">
+        <div class="metro-map-masonry">
+            {metro_maps.map(({ name, url, svg }) => (
+                <a class="card metro-map-card text-decoration-none" href={url}>
+                    {/* bg-white: most maps assume a light background */}
+                    <div
+                        class="card-body metro-map-frame bg-white p-1"
+                        role="img"
+                        aria-label={`Metro map of nf-core/${name}`}
+                    >
+                        {svg ? (
+                            <Fragment set:html={svg} />
+                        ) : (
+                            <Image class="d-block w-100 h-auto" src={url} inferSize alt="" />
+                        )}
+                    </div>
+                    <div class="card-footer small p-1 ps-2">{name}</div>
+                </a>
+            ))}
+        </div>
+    </div>
+</PageLayout>
+
+<style lang="scss">
+    @import "@styles/_variables.scss";
+
+    $gap: map-get($spacers, 2);
+
+    .metro-map-masonry {
+        --metro-map-cols: 1;
+        @include media-breakpoint-up(md) {
+            --metro-map-cols: 2;
+        }
+        @include media-breakpoint-up(xxl) {
+            --metro-map-cols: 3;
+        }
+        @include media-breakpoint-up(xxxxl) {
+            --metro-map-cols: 5;
+        }
+        column-count: var(--metro-map-cols);
+        column-gap: $gap;
+    }
+    .metro-map-card {
+        break-inside: avoid;
+        margin-bottom: $gap;
+    }
+
+    @supports (display: grid-lanes) {
+        .metro-map-masonry {
+            display: grid-lanes;
+            grid-template-columns: repeat(var(--metro-map-cols), 1fr);
+            gap: $gap;
+        }
+        .metro-map-card {
+            margin-bottom: 0;
+        }
+    }
+
+    /* Inline SVGs come from set:html, so they can't take utility classes */
+    .metro-map-frame :global(svg) {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+</style>

@@ -1,4 +1,4 @@
-# container\_configs
+# container_configs
 
 #### `PipelineLint.container_configs(){:python}`
 

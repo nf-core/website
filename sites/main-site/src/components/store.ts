@@ -22,6 +22,7 @@ export const DisplayStyle = isBrowser
 
 export const Checkboxes = isBrowser
     ? persistentAtom<Array<{ id: string; checked: boolean }>>("Checkboxes", [], {
+        encode: JSON.stringify,
         decode: (value) => {
             try {
                 return JSON.parse(value);
@@ -33,7 +34,6 @@ export const Checkboxes = isBrowser
     : atom<Array<{ id: string; checked: boolean }>>([]);
 export const currentHeading = atom("");
 export const currentPage = atom<number>(1);
-export const CurrentTab = atom<string>("");
 export const SearchQuery = atom<string>("");
 export const showHidden = atom<boolean>(false);
 export const showHelp = atom<boolean>(false);

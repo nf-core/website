@@ -1,4 +1,4 @@
-# actions\_ci
+# actions_ci
 
 #### `PipelineLint.actions_ci(){:python}`
 

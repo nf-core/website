@@ -127,15 +127,10 @@ if (currentGroup.length > 0) {
         console.error("Could not find current page " + Astro.url.pathname + " in docs collection");
     }
     if (currentElement && currentElement.type === "group" && currentElement.entries.length > 1) {
-        currentElement.entries[0].href?.endsWith(Astro.url.pathname)
-            ? (next_page = {
-                  title: currentElement.entries[1].label,
-                  slug: currentElement.entries[1].href,
-              })
-            : (next_page = {
-                  title: currentElement.entries[0].label,
-                  slug: currentElement.entries[0].href,
-              });
+        const next = currentElement.entries[0].href?.endsWith(Astro.url.pathname)
+            ? currentElement.entries[1]
+            : currentElement.entries[0];
+        next_page = { title: next.label, slug: next.href };
     } else {
         if (currentGroupIndex === 0) {
             const parentHref = currentGroup[0].href?.split("/").slice(0, -1).join("/");
@@ -254,7 +249,6 @@ const parentSections = getSectionParents(sections, currentElement);
                                     label={i + 1}
                                     title={entry.label}
                                     progress={0}
-                                    href={entry.href}
                                     onScroll={true}
                                     client:idle
                                     confetti={i === currentGroup.length - 1}
@@ -266,7 +260,6 @@ const parentSections = getSectionParents(sections, currentElement);
                                     label={i + 1}
                                     title={entry.label}
                                     progress={i < currentGroupIndex ? 100 : 0}
-                                    href={entry.href}
                                 />
                             );
                         }
@@ -282,7 +275,7 @@ const parentSections = getSectionParents(sections, currentElement);
             </span>
             <div class="d-flex flex-column">
                 {currentElement?.entries.map((entry, i) => (
-                    <ProgressIndicator label={i + 1} title={entry.label} progress={0} href={entry.href} />
+                    <ProgressIndicator label={i + 1} title={entry.label} progress={0} />
                 ))}
             </div>
         </div>

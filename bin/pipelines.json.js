@@ -81,7 +81,7 @@ export const writePipelinesJson = async () => {
         repo: singlePipelineName,
       });
       active_names = [singlePipelineName];
-    } catch (err) {
+    } catch {
       console.error(`Pipeline ${singlePipelineName} not found in nf-core organization`);
       process.exit(1);
     }
@@ -466,11 +466,11 @@ export const writePipelinesJson = async () => {
                 .map((line) => line.match(/id\s*['"]([^'"]*)['"]/)[1])
             : [];
 
-          // get default branch from manifest
+          // get default branch and metro map diagram from manifest, ignoring commented-out lines (but not the "//" in "https://")
           const manifest = {};
-          const defaultBranchMatch = response.match(/manifest\s*{[^}]*defaultBranch\s*=\s*['"]([^'"]+)['"]/s);
-          if (defaultBranchMatch) {
-            manifest.defaultBranch = defaultBranchMatch[1];
+          const manifestBlock = response.replace(/(?<!:)\/\/.*$/gm, "").match(/manifest\s*{([^}]*)}/s)?.[1] ?? "";
+          for (const [, key, value] of manifestBlock.matchAll(/\b(defaultBranch|diagram)\s*=\s*['"]([^'"]+)['"]/g)) {
+            manifest[key] ??= value;
           }
 
           return { plugins: pluginsList, manifest };
@@ -531,12 +531,8 @@ export const writePipelinesJson = async () => {
             ref: tag_name,
           })
           .catch((error) => {
-            if (error.status === 404) {
-              // console.log(`modules.json not found in ${name} ${tag_name}`);
-              return;
-            } else {
+            if (error.status !== 404) {
               console.log(error);
-              return;
             }
           })
           .then((response) => {

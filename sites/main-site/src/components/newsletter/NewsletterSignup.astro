@@ -64,9 +64,7 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
                 the deferred module below can't win that race. It replaces this with the
                 real renderer, and renders any widget already in the DOM. */}
         <script is:inline>
-            {
-                ("window.onloadTurnstileCallback = function () {};");
-            }
+            window.onloadTurnstileCallback = function () {};
         </script>
         <script
             is:inline

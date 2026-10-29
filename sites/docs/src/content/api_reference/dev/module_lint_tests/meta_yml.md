@@ -1,4 +1,4 @@
-# meta\_yml
+# meta_yml
 
 #### `ModuleLint.meta_yml(module: NFCoreComponent, allow_missing: bool = False) → None{:python}`
 
@@ -10,69 +10,69 @@ to the nf-core JSON schema, and that its contents are consistent with
 
 The following checks are performed:
 
-## meta\_yml\_patch\_reversible
+## meta_yml_patch_reversible
 
 If the module is patched, the patch must be reverse-applicable to the
 current `meta.yml` so the pre-patch content can be linted. A warning is
 issued, and the remaining `meta_yml` checks are skipped for this module,
 if the patch is outdated or has been edited and can no longer be applied.
 
-## meta\_yml\_exists
+## meta_yml_exists
 
 The `meta.yml` file must exist.
 
-## meta\_yml\_valid
+## meta_yml_valid
 
 The `meta.yml` must be valid according to the JSON
 schema defined in `modules/meta-schema.json` in the nf-core/modules
 repository.
 
-## meta\_name
+## meta_name
 
 The `name` field in `meta.yml` must match (case-insensitive)
 the process name declared in `main.nf`.
 
-## meta\_input
+## meta_input
 
 If `main.nf` declares inputs, they must be listed under
 the `input:` key in `meta.yml`.
 
-## correct\_meta\_inputs
+## correct_meta_inputs
 
 The inputs listed in `meta.yml` must exactly
 match those parsed from `main.nf`. Run `nf-core modules lint --fix`
 to auto-correct.
 
-## meta\_output
+## meta_output
 
 If `main.nf` declares outputs, they must be listed under
 the `output:` key in `meta.yml`.
 
-## correct\_meta\_outputs
+## correct_meta_outputs
 
 The outputs listed in `meta.yml` must exactly
 match those parsed from `main.nf`. Run `nf-core modules lint --fix`
 to auto-correct.
 
-## has\_meta\_topics
+## has_meta_topics
 
 If `main.nf` declares topics, `meta.yml` must
 also contain a non-empty `topics:` block. Run
 `nf-core modules lint --fix` to auto-correct.
 
-## correct\_meta\_topics
+## correct_meta_topics
 
 The topics listed in `meta.yml` must exactly
 match those parsed from `main.nf`. Run `nf-core modules lint --fix`
 to auto-correct.
 
-## has\_meta\_containers
+## has_meta_containers
 
 If `main.nf` declares containers, `meta.yml`
 must also contain a non-empty `containers:` block. Run
 `nf-core modules lint --fix` to auto-correct.
 
-## correct\_meta\_containers
+## correct_meta_containers
 
 The containers listed in `meta.yml` must
 exactly match those parsed from `main.nf`. Run

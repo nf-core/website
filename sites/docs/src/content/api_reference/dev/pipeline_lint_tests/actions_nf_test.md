@@ -1,4 +1,4 @@
-# actions\_nf\_test
+# actions_nf_test
 
 #### `PipelineLint.actions_nf_test(){:python}`
 

@@ -1,4 +1,4 @@
-# actions\_awsfulltest
+# actions_awsfulltest
 
 #### `PipelineLint.actions_awsfulltest() → dict[str, list[str]]{:python}`
 

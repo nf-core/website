@@ -3,6 +3,8 @@ import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 import semver from "semver";
 import { markdown } from "@mashehu/astropub-md";
+import { metroMapLoader } from "@utils/loaders";
+import pipelines_json from "@public/pipelines.json";
 
 // Define reusable schemas for common validation patterns
 const commonSchemas = {
@@ -81,7 +83,7 @@ const events = defineCollection({
             try {
                 data.start = data.start ?? new Date(data.startDate + "T" + data.startTime);
                 data.end = data.end ?? new Date(data.endDate + "T" + data.endTime);
-            } catch (e) {
+            } catch {
                 throw new Error("startDate and startTime must be in the format YYYY-MM-DD and HH:MM+|-HH:MM");
             }
             // Validate dates
@@ -415,7 +417,17 @@ const hackathonProjects = defineCollection({
         }),
 });
 
+const metroMaps = defineCollection({
+    loader: metroMapLoader(pipelines_json),
+    schema: z.object({
+        name: z.string(),
+        url: z.url(),
+        svg: z.string().optional(),
+    }),
+});
+
 export const collections = {
+    "metro-maps": metroMaps,
     events,
     about,
     blog,

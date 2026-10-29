@@ -1,4 +1,4 @@
-# pipeline\_todos
+# pipeline_todos
 
 #### `PipelineLint.pipeline_todos(root_dir=None){:python}`
 
