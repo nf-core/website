@@ -1,4 +1,4 @@
-# template\_strings
+# template_strings
 
 #### `PipelineLint.template_strings(){:python}`
 
