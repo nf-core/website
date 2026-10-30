@@ -23,6 +23,7 @@ The following specifications define standards for developing nf-core modules:
 - **[Resource requirements](/docs/specifications/components/modules/resource-requirements):** Standards for specifying computational resources through process labels and the `task` directive.
 - **[Software requirements](/docs/specifications/components/modules/software-requirements):** Guidelines for declaring software dependencies using Conda, Docker, and Singularity through BioContainers.
 - **[Testing](/docs/specifications/components/modules/testing):** Requirements for nf-test including snapshot testing, stub tests, and CI configuration.
+- **[Static types and records](/docs/specifications/components/modules/static-types):** Requirements for modules that use Nextflow static types, including input and output records, the `ext` directive, and version topics.
 
 ## Subworkflow specifications
 
