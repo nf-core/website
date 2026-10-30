@@ -14,17 +14,17 @@ TODO add more memes
 
 During the nf-core hackathon in October 2026, two hackathon groups merged together to form one big group to tackle the upcoming changes caused by the introduction of static typing and record types and decide on the guidelines related to these topics.
 
-This blog post gives an overview of all the upcoming changes that are coming to nf-core/modules along with the reasoning behind every change.
+This blog post gives an overview of all the upcoming changes to nf-core/modules along with the reasoning behind each one.
 
 ## Singular inputs and outputs
 
-Previously, multiple lines were allowed in the input and output block of a process. In fact we even enforced that the output block must contain one output per file produced by the process. This will change as of now by enforcing each module to take one [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record) as an input and to emit one [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record) as the output.
+Previously, multiple lines were allowed in the input and output block of a process. In fact we even enforced that the output block must contain one output per file produced by the process. This will change now by requiring each module to take one [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record) as an input and to emit one [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record) as the output.
 
 This change will be enforced due to many reasons, these are the most prominent ones:
 
 1. Having a singular input to the module will allow full flexibility for each process run. Due to this change we will never have to do massive multiMap operations to make sure that secondary inputs are in sync with the actual sample data.
-2. Having a singular output with record types will make it easier to subset the record type and merge it back into another record type. This is especially useful for processes that emit a lot of files as there will be no need for multi-line joins anymore.
-3. Due to this the whole idea of having a dataflow becomes even more clear.
+2. Having a single output with record types will make it easier to subset the record type and merge it back into another record type. This is especially useful for processes that emit a lot of files as there will be no need for multi-line joins anymore.
+3. Due to this, each sample travels through the pipeline as a single record that collects results at every process, making the dataflow much clearer.
 
 ## Composition of the input record type
 
@@ -39,7 +39,7 @@ record(
 )
 ```
 
-To annotate a field as optional, put a `?` after the type definition of the specific field.
+To annotate a field as optional, put a `?` after the type of that field (for example, input_index: Path? in the example above).
 
 Read more about typing in the [Nextflow docs](https://docs.seqera.io/nextflow/reference/stdlib-types).
 
@@ -50,13 +50,13 @@ One special case of typing is file inputs:
 
 The input record types should consist of the following fields:
 
-1. All required input values needed to run the process. One big change on this front is that mandatory fields from the meta map should now also be values of the record type. This is the `id` field for every process and optionally `single_end` wherever it is needed. This will increase the transparency of each process meaning that it will no longer have a silent requirement on meta fields.
+1. All required input values needed to run the process. One big change on this front is that mandatory fields from the meta map should now also be values of the record type. This is the `id` field for every process and optionally `single_end` and `strandedness` wherever it is needed. This will increase the transparency of each process meaning that it will no longer have a silent requirement on meta fields.
 2. All files (required and optional) that the process can use to run. These should all have some variation of the `Path` type as described above.
-3. The `meta` [Map](https://docs.seqera.io/nextflow/reference/stdlib-types/map) will become the `meta` [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record). This field will now be fully optional and is mainly there to help pipeline developers pass additional pipeline-related information to the process. This can be used by pipeline users in `ext.args` and will still be passed to the output so it can also be used for downstream logic in the pipeline (like joining)
+3. The `meta` [Map](https://docs.seqera.io/nextflow/reference/stdlib-types/map) will become the `meta` [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record). This field will now be fully optional and is mainly there to help pipeline developers pass additional pipeline-related information to the process. This can be referenced by pipeline users in `ext.args` and will still be passed to the output so it is also available for downstream logic (like joining).
 4. Optional arguments strings. There should be one argument string for every tool used by the process, for which the name should follow the following structure: `<tool_name(_subtool_name)>_args` (this is the same notation as for the module name). This will replace the usage of `ext.args` for pipeline **developers**. `ext.args` will still be available for pipeline users. In case the same tool is used twice or more in a process, a number can be added after the tool name in the field name.
 5. The optional `output_prefix` field. This field will replace the usage of `ext.prefix` for pipeline **developers**. `ext.prefix` will still be available for pipeline users. In the rare case that multiple prefixes are needed an additional `output_prefix2` field can also be added.
 
-The main logic behind most of these changes is to make the modules compatible with new and upcoming Nextflow features. Due to these changes a config file is no longer needed to configure the process properly. This makes the creation of meta pipelines a lot easier. Additionally by removing the requirement of the meta [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record), the usage of `nextflow module run` will also be a lot easier.
+The main logic behind most of these changes is to make the modules compatible with new and upcoming Nextflow features. Due to these changes a config file is no longer needed to configure the process properly. This makes the creation of meta pipelines a lot easier. Additionally, by removing the requirement of the meta [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record), the usage of `nextflow module run` will also be a lot easier.
 
 In case the inputs need to be staged, please move these to the new `stage` block of the process. More information on this can be found in the [docs](https://docs.seqera.io/nextflow/reference/process/inputs-outputs-typed#stage-directives)
 
@@ -102,7 +102,7 @@ The output record should consist of the following fields:
 
 Let's return to our previous example of `SAMTOOLS_STATS` and take a look at what needs to be done to update the output block of that module.
 
-The module outputs one file called `stats` and one version of the `samtools stats` tool (as an output and a topic). In this case no multiple outputs should be merged because the module only outputs one file. The `id` field was added to the output record, which directly uses the `id` value passed to the input of the module. Finally the versions output has also been converted to a record type and has been moved to the `topic` block.
+The module outputs one file called `stats` and one version of the `samtools stats` tool (as an output and a topic). In this case, no multiple outputs should be merged because the module only outputs one file. The `id` field was added to the output record, which directly uses the `id` value passed to the input of the module. Finally the versions output has also been converted to a record type and has been moved to the `topic` block.
 
 The output section of the module will change like this:
 
