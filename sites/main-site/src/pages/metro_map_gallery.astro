@@ -11,14 +11,13 @@ const metro_maps = (await getCollection("metro-maps"))
 
 <PageLayout
     title="Metro map gallery"
-    subtitle="Pipeline diagrams from across nf-core. See [the docs](/docs/community/brand/workflow-schematics) to find out more on how to make them."
+    subtitle="Metro maps of nf-core pipelines. See [the docs](/docs/community/brand/workflow-schematics) to find out more on how to make them."
     mainpage_container={false}
 >
     <div class="container-fluid main-content">
         <div class="metro-map-masonry">
             {metro_maps.map(({ name, url, svg }) => (
-                <a class="card metro-map-card text-decoration-none" href={url}>
-                    {/* bg-white: most maps assume a light background */}
+                <a class="card metro-map-card text-decoration-none" href={url} id={name}>
                     <div
                         class="card-body metro-map-frame bg-white p-1"
                         role="img"
@@ -59,6 +58,7 @@ const metro_maps = (await getCollection("metro-maps"))
     .metro-map-card {
         break-inside: avoid;
         margin-bottom: $gap;
+        scroll-margin-top: 4rem;
     }
 
     @supports (display: grid-lanes) {
