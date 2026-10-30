@@ -12,7 +12,8 @@ platforms.
 
 The recommended procedure is, once the alternative is available on nf-core modules, to add a message explaining that
 the module/subworkflow is deprecated, and an `assert` in the code body to print a deprecation
-message like.
+the module/subworkflow is deprecated, and an `assert` in the code body to print a deprecation
+message.
 
 For modules:
 
