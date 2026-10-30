@@ -41,7 +41,7 @@ For subworkflows:
   main:
 
   def deprecation_message = """
-  WARNING: This subworkflow has been deprecated. Please use subworkflows/nf-core//path/to/new/module
+  WARNING: This subworkflow has been deprecated. Please use subworkflows/nf-core/path/to/new/module
 
   Reason:
   This subworkflow is no longer fit for purpose because ...
