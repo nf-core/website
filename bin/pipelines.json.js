@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 import { octokit, getDocFiles, getGitHubFile } from "../sites/main-site/src/components/octokit.js";
-import { fetchCO2FootprintFiles } from "./s3Utils.js";
+import { fetchCO2FootprintFiles, fetchMegatestStatus } from "./s3Utils.js";
 
 import { promises as fs, writeFileSync, existsSync } from "fs";
 import { load } from "js-yaml";
@@ -344,10 +344,11 @@ export const writePipelinesJson = async () => {
         return { name: contributor.login, count: contributor.contributions, avatar_url: contributor.avatar_url };
       });
 
-    // get the releases
-    let { data: releases } = await octokit.rest.repos.listReleases({
+    // get all the releases (paginated, as the stored releases not on GitHub anymore are removed below)
+    let releases = await octokit.paginate(octokit.rest.repos.listReleases, {
       owner: "nf-core",
       repo: name,
+      per_page: 100,
     });
 
     // remove empty values from releases (usually from draft releases)
@@ -361,7 +362,11 @@ export const writePipelinesJson = async () => {
 
     let old_releases = [];
     if (pipelineIndex > -1) {
-      old_releases = pipelines.remote_workflows[pipelineIndex].releases.filter((release) => release.tag_name !== "dev");
+      // keep only the stored releases still on GitHub (e.g. drop bacass 2.6.0, renamed to 2.6.1)
+      const github_releases = releases.map((release) => release.tag_name);
+      old_releases = pipelines.remote_workflows[pipelineIndex].releases.filter(
+        (release) => release.tag_name !== "dev" && github_releases.includes(release.tag_name),
+      );
       const existing_releases = old_releases.map((release) => release.tag_name);
       new_releases = new_releases.filter((release) => !existing_releases.includes(release.tag_name));
     }
@@ -606,6 +611,17 @@ export const writePipelinesJson = async () => {
         return new Date(b.published_at) - new Date(a.published_at);
       }
     });
+
+    // Get the AWS megatest status of each release (results on S3 + Nextflow run outcome),
+    // reusing the runs already parsed in the previous build
+    await Promise.all(
+      data.releases
+        .filter((release) => release.tag_name !== "dev")
+        .map(async (release) => {
+          release.megatest = await fetchMegatestStatus(name, release.tag_sha, release.megatest);
+        }),
+    );
+
     if (!pipelines.remote_workflows) {
       pipelines.remote_workflows = [];
     }
