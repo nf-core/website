@@ -1,5 +1,5 @@
 ---
-# Copied from docs/utilities/NfcoreCitationUtils.md of nf-core/nf-core-utils 0.6.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+# Copied from docs/utilities/NfcoreCitationUtils.md of nf-core/nf-core-utils 0.7.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
 title: "NfcoreCitationUtils"
 shortTitle: "NfcoreCitationUtils"
 weight: 4
@@ -45,16 +45,23 @@ Two functions cover the flow:
 **Description:**
 Builds a citations map for **only the tools that ran**, by intersecting the `versions` topic (what executed) with citations parsed from the supplied `meta.yml` files (the citation source). The returned map plugs directly into `toolCitationText()`, `toolBibliographyText()`, and `methodsDescriptionText()`.
 
-Each **short citation** is formatted for direct copy-paste into a methods paragraph — `tool (version, Author et al. year)` — with the version taken from the `versions` topic and the author/year from `meta.yml`. The reference segment degrades gracefully: short author + year → `doi: …` → homepage url → description. So richer `meta.yml` files produce richer citations:
+Each **short citation** is formatted for a methods paragraph — `tool (version, Author (year))` — with the version taken from the `versions` topic and the author/year from `meta.yml`. The reference segment degrades gracefully: short author + year → `doi: …` → homepage url → description. So richer `meta.yml` files produce richer citations:
 
-| `meta.yml` fields present   | Short citation                                       |
-| --------------------------- | ---------------------------------------------------- |
-| `author`, `year`            | `fastqc (0.12.1, Andrews 2010)`                      |
-| `author` (multiple), `year` | `samtools (1.21, Danecek et al. 2021)`               |
-| `doi` only                  | `multiqc (1.21, doi: 10.1093/bioinformatics/btw354)` |
-| `homepage` only             | `seqtk (1.4, https://github.com/lh3/seqtk)`          |
+!!! note "HTML output"
+Short citations are HTML, meant for the MultiQC methods section: the reference links to the DOI (else the homepage) and `et al.` is wrapped in `<em>`. The table below shows the rendered text. Save `toolCitationText(citations)` to an `.html` file, such as `auto_citations.html`, not a `.txt` file. To reuse a citation in a manuscript, open that file or the MultiQC report in a browser and copy the rendered text. Pasting the HTML source without formatting does not remove literal tags.
 
-The full `bibliography` entry (author, year, title, journal, doi, url) is unchanged.
+!!! info "Harvard style"
+Short citations follow the Harvard style recommended by [nf-core/modules](https://github.com/nf-core/modules/blob/master/modules/meta-schema.json) for `meta.yml` author fields: `Last, F. M.` for author names, with `Author (year)` for single authors and `Author et al. (year)` for multiple.
+For example, `Andrews, S.` renders as `Andrews (2010)`, while `van der Walt, S.` preserves the full surname. Legacy `Last Initials` author lists remain supported, including flat `author`/`year` metadata when no `publication` object is present.
+
+| `meta.yml` fields present                           | Short citation                                       |
+| --------------------------------------------------- | ---------------------------------------------------- |
+| `publication.author`, `publication.year`            | `fastqc (0.12.1, Andrews (2010))`                    |
+| `publication.author` (multiple), `publication.year` | `samtools (1.21, Danecek et al. (2021))`             |
+| `doi` only                                          | `multiqc (1.21, doi: 10.1093/bioinformatics/btw354)` |
+| `homepage` only                                     | `seqtk (1.4, https://github.com/lh3/seqtk)`          |
+
+The full `bibliography` entry includes author, year, title and source when available, followed by a DOI link or, when no DOI is supplied, the homepage link. This applies to both nested publication metadata and legacy flat fields.
 
 **Function Signature:**
 
@@ -65,8 +72,8 @@ Map citationsOnTheFly(List topicVersions, List<String> metaFilePaths)
 **Parameters:**
 
 - `topicVersions` (List): Collected `versions` topic data — `[process, tool, version]` tuples. Collect with `.collect(flat: false)` so the tuples are preserved (plain `.collect()` flattens them, and the function logs a warning if it receives flattened data).
-- `metaFilePaths` (List<String>): Paths to module `meta.yml` files to resolve citation metadata from.
-- `extraTools` (List<String>, optional): Tool names to cite even though they never emit a version — e.g. a MultiQC plugin like `multiqcsav`. They're resolved from `meta.yml` like everything else (with no version segment), so you can still add a tool by hand: `citationsOnTheFly(versions, meta_yml_paths, ['multiqcsav'])`.
+- `metaFilePaths` (List\<String\>): Paths to module `meta.yml` files to resolve citation metadata from.
+- `extraTools` (List\<String\>, optional): Tool names to cite even though they never emit a version — e.g. a MultiQC plugin like `multiqcsav`. They're resolved from `meta.yml` like everything else (with no version segment), so you can still add a tool by hand: `citationsOnTheFly(versions, meta_yml_paths, ['multiqcsav'])`.
 
 **Returns:**
 
@@ -260,9 +267,9 @@ workflow {
     def citation_ch = channel.topic('citations').collect()
 
     citation_ch.map { citations ->
-        def citationText = autoToolCitationText(citations)
-        log.info "Generated citations: ${citationText}"
-        // Returns: "Tools used in the workflow included: fastqc (Andrews et al. 2010), multiqc (Ewels et al. 2016)."
+    def citationText = autoToolCitationText(citations)
+    log.info "Generated citations: ${citationText}"
+    // Returns: "Tools used in the workflow included: fastqc (Andrews et al. (2010)), multiqc (Ewels et al. (2016))."
     }
 }
 ```
@@ -335,7 +342,7 @@ include { generateModuleToolCitation } from 'plugin/nf-core-utils'
 
 // Extract citations from specific module
 def fastqcCitations = generateModuleToolCitation('modules/nf-core/fastqc/meta.yml')
-// Returns: [fastqc: [citation: 'fastqc (Andrews et al. 2010)', bibliography: '<li>Andrews S...</li>']]
+// Returns: [fastqc: [citation: 'fastqc (Andrews et al. (2010))', bibliography: '<li>Andrews S...</li>']]
 
 log.info "FASTQC citations: ${fastqcCitations}"
 ```
@@ -373,7 +380,7 @@ allCitations.putAll(generateModuleToolCitation('modules/nf-core/multiqc/meta.yml
 
 def citationText = toolCitationText(allCitations)
 log.info "Citations: ${citationText}"
-// Returns: "Tools used in the workflow included: fastqc (Andrews et al. 2010), multiqc (Ewels et al. 2016)."
+// Returns: "Tools used in the workflow included: fastqc (Andrews et al. (2010)), multiqc (Ewels et al. (2016))."
 ```
 
 ---
@@ -478,7 +485,7 @@ Map collectCitationsFromFiles(List<String> metaFilePaths)
 
 **Parameters:**
 
-- `metaFilePaths` (List<String>): List of paths to module meta.yml files
+- `metaFilePaths` (List\<String\>): List of paths to module meta.yml files
 
 **Returns:**
 
@@ -517,8 +524,8 @@ Map processMixedCitationSources(List<List> topicCitations, List<String> citation
 
 **Parameters:**
 
-- `topicCitations` (List<List>): Citation data from topic channels
-- `citationFiles` (List<String>): List of meta.yml file paths
+- `topicCitations` (List\<List\>): Citation data from topic channels
+- `citationFiles` (List\<String\>): List of meta.yml file paths
 
 **Returns:**
 
@@ -601,7 +608,7 @@ Map processCitationsFromTopic(List<List> topicData)
 
 **Parameters:**
 
-- `topicData` (List<List>): List of `[module, tool, citation_data]` tuples
+- `topicData` (List\<List\>): List of `[module, tool, citation_data]` tuples
 
 **Returns:**
 
@@ -644,7 +651,7 @@ Map processCitationsFromFile(List<String> citationFiles)
 
 **Parameters:**
 
-- `citationFiles` (List<String>): List of file paths to meta.yml files
+- `citationFiles` (List\<String\>): List of file paths to meta.yml files
 
 **Returns:**
 
@@ -845,8 +852,8 @@ Test citation processing across migration stages:
 test("Modern topic channel citations") {
     when {
         def topicCitations = [
-            ['FASTQC', 'fastqc', [doi: '10.1093/bioinformatics/btv033', author: 'Andrews S']],
-            ['MULTIQC', 'multiqc', [doi: '10.1093/bioinformatics/btw354', author: 'Ewels P']]
+            ['FASTQC', 'fastqc', [doi: '10.1093/bioinformatics/btv033', publication: [author: 'Andrews S']]],
+            ['MULTIQC', 'multiqc', [doi: '10.1093/bioinformatics/btw354', publication: [author: 'Ewels P']]]
         ]
         def result = autoToolCitationText(topicCitations)
     }

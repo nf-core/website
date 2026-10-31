@@ -1,5 +1,5 @@
 ---
-# Copied from docs/NfCoreUtilities.md of nf-core/nf-core-utils 0.6.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+# Copied from docs/NfCoreUtilities.md of nf-core/nf-core-utils 0.7.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
 title: "nf-core Utilities Guide"
 shortTitle: "nf-core Utilities Guide"
 weight: 1
@@ -141,6 +141,13 @@ Understanding when and how to use each function is key to building robust pipeli
 ### 3.1. Pipeline Initialization Functions
 
 These functions should be called early in your pipeline to validate setup:
+
+Startup validation is owned by the pipeline. Loading the plugin does not run these
+checks automatically. Call each check once, using either the exported function or
+your existing template-local implementation, not both. Pipelines that previously
+relied only on the observer must add these calls. In particular, call
+`checkProfileProvided(args, params.monochrome_logs)` to reject a trailing comma in
+`-profile` with a nonzero exit status; observer-only runs do not validate it.
 
 | Function                                      | When to Use                            | Example                                              |
 | --------------------------------------------- | -------------------------------------- | ---------------------------------------------------- |
