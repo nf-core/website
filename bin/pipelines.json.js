@@ -363,12 +363,12 @@ export const writePipelinesJson = async () => {
     let old_releases = [];
     if (pipelineIndex > -1) {
       // drop releases that were renamed or deleted on GitHub since they were added to pipelines.json
-      const current_releases = releases.map((release) => release.tag_name);
+      const current_releases = new Set(releases.map((release) => release.tag_name));
       old_releases = pipelines.remote_workflows[pipelineIndex].releases.filter(
-        (release) => release.tag_name !== "dev" && current_releases.includes(release.tag_name),
+        (release) => release.tag_name !== "dev" && current_releases.has(release.tag_name),
       );
-      const existing_releases = old_releases.map((release) => release.tag_name);
-      new_releases = new_releases.filter((release) => !existing_releases.includes(release.tag_name));
+      const existing_releases = new Set(old_releases.map((release) => release.tag_name));
+      new_releases = new_releases.filter((release) => !existing_releases.has(release.tag_name));
     }
     // get sha and schema info for each release in parallel
     await Promise.all(
