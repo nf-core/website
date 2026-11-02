@@ -15,6 +15,7 @@ module.exports = {
             files: "**/*.svelte",
             options: {
                 parser: "svelte",
+                svelteAllowShorthand: true,
             },
         },
     ],
