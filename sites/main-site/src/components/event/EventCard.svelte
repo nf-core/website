@@ -4,31 +4,18 @@
     import LocalDateTime from "@components/event/LocalDateTime.svelte";
     import type { CollectionEntry } from "astro:content";
     import ListingCard from "../ListingCard.svelte";
+    import { eventTypeClasses, type EventType } from "@components/event/eventUtils";
 
     interface Props {
         frontmatter: CollectionEntry<"events">["data"];
         slug?: string;
-        type?: string;
+        type: EventType;
         time_category?: string;
         showDescription?: boolean;
         narrow?: boolean;
     }
 
-    let {
-        frontmatter,
-        slug = "",
-        type = "",
-        time_category = "",
-        showDescription = true,
-        narrow = false,
-    }: Props = $props();
-
-    const event_type_classes = {
-        bytesize: "success",
-        hackathon: "primary",
-        talk: "info",
-        training: "warning",
-    };
+    let { frontmatter, slug = "", type, time_category = "", showDescription = true, narrow = false }: Props = $props();
 
     const isSameDay = $derived(frontmatter.startDate === frontmatter.endDate);
 </script>
@@ -36,7 +23,7 @@
 <ListingCard
     footer={true}
     cardClass="mb-3 rounded-start-0 type"
-    cardStyle={`border-left-color:var(--bs-${event_type_classes[type]})`}
+    cardStyle={`border-left-color:var(--bs-${eventTypeClasses[type]})`}
 >
     {#snippet cardHeader()}
         <span id={"event-" + slug.split("/")[1]} class={narrow ? "h5" : "h3"}>
