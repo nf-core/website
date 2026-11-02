@@ -101061,6 +101061,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -113620,6 +113628,10 @@
       },
       "git_sha": "1298fbd2004c2913d6682ce4a419647d97a8fc3f",
       "pipelines": [
+        {
+          "name": "rnaseq",
+          "version": "3.27.0"
+        },
         {
           "name": "rnaseq",
           "version": "3.27.0"
@@ -196229,7 +196241,7 @@
     {
       "name": "htslib_bgziptabix",
       "path": "modules/nf-core/htslib/bgziptabix/meta.yml",
-      "tree_sha": "02bebe35a675416aba67916f6c9a91221a90d479",
+      "tree_sha": "25fe159e6835f2c91f542c1040b40b8d6a01bafe",
       "files": [
         "modules/nf-core/htslib/bgziptabix/.conda-lock/linux_amd64-bd-0923e29158171c28_1.txt",
         "modules/nf-core/htslib/bgziptabix/.conda-lock/linux_arm64-bd-3acc2684784cd5dc_1.txt",
@@ -196237,7 +196249,8 @@
         "modules/nf-core/htslib/bgziptabix/main.nf",
         "modules/nf-core/htslib/bgziptabix/meta.yml",
         "modules/nf-core/htslib/bgziptabix/tests/main.nf.test",
-        "modules/nf-core/htslib/bgziptabix/tests/main.nf.test.snap"
+        "modules/nf-core/htslib/bgziptabix/tests/main.nf.test.snap",
+        "modules/nf-core/htslib/bgziptabix/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
@@ -196372,6 +196385,24 @@
               }
             ]
           ],
+          "gzi": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${outfile}.gzi": {
+                  "type": "file",
+                  "description": "BGZF block index for the compressed output file. Only created if `action` is `compress` and `ext.args` contains `-i` or `--index` as a separate argument. Bundled short flags (e.g. `-ci`) and `-I`/`--index-name` are not detected. No .gzi is created when `action` is `decompress`.",
+                  "pattern": "*.gzi",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
           "versions_htslib": [
             [
               {
@@ -196502,7 +196533,7 @@
           }
         }
       },
-      "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8",
+      "git_sha": "0fc371314e7612fa13b8164bd86b53683a59a8f0",
       "pipelines": [
         {
           "name": "genomeassembler",
@@ -301698,6 +301729,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -302005,6 +302040,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -304028,6 +304067,209 @@
         }
       },
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+    },
+    {
+      "name": "plink2_makepgen",
+      "path": "modules/nf-core/plink2/makepgen/meta.yml",
+      "tree_sha": "eb28fe5195d46d9c904d9ed3cb832745ceea0d6f",
+      "files": [
+        "modules/nf-core/plink2/makepgen/.conda-lock/linux_amd64-bd-223badfc86e2b6e6_1.txt",
+        "modules/nf-core/plink2/makepgen/environment.yml",
+        "modules/nf-core/plink2/makepgen/main.nf",
+        "modules/nf-core/plink2/makepgen/meta.yml",
+        "modules/nf-core/plink2/makepgen/tests/main.nf.test",
+        "modules/nf-core/plink2/makepgen/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "plink2_makepgen",
+        "description": "Convert PLINK 1 binary files to PLINK 2 binary format",
+        "keywords": [
+          "plink2",
+          "genotype",
+          "conversion",
+          "population genetics"
+        ],
+        "tools": [
+          {
+            "plink2": {
+              "description": "Whole genome association analysis toolset",
+              "homepage": "https://www.cog-genomics.org/plink/2.0/",
+              "documentation": "https://www.cog-genomics.org/plink/2.0/data",
+              "tool_dev_url": "https://github.com/chrchang/plink-ng",
+              "doi": "10.1186/s13742-015-0047-8",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:plink"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing dataset information\ne.g. `[ id:'population1' ]`\n"
+              }
+            },
+            {
+              "bed": {
+                "type": "file",
+                "description": "PLINK 1 binary genotype file",
+                "pattern": "*.bed",
+                "ontologies": []
+              }
+            },
+            {
+              "bim": {
+                "type": "file",
+                "description": "PLINK 1 variant information file",
+                "pattern": "*.bim",
+                "ontologies": []
+              }
+            },
+            {
+              "fam": {
+                "type": "file",
+                "description": "PLINK 1 sample information file",
+                "pattern": "*.fam",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "pgen": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing dataset information\ne.g. `[ id:'population1' ]`\n"
+                }
+              },
+              {
+                "*.pgen": {
+                  "type": "file",
+                  "description": "PLINK 2 binary genotype table",
+                  "pattern": "*.{pgen}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "pvar": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing dataset information\ne.g. `[ id:'population1' ]`\n"
+                }
+              },
+              {
+                "*.pvar": {
+                  "type": "file",
+                  "description": "PLINK 2 variant information file",
+                  "pattern": "*.{pvar}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "psam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing dataset information\ne.g. `[ id:'population1' ]`\n"
+                }
+              },
+              {
+                "*.psam": {
+                  "type": "file",
+                  "description": "PLINK 2 sample information file",
+                  "pattern": "*.{psam}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_plink2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//; s/ 64.*\\$//; s/LM\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plink2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "plink2 --version 2>&1 | sed 's/^PLINK v//; s/ 64.*\\$//; s/LM\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@malghuraybi"
+        ],
+        "maintainers": [
+          "@malghuraybi"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/plink2:2.00a5.10--223badfc86e2b6e6",
+              "build_id": "bd-223badfc86e2b6e6_1",
+              "scan_id": "sc-f6906267c0a85442_2"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/plink2:2.00a5.10--d40179e933fa9ccc",
+              "build_id": "bd-d40179e933fa9ccc_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c7/c7dfbbefb7c4dccd8c211a1c8bf94988dcd6a58a147e5c22e2553e80af907569/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/plink2/makepgen/.conda-lock/linux_amd64-bd-223badfc86e2b6e6_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "87879cb1d7c39c6d131ccb8ddcd1cfbdb1ba89e0"
     },
     {
       "name": "plink2_pca",
@@ -468786,6 +469028,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "20c6e6407f63748003b47f92837b64fb0a53ffa4",
-  "updated_at": "2026-11-01T14:13:58.702Z"
+  "commit_sha": "0fc371314e7612fa13b8164bd86b53683a59a8f0",
+  "updated_at": "2026-11-02T02:13:17.676Z"
 }
