@@ -62,7 +62,12 @@ The input record type should consist of the following fields:
 
 The main logic behind most of these changes is to make the modules compatible with new and upcoming Nextflow features. Due to these changes a config file is no longer needed to configure the process properly. This makes the creation of meta pipelines a lot easier. Additionally, by removing the requirement of the meta [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record), the usage of `nextflow module run` will also be a lot easier.
 
-In case the inputs need to be staged, please move these to the new `stage` block of the process. More information on this can be found in the [docs](https://docs.seqera.io/nextflow/reference/process/inputs-outputs-typed#stage-directives).
+In case the inputs need to be staged, please move these to the new `stage` block of the process. More information on this can be found in the [docs](https://docs.seqera.io/nextflow/reference/process/inputs-outputs-typed#stage-directives). The new `stage` block could now also be used to include script files into the module instead of relying on the bin folder or process templates. e.g.:
+
+```groovy
+stage:
+stageAs file("${moduleDir}/bin/template_script.py"), '*'
+```
 
 ### Example
 
