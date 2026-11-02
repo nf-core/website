@@ -10,9 +10,10 @@ label:
   - modules
 ---
 
-TODO add more memes
+<!-- TODO add more memes -->
 
-During the nf-core hackathon in October 2026, two hackathon groups merged together to form one big group to tackle the upcoming changes caused by the introduction of static typing and record types and decide on the guidelines related to these topics.
+During the nf-core hackathon in October 2026, two hackathon groups joined forces to tackle the upcoming changes caused by the introduction of static typing and record types.
+The aim of the combined task force was develop the nf-core guidelines related on these topics.
 
 This blog post gives an overview of all the upcoming changes to nf-core/modules along with the reasoning behind each one.
 
@@ -22,13 +23,16 @@ Previously, multiple channels and/or values were allowed in the input and output
 
 This change will be enforced due to many reasons, these are the most prominent ones:
 
-1. Having a singular input to the module will allow full flexibility for each process run. Due to this change we will never have to do massive multiMap operations to make sure that secondary inputs are in sync with the actual sample data.
+1. This will reduce large multiMap operations required to keep files in sync with the actual sample data.
 2. Having a single output with record types will make it easier to subset the record type and merge it back into another record type. This is especially useful for processes that emit a lot of files as there will be no need for multi-line joins anymore.
 3. Due to this, each sample travels through the pipeline as a single record that collects results at every process, making the dataflow much clearer.
 
 ## Composition of the input record type
 
-The input record should consist of several required and optional typed fields. A record type is a `Map`-like structure that consists of a predefined set of keys. The record is not limited to only these keys, but it will validate if these keys exists (if needed) and if they have the right type. To type a specific field, put a `:` followed by the expected type after the field key name. A record with typed fields can look like this:
+The input record should consist of several required and optional typed fields.
+A record type is a `Map`-like structure that consists of a predefined set of keys.
+The record is not limited to only these keys, but it will validate if these keys exists (if needed) and if they have the right type.
+To type a specific field, put a `:` followed by the expected type after the field key name. A record with typed fields can look like this:
 
 ```groovy
 input:
@@ -48,7 +52,7 @@ One special case of typing is file inputs:
 - In case that only one file is expected use the `Path` type
 - If multiple files are expected or possible, use the path type. More specifically, if order matters, use List<Path> (such as paired reads: [sampA_R1.fq.gz, sampA_R2.fq.gz]). If the order does not matter, use Bag<Path> (such as genome reference files [ reference.fa.ann, reference.fa.bwt, ... ]). If in doubt, use List<Path>.
 
-The input record types should consist of the following fields:
+The input record type should consist of the following fields:
 
 1. All required input values needed to run the process. One big change on this front is that mandatory fields from the meta map should now also be values of the record type. This is the `id` field for every process and optionally `single_end` and `strandedness` wherever it is needed. This will increase the transparency of each process meaning that it will no longer have a silent requirement on meta fields.
 2. All files (required and optional) that the process can use to run. These should all have some variation of the `Path` type as described above.
@@ -64,7 +68,11 @@ In case the inputs need to be staged, please move these to the new `stage` block
 
 This example will show the changes that need to be done for the `SAMTOOLS_STATS` module.
 
-This module takes two required files called `input` and `input_index` and two optional files called `fasta` and `fai`. These files are split over two input lines, that need to be merged into one record. `meta2` is removed because the two optional files are now part of the main input entry. The `id` field has been added as a required value and the required `meta` Map was turned into an optional Record. Finally, `samtools_stats_args` and `output_prefix` have been added as optional String values.
+This module takes two required files called `input` and `input_index` and two optional files called `fasta` and `fai`.
+These files are split over two input lines, that need to be merged into one record.
+`meta2` is removed because the two optional files are now part of the main input entry.
+The `id` field has been added as a required value and the required `meta` Map was turned into an optional Record.
+Finally, `samtools_stats_args` and `output_prefix` have been added as optional String values.
 
 The input section of a module will change like this:
 
@@ -89,7 +97,9 @@ So, with inputs out of the way, let's move on to the module outputs!
 
 ## Composition of the output record
 
-The record definition in the output block is a bit different when compared to the record definition in the input block. There is no option to provide the expected type of the output since Nextflow already derives this based on the type of the value passed to each record field. Read more about this in the [docs](https://docs.seqera.io/nextflow/reference/process/inputs-outputs-typed#outputs)
+The record definition in the output block is a bit different when compared to the record definition in the input block.
+There is no option to provide the expected type of the output since Nextflow already derives this based on the type of the value passed to each record field.
+Read more about this in the [docs](https://docs.seqera.io/nextflow/reference/process/inputs-outputs-typed#outputs)
 
 The output record should consist of the following fields:
 
@@ -121,11 +131,15 @@ The output section of the module will change like this:
 + record(process: "${task.process}", tool: 'samtools', version: eval('samtools version | sed "1!d;s/.* //"')) >> 'versions'
 ```
 
-As seen in the input of the module, some extra inputs were added that have a similar function to the current `ext` variables. Let's take a look how to properly handle these variables after the migration.
+As seen in the input of the module, some extra inputs were added that have a similar function to the current `ext` variables.
+Let's take a look how to properly handle these variables after the migration.
 
 ## Changes to `ext` variables
 
-Instead of defining the `prefix` and `args` variables in the `script` and `stub` block separately, they must now be defined under the container declaration in the process code. This way the declaration happens only once in the process, making sure that there is more parity between the `script` and `stub` block. The definition of these variables now also needs to take into account that the `output_prefix` and `<tool>_args` options are given in the input. This is the order of priority for each option where one of these variables can be declared (with the first one taking priority over all others, etc):
+Instead of defining the `prefix` and `args` variables in the `script` and `stub` block separately, they must now be defined under the container declaration in the process code.
+This way the declaration happens only once in the process, making sure that there is more parity between the `script` and `stub` block.
+The definition of these variables now also needs to take into account that the `output_prefix` and `<tool>_args` options are given in the input.
+This is the order of priority for each option where one of these variables can be declared (with the first one taking priority over all others, etc):
 
 1. The `ext.<var>` declaration in a configuration file passed by the pipeline **user**
 2. The value passed in the input record of the process by the pipeline **developer**
