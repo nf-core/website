@@ -221,7 +221,7 @@ const subtitle = subsection ? subsectionDescriptions[subsection] : "";
 const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, "").split("/");
 ---
 
-<PageLayout title={title} subtitle={subtitle} mainpage_container={false}>
+<PageLayout {title} {subtitle} mainpage_container={false}>
     <div slot="header-top" class="d-none d-md-block">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">

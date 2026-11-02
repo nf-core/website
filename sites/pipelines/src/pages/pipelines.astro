@@ -36,9 +36,9 @@ const filter = [
 ---
 
 <ListingLayout
-    title={title}
-    description={description}
-    filter={filter}
+    {title}
+    {description}
+    {filter}
     sortBy={["Last release", "Name", "Stars"]}
     searchExamples={[
         { query: "k:rna", label: "keyword/topic" },
@@ -52,5 +52,5 @@ const filter = [
     ]}
     viewTransitions={false}
 >
-    <PipelinesListing filters={filter} pipelines={pipelines} client:load slot="listing-components" />
+    <PipelinesListing filters={filter} {pipelines} client:load slot="listing-components" />
 </ListingLayout>
