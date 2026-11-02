@@ -18,7 +18,7 @@ This blog post gives an overview of all the upcoming changes to nf-core/modules 
 
 ## Singular inputs and outputs
 
-Previously, multiple lines were allowed in the input and output block of a process. In fact we even enforced that the output block must contain one output per file produced by the process. This will change now by requiring each module to take one [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record) as an input and to emit one [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record) as the output.
+Previously, multiple channels and/or values were allowed in the input and output block of a process. In fact we even enforced that the output block must contain one output per file produced by the process. This will change now by requiring each module to take one [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record) as an input and to emit one [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record) as the output.
 
 This change will be enforced due to many reasons, these are the most prominent ones:
 
