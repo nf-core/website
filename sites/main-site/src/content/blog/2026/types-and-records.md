@@ -126,7 +126,7 @@ The output section of the module will change like this:
 + 	meta: meta,
 + 	stats: file("*.stats")
 + )
-+ 
++
 + topic:
 + record(process: "${task.process}", tool: 'samtools', version: eval('samtools version | sed "1!d;s/.* //"')) >> 'versions'
 ```
