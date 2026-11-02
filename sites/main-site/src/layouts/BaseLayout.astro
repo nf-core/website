@@ -57,21 +57,15 @@ image += category;
 <!doctype html>
 <html lang="en">
     <head>
-        <BaseHead
-            title={title}
-            description={subtitle || ""}
-            image={image}
-            viewTransitions={viewTransitions}
-            docSearchTags={docSearchTags}
-        />
+        <BaseHead {title} description={subtitle || ""} {image} {viewTransitions} {docSearchTags} />
     </head>
 
     <body tabindex="0">
-        <Navbar navTocHeadings={navTocHeadings} sections={sections} {showHiddenBtn} />
+        <Navbar {navTocHeadings} {sections} {showHiddenBtn} />
         <div class:list={["content", { "double-navbar": sections.length > 0 && doubleNavbar }]}>
             <slot />
         </div>
-        {subfooter && <SubFooter md_github_url={md_github_url} />}
+        {subfooter && <SubFooter {md_github_url} />}
         <Footer />
         <slot name="post-footer" />
         <style lang="scss" is:global>

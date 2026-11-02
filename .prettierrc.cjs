@@ -8,6 +8,7 @@ module.exports = {
             files: "**/*.astro",
             options: {
                 parser: "astro",
+                astroAllowShorthand: true,
             },
         },
         {

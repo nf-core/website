@@ -187,14 +187,14 @@ const parentSections = getSectionParents(sections, currentElement);
 ---
 
 <MarkdownTocLayout
-    title={title}
-    subtitle={subtitle}
+    {title}
+    {subtitle}
     meta_title={"Docs: " + title}
-    md_github_url={md_github_url}
+    {md_github_url}
     headings={extendedHeadings}
     leftSidebar={true}
     rightSidebar={true}
-    sections={sections}
+    {sections}
     viewTransitions={true}
     docSearchTags={[
         { name: "page_type", content: "Docs" },
@@ -228,7 +228,7 @@ const parentSections = getSectionParents(sections, currentElement);
     </div>
     {!firstHeading && <h1>{title}</h1>}
     <Content />
-    <FooterPrevNext prev_page={prev_page} next_page={next_page} />
+    <FooterPrevNext {prev_page} {next_page} />
 
     <SubFooter slot="pre-footer" {md_github_url} />
     {docType === "tutorial" && currentElement && currentElement?.type === "link" && (
