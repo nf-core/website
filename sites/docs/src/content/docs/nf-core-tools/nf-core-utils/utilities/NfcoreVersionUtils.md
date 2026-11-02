@@ -1,5 +1,5 @@
 ---
-# Copied from docs/utilities/NfcoreVersionUtils.md of nf-core/nf-core-utils 0.5.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+# Copied from docs/utilities/NfcoreVersionUtils.md of nf-core/nf-core-utils 0.6.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
 title: "NfcoreVersionUtils"
 shortTitle: "NfcoreVersionUtils"
 weight: 9
@@ -39,7 +39,7 @@ String getWorkflowVersion(String version = null, String commitId = null)
 **Parameters:**
 
 - `version` (String, optional): Explicit version string to use (defaults to workflow.manifest.version)
-- `commitId` (String, optional): Explicit commit ID to use (defaults to workflow.commitId)
+- `commitId` (String, optional): Explicit commit ID to use (defaults to workflow.commitId when no `version` is given, so runs from a repository get the `-g<sha>` suffix)
 
 **Returns:**
 
@@ -967,4 +967,4 @@ workflow {
 }
 ```
 
-For more information on version management and topic channels, see the [Nextflow documentation](https://www.nextflow.io/docs/latest/channel.html#topic) and [nf-core best practices](https://nf-co.re/docs/contributing/modules#software-versions).
+For more information on version management and topic channels, see the [Nextflow documentation](https://www.nextflow.io/docs/latest/channel.html#topic) and [nf-core best practices](https://nf-co.re/docs/specifications/components/modules/general#emission-of-versions).

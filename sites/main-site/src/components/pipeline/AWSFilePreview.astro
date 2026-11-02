@@ -87,12 +87,12 @@ if (!tooBig && hasPreview) {
         )}
         {["json", "yaml", "yml"].includes(extension) && (
             // <Code lang={extension} code={content} />
-            <Markdown of={"``` " + extension + "\n" + content + "\n" + "```"} />
+            <Markdown of={"``` " + extension + "\n" + content + "\n```"} />
         )}
         {["log", "txt", "csv", "tsv", "bed"].includes(extension) && (
-            <Markdown of={"``` " + extension + "\n" + content + "\n" + "```"} />
+            <Markdown of={"``` " + extension + "\n" + content + "\n```"} />
         )}
-        {["config", "nf"].includes(extension) && <Markdown of={"``` groovy" + "\n" + content + "\n" + "```"} />}
+        {["config", "nf"].includes(extension) && <Markdown of={"``` groovy\n" + content + "\n```"} />}
         {extension === "pdf" && (
             <object data={hrefPrefix + file.path} type="application/pdf" width="100%" height="1000px">
                 <p>

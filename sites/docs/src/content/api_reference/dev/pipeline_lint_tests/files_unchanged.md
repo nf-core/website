@@ -1,4 +1,4 @@
-# files\_unchanged
+# files_unchanged
 
 #### `PipelineLint.files_unchanged() → dict[str, list[str] | bool]{:python}`
 

@@ -66,11 +66,11 @@ for (const release of releases) {
 ---
 
 <PipelinePageLayout
-    pipeline={pipeline}
+    {pipeline}
     meta_title={pipeline + ": Releases"}
     subtitle={description}
     headings={[]}
-    version={version}
+    {version}
     versions={releases.map((release) => release.tag_name)}
     tabItems={md_files}
     docSearchTags={[{ name: "page_rank", content: "-50" }]}
@@ -139,7 +139,7 @@ for (const release of releases) {
             </div>
         </div>
         <div class="col-12 col-md-3 toc order-first order-md-last">
-            <PipelineSidebar pipeline={pipeline} version={version} meta={meta} />
+            <PipelineSidebar {pipeline} {version} {meta} />
         </div>
     </div>
 </PipelinePageLayout>

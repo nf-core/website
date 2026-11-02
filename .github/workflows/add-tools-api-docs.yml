@@ -23,14 +23,14 @@ jobs:
       - name: setup node
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
-          node-version: "24"
+          node-version: "26"
 
       - name: Install dependencies
         run: |
           npm install remark unist-util-visit
 
       - name: setup uv
-        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
 
       - name: install nf-core
         run: |
@@ -49,7 +49,7 @@ jobs:
       - name: remove tools code
         run: rm -rf tools
 
-      - uses: j178/prek-action@1382ad72dea72f9d53832f2bcb65b3e87a947204 # v3.0.1
+      - uses: j178/prek-action@44924fe9ef4a6f88253c4b6b1bf11c689d3ce53d # v3.1.0
         with:
           install-only: true
 

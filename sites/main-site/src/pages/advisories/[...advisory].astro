@@ -141,12 +141,12 @@ function getLinkIcon(url: string) {
 ---
 
 <MarkdownTocLayout
-    title={title}
-    subtitle={subtitle}
-    md_github_url={md_github_url}
-    headings={headings}
+    {title}
+    {subtitle}
+    {md_github_url}
+    {headings}
     leftSidebar={true}
-    sections={sections}
+    {sections}
     docSearchTags={[
         { name: "page_type", content: "advisory" },
         ...frontmatter.type.map((type) => ({ name: "page_subtype", content: type })),
@@ -172,6 +172,6 @@ function getLinkIcon(url: string) {
         </div>
     )}
     <div slot="right-sidebar-top">
-        <AdvisorySidebarHeader frontmatter={frontmatter} />
+        <AdvisorySidebarHeader {frontmatter} />
     </div>
 </MarkdownTocLayout>

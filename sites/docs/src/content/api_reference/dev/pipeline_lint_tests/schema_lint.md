@@ -1,4 +1,4 @@
-# schema\_lint
+# schema_lint
 
 #### `PipelineLint.schema_lint(){:python}`
 

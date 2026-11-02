@@ -63,7 +63,7 @@ description = description?.replaceAll(/<[^>]*>?/g, "");
 
 <!-- DocSearch -->
 {docSearchTags.map(({ name, content }) => (
-    <meta name={"docsearch:" + name} content={content} />
+    <meta name={"docsearch:" + name} {content} />
 ))}
 
 <!-- Theme -->

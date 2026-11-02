@@ -1,5 +1,5 @@
 ---
-# Copied from docs/NfCoreUtilities.md of nf-core/nf-core-utils 0.5.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+# Copied from docs/NfCoreUtilities.md of nf-core/nf-core-utils 0.6.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
 title: "nf-core Utilities Guide"
 shortTitle: "nf-core Utilities Guide"
 weight: 1
@@ -125,7 +125,7 @@ include {
 
 // Advanced features for comprehensive pipelines
 include {
-    getCitation; autoToolCitationText;
+    citationsOnTheFly; getCitation; autoToolCitationText;
     generateComprehensiveReport
 } from 'plugin/nf-core-utils'
 ```
@@ -219,9 +219,33 @@ workflow {
 
 Citation management comes in two flavors: modern topic-channel based (recommended) and legacy file-based approaches.
 
-**Modern Topic Channel Citations (Recommended)**
+**Citations on the Fly (Recommended)**
 
-These functions work with the new topic channel citation system:
+The lowest-friction option: derive citations from the tools that actually ran (the `versions` topic every nf-core module already emits) and resolve their metadata from each module's `meta.yml`. No per-module changes, no hand-maintained tool list.
+
+| Function                                          | Purpose                                                | Usage Context       |
+| ------------------------------------------------- | ------------------------------------------------------ | ------------------- |
+| `toolsFromVersionsTopic(topicVersions)`           | Tool names that actually ran, from the `versions` data | Workflow completion |
+| `citationsOnTheFly(topicVersions, metaFilePaths)` | Citations for only the tools that ran, from `meta.yml` | Workflow completion |
+
+```nextflow title="Citations on the fly"
+include { citationsOnTheFly; methodsDescriptionText } from 'plugin/nf-core-utils'
+
+def meta_yml_paths = files("${projectDir}/modules/**/meta.yml").collect { it.toString() }
+
+ch_methods_description = channel.topic('versions')
+    .collect(flat: false)
+    .map { versions ->
+        def citations = citationsOnTheFly(versions, meta_yml_paths)
+        methodsDescriptionText("${projectDir}/assets/methods_description_template.yml", citations, [:])
+    }
+```
+
+See [NfcoreCitationUtils](utilities/NfcoreCitationUtils.md#citations-on-the-fly-recommended) for the full walkthrough.
+
+**Modern Topic Channel Citations**
+
+These functions work with a dedicated `citation` topic that each module emits to:
 
 | Function                                   | Purpose                                        | Usage Context        |
 | ------------------------------------------ | ---------------------------------------------- | -------------------- |

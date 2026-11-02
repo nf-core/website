@@ -13,9 +13,9 @@ Whether you're adding a new feature, fixing a bug, or improving documentation, t
 :::note{title="Prerequisites"}
 You will need the following to get started:
 
-- [Nextflow version 21.04.0 or later](../../get_started/environment_setup/nextflow.md)
-- [nf-core/tools version 1.10 or later](../../get_started/environment_setup/nf-core-tools.md)
-- A container engine ([Docker](../../get_started/environment_setup/software-dependencies.md#docker), [Singularity](../../get_started/environment_setup/software-dependencies.md#singularity), or [Conda](../../get_started/environment_setup/software-dependencies.md#condamamba))
+- [Nextflow version 21.04.0 or later](../get_started/environment_setup/nextflow.md)
+- [nf-core/tools version 1.10 or later](../get_started/environment_setup/nf-core-tools.md)
+- A container engine ([Docker](../get_started/environment_setup/software-dependencies#docker), [Singularity](../get_started/environment_setup/software-dependencies#singularity), or [Conda](../get_started/environment_setup/software-dependencies#condamamba))
 - [Git](https://git-scm.com/) for version control
 - A [GitHub account](https://github.com/signup)
 

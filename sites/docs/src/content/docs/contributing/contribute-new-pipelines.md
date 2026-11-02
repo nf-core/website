@@ -14,11 +14,11 @@ Once you have a working version, you can request to move the repository to the n
 :::note{title="Prerequisites"}
 You will need the following to get started:
 
-- [Nextflow version 21.04.0 or later](../../get_started/environment_setup/nextflow.md)
-- [nf-core/tools version 2.7 or later](../../get_started/environment_setup/nf-core-tools.md)
+- [Nextflow version 21.04.0 or later](../get_started/environment_setup/nextflow.md)
+- [nf-core/tools version 2.7 or later](../get_started/environment_setup/nf-core-tools.md)
 - [nf-test](https://www.nf-test.com/) for testing (included with nf-core tools)
 - [prek](https://prek.j178.dev/) for code quality checks (included with nf-core tools)
-- A container engine ([Docker](../../get_started/environment_setup/software-dependencies.md#docker), [Singularity](../../get_started/environment_setup/software-dependencies.md#singularity), or [Conda](../../get_started/environment_setup/software-dependencies.md#condamamba))
+- A container engine ([Docker](../get_started/environment_setup/software-dependencies#docker), [Singularity](../get_started/environment_setup/software-dependencies#singularity), or [Conda](../get_started/environment_setup/software-dependencies#condamamba))
 - A [GitHub account](https://github.com/signup)
 
 :::

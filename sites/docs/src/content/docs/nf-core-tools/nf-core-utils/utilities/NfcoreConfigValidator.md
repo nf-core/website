@@ -1,5 +1,5 @@
 ---
-# Copied from docs/utilities/NfcoreConfigValidator.md of nf-core/nf-core-utils 0.5.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+# Copied from docs/utilities/NfcoreConfigValidator.md of nf-core/nf-core-utils 0.6.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
 title: "Configuration Validation Tutorial"
 shortTitle: "Configuration Validation Tutorial"
 weight: 5

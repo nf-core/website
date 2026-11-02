@@ -17,11 +17,10 @@ import { getCollection } from "astro:content";
 
 export interface Props {
     navTocHeadings?: object[];
-    title?: string;
     sections?: SidebarEntry[];
     showHiddenBtn?: boolean;
 }
-const { navTocHeadings = [], title, sections = [], showHiddenBtn = false } = Astro.props;
+const { navTocHeadings = [], sections = [], showHiddenBtn = false } = Astro.props;
 let navbarTitle: [string, string] | undefined;
 if (sections) {
     const currentEntry = findCurrentGroup(sections).find((entry) => entry.isCurrent);
@@ -82,9 +81,7 @@ if (onGoingEvents?.length > 0) {
                 <NfCoreLogoDarkbg />
             </div>
         </a>
-        {navTocHeadings.length > 0 && (
-            <NavbarToc headings={navTocHeadings} showHiddenBtn={showHiddenBtn} client:visible />
-        )}
+        {navTocHeadings.length > 0 && <NavbarToc headings={navTocHeadings} {showHiddenBtn} client:visible />}
         <div class:list={["align-self-center d-xl-none", { "me-5": navTocHeadings.length === 0 }]}>
             <Search id="docsearch-mobile" />
         </div>

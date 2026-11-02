@@ -103,7 +103,7 @@ This retrieves and allows inspection of the last four lines of a gzipped file fr
 
 **When to use:** You need to verify the presence of a specific string or data pattern within a gzipped file.
 
-```groovy!
+```groovy
 { assert path(process.out.vcf[0][1]).linesGzip.toString().contains("MT192765.1\t10214\t.\tATTTAC\tATTAC\t29.8242") }
 ```
 

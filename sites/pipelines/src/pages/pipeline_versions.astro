@@ -7,7 +7,7 @@ try {
     // @ts-ignore - Dynamic import may fail if file doesn't exist
     const module = await import("@public/pipelines.json");
     pipelinesData = module.default || module;
-} catch (e) {
+} catch {
     console.log("pipelines.json not found, using empty data");
 }
 
@@ -136,8 +136,6 @@ const nfCoreChartDataDev = prepareChartData(nfCoreVersionCountsDev);
 const createBarChart = (
     releasedData: { labels: string[]; values: number[] },
     devData: { labels: string[]; values: number[] },
-    accentColor: string = "#23a3dd",
-    chartId: string,
 ) => {
     // Combine all unique labels from both datasets
     const allLabels = [...new Set([...releasedData.labels, ...devData.labels])];
@@ -177,13 +175,8 @@ const createBarChart = (
     return sortedData;
 };
 
-const nextflowChartData_sorted = createBarChart(
-    nextflowChartData,
-    nextflowChartDataDev,
-    "var(--bs-info)",
-    "nextflowChart",
-);
-const nfCoreChartData_sorted = createBarChart(nfCoreChartData, nfCoreChartDataDev, "var(--bs-warning)", "nfCoreChart");
+const nextflowChartData_sorted = createBarChart(nextflowChartData, nextflowChartDataDev);
+const nfCoreChartData_sorted = createBarChart(nfCoreChartData, nfCoreChartDataDev);
 
 // Pre-calculate percentages for each chart
 const nextflowTotal = nextflowChartData.values.reduce((sum, val) => sum + val, 0);

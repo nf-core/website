@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from "@components/store";
+    import { SortBy } from "@components/store";
 
     interface Props {
         name?: string;

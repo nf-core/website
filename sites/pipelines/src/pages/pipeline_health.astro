@@ -453,7 +453,7 @@ const megatest = (p) => {
                             {getCell(pipeline.description, pipeline.repository_url, "description must be set")}
                             {/* Repo URL */}
                             {getCell(
-                                new RegExp(`https:\/\/nf-co\.re\/${pipeline.name}`).test(pipeline.homepage ?? ""),
+                                new RegExp(`https://nf-co\\.re/${pipeline.name}`).test(pipeline.homepage ?? ""),
                                 pipeline.homepage && pipeline.homepage?.length > 0
                                     ? pipeline.homepage
                                     : pipeline.repository_url,
@@ -625,7 +625,7 @@ const megatest = (p) => {
                     <td class="text-center">{countTrue((p) => p.has_required_topics)}</td>
                     <td class="text-center">{countTrue((p) => p.description)}</td>
                     <td class="text-center">
-                        {countTrue((p) => new RegExp(`https:\/\/nf-co\.re\/${p.name}`).test(p.homepage ?? ""))}
+                        {countTrue((p) => new RegExp(`https://nf-co\\.re/${p.name}`).test(p.homepage ?? ""))}
                     </td>
                     <td class="text-center border-start">
                         {countTrue((p) => p.team_contributors_permission_push === true)}
@@ -654,9 +654,7 @@ const megatest = (p) => {
                                         ? value
                                         : field === "required_reviews"
                                           ? value !== -1
-                                              ? branch === "dev"
-                                                  ? value >= 1
-                                                  : value >= 2
+                                              ? value >= reviewsRequired
                                               : value
                                           : value !== -1
                                             ? !value

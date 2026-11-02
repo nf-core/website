@@ -8,7 +8,6 @@
         label?: string | number;
         size?: number;
         strokeWidth?: number;
-        href?: string;
         title?: string;
         isCurrent?: boolean;
         onScroll?: boolean;
@@ -20,12 +19,11 @@
         label = "",
         size = 40,
         strokeWidth = 10,
-        href = "#",
         title = "",
         isCurrent = false,
         onScroll = false,
         confetti = false,
-    } = $props();
+    }: Props = $props();
 
     // Calculate the circumference of the circle
     const circumference = $derived(2 * Math.PI * (size - strokeWidth));

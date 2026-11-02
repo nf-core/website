@@ -1,4 +1,4 @@
-# files\_exist
+# files_exist
 
 #### `PipelineLint.files_exist() → dict[str, list[str]]{:python}`
 
@@ -110,5 +110,5 @@ the `files_exist` key as follows in your `.nf-core.yml` config file. For example
 :::
 
 lint:
-: files\_exist:
-: - assets/multiqc\_config.yml
+: files_exist:
+: - assets/multiqc_config.yml

@@ -24,7 +24,7 @@
 
 <ListingCard
     footer={true}
-    cardClass={`mb-3 rounded-start-0 type`}
+    cardClass="mb-3 rounded-start-0 type"
     cardStyle={`border-left-color:var(--bs-${event_type_classes[type]})`}
 >
     {#snippet cardHeader()}
@@ -95,7 +95,7 @@
                     class:rounded-0={["future"].includes(time_category)}>See details</a
                 >
                 {#if time_category === "future"}
-                    <ExportEventButton {frontmatter} add_class={"btn-outline-success " + " rounded-top-0"} />
+                    <ExportEventButton {frontmatter} add_class="btn-outline-success rounded-top-0" />
                 {/if}
             </div>
         </div>

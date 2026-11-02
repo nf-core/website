@@ -5,7 +5,7 @@
 // variables (no inline color); main.scss switches the variables per theme.
 import { defineHastPlugin } from "satteri";
 import { codeToHast } from "shiki";
-import { LANG_ALIAS, THEMES } from "./hast-expressive-code.ts";
+import { LANG_ALIAS, THEMES } from "./expressive-code-config.ts";
 
 const INLINE_LANG = /\{:([\w.+#-]+)\}\s*$/;
 
@@ -13,7 +13,7 @@ export const inlineCodePlugin = defineHastPlugin({
     name: "inline-code-shiki",
     element: {
         filter: ["code"],
-        async visit(node: any, ctx) {
+        async visit(node: any) {
             // Fenced code blocks carry their language on data.lang and belong to
             // Expressive Code; inline code is a code element with a single text
             // child and no newlines, ending in a {:lang} marker.
@@ -53,5 +53,3 @@ export const inlineCodePlugin = defineHastPlugin({
         },
     },
 });
-
-export default inlineCodePlugin;

@@ -9,8 +9,10 @@ import { envField, fontProviders, svgoOptimizer } from "astro/config";
 import markdownIntegration from "@mashehu/astropub-md";
 import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
-import { createEcConfig } from "./bin/satteri/hast-expressive-code.ts";
+import { createEcConfig } from "./bin/satteri/expressive-code-config.ts";
 import { createSatteriPluginSets, satteriSharedMarkdownConfig } from "./bin/satteri/markdownConfig.ts";
+
+export const netlifyDevFeatures = { edgeFunctions: false };
 
 /**
  * Base Astro configuration shared across all nf-core subsites.
@@ -23,7 +25,7 @@ export default {
     // workspace package dirs, so keep each site's cache (incremental build manifest, content
     // data store) under the root node_modules to have it survive between deploys.
     cacheDir: resolve(process.cwd(), "../../node_modules/.astro", basename(process.cwd())),
-    adapter: netlify(),
+    adapter: netlify({ devFeatures: netlifyDevFeatures }),
     prefetch: false,
     env: {
         schema: {
@@ -47,7 +49,7 @@ export default {
             name: "Maven Pro",
             cssVariable: "--font-maven-pro",
             fallbacks: ["sans-serif"],
-            weights: ["300 700"],
+            weights: ["400 700"],
         },
     ],
     experimental: {
@@ -109,12 +111,12 @@ export default {
     vite: {
         plugins: [yaml()],
         ssr: {
-            noExternal: ["@popperjs/core", "svelte-exmarkdown", "svelte-confetti", "@mashehu/astropub-md"],
+            noExternal: ["@popperjs/core", "svelte-confetti", "@mashehu/astropub-md"],
         },
         resolve: {
             preserveSymlinks: true,
             browser: true,
-            noExternal: ["@popperjs/core", "svelte-exmarkdown", "svelte-confetti", "@mashehu/astropub-md"],
+            noExternal: ["@popperjs/core", "svelte-confetti", "@mashehu/astropub-md"],
             alias: {
                 "@styles": resolve(process.cwd(), "../main-site/src/styles"),
             },

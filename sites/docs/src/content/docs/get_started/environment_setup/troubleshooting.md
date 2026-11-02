@@ -13,7 +13,7 @@ This page covers common issues you may encounter when setting up your nf-core en
 
 An incompatible Java version error can occur when running Nextflow.
 
-This issue occurs when your installed Java version is older than the minimum required version (Java 17). Check your version with `java -version` and install a compatible version using SDKMAN if needed (see [Install Java](./environment_setup/nextflow.md#install-java)).
+This issue occurs when your installed Java version is older than the minimum required version (Java 17). Check your version with `java -version` and install a compatible version using SDKMAN if needed (see [Install Java](./nextflow.md#install-java)).
 
 ### Error: `permission denied` when running Nextflow
 
@@ -107,7 +107,7 @@ pip install nf-core
 
 Files written by nf-core tools inside a Docker container may be owned by `root` instead of your user.
 
-This issue occurs when the `-u $(id -u):$(id -g)` flag is not passed to Docker, causing the container to run as root. To resolve this issue, always include the flag when running Docker commands, or use the alias provided in the [Docker installation section](./environment_setup/nf-core-tools.md#install-with-docker).
+This issue occurs when the `-u $(id -u):$(id -g)` flag is not passed to Docker, causing the container to run as root. To resolve this issue, always include the flag when running Docker commands, or use the alias provided in the [Docker installation section](./nf-core-tools.md#install-with-docker).
 
 ## Dev Containers
 
