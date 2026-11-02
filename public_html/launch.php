@@ -830,7 +830,7 @@ elseif ($cache['status'] == 'launch_params_complete') {
                                 $child_parameters .= build_form_param(
                                     $child_param_id,
                                     $child_param,
-                                    @in_array($child_param_id, $group['required']),
+                                    in_array($child_param_id, $group['required'] ?? []),
                                 );
                                 if (
                                     !isset($child_param['hidden']) ||
@@ -886,7 +886,7 @@ elseif ($cache['status'] == 'launch_params_complete') {
                             $child_parameters .= build_form_param(
                                 $param_id,
                                 $param,
-                                @in_array($param_id, $cache['schema']['required']),
+                                in_array($param_id, $cache['schema']['required'] ?? []),
                             );
                         }
                         echo '
