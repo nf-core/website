@@ -3,6 +3,7 @@ on:
   push:
     branches: [main]
   pull_request:
+    types: [opened]
     paths:
       - "sites/main-site/**"
       # Content-only PRs (blog posts, events, ...) barely move build time; pushes to main still benchmark them
@@ -10,9 +11,8 @@ on:
       - "sites/pipelines/**"
       - "astro.config.base.mjs"
       - "bin/satteri/**"
-      - "public/pipelines.json"
+      - "!public/pipelines.json"
       - "package.json"
-      - "package-lock.json"
       - "bench/**"
   workflow_dispatch:
 
