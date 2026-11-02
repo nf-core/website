@@ -5,21 +5,14 @@
     import { onMount } from "svelte";
     import type { CollectionEntry } from "astro:content";
     import type { Snippet } from "svelte";
+    import { eventTypeClasses, eventTypeIcons, isInBannerWindow } from "@components/event/eventUtils";
     interface Props {
         events?: CollectionEntry<"events">[];
         event_time_category?: string;
-        event_type_classes?: {};
-        event_type_icons?: {};
         backgroundIcon?: Snippet;
     }
 
-    let {
-        events = $bindable([]),
-        event_time_category = "",
-        event_type_classes = {},
-        event_type_icons = {},
-        backgroundIcon,
-    }: Props = $props();
+    let { events = $bindable([]), event_time_category = "", backgroundIcon }: Props = $props();
 
     let backgroundIconClass = $state("");
 
@@ -78,29 +71,10 @@
         backgroundIconClass = "fa-alarm-clock";
         events = events
             .filter((event) => {
-                let time_window = 1 * 24 * 60 * 60 * 1000;
-                let event_start_unix = event.data.start.getTime();
-                if (event.data.announcement?.start !== undefined) {
-                    event_start_unix = new Date(event.data.announcement.start).getTime();
-                    time_window = 0;
-                }
-                const event_end_unix = event.data.end.getTime();
-
-                // increase time window to a week for events longer than 5 hours
-                if (
-                    event_end_unix - event_start_unix > 5 * 60 * 60 * 1000 &&
-                    event.data.announcement?.start === undefined
-                ) {
-                    time_window = 7 * 24 * 60 * 60 * 1000;
-                }
-                if (event.data.start < new Date() && new Date() < event.data.end) {
-                    // this is not an upcoming, but an ongoing event
-                    return false;
-                }
-
-                if (event_start_unix < new Date().getTime() + time_window && new Date().getTime() < event_end_unix) {
-                    return true;
-                }
+                const now = new Date();
+                // ongoing events are shown in the "ongoing" banner instead
+                const isOngoing = event.data.start < now && now < event.data.end;
+                return !isOngoing && isInBannerWindow(event.data, now.getTime());
             })
             .sort((a, b) => {
                 return new Date(a.data.start).getTime() - new Date(b.data.start).getTime();
@@ -154,8 +128,8 @@
                                         >{event.data.title}</a
                                     >
                                     <span class="ms-1 my-auto">
-                                        <span class={"badge bg-" + event_type_classes[event.data.type] + " small"}
-                                            ><i class={event_type_icons[event.data.type] + " me-1"} aria-hidden="true"
+                                        <span class={"badge bg-" + eventTypeClasses[event.data.type] + " small"}
+                                            ><i class={eventTypeIcons[event.data.type] + " me-1"} aria-hidden="true"
                                             ></i>
                                             {event.data.type}</span
                                         >
@@ -226,8 +200,8 @@
                         <div class="d-sm-none mb-1">
                             <a href={"events/" + event.id + "/"} class="text-body text-decoration-none"
                                 >{@html event.data.renderedSubtitle}</a
-                            ><span class={"badge bg-" + event_type_classes[event.data.type] + " small ms-3"}
-                                ><i class={event_type_icons[event.data.type] + " me-1"} aria-hidden="true"></i>
+                            ><span class={"badge bg-" + eventTypeClasses[event.data.type] + " small ms-3"}
+                                ><i class={eventTypeIcons[event.data.type] + " me-1"} aria-hidden="true"></i>
                                 {event.data.type}</span
                             >
                         </div>
