@@ -13,7 +13,7 @@ label:
 <!-- TODO add more memes -->
 
 During the nf-core hackathon in October 2026, two hackathon groups joined forces to tackle the upcoming changes caused by the introduction of static typing and record types.
-The aim of the combined task force was develop the nf-core guidelines related on these topics.
+The aim of the combined task force was to develop the nf-core guidelines related to these new Nextflow features.
 
 This blog post gives an overview of all the upcoming changes to nf-core/modules along with the reasoning behind each one.
 
@@ -54,7 +54,7 @@ One special case of typing is file inputs:
 
 The input record type should consist of the following fields:
 
-1. All required input values needed to run the process. One big change on this front is that mandatory fields from the meta map should now also be values of the record type. This is the `id` field for every process and optionally `single_end` and `strandedness` wherever it is needed. This will increase the transparency of each process meaning that it will no longer have a silent requirement on meta fields.
+1. All required input values needed to run the process. One big change on this front is that mandatory fields from the meta map should now also be values in the top-level of the record type. This is the `id` field for every process and optionally `single_end` and `strandedness` wherever it is needed. This will increase the transparency of each process meaning that it will no longer have a silent requirement on meta fields.
 2. All files (required and optional) that the process can use to run. These should all have some variation of the `Path` type as described above.
 3. The `meta` [Map](https://docs.seqera.io/nextflow/reference/stdlib-types/map), as referred to in point 1, will become the `meta` [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record). This field will now be fully optional and is mainly there to help pipeline developers pass additional pipeline-related information to the process. This can be referenced by pipeline users in `ext.args` and will still be passed to the output so it is also available for downstream logic (like joining).
 4. Optional arguments strings. There should be one argument string for every tool used by the process, for which the name should follow the following structure: `<tool_name(_subtool_name)>_args` (this is the same notation as for the module name, e.g `samtools_sort_args`). This will replace the usage of `ext.args` for pipeline **developers**. `ext.args` will still be available for pipeline users. In case the same tool is used twice or more in a process, a number can be added after the tool name in the field name (e.g. `samtools_sort1_args` and `samtools_sort2_args`).
@@ -62,7 +62,7 @@ The input record type should consist of the following fields:
 
 The main logic behind most of these changes is to make the modules compatible with new and upcoming Nextflow features. Due to these changes a config file is no longer needed to configure the process properly. This makes the creation of meta pipelines a lot easier. Additionally, by removing the requirement of the meta [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record), the usage of `nextflow module run` will also be a lot easier.
 
-In case the inputs need to be staged, please move these to the new `stage` block of the process. More information on this can be found in the [docs](https://docs.seqera.io/nextflow/reference/process/inputs-outputs-typed#stage-directives)
+In case the inputs need to be staged, please move these to the new `stage` block of the process. More information on this can be found in the [docs](https://docs.seqera.io/nextflow/reference/process/inputs-outputs-typed#stage-directives).
 
 ### Example
 
