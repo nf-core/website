@@ -40,6 +40,7 @@ $twitter_datekeys = array_keys(get_object_vars($stats_json->twitter->followers_c
 $twitter_users = $stats_json->twitter->followers_count->{max($twitter_datekeys)};
 
 $config = parse_ini_file('../config.ini');
+mysqli_report(MYSQLI_REPORT_OFF);
 $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
 // get stats for pipelines
 $sql = 'SELECT timestamp,

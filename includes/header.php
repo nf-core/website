@@ -3,7 +3,7 @@
 require_once dirname(__FILE__) . '/functions.php';
 
 // Find the latest commit hash to prevent caching assets
-$git_sha = trim(shell_exec('cd ' . dirname(__FILE__) . ' && git rev-parse --short=7 HEAD'));
+$git_sha = trim((string) shell_exec('cd ' . dirname(__FILE__) . ' && git rev-parse --short=7 HEAD'));
 if (strlen($git_sha) != 7) {
     $git_sha = '';
 }

@@ -3,6 +3,7 @@ require_once '../includes/functions.php';
 require_once '../includes/parse_md.php';
 
 $config = parse_ini_file('../config.ini');
+mysqli_report(MYSQLI_REPORT_OFF);
 $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
 
 // get pipelines which use this module

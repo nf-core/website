@@ -5,6 +5,7 @@
 
 echo "\nRunning import_stats_json - " . date('Y-m-d h:i:s') . "\n";
 $config = parse_ini_file('config.ini');
+mysqli_report(MYSQLI_REPORT_OFF);
 $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
 
 if ($conn === false) {

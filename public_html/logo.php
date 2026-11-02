@@ -1,7 +1,7 @@
 <?php
 // Let's make a logo!
 
-$textstring = trim(str_replace('logo/', '', $_GET['t']));
+$textstring = trim(str_replace('logo/', '', $_GET['t'] ?? ''));
 if (!isset($_GET['f'])) {
     $textstring = strtolower($textstring);
     $textstring = preg_replace('/[^a-z]/', '', $textstring);
@@ -113,7 +113,6 @@ imageSaveAlpha($image, true);
 
 # Save image to cache
 imagepng($image, $logo_cache_fn);
-imagedestroy($image);
 
 // Send the image to the browser
 header('Content-type: image/png');

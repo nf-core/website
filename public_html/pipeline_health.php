@@ -60,6 +60,7 @@ define(
 );
 
 // Base repo health class
+#[\AllowDynamicProperties]
 class RepoHealth {
     // Init vars
     public $name;
@@ -210,19 +211,20 @@ class RepoHealth {
                 $gh_branch_url =
                     'https://api.github.com/repos/nf-core/' . $this->name . '/branches/' . $branch . '/protection';
                 $gh_branch = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
-                if (strpos($http_response_header[0], 'HTTP/1.1 200') !== false && is_object($gh_branch)) {
+                $response_headers = http_get_last_response_headers() ?? [];
+                if (strpos($response_headers[0] ?? '', 'HTTP/1.1 200') !== false && is_object($gh_branch)) {
                     $this->{'gh_branch_' . $branch} = $gh_branch;
                     $this->_save_cache_data($gh_branch_cache, $this->{'gh_branch_' . $branch});
                 } else {
                     // Write an empty cache file
-                    if (strpos($http_response_header[0], 'HTTP/1.1 404') === false) {
+                    if (strpos($response_headers[0] ?? '', 'HTTP/1.1 404') === false) {
                         // A 404 is fine, that just means that there is no branch protection. Warn if anything else.
                         echo '<div class="alert alert-danger">Could not fetch branch protection data for <code>' .
                             $this->name .
                             '</code> - <code>' .
                             $branch .
                             '</code><pre>' .
-                            print_r($http_response_header, true) .
+                            print_r($response_headers, true) .
                             '</pre><pre>' .
                             print_r($gh_branch, true) .
                             '</pre></div>';
@@ -547,9 +549,10 @@ class RepoHealth {
             ],
         ]);
         $result = json_decode(file_get_contents($url, false, $context));
-        if (strpos($http_response_header[0], 'HTTP/1.1 204') !== false) {
+        $response_headers = http_get_last_response_headers() ?? [];
+        if (strpos($response_headers[0] ?? '', 'HTTP/1.1 204') !== false) {
             return true;
-        } elseif (strpos($http_response_header[0], 'HTTP/1.1 200') !== false) {
+        } elseif (strpos($response_headers[0] ?? '', 'HTTP/1.1 200') !== false) {
             return $result;
         } else {
             echo '<div class="alert alert-danger m-3">
@@ -561,7 +564,7 @@ class RepoHealth {
                 '</code>)
         <details>
           <pre>' .
-                json_encode($http_response_header, JSON_PRETTY_PRINT) .
+                json_encode($response_headers, JSON_PRETTY_PRINT) .
                 '</pre>
           <pre>' .
                 json_encode($content, JSON_PRETTY_PRINT) .
@@ -814,12 +817,13 @@ function get_gh_team_repos($team) {
             }
             $gh_team_repos = array_merge(
                 $gh_team_repos,
-                json_decode(file_get_contents($gh_team_repos_url, false, GH_API_OPTS)),
+                json_decode(file_get_contents($gh_team_repos_url, false, GH_API_OPTS)) ?: [],
             );
+            $response_headers = http_get_last_response_headers() ?? [];
 
             // Look for URL to next page of API results
             $next_page = false;
-            $m_array = preg_grep('/rel="next"/', $http_response_header);
+            $m_array = preg_grep('/rel="next"/', $response_headers);
             if (count($m_array) > 0) {
                 preg_match('/<([^>]+)>; rel="next"/', array_values($m_array)[0], $matches);
                 if (isset($matches[1])) {

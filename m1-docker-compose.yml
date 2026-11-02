@@ -25,7 +25,7 @@ services:
       - composer
       - db
   composer:
-    image: composer:2.1
+    image: composer:2
     command: ['composer', 'install']
     volumes:
       - .:/var/www/

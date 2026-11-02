@@ -142,8 +142,9 @@ foreach ($repos as $repo) {
         }
         $num_api_calls += 1;
         $gh_issues = json_decode(file_get_contents($gh_issues_url, false, $gh_api_opts), true);
-        if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
-            var_dump($http_response_header);
+        $response_headers = http_get_last_response_headers() ?? [];
+        if (strpos($response_headers[0] ?? '', 'HTTP/1.1 200') === false) {
+            var_dump($response_headers);
             echo "\nCould not fetch nf-core/$repo issues! $gh_issues_url\n";
             continue;
         }
@@ -203,7 +204,7 @@ foreach ($repos as $repo) {
         }
         // Look for URL to next page of API results
         $next_page = false;
-        $m_array = preg_grep('/rel="next"/', $http_response_header);
+        $m_array = preg_grep('/rel="next"/', $response_headers);
         if (count($m_array) > 0) {
             preg_match('/<([^>]+)>; rel="next"/', array_values($m_array)[0], $matches);
             if (isset($matches[1])) {
@@ -268,15 +269,16 @@ foreach ($repos as $repo) {
                     }
                     $num_api_calls += 1;
                     $gh_new_comments = json_decode(file_get_contents($gh_comments_url, false, $gh_api_opts), true);
+                    $response_headers = http_get_last_response_headers() ?? [];
                     $gh_comments = array_merge($gh_comments, $gh_new_comments);
-                    if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
-                        var_dump($http_response_header);
+                    if (strpos($response_headers[0] ?? '', 'HTTP/1.1 200') === false) {
+                        var_dump($response_headers);
                         echo "\nCould not fetch nf-core/$repo issue #$id! $gh_comments_url\n";
                         continue;
                     }
                     // Look for URL to next page of API results
                     $next_page = false;
-                    $m_array = preg_grep('/rel="next"/', $http_response_header);
+                    $m_array = preg_grep('/rel="next"/', $response_headers);
                     if (count($m_array) > 0) {
                         preg_match('/<([^>]+)>; rel="next"/', array_values($m_array)[0], $matches);
                         if (isset($matches[1])) {

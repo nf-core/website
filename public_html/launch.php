@@ -99,13 +99,14 @@ function launch_pipeline_web($pipeline, $release) {
         $api_opts = stream_context_create(['http' => ['method' => 'GET', 'header' => ['User-Agent: PHP']]]);
         $gh_launch_schema_url = "https://api.github.com/repos/nf-core/{$pipeline}/contents/nextflow_schema.json?ref={$release}";
         $gh_launch_schema_json = file_get_contents($gh_launch_schema_url, false, $api_opts);
-        if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
+        $response_headers = http_get_last_response_headers() ?? [];
+        if (strpos($response_headers[0] ?? '', 'HTTP/1.1 200') === false) {
             # Remember for next time
             file_put_contents($gh_pipeline_no_schema_fn, '');
             echo '<script>console.log("Sent request to ' .
                 $gh_launch_schema_url .
                 '"," got http response header:",' .
-                json_encode($http_response_header, JSON_HEX_TAG) .
+                json_encode($response_headers, JSON_HEX_TAG) .
                 ')</script>';
             return [
                 "Error  - Could not find a pipeline schema for <code>$pipeline</code> - <code>$release</code>.",
@@ -631,7 +632,7 @@ elseif ($cache['status'] == 'launch_params_complete') {
             }
         }
         // Delete from input_params if they're the same as the default
-        if ($param && $param['default'] == $param_value) {
+        if ($param && ($param['default'] ?? null) == $param_value) {
             unset($cache['input_params'][$param_id]);
         } elseif ($param && $param['type'] == 'boolean') {
             if ((!isset($param['default']) || $param['default'] == '') && $param_value == 'false') {

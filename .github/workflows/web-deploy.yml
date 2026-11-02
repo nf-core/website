@@ -17,6 +17,13 @@ jobs:
         with:
           fetch-depth: 0 # Don't do a shallow clone
 
+      # Use the same PHP version as the server, so composer resolves dependencies for it
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          tools: composer:v2
+
       # Pull PHP Composer dependencies
       - name: PHP Composer
         run: composer install --prefer-dist --no-progress

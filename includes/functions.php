@@ -576,6 +576,8 @@ foreach ($events as $idx => $event) {
 // get all modules from database
 function get_modules() {
     $config = parse_ini_file('../config.ini');
+    // PHP 8.1+ throws exceptions by default; keep the return-false error handling used below
+    mysqli_report(MYSQLI_REPORT_OFF);
     $conn = mysqli_connect(
         $config['host'],
         $config['username'],

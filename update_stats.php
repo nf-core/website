@@ -15,6 +15,8 @@ ini_set('allow_url_fopen', 1);
 echo "\nRunning update_stats - " . date('Y-m-d h:i:s') . "\n";
 $config = parse_ini_file('config.ini');
 $gh_auth = base64_encode($config['github_username'] . ':' . $config['github_access_token']);
+// PHP 8.1+ throws exceptions by default; keep the return-false error handling used below
+mysqli_report(MYSQLI_REPORT_OFF);
 $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
 
 if ($conn === false) {
@@ -55,17 +57,18 @@ function github_query($gh_query_url) {
             $gh_query_url = $next_page;
         }
         $tmp_results = json_decode(file_get_contents($gh_query_url, false, $gh_api_opts), true);
+        $response_headers = http_get_last_response_headers() ?? [];
         // If the data hasn't been cached when you query a repository's statistics, you'll receive a 202 response;
         // a background job is also fired to start compiling these statistics.
         // Give the job a few moments to complete, and then submit the request again
-        if (strpos($http_response_header[0], 'HTTP/1.1 202') !== false) {
+        if (strpos($response_headers[0] ?? '', 'HTTP/1.1 202') !== false) {
             echo "\nWaiting for GitHub API to return results for $gh_query_url";
             sleep(5);
             $first_page = true;
             continue;
         }
-        if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
-            var_dump($http_response_header);
+        if (strpos($response_headers[0] ?? '', 'HTTP/1.1 200') === false) {
+            var_dump($response_headers);
             echo "\nCould not fetch $gh_query_url";
             continue;
         }
@@ -76,7 +79,7 @@ function github_query($gh_query_url) {
         }
         // Look for URL to next page of API results
         $next_page = false;
-        $m_array = preg_grep('/rel="next"/', $http_response_header);
+        $m_array = preg_grep('/rel="next"/', $response_headers);
         if (count($m_array) > 0) {
             preg_match('/<([^>]+)>; rel="next"/', array_values($m_array)[0], $matches);
             if (isset($matches[1])) {
@@ -354,15 +357,16 @@ while ($first_page || $next_page) {
         $gh_members_url = $next_page;
     }
     $gh_members = json_decode(file_get_contents($gh_members_url, false, $gh_api_opts));
-    if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
-        var_dump($http_response_header);
+    $response_headers = http_get_last_response_headers() ?? [];
+    if (strpos($response_headers[0] ?? '', 'HTTP/1.1 200') === false) {
+        var_dump($response_headers);
         echo "Could not fetch nf-core members! $gh_members_url";
         continue;
     }
     $results['gh_org_members'][$updated] += count($gh_members);
     // Look for URL to next page of API results
     $next_page = false;
-    $m_array = preg_grep('/rel="next"/', $http_response_header);
+    $m_array = preg_grep('/rel="next"/', $response_headers);
     if (count($m_array) > 0) {
         preg_match('/<([^>]+)>; rel="next"/', array_values($m_array)[0], $matches);
         if (isset($matches[1])) {
@@ -561,8 +565,9 @@ $slack_api_opts = stream_context_create([
     ],
 ]);
 $slack_users = json_decode(file_get_contents($slack_api_url, false, $slack_api_opts));
-if (strpos($http_response_header[0], 'HTTP/1.0 200') === false || !isset($slack_users->ok) || !$slack_users->ok) {
-    var_dump($http_response_header);
+$response_headers = http_get_last_response_headers() ?? [];
+if (!preg_match('#^HTTP/1\.[01] 200#', $response_headers[0] ?? '') || !isset($slack_users->ok) || !$slack_users->ok) {
+    var_dump($response_headers);
     echo 'Could not fetch slack user list!';
 } else {
     $results['slack']['user_counts'][$updated] = [

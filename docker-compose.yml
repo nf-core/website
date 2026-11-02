@@ -13,7 +13,7 @@ services:
       - ./.mysql-data/db:/var/lib/mysql
   web:
     container_name: nf-core-web
-    image: webdevops/php-apache:7.4
+    image: webdevops/php-apache:8.4
     restart: always
     environment:
       - WEB_DOCUMENT_ROOT=/var/www/public_html
@@ -26,7 +26,7 @@ services:
       - db
       - npm
   composer:
-    image: composer:2.1
+    image: composer:2
     command: ['composer', 'install']
     volumes:
       - .:/var/www/

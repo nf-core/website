@@ -10,6 +10,8 @@ use Symfony\Component\Yaml\Yaml;
 // Get auth secrets
 $config = parse_ini_file('config.ini');
 $gh_auth = base64_encode($config['github_username'] . ':' . $config['github_access_token']);
+// PHP 8.1+ throws exceptions by default; keep the return-false error handling used below
+mysqli_report(MYSQLI_REPORT_OFF);
 $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
 
 if ($conn === false) {
@@ -45,8 +47,9 @@ function github_query($gh_query_url) {
             $gh_query_url = $next_page;
         }
         $tmp_results = json_decode(file_get_contents($gh_query_url, false, $gh_api_opts), true);
-        if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
-            var_dump($http_response_header);
+        $response_headers = http_get_last_response_headers() ?? [];
+        if (strpos($response_headers[0] ?? '', 'HTTP/1.1 200') === false) {
+            var_dump($response_headers);
             echo "\nCould not fetch $gh_query_url";
             continue;
         }
@@ -57,7 +60,7 @@ function github_query($gh_query_url) {
         }
         // Look for URL to next page of API results
         $next_page = false;
-        $m_array = preg_grep('/rel="next"/', $http_response_header);
+        $m_array = preg_grep('/rel="next"/', $response_headers);
         if (count($m_array) > 0) {
             preg_match('/<([^>]+)>; rel="next"/', array_values($m_array)[0], $matches);
             if (isset($matches[1])) {

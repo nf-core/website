@@ -55,16 +55,17 @@ function get_gh_api($gh_api_url) {
             $gh_api_url = $next_page;
         }
         $tmp_results = json_decode(file_get_contents($gh_api_url, false, $gh_api_opts));
-        if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
+        $response_headers = http_get_last_response_headers() ?? [];
+        if (strpos($response_headers[0] ?? '', 'HTTP/1.1 200') === false) {
             die("\n-------- START ERROR " . date('Y-m-d h:i:s') . " --------\nCould not fetch $gh_api_url \n");
-            var_dump($http_response_header);
+            var_dump($response_headers);
             echo "\n$tmp_results\n";
             die("\n-------- END ERROR " . date('Y-m-d h:i:s') . " --------\nCould not fetch $gh_api_url \n");
         }
 
         array_push($res, ...$tmp_results);
         // Look for URL to next page of API results
-        $m_array = preg_grep('/rel="next"/', $http_response_header);
+        $m_array = preg_grep('/rel="next"/', $response_headers);
 
         if (count($m_array) > 0) {
             $counter++;
