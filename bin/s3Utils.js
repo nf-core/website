@@ -128,8 +128,8 @@ export async function fetchCO2FootprintFiles(pipelineName, commitSha) {
 /**
  * Fetches the AWS megatest status of a pipeline release from the Nextflow execution reports on S3.
  * Reports are looked up in `pipeline_info/` of the results folder, or of its direct subfolders if it has none
- * (e.g. rnaseq runs each test configuration with its own outdir). Per folder, only the runs of the latest launch are
- * kept: the runs of a test matrix start within seconds of each other, a relaunch minutes or days later.
+ * (e.g. rnaseq runs each test configuration with its own outdir).
+ * Per folder, only the runs of the latest launch are kept.
  * Reports parsed in a previous build are not downloaded again (their file name contains the start time).
  * If listing the results fails, the status of the previous build is kept, so an S3 error doesn't look like no results.
  * @param {string} pipelineName - Name of the pipeline (e.g., 'rnaseq')
