@@ -4,11 +4,13 @@
     import VideoButton from "@components/VideoButton.svelte";
     import { onMount } from "svelte";
     import type { CollectionEntry } from "astro:content";
+    import type { Snippet } from "svelte";
     interface Props {
         events?: CollectionEntry<"events">[];
         event_time_category?: string;
         event_type_classes?: {};
         event_type_icons?: {};
+        backgroundIcon?: Snippet;
     }
 
     let {
@@ -16,9 +18,10 @@
         event_time_category = "",
         event_type_classes = {},
         event_type_icons = {},
+        backgroundIcon,
     }: Props = $props();
 
-    let backgroundIcon = $state("");
+    let backgroundIconClass = $state("");
 
     const event_duration = (event) => {
         event.data.eventCountDown = formatDistanceToNow(event.data.start);
@@ -72,7 +75,7 @@
             return new Date(a.data.start).getTime() - new Date(b.data.start).getTime();
         });
     if (event_time_category === "upcoming") {
-        backgroundIcon = "fa-alarm-clock";
+        backgroundIconClass = "fa-alarm-clock";
         events = events
             .filter((event) => {
                 let time_window = 1 * 24 * 60 * 60 * 1000;
@@ -103,7 +106,7 @@
                 return new Date(a.data.start).getTime() - new Date(b.data.start).getTime();
             });
     } else if (event_time_category === "ongoing") {
-        backgroundIcon = "fa-broadcast-tower";
+        backgroundIconClass = "fa-broadcast-tower";
         events = events
             .filter((event) => {
                 return event.data.start < new Date() && new Date() < event.data.end;
@@ -133,12 +136,14 @@
             <div class="d-none d-lg-flex">
                 <div class="col-lg-4 overflow-hidden ps-3 position-relative d-flex flex-column justify-content-center">
                     <h4 class="display-4 p-2 pb-0 mb-0 flex-grow-1">{heading_title}</h4>
-                    <slot name="backgroundIcon">
+                    {#if backgroundIcon}
+                        {@render backgroundIcon()}
+                    {:else}
                         <i
-                            class={`fad ${backgroundIcon} homepage-header-fa-background mt-5 ms-1 ms-xl-5`}
+                            class={`fad ${backgroundIconClass} homepage-header-fa-background mt-5 ms-1 ms-xl-5`}
                             aria-hidden="true"
                         ></i>
-                    </slot>
+                    {/if}
                 </div>
                 <div class="flex-grow-1">
                     {#each events as event (event.id)}
