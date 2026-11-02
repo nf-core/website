@@ -5,12 +5,23 @@
     import type { CollectionEntry } from "astro:content";
     import ListingCard from "../ListingCard.svelte";
 
-    export let frontmatter: CollectionEntry<"events">["data"];
-    export let slug: string = "";
-    export let type: string = "";
-    export let time_category: string = "";
-    export let showDescription: boolean = true;
-    export let narrow: boolean = false;
+    interface Props {
+        frontmatter: CollectionEntry<"events">["data"];
+        slug?: string;
+        type?: string;
+        time_category?: string;
+        showDescription?: boolean;
+        narrow?: boolean;
+    }
+
+    let {
+        frontmatter,
+        slug = "",
+        type = "",
+        time_category = "",
+        showDescription = true,
+        narrow = false,
+    }: Props = $props();
 
     const event_type_classes = {
         bytesize: "success",
@@ -19,7 +30,7 @@
         training: "warning",
     };
 
-    const isSameDay = frontmatter.startDate === frontmatter.endDate;
+    const isSameDay = $derived(frontmatter.startDate === frontmatter.endDate);
 </script>
 
 <ListingCard
