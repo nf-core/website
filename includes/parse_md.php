@@ -174,7 +174,7 @@ function parse_md($markdown) {
         '/:(?!\/)([\S]+?):/',
         function ($match) {
             # check if match is actually an emoji/file name
-            if (file_get_contents("https://github.githubassets.com/images/icons/emoji/$match[1].png") === false) {
+            if (fetch_url("https://github.githubassets.com/images/icons/emoji/$match[1].png") === false) {
                 return $match[0];
             } else {
                 return '<img class="emoji" alt="' .

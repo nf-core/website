@@ -3,6 +3,7 @@
 
 // Include the PHP Composer autoloader for required libraries
 require dirname(__FILE__) . '/../vendor/autoload.php';
+require_once dirname(__FILE__) . '/fetch_url.php';
 
 // Pull out YAML front-matter from a markdown file
 function parse_md_front_matter($md_full) {

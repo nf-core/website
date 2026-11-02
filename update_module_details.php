@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/includes/fetch_url.php';
 echo "\n\nUpdating module details - " . date('Y-m-d h:i:s') . "\n";
 
 // Allow PHP fopen to work with remote links
@@ -46,8 +47,8 @@ function github_query($gh_query_url) {
         if ($next_page) {
             $gh_query_url = $next_page;
         }
-        $tmp_results = json_decode(file_get_contents($gh_query_url, false, $gh_api_opts), true);
-        $response_headers = http_get_last_response_headers() ?? [];
+        $tmp_results = json_decode(fetch_url($gh_query_url, $gh_api_opts), true);
+        $response_headers = fetch_url_headers();
         if (strpos($response_headers[0] ?? '', 'HTTP/1.1 200') === false) {
             var_dump($response_headers);
             echo "\nCould not fetch $gh_query_url";

@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/includes/fetch_url.php';
 //
 // update_fontawesome_icons.json
 // ---------------------------
@@ -11,7 +12,7 @@
 
 # parse the JSON file from Font Awesome
 $json_url = 'https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/metadata/icons.json';
-$raw_json = file_get_contents($json_url);
+$raw_json = fetch_url($json_url);
 $fa_icons = json_decode($raw_json, true);
 
 # create the icons json object, to be put into iconpicker.js

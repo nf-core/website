@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/includes/fetch_url.php';
 //
 // update_pipeline_details.php
 // ---------------------------
@@ -54,8 +55,8 @@ function get_gh_api($gh_api_url) {
         if ($next_page) {
             $gh_api_url = $next_page;
         }
-        $tmp_results = json_decode(file_get_contents($gh_api_url, false, $gh_api_opts));
-        $response_headers = http_get_last_response_headers() ?? [];
+        $tmp_results = json_decode(fetch_url($gh_api_url, $gh_api_opts));
+        $response_headers = fetch_url_headers();
         if (strpos($response_headers[0] ?? '', 'HTTP/1.1 200') === false) {
             die("\n-------- START ERROR " . date('Y-m-d h:i:s') . " --------\nCould not fetch $gh_api_url \n");
             var_dump($response_headers);

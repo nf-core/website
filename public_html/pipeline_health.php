@@ -171,7 +171,7 @@ class RepoHealth {
                 $this->gh_repo = json_decode(file_get_contents($this->gh_repo_cache));
             } else {
                 $gh_repo_url = 'https://api.github.com/repos/nf-core/' . $this->name;
-                $this->gh_repo = json_decode(file_get_contents($gh_repo_url, false, GH_API_OPTS));
+                $this->gh_repo = json_decode(fetch_url($gh_repo_url, GH_API_OPTS));
                 $this->_save_cache_data($this->gh_repo_cache, $this->gh_repo);
             }
         }
@@ -183,7 +183,7 @@ class RepoHealth {
             $this->gh_release = json_decode(file_get_contents($this->gh_release_cache));
         } else {
             $gh_release_url = 'https://api.github.com/repos/nf-core/' . $this->name . '/releases/latest';
-            $this->gh_release = json_decode(file_get_contents($gh_release_url, false, GH_API_OPTS));
+            $this->gh_release = json_decode(fetch_url($gh_release_url, GH_API_OPTS));
             $this->_save_cache_data($this->gh_release_cache, $this->gh_release);
         }
     }
@@ -194,7 +194,7 @@ class RepoHealth {
             $this->gh_branches = json_decode(file_get_contents($this->gh_all_branches_cache));
         } else {
             $gh_branch_url = 'https://api.github.com/repos/nf-core/' . $this->name . '/branches';
-            $this->gh_branches = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
+            $this->gh_branches = json_decode(@fetch_url($gh_branch_url, GH_API_OPTS));
             $this->_save_cache_data($this->gh_all_branches_cache, $this->gh_branches);
         }
 
@@ -210,8 +210,8 @@ class RepoHealth {
             } else {
                 $gh_branch_url =
                     'https://api.github.com/repos/nf-core/' . $this->name . '/branches/' . $branch . '/protection';
-                $gh_branch = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
-                $response_headers = http_get_last_response_headers() ?? [];
+                $gh_branch = json_decode(@fetch_url($gh_branch_url, GH_API_OPTS));
+                $response_headers = fetch_url_headers();
                 if (strpos($response_headers[0] ?? '', 'HTTP/1.1 200') !== false && is_object($gh_branch)) {
                     $this->{'gh_branch_' . $branch} = $gh_branch;
                     $this->_save_cache_data($gh_branch_cache, $this->{'gh_branch_' . $branch});
@@ -548,8 +548,8 @@ class RepoHealth {
                 'content' => json_encode($content),
             ],
         ]);
-        $result = json_decode(file_get_contents($url, false, $context));
-        $response_headers = http_get_last_response_headers() ?? [];
+        $result = json_decode(fetch_url($url, $context));
+        $response_headers = fetch_url_headers();
         if (strpos($response_headers[0] ?? '', 'HTTP/1.1 204') !== false) {
             return true;
         } elseif (strpos($response_headers[0] ?? '', 'HTTP/1.1 200') !== false) {
@@ -733,7 +733,7 @@ class PipelineHealth extends RepoHealth {
             $this->gh_branches = json_decode(file_get_contents($this->gh_all_branches_cache));
         } else {
             $gh_branch_url = 'https://api.github.com/repos/nf-core/' . $this->name . '/branches';
-            $this->gh_branches = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
+            $this->gh_branches = json_decode(@fetch_url($gh_branch_url, GH_API_OPTS));
             $this->_save_cache_data($this->gh_all_branches_cache, $this->gh_branches);
         }
     }
@@ -789,7 +789,7 @@ function get_gh_team_repos($team) {
         $gh_team = json_decode(file_get_contents($gh_teams_cache));
     } else {
         $gh_team_url = 'https://api.github.com/orgs/nf-core/teams/' . $team;
-        $gh_team = json_decode(file_get_contents($gh_team_url, false, GH_API_OPTS));
+        $gh_team = json_decode(fetch_url($gh_team_url, GH_API_OPTS));
 
         // Save for next time
         if (!file_exists(dirname($gh_teams_cache))) {
@@ -817,9 +817,9 @@ function get_gh_team_repos($team) {
             }
             $gh_team_repos = array_merge(
                 $gh_team_repos,
-                json_decode(file_get_contents($gh_team_repos_url, false, GH_API_OPTS)) ?: [],
+                json_decode(fetch_url($gh_team_repos_url, GH_API_OPTS)) ?: [],
             );
-            $response_headers = http_get_last_response_headers() ?? [];
+            $response_headers = fetch_url_headers();
 
             // Look for URL to next page of API results
             $next_page = false;

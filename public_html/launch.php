@@ -5,7 +5,7 @@ require_once '../includes/parse_md.php';
 $mainpage_container = false;
 $error_msgs = [];
 // Get available pipelines / releases
-$pipelines_json = json_decode(file_get_contents('https://nf-co.re/pipelines.json'));
+$pipelines_json = json_decode(fetch_url('https://nf-co.re/pipelines.json'));
 $pipelines = [];
 foreach ($pipelines_json->remote_workflows as $wf) {
     if ($wf->archived) {
@@ -98,8 +98,8 @@ function launch_pipeline_web($pipeline, $release) {
     } else {
         $api_opts = stream_context_create(['http' => ['method' => 'GET', 'header' => ['User-Agent: PHP']]]);
         $gh_launch_schema_url = "https://api.github.com/repos/nf-core/{$pipeline}/contents/nextflow_schema.json?ref={$release}";
-        $gh_launch_schema_json = file_get_contents($gh_launch_schema_url, false, $api_opts);
-        $response_headers = http_get_last_response_headers() ?? [];
+        $gh_launch_schema_json = fetch_url($gh_launch_schema_url, $api_opts);
+        $response_headers = fetch_url_headers();
         if (strpos($response_headers[0] ?? '', 'HTTP/1.1 200') === false) {
             # Remember for next time
             file_put_contents($gh_pipeline_no_schema_fn, '');

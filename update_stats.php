@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/includes/fetch_url.php';
 //
 // ---------------------------
 // GitHub shows traffic in the form of repo views and clones, however
@@ -56,8 +57,8 @@ function github_query($gh_query_url) {
         if ($next_page) {
             $gh_query_url = $next_page;
         }
-        $tmp_results = json_decode(file_get_contents($gh_query_url, false, $gh_api_opts), true);
-        $response_headers = http_get_last_response_headers() ?? [];
+        $tmp_results = json_decode(fetch_url($gh_query_url, $gh_api_opts), true);
+        $response_headers = fetch_url_headers();
         // If the data hasn't been cached when you query a repository's statistics, you'll receive a 202 response;
         // a background job is also fired to start compiling these statistics.
         // Give the job a few moments to complete, and then submit the request again
@@ -356,8 +357,8 @@ while ($first_page || $next_page) {
     if ($next_page) {
         $gh_members_url = $next_page;
     }
-    $gh_members = json_decode(file_get_contents($gh_members_url, false, $gh_api_opts));
-    $response_headers = http_get_last_response_headers() ?? [];
+    $gh_members = json_decode(fetch_url($gh_members_url, $gh_api_opts));
+    $response_headers = fetch_url_headers();
     if (strpos($response_headers[0] ?? '', 'HTTP/1.1 200') === false) {
         var_dump($response_headers);
         echo "Could not fetch nf-core members! $gh_members_url";
@@ -564,8 +565,8 @@ $slack_api_opts = stream_context_create([
         'header' => ['User-Agent: PHP', 'Content-Type: application/x-www-form-urlencoded'],
     ],
 ]);
-$slack_users = json_decode(file_get_contents($slack_api_url, false, $slack_api_opts));
-$response_headers = http_get_last_response_headers() ?? [];
+$slack_users = json_decode(fetch_url($slack_api_url, $slack_api_opts));
+$response_headers = fetch_url_headers();
 if (!preg_match('#^HTTP/1\.[01] 200#', $response_headers[0] ?? '') || !isset($slack_users->ok) || !$slack_users->ok) {
     var_dump($response_headers);
     echo 'Could not fetch slack user list!';

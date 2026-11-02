@@ -136,8 +136,8 @@ if (!is_dir(dirname($gh_pipeline_schema_fn))) {
 if ((!file_exists($gh_pipeline_schema_fn) && !file_exists($gh_pipeline_no_schema_fn)) || $release == 'dev') {
     $api_opts = stream_context_create(['http' => ['method' => 'GET', 'header' => ['User-Agent: PHP']]]);
     $gh_launch_schema_url = "https://api.github.com/repos/nf-core/{$pipeline->name}/contents/nextflow_schema.json?ref={$release}";
-    $gh_launch_schema_json = file_get_contents($gh_launch_schema_url, false, $api_opts);
-    $response_headers = http_get_last_response_headers() ?? [];
+    $gh_launch_schema_json = fetch_url($gh_launch_schema_url, $api_opts);
+    $response_headers = fetch_url_headers();
     if (strpos($response_headers[0] ?? '', 'HTTP/1.1 200') === false) {
         echo '<script>console.log("Sent request to ' .
             $gh_launch_schema_url .

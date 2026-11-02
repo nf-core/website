@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/includes/fetch_url.php';
 //
 // nfcore_issue_stats.json
 // ---------------------------
@@ -141,8 +142,8 @@ foreach ($repos as $repo) {
             echo "Fetching $gh_issues_url\n";
         }
         $num_api_calls += 1;
-        $gh_issues = json_decode(file_get_contents($gh_issues_url, false, $gh_api_opts), true);
-        $response_headers = http_get_last_response_headers() ?? [];
+        $gh_issues = json_decode(fetch_url($gh_issues_url, $gh_api_opts), true);
+        $response_headers = fetch_url_headers();
         if (strpos($response_headers[0] ?? '', 'HTTP/1.1 200') === false) {
             var_dump($response_headers);
             echo "\nCould not fetch nf-core/$repo issues! $gh_issues_url\n";
@@ -268,8 +269,8 @@ foreach ($repos as $repo) {
                         echo "Fetching $gh_comments_url\n";
                     }
                     $num_api_calls += 1;
-                    $gh_new_comments = json_decode(file_get_contents($gh_comments_url, false, $gh_api_opts), true);
-                    $response_headers = http_get_last_response_headers() ?? [];
+                    $gh_new_comments = json_decode(fetch_url($gh_comments_url, $gh_api_opts), true);
+                    $response_headers = fetch_url_headers();
                     $gh_comments = array_merge($gh_comments, $gh_new_comments);
                     if (strpos($response_headers[0] ?? '', 'HTTP/1.1 200') === false) {
                         var_dump($response_headers);
