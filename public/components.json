@@ -20033,7 +20033,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         }
       ]
     },
@@ -20251,7 +20251,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         }
       ]
     },
@@ -20455,7 +20455,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         }
       ]
     },
@@ -20673,7 +20673,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         }
       ]
     },
@@ -20862,7 +20862,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         }
       ]
     },
@@ -21058,7 +21058,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         }
       ]
     },
@@ -21851,7 +21851,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "bacmodel",
@@ -21981,7 +21981,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "bacmodel",
@@ -51573,7 +51573,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "denovotranscript",
@@ -57763,7 +57763,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         }
       ]
     },
@@ -58691,7 +58691,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "bamtofastq",
@@ -101461,6 +101461,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -111557,7 +111565,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         }
       ]
     },
@@ -114020,6 +114028,10 @@
       },
       "git_sha": "1298fbd2004c2913d6682ce4a419647d97a8fc3f",
       "pipelines": [
+        {
+          "name": "rnaseq",
+          "version": "3.27.0"
+        },
         {
           "name": "rnaseq",
           "version": "3.27.0"
@@ -125510,7 +125522,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "circrna",
@@ -126064,7 +126076,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "bamtofastq",
@@ -134599,7 +134611,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "circrna",
@@ -136701,7 +136713,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "genomeassembler",
@@ -151286,7 +151298,7 @@
     {
       "name": "gatk4_filtermutectcalls",
       "path": "modules/nf-core/gatk4/filtermutectcalls/meta.yml",
-      "tree_sha": "0481c8e8e67aee12a0932fe6d5cb8433305356aa",
+      "tree_sha": "e6e39c7cea4e4ba1ca1c3f27e5811263189e1aa5",
       "files": [
         "modules/nf-core/gatk4/filtermutectcalls/.conda-lock/linux_amd64-bd-79918b8b2632f4b1_1.txt",
         "modules/nf-core/gatk4/filtermutectcalls/environment.yml",
@@ -151349,7 +151361,7 @@
             {
               "stats": {
                 "type": "file",
-                "description": "Stats file that pairs with output vcf file",
+                "description": "Stats file that pairs with the input vcf file (Mutect2 or MergeMutectStats output). Passed to FilterMutectCalls via --stats. If not provided, GATK looks for <vcf>.stats next to the input vcf.",
                 "pattern": "*vcf.gz.stats",
                 "ontologies": []
               }
@@ -151403,14 +151415,6 @@
                 "pattern": "*.fasta",
                 "ontologies": []
               }
-            }
-          ],
-          [
-            {
-              "meta3": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
-              }
             },
             {
               "fai": {
@@ -151418,14 +151422,6 @@
                 "description": "Index of reference fasta file",
                 "pattern": "*.fasta.fai",
                 "ontologies": []
-              }
-            }
-          ],
-          [
-            {
-              "meta4": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
               }
             },
             {
@@ -151598,7 +151594,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "eaad1989fddb5690f97bc612db4932055466e4a9",
       "pipelines": [
         {
           "name": "raredisease",
@@ -180869,7 +180865,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "chipseq",
@@ -215675,7 +215671,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "coproid",
@@ -220437,7 +220433,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "genomeassembler",
@@ -232821,7 +232817,7 @@
     {
       "name": "mcstaging_macsima2mc",
       "path": "modules/nf-core/mcstaging/macsima2mc/meta.yml",
-      "tree_sha": "93d2b72e88c9130c7ac76a957f674ccc680f04f7",
+      "tree_sha": "6fe954354ecbf960ef33adf035e6c8b190609f0f",
       "files": [
         "modules/nf-core/mcstaging/macsima2mc/main.nf",
         "modules/nf-core/mcstaging/macsima2mc/meta.yml",
@@ -232948,9 +232944,25 @@
         "maintainers": [
           "@EfraMP",
           "@VictorDidier"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/python_macsima2mc:e3c1eb940a13b88b",
+              "build_id": "bd-e3c1eb940a13b88b_1",
+              "scan_id": "sc-25be4d73977209e3_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/python_macsima2mc:1eb779069d7f6426",
+              "build_id": "bd-1eb779069d7f6426_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2f/2f571113c86e3216bf5fd714885f5521b813c4599a2852a15867d5bf3137a235/data"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "37e5ede71ff722aae28e9f3aabdbd58f0217f073"
     },
     {
       "name": "mcstaging_phenoimager2mc",
@@ -233776,7 +233788,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "mag",
@@ -244051,7 +244063,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         }
       ]
     },
@@ -245047,7 +245059,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "circdna",
@@ -257094,7 +257106,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "bamtofastq",
@@ -262984,7 +262996,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "longraredisease",
@@ -302283,6 +302295,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -302590,6 +302606,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -311741,7 +311761,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "mag",
@@ -315284,7 +315304,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "bacmodel",
@@ -325157,7 +325177,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "genomeassembler",
@@ -326122,7 +326142,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "crisprseq",
@@ -328436,7 +328456,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         }
       ]
     },
@@ -329021,7 +329041,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         }
       ]
     },
@@ -356268,7 +356288,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "bamtofastq",
@@ -358457,7 +358477,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "callingcards",
@@ -397362,14 +397382,16 @@
     {
       "name": "star_starsolo",
       "path": "modules/nf-core/star/starsolo/meta.yml",
-      "tree_sha": "1626e4ddba17e333f38da1669b6336977cf2d7aa",
+      "tree_sha": "63fe5c17eaf510e23bf0dbabc80cd1a9b4bf9e56",
       "files": [
+        "modules/nf-core/star/starsolo/.conda-lock/linux_amd64-bd-f22f015f7eb1383f_1.txt",
+        "modules/nf-core/star/starsolo/.conda-lock/linux_arm64-bd-113eeacc5216db85_1.txt",
         "modules/nf-core/star/starsolo/environment.yml",
         "modules/nf-core/star/starsolo/main.nf",
         "modules/nf-core/star/starsolo/meta.yml",
-        "modules/nf-core/star/starsolo/tests/NO_FILE",
         "modules/nf-core/star/starsolo/tests/main.nf.test",
-        "modules/nf-core/star/starsolo/tests/main.nf.test.snap"
+        "modules/nf-core/star/starsolo/tests/main.nf.test.snap",
+        "modules/nf-core/star/starsolo/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
@@ -397379,7 +397401,9 @@
           "align",
           "count",
           "genome",
-          "reference"
+          "reference",
+          "single-cell",
+          "RNA-seq"
         ],
         "tools": [
           {
@@ -397400,7 +397424,7 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information.\nHere, you should add all the specific barcode/umi\ninformation for each sample.\ne.g. `[ id:'test_starsolo', umi_len:'12', cb_start:1 ]`\n"
+                "description": "Groovy Map containing sample information.\ne.g. `[ id:'test_starsolo' ]`\n"
               }
             },
             {
@@ -397413,20 +397437,47 @@
               "reads": {
                 "type": "file",
                 "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            },
+            {
+              "manifest": {
+                "type": "file",
+                "description": "Optional manifest file for Smart-Seq data.\nIt should contain 3 tab-separated columns: read1, read2, cell_id. The cell_id column will be added as ReadGroup tag.\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
               }
             }
           ],
-          {
-            "opt_whitelist": {
-              "type": "file",
-              "description": "Optional whitelist file",
-              "ontologies": []
-            }
-          },
           [
             {
               "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing the barcode whitelist information."
+              }
+            },
+            {
+              "opt_whitelist": {
+                "type": "file",
+                "description": "Optional whitelist file",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2330"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
                 "type": "map",
                 "description": "Groovy Map containing the STAR index information."
               }
@@ -397438,6 +397489,46 @@
                 "pattern": "star"
               }
             }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing the GTF information."
+              }
+            },
+            {
+              "gtf": {
+                "type": "file",
+                "description": "Optional GTF annotation file",
+                "pattern": "*.gtf",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2306"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta5": {
+                "type": "map",
+                "description": "Groovy Map containing the splice junction information."
+              }
+            },
+            {
+              "splice_junction": {
+                "type": "file",
+                "description": "Optional splice junction file",
+                "pattern": "*.tab",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
           ]
         ],
         "output": {
@@ -397446,12 +397537,12 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information.\nHere, you should add all the specific barcode/umi\ninformation for each sample.\ne.g. `[ id:'test_starsolo', umi_len:'12', cb_start:1 ]`\n"
+                  "description": "Groovy Map containing sample information.\n"
                 }
               },
               {
-                "*.Solo.out": {
-                  "type": "file",
+                "${prefix}.Solo.out": {
+                  "type": "directory",
                   "description": "STARSolo counts matrix",
                   "pattern": "*.Solo.out",
                   "ontologies": []
@@ -397464,33 +397555,19 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information.\nHere, you should add all the specific barcode/umi\ninformation for each sample.\ne.g. `[ id:'test_starsolo', umi_len:'12', cb_start:1 ]`\n"
+                  "description": "Groovy Map containing sample information.\n"
                 }
               },
               {
-                "*Log.final.out": {
+                "${prefix}.Log.final.out": {
                   "type": "file",
                   "description": "STAR final log file",
                   "pattern": "*Log.final.out",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "log_out": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information.\nHere, you should add all the specific barcode/umi\ninformation for each sample.\ne.g. `[ id:'test_starsolo', umi_len:'12', cb_start:1 ]`\n"
-                }
-              },
-              {
-                "*Log.out": {
-                  "type": "file",
-                  "description": "STAR lot out file",
-                  "pattern": "*Log.out",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
                 }
               }
             ]
@@ -397500,15 +397577,19 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information.\nHere, you should add all the specific barcode/umi\ninformation for each sample.\ne.g. `[ id:'test_starsolo', umi_len:'12', cb_start:1 ]`\n"
+                  "description": "Groovy Map containing sample information.\n"
                 }
               },
               {
-                "*Log.progress.out": {
+                "${prefix}.Log.progress.out": {
                   "type": "file",
                   "description": "STAR log progress file",
                   "pattern": "*Log.progress.out",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
                 }
               }
             ]
@@ -397518,14 +397599,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information.\nHere, you should add all the specific barcode/umi\ninformation for each sample.\ne.g. `[ id:'test_starsolo', umi_len:'12', cb_start:1 ]`\n"
+                  "description": "Groovy Map containing sample information.\n"
                 }
               },
               {
-                "*/Gene/Summary.csv": {
+                "${prefix}.Solo.out/Gene/Summary.csv": {
                   "type": "file",
                   "description": "STARSolo metrics summary CSV file.",
-                  "pattern": "*/Gene/Summary.csv",
+                  "pattern": "*.Solo.out/Gene/Summary.csv",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3752"
@@ -397553,6 +397634,334 @@
                 "STAR --version | sed -e \"s/STAR_//g\"": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "raw_counts": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\n"
+                }
+              },
+              {
+                "${prefix}.Solo.out/Gene/raw": {
+                  "type": "directory",
+                  "description": "STARSolo raw counts matrix",
+                  "pattern": "*.Solo.out/Gene/raw",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "filtered_counts": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\n"
+                }
+              },
+              {
+                "${prefix}.Solo.out/Gene/filtered": {
+                  "type": "directory",
+                  "description": "STARSolo filtered counts matrix (optional)",
+                  "pattern": "*.Solo.out/Gene/filtered",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "raw_velocyto": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\n"
+                }
+              },
+              {
+                "${prefix}.Solo.out/Velocyto/raw": {
+                  "type": "directory",
+                  "description": "STARSolo raw velocyto matrix (optional)",
+                  "pattern": "*.Solo.out/Velocyto/raw",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "filtered_velocyto": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\n"
+                }
+              },
+              {
+                "${prefix}.Solo.out/Velocyto/filtered": {
+                  "type": "directory",
+                  "description": "STARSolo filtered velocyto matrix (optional)",
+                  "pattern": "*.Solo.out/Velocyto/filtered",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "bam_sorted": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\n"
+                }
+              },
+              {
+                "${prefix}.Aligned.sortedByCoord.out.bam": {
+                  "type": "file",
+                  "description": "Sorted BAM file containing read alignments (optional)",
+                  "pattern": "*.Aligned.sortedByCoord.out.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "bam_transcript": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\n"
+                }
+              },
+              {
+                "${prefix}.Aligned.toTranscriptome.out.bam": {
+                  "type": "file",
+                  "description": "Output BAM file of transcriptome alignment (optional)",
+                  "pattern": "*.Aligned.toTranscriptome.out.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "bam_unsorted": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\n"
+                }
+              },
+              {
+                "${prefix}.Aligned.out.bam": {
+                  "type": "file",
+                  "description": "Unsorted BAM file (optional)",
+                  "pattern": "*.Aligned.out.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "fastq": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\n"
+                }
+              },
+              {
+                "${prefix}.unmapped_{1,2}.fastq.gz": {
+                  "type": "file",
+                  "description": "Unmapped reads in gzipped FASTQ format (optional)",
+                  "pattern": "*.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tab": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\n"
+                }
+              },
+              {
+                "${prefix}*.tab": {
+                  "type": "file",
+                  "description": "TAB file (optional)",
+                  "pattern": "*.tab",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log_out": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\n"
+                }
+              },
+              {
+                "${prefix}.Log.out": {
+                  "type": "file",
+                  "description": "STAR log out file",
+                  "pattern": "*.Log.out",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "raw_genefull": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\n"
+                }
+              },
+              {
+                "${prefix}.Solo.out/GeneFull/raw": {
+                  "type": "directory",
+                  "description": "STARSolo raw GeneFull matrix (optional)",
+                  "pattern": "*.Solo.out/GeneFull/raw",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "filtered_genefull": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\n"
+                }
+              },
+              {
+                "${prefix}.Solo.out/GeneFull/filtered": {
+                  "type": "directory",
+                  "description": "STARSolo filtered GeneFull matrix (optional)",
+                  "pattern": "*.Solo.out/GeneFull/filtered",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "sam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\n"
+                }
+              },
+              {
+                "${prefix}.Aligned.out.sam": {
+                  "type": "file",
+                  "description": "SAM file (optional)",
+                  "pattern": "*.Aligned.out.sam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2573"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "wig": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\n"
+                }
+              },
+              {
+                "*.wig": {
+                  "type": "file",
+                  "description": "STAR output wiggle format file(s) (optional)",
+                  "pattern": "*.wig",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3005"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "bedgraph": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\n"
+                }
+              },
+              {
+                "*.bg": {
+                  "type": "file",
+                  "description": "STAR output bedGraph format file(s) (optional)",
+                  "pattern": "*.bg",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3583"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "chimeric_junction": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\n"
+                }
+              },
+              {
+                "${prefix}.Chimeric.out.junction": {
+                  "type": "file",
+                  "description": "STAR chimeric junction output file (optional)",
+                  "pattern": "*Chimeric.out.junction",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
                 }
               }
             ]
@@ -397603,9 +398012,43 @@
           "@vivian-chen16",
           "@maxulysse",
           "@joaodemeirelles"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/star:2.7.11b--113eeacc5216db85",
+              "build_id": "bd-113eeacc5216db85_1",
+              "scan_id": "sc-f3caa041406df584_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/star:2.7.11b--f22f015f7eb1383f",
+              "build_id": "bd-f22f015f7eb1383f_1",
+              "scan_id": "sc-8d56a3b94bd9fffd_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/star:2.7.11b--217afbae6d99f335",
+              "build_id": "bd-217afbae6d99f335_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9a/9a6765552391b5012b9ec93e41a2438d547e1948b028be87f2ab9e834d18c235/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/star:2.7.11b--e0f112e5852e8139",
+              "build_id": "bd-e0f112e5852e8139_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/5b/5b04fee93569be87eedb18990e8d297a7b75f5e6fe1cb768edbc05a1a842e160/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/star/starsolo/.conda-lock/linux_amd64-bd-f22f015f7eb1383f_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/star/starsolo/.conda-lock/linux_arm64-bd-113eeacc5216db85_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "b4070340f85cc0822351c854733820811ac4339a"
     },
     {
       "name": "staramr_search",
@@ -419739,7 +420182,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "scnanoseq",
@@ -428493,7 +428936,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "viralrecon",
@@ -428852,7 +429295,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "chipseq",
@@ -455483,7 +455926,7 @@
     {
       "name": "bam_tumor_normal_somatic_variant_calling_gatk",
       "path": "subworkflows/nf-core/bam_tumor_normal_somatic_variant_calling_gatk/meta.yml",
-      "tree_sha": "7923728c1c1331ed2016f81140e04a5137e8429d",
+      "tree_sha": "d5229fd02791a4432ac511f8a7b803b6b78ec0e8",
       "files": [
         "subworkflows/nf-core/bam_tumor_normal_somatic_variant_calling_gatk/main.nf",
         "subworkflows/nf-core/bam_tumor_normal_somatic_variant_calling_gatk/meta.yml",
@@ -455639,7 +456082,7 @@
           "@GCJMackenzie"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "eaad1989fddb5690f97bc612db4932055466e4a9"
     },
     {
       "name": "bam_tumor_normal_somatic_variant_calling_strelka",
@@ -455716,7 +456159,7 @@
     {
       "name": "bam_tumor_only_somatic_variant_calling_gatk",
       "path": "subworkflows/nf-core/bam_tumor_only_somatic_variant_calling_gatk/meta.yml",
-      "tree_sha": "85f9a946275339ef2661612428088bb7312c0d6a",
+      "tree_sha": "348dd4f5045d67fd718c0d81b11f324e44f81e18",
       "files": [
         "subworkflows/nf-core/bam_tumor_only_somatic_variant_calling_gatk/main.nf",
         "subworkflows/nf-core/bam_tumor_only_somatic_variant_calling_gatk/meta.yml",
@@ -455895,7 +456338,7 @@
           "@GCJMackenzie"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "eaad1989fddb5690f97bc612db4932055466e4a9"
     },
     {
       "name": "bam_variant_calling_mpileup_bcftools",
@@ -458301,7 +458744,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         }
       ]
     },
@@ -464195,7 +464638,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "denovotranscript",
@@ -466486,7 +466929,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "bacmodel",
@@ -466994,7 +467437,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "bacmodel",
@@ -467554,7 +467997,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.0"
+          "version": "2.6.1"
         },
         {
           "name": "bacmodel",
@@ -469626,6 +470069,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "b9eb9d591f5362b7c638c56d2ab1c0dfbb9b118c",
-  "updated_at": "2026-11-02T14:14:06.597Z"
+  "commit_sha": "b4070340f85cc0822351c854733820811ac4339a",
+  "updated_at": "2026-11-03T02:13:11.353Z"
 }
