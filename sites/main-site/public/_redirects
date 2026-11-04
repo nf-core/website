@@ -68,11 +68,25 @@
 /tools/docs/*                              /docs/nf-core-tools/api_reference/:splat 301
 /tools/*                                   /docs/nf-core-tools/:splat 301
 
-/docs/nf-core-tools/api_reference/:version/api/index  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/api 200
+# Shortened API reference URLs: /:version/:command -> /:version/api/:command
+/docs/nf-core-tools/api_reference/:version/api/index  /docs/nf-core-tools/api_reference/:version/api 301
+/docs/nf-core-tools/api_reference/:version/api  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/api 200
 /docs/nf-core-tools/api_reference/:version/pipeline_lint_tests  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/pipeline_lint_tests 200
 /docs/nf-core-tools/api_reference/:version/module_lint_tests  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/module_lint_tests 200
 /docs/nf-core-tools/api_reference/:version/subworkflow_lint_tests  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/subworkflow_lint_tests 200
-/docs/nf-core-tools/api_reference/:version/:command  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/api/:command 200
+# Tools 1.x docs have no api/ subfolder: commands live directly under the version
+/docs/nf-core-tools/api_reference/1.5/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.5/:splat 200
+/docs/nf-core-tools/api_reference/1.6/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.6/:splat 200
+/docs/nf-core-tools/api_reference/1.7/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.7/:splat 200
+/docs/nf-core-tools/api_reference/1.8/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.8/:splat 200
+/docs/nf-core-tools/api_reference/1.9/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.9/:splat 200
+/docs/nf-core-tools/api_reference/1.10/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.10/:splat 200
+/docs/nf-core-tools/api_reference/1.10.1/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.10.1/:splat 200
+/docs/nf-core-tools/api_reference/1.10.2/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.10.2/:splat 200
+/docs/nf-core-tools/api_reference/1.11/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.11/:splat 200
+/docs/nf-core-tools/api_reference/1.12/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.12/:splat 200
+/docs/nf-core-tools/api_reference/1.12.1/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.12.1/:splat 200
+/docs/nf-core-tools/api_reference/:version/:command  /docs/nf-core-tools/api_reference/:version/api/:command 301
 
 /docs/usage/introduction                                              /docs/get_started/nf-core 301
 /docs/usage/installation                                              /docs/get_started/environment_setup/nextflow 301
