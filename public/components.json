@@ -20033,7 +20033,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -20251,7 +20251,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -20455,7 +20455,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -20673,7 +20673,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -20862,7 +20862,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -21058,7 +21058,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -21851,7 +21851,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "bacmodel",
@@ -21981,7 +21981,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "bacmodel",
@@ -51136,6 +51136,160 @@
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
     },
     {
+      "name": "bullseye_parsebam",
+      "path": "modules/nf-core/bullseye/parsebam/meta.yml",
+      "tree_sha": "eb7ab33b19f5bc2b937ed38bd903d65386a85dd1",
+      "files": [
+        "modules/nf-core/bullseye/parsebam/environment.yml",
+        "modules/nf-core/bullseye/parsebam/main.nf",
+        "modules/nf-core/bullseye/parsebam/meta.yml",
+        "modules/nf-core/bullseye/parsebam/tests/main.nf.test",
+        "modules/nf-core/bullseye/parsebam/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "bullseye_parsebam",
+        "description": "Parse an aligned, sorted, indexed BAM file into a per-base edit matrix for Bullseye",
+        "keywords": [
+          "bullseye",
+          "rna editing",
+          "dart-seq",
+          "bam"
+        ],
+        "tools": [
+          {
+            "bullseye": {
+              "description": "An Analysis pipeline for DART-seq, scDART-seq, TRIBE, STAMP and TRIBE-STAMP. Bullseye contains a set of perl scripts for parsing BAM files and identifying RNA editing sites.",
+              "homepage": "https://github.com/mflamand/Bullseye",
+              "documentation": "https://github.com/mflamand/Bullseye",
+              "tool_dev_url": "https://github.com/mflamand/Bullseye",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM file",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file",
+                "pattern": "*.bai",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "bullseye_parse_min_coverage": {
+              "type": "integer",
+              "description": "Minimum coverage threshold passed to parseBAM.pl"
+            }
+          }
+        ],
+        "output": {
+          "matrix": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.matrix.gz": {
+                  "type": "file",
+                  "description": "Bgzipped per-base edit matrix. Tabix-indexing is left to a dedicated downstream step (e.g. htslib/bgziptabix).",
+                  "pattern": "*.matrix.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_bullseye": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bullseye": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "grep -m1 -i 'version' \\$(command -v parseBAM.pl) | grep -oE '[0-9]+\\.[0-9]+(\\.[0-9]+)?'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bullseye": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "grep -m1 -i 'version' \\$(command -v parseBAM.pl) | grep -oE '[0-9]+\\.[0-9]+(\\.[0-9]+)?'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@brovolia"
+        ],
+        "maintainers": [
+          "@brovolia"
+        ]
+      },
+      "git_sha": "02063a5b27e8040f6f07ddbd28c066a61ab5bf38"
+    },
+    {
       "name": "busco_busco",
       "path": "modules/nf-core/busco/busco/meta.yml",
       "tree_sha": "a71b311be7481c4211eb5a40abc8b60dcd554b56",
@@ -51573,7 +51727,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "denovotranscript",
@@ -57763,7 +57917,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -58691,7 +58845,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "bamtofastq",
@@ -101483,6 +101637,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -111579,7 +111741,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -114042,6 +114204,10 @@
       },
       "git_sha": "1298fbd2004c2913d6682ce4a419647d97a8fc3f",
       "pipelines": [
+        {
+          "name": "rnaseq",
+          "version": "3.27.0"
+        },
         {
           "name": "rnaseq",
           "version": "3.27.0"
@@ -125540,7 +125706,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "circrna",
@@ -126094,7 +126260,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "bamtofastq",
@@ -134629,7 +134795,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "circrna",
@@ -136731,7 +136897,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "genomeassembler",
@@ -180883,7 +181049,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "chipseq",
@@ -215689,7 +215855,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "coproid",
@@ -220451,7 +220617,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "genomeassembler",
@@ -233543,6 +233709,10 @@
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
       "pipelines": [
         {
+          "name": "bacass",
+          "version": "2.7.0"
+        },
+        {
           "name": "crisprseq",
           "version": "2.3.0"
         }
@@ -233806,7 +233976,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "mag",
@@ -244081,7 +244251,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -245077,7 +245247,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "circdna",
@@ -257124,7 +257294,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "bamtofastq",
@@ -263014,7 +263184,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "longraredisease",
@@ -284169,7 +284339,7 @@
     {
       "name": "parabricks_mutectcaller",
       "path": "modules/nf-core/parabricks/mutectcaller/meta.yml",
-      "tree_sha": "466f86768af40fd0dee61aaa2fc84605f80a18d2",
+      "tree_sha": "cfdba0020c6e3588d298d4512884880d4acaff0f",
       "files": [
         "modules/nf-core/parabricks/mutectcaller/main.nf",
         "modules/nf-core/parabricks/mutectcaller/meta.yml",
@@ -284318,6 +284488,26 @@
             "germline_resource_index": {
               "type": "file",
               "description": "(Optional) tbi index corresponding to the germline resource file. Copied to <germline_resource>.tbi if named differently.",
+              "pattern": "*.tbi",
+              "ontologies": []
+            }
+          },
+          {
+            "alleles": {
+              "type": "file",
+              "description": "(Optional) bgzipped VCF of alleles to force-call regardless of evidence,\npassed to mutectcaller via --mutect-alleles.\n",
+              "pattern": "*.vcf.gz",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3989"
+                }
+              ]
+            }
+          },
+          {
+            "alleles_index": {
+              "type": "file",
+              "description": "(Optional) tbi index corresponding to the alleles file. Copied to <alleles>.tbi if named differently.",
               "pattern": "*.tbi",
               "ontologies": []
             }
@@ -284476,7 +284666,7 @@
           "@famosab"
         ]
       },
-      "git_sha": "69ce2b3089e843f5978420a88b7e0fdc93efe029"
+      "git_sha": "b7e7de899fa7e63258475cc3d72cd805c537cae5"
     },
     {
       "name": "parabricks_rnafq2bam",
@@ -302321,6 +302511,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -302628,6 +302822,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -311787,7 +311985,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "mag",
@@ -315330,7 +315528,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "bacmodel",
@@ -325203,7 +325401,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "genomeassembler",
@@ -326168,7 +326366,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "crisprseq",
@@ -328482,7 +328680,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -329067,7 +329265,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -356314,7 +356512,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "bamtofastq",
@@ -358503,7 +358701,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "callingcards",
@@ -392586,7 +392784,7 @@
       "pipelines": [
         {
           "name": "sopa",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "name": "spatialvi",
@@ -420208,7 +420406,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "scnanoseq",
@@ -428962,7 +429160,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "viralrecon",
@@ -429321,7 +429519,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "chipseq",
@@ -429481,7 +429679,7 @@
         },
         {
           "name": "sopa",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "name": "spatialaxe",
@@ -458770,7 +458968,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -464664,7 +464862,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "denovotranscript",
@@ -466955,7 +467153,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "bacmodel",
@@ -467343,7 +467541,7 @@
         },
         {
           "name": "sopa",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "name": "spatialaxe",
@@ -467463,7 +467661,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "bacmodel",
@@ -467851,7 +468049,7 @@
         },
         {
           "name": "sopa",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "name": "spatialaxe",
@@ -468023,7 +468221,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.6.1"
+          "version": "2.7.0"
         },
         {
           "name": "bacmodel",
@@ -468395,7 +468593,7 @@
         },
         {
           "name": "sopa",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "name": "spatialaxe",
@@ -470095,6 +470293,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "b4070340f85cc0822351c854733820811ac4339a",
-  "updated_at": "2026-11-03T14:13:57.624Z"
+  "commit_sha": "b7e7de899fa7e63258475cc3d72cd805c537cae5",
+  "updated_at": "2026-11-04T02:14:03.031Z"
 }
