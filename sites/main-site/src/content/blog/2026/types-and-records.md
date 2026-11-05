@@ -40,11 +40,12 @@ A record with typed fields can look like this:
 
 input:
 record(
-	id: String,
-	input_file: Path,
-	input_index: Path?
+id: String,
+input_file: Path,
+input_index: Path?
 )
-```
+
+````
 
 :::tip
 To annotate a field as optional, put a `?` after the type of that field (for example, `input_index: Path?` in the example above).
@@ -94,7 +95,7 @@ For example:
 ```groovy
 stage:
 stageAs file("${moduleDir}/bin/template_script.py"), '*'
-```
+````
 
 ### Example
 
@@ -108,19 +109,22 @@ Finally, `samtools_stats_args` and `output_prefix` have been added as optional S
 
 The input section of a module will change like this:
 
-  input:
+input:
+
 - tuple val(meta), path(input), path(input_index)
 - tuple val(meta2), path(fasta), path(fai)
-+ record(
-+ 	id: String,
-+ 	meta: Record?,
-+ 	input: Path,
-+ 	input_index: Path,
-+ 	fasta: Path?,
-+ 	fai: Path?,
-+ 	samtools_stats_args: String?,
-+ 	output_prefix: String?
-+ )
+
+* record(
+* id: String,
+* meta: Record?,
+* input: Path,
+* input_index: Path,
+* fasta: Path?,
+* fai: Path?,
+* samtools_stats_args: String?,
+* output_prefix: String?
+* )
+
 ```
 
 So, with inputs out of the way, let's move on to the module outputs!
@@ -240,8 +244,8 @@ This is full example of the `SAMTOOLS_STATS` module.
 nextflow.enable.types = true
 
 process SAMTOOLS_STATS {
-    tag "${id}"
-    label 'process_single'
+tag "${id}"
+label 'process_single'
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine in ['singularity', 'apptainer'] && !task.ext.singularity_pull_docker_container
@@ -291,5 +295,9 @@ process SAMTOOLS_STATS {
     """
     touch ${task.ext.prefix}.stats
     """
+
 }
+
+```
+
 ```
