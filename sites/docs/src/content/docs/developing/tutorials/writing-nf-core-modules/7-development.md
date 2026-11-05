@@ -30,7 +30,7 @@ Once you claim a module, fork and clone the repository, create a new branch, and
 
 Generate the boilerplate template files:
 
-```bash
+```bash placeholder="<toolname>,<subcommand>"
 nf-core modules create <toolname>/<subcommand>
 ```
 
@@ -40,7 +40,7 @@ Fill in each file by following the `TODO` comments, the [nf-core module specific
 
 Run the tests and generate the snapshot:
 
-```bash
+```bash placeholder="<toolname>,<subcommand>"
 nf-core modules test <toolname>/<subcommand>
 ```
 
@@ -51,7 +51,7 @@ Check the snapshot file looks correct before moving on.
 Standardisation is central to nf-core.
 The linting tool flags issues before submission:
 
-```bash
+```bash placeholder="<toolname>,<subcommand>"
 nf-core modules lint <toolname>/<subcommand>
 ```
 
@@ -74,7 +74,7 @@ Review the specification yourself before submission.
 
 Commit and push your module to your fork:
 
-```bash
+```bash placeholder="<toolname>,<subcommand>"
 git commit -am "Add new module <toolname>/<subcommand>"
 git push
 ```

@@ -327,7 +327,7 @@ workflow {
 
 Here's a comprehensive example showing how to integrate reference resolution into a real bioinformatics pipeline:
 
-```nextflow title="complete_reference_pipeline.nf" {8-11,18-27,35-42}
+```nextflow title="complete_reference_pipeline.nf" {3-4,26-33} expandable={44}
 #!/usr/bin/env nextflow
 
 include { getReferencesFile  } from 'plugin/nf-core-utils'
