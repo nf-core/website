@@ -1,6 +1,6 @@
 ---
-title: "Upcoming changes to nf-core/modules"
-subtitle: "Announcement of the upcoming changes to the guidelines when migrating to types and records in nf-core/modules"
+title: "Bringing Nextflow Types and Records to nf-core/modules"
+subtitle: "Guideline updates for migrating nf-core/modules to the latest Nextflow syntax"
 pubDate: 2026-10-28T09:00:00+01:00
 headerImage: "https://images.unsplash.com/photo-1582730147924-d92f4da00252"
 headerImageAlt: "A bunch of records laid out onto a black surface."
@@ -12,7 +12,7 @@ label:
 
 <!-- TODO add more memes -->
 
-During the nf-core hackathon in October 2026, two hackathon groups joined forces to tackle the upcoming changes caused by the introduction of static typing and record types.
+During the [October 2026 nf-core hackathon](https://nf-co.re/events/2026/hackathon-barcelona), two hackathon groups joined forces to tackle the upcoming changes caused by the introduction of [static typing](https://docs.seqera.io/nextflow/tutorials/static-types) and [record types](https://docs.seqera.io/nextflow/migrations/26-04#record-types).
 The aim of the combined task force was to develop the nf-core guidelines related to these new Nextflow features.
 
 This blog post gives an overview of all the upcoming changes to nf-core/modules along with the reasoning behind each one.
@@ -23,16 +23,19 @@ Previously, multiple channels and/or values were allowed in the input and output
 
 This change will be enforced due to many reasons, these are the most prominent ones:
 
-1. This will reduce large multiMap operations required to keep files in sync with the actual sample data.
+1. This will reduce large `multiMap` operations required to keep files in sync with the actual sample data.
 2. Having a single output with record types will make it easier to subset the record type and merge it back into another record type. This is especially useful for processes that emit a lot of files as there will be no need for multi-line joins anymore.
 3. Due to this, each sample travels through the pipeline as a single record that collects results at every process, making the dataflow much clearer.
 
 ## Composition of the input record type
 
 The input record should consist of several required and optional typed fields.
-A record type is a `Map`-like structure that consists of a predefined set of keys.
-The record is not limited to only these keys, but it will validate if these keys exists (if needed) and if they have the right type.
-To type a specific field, put a `:` followed by the expected type after the field key name. A record with typed fields can look like this:
+* A record type is a `Map`-like structure that consists of a predefined set of keys.
+* The record is not limited to only these keys, but it will validate if these keys exists (if needed) and if they have the right type.
+* To type a specific field, put a `:` followed by the expected type after the field key name.
+* 
+
+A record with typed fields can look like this:
 
 ```groovy
 input:
@@ -43,26 +46,50 @@ record(
 )
 ```
 
-To annotate a field as optional, put a `?` after the type of that field (for example, input_index: Path? in the example above).
+:::tip
+To annotate a field as optional, put a `?` after the type of that field (for example, `input_index: Path?` in the example above).
+:::
 
 Read more about typing in the [Nextflow docs](https://docs.seqera.io/nextflow/reference/stdlib-types).
 
 One special case of typing is file inputs:
 
 - In case that only one file is expected use the `Path` type
-- If multiple files are expected or possible, use the path type. More specifically, if order matters, use List<Path> (such as paired reads: [sampA_R1.fq.gz, sampA_R2.fq.gz]). If the order does not matter, use Bag<Path> (such as genome reference files [ reference.fa.ann, reference.fa.bwt, ... ]). If in doubt, use List<Path>.
+- If multiple files are expected or possible, use the `Path` type.
+    - If order matters, use `List<Path>` (such as paired reads: `[sampA_R1.fq.gz, sampA_R2.fq.gz]`)
+    - If the order does not matter, use `Bag<Path>` (such as genome reference files: `[ reference.fa.ann, reference.fa.bwt, ... ]`)
+    -  If in doubt, use `List<Path>`
 
 The input record type should consist of the following fields:
 
-1. All required input values needed to run the process. One big change on this front is that mandatory fields from the meta map should now also be values in the top-level of the record type. This is the `id` field for every process and optionally `single_end` and `strandedness` wherever it is needed. This will increase the transparency of each process meaning that it will no longer have a silent requirement on meta fields.
-2. All files (required and optional) that the process can use to run. These should all have some variation of the `Path` type as described above.
-3. The `meta` [Map](https://docs.seqera.io/nextflow/reference/stdlib-types/map), as referred to in point 1, will become the `meta` [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record). This field will now be fully optional and is mainly there to help pipeline developers pass additional pipeline-related information to the process. This can be referenced by pipeline users in `ext.args` and will still be passed to the output so it is also available for downstream logic (like joining).
-4. Optional arguments strings. There should be one argument string for every tool used by the process, for which the name should follow the following structure: `<tool_name(_subtool_name)>_args` (this is the same notation as for the module name, e.g `samtools_sort_args`). This will replace the usage of `ext.args` for pipeline **developers**. `ext.args` will still be available for pipeline users. In case the same tool is used twice or more in a process, a number can be added after the tool name in the field name (e.g. `samtools_sort1_args` and `samtools_sort2_args`).
-5. The optional `output_prefix` field. This field will replace the usage of `ext.prefix` for pipeline **developers**. `ext.prefix` will still be available for pipeline users. In the rare case that multiple prefixes are needed an additional `output_prefix2` field can also be added.
+1. All required input values needed to run the process.
+    - One big change on this front is that mandatory fields from the meta map should now also be values in the top-level of the record type.
+    - This is the `id` field for every process and optionally `single_end` and `strandedness` wherever it is needed.
+    - This will increase the transparency of each process meaning that it will no longer have a silent requirement on meta fields.
+2. All files (required and optional) that the process can use to run.
+    - These should all have some variation of the `Path` type as described above.
+3. The `meta` [Map](https://docs.seqera.io/nextflow/reference/stdlib-types/map), as referred to in point 1, will become the `meta` [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record).
+    - This field will now be fully optional and is mainly there to help pipeline developers pass additional pipeline-related information to the process.
+    - This can be referenced by pipeline users in `ext.args` and will still be passed to the output so it is also available for downstream logic (like joining).
+4. Optional arguments strings.
+    - There should be one argument string for every tool used by the process, for which the name should follow the following structure: `<tool_name(_subtool_name)>_args` (this is the same notation as for the module name, e.g `samtools_sort_args`).
+    - This will replace the usage of `ext.args` for pipeline **developers**.
+    - `ext.args` will still be available for pipeline users.
+    - In case the same tool is used twice or more in a process, a number can be added after the tool name in the field name (e.g. `samtools_sort1_args` and `samtools_sort2_args`).
+5. The optional `output_prefix` field.
+    - This field will replace the usage of `ext.prefix` for pipeline **developers**.
+    - `ext.prefix` will still be available for pipeline users.
+    - In the rare case that multiple prefixes are needed an additional `output_prefix2` field can also be added.
 
-The main logic behind most of these changes is to make the modules compatible with new and upcoming Nextflow features. Due to these changes a config file is no longer needed to configure the process properly. This makes the creation of meta pipelines a lot easier. Additionally, by removing the requirement of the meta [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record), the usage of `nextflow module run` will also be a lot easier.
+The main logic behind most of these changes is to make the modules compatible with new and upcoming Nextflow features.
+Due to these changes a config file is no longer needed to configure the process properly.
+This makes the creation of meta pipelines a lot easier.
+Additionally, by removing the requirement of the meta [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record), the usage of `nextflow module run` will also be a lot easier.
 
-In case the inputs need to be staged, please move these to the new `stage` block of the process. More information on this can be found in the [docs](https://docs.seqera.io/nextflow/reference/process/inputs-outputs-typed#stage-directives). The new `stage` block could now also be used to include script files into the module instead of relying on the bin folder or process templates. e.g.:
+In case the inputs need to be staged, please move these to the new `stage` block of the process.
+More information on this can be found in the [docs](https://docs.seqera.io/nextflow/reference/process/inputs-outputs-typed#stage-directives).
+The new `stage` block could now also be used to include script files into the module instead of relying on the bin folder or process templates.
+For example:
 
 ```groovy
 stage:
@@ -82,10 +109,9 @@ Finally, `samtools_stats_args` and `output_prefix` have been added as optional S
 The input section of a module will change like this:
 
 ```diff lang="groovy"
-- input:
+  input:
 - tuple val(meta), path(input), path(input_index)
 - tuple val(meta2), path(fasta), path(fai)
-+ input:
 + record(
 + 	id: String,
 + 	meta: Record?,
@@ -104,7 +130,7 @@ So, with inputs out of the way, let's move on to the module outputs!
 
 The record definition in the output block is a bit different when compared to the record definition in the input block.
 There is no option to provide the expected type of the output since Nextflow already derives this based on the type of the value passed to each record field.
-Read more about this in the [docs](https://docs.seqera.io/nextflow/reference/process/inputs-outputs-typed#outputs)
+Read more about this in the [Nextflow docs](https://docs.seqera.io/nextflow/reference/process/inputs-outputs-typed#outputs)
 
 The output record should consist of the following fields:
 
@@ -122,10 +148,9 @@ The module outputs one file called `stats` and one version of the `samtools stat
 The output section of the module will change like this:
 
 ```diff lang="groovy"
-- output:
+  output:
 - tuple val(meta), path("*.stats"), emit: stats
 - tuple val("${task.process}"), val('samtools'), eval('samtools version | sed "1!d;s/.* //"'), emit: versions_samtools, topic: versions
-+ output:
 + record(
 + 	id: id,
 + 	meta: meta,
@@ -143,14 +168,21 @@ Let's take a look how to properly handle these variables after the migration.
 
 Instead of defining the `prefix` and `args` variables in the `script` and `stub` block separately, they must now be defined under the container declaration in the process code.
 This way the declaration happens only once in the process, making sure that there is more parity between the `script` and `stub` block.
+
 The definition of these variables now also needs to take into account that the `output_prefix` and `<tool>_args` options are given in the input.
 This is the order of priority for each option where one of these variables can be declared (with the first one taking priority over all others, etc):
 
-1. The `ext.<var>` declaration in a configuration file passed by the pipeline **user**
-2. The value passed in the input record of the process by the pipeline **developer**
+1. The `ext.<var>` declaration in a configuration file passed by the pipeline _**user**_
+2. The value passed in the input record of the process by the pipeline _**developer**_
 3. The default of the value (for example `id` for the `prefix`)
 
-`ext.when` should also be removed since it's no longer supported in statically typed modules, the new `process.when` option can be used instead. This configuration option should only be reserved for pipeline **users**. Pipeline developers should setup their logic in the workflow itself using `if` statements and channel operator logic.
+`ext.when` should also be removed since it's no longer supported in statically typed modules, the new `process.when` option can be used instead.
+
+:::warning title="When to use `when`"
+The `process.when` configuration option should only be reserved for pipeline **users**.
+
+Pipeline developers should setup their logic in the workflow itself using `if` statements and channel operator logic.
+:::
 
 ### Example
 
