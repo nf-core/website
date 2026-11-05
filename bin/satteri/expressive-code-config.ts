@@ -47,9 +47,6 @@ export function createEcConfig() {
         },
         plugins: [
             pluginLineNumbers(),
-            // starlight-codeblocks (https://ewels.github.io/starlight-codeblocks/): focus,
-            // line states, annotations, comment notation, file icons and more. File icons
-            // use vscode-icons, with the Nextflow logo for Nextflow files.
             ...pluginCodeblocks({
                 fileIcons: {
                     // The logo uses currentColor; give it the Nextflow green.
