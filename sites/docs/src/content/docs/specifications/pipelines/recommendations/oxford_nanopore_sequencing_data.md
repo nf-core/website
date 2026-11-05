@@ -12,9 +12,11 @@ The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as describ
 Pipelines that analyse Oxford Nanopore data SHOULD take basecalled reads as input, and SHOULD NOT run basecalling themselves.
 
 :::info{title="Accepted basecalled formats"}
+
 - FASTQ (`.fastq.gz`)
 - Unaligned or aligned BAM
 - Unaligned or aligned modBAM (BAM with `MM`/`ML` modification tags), for modification-aware analyses
+
 :::
 
 ### Dorado - Oxford Nanopore's multipurpose tool
