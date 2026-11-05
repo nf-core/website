@@ -56,10 +56,10 @@ Read more about typing in the [Nextflow docs](https://docs.seqera.io/nextflow/re
 One special case of typing is file inputs:
 
 - In case that only one file is expected use the `Path` type
-- If multiple files are expected or possible, use the `Path` type.
-  - If order matters, use `List<Path>` (such as paired reads: `[sampA_R1.fq.gz, sampA_R2.fq.gz]`)
-  - If the order does not matter, use `Bag<Path>` (such as genome reference files: `[ reference.fa.ann, reference.fa.bwt, ... ]`)
-  - If in doubt, use `List<Path>`
+- If multiple files are expected or possible, use one of the following depending on what the process needs:
+  - `Set<Path>` if order does **not** matter and there are no duplicate paths. Use `.toSet()` to convert any iterable to a `Set`.
+  - `List<Path>` if order **does** and there can be duplicate paths. Use `.toSorted()` to convert any iterable to a `List`.
+  - `Bag<Path>` if order does **not** matter and there can be duplicate paths.
 
 The input record type should consist of the following fields:
 
