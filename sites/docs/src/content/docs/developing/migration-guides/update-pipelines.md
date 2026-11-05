@@ -118,9 +118,8 @@ To migrate modules that use template scripts to use topic channels for version o
 
 1. Update the `path "versions.yml", emit: versions` line:
 
-   ```diff lang="groovy" title="main.nf"
-   -path "versions.yml", emit: versions
-   +path "versions.yml", emit: versions, topic: versions
+   ```groovy title="main.nf"
+   path "versions.yml", emit: versions, topic: versions
    ```
 
 1. Add the following to the `meta.yml` file below the outputs section:
@@ -144,7 +143,7 @@ To migrate a pipelines to use topic channels for version outputs:
 
    The main change in the template include:
 
-   ```groovy title="$PIPELINE_NAME.nf" ins={1-17,19-20} del={18}
+   ```groovy title="$PIPELINE_NAME.nf" del={20} ins={1-19}
      def topic_versions = channel.topic("versions")
          .distinct()
          .branch { entry ->
@@ -162,9 +161,9 @@ To migrate a pipelines to use topic channels for version outputs:
              "${process}:\n${tool_versions.join('\n')}"
          }
 
-     ch_collated_versions = softwareVersionsToYAML(ch_versions)
      ch_collated_versions = softwareVersionsToYAML(ch_versions.mix(topic_versions.versions_file))
          .mix(topic_versions_string)
+     ch_collated_versions = softwareVersionsToYAML(ch_versions)
    ```
 
 1. Run `nf-core modules update` to pull the latest changes.
@@ -180,10 +179,16 @@ To migrate a pipelines to use topic channels for version outputs:
    No such property: versions for class: groovyx.gpars.dataflow.DataflowBroadcast
    ```
 
-   **Example**: A workflow using the `samtools/sort` module might have code like the following.
+   **Example**: A workflow using the `samtools/sort` module might have code like this:
+
+   ```groovy title="main.nf"
+   SAMTOOLS_SORT(input)
+   ch_versions = ch_versions.mix(SAMTOOLS_SORT.out.versions)
+   ```
+
    **Fix**: Remove the line referencing `SAMTOOLS_SORT.out.versions`:
 
    ```groovy title="main.nf" del={2}
    SAMTOOLS_SORT(input)
-   ch_versions = ch_versions.mix(SAMTOOLS_SORT.out.versions) // [!code error] No such property: versions
+   ch_versions = ch_versions.mix(SAMTOOLS_SORT.out.versions)
    ```

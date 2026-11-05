@@ -36,7 +36,7 @@ You will need the following to get started:
 
 1. Fork the pipeline repository to your GitHub account and clone it locally:
 
-   ```bash placeholder="<github-username>,<pipeline-name>,<branch-name>"
+   ```bash
    git clone https://github.com/<github-username>/<pipeline-name>.git
    cd <pipeline-name>
    git remote add upstream https://github.com/nf-core/<pipeline-name>.git
@@ -45,7 +45,6 @@ You will need the following to get started:
 
    :::note
    Replace `<github-username>`, `<pipeline-name>`, and `<branch-name>` with appropriate values.
-   You can type them into the fields in the code block, and they fill in the other commands on this page.
    Use descriptive branch names like `add-fastqc-module` or `fix-memory-issue`.
    :::
 
@@ -69,7 +68,7 @@ You will need the following to get started:
 
 1. Test your changes locally:
 
-   ```bash placeholder="<outdir>"
+   ```bash
    nextflow run . -profile debug,test,docker --outdir <outdir>
    ```
 
@@ -90,7 +89,7 @@ You will need the following to get started:
 
 1. Commit and push your changes with a clear message:
 
-   ```bash placeholder="<description>,<branch-name>"
+   ```bash
    git add .
    git commit -m "Add feature: <description>"
    git push origin <branch-name>
@@ -145,7 +144,7 @@ Pull requests are typically fully reviewed when these tests pass.
 All nf-core pipelines must adhere to a [set of guidelines](../specifications/pipelines/overview).
 The linting tool checks that your code follows these standards:
 
-```bash placeholder="<pipeline-directory>"
+```bash
 nf-core pipelines lint <pipeline-directory>
 ```
 
