@@ -30,10 +30,11 @@ This change will be enforced due to many reasons, these are the most prominent o
 ## Composition of the input record type
 
 The input record should consist of several required and optional typed fields.
-* A record type is a `Map`-like structure that consists of a predefined set of keys.
-* The record is not limited to only these keys, but it will validate if these keys exists (if needed) and if they have the right type.
-* To type a specific field, put a `:` followed by the expected type after the field key name.
-* 
+
+- A record type is a `Map`-like structure that consists of a predefined set of keys.
+- The record is not limited to only these keys, but it will validate if these keys exists (if needed) and if they have the right type.
+- To type a specific field, put a `:` followed by the expected type after the field key name.
+-
 
 A record with typed fields can look like this:
 
@@ -56,30 +57,30 @@ One special case of typing is file inputs:
 
 - In case that only one file is expected use the `Path` type
 - If multiple files are expected or possible, use the `Path` type.
-    - If order matters, use `List<Path>` (such as paired reads: `[sampA_R1.fq.gz, sampA_R2.fq.gz]`)
-    - If the order does not matter, use `Bag<Path>` (such as genome reference files: `[ reference.fa.ann, reference.fa.bwt, ... ]`)
-    -  If in doubt, use `List<Path>`
+  - If order matters, use `List<Path>` (such as paired reads: `[sampA_R1.fq.gz, sampA_R2.fq.gz]`)
+  - If the order does not matter, use `Bag<Path>` (such as genome reference files: `[ reference.fa.ann, reference.fa.bwt, ... ]`)
+  - If in doubt, use `List<Path>`
 
 The input record type should consist of the following fields:
 
 1. All required input values needed to run the process.
-    - One big change on this front is that mandatory fields from the meta map should now also be values in the top-level of the record type.
-    - This is the `id` field for every process and optionally `single_end` and `strandedness` wherever it is needed.
-    - This will increase the transparency of each process meaning that it will no longer have a silent requirement on meta fields.
+   - One big change on this front is that mandatory fields from the meta map should now also be values in the top-level of the record type.
+   - This is the `id` field for every process and optionally `single_end` and `strandedness` wherever it is needed.
+   - This will increase the transparency of each process meaning that it will no longer have a silent requirement on meta fields.
 2. All files (required and optional) that the process can use to run.
-    - These should all have some variation of the `Path` type as described above.
+   - These should all have some variation of the `Path` type as described above.
 3. The `meta` [Map](https://docs.seqera.io/nextflow/reference/stdlib-types/map), as referred to in point 1, will become the `meta` [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record).
-    - This field will now be fully optional and is mainly there to help pipeline developers pass additional pipeline-related information to the process.
-    - This can be referenced by pipeline users in `ext.args` and will still be passed to the output so it is also available for downstream logic (like joining).
+   - This field will now be fully optional and is mainly there to help pipeline developers pass additional pipeline-related information to the process.
+   - This can be referenced by pipeline users in `ext.args` and will still be passed to the output so it is also available for downstream logic (like joining).
 4. Optional arguments strings.
-    - There should be one argument string for every tool used by the process, for which the name should follow the following structure: `<tool_name(_subtool_name)>_args` (this is the same notation as for the module name, e.g `samtools_sort_args`).
-    - This will replace the usage of `ext.args` for pipeline **developers**.
-    - `ext.args` will still be available for pipeline users.
-    - In case the same tool is used twice or more in a process, a number can be added after the tool name in the field name (e.g. `samtools_sort1_args` and `samtools_sort2_args`).
+   - There should be one argument string for every tool used by the process, for which the name should follow the following structure: `<tool_name(_subtool_name)>_args` (this is the same notation as for the module name, e.g `samtools_sort_args`).
+   - This will replace the usage of `ext.args` for pipeline **developers**.
+   - `ext.args` will still be available for pipeline users.
+   - In case the same tool is used twice or more in a process, a number can be added after the tool name in the field name (e.g. `samtools_sort1_args` and `samtools_sort2_args`).
 5. The optional `output_prefix` field.
-    - This field will replace the usage of `ext.prefix` for pipeline **developers**.
-    - `ext.prefix` will still be available for pipeline users.
-    - In the rare case that multiple prefixes are needed an additional `output_prefix2` field can also be added.
+   - This field will replace the usage of `ext.prefix` for pipeline **developers**.
+   - `ext.prefix` will still be available for pipeline users.
+   - In the rare case that multiple prefixes are needed an additional `output_prefix2` field can also be added.
 
 The main logic behind most of these changes is to make the modules compatible with new and upcoming Nextflow features.
 Due to these changes a config file is no longer needed to configure the process properly.
