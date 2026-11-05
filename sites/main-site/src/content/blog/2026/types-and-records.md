@@ -38,7 +38,6 @@ The input record should consist of several required and optional typed fields.
 
 A record with typed fields can look like this:
 
-```groovy
 input:
 record(
 	id: String,
@@ -109,7 +108,6 @@ Finally, `samtools_stats_args` and `output_prefix` have been added as optional S
 
 The input section of a module will change like this:
 
-```diff lang="groovy"
   input:
 - tuple val(meta), path(input), path(input_index)
 - tuple val(meta2), path(fasta), path(fai)
@@ -148,7 +146,6 @@ The module outputs one file called `stats` and one version of the `samtools stat
 
 The output section of the module will change like this:
 
-```diff lang="groovy"
   output:
 - tuple val(meta), path("*.stats"), emit: stats
 - tuple val("${task.process}"), val('samtools'), eval('samtools version | sed "1!d;s/.* //"'), emit: versions_samtools, topic: versions
@@ -240,7 +237,6 @@ process SAMTOOLS_STATS {
 
 This is full example of the `SAMTOOLS_STATS` module.
 
-```groovy title="modules/nf-core/samtools/stats/main.nf"
 nextflow.enable.types = true
 
 process SAMTOOLS_STATS {
