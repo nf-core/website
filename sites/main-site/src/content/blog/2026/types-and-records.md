@@ -206,8 +206,8 @@ process SAMTOOLS_STATS {
 	output:
 	...
 
-+ topic:
-+ ...
++  topic:
++  ...
 
 -	when: task.ext.when == null || task.ext.when
 
@@ -219,19 +219,19 @@ process SAMTOOLS_STATS {
 	samtools \\
 		stats \\
 -		${args} \\
-+   ${task.ext.args} \\
++    ${task.ext.args} \\
 		--threads ${task.cpus} \\
 		${reference} \\
 		${input} \\
 -		> ${prefix}.stats
-+   > ${task.ext.prefix}.stats
++    > ${task.ext.prefix}.stats
 	"""
 
 	stub:
 -	def prefix = task.ext.prefix ?: "${meta.id}"
 	"""
 -	touch ${prefix}.stats
-+ touch ${task.ext.prefix}.stats
++  touch ${task.ext.prefix}.stats
 	"""
 }
 ```
