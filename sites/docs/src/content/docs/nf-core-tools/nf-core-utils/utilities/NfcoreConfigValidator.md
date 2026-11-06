@@ -3,6 +3,7 @@
 title: "Configuration Validation Tutorial"
 shortTitle: "Configuration Validation Tutorial"
 weight: 5
+md_github_url: https://github.com/nf-core/nf-core-utils/blob/main/docs/utilities/NfcoreConfigValidator.md
 ---
 
 # Configuration Validation Tutorial

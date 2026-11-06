@@ -3,6 +3,7 @@
 title: "Pipeline Notifications Tutorial"
 shortTitle: "Pipeline Notifications Tutorial"
 weight: 6
+md_github_url: https://github.com/nf-core/nf-core-utils/blob/main/docs/utilities/NfcoreNotificationUtils.md
 ---
 
 # Pipeline Notifications Tutorial

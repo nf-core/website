@@ -3,6 +3,7 @@
 title: "NfcoreReportingOrchestrator"
 shortTitle: "NfcoreReportingOrchestrator"
 weight: 7
+md_github_url: https://github.com/nf-core/nf-core-utils/blob/main/docs/utilities/NfcoreReportingOrchestrator.md
 ---
 
 # NfcoreReportingOrchestrator

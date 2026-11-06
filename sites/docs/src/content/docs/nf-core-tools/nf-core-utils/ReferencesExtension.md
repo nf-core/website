@@ -4,6 +4,7 @@ title: "References Extension Guide"
 shortTitle: "References Extension Guide"
 weight: 3
 parentWeight: 3
+md_github_url: https://github.com/nf-core/nf-core-utils/blob/main/docs/ReferencesExtension.md
 ---
 
 # References Extension Guide
