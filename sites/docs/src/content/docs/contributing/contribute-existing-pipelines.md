@@ -262,8 +262,8 @@ ch_fastqc_for_multiqc
 
 If you use new Nextflow features, update the minimum required version:
 
-```bash
-nf-core pipelines bump-version --nextflow . [min_nf_version]
+```bash placeholder="<min_nf_version"
+nf-core pipelines bump-version --nextflow <min_nf_version>
 ```
 
 ### Images and figures
