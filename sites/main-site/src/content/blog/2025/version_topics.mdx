@@ -35,7 +35,7 @@ Topic channels can collect values from multiple sources automatically, just by s
 This means no more tangled channel wiring or mix operator chains. With topic channels,
 you can now broadcast and collect data across your pipeline more naturally.
 
-```groovy title="main.nf"
+```nextflow title="main.nf"
 process  {
   output:
   val('hello'), topic: my_topic
@@ -70,7 +70,7 @@ Let's get to work. Grab any nf-core module
 
 No need to write to `version.yml` files any more, we emit a topic channel in the output section instead.
 
-```diff lang="groovy" title="main.nf"
+```diff lang="nextflow" title="main.nf"
 output:
 tuple val(meta), path("*.html"), emit: html
 tuple val(meta), path("*.zip") , emit: zip
@@ -117,7 +117,7 @@ topics:
 
 This might be a little more tricky for some of your modules, but a good start to catch the version in the snapshot is:
 
-```groovy title="main.nf.test"
+```nextflow title="main.nf.test"
 process.out.findAll { key, val -> key.startsWith("versions")}
 ```
 
@@ -130,7 +130,7 @@ As no version.yml exists anymore, you will have to update the snapshot.
 All nf-core/subworkflows which are calling your module will fail now because no version.yml is created to use the `mix` operator on.
 So, you should remove all occurences of:
 
-```groovy title="main.nf"
+```nextflow title="main.nf"
 ch_versions = ch_versions.mix(FASTQC.out.versions.first())
 ```
 
