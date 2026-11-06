@@ -9,6 +9,7 @@ import { renderMarkdown } from "@root/bin/satteri/markdownConfig.ts";
 const pipelines = await Promise.all(
     pipelines_json.remote_workflows.map(async (pipeline) => ({
         ...pipeline,
+        releases: pipeline.releases.map(({ tag_name, published_at }) => ({ tag_name, published_at })),
         description_rendered: pipeline.description ? (await renderMarkdown(pipeline.description)).html : "",
     })),
 );

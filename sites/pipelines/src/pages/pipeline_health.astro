@@ -24,6 +24,41 @@ const countTrue = (fn) => {
         " (" + Math.round((activePipelines.filter(fn).length / activePipelines.length) * 100) + "%)",
     ];
 };
+
+const megatest = (p) => {
+    const { tag_name: tag, tag_sha: sha, megatest: m } = p.releases?.find((r) => r.tag_name !== "dev") ?? {};
+    const release = `${tag} (commit ${sha?.slice(0, 7)})`;
+    const workflow = p.repository_url + "/actions/workflows/awsfulltest.yml";
+    if (m === undefined) return { status: "unknown", link: workflow, message: "no AWS megatest information" };
+    if (m === null) {
+        return {
+            status: "not_tested",
+            link: workflow,
+            message: `not tested: no AWS megatest results for ${release} (not launched, or still queued)`,
+        };
+    }
+    if (m.status === "no_report") {
+        return {
+            status: "no_report",
+            link: `/${p.name}/${tag}/results/`,
+            message: `AWS megatest results for ${release}, but no Nextflow execution report yet: still running, or stopped before writing it`,
+        };
+    }
+    const failed = m.runs.find((run) => run.status === "failed");
+    const succeeded = m.runs.filter((run) => run.status === "success").length;
+    const started = m.runs[0]?.report.match(/\d{4}-\d\d-\d\d/)?.[0];
+    return {
+        status: m.status,
+        // results viewer, opened on the execution report of the first failed run, else of the first run
+        link:
+            `/${p.name}/${tag}/results/${p.name}/results-${sha}/` +
+            (failed ?? m.runs[0]).report.replace(/[^/]*$/, "?file=$&"),
+        message:
+            `AWS megatest for ${release}${started ? `, run ${started}` : ""}: ` +
+            `${succeeded}/${m.runs.length} runs completed successfully` +
+            (failed ? `. Error: ${failed.error}` : ""),
+    };
+};
 ---
 
 <PageLayout
@@ -99,6 +134,14 @@ const countTrue = (fn) => {
                         data-bs-placement="top"
                     >
                         nf-test in dev
+                    </th>
+                    <th
+                        class="small fw-normal p-1"
+                        title="Latest release: all AWS megatest runs completed successfully (from the Nextflow execution reports). Yellow: not tested, or no execution report yet (still running, or stopped before writing it)"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                    >
+                        AWS megatest
                     </th>
                     <th
                         class="small fw-normal p-1"
@@ -229,6 +272,7 @@ const countTrue = (fn) => {
             <tbody>
                 {pipelines.map((pipeline) => {
                     const mainOrMasterBranch = pipeline.main_branch_exists ? "main" : "master";
+                    const awsMegatest = megatest(pipeline);
                     const getCell = (condition?: any, link?: string, tooltip?: string, classes?: string) => (
                         <td
                             class={
@@ -323,6 +367,44 @@ const countTrue = (fn) => {
                             {getCell(pipeline.has_nf_test, pipeline.repository_url, "uses nf-test")}
                             {/* nf-test in dev */}
                             {getCell(pipeline.has_nf_test_dev, pipeline.repository_url, "uses nf-test in dev branch")}
+                            {/* AWS megatest */}
+                            {pipeline.releases?.length > 1 && !pipeline.archived ? (
+                                ["not_tested", "no_report"].includes(awsMegatest.status) ? (
+                                    <td
+                                        class="text-center status status--warning"
+                                        data-bs-toggle="tooltip"
+                                        title={pipeline.name + ": " + awsMegatest.message}
+                                    >
+                                        <a href={awsMegatest.link} target="_blank">
+                                            <i
+                                                class={
+                                                    awsMegatest.status === "not_tested"
+                                                        ? "fas fa-minus"
+                                                        : "fas fa-hourglass-half"
+                                                }
+                                            />
+                                        </a>
+                                    </td>
+                                ) : (
+                                    getCell(
+                                        awsMegatest.status === "unknown" ? -1 : awsMegatest.status === "success",
+                                        awsMegatest.link,
+                                        awsMegatest.message,
+                                    )
+                                )
+                            ) : (
+                                <td
+                                    class="text-center status status--unknown"
+                                    data-bs-toggle="tooltip"
+                                    title={
+                                        pipeline.name +
+                                        (pipeline.archived ? ": archived" : ": not yet released") +
+                                        ", check not applicable"
+                                    }
+                                >
+                                    <span class="text-secondary">-</span>
+                                </td>
+                            )}
                             {/* wikis */}
                             {getCell(!pipeline.has_wiki, pipeline.repository_url + "/settings", "disable wiki")}
                             {/* issues */}
@@ -524,6 +606,7 @@ const countTrue = (fn) => {
                     <td class="text-center">{countTrue((p) => p.is_DSL2)}</td>
                     <td class="text-center">{countTrue((p) => p.has_nf_test)}</td>
                     <td class="text-center">{countTrue((p) => p.has_nf_test_dev)}</td>
+                    <td class="text-center">{countTrue((p) => megatest(p).status === "success")}</td>
                     <td class="text-center">{countTrue((p) => !p.has_wiki)}</td>
                     <td class="text-center">{countTrue((p) => p.has_issues)}</td>
                     <td class="text-center">{countTrue((p) => p.allow_merge_commit)}</td>
