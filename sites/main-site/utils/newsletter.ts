@@ -62,7 +62,7 @@ export interface Proposal extends RawProposal {
 // DATE UTILITIES
 // ========================================
 
-export function getMonthRange(year: number, month: number): { start: Date; end: Date } {
+function getMonthRange(year: number, month: number): { start: Date; end: Date } {
     const start = new Date(Date.UTC(year, month - 1, 1));
     const end = new Date(Date.UTC(year, month, 1));
     return { start, end };
@@ -382,7 +382,7 @@ export function getFutureEvents<T extends { id: string; data: { start: Date } }>
  * Fetch approved proposals from nf-core/proposals GitHub repo.
  * Returns all proposals, to be filtered per-month in the page.
  */
-export async function fetchAllProposals(): Promise<RawProposal[]> {
+async function fetchAllProposals(): Promise<RawProposal[]> {
     try {
         const issues = await octokit.paginate(octokit.rest.issues.listForRepo, {
             owner: "nf-core",
@@ -465,7 +465,7 @@ export function getProposalsForMonth(proposals: RawProposal[], year: number, mon
  * Shared getStaticPaths data for newsletter pages: the list of months plus all
  * proposals (fetched once).
  */
-export async function getNewsletterStaticPathsData(
+async function getNewsletterStaticPathsData(
     getCollectionFn: (name: string) => Promise<any[]>,
     pipelines: PipelineWorkflow[],
 ) {

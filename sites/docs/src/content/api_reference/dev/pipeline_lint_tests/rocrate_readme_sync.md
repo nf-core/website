@@ -1,4 +1,4 @@
-# rocrate\_readme\_sync
+# rocrate_readme_sync
 
 #### `PipelineLint.rocrate_readme_sync(){:python}`
 

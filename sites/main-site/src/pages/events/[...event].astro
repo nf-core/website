@@ -132,26 +132,26 @@ addEntriesToSection(sections, events);
 
 // sort .entries by date
 sections.forEach((year) => {
-    year.type === "group" &&
-        year.entries?.sort((a, b) => {
-            const eventA = events.find((event) => "/events/" + event.id.replace(/\.[^/.]+$/, "") === a.href);
-            const eventB = events.find((event) => "/events/" + event.id.replace(/\.[^/.]+$/, "") === b.href);
-            if (eventA?.data.start && eventB?.data.start) {
-                return eventB.data.start.getTime() - eventA.data.start.getTime();
-            }
-            return 0;
-        });
+    if (year.type !== "group") return;
+    year.entries?.sort((a, b) => {
+        const eventA = events.find((event) => "/events/" + event.id.replace(/\.[^/.]+$/, "") === a.href);
+        const eventB = events.find((event) => "/events/" + event.id.replace(/\.[^/.]+$/, "") === b.href);
+        if (eventA?.data.start && eventB?.data.start) {
+            return eventB.data.start.getTime() - eventA.data.start.getTime();
+        }
+        return 0;
+    });
 });
 ---
 
 {frontmatter.importTypeform && <script type="text/javascript" src="https://embed.typeform.com/next/embed.js" async />}
 <MarkdownTocLayout
-    title={title}
-    subtitle={subtitle}
-    md_github_url={md_github_url}
+    {title}
+    {subtitle}
+    {md_github_url}
     event_header={frontmatter}
-    headings={headings}
-    sections={sections}
+    {headings}
+    {sections}
     leftSidebar={true}
     docSearchTags={[
         { name: "page_type", content: "Event" },
@@ -178,8 +178,8 @@ sections.forEach((year) => {
     )}
     <Content />
     {videos.map(({ id, poster }) => (
-        <VideoTranscript id={id} client:idle>
-            <YouTube id={id} poster={poster} />
+        <VideoTranscript {id} client:idle>
+            <YouTube {id} {poster} />
         </VideoTranscript>
     ))}
 </MarkdownTocLayout>

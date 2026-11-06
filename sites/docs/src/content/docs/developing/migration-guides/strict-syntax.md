@@ -81,7 +81,7 @@ If it isn't, remove the variable entirely and use its contents directly where th
 If the variable is used multiple times, convert it to a parameter:
 
 ```diff lang="groovy"
-- def variable_name = <code>
+- def variable_name = <code> // [!code error] Variable declarations cannot be mixed with config statements
 + params.variable_name = <code>
 ```
 
@@ -124,7 +124,7 @@ For more complicated cases, embed the conditions inside a parameter containing a
 For example, the following assignment:
 
 ```groovy
-def random_var = ''
+def random_var = '' // [!code error] Variable declarations cannot be mixed with config statements
 if (something == true) {
     random_var = 'not_random'
 } else {
@@ -190,7 +190,7 @@ Shorten basic if statements (if-statements with one line per condition) using th
 For example, the following if-else block:
 
 ```groovy
-if(params.slurm) {
+if(params.slurm) { // [!code error] If statements cannot be mixed with config statements
     process.executor = 'slurm'
 } else {
     process.executor = 'local'
@@ -241,14 +241,9 @@ Error <config name>.config:21:32: `USER` is not defined (hint: use `env('...')` 
 Wrap any environment variables in the Groovy `System.getenv()` function.
 For example:
 
-```groovy
-scratch      = "/scratch/${USER}"
-```
-
-Becomes:
-
-```groovy
-scratch      = "/scratch/${System.getenv('USER')}"
+```diff lang="groovy"
+-scratch      = "/scratch/${USER}"
++scratch      = "/scratch/${System.getenv('USER')}"
 ```
 
 For a real-world example, see [nf-core/configs PR #1019](https://github.com/nf-core/configs/pull/1019/changes#diff-3a625144f9f4ce62e80059132891092abbf804c666dd1dd983ad1068e91f46d0R21).
@@ -267,7 +262,7 @@ For example, the following switch block:
 ```groovy
 queue = {
   switch (task.memory) {
-      case { it >= 216.GB }:
+      case { it >= 216.GB }: // [!code error] Unexpected input: ':'
           switch (task.time) {
               case { it >= 7.d }:
                   return 'longmem'

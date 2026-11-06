@@ -1,4 +1,4 @@
-# main\_nf
+# main_nf
 
 #### `SubworkflowLint.main_nf(subworkflow: NFCoreComponent) → tuple[list[str], list[str]]{:python}`
 
@@ -17,15 +17,15 @@ The test checks for the following:
 
 The following checks are performed:
 
-## main\_nf\_exists
+## main_nf_exists
 
 The `main.nf` file must exist.
 
-## main\_nf\_script\_outputs
+## main_nf_script_outputs
 
 The workflow must have an `emit:` block.
 
-## main\_nf\_version\_emitted
+## main_nf_version_emitted
 
 The subworkflow should emit a software version
 channel. A warning is issued if no `versions` output is found (can be

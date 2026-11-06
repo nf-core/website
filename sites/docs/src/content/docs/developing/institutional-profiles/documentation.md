@@ -34,9 +34,9 @@ Explain how users at your institution should use the profile:
 
 To use this profile, specify it when running any nf-core pipeline:
 
-\```bash
+```bash
 nextflow run nf-core/<pipeline-name> -profile big_university
-\```
+```
 
 This will automatically apply all cluster-specific settings including executor,
 resource limits, and container configurations.
@@ -54,9 +54,9 @@ The following sub-profiles are available for specialized resources:
 
 Example:
 
-\```bash
+```bash
 nextflow run nf-core/rnaseq -profile big_university,bigmem
-\```
+```
 ````
 
 ### Prerequisites and setup
@@ -151,18 +151,18 @@ Include common problems and solutions:
 
 If jobs fail with out-of-memory errors, try the `bigmem` sub-profile:
 
-\```bash
+```bash
 nextflow run nf-core/<pipeline-name> -profile big_university,bigmem
-\```
+```
 
 ### Quota exceeded errors
 
 Move your work directory to `/scratch` if you exceed `/home` quota:
 
-\```bash
+```bash
 cd /scratch/$USER
 nextflow run nf-core/<pipeline-name> -profile big_university
-\```
+```
 ````
 
 ### Contact information
@@ -185,7 +185,7 @@ For issues with nf-core pipelines, see the [nf-core website](https://nf-co.re).
 
 Here is a complete example combining all sections:
 
-````markdown
+````markdown expandable={20}
 # Big University HPC Configuration
 
 Configuration profile for the Big University HPC cluster.
@@ -198,9 +198,9 @@ for questions or issues.
 
 To use this profile, specify it when running any nf-core pipeline:
 
-\```bash
+```bash
 nextflow run nf-core/<pipeline-name> -profile big_university
-\```
+```
 
 This will automatically apply all cluster-specific settings including executor,
 resource limits, and container configurations.
@@ -240,10 +240,10 @@ the high-memory partition.
 
 Move your work directory to `/scratch` if you exceed `/home` quota:
 
-\```bash
+```bash
 cd /scratch/$USER
 nextflow run nf-core/<pipeline-name> -profile big_university
-\```
+```
 
 ## Support
 

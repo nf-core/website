@@ -3,6 +3,7 @@ on:
   push:
     branches: [main]
   pull_request:
+    types: [opened]
     paths:
       - "sites/main-site/**"
       # Content-only PRs (blog posts, events, ...) barely move build time; pushes to main still benchmark them
@@ -10,9 +11,8 @@ on:
       - "sites/pipelines/**"
       - "astro.config.base.mjs"
       - "bin/satteri/**"
-      - "public/pipelines.json"
+      - "!public/pipelines.json"
       - "package.json"
-      - "package-lock.json"
       - "bench/**"
   workflow_dispatch:
 
@@ -43,7 +43,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run benchmarks
-        uses: CodSpeedHQ/action@78102a468f96d8e0ccb92d0ec49425753fc42062 # v5.6.0
+        uses: CodSpeedHQ/action@af75f77f17a054769abefaa42fe8dc2975469b5f # v5.6.3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

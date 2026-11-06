@@ -307,7 +307,7 @@ To prepare for release:
 
 1. Update the version number on the `dev` branch:
 
-   ```bash
+   ```bash placeholder="<new-version"
    nf-core pipelines bump-version <new-version>
    ```
 

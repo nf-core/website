@@ -11,7 +11,7 @@
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
 import nextflowSvg from "../../sites/main-site/src/icons/logos/nextflow.svg?raw";
 import { pluginCaptions } from "./ec-plugin-captions.ts";
-import { pluginFileIcons } from "./ec-plugin-file-icons.ts";
+import { pluginCodeblocks } from "starlight-codeblocks/expressive-code";
 
 /** Shiki themes used for all code rendering, also by hast-inline-code.ts. */
 export const THEMES = { dark: "github-dark-dimmed", light: "github-light" } as const;
@@ -47,14 +47,14 @@ export function createEcConfig() {
         },
         plugins: [
             pluginLineNumbers(),
-            pluginCaptions(),
-            pluginFileIcons([
-                {
-                    name: "nextflow",
-                    svg: nextflowSvg,
-                    extensions: [".nf", ".nf.test", ".config"],
+            ...pluginCodeblocks({
+                fileIcons: {
+                    // The logo uses currentColor; give it the Nextflow green.
+                    icons: { nextflow: nextflowSvg.replaceAll("currentColor", "rgb(13, 192, 157)") },
+                    files: { ".nf": "nextflow", ".nf.test": "nextflow", ".config": "nextflow" },
                 },
-            ]),
+            }),
+            pluginCaptions(),
         ],
         shiki: {
             langAlias: LANG_ALIAS,

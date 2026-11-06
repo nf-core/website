@@ -1,1 +1,1 @@
-# nf\_core.pipelines.download
+# nf_core.pipelines.download

@@ -1,4 +1,4 @@
-# nf\_core.pipelines.schema
+# nf_core.pipelines.schema
 
 Code to deal with pipeline JSON Schema
 
@@ -43,14 +43,14 @@ Common mime types: <https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_
 
 Generate set of default input parameters from schema.
 
-Saves defaults to self.schema\_defaults
+Saves defaults to self.schema_defaults
 Returns count of how many parameters were found (with or without a default value)
 
 #### `get_schema_filename() → str{:python}`
 
 #### `get_schema_path(path: str | Path, local_only: bool = False, revision: str | None = None) → None{:python}`
 
-Given a pipeline name, directory, or path, set self.schema\_filename
+Given a pipeline name, directory, or path, set self.schema_filename
 
 #### `get_schema_types() → None{:python}`
 

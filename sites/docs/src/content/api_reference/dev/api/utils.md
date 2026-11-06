@@ -1,4 +1,4 @@
-# nf\_core.utils
+# nf_core.utils
 
 Common utility functions for the nf-core python package.
 
@@ -6,7 +6,7 @@ Common utility functions for the nf-core python package.
 
 Bases: `RuntimeError`
 
-Raised by run\_cmd when a command exits with a non-zero code.
+Raised by run_cmd when a command exits with a non-zero code.
 
 Keeps the captured streams, so callers can inspect the command’s output instead of parsing the error message.
 output holds both streams decoded, since Nextflow prints error details to stdout and only a summary to stderr.
@@ -60,7 +60,7 @@ A list of files found during the linting process.
 
 #### `git_sha{:python}`
 
-The git sha for the repo commit / current GitHub pull-request ($GITHUB\_PR\_COMMIT)
+The git sha for the repo commit / current GitHub pull-request ($GITHUB_PR_COMMIT)
 
 - **Type:**
   str
@@ -153,7 +153,7 @@ Sends a HTTP GET request to the Anaconda remote API.
 
 - **Parameters:**
   - **dep** (_str_) – A conda package name.
-  - **dep\_channels** (_list_) – list of conda channels to use
+  - **dep_channels** (_list_) – list of conda channels to use
 - **Raises:**
   - **A LookupError**\*\*,\*\* **if the connection fails** **or** **times out** **or** **gives an unexpected status code** –
   - **A ValueError**\*\*,\*\* **if the package name can not be found** **(****404****)** –
@@ -167,10 +167,10 @@ Check if the current version of nf-core is outdated
 Check the version of Nextflow installed on the system.
 
 - **Parameters:**
-  - **minimal\_nf\_version** (_tuple_ \*\[\*_int_ _,_ _int_ _,_ _int_ _,_ _bool_ _]_) – The minimal version of Nextflow required.
+  - **minimal_nf_version** (_tuple_ \*\[\*_int_ _,_ _int_ _,_ _int_ _,_ _bool_ _]_) – The minimal version of Nextflow required.
   - **silent** (_bool_) – Whether to log the version or not.
 - **Returns:**
-  True if the installed version is greater than or equal to minimal\_nf\_version
+  True if the installed version is greater than or equal to minimal_nf_version
 - **Return type:**
   bool
 
@@ -186,8 +186,8 @@ Uses Nextflow to retrieve the the configuration variables
 from a Nextflow workflow.
 
 - **Parameters:**
-  - **wf\_path** (_str_) – Nextflow workflow file system path.
-  - **cache\_config** (_bool_) – cache configuration or not (def. True)
+  - **wf_path** (_str_) – Nextflow workflow file system path.
+  - **cache_config** (_bool_) – cache configuration or not (def. True)
 - **Returns:**
   Workflow configuration settings.
 - **Return type:**
@@ -223,15 +223,15 @@ Get the version of Nextflow installed on the system. Cached for the lifetime of 
 
 ### `nf_core.utils.get_repo_commit(pipeline, commit_id){:python}`
 
-Check if the repo contains the requested commit\_id, and expand it to long form if necessary.
+Check if the repo contains the requested commit_id, and expand it to long form if necessary.
 
 - **Parameters:**
   - **pipeline** (_str_) – GitHub repo username/repo
-  - **commit\_id** – The requested commit ID (SHA). It can be in standard long/short form, or any length.
+  - **commit_id** – The requested commit ID (SHA). It can be in standard long/short form, or any length.
 - **Returns:**
   String or None
 - **Return type:**
-  commit\_id
+  commit_id
 
 ### `nf_core.utils.get_repo_releases_branches(pipeline, wfs){:python}`
 
@@ -239,11 +239,11 @@ Fetches details of a nf-core workflow to download.
 
 - **Parameters:**
   - **pipeline** (_str_) – GitHub repo username/repo
-  - **wfs** – A nf\_core.pipelines.list.Workflows() object, where get\_remote\_workflows() has been called.
+  - **wfs** – A nf_core.pipelines.list.Workflows() object, where get_remote_workflows() has been called.
 - **Returns:**
   Array of releases, Array of branches
 - **Return type:**
-  wf\_releases, wf\_branches (tuple)
+  wf_releases, wf_branches (tuple)
 - **Raises:**
   **LockupError**\*\*,\*\* **if the pipeline can not be found.** –
 
@@ -265,7 +265,7 @@ Checks if the specified directory have the minimum required files
 (‘main.nf’, ‘nextflow.config’) for a pipeline directory
 
 - **Parameters:**
-  **wf\_path** (_str_) – The directory to be inspected
+  **wf_path** (_str_) – The directory to be inspected
 - **Raises:**
   **UserWarning** – If one of the files are missing
 
@@ -273,7 +273,7 @@ Checks if the specified directory have the minimum required files
 
 Checks if a path is relative to another.
 
-Should mimic Path.is\_relative\_to which not available in Python < 3.9
+Should mimic Path.is_relative_to which not available in Python < 3.9
 
 path1 (Path | str): The path that could be a subpath
 path2 (Path | str): The path the could be the superpath
@@ -322,7 +322,7 @@ Sets the value in a nested dict using a list of keys to traverse
 
 ### `nf_core.utils.parse_anaconda_licence(anaconda_response, version=None){:python}`
 
-Given a response from the anaconda API using anaconda\_package, parse the software licences.
+Given a response from the anaconda API using anaconda_package, parse the software licences.
 
 Returns: Set of licence types
 
@@ -364,7 +364,7 @@ Return ‘ies’ if the input is not one or has not the length of one, else ‘y
 
 Poll the nf-core website API
 
-Takes argument api\_url for URL
+Takes argument api_url for URL
 
 Expects API response to be valid JSON and contain a top-level ‘status’ key.
 
@@ -375,8 +375,8 @@ Expects API response to be valid JSON and contain a top-level ‘status’ key.
 Prompt for pipeline release / branch
 
 - **Parameters:**
-  - **wf\_releases** (_array_) – Array of repo releases as returned by the GitHub API
-  - **wf\_branches** (_array_) – Array of repo branches, as returned by the GitHub API
+  - **wf_releases** (_array_) – Array of repo releases as returned by the GitHub API
+  - **wf_branches** (_array_) – Array of repo branches, as returned by the GitHub API
   - **multiple** (_bool_) – Allow selection of multiple releases & branches (for Seqera Platform)
 - **Returns:**
   Selected release / branch or False if no releases / branches available
@@ -388,7 +388,7 @@ Prompt for pipeline release / branch
 Prompt for the pipeline name with questionary
 
 - **Parameters:**
-  **wfs** – A nf\_core.pipelines.list.Workflows() object, where get\_remote\_workflows() has been called.
+  **wfs** – A nf_core.pipelines.list.Workflows() object, where get_remote_workflows() has been called.
 - **Returns:**
   GitHub repo - username/repo
 - **Return type:**
@@ -421,7 +421,7 @@ Context manager to create a tempdir and change into it, ensuring its removal and
 the original working directory on exit (including exceptions).
 
 - **Parameters:**
-  **base\_dir** – Directory in which to create the tempdir. Defaults to the system temp location.
+  **base_dir** – Directory in which to create the tempdir. Defaults to the system temp location.
 
 ### `nf_core.utils.setup_nfcore_cachedir(cache_fn: str | Path | None = None) → Path{:python}`
 
@@ -437,7 +437,7 @@ Sets up local caching for faster remote HTTP requests.
 Caching directory will be set up in the user’s home directory under
 a .config/nf-core/cache\_\* subdir.
 
-Uses requests\_cache monkey patching.
+Uses requests_cache monkey patching.
 Also returns the config dict so that we can use the same setup with a Session.
 
 ### `nf_core.utils.sort_dictionary(d: dict) → dict{:python}`
@@ -454,7 +454,7 @@ From Stack Overflow: <https://stackoverflow.com/a/14693789/713980>
 
 Remove paired quotes (single or double) from start and end of string.
 
-Uses ast.literal\_eval to safely parse Python string literals, preserving
+Uses ast.literal_eval to safely parse Python string literals, preserving
 the original string if it’s not a valid literal.
 
 Special handling for ruamel.yaml DoubleQuotedScalarString to preserve
@@ -470,7 +470,7 @@ strings that should not be converted to numbers (e.g., “123” stays as string
 Validates the md5 checksum of a file on disk.
 
 - **Parameters:**
-  - **file\_name** (_str_) – Path to a local file.
+  - **file_name** (_str_) – Path to a local file.
   - **expected** (_str_) – The expected md5sum.
 - **Raises:**
   **IOError**\*\*,\*\* **if the md5sum does not match the remote sum.** –
@@ -482,7 +482,7 @@ Display a command-line spinner while calling a function repeatedly.
 Keep waiting until that function returns True
 
 - **Parameters:**
-  - **poll\_func** (_function_) – Function to call
-  - **refresh\_per\_second** (_int_) – Refresh this many times per second. Default: 20.
+  - **poll_func** (_function_) – Function to call
+  - **refresh_per_second** (_int_) – Refresh this many times per second. Default: 20.
 - **Returns:**
   None. Just sits in an infinite loop until the function returns True.
