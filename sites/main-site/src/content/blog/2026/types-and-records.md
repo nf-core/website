@@ -38,14 +38,14 @@ The input record should consist of several required and optional typed fields.
 
 A record with typed fields can look like this:
 
+```nextflow
 input:
 record(
-id: String,
-input_file: Path,
-input_index: Path?
+  id: String,
+  input_file: Path,
+  input_index: Path?
 )
-
-````
+```
 
 :::tip
 To annotate a field as optional, put a `?` after the type of that field (for example, `input_index: Path?` in the example above).
@@ -92,10 +92,10 @@ More information on this can be found in the [docs](https://docs.seqera.io/nextf
 The new `stage` block could now also be used to include script files into the module instead of relying on the bin folder or process templates.
 For example:
 
-```groovy
+```nextflow
 stage:
 stageAs file("${moduleDir}/bin/template_script.py"), '*'
-````
+```
 
 ### Example
 
@@ -109,22 +109,20 @@ Finally, `samtools_stats_args` and `output_prefix` have been added as optional S
 
 The input section of a module will change like this:
 
+```diff lang="nextflow"
 input:
-
 - tuple val(meta), path(input), path(input_index)
 - tuple val(meta2), path(fasta), path(fai)
-
-* record(
-* id: String,
-* meta: Record?,
-* input: Path,
-* input_index: Path,
-* fasta: Path?,
-* fai: Path?,
-* samtools_stats_args: String?,
-* output_prefix: String?
-* )
-
++ record(
++ id: String,
++ meta: Record?,
++ input: Path,
++ input_index: Path,
++ fasta: Path?,
++ fai: Path?,
++ samtools_stats_args: String?,
++ output_prefix: String?
++ )
 ```
 
 So, with inputs out of the way, let's move on to the module outputs!
@@ -150,6 +148,7 @@ The module outputs one file called `stats` and one version of the `samtools stat
 
 The output section of the module will change like this:
 
+```diff lang="nextflow"
   output:
 - tuple val(meta), path("*.stats"), emit: stats
 - tuple val("${task.process}"), val('samtools'), eval('samtools version | sed "1!d;s/.* //"'), emit: versions_samtools, topic: versions
@@ -192,14 +191,14 @@ Let's return to `SAMTOOLS_STATS` once again and take a look at how to handle the
 
 The handling of `ext` variables will change like this:
 
-```diff lang="groovy"
+```diff lang="nextflow"
 process SAMTOOLS_STATS {
 	...
 
-+    ext [
-+        prefix: { output_prefix ?: "${id}" },
-+        args: { samtools_stats_args ?: '' }
-+    ]
++  ext [
++    prefix: { output_prefix ?: "${id}" },
++    args: { samtools_stats_args ?: '' }
++  ]
 
 	input:
 	...
@@ -207,8 +206,8 @@ process SAMTOOLS_STATS {
 	output:
 	...
 
-+   topic:
-+   ...
++ topic:
++ ...
 
 -	when: task.ext.when == null || task.ext.when
 
@@ -220,19 +219,19 @@ process SAMTOOLS_STATS {
 	samtools \\
 		stats \\
 -		${args} \\
-+       ${task.ext.args} \\
++   ${task.ext.args} \\
 		--threads ${task.cpus} \\
 		${reference} \\
 		${input} \\
 -		> ${prefix}.stats
-+       > ${task.ext.prefix}.stats
++   > ${task.ext.prefix}.stats
 	"""
 
 	stub:
 -	def prefix = task.ext.prefix ?: "${meta.id}"
 	"""
 -	touch ${prefix}.stats
-+   touch ${task.ext.prefix}.stats
++ touch ${task.ext.prefix}.stats
 	"""
 }
 ```
@@ -241,6 +240,7 @@ process SAMTOOLS_STATS {
 
 This is full example of the `SAMTOOLS_STATS` module.
 
+```nextflow title=modules/nf-core/samtools/stats/main.nf
 nextflow.enable.types = true
 
 process SAMTOOLS_STATS {
@@ -295,9 +295,5 @@ label 'process_single'
     """
     touch ${task.ext.prefix}.stats
     """
-
 }
-
-```
-
 ```
