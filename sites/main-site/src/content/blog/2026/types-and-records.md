@@ -114,14 +114,14 @@ input:
 - tuple val(meta), path(input), path(input_index)
 - tuple val(meta2), path(fasta), path(fai)
 + record(
-+ id: String,
-+ meta: Record?,
-+ input: Path,
-+ input_index: Path,
-+ fasta: Path?,
-+ fai: Path?,
-+ samtools_stats_args: String?,
-+ output_prefix: String?
++   id: String,
++   meta: Record?,
++   input: Path,
++   input_index: Path,
++   fasta: Path?,
++   fai: Path?,
++   samtools_stats_args: String?,
++   output_prefix: String?
 + )
 ```
 
