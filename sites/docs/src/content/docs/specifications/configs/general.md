@@ -120,10 +120,9 @@ Files for a pipeline-specific institutional config must be located:
 - **[`conf/pipeline/<pipeline name>/<config name>.config`](https://github.com/nf-core/configs/tree/master/conf/pipeline)**
 - **[`docs/pipeline/<pipeline name>/<config name>.md`](https://github.com/nf-core/configs/tree/master/docs/pipeline)**
 
-Furthermore, the config MUST be referred to in two additional places:
+Furthermore, the config MUST be referred to in one additional place:
 
 - **[nf-core_custom.config](https://github.com/nf-core/configs/blob/master/nfcore_custom.config)**: so the configs can be loaded by any nf-core pipeline
-- **[.github/workflows/main.yml](https://github.com/nf-core/configs/blob/master/.github/workflows/main.yml)**: so the config is tested and linted using the GitHub action CI tests
 
 ## Required information
 
