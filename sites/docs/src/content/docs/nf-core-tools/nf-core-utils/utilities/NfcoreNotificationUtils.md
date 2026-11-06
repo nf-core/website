@@ -1,5 +1,5 @@
 ---
-# Copied from docs/utilities/NfcoreNotificationUtils.md of nf-core/nf-core-utils 0.6.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+# Copied from docs/utilities/NfcoreNotificationUtils.md of nf-core/nf-core-utils 0.7.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
 title: "Pipeline Notifications Tutorial"
 shortTitle: "Pipeline Notifications Tutorial"
 weight: 6
@@ -251,9 +251,50 @@ workflow.onComplete {
 
 Email notifications provide comprehensive pipeline reports that users can refer to later.
 
-HTML emails try `sendmail` first, then `mail` if the command cannot run, exits with a nonzero status, or exceeds its 30-second deadline. Plaintext emails use `mail` directly. Input is supplied through a temporary file so a command that stops reading cannot block the caller. Timed-out commands are terminated, with up to five seconds allowed for process cleanup.
+Emails are delivered with Nextflow's built-in [`sendMail()`](https://docs.seqera.io/nextflow/notifications), so `--email` uses the same mail settings as `nextflow run -N`. Nextflow picks the transport in this order:
 
-Success means the local mail command exited successfully, not that the recipient received the email. HTML and text reports are saved under `outdir/pipeline_info` before delivery is attempted. If all attempts fail, the function logs a warning. Temporary attachment copies are removed after rendering; cleanup failures are warnings and do not prevent saving reports or attempting delivery.
+1. AWS Simple Email Service when `NXF_ENABLE_AWS_SES=true` (requires the `nf-amazon` plugin)
+2. SMTP when the `mail.smtp` config scope is set, for example:
+
+   ```groovy title="nextflow.config"
+   mail {
+       from = 'pipeline@example.com'
+       smtp.host = 'email-smtp.us-east-1.amazonaws.com'
+       smtp.port = 587
+       smtp.user = secrets.SMTP_USER
+       smtp.password = secrets.SMTP_PASSWORD
+       smtp.auth = true
+       smtp.starttls.enable = true
+       smtp.starttls.required = true
+       // Transport timeouts are in milliseconds
+       smtp.connectiontimeout = 5000
+       smtp.timeout = 5000
+       smtp.writetimeout = 5000
+   }
+   ```
+
+3. AWS SES when `AWS_REGION` or `AWS_DEFAULT_REGION` is set and `nf-amazon` is loaded. Launch environments often export these variables for other AWS tools, so email can switch to SES without any mail configuration. The launch machine's IAM principal needs `ses:SendRawEmail`, and `mail.from` must be an SES-verified identity; otherwise sending fails with a warning. Configure `mail.smtp` to override this region-based selection. Explicit `NXF_ENABLE_AWS_SES=true` still takes precedence over SMTP.
+4. The local `sendmail` command, then `mail` (the `mail` command sends the plain text only, without attachments)
+
+The `onComplete` handler runs on the machine that launched the pipeline, so mail credentials and environment variables must be available there, not in task containers.
+
+HTML emails contain the rendered `assets/email_template.html` with `assets/email_template.txt` as the plain-text alternative, the pipeline logo `assets/<name>_logo_light.png` (the manifest name with `/` replaced by `-`) inline as `cid:nfcorepipelinelogo`, and the MultiQC report when it is smaller than `params.max_multiqc_email_size`. Plaintext emails (`plaintext_email`) contain only the text template. `assets/sendmail_template.txt` is no longer used.
+
+HTML and text reports are saved under `outdir/pipeline_info` before delivery is attempted. If delivery fails, the function logs a warning and the run is not failed. Success means the mail transport accepted the message, not that the recipient received it.
+
+Attachment preparation and delivery run on a daemon thread with a 30-second wait limit. On timeout, the function logs a warning and returns so `onComplete` can finish and Nextflow can stop running tasks. Cancellation is best-effort: a transport that ignores interruption may continue sending, so delivery status is unknown and the function does not retry. The sender removes temporary attachments when it exits, not while it might still be reading them; if it remains blocked until the JVM exits, temporary copies may remain on disk.
+
+MultiQC attachments retain the original report basename, including reports on remote filesystems such as object storage. Remote reports are copied into a temporary directory only when an HTML email has a recipient; both the copy and directory are removed after sending, including when sending fails, and cleanup failures are warnings. Reports at or above `params.max_multiqc_email_size` are not attached or downloaded. Some transports, such as AWS SES, limit the message size further. Plaintext emails and successful runs with only `email_on_fail` do not read or download attachments. The HTML and text summary reports are still saved even when no email is sent.
+
+**Seqera Platform launches**
+
+When [`TOWER_WORKFLOW_ID`](https://docs.seqera.io/platform-cloud/launch/advanced#environment-variables) is non-empty, `completionEmail()` skips delivery for both `email` and `email_on_fail`, logs the reason, and does not read or download attachments. It still saves the HTML and text summary reports. CLI runs using `-with-tower`, `tower.enabled`, or `TOWER_ACCESS_TOKEN` alone are not muted.
+
+This default applies even when Platform's own completion notification is disabled: the head job cannot inspect that account setting. Enable Platform notifications separately if you want Platform to send the completion email. The Launch form's Email parameter and Platform's notification toggle are independent settings.
+
+To retain nf-core email, including MultiQC attachments, for a Platform launch, set the boolean `params.force_completion_email = true` in Nextflow configuration (or pass `--force_completion_email true` where the pipeline's parameter schema permits it). You must still supply `email` or `email_on_fail`; the override does not change recipient selection or failure-only behavior. Pipeline authors exposing this option through schema validation should declare it as a boolean with default `false`. Enabling both this override and Platform notifications can produce two emails.
+
+The override still needs a working mail transport on the compute-environment head job. For AWS SES, configure head environment variable `NXF_ENABLE_AWS_SES=true`, load `nf-amazon`, and grant the head IAM role `ses:SendRawEmail` for the verified sender, subject to SES region and sandbox restrictions. Alternatively, configure `mail.smtp` on the head. Platform server settings such as `TOWER_ENABLE_AWS_SES` and `TOWER_SMTP_*` only configure Platform's own mail; they do not configure Nextflow's mailer.
 
 **Understanding Email Structure**
 
@@ -540,16 +581,22 @@ workflow.onError {
 
 Here's a comprehensive example showing all notification functions working together:
 
+This example uses legacy script syntax (`NXF_SYNTAX_PARSER=v1`) for top-level event handlers. Declare the collected report variable outside the workflow so those handlers can access it.
+
 ```nextflow
 #!/usr/bin/env nextflow
 
 include { completionSummary; completionEmail; imNotification } from 'plugin/nf-core-utils'
+
+def multiqc_reports
 
 workflow {
     // Main workflow logic here
     log.info "Pipeline execution starting..."
 
     // Process data...
+    MULTIQC(analysis_results)
+    multiqc_reports = MULTIQC.out.report.toList()
 
     log.info "Pipeline execution complete"
 }
@@ -592,7 +639,7 @@ workflow.onComplete {
             params.plaintext_email,
             params.outdir,
             params.monochrome_logs,
-            multiqc_report.ifEmpty([])
+            multiqc_reports.isBound() ? multiqc_reports.getVal() : []
         )
     }
 
@@ -644,6 +691,10 @@ workflow.onError {
     }
 }
 ```
+
+:::warning{title="Guard the MultiQC report"}
+Collect the output with `multiqc_reports = MULTIQC.out.report.toList()` in the workflow, then pass `multiqc_reports.isBound() ? multiqc_reports.getVal() : []` in the completion handler. `ifEmpty([])` returns a channel, not the resolved list that `completionEmail()` expects. Never use an unguarded `getVal()`: when a run aborts, `onComplete` runs before Nextflow stops running tasks, and the MultiQC output may never be produced. An unguarded read can then wait forever and prevent task cleanup. Arguments are evaluated before entering `completionEmail()`, so its delivery deadline cannot protect this read. See [nf-core/tools#4486](https://github.com/nf-core/tools/pull/4486).
+:::
 
 ---
 
@@ -744,9 +795,11 @@ workflow.onComplete {
 
 **Common Causes:**
 
-1. SMTP configuration not set up in Nextflow config
+1. No mail transport available: configure `mail.smtp` or `NXF_ENABLE_AWS_SES`, or install `sendmail` on the launch machine (see section 3.2)
 2. Email parameters not provided
 3. MultiQC report path incorrect
+
+The warning `Could not send the summary e-mail to ...` includes the error from Nextflow's mailer. Set `mail.debug = true` to log the SMTP session.
 
 **Solution:**
 
@@ -756,8 +809,8 @@ if (!params.email && !params.email_on_fail) {
     log.info "No email addresses provided - skipping email notification"
 }
 
-// Verify MultiQC report exists
-def mqc_report = multiqc_report.ifEmpty([])
+// In the completion handler; collected with MULTIQC.out.report.toList() in the workflow
+def mqc_report = multiqc_reports.isBound() ? multiqc_reports.getVal() : []
 log.info "MultiQC reports to attach: ${mqc_report}"
 ```
 

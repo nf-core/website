@@ -1,5 +1,5 @@
 ---
-# Copied from docs/NextflowPipelineExtension.md of nf-core/nf-core-utils 0.6.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+# Copied from docs/NextflowPipelineExtension.md of nf-core/nf-core-utils 0.7.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
 title: "Nextflow Pipeline Extension"
 shortTitle: "Nextflow Pipeline Extension"
 weight: 2

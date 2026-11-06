@@ -1,5 +1,5 @@
 ---
-# Copied from docs/utilities/NfcoreReportingUtils.md of nf-core/nf-core-utils 0.6.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+# Copied from docs/utilities/NfcoreReportingUtils.md of nf-core/nf-core-utils 0.7.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
 title: "MultiQC Integration Tutorial"
 shortTitle: "MultiQC Integration Tutorial"
 weight: 8
@@ -124,7 +124,7 @@ static Map workflowSummaryMQC(Map summary, List<String> nfMetadataList, Map resu
 **Parameters:**
 
 - `summary` (Map): Map of workflow parameters and metadata
-- `nfMetadataList` (List<String>): List of metadata fields to include from workflow
+- `nfMetadataList` (List\<String\>): List of metadata fields to include from workflow
 - `results` (Map): Map of pipeline results and statistics
 
 **Returns:**
