@@ -102834,6 +102834,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -115393,6 +115401,10 @@
       },
       "git_sha": "1298fbd2004c2913d6682ce4a419647d97a8fc3f",
       "pipelines": [
+        {
+          "name": "rnaseq",
+          "version": "3.27.0"
+        },
         {
           "name": "rnaseq",
           "version": "3.27.0"
@@ -237740,7 +237752,7 @@
     {
       "name": "merquryfk_merquryfk",
       "path": "modules/nf-core/merquryfk/merquryfk/meta.yml",
-      "tree_sha": "1cd764fe6ca46aacdbc65baf9ca15cef14205fed",
+      "tree_sha": "c00fb92aa7e25ab8c388e8f1d7d3acffbb5d6184",
       "files": [
         "modules/nf-core/merquryfk/merquryfk/.conda-lock/linux_amd64-bd-5ac50fb470d146e0_1.txt",
         "modules/nf-core/merquryfk/merquryfk/.conda-lock/linux_arm64-bd-1e5626c171d2dfe9_1.txt",
@@ -238179,7 +238191,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "9a1cc9f2daeff56a0c53ee44cc583b577250782b"
     },
     {
       "name": "merquryfk_ploidyplot",
@@ -303989,6 +304001,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -304296,6 +304312,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -471887,6 +471907,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "8d443b89a14283139f57b1243071e50e4a0ad4f3",
-  "updated_at": "2026-11-05T14:14:26.337Z"
+  "commit_sha": "9a1cc9f2daeff56a0c53ee44cc583b577250782b",
+  "updated_at": "2026-11-06T02:13:43.223Z"
 }
