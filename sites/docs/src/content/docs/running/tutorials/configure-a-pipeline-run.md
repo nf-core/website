@@ -268,7 +268,7 @@ These settings sit alongside the `process` scope you used above, with a few sibl
 
 Edit `custom.config` to add automatic retries and redirect the work directory:
 
-```groovy title="custom.config" ins={1,5-7}
+```groovy title="custom.config" ins={1,6-7}
 workDir = 'nf-work'
 
 process {
@@ -312,7 +312,7 @@ Nextflow gives you two selectors for this:
 
 Edit your `custom.config` to include both in the `process` block:
 
-```groovy title="custom.config" ins={9-16}
+```groovy title="custom.config" ins={9-17}
 workDir = 'nf-work'
 
 process {
