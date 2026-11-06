@@ -1,6 +1,7 @@
 <script lang="ts">
     import { currentHeading } from "@components/store";
     import SchemaListingTocButtons from "@components/schema/SchemaListingTocButtons.svelte";
+    import { onMount } from "svelte";
     interface Props {
         headings: {
             text: string;
@@ -12,10 +13,30 @@
     }
 
     let { headings, showHiddenBtn }: Props = $props();
+    // indent the headings by level, as in the sidebar
+    const minDepth = $derived(Math.min(...headings.map((heading) => heading.depth)));
+
+    // Bootstrap turns Popper off for dropdowns inside a .navbar (the menu gets data-bs-popper="static"),
+    // so the menu stays aligned to the left of the button: shift it left when it would go past the screen
+    let dropdown: HTMLElement;
+    onMount(() => {
+        const keepOnScreen = () => {
+            const menu = dropdown.querySelector<HTMLElement>(".dropdown-menu");
+            if (!menu) return;
+            menu.style.left = "";
+            const overflow = menu.getBoundingClientRect().right - (window.innerWidth - 8);
+            if (overflow > 0) {
+                menu.style.left = `${-overflow}px`;
+            }
+        };
+        dropdown.addEventListener("shown.bs.dropdown", keepOnScreen);
+        return () => dropdown.removeEventListener("shown.bs.dropdown", keepOnScreen);
+    });
 </script>
 
-<div class="d-md-none toc-md">
-    <div class="dropdown">
+<!-- below xl, where the table of contents of the sidebar is hidden -->
+<div class="d-xl-none toc-md">
+    <div class="dropdown" bind:this={dropdown}>
         <button
             class="btn btn-sm btn-outline-secondary dropdown-toggle text-body-secondary"
             type="button"
@@ -28,7 +49,11 @@
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             {#each headings as heading (heading)}
                 <li class:active={heading.slug === $currentHeading}>
-                    <a class="dropdown-item" href={"#" + heading.slug}>
+                    <a
+                        class="dropdown-item"
+                        href={"#" + heading.slug}
+                        style:padding-left={`${heading.depth - minDepth + 1}rem`}
+                    >
                         {#if heading.fa_icon}
                             <i class={heading.fa_icon} aria-hidden="true"></i>
                         {/if}
@@ -47,7 +72,14 @@
     .toc-md {
         .dropdown-menu {
             max-height: 90dvh;
+            // as wide as the longest heading, but not wider than the screen
+            width: max-content;
+            max-width: calc(100vw - 1rem);
             overflow-y: auto;
+        }
+        // long headings wrap instead of going past the screen
+        .dropdown-item {
+            white-space: normal;
         }
     }
     :global(.navbar:has(.docs-nav)) .toc-md .dropdown-menu {
