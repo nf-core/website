@@ -89971,7 +89971,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "genomeannotator",
@@ -102109,6 +102109,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -115443,6 +115451,10 @@
       },
       "git_sha": "1298fbd2004c2913d6682ce4a419647d97a8fc3f",
       "pipelines": [
+        {
+          "name": "rnaseq",
+          "version": "3.27.0"
+        },
         {
           "name": "rnaseq",
           "version": "3.27.0"
@@ -304396,6 +304408,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -304703,6 +304719,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -408857,8 +408877,9 @@
     {
       "name": "svdb_build",
       "path": "modules/nf-core/svdb/build/meta.yml",
-      "tree_sha": "5cb92225b820c48c92ac583b13b1dbd4f9a497f3",
+      "tree_sha": "6a07fe63e8e7e51074678fa71b7bd492fcf57c29",
       "files": [
+        "modules/nf-core/svdb/build/.conda-lock/linux_amd64-bd-6e53c6778a8f708a_1.txt",
         "modules/nf-core/svdb/build/environment.yml",
         "modules/nf-core/svdb/build/main.nf",
         "modules/nf-core/svdb/build/meta.yml",
@@ -408978,15 +408999,47 @@
         },
         "authors": [
           "@fellen31"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/bcftools_svdb_gzip_tar:a6aa1911ebe4e7c3",
+              "build_id": "bd-a6aa1911ebe4e7c3_1",
+              "scan_id": "sc-bf54a3f695a4d100_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bcftools_svdb_gzip_tar:6e53c6778a8f708a",
+              "build_id": "bd-6e53c6778a8f708a_1",
+              "scan_id": "sc-17aac930716771c5_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/bcftools_svdb_gzip_tar:f4bed4fe31fb86df",
+              "build_id": "bd-f4bed4fe31fb86df_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/d4/d43c9557a0a3b825fe8d4549e26001518d2e17c84019772ac18274f1a8dbfc2c/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bcftools_svdb_gzip_tar:28c84ee0c903f937",
+              "build_id": "bd-28c84ee0c903f937_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9a/9a231533a2fb561d07f4930244fbdef3ea66a7630ed0bc19129f123c514c50f6/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/svdb/build/.conda-lock/linux_amd64-bd-6e53c6778a8f708a_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "d47037a36629d6abfdd58720800263e04741f4fa"
     },
     {
       "name": "svdb_merge",
       "path": "modules/nf-core/svdb/merge/meta.yml",
-      "tree_sha": "c9c18477657285af16396334efa39245cd302950",
+      "tree_sha": "834dff36f1c7c0444d6d27e1e3f8436cccbf3ead",
       "files": [
+        "modules/nf-core/svdb/merge/.conda-lock/linux_amd64-bd-6e53c6778a8f708a_1.txt",
         "modules/nf-core/svdb/merge/environment.yml",
         "modules/nf-core/svdb/merge/main.nf",
         "modules/nf-core/svdb/merge/meta.yml",
@@ -409195,9 +409248,40 @@
         "maintainers": [
           "@ramprasadn",
           "@fellen31"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bcftools_svdb_gzip_tar:6e53c6778a8f708a",
+              "build_id": "bd-6e53c6778a8f708a_1",
+              "scan_id": "sc-17aac930716771c5_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/bcftools_svdb_gzip_tar:a6aa1911ebe4e7c3",
+              "build_id": "bd-a6aa1911ebe4e7c3_1",
+              "scan_id": "sc-bf54a3f695a4d100_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bcftools_svdb_gzip_tar:28c84ee0c903f937",
+              "build_id": "bd-28c84ee0c903f937_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9a/9a231533a2fb561d07f4930244fbdef3ea66a7630ed0bc19129f123c514c50f6/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/bcftools_svdb_gzip_tar:f4bed4fe31fb86df",
+              "build_id": "bd-f4bed4fe31fb86df_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/d4/d43c9557a0a3b825fe8d4549e26001518d2e17c84019772ac18274f1a8dbfc2c/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/svdb/merge/.conda-lock/linux_amd64-bd-6e53c6778a8f708a_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "d47037a36629d6abfdd58720800263e04741f4fa",
       "pipelines": [
         {
           "name": "raredisease",
@@ -409212,8 +409296,9 @@
     {
       "name": "svdb_query",
       "path": "modules/nf-core/svdb/query/meta.yml",
-      "tree_sha": "462b543d0e1559906b05e9a4e422ec066aa99f87",
+      "tree_sha": "210137b4e517e18094c835d80605020175e8ae82",
       "files": [
+        "modules/nf-core/svdb/query/.conda-lock/linux_amd64-bd-6e53c6778a8f708a_1.txt",
         "modules/nf-core/svdb/query/environment.yml",
         "modules/nf-core/svdb/query/main.nf",
         "modules/nf-core/svdb/query/meta.yml",
@@ -409368,9 +409453,40 @@
         },
         "authors": [
           "@ramprasadn"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/bcftools_svdb_gzip_tar:a6aa1911ebe4e7c3",
+              "build_id": "bd-a6aa1911ebe4e7c3_1",
+              "scan_id": "sc-bf54a3f695a4d100_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bcftools_svdb_gzip_tar:6e53c6778a8f708a",
+              "build_id": "bd-6e53c6778a8f708a_1",
+              "scan_id": "sc-17aac930716771c5_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/bcftools_svdb_gzip_tar:f4bed4fe31fb86df",
+              "build_id": "bd-f4bed4fe31fb86df_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/d4/d43c9557a0a3b825fe8d4549e26001518d2e17c84019772ac18274f1a8dbfc2c/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bcftools_svdb_gzip_tar:28c84ee0c903f937",
+              "build_id": "bd-28c84ee0c903f937_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9a/9a231533a2fb561d07f4930244fbdef3ea66a7630ed0bc19129f123c514c50f6/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/svdb/query/.conda-lock/linux_amd64-bd-6e53c6778a8f708a_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "d47037a36629d6abfdd58720800263e04741f4fa",
       "pipelines": [
         {
           "name": "raredisease",
@@ -432362,7 +432478,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "lsmquant",
@@ -469757,7 +469873,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "epigenomesegmentation",
@@ -470269,7 +470385,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "epigenomesegmentation",
@@ -470829,7 +470945,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.3.0"
+          "version": "1.4.0"
         },
         {
           "name": "epigenomesegmentation",
@@ -472821,6 +472937,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "e78a2112a36afcaffa31810216eb2d97cdbce290",
-  "updated_at": "2026-11-07T02:14:44.562Z"
+  "commit_sha": "d47037a36629d6abfdd58720800263e04741f4fa",
+  "updated_at": "2026-11-07T14:13:46.396Z"
 }
