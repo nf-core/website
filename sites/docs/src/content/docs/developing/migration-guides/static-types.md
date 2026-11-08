@@ -57,6 +57,9 @@ To migrate the module `main.nf` file:
 
 1. Remove the `def args` and `def prefix` lines from the `script:` and `stub:` blocks.
    Use `${task.ext.args}` and `${task.ext.prefix}` instead.
+   In case `prefix` and `args` are often used, it is still allowed to define them like this to reduce reduncancy:
+     - `def prefix = task.ext.prefix`
+     - `def args = task.ext.args`
 
 1. Remove the `when:` block:
 
@@ -65,7 +68,7 @@ To migrate the module `main.nf` file:
    task.ext.when == null || task.ext.when
    ```
 
-1. Replace the output tuples with a single output record and remove the `emit:` names:
+1. Replace the output tuples with a single output record and change the `emit:` names to the names of the record fields:
 
    ```groovy title="main.nf"
    output:
@@ -86,11 +89,11 @@ To migrate the module `main.nf` file:
    ```
 
    Replace `<tool>` with the tool name and `<version-command>` with the command that prints its version.
-   If the module writes a `versions.yml` file, remove the `versions.yml` HEREDOC from the `script:` and `stub:` blocks.
+   If the module writes a `versions.yml` file, remove the `versions.yml` HEREDOC from the `script:` and `stub:` blocks. This is mainly the case for modules that use script templates. Since templates are no longer best-practice (see the next chapter for a more in-depth explanation on this), emit the package versions directly using the `eval` function. 
 
 ## Replace a template with a staged script
 
-Modules with static types stage a script file and run it directly, instead of using the `template` function.
+With the introduction of the `stage` block, it is now possible to stage files directly from the modules directory. This makes it possible to ship scripts used by the module directly with the module and use them as CLI scripts instead of `template` scripts. This method will now be considered the new best-practice since maintenance of CLI scripts is easier and more portable than template scripts.
 
 To replace a template with a staged script:
 
@@ -143,14 +146,13 @@ To convert the template file:
 ## Update the tests
 
 Tests must pass inputs as records.
-Nextflow rejects a plain map as input to a module with static types.
 
 To update the tests:
 
 1. In `tests/main.nf.test`, pass each input as a record:
 
    ```groovy title="main.nf.test"
-   record(id: '<sample-id>', <input_file>: file('<path-to-test-file>'), <tool>_args: null, output_prefix: null)
+   record(id: '<sample-id>', <input_file>: file('<path-to-test-file>'))
    ```
 
 1. Move any per-test `ext.args` from `tests/nextflow.config` to the `<tool>_args` field of the record.
