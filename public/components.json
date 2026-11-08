@@ -102892,6 +102892,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -115451,6 +115459,10 @@
       },
       "git_sha": "1298fbd2004c2913d6682ce4a419647d97a8fc3f",
       "pipelines": [
+        {
+          "name": "rnaseq",
+          "version": "3.27.0"
+        },
         {
           "name": "rnaseq",
           "version": "3.27.0"
@@ -304412,6 +304424,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -304719,6 +304735,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -433681,10 +433701,10 @@
     {
       "name": "vardictrust",
       "path": "modules/nf-core/vardictrust/meta.yml",
-      "tree_sha": "cfcbf4ab11daa1dd2649dd8fd6457f627193e923",
+      "tree_sha": "acc0a8c171e50722317a6d778972ed57fcd55c9e",
       "files": [
-        "modules/nf-core/vardictrust/.conda-lock/linux_amd64-bd-1920a853de03683c_1.txt",
-        "modules/nf-core/vardictrust/.conda-lock/linux_arm64-bd-88ae818a180b4691_1.txt",
+        "modules/nf-core/vardictrust/.conda-lock/linux_amd64-bd-b705f1632518b05e_1.txt",
+        "modules/nf-core/vardictrust/.conda-lock/linux_arm64-bd-7e30a277329c2b61_1.txt",
         "modules/nf-core/vardictrust/environment.yml",
         "modules/nf-core/vardictrust/main.nf",
         "modules/nf-core/vardictrust/meta.yml",
@@ -433928,40 +433948,40 @@
         ],
         "containers": {
           "docker": {
-            "linux/amd64": {
-              "name": "community.wave.seqera.io/library/htslib_vardictrust:1920a853de03683c",
-              "build_id": "bd-1920a853de03683c_1",
-              "scan_id": "sc-fcf97fa34f70ac86_1"
-            },
             "linux/arm64": {
-              "name": "community.wave.seqera.io/library/htslib_vardictrust:88ae818a180b4691",
-              "build_id": "bd-88ae818a180b4691_1",
-              "scan_id": "sc-c8de39c1d27ecfb6_1"
+              "name": "community.wave.seqera.io/library/htslib_vardictrust:7e30a277329c2b61",
+              "build_id": "bd-7e30a277329c2b61_1",
+              "scan_id": "sc-2048c1e4647acb49_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/htslib_vardictrust:b705f1632518b05e",
+              "build_id": "bd-b705f1632518b05e_1",
+              "scan_id": "sc-5f514270a9fe0d02_1"
             }
           },
           "singularity": {
-            "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/htslib_vardictrust:8601ae9fc8d7b8d5",
-              "build_id": "bd-8601ae9fc8d7b8d5_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/da/da588dd1fbadf23f023c90173503829e7d7e9615f40d2956a36aa490d8557ab9/data"
-            },
             "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/htslib_vardictrust:01fadb4d36749bdf",
-              "build_id": "bd-01fadb4d36749bdf_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/ff/ff9aa0ea6002405e54f573b1c414a475437c41a5a949a94e498b5d3fbdbc5f37/data"
+              "name": "oras://community.wave.seqera.io/library/htslib_vardictrust:002fbca04179bda4",
+              "build_id": "bd-002fbca04179bda4_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/ff/ffc08b55123861a60e296a5fbfaf4fef4864939c3f0f41f9bf0678a166384369/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/htslib_vardictrust:ed3764cd0c476c11",
+              "build_id": "bd-ed3764cd0c476c11_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/12/1235da44581a255a1c14bfb295838e7806045c142766f7ed78da4222a2a624ae/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/vardictrust/.conda-lock/linux_amd64-bd-1920a853de03683c_1.txt"
+              "lock_file": "modules/nf-core/vardictrust/.conda-lock/linux_amd64-bd-b705f1632518b05e_1.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/vardictrust/.conda-lock/linux_arm64-bd-88ae818a180b4691_1.txt"
+              "lock_file": "modules/nf-core/vardictrust/.conda-lock/linux_arm64-bd-7e30a277329c2b61_1.txt"
             }
           }
         }
       },
-      "git_sha": "ec5a9ed8d87a584915e6444f3f97424087f67084"
+      "git_sha": "97915125c4707e959ec797a321a6b2584bfe8b29"
     },
     {
       "name": "variancepartition_dream",
@@ -472937,6 +472957,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "d47037a36629d6abfdd58720800263e04741f4fa",
-  "updated_at": "2026-11-07T14:13:46.396Z"
+  "commit_sha": "97915125c4707e959ec797a321a6b2584bfe8b29",
+  "updated_at": "2026-11-08T02:14:49.717Z"
 }
