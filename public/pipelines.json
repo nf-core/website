@@ -10,10 +10,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/abotyper",
             "created_at": "2024-12-05T05:11:42Z",
-            "updated_at": "2026-10-22T06:34:52Z",
-            "pushed_at": "2026-10-28T22:37:59Z",
+            "updated_at": "2026-11-08T12:42:21Z",
+            "pushed_at": "2026-11-08T12:42:16Z",
             "homepage": "https://nf-co.re/abotyper",
-            "size": 7764,
+            "size": 13012,
             "stargazers_count": 4,
             "watchers_count": 4,
             "language": "Python",
@@ -26,7 +26,7 @@
             "forks_count": 2,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 10,
+            "open_issues_count": 1,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -35,7 +35,7 @@
             "topics": [],
             "visibility": "public",
             "forks": 2,
-            "open_issues": 10,
+            "open_issues": 1,
             "watchers": 4,
             "default_branch": "dev",
             "temp_clone_token": "",
@@ -105,18 +105,23 @@
             "dev_uses_ruleset": true,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 10,
+            "open_pr_count": 1,
             "repository_url": "https://github.com/nf-core/abotyper",
             "contributors": [
                 {
                     "name": "fmobegi",
-                    "count": 278,
+                    "count": 312,
                     "avatar_url": "https://avatars.githubusercontent.com/u/16131975?v=4"
                 },
                 {
                     "name": "maxulysse",
                     "count": 20,
                     "avatar_url": "https://avatars.githubusercontent.com/u/1019628?v=4"
+                },
+                {
+                    "name": "Copilot",
+                    "count": 13,
+                    "avatar_url": "https://avatars.githubusercontent.com/in/1143301?v=4"
                 },
                 {
                     "name": "mashehu",
@@ -130,7 +135,7 @@
                 }
             ],
             "released_after_tools": false,
-            "head_sha": "2154c92b93bd94987fcee9d91201446d9ad25561",
+            "head_sha": "b90cc3fff3cba31f9b2973de8e065052282885a4",
             "last_release_is_head": false,
             "last_release_vs_default_compare_url": "",
             "commits_to_dev": 30,
@@ -144,18 +149,19 @@
             "main_uses_params_block": false,
             "main_has_pr_comment_workflow": false,
             "dev_nextflow_config_plugins": [
-                "nf-schema@2.5.1"
+                "nf-schema@2.7.3"
             ],
             "dev_nextflow_config_manifest": {
-                "defaultBranch": "master"
+                "defaultBranch": "master",
+                "diagram": "docs/images/nf-core-abotyperv2-metro-map.svg"
             },
             "dev_uses_params_block": false,
             "dev_has_pr_comment_workflow": true,
             "releases": [
                 {
                     "tag_name": "dev",
-                    "published_at": "2026-10-22T04:29:41Z",
-                    "tag_sha": "2154c92b93bd94987fcee9d91201446d9ad25561",
+                    "published_at": "2026-11-08T12:42:16Z",
+                    "tag_sha": "b90cc3fff3cba31f9b2973de8e065052282885a4",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -181,7 +187,7 @@
                         ]
                     },
                     "nextflow_version": "!>=25.10.4",
-                    "nf_core_version": "4.1.0",
+                    "nf_core_version": "4.2.1",
                     "plugins": [
                         "nf-schema@2.1.1"
                     ],
@@ -34879,12 +34885,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/multiplesequencealign",
             "created_at": "2023-07-24T14:30:12Z",
-            "updated_at": "2026-10-28T07:47:49Z",
+            "updated_at": "2026-11-08T02:54:46Z",
             "pushed_at": "2026-11-05T06:47:07Z",
             "homepage": "https://nf-co.re/multiplesequencealign",
             "size": 20800,
-            "stargazers_count": 41,
-            "watchers_count": 41,
+            "stargazers_count": 42,
+            "watchers_count": 42,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -34905,7 +34911,7 @@
             "visibility": "public",
             "forks": 14,
             "open_issues": 18,
-            "watchers": 41,
+            "watchers": 42,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,

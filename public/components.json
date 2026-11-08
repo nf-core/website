@@ -102900,6 +102900,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -115459,6 +115467,10 @@
       },
       "git_sha": "1298fbd2004c2913d6682ce4a419647d97a8fc3f",
       "pipelines": [
+        {
+          "name": "rnaseq",
+          "version": "3.27.0"
+        },
         {
           "name": "rnaseq",
           "version": "3.27.0"
@@ -204988,6 +205000,193 @@
         ]
       },
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+    },
+    {
+      "name": "insitugame",
+      "path": "modules/nf-core/insitugame/meta.yml",
+      "tree_sha": "445ef7f0d4cf7a5f7136a68c1be67c4c07225651",
+      "files": [
+        "modules/nf-core/insitugame/.conda-lock/linux_amd64-bd-8a968e208a8a3d71_1.txt",
+        "modules/nf-core/insitugame/environment.yml",
+        "modules/nf-core/insitugame/main.nf",
+        "modules/nf-core/insitugame/meta.yml",
+        "modules/nf-core/insitugame/tests/main.nf.test",
+        "modules/nf-core/insitugame/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "insitugame",
+        "description": "In situ spatial evolutionary game assay for inferring tumor subclonal payoff matrices and adaptive therapy regimens from intact spatial transcriptomics.",
+        "keywords": [
+          "spatial transcriptomics",
+          "evolutionary game theory",
+          "oncology",
+          "cancer",
+          "visium"
+        ],
+        "tools": [
+          {
+            "insitugame": {
+              "description": "Computational oncology assay for subclonal payoff matrices and evolutionary game dynamics from spatial transcriptomics.",
+              "homepage": "https://lukecele.github.io/spatial-game-assay/",
+              "documentation": "https://github.com/Lukecele/spatial-game-assay#readme",
+              "tool_dev_url": "https://github.com/Lukecele/spatial-game-assay",
+              "doi": "10.5281/zenodo.23585216",
+              "licence": [
+                "GPL-3.0-or-later"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "spatial_data": {
+                "type": "file",
+                "description": "Spatial transcriptomics counts and coordinate table",
+                "pattern": "*.{tsv,csv,tsv.gz,csv.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "results": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}_results.json": {
+                  "type": "file",
+                  "description": "Inferred payoff matrices and Nash equilibria in JSON format",
+                  "pattern": "${prefix}_results.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tables": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}_tables.csv": {
+                  "type": "file",
+                  "description": "Inferred game payoff matrix",
+                  "pattern": "${prefix}_tables.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_insitugame": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "insitugame": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import importlib.metadata; print(importlib.metadata.version('insitugame'))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "insitugame": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import importlib.metadata; print(importlib.metadata.version('insitugame'))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@Lukecele"
+        ],
+        "maintainers": [
+          "@Lukecele"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/insitugame:1.0.7--8a968e208a8a3d71",
+              "build_id": "bd-8a968e208a8a3d71_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/insitugame:1.0.7--f127ecaee33d79ea",
+              "build_id": "bd-f127ecaee33d79ea_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/aa/aa25d488809b83440425f792955c529c86887805184f54ec639323723b8bf930/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/insitugame/.conda-lock/linux_amd64-bd-8a968e208a8a3d71_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "fb8dd13ce49b79f843627df4a51ebfad5f9ba49c"
     },
     {
       "name": "instrain_compare",
@@ -304428,6 +304627,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -304735,6 +304938,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -472957,6 +473164,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "97915125c4707e959ec797a321a6b2584bfe8b29",
-  "updated_at": "2026-11-08T02:14:49.717Z"
+  "commit_sha": "fb8dd13ce49b79f843627df4a51ebfad5f9ba49c",
+  "updated_at": "2026-11-08T14:13:44.340Z"
 }
