@@ -2,7 +2,7 @@
 title: "Bringing Nextflow Types and Records to nf-core/modules"
 subtitle: "Guideline updates for migrating nf-core/modules to the latest Nextflow syntax"
 pubDate: 2026-10-28T09:00:00+01:00
-headerImage: "/assets/images/blogs/types-and-records/type-gulls.jpg"
+headerImage: "/assets/images/blog/types-and-records/type-gulls.jpg"
 headerImageAlt: "A bunch of records laid out onto a black surface."
 authors:
   - nvnieuwk
@@ -15,7 +15,7 @@ The aim of the combined task force was to develop the nf-core guidelines related
 
 This blog post gives an overview of all the upcoming changes to nf-core/modules along with the reasoning behind each one.
 
-![](/assets/images/blogs/types-and-records/community.jpg)
+![](/assets/images/blog/types-and-records/community.jpg)
 
 ## Singular inputs and outputs
 
@@ -236,7 +236,7 @@ process SAMTOOLS_STATS {
 }
 ```
 
-![](/assets/images/blogs/types-and-records/drop-legacy-processes.jpg)
+![](/assets/images/blog/types-and-records/drop-legacy-processes.jpg)
 
 ## Full example
 
