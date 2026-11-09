@@ -102916,6 +102916,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -115622,6 +115630,10 @@
         {
           "name": "rnaseq",
           "version": "3.27.0"
+        },
+        {
+          "name": "rnaseq",
+          "version": "3.27.0"
         }
       ]
     },
@@ -122804,6 +122816,397 @@
         ]
       },
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+    },
+    {
+      "name": "fairbioheaders_combine",
+      "path": "modules/nf-core/fairbioheaders/combine/meta.yml",
+      "tree_sha": "8a3dda36ea038ed4e6b5fee7bcd60fec228303da",
+      "files": [
+        "modules/nf-core/fairbioheaders/combine/.conda-lock/linux_amd64-bd-71029206d3ce1119_1.txt",
+        "modules/nf-core/fairbioheaders/combine/.conda-lock/linux_arm64-bd-1ff11621d7e9a7c8_1.txt",
+        "modules/nf-core/fairbioheaders/combine/environment.yml",
+        "modules/nf-core/fairbioheaders/combine/main.nf",
+        "modules/nf-core/fairbioheaders/combine/meta.yml",
+        "modules/nf-core/fairbioheaders/combine/tests/main.nf.test",
+        "modules/nf-core/fairbioheaders/combine/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "fairbioheaders_combine",
+        "description": "Attach FAIR-bioHeaders provenance metadata (FHR, FHP or FHGFF3) to a FASTA, protein FASTA,\nGFA or GFF3 file as a header, after validating the metadata against its schema, and record\nthe SHA-512/256 checksum of the result in the header.\nThe output keeps the extension of the input (`<prefix>.<extension>`), and compressed input\ngives BGZF-compressed output. The task fails when the metadata is invalid, when the header\ntype does not suit the file type (for example FHP on GFA), when the file extension is not\none the tool supports, or when the output name would overwrite the input; set `ext.prefix`\nin that case.\n",
+        "keywords": [
+          "fasta",
+          "gfa",
+          "gff3",
+          "genome assembly",
+          "metadata",
+          "provenance",
+          "fair",
+          "checksum"
+        ],
+        "tools": [
+          {
+            "fair-bioheaders": {
+              "description": "Toolkit to validate, convert, combine, strip and verify FAIR-bioHeaders (FHR, FHP, FHGFF3) provenance metadata embedded in FASTA, GFA and GFF3 headers",
+              "homepage": "https://github.com/FAIR-bioHeaders/FAIR-bioHeaders-Tools",
+              "documentation": "https://github.com/FAIR-bioHeaders/FAIR-bioHeaders-Tools#readme",
+              "tool_dev_url": "https://github.com/FAIR-bioHeaders/FAIR-bioHeaders-Tools",
+              "doi": "10.1093/bib/bbae122",
+              "licence": [
+                "MPL-2.0"
+              ],
+              "identifier": "biotools:fair-bioheaders",
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "metadata": {
+                "type": "file",
+                "description": "FHR, FHP or FHGFF3 metadata for the sequence file, as JSON or YAML.\nAny checksum it holds is replaced by the checksum of the combined file\n",
+                "pattern": "*.{json,yaml,yml}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3464"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            },
+            {
+              "sequence": {
+                "type": "file",
+                "description": "Genome FASTA or GFA (FHR header), protein FASTA (FHP header) or GFF3 (FHGFF3\nheader), plain or gzip/BGZF-compressed (`.gz` or `.bgz`). An existing header\nis replaced; all other bytes are kept unchanged\n",
+                "pattern": "*.{fa,fasta,fna,fas,faa,ffn,frn,fsa,mpfa,gfa,gff,gff3}{,.gz,.bgz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3975"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1975"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "sequence": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.${extension}": {
+                  "type": "file",
+                  "description": "The input file with the FAIR-bioHeaders header attached: genome FASTA or GFA with an\nFHR header, protein FASTA with an FHP header or GFF3 with an FHGFF3 header.\nBGZF-compressed when the input was compressed\n",
+                  "pattern": "*.{fa,fasta,fna,fas,faa,ffn,frn,fsa,mpfa,gfa,gff,gff3}{,.gz,.bgz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3975"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1975"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_fairbioheaders": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fair-bioheaders": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bioheaders --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fair-bioheaders": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bioheaders --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@adamjohnwright"
+        ],
+        "maintainers": [
+          "@adamjohnwright",
+          "@molikd"
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/fair-bioheaders:0.9.0--1ff11621d7e9a7c8",
+              "build_id": "bd-1ff11621d7e9a7c8_1",
+              "scan_id": "sc-94d51cd9641c2d5a_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fair-bioheaders:0.9.0--71029206d3ce1119",
+              "build_id": "bd-71029206d3ce1119_1",
+              "scan_id": "sc-96639927185509c4_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/fair-bioheaders:0.9.0--bd870dcf0291b69f",
+              "build_id": "bd-bd870dcf0291b69f_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/86/862c484484f878e5a99c0ee038f1e03206cac16d3f1763ae65a0663762a19f93/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fair-bioheaders:0.9.0--85ff19c0d1de6e1f",
+              "build_id": "bd-85ff19c0d1de6e1f_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/3a/3a69700529d3e088166672547fbd632315145414a75ee81a1686e1208038a937/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fairbioheaders/combine/.conda-lock/linux_amd64-bd-71029206d3ce1119_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/fairbioheaders/combine/.conda-lock/linux_arm64-bd-1ff11621d7e9a7c8_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "8faff34023b16ecdc41b02bac42989834075e3f1"
+    },
+    {
+      "name": "fairbioheaders_validate",
+      "path": "modules/nf-core/fairbioheaders/validate/meta.yml",
+      "tree_sha": "d86be68bd51f1780bd474ec83f9a5ea8301e20f0",
+      "files": [
+        "modules/nf-core/fairbioheaders/validate/.conda-lock/linux_amd64-bd-71029206d3ce1119_1.txt",
+        "modules/nf-core/fairbioheaders/validate/.conda-lock/linux_arm64-bd-1ff11621d7e9a7c8_1.txt",
+        "modules/nf-core/fairbioheaders/validate/environment.yml",
+        "modules/nf-core/fairbioheaders/validate/main.nf",
+        "modules/nf-core/fairbioheaders/validate/meta.yml",
+        "modules/nf-core/fairbioheaders/validate/tests/main.nf.test",
+        "modules/nf-core/fairbioheaders/validate/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "fairbioheaders_validate",
+        "description": "Validate standalone FAIR-bioHeaders metadata (FHR, FHP or FHGFF3, as JSON, YAML or\nJSON-LD) against the schema its schema URL selects, without a sequence file, for example\nto check user-supplied metadata before a long run. The task fails when the metadata does\nnot validate or cites a schema version the toolkit does not bundle. Use\nfairbioheaders/verify for a FASTA, GFA or GFF3 file that carries a header.\n",
+        "keywords": [
+          "metadata",
+          "provenance",
+          "fair",
+          "validation",
+          "schema",
+          "json",
+          "yaml"
+        ],
+        "tools": [
+          {
+            "fair-bioheaders": {
+              "description": "Toolkit to validate, convert, combine, strip and verify FAIR-bioHeaders (FHR, FHP, FHGFF3) provenance metadata embedded in FASTA, GFA and GFF3 headers",
+              "homepage": "https://github.com/FAIR-bioHeaders/FAIR-bioHeaders-Tools",
+              "documentation": "https://github.com/FAIR-bioHeaders/FAIR-bioHeaders-Tools#readme",
+              "tool_dev_url": "https://github.com/FAIR-bioHeaders/FAIR-bioHeaders-Tools",
+              "doi": "10.1093/bib/bbae122",
+              "licence": [
+                "MPL-2.0"
+              ],
+              "identifier": "biotools:fair-bioheaders",
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "metadata": {
+                "type": "file",
+                "description": "Standalone FHR, FHP or FHGFF3 metadata. The format comes from the extension;\n`ext.args` can pass `--from`\n",
+                "pattern": "*.{json,yaml,yml,jsonld}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3464"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3749"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.validate.txt": {
+                  "type": "file",
+                  "description": "Text report naming the validated file and the result",
+                  "pattern": "*.validate.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_fairbioheaders": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fair-bioheaders": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bioheaders --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fair-bioheaders": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bioheaders --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@molikd",
+          "@adamjohnwright"
+        ],
+        "maintainers": [
+          "@molikd",
+          "@adamjohnwright"
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/fair-bioheaders:0.9.0--1ff11621d7e9a7c8",
+              "build_id": "bd-1ff11621d7e9a7c8_1",
+              "scan_id": "sc-94d51cd9641c2d5a_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fair-bioheaders:0.9.0--71029206d3ce1119",
+              "build_id": "bd-71029206d3ce1119_1",
+              "scan_id": "sc-96639927185509c4_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fair-bioheaders:0.9.0--85ff19c0d1de6e1f",
+              "build_id": "bd-85ff19c0d1de6e1f_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/3a/3a69700529d3e088166672547fbd632315145414a75ee81a1686e1208038a937/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/fair-bioheaders:0.9.0--bd870dcf0291b69f",
+              "build_id": "bd-bd870dcf0291b69f_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/86/862c484484f878e5a99c0ee038f1e03206cac16d3f1763ae65a0663762a19f93/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fairbioheaders/validate/.conda-lock/linux_amd64-bd-71029206d3ce1119_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/fairbioheaders/validate/.conda-lock/linux_arm64-bd-1ff11621d7e9a7c8_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "86e852ef429e021d16f7279aaddb9b81eb067f8a"
     },
     {
       "name": "fairy_coverage",
@@ -142728,8 +143131,9 @@
     {
       "name": "fusioninspector",
       "path": "modules/nf-core/fusioninspector/meta.yml",
-      "tree_sha": "0d9602e676a60d8e07fa9829eb25434f151e2ba9",
+      "tree_sha": "63f3451939d5a6cb2570e9ef1585cb5386c3ef3f",
       "files": [
+        "modules/nf-core/fusioninspector/.conda-lock/linux_amd64-bd-9f1b4c0a736e1d8a_1.txt",
         "modules/nf-core/fusioninspector/environment.yml",
         "modules/nf-core/fusioninspector/main.nf",
         "modules/nf-core/fusioninspector/meta.yml",
@@ -143029,9 +143433,30 @@
           "@sofiromano",
           "@alanmmobbs93",
           "@martings"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fusion-inspector_igv-reports_perl-json-xs_pysam_pruned:9f1b4c0a736e1d8a",
+              "build_id": "bd-9f1b4c0a736e1d8a_1",
+              "scan_id": "sc-53ffeba2ce6a8e37_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fusion-inspector_igv-reports_perl-json-xs_pysam_pruned:8e734c0cca9c683d",
+              "build_id": "bd-8e734c0cca9c683d_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/bd/bd1e83e196b8989930525832da96ad1535bb36ef04ea5cba53be98c371b58a87/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fusioninspector/.conda-lock/linux_amd64-bd-9f1b4c0a736e1d8a_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "6a66d800ab930d7c3b9f571f74774cdcbdc88503",
       "pipelines": [
         {
           "name": "rnafusion",
@@ -183703,6 +184128,171 @@
       ]
     },
     {
+      "name": "hamronization_resfinder",
+      "path": "modules/nf-core/hamronization/resfinder/meta.yml",
+      "tree_sha": "0f4a86e341ea847f46655aa71e5c559da572418d",
+      "files": [
+        "modules/nf-core/hamronization/resfinder/environment.yml",
+        "modules/nf-core/hamronization/resfinder/main.nf",
+        "modules/nf-core/hamronization/resfinder/meta.yml",
+        "modules/nf-core/hamronization/resfinder/tests/main.nf.test",
+        "modules/nf-core/hamronization/resfinder/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "hamronization_resfinder",
+        "description": "Tool to convert and summarize ResFinder outputs using the hAMRonization specification",
+        "keywords": [
+          "amr",
+          "antimicrobial resistance",
+          "reporting",
+          "resfinder"
+        ],
+        "tools": [
+          {
+            "hamronization": {
+              "description": "Tool to convert and summarize AMR gene detection outputs using the hAMRonization specification",
+              "homepage": "https://github.com/pha4ge/hAMRonization/",
+              "documentation": "https://github.com/pha4ge/hAMRonization/",
+              "tool_dev_url": "https://github.com/pha4ge/hAMRonization",
+              "licence": [
+                "GNU Lesser General Public v3 (LGPL v3)"
+              ],
+              "identifier": "biotools:hamronization"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "report": {
+                "type": "file",
+                "description": "JSON output file from ResFinder (v4.2 or later), e.g. data_resfinder.json",
+                "pattern": "*.json",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3464"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "format": {
+              "type": "string",
+              "description": "Type of report file to be produced",
+              "pattern": "tsv|json"
+            }
+          }
+        ],
+        "output": {
+          "json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.json": {
+                  "type": "file",
+                  "description": "hAMRonised report in JSON format",
+                  "pattern": "*.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "hAMRonised report in TSV format",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_hamronization": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hamronization": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hamronize --version 2>&1 | sed 's/hamronize //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hamronization": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hamronize --version 2>&1 | sed 's/hamronize //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@pabloestepaa"
+        ],
+        "maintainers": [
+          "@pabloestepaa"
+        ]
+      },
+      "git_sha": "7d4e37d4a0c90115d785a4ee5a33b0636504d68f"
+    },
+    {
       "name": "hamronization_rgi",
       "path": "modules/nf-core/hamronization/rgi/meta.yml",
       "tree_sha": "896254ef6338aee4c13817b5ac51062be85e198d",
@@ -222792,7 +223382,7 @@
     {
       "name": "links",
       "path": "modules/nf-core/links/meta.yml",
-      "tree_sha": "2b4c5ef9659a2c7760e5b8c1879d621861800b02",
+      "tree_sha": "917c41ca60af7741c78f7b075779c49451519c85",
       "files": [
         "modules/nf-core/links/environment.yml",
         "modules/nf-core/links/main.nf",
@@ -223114,7 +223704,7 @@
           "@nschan"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "2d58983cb63145837d2a19e739e9666cc63e794e",
       "pipelines": [
         {
           "name": "genomeassembler",
@@ -304647,6 +305237,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -304954,6 +305548,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -350253,8 +350851,10 @@
     {
       "name": "salmon_index",
       "path": "modules/nf-core/salmon/index/meta.yml",
-      "tree_sha": "7bc454a26d6fcdc104e15e4831558333ca2f7db9",
+      "tree_sha": "cbdf789bdb055e4cf212ce0e14957e3429155615",
       "files": [
+        "modules/nf-core/salmon/index/.conda-lock/linux_amd64-bd-989e01c80144b039_1.txt",
+        "modules/nf-core/salmon/index/.conda-lock/linux_arm64-bd-491d544a92249d6b_1.txt",
         "modules/nf-core/salmon/index/environment.yml",
         "modules/nf-core/salmon/index/main.nf",
         "modules/nf-core/salmon/index/meta.yml",
@@ -350381,9 +350981,43 @@
         "maintainers": [
           "@kevinmenden",
           "@drpatelh"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/salmon:2.11.0--491d544a92249d6b",
+              "build_id": "bd-491d544a92249d6b_1",
+              "scan_id": "sc-b2c2a24521c9ea79_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/salmon:2.11.0--989e01c80144b039",
+              "build_id": "bd-989e01c80144b039_1",
+              "scan_id": "sc-d86c2f4405051c69_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/salmon:2.11.0--f3f2eb62db3a8fd9",
+              "build_id": "bd-f3f2eb62db3a8fd9_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/f3/f3f26f40dd50f421afb6797d09e75aac5baaa7aa715f2d4190e865168b0a6163/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/salmon:2.11.0--1013900d28dd7865",
+              "build_id": "bd-1013900d28dd7865_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/8e/8ea865ee3872fd4529a4c7cd5148ceb4a92d216f6fe7faf29e48621724ed1ea2/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/salmon/index/.conda-lock/linux_amd64-bd-989e01c80144b039_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/salmon/index/.conda-lock/linux_arm64-bd-491d544a92249d6b_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "4913348a152767d43ab4ab0215410678dfba3ca9",
       "pipelines": [
         {
           "name": "denovotranscript",
@@ -350418,8 +351052,10 @@
     {
       "name": "salmon_quant",
       "path": "modules/nf-core/salmon/quant/meta.yml",
-      "tree_sha": "b192624b8372248ea1799abb62bccfda300f62bf",
+      "tree_sha": "16e234a69457445281f74a02b988f218af9c3e32",
       "files": [
+        "modules/nf-core/salmon/quant/.conda-lock/linux_amd64-bd-989e01c80144b039_1.txt",
+        "modules/nf-core/salmon/quant/.conda-lock/linux_arm64-bd-491d544a92249d6b_1.txt",
         "modules/nf-core/salmon/quant/environment.yml",
         "modules/nf-core/salmon/quant/main.nf",
         "modules/nf-core/salmon/quant/meta.yml",
@@ -350612,9 +351248,43 @@
         "maintainers": [
           "@kevinmenden",
           "@drpatelh"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/salmon:2.11.0--491d544a92249d6b",
+              "build_id": "bd-491d544a92249d6b_1",
+              "scan_id": "sc-b2c2a24521c9ea79_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/salmon:2.11.0--989e01c80144b039",
+              "build_id": "bd-989e01c80144b039_1",
+              "scan_id": "sc-d86c2f4405051c69_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/salmon:2.11.0--1013900d28dd7865",
+              "build_id": "bd-1013900d28dd7865_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/8e/8ea865ee3872fd4529a4c7cd5148ceb4a92d216f6fe7faf29e48621724ed1ea2/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/salmon:2.11.0--f3f2eb62db3a8fd9",
+              "build_id": "bd-f3f2eb62db3a8fd9_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/f3/f3f26f40dd50f421afb6797d09e75aac5baaa7aa715f2d4190e865168b0a6163/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/salmon/quant/.conda-lock/linux_amd64-bd-989e01c80144b039_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/salmon/quant/.conda-lock/linux_arm64-bd-491d544a92249d6b_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "4913348a152767d43ab4ab0215410678dfba3ca9",
       "pipelines": [
         {
           "name": "denovotranscript",
@@ -396186,6 +396856,193 @@
           "version": "1.0.0"
         }
       ]
+    },
+    {
+      "name": "spatialcontinuum_cricalc",
+      "path": "modules/nf-core/spatialcontinuum/cricalc/meta.yml",
+      "tree_sha": "d240eac53c1a9ba3eed53be9bc6e3002fb1e6b2f",
+      "files": [
+        "modules/nf-core/spatialcontinuum/cricalc/.conda-lock/linux_amd64-bd-ae8c7c8dbbc78ef7_1.txt",
+        "modules/nf-core/spatialcontinuum/cricalc/.conda-lock/linux_arm64-bd-f3f97a22e120aedc_1.txt",
+        "modules/nf-core/spatialcontinuum/cricalc/environment.yml",
+        "modules/nf-core/spatialcontinuum/cricalc/main.nf",
+        "modules/nf-core/spatialcontinuum/cricalc/meta.yml",
+        "modules/nf-core/spatialcontinuum/cricalc/tests/main.nf.test",
+        "modules/nf-core/spatialcontinuum/cricalc/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "spatialcontinuum_cricalc",
+        "description": "Universal biophysical reaction-diffusion transport framework and In Silico Composite Resistance Index (CRI) for NSCLC (RUO).",
+        "keywords": [
+          "oncology",
+          "biophysics",
+          "reaction-diffusion",
+          "lung cancer",
+          "precision oncology",
+          "osimertinib"
+        ],
+        "tools": [
+          {
+            "spatial-continuum": {
+              "description": "Zero-dependency biophysical reaction-diffusion solver and In Silico Composite Resistance Index (CRI) calculation engine (RUO).",
+              "homepage": "https://github.com/Lukecele/spatial-continuum-oncology",
+              "documentation": "https://github.com/Lukecele/spatial-continuum-oncology#readme",
+              "tool_dev_url": "https://github.com/Lukecele/spatial-continuum-oncology",
+              "doi": "10.21203/rs.3.rs-11530312/v1",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:spatial-continuum-oncology"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "pattern": {
+                "type": "string",
+                "description": "Histologic growth pattern (e.g., lepidic, acinar, papillary, solid, micropapillary)"
+              }
+            },
+            {
+              "tp53": {
+                "type": "string",
+                "description": "TP53 mutation status (wt or mutated)"
+              }
+            },
+            {
+              "rb1": {
+                "type": "string",
+                "description": "RB1 mutation/loss status (wt or mutated/deleted)"
+              }
+            },
+            {
+              "stroma": {
+                "type": "string",
+                "description": "Stromal desmoplastic density (low, moderate, dense)"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "In Silico Composite Resistance Index (CRI) report and translational cohort stratification (RUO)",
+                  "pattern": "*.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_spatialcontinuum": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "spatial-continuum": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python3 -c \"import importlib.metadata; print(importlib.metadata.version('spatial-continuum'))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "spatial-continuum": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python3 -c \"import importlib.metadata; print(importlib.metadata.version('spatial-continuum'))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@Lukecele"
+        ],
+        "maintainers": [
+          "@Lukecele"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/spatial-continuum:1.0.3--ae8c7c8dbbc78ef7",
+              "build_id": "bd-ae8c7c8dbbc78ef7_1",
+              "scan_id": "sc-4548e354bca18c66_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/spatial-continuum:1.0.3--f3f97a22e120aedc",
+              "build_id": "bd-f3f97a22e120aedc_1",
+              "scan_id": "sc-85ce21541f37129b_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/spatial-continuum:1.0.3--4ecdd8fc672ef73a",
+              "build_id": "bd-4ecdd8fc672ef73a_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a9/a90aa9a3b3a71e63730c7004c9516005e4080233056e7560e28467ea0dbc726b/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/spatial-continuum:1.0.3--24f22497506ddadd",
+              "build_id": "bd-24f22497506ddadd_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c4/c4a4acaa47f32ce71d96c6626d1a5faa6fc8e2358633addaf57ad7aefc5d06b5/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/spatialcontinuum/cricalc/.conda-lock/linux_amd64-bd-ae8c7c8dbbc78ef7_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/spatialcontinuum/cricalc/.conda-lock/linux_arm64-bd-f3f97a22e120aedc_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "db645169293c7453094a2f4d87a6e3cb93ce295c"
     },
     {
       "name": "spatyper",
@@ -473184,6 +474041,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "fb8dd13ce49b79f843627df4a51ebfad5f9ba49c",
-  "updated_at": "2026-11-09T02:14:04.993Z"
+  "commit_sha": "8faff34023b16ecdc41b02bac42989834075e3f1",
+  "updated_at": "2026-11-09T14:14:55.569Z"
 }
