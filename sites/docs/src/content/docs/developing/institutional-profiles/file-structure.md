@@ -35,7 +35,7 @@ See [Documentation requirements](documentation.md) for detailed information abou
 
 ## Files to modify
 
-Update these existing files in the nf-core/configs repository to register your profile:
+Update this existing file in the nf-core/configs repository to register your profile:
 
 ### nfcore_custom.config
 
@@ -57,31 +57,6 @@ profiles {
 ```
 
 The profile name in this file determines how users access your profile with the `-profile` flag.
-
-### GitHub Actions workflow
-
-**Path**: `.github/workflows/main.yml`
-
-Add your profile to the automated testing matrix.
-This ensures your profile passes continuous integration checks when template changes occur.
-
-Locate the `profile` list in the test matrix and add your profile name in alphabetical order:
-
-```yaml
-strategy:
-  matrix:
-    profile:
-      - abims
-      - awsbatch
-      - big_university # Add your profile here
-      - bigpurple
-      # ... other profiles ...
-```
-
-:::note
-The GitHub Actions workflow file may have a different structure depending on when you create your profile.
-Follow the existing pattern in the file and add your profile to the appropriate location in the test matrix.
-:::
 
 ## Pipeline-specific profiles
 
