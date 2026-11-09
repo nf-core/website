@@ -18,7 +18,6 @@ export const THEMES = { dark: "github-dark-dimmed", light: "github-light" } as c
 
 /** Languages used in content that Shiki doesn't ship, also used by hast-inline-code.ts. */
 export const LANG_ALIAS: Record<string, string> = {
-    nextflow: "groovy",
     default: "text",
     none: "text",
     tree: "text",
