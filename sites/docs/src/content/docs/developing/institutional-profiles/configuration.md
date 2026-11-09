@@ -147,7 +147,7 @@ Other useful directives for the process scope:
 
 ### GPU resource requests
 
-nf-core pipelines ensure GPU-capable processes have the [`accelerator{:groovy}` directive](https://docs.seqera.io/nextflow/reference/process#accelerator) set, (e.g. through `label 'process_gpu'{:groovy}` or directly using `withName` selectors) when
+nf-core pipelines ensure GPU-capable processes have the [`accelerator{:nextflow}` directive](https://docs.seqera.io/nextflow/reference/process#accelerator) set, (e.g. through `label 'process_gpu'{:nextflow}` or directly using `withName` selectors) when
 requested (see [GPU-capable modules](/docs/developing/components/gpu-modules)).
 Your institutional profile only needs to translate that into your scheduler's own GPU request syntax, and scope the
 container runtime's GPU flag to the same processes:
@@ -169,7 +169,7 @@ process {
 }
 ```
 
-Using a closure that reads `task.accelerator{:groovy}` (rather than hardcoding a fixed `--gres=gpu:1`) keeps the request count under the pipeline/user's
+Using a closure that reads `task.accelerator{:nextflow}` (rather than hardcoding a fixed `--gres=gpu:1`) keeps the request count under the pipeline/user's
 control and avoids reserving a GPU for jobs that never asked for one.
 Adjust the scheduler flag for your system: SLURM uses `--gres=gpu:N`, LSF uses `-gpu num=N`, and PBS Pro uses `-l select=1:ngpus=N`.
 
@@ -335,7 +335,7 @@ profiles {
 }
 ```
 
-The `gpu` sub-profile above only routes jobs to the GPU partition; it still uses a closure that reads `task.accelerator{:groovy}` for the scheduler flag rather than hardcoding a fixed GPU count, for the same reason described in [GPU resource requests](#gpu-resource-requests).
+The `gpu` sub-profile above only routes jobs to the GPU partition; it still uses a closure that reads `task.accelerator{:nextflow}` for the scheduler flag rather than hardcoding a fixed GPU count, for the same reason described in [GPU resource requests](#gpu-resource-requests).
 
 Users can access sub-profiles by combining them with your main profile:
 
