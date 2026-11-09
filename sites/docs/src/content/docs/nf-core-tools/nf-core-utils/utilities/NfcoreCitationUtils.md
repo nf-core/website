@@ -841,7 +841,7 @@ process ROBUST_PROCESS {
 
 Test citation processing across migration stages:
 
-```groovy
+```nextflow
 test("Modern topic channel citations") {
     when {
         def topicCitations = [

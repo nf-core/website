@@ -174,7 +174,7 @@ workflow.onComplete {
 
 **Function Parameters**
 
-```groovy title="Function signature"
+```nextflow title="Function signature"
 void completionSummary(boolean monochromeLogs = true)
 ```
 
@@ -333,7 +333,7 @@ workflow.onComplete {
 
 **Function Parameters Reference**
 
-```groovy title="completionEmail signature"
+```nextflow title="completionEmail signature"
 void completionEmail(
     Map summaryParams,        // Grouped parameter summary
     String email,            // Primary email address
@@ -790,7 +790,7 @@ if (params.hook_url) {
 
 Test notification functions using nf-test:
 
-```groovy
+```nextflow
 test("Notification functions work correctly") {
     when {
         params {

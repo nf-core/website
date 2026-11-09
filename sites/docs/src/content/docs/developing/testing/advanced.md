@@ -13,7 +13,7 @@ Advanced assertion patterns handle complex testing scenarios where standard snap
 
 - [BCLCONVERT](https://github.com/nf-core/modules/blob/master/modules/nf-core/bclconvert/tests/main.nf.test)
 
-```groovy
+```nextflow
 assertAll(
                 { assert process.success },
                 { assert snapshot(
@@ -35,7 +35,7 @@ This creates a snapshot for all output files and a sorted list from a log direct
 
 **When to use:** You cannot snapshot the whole file because it is unstable, but you know a portion of the content remains stable (for example, the timestamp is added after the first five lines).
 
-```groovy
+```nextflow
 assert snapshot(file(process.out.aligned[0][1]).readLines()[0..4]).match()
 ```
 
@@ -60,13 +60,13 @@ This verifies the content of the first six lines of a gzipped file and the total
 
 **When to use:** You need to verify that a specific file in the output directory is saved correctly and remains stable between tests.
 
-```groovy
+```nextflow
 params {
     outdir = "$outputDir"
 }
 ```
 
-```groovy
+```nextflow
 assert snapshot(path("$outputDir/kallisto/test/abundance.tsv")).match("abundance_tsv_single")
 ```
 
@@ -80,7 +80,7 @@ This confirms that a file saved in the specified output directory matches the ex
 - The first line of the file in `npo` output channel
 - The MD5 sum of the file in `npl` output channel
 
-```groovy
+```nextflow
 assert snapshot(
     file(process.out.npa[0][1]).name,
     file(process.out.npc[0][1]).name,
@@ -93,7 +93,7 @@ This compares specific filenames and content of multiple files in a process outp
 
 ## Snapshot last lines of gzipped files
 
-```groovy
+```nextflow
 path(process.out.gzip[0][1]).linesGzip[-4..-1]
 ```
 
@@ -103,7 +103,7 @@ This retrieves and allows inspection of the last four lines of a gzipped file fr
 
 **When to use:** You need to verify the presence of a specific string or data pattern within a gzipped file.
 
-```groovy
+```nextflow
 { assert path(process.out.vcf[0][1]).linesGzip.toString().contains("MT192765.1\t10214\t.\tATTTAC\tATTAC\t29.8242") }
 ```
 
@@ -179,7 +179,7 @@ Checking only for file existence may be insufficient, as some tools can produce 
 
 Use the `==~` operator to check if a string matches a regular expression:
 
-```groovy
+```nextflow
 assert "/my/full/path/to/process/dir/example.vcf.pgen" ==~ ".*/example.vcf.pgen"
 ```
 
@@ -187,7 +187,7 @@ assert "/my/full/path/to/process/dir/example.vcf.pgen" ==~ ".*/example.vcf.pgen"
 
 Instead of writing:
 
-```groovy
+```nextflow
 assert process.out.imputed_plink2.size() == 1
 assert process.out.imputed_plink2[0][0] == "example.vcf"
 assert process.out.imputed_plink2[0][1] ==~ ".*/example.vcf.pgen"
@@ -197,7 +197,7 @@ assert process.out.imputed_plink2[0][3] ==~ ".*/example.vcf.pvar"
 
 You can reduce redundancy using the `with()` command:
 
-```groovy
+```nextflow
 assert process.out.imputed_plink2
 with(process.out.imputed_plink2) {
     assert size() == 1

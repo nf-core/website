@@ -83,7 +83,7 @@ Check [nf-core/configs](https://github.com/nf-core/configs) to see if your clust
 
 To request more GPUs or target specific hardware for one run, add a custom config with [`-c`](./configuration-options#custom-configuration-files) that targets the process by name:
 
-```groovy title="custom-gpu.config"
+```nextflow title="custom-gpu.config"
 process {
     withName: 'RIBODETECTOR' {
         accelerator = [request: 2, type: 'a100']
@@ -93,7 +93,7 @@ process {
 
 Only set `clusterOptions` yourself if there's no institutional profile doing this translation, or its `clusterOptions` hardcodes a flag instead of reading `task.accelerator`:
 
-```groovy title="custom-gpu.config"
+```nextflow title="custom-gpu.config"
 process {
     withName: 'RIBODETECTOR' {
         accelerator = [request: 2, type: 'a100']

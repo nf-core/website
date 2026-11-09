@@ -61,7 +61,7 @@ The keys `id`, `single_end`, and `strandedness` are the [only keys allowed](../.
 
 nf-core/modules refer to meta maps in process `input:` blocks via an entry within a tuple.
 
-```groovy
+```nextflow
 input:
 tuple val(meta), path(reads)
 ```

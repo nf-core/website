@@ -41,7 +41,7 @@ All output channels SHOULD be included in the nf-test snapshot file, or at a min
 
 Tags MUST be specified for any dependent modules to ensure changes to upstream modules re-trigger tests for the subworkflow.
 
-```groovy
+```nextflow
 tag "subworkflows"
 tag "subworkflows_nfcore"
 tag "<subworkflow-name>"
@@ -69,7 +69,7 @@ For exmaple, make sure there are no md5sums representing empty files.
 Test names SHOULD describe the test dataset and configuration.
 For example:
 
-```groovy
+```nextflow
 test("homo_sapiens - [fastq1, fastq2] - bam")
 test("sarscov2 - [ cram, crai ] - fasta - fai")
 test("Should search for zipped protein hits against a DIAMOND db and return a tab separated output file of hits")
@@ -79,7 +79,7 @@ test("Should search for zipped protein hits against a DIAMOND db and return a ta
 
 Input data SHOULD be referenced with the `modules_testdata_base_path` parameter:
 
-```groovy
+```nextflow
 file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
 ```
 
@@ -100,7 +100,7 @@ New test data SHOULD only be uploaded to nf-core/test-datasets if there is absol
 Subworkflow nf-tests SHOULD use a single `nextflow.config` to supply `ext.args` to a subworkflow.
 Define them in the `when` block of a test under the `params` scope.
 
-```groovy {4-7} title="main.nf.test"
+```nextflow {4-7} title="main.nf.test"
 config './nextflow.config'
 
 when {
@@ -119,7 +119,7 @@ when {
 }
 ```
 
-```groovy {3,6} title="nextflow.config"
+```nextflow {3,6} title="nextflow.config"
 process {
   withName: 'MODULEA' {
     ext.args = params.moduleA_args

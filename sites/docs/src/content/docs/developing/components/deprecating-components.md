@@ -17,7 +17,7 @@ message.
 
 For modules:
 
-```groovy title="main.nf"
+```nextflow title="main.nf"
 def deprecation_message = """
 WARNING: This module has been deprecated. Please use nf-core/modules/path/to/new/module
 
@@ -36,7 +36,7 @@ process OLD_MODULE {
 
 For subworkflows:
 
-```groovy title="main.nf"
+```nextflow title="main.nf"
 ...
   main:
 
@@ -74,7 +74,7 @@ Remove anything in the setup block.
 The addition of `assert false` will mean the nf-test will always fail.
 The `then` part of the nf-test should be updated with the following code for modules:
 
-```groovy title="main.nf.test"
+```nextflow title="main.nf.test"
 ...
   then {
     assertAll(
@@ -87,7 +87,7 @@ The `then` part of the nf-test should be updated with the following code for mod
 
 Or the following code for subworkflows:
 
-```groovy title="main.nf.test"
+```nextflow title="main.nf.test"
 ...
   then {
     assertAll(

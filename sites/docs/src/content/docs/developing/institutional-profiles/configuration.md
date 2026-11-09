@@ -12,7 +12,7 @@ This file contains multiple configuration scopes that control different aspects 
 The `params` scope contains nf-core-specific metadata and shared resource paths.
 These parameters appear in pipeline execution logs and help users identify which profile loaded.
 
-```groovy
+```nextflow
 params {
   config_profile_description = 'Big University HPC cluster profile provided by nf-core/configs'
   config_profile_contact = 'Jane Smith (@jsmith)'
@@ -45,7 +45,7 @@ Include both for maximum compatibility.
 
 ### Example params scope
 
-```groovy
+```nextflow
 params {
   config_profile_description = 'Big University HPC cluster profile provided by nf-core/configs'
   config_profile_contact = 'Jane Smith (@jsmith)'
@@ -68,7 +68,7 @@ This is where you configure how Nextflow submits jobs to your cluster scheduler.
 
 Define maximum resources using the `resourceLimits` directive:
 
-```groovy
+```nextflow
 process {
   resourceLimits = [
     cpus: 128,
@@ -85,7 +85,7 @@ When a process requests resources beyond these limits, Nextflow automatically ca
 
 Specify the job scheduler and default queue:
 
-```groovy
+```nextflow
 process {
   executor = 'slurm'
   queue = 'general'
@@ -104,7 +104,7 @@ Common executor values:
 
 Configure automatic job retry with exponentially increasing resources:
 
-```groovy
+```nextflow
 process {
   maxRetries = 2
 }
@@ -115,9 +115,9 @@ Most profiles set `maxRetries` to 2, allowing jobs to attempt execution with pro
 
 ### Dynamic queue selection
 
-Use Groovy expressions to route jobs to appropriate queues based on requirements:
+Use`nextflow expressions to route jobs to appropriate queues based on requirements:
 
-```groovy
+```nextflow
 process {
   queue = { task.time <= 1.h ? 'short' : task.time <= 24.h ? 'medium' : 'long' }
 }
@@ -131,7 +131,7 @@ This example routes jobs to different queues based on requested runtime:
 
 You can also route based on CPU or memory requirements:
 
-```groovy
+```nextflow
 process {
   queue = { task.cpus > 64 ? 'highmem' : 'general' }
 }
@@ -152,7 +152,7 @@ requested (see [GPU-capable modules](/docs/developing/components/gpu-modules)).
 Your institutional profile only needs to translate that into your scheduler's own GPU request syntax, and scope the
 container runtime's GPU flag to the same processes:
 
-```groovy
+```nextflow
 process {
   queue = { task.accelerator ? 'gpu' : null }
   clusterOptions = { task.accelerator ? "--gres=gpu:${task.accelerator.request}" : null }
@@ -185,7 +185,7 @@ Once you need a specific GPU model, prefer `--gpus=type:count` — see the typed
 
 ### Example process scope
 
-```groovy
+```nextflow
 process {
   resourceLimits = [
     cpus: 128,
@@ -204,7 +204,7 @@ process {
 The `executor` scope controls how Nextflow submits jobs to your cluster scheduler.
 These settings prevent overwhelming small clusters with too many simultaneous submissions.
 
-```groovy
+```nextflow
 executor {
   queueSize = 8
   submitRateLimit = '10 sec'
@@ -221,7 +221,7 @@ Smaller clusters benefit from lower values to prevent scheduler overload.
 
 ### Example executor scope
 
-```groovy
+```nextflow
 executor {
   queueSize = 10
   submitRateLimit = '5 sec'
@@ -237,7 +237,7 @@ Choose the scope that matches your cluster's available container engine.
 
 Most HPC clusters use Singularity (now called Apptainer):
 
-```groovy
+```nextflow
 singularity {
   enabled = true
   autoMounts = true
@@ -255,7 +255,7 @@ Singularity parameters:
 
 For clusters with Docker support:
 
-```groovy
+```nextflow
 docker {
   enabled = true
   runOptions = '-u $(id -u):$(id -g)'
@@ -271,7 +271,7 @@ Docker parameters:
 
 For clusters using Podman:
 
-```groovy
+```nextflow
 podman {
   enabled = true
 }
@@ -281,7 +281,7 @@ podman {
 
 For clusters that prefer Conda environments:
 
-```groovy
+```nextflow
 conda {
   enabled = true
   cacheDir = '/shared/conda/envs'
@@ -298,7 +298,7 @@ Users can override the container engine with their own profile if needed.
 The `profiles` scope defines internal sub-profiles for cluster variants.
 Use this when your institution has multiple clusters or partitions with different resource limits.
 
-```groovy
+```nextflow
 profiles {
   bigmem {
     process {
@@ -352,7 +352,7 @@ You must redefine all necessary configuration scopes within each sub-profile.
 
 Here is a complete example combining all scopes:
 
-```groovy
+```nextflow
 // Params scope - metadata and paths
 params {
   config_profile_description = 'Big University HPC cluster profile provided by nf-core/configs'

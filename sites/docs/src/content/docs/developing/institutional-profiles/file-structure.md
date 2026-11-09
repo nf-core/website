@@ -46,7 +46,7 @@ This makes your profile available when users specify `-profile <institution>`.
 
 Add your profile within the `profiles` scope in alphabetical order:
 
-```groovy
+```nextflow
 profiles {
   // ... other profiles ...
   big_university {
@@ -97,7 +97,7 @@ conf/pipeline/rnaseq/big_university.config
 
 Then reference it in `nfcore_custom.config`:
 
-```groovy
+```nextflow
 profiles {
   big_university {
     includeConfig "${params.custom_config_base}/conf/big_university.config"

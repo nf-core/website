@@ -59,7 +59,7 @@ Follow these steps to generate both Docker and Singularity container URLs for yo
 
 1. Add both URLs to your module's container definition in `main.nf`:
 
-   ```groovy
+   ```nextflow
    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
        'https://community-cr-prod.seqera.io/<singularity-container-id>' :
        'community.wave.seqera.io/<docker-container-id>' }"

@@ -136,7 +136,7 @@ workflow {
 
 **Function Reference**
 
-```groovy title="Function signature"
+```nextflow title="Function signature"
 boolean checkConfigProvided()
 ```
 
@@ -263,7 +263,7 @@ HINT: A common mistake is to provide multiple values separated by spaces e.g. `-
 
 **Function Reference**
 
-```groovy title="Function signature"
+```nextflow title="Function signature"
 void checkProfileProvided(List args, boolean monochromeLogs = true)
 ```
 

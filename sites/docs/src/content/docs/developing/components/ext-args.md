@@ -18,7 +18,7 @@ This approach provides flexibility whilst maintaining the integrity of the origi
 
 To add custom arguments to a module, configure the process in your `nextflow.config`:
 
-```groovy
+```nextflow
 process {
   withName: 'TOOL_SUBTOOL' {
     ext.args = '-T -K'
@@ -68,7 +68,7 @@ You can use Groovy expressions within `ext.args` to conditionally set arguments 
 
 Set `ext.args` based on parameter settings:
 
-```groovy
+```nextflow
 process {
     withName: '.*:FASTQC_UMITOOLS_TRIMGALORE:UMITOOLS_EXTRACT' {
         ext.args   = { [
@@ -84,7 +84,7 @@ process {
 
 Set `ext.prefix` based on task inputs:
 
-```groovy
+```nextflow
 process {
     withName: 'NFCORE_RNASEQ:RNASEQ:.*:BAM_SORT_SAMTOOLS:BAM_STATS_SAMTOOLS:.*' {
         ext.prefix = { "${meta.id}.sorted.bam" }
@@ -101,7 +101,7 @@ process {
 
 Set `ext.args` based on both parameters and task inputs:
 
-```groovy
+```nextflow
 process {
     withName: '.*:DEDUP_UMI_UMITOOLS_GENOME:UMITOOLS_DEDUP' {
         ext.args   = { [

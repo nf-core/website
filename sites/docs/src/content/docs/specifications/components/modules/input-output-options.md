@@ -87,7 +87,7 @@ However, passing an empty list (`[]`) instead of a file as a module parameter ca
 
 For example, having a module (`MY_MODULE`) that can take a `cram` channel and an optional `fasta` channel as input, can be used in the following ways:
 
-```groovy
+```nextflow
 MY_MODULE(cram, [])     // fasta is optional, the module will run without the fasta present
 MY_MODULE(cram, fasta)  // execution of the module will need an element in the fasta channel
 ```
@@ -96,7 +96,7 @@ MY_MODULE(cram, fasta)  // execution of the module will need an element in the f
 
 Optional outputs SHOULD be marked as optional:
 
-```groovy
+```nextflow
 tuple val(meta), path('*.tab'), emit: tab,  optional: true
 ```
 
@@ -107,7 +107,7 @@ Each output file type SHOULD be emitted in its own channel (and no more than one
 In some cases the file format can be different between files of the same type or for the same function (e.g., indices: `.bai` and `.crai`).
 These different file formats SHOULD be part of the same output channel since they are they serve the same purpose and are mutually exclusive.
 
-```groovy
+```nextflow
 tuple val(meta), path("*.{bai,crai}"), emit: index
 ```
 
@@ -116,13 +116,13 @@ This approach allows specific output types to be identified and accessed within 
 
 So when the output definition of module called `SAMTOOLS_INDEX` looks like this:
 
-```groovy
+```nextflow
 tuple val(meta), path("*.{bai,crai}"), emit: index
 ```
 
 The output files can be accessed like this:
 
-```groovy
+```nextflow
 SAMTOOLS_INDEX.out.index
 ```
 
