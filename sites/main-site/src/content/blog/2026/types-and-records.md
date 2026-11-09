@@ -2,7 +2,7 @@
 title: "Bringing Nextflow Types and Records to nf-core/modules"
 subtitle: "Guideline updates for migrating nf-core/modules to the latest Nextflow syntax"
 pubDate: 2026-10-28T09:00:00+01:00
-headerImage: "/assets/images/blog/types-and-records/type-gulls.jpg"
+headerImage: "https://images.unsplash.com/photo-1582730147924-d92f4da00252"
 headerImageAlt: "A bunch of records laid out onto a black surface."
 authors:
   - nvnieuwk
@@ -60,6 +60,8 @@ One special case of typing is file inputs:
   - `Set<Path>` if order does **not** matter and there are no duplicate paths. Use `.toSet()` to convert any iterable to a `Set`.
   - `List<Path>` if order **does** and there can be duplicate paths. Use `.toSorted()` to convert any iterable to a `List`.
   - `Bag<Path>` if order does **not** matter and there can be duplicate paths.
+
+![](/assets/images/blog/types-and-records/type-gulls.jpg)
 
 The input record type should consist of the following fields:
 
