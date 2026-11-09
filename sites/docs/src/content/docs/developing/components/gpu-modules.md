@@ -57,7 +57,7 @@ Pick a container strategy based on the tool:
 - **Dual CPU/GPU variants where the GPU build has significant overhead** (e.g., CUDA PyTorch adds ~3 GB). Use the [dual-container pattern](#the-dual-container-pattern) so CPU-only users are not penalised. For example, [`ribodetector`](https://github.com/nf-core/modules/tree/master/modules/nf-core/ribodetector).
 - **Vendor-provided GPU containers** with no conda equivalent. For example, [`parabricks/rnafq2bam`](https://github.com/nf-core/modules/tree/master/modules/nf-core/parabricks/rnafq2bam) uses NVIDIA's container. Guard these modules against conda/mamba profiles:
 
-  ```groovy
+  ```nextflow
   if (workflow.profile.tokenize(',').intersect(['conda', 'mamba']).size() >= 1) {
       error("This module does not support Conda. Please use Docker / Singularity / Podman instead.")
   }
@@ -67,7 +67,7 @@ Pick a container strategy based on the tool:
 
 When the GPU container is substantially larger, switch between containers based on `task.accelerator`:
 
-```groovy
+```nextflow
 conda "${ task.accelerator ? "${moduleDir}/environment.gpu.yml" : "${moduleDir}/environment.yml" }"
 container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
     (task.accelerator ? '<singularity-gpu-url>' : '<singularity-cpu-url>') :
@@ -105,7 +105,7 @@ Modules that specifically want broader reach on legacy hosts MAY provide an alte
 Emit the CUDA runtime version on the `versions` topic channel so it appears in provenance reports alongside the tool version.
 One simple pattern uses the pytorch dependency that most CUDA-aware conda environments already pull in:
 
-```groovy
+```nextflow
 tuple val("${task.process}"), val('cuda'), eval('python -c "import torch; print(torch.version.cuda or \'no CUDA available\')"'), emit: versions_cuda, topic: versions
 ```
 
@@ -159,7 +159,7 @@ Backends installed from conda-forge ship RPATHs in their binaries and do not nee
 Tools that provide separate GPU and CPU binaries select between them based on `task.accelerator`.
 For example, [`ribodetector`](https://github.com/nf-core/modules/blob/20423f58f6ff54c4bc851dfd143d75f9b9f86f41/modules/nf-core/ribodetector/main.nf):
 
-```groovy
+```nextflow
 def binary = task.accelerator ? "ribodetector" : "ribodetector_cpu"
 ```
 
@@ -167,7 +167,7 @@ Tools that accept a GPU count specify it in the command using `task.accelerator.
 Do not hardcode this value.
 For example, [`parabricks/rnafq2bam`](https://github.com/nf-core/modules/blob/0c44f69eefe8a8c373c7cdd9528b3e1d60cb895f/modules/nf-core/parabricks/rnafq2bam/main.nf):
 
-```groovy
+```nextflow
 def num_gpus = task.accelerator ? "--num-gpus ${task.accelerator.request}" : ''
 ```
 

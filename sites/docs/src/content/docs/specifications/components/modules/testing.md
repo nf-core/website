@@ -44,7 +44,7 @@ The snapshot SHOULD include all output channels for each test, or at a minimum, 
 
 By default, the `then` block of a test should contain this:
 
-```groovy
+```nextflow
 assert snapshot(process.out).match()
 ```
 
@@ -70,7 +70,7 @@ A stub test MUST be included for the module.
 
 Tags MUST be specified for any dependent modules to ensure changes to upstream modules will re-trigger tests for the current module.
 
-```groovy
+```nextflow
 tag "modules"
 tag "modules_nfcore"
 tag "<tool>"
@@ -97,7 +97,7 @@ For example, make sure there are no md5sums representing empty files (with the e
 
 Test names SHOULD describe the test dataset and configuration used. some examples below:
 
-```groovy
+```nextflow
 test("homo_sapiens - [fastq1, fastq2] - bam")
 test("sarscov2 - [ cram, crai ] - fasta - fai")
 test("Should search for zipped protein hits against a DIAMOND db and return a tab separated output file of hits")
@@ -107,7 +107,7 @@ test("Should search for zipped protein hits against a DIAMOND db and return a ta
 
 Reference input data with the `modules_testdata_base_path` parameter:
 
-```groovy
+```nextflow
 file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
 ```
 
@@ -128,7 +128,7 @@ Upload new test data to nf-core/test-datasets only if there is absolutely no oth
 Module nf-tests SHOULD use a single `nextflow.config` to supply `ext.args` to a module.
 Give `module_args` a default in the config's `params` scope, and apply the config to each test individually rather than once at the top of the file, so a test can override the default in its own `params` block when it needs to:
 
-```groovy {1-3,7} title="nextflow.config"
+```nextflow {1-3,7} title="nextflow.config"
 params {
   module_args = ''
 }
@@ -142,7 +142,7 @@ process {
 
 No other settings should go into this file.
 
-```groovy {2,4-6,19} title="main.nf.test"
+```nextflow {2,4-6,19} title="main.nf.test"
 test("my_tool - custom args") {
   config './nextflow.config'
   when {
@@ -181,7 +181,7 @@ Because `module_args` already has a default in the config, tests that don't need
 :::info
 Modules in pipelines are frequently configured with dynamic inputs. Test parameters do not support this. For example,
 
-```groovy {3-4} title="nextflow.config"
+```nextflow {3-4} title="nextflow.config"
 process {
   withName: 'MODULE' {
     ext.args = { "--sample ${meta.id}" }
@@ -192,7 +192,7 @@ process {
 
 would be implemented as follows:
 
-```groovy {2,4-6} title="main.nf.test"
+```nextflow {2,4-6} title="main.nf.test"
 test("my_tool - dynamic args") {
   config './nextflow.config'
   when {
@@ -211,7 +211,7 @@ test("my_tool - dynamic args") {
 }
 ```
 
-```groovy {1-3,6} title="nextflow.config"
+```nextflow {1-3,6} title="nextflow.config"
 params {
   module_args = ''
 }

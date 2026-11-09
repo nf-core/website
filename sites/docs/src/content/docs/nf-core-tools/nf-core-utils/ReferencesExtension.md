@@ -35,13 +35,13 @@ It retrieves a specific attribute (such as `fasta`, `gtf`, or index paths) for t
 
 **Function Signature**
 
-```groovy
+```nextflow
 Object getGenomeAttribute(String attribute)
 ```
 
 or (static utility):
 
-```groovy
+```nextflow
 Object ReferencesUtils.getGenomeAttribute(Map params, String attribute)
 ```
 
@@ -58,7 +58,7 @@ Returns the value of the requested attribute for the selected genome, or `null` 
 
 **Practical Example**
 
-```groovy
+```nextflow
 // Example params structure
 def params = [
     genome: 'GRCh38',
@@ -268,7 +268,7 @@ This function extracts metadata values with user parameter override support.
 
 **Function Signature**
 
-```groovy
+```nextflow
 Object getReferencesValue(
     Channel references,    // Reference metadata channel
     Object param,         // User parameter value or null

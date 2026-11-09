@@ -125,7 +125,7 @@ Create a custom configuration file to specify execution settings:
 
 1. Create a file (for example, `custom.config`) with your configuration:
 
-   ```groovy
+   ```nextflow
    // Resource requests for all processes
    process {
      cpus   = 8
@@ -156,7 +156,7 @@ Common configuration scenarios include:
 
 - Adjust resource requests
 
-  ```groovy
+  ```nextflow
   process {
     withName: 'PROCESS_NAME' {
       cpus   = 16
@@ -167,7 +167,7 @@ Common configuration scenarios include:
 
 - Limit maximum resource requests
 
-  ```groovy
+  ```nextflow
   process {
     resourceLimits = [
         memory: 1000.GB,
@@ -179,7 +179,7 @@ Common configuration scenarios include:
 
 - Configure cluster execution
 
-  ```groovy
+  ```nextflow
   process {
     executor = 'slurm'
     queue    = 'high-priority'
@@ -189,7 +189,7 @@ Common configuration scenarios include:
 
 - Set custom paths
 
-  ```groovy
+  ```nextflow
   params {
     custom_config_base = '/path/to/configs'
   }

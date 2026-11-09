@@ -16,7 +16,7 @@ Where possible nf-core will use BioContainers to fetch pre-built software contai
 Software requirements SHOULD be declared within the module file using the Nextflow `container` directive.
 For single-tool BioContainers, the `nf-core modules create` command will automatically fetch and fill in the appropriate Conda / Docker / Singularity definitions by parsing the information provided in the first part of the module name:
 
-```groovy
+```nextflow
 conda "bioconda::fastqc=0.11.9"
 container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
     'https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0' :

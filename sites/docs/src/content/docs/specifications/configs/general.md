@@ -103,7 +103,7 @@ When multiple computational infrastructures exist for a single institution, an i
 
 For example, for the Max Planck Computing and Data Facilitation (MPCDF) institution that has two HPCs named `raven` and `viper`:
 
-```groovy
+```nextflow
 mpcdf_raven.conf
 mpcdf_viper.conf
 ```
@@ -141,7 +141,7 @@ A config MUST include three descriptive parameters:
 | `config_profile_contact`     | The name and GitHub handle of the person currently maintaining the config. |
 | `config_profile_url`         | A URL to details about the infrastructure or the institution.              |
 
-```groovy
+```nextflow
 params {
     config_profile_description = 'The <name of infrastructure> cluster profile'
     config_profile_contact     = '<maintainer name> (@<github handle>)'
@@ -156,7 +156,7 @@ params {
 A config MAY also define the `max_*` parameters with the same values as the `resourceLimits` directive.
 This provides backward compatibility for older pipelines with older Nextflow versions.
 
-```groovy
+```nextflow
 params {
     igenomes_ignore = true
     max_memory      = 750.GB
@@ -174,7 +174,7 @@ Custom config- or infrastructure-specific parameters MUST be included in an nf-s
 
 For example:
 
-```groovy
+```nextflow
 validation {
     ignoreParams = ['cluster_account']
 }
@@ -186,7 +186,7 @@ validation {
 
 A config MUST define the maximum resource limits of a computing infrastructure using the [`resourceLimits`](https://www.nextflow.io/docs/latest/reference/process.html#resourcelimits) process directive.
 
-```groovy
+```nextflow
 process {
     resourceLimits = [
         memory: 750.GB,

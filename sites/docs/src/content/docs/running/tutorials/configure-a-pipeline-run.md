@@ -127,7 +127,7 @@ Nextflow looks for config files in three places without being told.
 
 Add a `nextflow.config` in your current directory:
 
-```groovy title="nextflow.config"
+```nextflow title="nextflow.config"
 process {
   cpus = 1
   memory = 2.GB
@@ -179,7 +179,7 @@ In this example, options in the `docker` profile override matching options in `t
 You can also define your own profile for settings you'd like to reuse.
 Add a `mymachine` profile to the bottom of your existing launch-directory `nextflow.config`:
 
-```groovy title="nextflow.config"
+```nextflow title="nextflow.config"
 profiles {
   mymachine {
     process {
@@ -241,7 +241,7 @@ For configuration you don't want loaded by default — a one-off resource bump, 
 
 1. Create a small file named `custom.config`:
 
-   ```groovy title="custom.config"
+   ```nextflow title="custom.config"
    process {
      memory = 3.GB
    }
@@ -268,7 +268,7 @@ These settings sit alongside the `process` scope you used above, with a few sibl
 
 Edit `custom.config` to add automatic retries and redirect the work directory:
 
-```groovy title="custom.config" ins={1,6-7}
+```nextflow title="custom.config" ins={1,6-7}
 workDir = 'nf-work'
 
 process {
@@ -312,7 +312,7 @@ Nextflow gives you two selectors for this:
 
 Edit your `custom.config` to include both in the `process` block:
 
-```groovy title="custom.config" ins={9-17}
+```nextflow title="custom.config" ins={9-17}
 workDir = 'nf-work'
 
 process {
@@ -359,7 +359,7 @@ By convention, nf-core pipelines collect every per-process option in a dedicated
 It is another source of configuration loaded automatically through the pipeline's `nextflow.config`.
 Open `nf-core/demo`'s [`conf/modules.config`](https://github.com/nf-core/demo/blob/45904cb9d12db3d89900e6c479fe604ef71b297b/conf/modules.config#L21-L28) to see two real uses of `ext.args`:
 
-```groovy {2,7}
+```nextflow {2,7}
 withName: FASTQC {
     ext.args = '--quiet'
     // ...
@@ -377,7 +377,7 @@ This is why the `multiqc_title` value from your `params.yaml` flowed through int
 
 To pass your own flags without editing the module code, override `ext.args` in `custom.config`:
 
-```groovy title="custom.config" ins={12,19-21}
+```nextflow title="custom.config" ins={12,19-21}
 workDir = 'nf-work'
 
 process {
@@ -505,7 +505,7 @@ This step combines them into one invocation so you can see how they interact.
 
 3. Put per-process overrides in `custom.config`:
 
-   ```groovy title="custom.config"
+   ```nextflow title="custom.config"
    process {
      withName: 'NFCORE_DEMO:DEMO:FASTQC' {
        cpus = 4

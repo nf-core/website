@@ -91,7 +91,7 @@ There were still some issues where the runners behaved differently compared to t
 
 - We had problems accessing some public AWS resource. We fixed this by setting:
 
-```groovy title="nextflow.config"
+```nextflow title="nextflow.config"
 aws.client.anonymous = true
 ```
 

@@ -23,7 +23,7 @@ Not all tools support dynamic resource configuration.
 
 Most nf-core pipelines use process labels to define resource requirements for each module, as shown in this base configuration example:
 
-```groovy
+```nextflow
 process {
   resourceLimits = [
     cpus: 32,
@@ -60,7 +60,7 @@ Copy only the labels you want to change into your custom configuration file, not
 
 To set a fixed memory allocation for all large tasks across most nf-core pipelines (without increases during retries), add this to a custom Nextflow configuration file:
 
-```groovy
+```nextflow
 process {
   withLabel:process_high {
     memory = 200.GB
@@ -76,7 +76,7 @@ You can target a specific process (job) name instead of a label using `withName`
 Find process names in your console log when the pipeline runs.
 For example:
 
-```groovy
+```nextflow
 process {
   withName: STAR_ALIGN {
     cpus = { 32 * task.attempt }
@@ -86,7 +86,7 @@ process {
 
 When a pipeline uses a tool multiple times in the workflow, specify the complete execution path of the module:
 
-```groovy
+```nextflow
 process {
     withName: 'NFCORE_RNASEQ:RNASEQ:ALIGN_STAR:STAR_ALIGN' {
         memory = 100.GB
@@ -131,7 +131,7 @@ These limits should match the maximum resources of your machine or node.
 
 For example, add this to your Nextflow configuration:
 
-```groovy
+```nextflow
 process {
   resourceLimits = [
     cpus: 32,
@@ -208,17 +208,17 @@ You can override the default container by creating a custom configuration file a
 1. Create the custom configuration:
    - For Docker:
 
-     ```groovy
+   ```nextflow
      process {
          withName: PANGOLIN {
              container = 'quay.io/biocontainers/pangolin:3.1.17--pyhdfd78af_1'
          }
      }
-     ```
+   ```
 
    - For Singularity:
 
-     ```groovy
+     ```nextflow
      process {
          withName: PANGOLIN {
              container = 'https://depot.galaxyproject.org/singularity/pangolin:3.1.17--pyhdfd78af_1'
@@ -228,7 +228,7 @@ You can override the default container by creating a custom configuration file a
 
    - For Conda (check against [bioconda](https://bioconda.github.io), which does not include the build tag):
 
-     ```groovy
+     ```nextflow
      process {
          withName: PANGOLIN {
              conda = 'bioconda::pangolin=3.1.17'
@@ -272,7 +272,7 @@ To modify tool parameters, specify them in the `ext.args` entry of a process in 
 
 For example, if a pipeline doesn't support the `-n` parameter for `BOWTIE2_ALIGN`, add it to your custom configuration:
 
-```groovy
+```nextflow
 process {
     withName: BOWTIE2_ALIGN {
         ext.args = "-n 0.1"
@@ -282,7 +282,7 @@ process {
 
 When a pipeline uses a tool multiple times, specify the complete execution path of the module:
 
-```groovy
+```nextflow
 process {
     withName: 'NFCORE_TAXPROFILER:TAXPROFILER:HOST_REMOVAL:BOWTIE2_BUILD' {
         ext.args = "-n 0.1"

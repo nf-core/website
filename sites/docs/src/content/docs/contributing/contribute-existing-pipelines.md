@@ -209,7 +209,7 @@ When adding a new process to a pipeline:
 
 Define parameters with default values in `nextflow.config` under the `params` scope:
 
-```groovy
+```nextflow
 params {
     my_parameter = 'default_value'
 }
@@ -227,7 +227,7 @@ This adds your parameters to `nextflow_schema.json` with descriptions and valida
 
 Define process resource requirements (CPUs, memory, time) in `conf/base.config` using `withLabel:` selectors:
 
-```groovy
+```nextflow
 withLabel: process_low {
     cpus = 2
     memory = 4.GB
@@ -237,7 +237,7 @@ withLabel: process_low {
 Use standardized labels from the [nf-core pipeline template](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/conf/base.config).
 Reference resources dynamically in process blocks:
 
-```groovy
+```nextflow
 script:
 """
 tool --threads ${task.cpus} --memory ${task.memory}
@@ -253,7 +253,7 @@ Use consistent naming schemes for channels:
 
 Example:
 
-```groovy
+```nextflow
 ch_output_from_fastqc
 ch_fastqc_for_multiqc
 ```

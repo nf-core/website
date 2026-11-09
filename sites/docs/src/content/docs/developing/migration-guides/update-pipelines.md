@@ -32,7 +32,7 @@ To migrate a module to use topic channels for version outputs:
 
 1. Identify the code that looks similar to the following:
 
-   ```groovy title="main.nf"
+   ```nextflow title="main.nf"
    cat <<-END_VERSIONS > versions.yml
    "${task.process}":
        <tool1>: \$(tool1 --version)
@@ -44,7 +44,7 @@ To migrate a module to use topic channels for version outputs:
 
 1. Add outputs for each tool in the module:
 
-   ```groovy title="main.nf"
+   ```nextflow title="main.nf"
    tuple val("${task.process}"), val('<tool1>'), eval('tool1 --version'), emit: versions_tool1, topic: versions
    ```
 
@@ -144,7 +144,7 @@ To migrate a pipelines to use topic channels for version outputs:
 
    The main change in the template include:
 
-   ```groovy title="$PIPELINE_NAME.nf" ins={1-17,19-20} del={18}
+   ```nextflow title="$PIPELINE_NAME.nf" ins={1-17,19-20} del={18}
      def topic_versions = channel.topic("versions")
          .distinct()
          .branch { entry ->
@@ -183,7 +183,7 @@ To migrate a pipelines to use topic channels for version outputs:
    **Example**: A workflow using the `samtools/sort` module might have code like the following.
    **Fix**: Remove the line referencing `SAMTOOLS_SORT.out.versions`:
 
-   ```groovy title="main.nf" del={2}
+   ```nextflow title="main.nf" del={2}
    SAMTOOLS_SORT(input)
    ch_versions = ch_versions.mix(SAMTOOLS_SORT.out.versions) // [!code error] No such property: versions
    ```

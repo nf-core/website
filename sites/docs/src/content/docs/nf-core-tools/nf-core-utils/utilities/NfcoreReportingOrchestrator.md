@@ -521,7 +521,7 @@ workflow LARGE_SCALE_REPORTING {
 
 ### 4. Testing Orchestrated Functions
 
-```groovy
+```nextflow
 test("Comprehensive reporting integration") {
     when {
         def versions = [

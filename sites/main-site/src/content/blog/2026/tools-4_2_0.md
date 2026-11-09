@@ -24,9 +24,9 @@ As always, if you have any problems or run into any bugs, reach out on the [#too
 ## Metro maps with `manifest.diagram{:groovy}`
 
 Nextflow 26.10.0 added a `manifest.diagram{:groovy}` field, which points to a workflow diagram of the pipeline. This makes it easier for other tools to pick up the metro maps, e.g. the RO-crates or [Seqera Platform](https://docs.seqera.io/platform-enterprise/launch/launchpad#pipeline-diagram)
-The template now has a commented-out `manifest.diagram{:groovy}` in `nextflow.config`, ready for your [metro map](/docs/community/brand/workflow-schematics):
+The template now has a commented-out `manifest.diagram{`nextflow}` in `nextflow.config`, ready for your [metro map](/docs/community/brand/workflow-schematics):
 
-```groovy title="nextflow.config"
+```nextflow title="nextflow.config"
 manifest {
     ...
     // diagram = 'docs/images/metro_map.svg'
