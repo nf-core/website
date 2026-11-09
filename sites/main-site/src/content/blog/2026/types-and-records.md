@@ -15,7 +15,7 @@ The aim of the combined task force was to develop the nf-core guidelines related
 
 This blog post gives an overview of all the upcoming changes to nf-core/modules along with the reasoning behind each one.
 
-![](/assets/images/blog/types-and-records/community.jpg)
+![Meme photo based on the TV show Community, where one character comes into a room holding a stack of picture boxes, they are captioned with "Random pipeline maintainer". Underneath is a scene where one person is swinging a burning towel, they are captioned with "Records". There is burning liquid on the floor captioned "static typing". Two people kneeling aroudn a person shot in the leg, captioned "ext changes". One more person is standing a bit in the background looking shot, captioned "when removed". ](../../../assets/images/blog/types-and-records/community.jpg)
 
 ## Singular inputs and outputs
 
@@ -61,7 +61,7 @@ One special case of typing is file inputs:
   - `List<Path>` if order **does** and there can be duplicate paths. Use `.toSorted()` to convert any iterable to a `List`.
   - `Bag<Path>` if order does **not** matter and there can be duplicate paths.
 
-![](/assets/images/blog/types-and-records/type-gulls.jpg)
+![Picture from the movie Finding Nemo with several sea gulls looking into the camera captures with "types, types, types"](../../../assets/images/blog/types-and-records/type-gulls.jpg)
 
 The input record type should consist of the following fields:
 
@@ -238,7 +238,7 @@ process SAMTOOLS_STATS {
 }
 ```
 
-![](/assets/images/blog/types-and-records/drop-legacy-processes.jpg)
+![Picture from the movie Toy story, where one child captioned "nf-core" drops a doll captioned "legacy processes" and the subtitle in the movie still reads "I don't want to play with you anymore."](../../../assets/images/blog/types-and-records/drop-legacy-processes.jpg)
 
 ## Full example
 
