@@ -2,7 +2,7 @@
 title: "Bringing Nextflow Types and Records to nf-core/modules"
 subtitle: "Guideline updates for migrating nf-core/modules to the latest Nextflow syntax"
 pubDate: 2026-10-28T09:00:00+01:00
-headerImage: "https://images.unsplash.com/photo-1582730147924-d92f4da00252"
+headerImage: "/assets/images/blogs/types-and-records/type-gulls.jpg"
 headerImageAlt: "A bunch of records laid out onto a black surface."
 authors:
   - nvnieuwk
@@ -10,12 +10,12 @@ label:
   - modules
 ---
 
-<!-- TODO add more memes -->
-
 During the [October 2026 nf-core hackathon](https://nf-co.re/events/2026/hackathon-barcelona), two hackathon groups joined forces to tackle the upcoming changes caused by the introduction of [static typing](https://docs.seqera.io/nextflow/tutorials/static-types) and [record types](https://docs.seqera.io/nextflow/migrations/26-04#record-types).
 The aim of the combined task force was to develop the nf-core guidelines related to these new Nextflow features.
 
 This blog post gives an overview of all the upcoming changes to nf-core/modules along with the reasoning behind each one.
+
+![](/assets/images/blogs/types-and-records/community.jpg)
 
 ## Singular inputs and outputs
 
@@ -235,6 +235,8 @@ process SAMTOOLS_STATS {
 	"""
 }
 ```
+
+![](/assets/images/blogs/types-and-records/drop-legacy-processes.jpg)
 
 ## Full example
 
