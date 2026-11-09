@@ -20,23 +20,23 @@ All processes MUST have one record as the input and MUST have one record as the 
 
 ## Input record structure
 
-The input record MUST contain the required fields and MAY contain the optional fields listed below.
+The record given as input to the process MUST contain the required fields and MAY contain the optional fields listed below.
 
 ### Required fields
 
-The input record MUST include the following required fields:
+The input record definition MUST include the following required fields:
 
 - Any required input values used to control internal module logic, including the `id` field
 - Any required input files of the process
 
 ### Optional fields
 
-The following fields SHOULD be part of the input record, and SHOULD be optional for the module user.
+The following fields SHOULD be part of the input record definition, and SHOULD be optional for the module user.
 Mark a field as optional by adding `?` after its type, for example `meta: Record?`.
 
 - `meta`: A `Record` that passes metadata from the input of the module to the output of the module.
   The process code MUST NOT use the content of `meta`.
-  Pipeline users MAY use it in `ext` configuration options.
+  Pipeline **users** MAY use it in `ext` configuration options.
 - `<tool_name>_args` or `<tool_name>_<subtool_name>_args`: A `String` that contains the non-mandatory arguments of the tool.
   Specify one field per tool, replacing each `ext.argsN`.
   Name the field following the [module naming conventions](/docs/specifications/components/modules/naming-conventions).
@@ -51,12 +51,13 @@ File fields in the input record SHOULD use one of the following types:
 | Type         | Description                                       |
 | ------------ | ------------------------------------------------- |
 | `Path`       | A single file                                     |
-| `List<Path>` | One or more files, where the order matters        |
-| `Bag<Path>`  | One or more files, where the order doesn't matter |
+| `Set<Path>`  | One or more unique files, where the order doesn't matter |
+| `List<Path>` | One or more files, where the order matters               |
+| `Bag<Path>`  | One or more files, where the order doesn't matter        |
 
 ## Output record structure
 
-The output record MUST contain the following fields:
+The output record definition MUST contain the following fields:
 
 - `id`: The input identifier from the input record
 - `meta`: The optional `meta` record from the input record, used to supply sample-level metadata beyond `id`.
@@ -68,7 +69,6 @@ The output record MUST contain the following fields:
 All modules MUST report versions in the `topic:` block using a record with three fields: `process`, `tool`, and `version`.
 Send the record to the `versions` topic:
 
-```groovy title="main.nf"
 topic:
 record(process: "${task.process}", tool: 'samtools', version: eval('samtools version | sed "1!d;s/.* //"')) >> 'versions'
 ```
@@ -79,10 +79,9 @@ Modules MUST specify all `ext` variables as an independent `ext` directive, inst
 Each `ext` variable SHOULD be defined as a closure, so that it evaluates correctly in all cases.
 Use `task.ext.args` and `task.ext.prefix` in the `script:` and `stub:` blocks.
 
-```groovy title="main.nf"
 ext [
     prefix: { output_prefix ?: "${id}" },
-    args: { samtools_stats_args ?: '' }
+    args: { <tool_name>_args ?: '' }
 ]
 ```
 
