@@ -70,7 +70,7 @@ The **input record type within an nf-core module should consist of the following
    - This will increase the transparency of each process meaning that it will no longer have a silent requirement on meta fields.
 2. All files (required and optional) that the process can use to run.
    - These should all have some variation of the `Path` type as described above.
-3. The `meta` [Map](https://docs.seqera.io/nextflow/reference/stdlib-types/map), as referred to in point 1, will become the `meta` [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record).
+3. The `meta` [Map](https://docs.seqera.io/nextflow/reference/stdlib-types/map) will become the `meta` [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record).
    - This field will now be fully optional and is mainly there to help pipeline developers pass additional pipeline-related information to the process.
    - This can be referenced by pipeline users in `ext.args` and will still be passed to the output so it is also available for downstream logic (like joining).
 4. Optional arguments strings.
