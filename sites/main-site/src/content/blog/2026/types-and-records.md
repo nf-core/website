@@ -3,7 +3,7 @@ title: "Bringing Nextflow Types and Records to nf-core/modules"
 subtitle: "Guideline updates for migrating nf-core/modules to the latest Nextflow syntax"
 pubDate: 2026-10-28T09:00:00+01:00
 headerImage: "https://images.unsplash.com/photo-1582730147924-d92f4da00252"
-headerImageAlt: "A bunch of records laid out onto a black surface."
+headerImageAlt: "A bunch of music records laid out onto a black surface."
 authors:
   - nvnieuwk
 label:
@@ -19,7 +19,7 @@ This blog post gives an overview of all the upcoming changes to nf-core/modules 
 
 ## Singular inputs and outputs
 
-Previously, multiple channels and/or values were allowed in the input and output block of a process. In fact we even enforced that the output block must contain one output per file produced by the process. This will change now by requiring each module to take one [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record) as an input and to emit one [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record) as the output.
+Previously, multiple channels and/or values were allowed in the input and output block of a process. In fact we even enforced that the output block must contain one output per file produced by the process. This will change now by **requiring each module to take one [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record) as an input and to emit one [Record](https://docs.seqera.io/nextflow/reference/stdlib-types/record) as the output**.
 
 This change will be enforced due to many reasons, these are the most prominent ones:
 
@@ -29,12 +29,11 @@ This change will be enforced due to many reasons, these are the most prominent o
 
 ## Composition of the input record type
 
-The input record should consist of several required and optional typed fields.
+The **input record should consist of several required and optional typed fields**.
 
 - A record type is a `Map`-like structure that consists of a predefined set of keys.
 - The record is not limited to only these keys, but it will validate if these keys exists (if needed) and if they have the right type.
 - To type a specific field, put a `:` followed by the expected type after the field key name.
--
 
 A record with typed fields can look like this:
 
@@ -48,25 +47,25 @@ record(
 ```
 
 :::tip
-To annotate a field as optional, put a `?` after the type of that field (for example, `input_index: Path?` in the example above).
+To annotate a field as optional, put a `?` after the type of that field (for example, `input_index: Path?{:nextflow}` in the example above).
 :::
 
 Read more about typing in the [Nextflow docs](https://docs.seqera.io/nextflow/reference/stdlib-types).
 
 One special case of typing is file inputs:
 
-- In case that only one file is expected use the `Path` type
+- In the case that only one file is expected use the `Path` type
 - If multiple files are expected or possible, use one of the following depending on what the process needs:
   - `Set<Path>` if order does **not** matter and there are no duplicate paths. Use `.toSet()` to convert any iterable to a `Set`.
-  - `List<Path>` if order **does** and there can be duplicate paths. Use `.toSorted()` to convert any iterable to a `List`.
+  - `List<Path>` if order **does** matter and there can be duplicate paths. Use `.toSorted()` to convert any iterable to a `List`.
   - `Bag<Path>` if order does **not** matter and there can be duplicate paths.
 
 ![Picture from the movie Finding Nemo with several sea gulls looking into the camera captures with "types, types, types"](../../../assets/images/blog/types-and-records/type-gulls.jpg)
 
-The input record type should consist of the following fields:
+The **input record type within an nf-core module should consist of the following fields**:
 
 1. All required input values needed to run the process.
-   - One big change on this front is that mandatory fields from the meta map should now also be values in the top-level of the record type.
+   - One big change compared to the previous nf-core/module specifications is that mandatory fields from the meta map should now also be values in the top-level of the record type.
    - This is the `id` field for every process and optionally `single_end` and `strandedness` wherever it is needed.
    - This will increase the transparency of each process meaning that it will no longer have a silent requirement on meta fields.
 2. All files (required and optional) that the process can use to run.
@@ -135,7 +134,7 @@ The record definition in the output block is a bit different when compared to th
 There is no option to provide the expected type of the output since Nextflow already derives this based on the type of the value passed to each record field.
 Read more about this in the [Nextflow docs](https://docs.seqera.io/nextflow/reference/process/inputs-outputs-typed#outputs)
 
-The output record should consist of the following fields:
+The **output record should consist of the following fields**:
 
 1. The `id` field given via the input record
 2. The `meta` Record given via the input record (this will be `null` in case no meta was passed)
@@ -146,7 +145,7 @@ The output record should consist of the following fields:
 
 Let's return to our previous example of `SAMTOOLS_STATS` and take a look at what needs to be done to update the output block of that module.
 
-The module outputs one file called `stats` and one version of the `samtools stats` tool (as an output and a topic). In this case, no multiple outputs should be merged because the module only outputs one file. The `id` field was added to the output record, which directly uses the `id` value passed to the input of the module. Finally the versions output has also been converted to a record type and has been moved to the `topic` block.
+The module outputs one file called `stats` and one version of the `samtools stats` tool (as an output and a topic). In this case, no multiple outputs should be merged because the module only outputs one file. The `id` field was added to the output record, which directly uses the `id` value passed to the input of the module. Finally, the versions output has also been converted to a record type and has been moved to the `topic` block.
 
 The output section of the module will change like this:
 
@@ -164,12 +163,13 @@ The output section of the module will change like this:
 + record(process: "${task.process}", tool: 'samtools', version: eval('samtools version | sed "1!d;s/.* //"')) >> 'versions'
 ```
 
-As seen in the input of the module, some extra inputs were added that have a similar function to the current `ext` variables.
-Let's take a look how to properly handle these variables after the migration.
 
 ## Changes to `ext` variables
 
-Instead of defining the `prefix` and `args` variables in the `script` and `stub` block separately, they must now be defined under the container declaration in the process code.
+As seen in the input of the module, some extra inputs were added that have a similar function to the current `ext` variables.
+Let's take a look how to properly handle these variables after the migration.
+
+Instead of defining the `prefix` and `args` variables in the `script` and `stub` block separately, **`prefix` and `args` they must now be defined in a new block under the container declaration in the process code**.
 This way the declaration happens only once in the process, making sure that there is more parity between the `script` and `stub` block.
 
 The definition of these variables now also needs to take into account that the `output_prefix` and `<tool>_args` options are given in the input.
@@ -179,7 +179,7 @@ This is the order of priority for each option where one of these variables can b
 2. The value passed in the input record of the process by the pipeline _**developer**_
 3. The default of the value (for example `id` for the `prefix`)
 
-`ext.when` should also be removed since it's no longer supported in statically typed modules, the new `process.when` option can be used instead.
+**`ext.when` should also be removed since it's no longer supported in statically typed modules**, the new `process.when` option can be used instead.
 
 :::warning title="When to use `when`"
 The `process.when` configuration option should only be reserved for pipeline **users**.
@@ -208,8 +208,8 @@ process SAMTOOLS_STATS {
 	output:
 	...
 
-+  topic:
-+  ...
+	topic:
+	...
 
 -	when: task.ext.when == null || task.ext.when
 
