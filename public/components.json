@@ -54668,7 +54668,7 @@
     {
       "name": "bwamem2_index",
       "path": "modules/nf-core/bwamem2/index/meta.yml",
-      "tree_sha": "43226e9a4ddefe76a2e53154ab446c3a19137780",
+      "tree_sha": "7d0c054e274ed13a0532449fb6b3fb5b7a59b87d",
       "files": [
         "modules/nf-core/bwamem2/index/environment.yml",
         "modules/nf-core/bwamem2/index/main.nf",
@@ -54694,7 +54694,7 @@
               "documentation": "https://github.com/bwa-mem2/bwa-mem2#usage",
               "doi": "10.1109/IPDPS.2019.00041",
               "publication": {
-                "author": "Vasimuddin M., Misra S., Li H. & Aluru S.",
+                "author": "Vasimuddin, M., Misra, S., Li, H. & Aluru, S.",
                 "year": 2018,
                 "source": "IEEE International Parallel and Distributed Processing Symposium (IPDPS)",
                 "title": "Efficient Architecture-Aware Acceleration of BWA-MEM for Multicore Systems"
@@ -54819,7 +54819,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "697192edd1bd7a330a5edbc4eb2f0f69ecfbb6ce",
       "pipelines": [
         {
           "name": "callingcards",
@@ -54882,7 +54882,7 @@
     {
       "name": "bwamem2_mem",
       "path": "modules/nf-core/bwamem2/mem/meta.yml",
-      "tree_sha": "8815c7ed8488e49ae1f1c10a82efad56a474e6dc",
+      "tree_sha": "cca3525f8b7a1647f893cfa195af65629b6e5221",
       "files": [
         "modules/nf-core/bwamem2/mem/environment.yml",
         "modules/nf-core/bwamem2/mem/main.nf",
@@ -54911,7 +54911,7 @@
               "documentation": "https://github.com/bwa-mem2/bwa-mem2#usage",
               "doi": "10.1109/IPDPS.2019.00041",
               "publication": {
-                "author": "Vasimuddin M., Misra S., Li H. & Aluru S.",
+                "author": "Vasimuddin, M., Misra, S., Li, H. & Aluru, S.",
                 "year": 2018,
                 "source": "IEEE International Parallel and Distributed Processing Symposium (IPDPS)",
                 "title": "Efficient Architecture-Aware Acceleration of BWA-MEM for Multicore Systems"
@@ -55198,7 +55198,7 @@
           "@matthdsm"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "697192edd1bd7a330a5edbc4eb2f0f69ecfbb6ce",
       "pipelines": [
         {
           "name": "callingcards",
@@ -55257,7 +55257,7 @@
     {
       "name": "bwamem3_index",
       "path": "modules/nf-core/bwamem3/index/meta.yml",
-      "tree_sha": "4414b1304de3c3a74f4aae93a021d506cf0a96f6",
+      "tree_sha": "88bd2ec49cb80082c21305ab23fae9043e2b7f37",
       "files": [
         "modules/nf-core/bwamem3/index/.conda-lock/linux_amd64-bd-b56ccc800b165a7e_1.txt",
         "modules/nf-core/bwamem3/index/.conda-lock/linux_arm64-bd-d9c39c7fb055095e_1.txt",
@@ -55329,7 +55329,7 @@
                 "bwamem3": {
                   "type": "directory",
                   "description": "bwa-mem3 genome index files. When built with `ext.args = '--meth'`,\nalso contains the methylation seed index (`*.meth.{amb,ann,bwt.2bit.64,pac}`)\nrequired by `bwa-mem3 mem --meth` (e.g. `--meth=taps`).\n",
-                  "pattern": "*.{0123,amb,ann,bwt.2bit.64,pac}",
+                  "pattern": "*.{amb,ann,bwt.2bit.64,pac}",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/data_3210"
@@ -55427,7 +55427,7 @@
           }
         }
       },
-      "git_sha": "d9d44fa4a5048f6af0d785ab973f5e49fb3ecb60",
+      "git_sha": "8de7382b73071351977d621eaa05750d189534e7",
       "pipelines": [
         {
           "name": "pathogenepidemiology",
@@ -55438,7 +55438,7 @@
     {
       "name": "bwamem3_mem",
       "path": "modules/nf-core/bwamem3/mem/meta.yml",
-      "tree_sha": "4700ec4d4400eecc73969a376a75e25bb7b492fa",
+      "tree_sha": "bac4da566b835c7b82a1b2f80ebd896d7aed93a7",
       "files": [
         "modules/nf-core/bwamem3/mem/.conda-lock/linux_amd64-bd-f271e572b6aa004b_1.txt",
         "modules/nf-core/bwamem3/mem/.conda-lock/linux_arm64-bd-e73cbc14b9a6cced_1.txt",
@@ -55521,8 +55521,8 @@
             {
               "index": {
                 "type": "file",
-                "description": "bwa-mem3 genome index files. Methylation-aware alignment (`ext.args = '--meth=taps'`\nfor TAPS; the `=` is required) needs an index built with `bwa-mem3 index --meth`,\nwhich adds the `*.meth.*` seed index.\n",
-                "pattern": "Directory containing bwa-mem3 index *.{0123,amb,ann,bwt.2bit.64,pac}",
+                "description": "bwa-mem3 genome index files. Methylation-aware alignment (`ext.args = '--meth=taps'`\nfor TAPS; the `=` is required) needs an index built with `bwa-mem3 index --meth`,\nwhich adds the `*.meth.*` seed index. Aligning against a `--meth` index needs about\n1.7x the memory of a plain index (measured on human chr21 with bwa-mem3 0.16.0);\nfor a human genome that is tens of GB.\n",
+                "pattern": "Directory containing bwa-mem3 index *.{amb,ann,bwt.2bit.64,pac}",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/data_3210"
@@ -55558,6 +55558,13 @@
             "sort_bam": {
               "type": "boolean",
               "description": "use samtools sort (true) or samtools view (false)"
+            }
+          },
+          {
+            "index_format": {
+              "type": "string",
+              "description": "Index to write alongside the sorted output: `bai` or `csi` for BAM, `crai` for CRAM.\nLeave empty (`''`) to write no index. Requires `sort_bam = true`.\n",
+              "pattern": "bai|csi|crai"
             }
           }
         ],
@@ -55738,7 +55745,7 @@
           }
         }
       },
-      "git_sha": "d9d44fa4a5048f6af0d785ab973f5e49fb3ecb60",
+      "git_sha": "8de7382b73071351977d621eaa05750d189534e7",
       "pipelines": [
         {
           "name": "pathogenepidemiology",
@@ -68162,7 +68169,7 @@
     {
       "name": "checkqc",
       "path": "modules/nf-core/checkqc/meta.yml",
-      "tree_sha": "a43c92b7900e308a2593e8528856bd1cd70f6865",
+      "tree_sha": "33de5323ff3e24d65846e4b1ef3f8bf5b10b48e5",
       "files": [
         "modules/nf-core/checkqc/environment.yml",
         "modules/nf-core/checkqc/main.nf",
@@ -68187,6 +68194,12 @@
               "homepage": "https://github.com/Molmed/checkQC",
               "documentation": "http://checkqc.readthedocs.io/en/latest/",
               "doi": "10.21105/joss.00556",
+              "publication": {
+                "author": "Åslin, M., Brandt, M. & Dahlberg, J.",
+                "year": 2018,
+                "title": "CheckQC: Quick quality control of Illumina sequencing runs",
+                "source": "Journal of Open Source Software"
+              },
               "licence": [
                 "GPL v3"
               ],
@@ -68303,7 +68316,7 @@
           "@matrulda"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "0cd3d953930e547df227eab4dc006791a5f231a3",
       "pipelines": [
         {
           "name": "demultiplex",
@@ -79167,6 +79180,862 @@
         }
       },
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+    },
+    {
+      "name": "colabfold_colabfold",
+      "path": "modules/nf-core/colabfold/colabfold/meta.yml",
+      "tree_sha": "00f395794b805458dd373a0f194e47ec2958dfc0",
+      "files": [
+        "modules/nf-core/colabfold/colabfold/.conda-lock/linux_amd64-bd-50a22b7e73876edb_1.txt",
+        "modules/nf-core/colabfold/colabfold/environment.gpu.yml",
+        "modules/nf-core/colabfold/colabfold/environment.yml",
+        "modules/nf-core/colabfold/colabfold/main.nf",
+        "modules/nf-core/colabfold/colabfold/meta.yml",
+        "modules/nf-core/colabfold/colabfold/tests/main.gpu.nf.test",
+        "modules/nf-core/colabfold/colabfold/tests/main.gpu.nf.test.snap",
+        "modules/nf-core/colabfold/colabfold/tests/main.nf.test",
+        "modules/nf-core/colabfold/colabfold/tests/main.nf.test.snap",
+        "modules/nf-core/colabfold/colabfold/tests/nextflow.gpu.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "colabfold_colabfold",
+        "description": "Predicts protein structure with AlphaFold2, taking the multiple sequence alignment from an MMseqs2 server rather than local databases",
+        "keywords": [
+          "protein structure",
+          "structure prediction",
+          "AlphaFold2",
+          "MSA",
+          "folding"
+        ],
+        "tools": [
+          {
+            "colabfold": {
+              "description": "ColabFold runs AlphaFold2 (and other folding models) while sourcing its\nmultiple sequence alignment from a remote MMseqs2 server, which removes\nthe ~2.6 TB of reference databases a local AlphaFold2 install needs.\nThe public server (api.colabfold.com) is used by default; pass\n`--host-url` through `ext.args` to use your own instance. A GPU speeds\ninference up but is not required; Amber relaxation is enabled with\n`--amber` (and `--use-gpu-relax` on a GPU).\n",
+              "homepage": "https://github.com/sokrypton/ColabFold",
+              "documentation": "https://github.com/sokrypton/ColabFold",
+              "doi": "10.1038/s41592-022-01488-1",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:colabfold",
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Protein sequences to fold (FASTA, one prediction per record) or a precomputed MSA (A3M, one prediction per file)",
+                "pattern": "*.{fa,faa,fasta,a3m}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing weights information\ne.g. [ id:'alphafold2_params' ]\n"
+              }
+            },
+            {
+              "weights": {
+                "type": "directory",
+                "description": "ColabFold data directory with the AlphaFold2 parameters in `params/`. It must contain the empty `params/download_finished.txt` that colabfold's downloader creates (e.g. via `colabfold/downloadmodels`); without it colabfold downloads the weights again",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing templates information\ne.g. [ id:'templates' ]\n"
+              }
+            },
+            {
+              "templates": {
+                "type": "file",
+                "description": "Optional PDB/mmCIF files used as custom templates, staged into `templates/` (`--custom-template-path`; needs `--templates` in `ext.args`)",
+                "pattern": "*.{pdb,cif}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1476"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1477"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing template hits information\ne.g. [ id:'pdb_hits' ]\n"
+              }
+            },
+            {
+              "pdb_hits": {
+                "type": "file",
+                "description": "Optional BLAST-m8 PDB hit file for the input MSA, e.g. from colabfold_search (`--pdb-hit-file`; needs `--templates` in `ext.args`; not combinable with `templates`)",
+                "pattern": "*.m8",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "local_pdb": {
+                "type": "directory",
+                "description": "Optional local mirror of the PDB mmCIF database, used for the templates in `pdb_hits` (`--local-pdb-path`)",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "pdb": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${prefix}/*_rank_*.pdb": {
+                  "type": "file",
+                  "description": "Predicted structures (rank_001 is the best model; per-residue pLDDT in the B-factor column)",
+                  "pattern": "*_rank_*.pdb",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1476"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${prefix}/*_scores_rank_*.json": {
+                  "type": "file",
+                  "description": "Per-model scores (per-residue pLDDT, PAE, pTM)",
+                  "pattern": "*_scores_rank_*.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "pae": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${prefix}/*_predicted_aligned_error_v1.json": {
+                  "type": "file",
+                  "description": "Predicted aligned error of the best model, in the AlphaFold database format",
+                  "pattern": "*_predicted_aligned_error_v1.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "a3m": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${prefix}/*.a3m": {
+                  "type": "file",
+                  "description": "Multiple sequence alignment used for each query",
+                  "pattern": "*.a3m",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "png": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${prefix}/*.png": {
+                  "type": "file",
+                  "description": "pLDDT, PAE and MSA coverage plots",
+                  "pattern": "*.png",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3603"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "pickle": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${prefix}/*.pickle": {
+                  "type": "file",
+                  "description": "Raw model outputs (`--save-all`) or the MSA and template features (`--msa-only`)",
+                  "pattern": "*.pickle",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_4002"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "npy": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${prefix}/*_repr_*.npy": {
+                  "type": "file",
+                  "description": "Single and pair representation embeddings (`--save-single-representations`, `--save-pair-representations`)",
+                  "pattern": "*_repr_*.npy",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_4003"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "zip": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${prefix}/*.result.zip": {
+                  "type": "file",
+                  "description": "All results of a query zipped into one archive (`--zip`; the other outputs are then removed)",
+                  "pattern": "*.result.zip",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3987"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "templates": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${prefix}/*_template_domain_names.json": {
+                  "type": "file",
+                  "description": "Templates found for each query (`--templates`)",
+                  "pattern": "*_template_domain_names.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "config": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${prefix}/config.json": {
+                  "type": "file",
+                  "description": "Parameters of the colabfold_batch run",
+                  "pattern": "config.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "bibtex": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${prefix}/cite.bibtex": {
+                  "type": "file",
+                  "description": "Citations for the tools and databases used in the run",
+                  "pattern": "cite.bibtex",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${prefix}/log.txt": {
+                  "type": "file",
+                  "description": "colabfold_batch log",
+                  "pattern": "log.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_colabfold": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "colabfold": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import importlib.metadata as m; print(m.version(\"colabfold\"))'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_cuda": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cuda": {
+                  "type": "string",
+                  "description": "Name of the runtime"
+                }
+              },
+              {
+                "python -c \"import glob, json, sys; f = glob.glob(sys.prefix + '/conda-meta/cuda-version-*.json'); print(json.load(open(f[0]))['version'] if f else 'no CUDA available')\"": {
+                  "type": "eval",
+                  "description": "CUDA version of the task's environment, or `no CUDA available` on the CPU path"
+                }
+              }
+            ]
+          ],
+          "versions_dm_haiku": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "dm-haiku": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import importlib.metadata as m; print(m.version(\"dm-haiku\"))'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_flax": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "flax": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import importlib.metadata as m; print(m.version(\"flax\"))'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_jax": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "jax": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import importlib.metadata as m; print(m.version(\"jax\"))'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "colabfold": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import importlib.metadata as m; print(m.version(\"colabfold\"))'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cuda": {
+                  "type": "string",
+                  "description": "Name of the runtime"
+                }
+              },
+              {
+                "python -c \"import glob, json, sys; f = glob.glob(sys.prefix + '/conda-meta/cuda-version-*.json'); print(json.load(open(f[0]))['version'] if f else 'no CUDA available')\"": {
+                  "type": "eval",
+                  "description": "CUDA version of the task's environment, or `no CUDA available` on the CPU path"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "dm-haiku": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import importlib.metadata as m; print(m.version(\"dm-haiku\"))'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "flax": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import importlib.metadata as m; print(m.version(\"flax\"))'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "jax": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import importlib.metadata as m; print(m.version(\"jax\"))'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@Bboy010"
+        ],
+        "maintainers": [
+          "@Bboy010"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/colabfold_dm-haiku_flax:50a22b7e73876edb",
+              "build_id": "bd-50a22b7e73876edb_1",
+              "scan_id": "sc-7d6a4f09ec9a8b34_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/colabfold_dm-haiku_flax:797eb5b15587ba43",
+              "build_id": "bd-797eb5b15587ba43_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/d2/d2de6276b0c23cc1aaab4af2aa1336fa943b0c45d43ce4ed483911fb99a3db33/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/colabfold/colabfold/.conda-lock/linux_amd64-bd-50a22b7e73876edb_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "718e08e729fbef0256cc9417095e3f6b99349e9c"
+    },
+    {
+      "name": "colabfold_downloadmodels",
+      "path": "modules/nf-core/colabfold/downloadmodels/meta.yml",
+      "tree_sha": "f039df7bd697bab74acdc60a202a3fba82292dfc",
+      "files": [
+        "modules/nf-core/colabfold/downloadmodels/.conda-lock/linux_amd64-bd-50a22b7e73876edb_1.txt",
+        "modules/nf-core/colabfold/downloadmodels/environment.yml",
+        "modules/nf-core/colabfold/downloadmodels/main.nf",
+        "modules/nf-core/colabfold/downloadmodels/meta.yml",
+        "modules/nf-core/colabfold/downloadmodels/tests/main.nf.test",
+        "modules/nf-core/colabfold/downloadmodels/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "colabfold_downloadmodels",
+        "description": "Downloads the AlphaFold2 (or DeepFold) parameters that ColabFold needs, once, as a data directory for colabfold/colabfold",
+        "keywords": [
+          "protein structure",
+          "structure prediction",
+          "AlphaFold2",
+          "model",
+          "download"
+        ],
+        "tools": [
+          {
+            "colabfold": {
+              "description": "ColabFold runs AlphaFold2 (and other folding models) while sourcing its\nmultiple sequence alignment from a remote MMseqs2 server. This module\ncalls ColabFold's own downloader, `download_alphafold_params()`, which\nextracts the parameters into `params/` and writes the empty\n`params/download*_finished.txt` marker that `colabfold_batch` checks\nbefore using a data directory.\n",
+              "homepage": "https://github.com/sokrypton/ColabFold",
+              "documentation": "https://github.com/sokrypton/ColabFold",
+              "doi": "10.1038/s41592-022-01488-1",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:colabfold"
+            }
+          }
+        ],
+        "input": [
+          {
+            "model_type": {
+              "type": "string",
+              "description": "Set of parameters to download, as named by `colabfold_batch --model-type`:\n`alphafold2_ptm` (monomers, ~3.5 GB), `alphafold2_multimer_v1`,\n`alphafold2_multimer_v2`, `alphafold2_multimer_v3` (complexes) or `deepfold_v1`\n"
+            }
+          }
+        ],
+        "output": {
+          "weights": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map naming the downloaded parameter set\ne.g. [ id:'alphafold2_ptm' ]\n"
+                }
+              },
+              {
+                "weights": {
+                  "type": "directory",
+                  "description": "ColabFold data directory with the parameters and the download marker in `params/`, to pass as `weights` to colabfold/colabfold",
+                  "pattern": "weights",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_colabfold": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "colabfold": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import importlib.metadata as m; print(m.version(\"colabfold\"))'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_dm_haiku": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "dm-haiku": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import importlib.metadata as m; print(m.version(\"dm-haiku\"))'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_flax": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "flax": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import importlib.metadata as m; print(m.version(\"flax\"))'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "colabfold": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import importlib.metadata as m; print(m.version(\"colabfold\"))'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "dm-haiku": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import importlib.metadata as m; print(m.version(\"dm-haiku\"))'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "flax": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c 'import importlib.metadata as m; print(m.version(\"flax\"))'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@Bboy010"
+        ],
+        "maintainers": [
+          "@Bboy010"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/colabfold_dm-haiku_flax:50a22b7e73876edb",
+              "build_id": "bd-50a22b7e73876edb_1",
+              "scan_id": "sc-7d6a4f09ec9a8b34_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/colabfold_dm-haiku_flax:797eb5b15587ba43",
+              "build_id": "bd-797eb5b15587ba43_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/d2/d2de6276b0c23cc1aaab4af2aa1336fa943b0c45d43ce4ed483911fb99a3db33/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/colabfold/downloadmodels/.conda-lock/linux_amd64-bd-50a22b7e73876edb_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "718e08e729fbef0256cc9417095e3f6b99349e9c"
     },
     {
       "name": "comebin_runcomebin",
@@ -102924,6 +103793,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -115634,6 +116511,10 @@
         {
           "name": "rnaseq",
           "version": "3.27.0"
+        },
+        {
+          "name": "rnaseq",
+          "version": "3.27.0"
         }
       ]
     },
@@ -127110,7 +127991,7 @@
     {
       "name": "fastp",
       "path": "modules/nf-core/fastp/meta.yml",
-      "tree_sha": "8d3d71819d44a4fb5de34e6e531d753d802dc4d9",
+      "tree_sha": "8e8d1f24a8281a68bb98ce300ad37eb0c9d09d90",
       "files": [
         "modules/nf-core/fastp/.conda-lock/linux_amd64-bd-df415eab5e33cb11_1.txt",
         "modules/nf-core/fastp/.conda-lock/linux_arm64-bd-39bad1c703aea2ba_1.txt",
@@ -127139,7 +128020,7 @@
               "documentation": "https://github.com/OpenGene/fastp",
               "doi": "10.1093/bioinformatics/bty560",
               "publication": {
-                "author": "Chen S., Zhou Y., Chen Y. & Gu J.",
+                "author": "Chen, S., Zhou, Y., Chen, Y. & Gu, J.",
                 "year": 2018,
                 "title": "fastp: an ultra-fast all-in-one FASTQ preprocessor",
                 "source": "Bioinformatics"
@@ -127412,7 +128293,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "697192edd1bd7a330a5edbc4eb2f0f69ecfbb6ce",
       "pipelines": [
         {
           "name": "airrflow",
@@ -128486,7 +129367,7 @@
     {
       "name": "fastqe",
       "path": "modules/nf-core/fastqe/meta.yml",
-      "tree_sha": "8c0028e95913c4ec1ceb9045dc82ad2452334dad",
+      "tree_sha": "e4d8d9f9f607669659a3c9e929c92d34ad6c3b63",
       "files": [
         "modules/nf-core/fastqe/environment.yml",
         "modules/nf-core/fastqe/main.nf",
@@ -128512,6 +129393,12 @@
               "documentation": "https://github.com/fastqe/fastqe#readme",
               "tool_dev_url": "https://github.com/fastqe/fastqe",
               "doi": "10.21105/joss.02400",
+              "publication": {
+                "author": "StJacques, R., Maza, M., Robertson, S., Lu, G., Lonsdale, A. & Enke, R. A.",
+                "year": 2019,
+                "title": "A Fun Introductory Command Line Exercise: Next Generation Sequencing Quality Analysis with Emoji!",
+                "source": "Journal of Open Source Education"
+              },
               "licence": [
                 "MIT"
               ],
@@ -128613,7 +129500,7 @@
           "@adamrtalbot"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "44ef798b3c2bfd4a429f1218a794c08954e83414",
       "pipelines": [
         {
           "name": "seqinspector",
@@ -129219,7 +130106,7 @@
     {
       "name": "fasttree",
       "path": "modules/nf-core/fasttree/meta.yml",
-      "tree_sha": "275f6276538a76b2e1f9685bc7522ead8af71a6a",
+      "tree_sha": "585d740965d651d6d93d81c10fc4801b7fb96f05",
       "files": [
         "modules/nf-core/fasttree/environment.yml",
         "modules/nf-core/fasttree/main.nf",
@@ -129250,25 +130137,49 @@
           }
         ],
         "input": [
-          {
-            "alignment": {
-              "type": "file",
-              "description": "A FASTA format multiple sequence alignment file",
-              "pattern": "*.{fasta,fas,fa,mfa}",
-              "ontologies": []
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "alignment": {
+                "type": "file",
+                "description": "A FASTA format multiple sequence alignment file",
+                "pattern": "*.{fasta,fas,fa,mfa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
             }
-          }
+          ]
         ],
         "output": {
           "phylogeny": [
-            {
-              "*.tre": {
-                "type": "file",
-                "description": "A phylogeny in Newick format",
-                "pattern": "*.{tre}",
-                "ontologies": []
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.nwk": {
+                  "type": "file",
+                  "description": "A phylogeny in Newick format",
+                  "pattern": "*.{nwk}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1910"
+                    }
+                  ]
+                }
               }
-            }
+            ]
           ],
           "versions_fasttree": [
             [
@@ -129288,6 +130199,28 @@
                 "fasttree -help 2>&1 | head -1 | sed 's/^FastTree \\([0-9.]*\\) .*$/\\1/'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "FastTree log file with run details, useful for diagnosing failed runs",
+                  "pattern": "*.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
                 }
               }
             ]
@@ -129324,7 +130257,7 @@
           "@aunderwo"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "888b825b9af9c47573ceeae5828ade0eebcb7a6d",
       "pipelines": [
         {
           "name": "genephylo",
@@ -217059,7 +217992,7 @@
     {
       "name": "kraken2_add",
       "path": "modules/nf-core/kraken2/add/meta.yml",
-      "tree_sha": "9dbd93f6c76465311bfcb5b0fe06e4dd0ba16cc8",
+      "tree_sha": "c4b7ca7d46864f1fc19620144a9f0be164e025e0",
       "files": [
         "modules/nf-core/kraken2/add/environment.yml",
         "modules/nf-core/kraken2/add/main.nf",
@@ -217088,7 +218021,7 @@
               "tool_dev_url": "https://github.com/DerrickWood/kraken2",
               "doi": "10.1186/s13059-019-1891-0",
               "publication": {
-                "author": "Wood D.E., Lu J. & Langmead B.",
+                "author": "Wood, D. E., Lu, J. & Langmead, B.",
                 "year": 2019,
                 "title": "Improved metagenomic analysis with Kraken 2",
                 "source": "Genome Biology"
@@ -217295,7 +218228,7 @@
           "@jfy133"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "697192edd1bd7a330a5edbc4eb2f0f69ecfbb6ce",
       "pipelines": [
         {
           "name": "createtaxdb",
@@ -217306,7 +218239,7 @@
     {
       "name": "kraken2_build",
       "path": "modules/nf-core/kraken2/build/meta.yml",
-      "tree_sha": "1c6c39303deab5f66dfec13f48cf05647ddd376c",
+      "tree_sha": "df77ba681d5612dcf0bfb68da590b3fb07551919",
       "files": [
         "modules/nf-core/kraken2/build/environment.yml",
         "modules/nf-core/kraken2/build/main.nf",
@@ -217335,7 +218268,7 @@
               "tool_dev_url": "https://github.com/DerrickWood/kraken2",
               "doi": "10.1186/s13059-019-1891-0",
               "publication": {
-                "author": "Wood D.E., Lu J. & Langmead B.",
+                "author": "Wood, D. E., Lu, J. & Langmead, B.",
                 "year": 2019,
                 "title": "Improved metagenomic analysis with Kraken 2",
                 "source": "Genome Biology"
@@ -217566,7 +218499,7 @@
           "@jfy133"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "697192edd1bd7a330a5edbc4eb2f0f69ecfbb6ce",
       "pipelines": [
         {
           "name": "createtaxdb",
@@ -217577,7 +218510,7 @@
     {
       "name": "kraken2_buildstandard",
       "path": "modules/nf-core/kraken2/buildstandard/meta.yml",
-      "tree_sha": "d29de74c148e8bb1b0dad501dc763ce42d216834",
+      "tree_sha": "4b6fe1d7688bf8f41fa2089b1dbd5db900669544",
       "files": [
         "modules/nf-core/kraken2/buildstandard/environment.yml",
         "modules/nf-core/kraken2/buildstandard/main.nf",
@@ -217607,7 +218540,7 @@
               "tool_dev_url": "https://github.com/DerrickWood/kraken2",
               "doi": "10.1186/s13059-019-1891-0",
               "publication": {
-                "author": "Wood D.E., Lu J. & Langmead B.",
+                "author": "Wood, D. E., Lu, J. & Langmead, B.",
                 "year": 2019,
                 "title": "Improved metagenomic analysis with Kraken 2",
                 "source": "Genome Biology"
@@ -217697,12 +218630,12 @@
           "@egreenberg7"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "697192edd1bd7a330a5edbc4eb2f0f69ecfbb6ce"
     },
     {
       "name": "kraken2_kraken2",
       "path": "modules/nf-core/kraken2/kraken2/meta.yml",
-      "tree_sha": "d99e0472b0744ef39c94b6d18961354047b9ed5f",
+      "tree_sha": "e35488a99c096d4ddde8e796c7f13fce453ec57f",
       "files": [
         "modules/nf-core/kraken2/kraken2/environment.yml",
         "modules/nf-core/kraken2/kraken2/main.nf",
@@ -217728,7 +218661,7 @@
               "documentation": "https://github.com/DerrickWood/kraken2/wiki/Manual",
               "doi": "10.1186/s13059-019-1891-0",
               "publication": {
-                "author": "Wood D.E., Lu J. & Langmead B.",
+                "author": "Wood, D. E., Lu, J. & Langmead, B.",
                 "year": 2019,
                 "title": "Improved metagenomic analysis with Kraken 2",
                 "source": "Genome Biology"
@@ -217945,7 +218878,7 @@
           "@drpatelh"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "697192edd1bd7a330a5edbc4eb2f0f69ecfbb6ce",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -218934,7 +219867,7 @@
     {
       "name": "krona_kronadb",
       "path": "modules/nf-core/krona/kronadb/meta.yml",
-      "tree_sha": "5bbcb1e7dd73b8993c3721007ab2d870b9de1037",
+      "tree_sha": "47b696b935141b018b4f9c2d966cfd6c47841559",
       "files": [
         "modules/nf-core/krona/kronadb/environment.yml",
         "modules/nf-core/krona/kronadb/main.nf",
@@ -218960,7 +219893,7 @@
               "documentation": "https://github.com/marbl/Krona/wiki/Installing",
               "doi": "10.1186/1471-2105-12-385",
               "publication": {
-                "author": "Ondov B.D., Bergman N.H. & Phillippy A.M.",
+                "author": "Ondov, B. D., Bergman, N. H. & Phillippy, A. M.",
                 "year": 2011,
                 "title": "Interactive metagenomic visualization in a Web browser",
                 "source": "BMC Bioinformatics"
@@ -219041,12 +219974,12 @@
           "@mjakobs"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "697192edd1bd7a330a5edbc4eb2f0f69ecfbb6ce"
     },
     {
       "name": "krona_ktimportkrona",
       "path": "modules/nf-core/krona/ktimportkrona/meta.yml",
-      "tree_sha": "d074579aaf1e7a2ea4cabe63709a0a16a13884dd",
+      "tree_sha": "74b3cfea1d50231063979c148d35ae0886da7cf8",
       "files": [
         "modules/nf-core/krona/ktimportkrona/environment.yml",
         "modules/nf-core/krona/ktimportkrona/main.nf",
@@ -219074,7 +220007,7 @@
               "documentation": "https://manpages.ubuntu.com/manpages/noble/man1/ktImportTaxonomy.1.html",
               "doi": "10.1186/1471-2105-12-385",
               "publication": {
-                "author": "Ondov B.D., Bergman N.H. & Phillippy A.M.",
+                "author": "Ondov, B. D., Bergman, N. H. & Phillippy, A. M.",
                 "year": 2011,
                 "title": "Interactive metagenomic visualization in a Web browser",
                 "source": "BMC Bioinformatics"
@@ -219160,12 +220093,12 @@
           "@paulwolk"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "697192edd1bd7a330a5edbc4eb2f0f69ecfbb6ce"
     },
     {
       "name": "krona_ktimporttaxonomy",
       "path": "modules/nf-core/krona/ktimporttaxonomy/meta.yml",
-      "tree_sha": "ca4d80efccaa67dab4b8793ef89b3bbf500168c8",
+      "tree_sha": "6d851ef801f5754126db33b4084e47a89266d098",
       "files": [
         "modules/nf-core/krona/ktimporttaxonomy/environment.yml",
         "modules/nf-core/krona/ktimporttaxonomy/main.nf",
@@ -219193,7 +220126,7 @@
               "documentation": "https://manpages.ubuntu.com/manpages/noble/man1/ktImportTaxonomy.1.html",
               "doi": "10.1186/1471-2105-12-385",
               "publication": {
-                "author": "Ondov B.D., Bergman N.H. & Phillippy A.M.",
+                "author": "Ondov, B. D., Bergman, N. H. & Phillippy, A. M.",
                 "year": 2011,
                 "title": "Interactive metagenomic visualization in a Web browser",
                 "source": "BMC Bioinformatics"
@@ -219310,7 +220243,7 @@
           "@mjakobs"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "697192edd1bd7a330a5edbc4eb2f0f69ecfbb6ce",
       "pipelines": [
         {
           "name": "hgtseq",
@@ -219329,7 +220262,7 @@
     {
       "name": "krona_ktimporttext",
       "path": "modules/nf-core/krona/ktimporttext/meta.yml",
-      "tree_sha": "131529b87e77d4d125778468ecc171a22b93fc00",
+      "tree_sha": "7315db5b25c07af0e1550a0d871ecc8234f16883",
       "files": [
         "modules/nf-core/krona/ktimporttext/environment.yml",
         "modules/nf-core/krona/ktimporttext/main.nf",
@@ -219359,7 +220292,7 @@
               "tool_dev_url": "https://github.com/marbl/Krona",
               "doi": "10.1186/1471-2105-12-385",
               "publication": {
-                "author": "Ondov B.D., Bergman N.H. & Phillippy A.M.",
+                "author": "Ondov, B. D., Bergman, N. H. & Phillippy, A. M.",
                 "year": 2011,
                 "title": "Interactive metagenomic visualization in a Web browser",
                 "source": "BMC Bioinformatics"
@@ -219462,7 +220395,7 @@
           "@jianhong"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "697192edd1bd7a330a5edbc4eb2f0f69ecfbb6ce",
       "pipelines": [
         {
           "name": "taxprofiler",
@@ -219477,7 +220410,7 @@
     {
       "name": "krona_ktupdatetaxonomy",
       "path": "modules/nf-core/krona/ktupdatetaxonomy/meta.yml",
-      "tree_sha": "cec1be81ff110772813f0bdaf947cd8731d04fc3",
+      "tree_sha": "8cd2b900ee3c577d7d308aa72392cff47d0731ee",
       "files": [
         "modules/nf-core/krona/ktupdatetaxonomy/environment.yml",
         "modules/nf-core/krona/ktupdatetaxonomy/main.nf",
@@ -219503,7 +220436,7 @@
               "documentation": "https://github.com/marbl/Krona/wiki/Installing",
               "doi": "10.1186/1471-2105-12-385",
               "publication": {
-                "author": "Ondov B.D., Bergman N.H. & Phillippy A.M.",
+                "author": "Ondov, B. D., Bergman, N. H. & Phillippy, A. M.",
                 "year": 2011,
                 "title": "Interactive metagenomic visualization in a Web browser",
                 "source": "BMC Bioinformatics"
@@ -219584,7 +220517,7 @@
           "@mjakobs"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "697192edd1bd7a330a5edbc4eb2f0f69ecfbb6ce",
       "pipelines": [
         {
           "name": "hgtseq",
@@ -259737,7 +260670,7 @@
     {
       "name": "multiqc",
       "path": "modules/nf-core/multiqc/meta.yml",
-      "tree_sha": "0dc3d900a9cb40017efb96554924ddf27eb9bb13",
+      "tree_sha": "fbb161c9cd5b0419eed2d71f7848fe1a51d76589",
       "files": [
         "modules/nf-core/multiqc/.conda-lock/linux_amd64-bd-c17fb751507e9dfc_1.txt",
         "modules/nf-core/multiqc/.conda-lock/linux_arm64-bd-5c84a5000a226ab5_1.txt",
@@ -259762,8 +260695,15 @@
           {
             "multiqc": {
               "description": "MultiQC searches a given directory for analysis logs and compiles a HTML report.\nIt's a general use tool, perfect for summarising the output from numerous bioinformatics tools.\n",
-              "homepage": "https://multiqc.info/",
-              "documentation": "https://multiqc.info/docs/",
+              "homepage": "https://seqera.io/multiqc/",
+              "documentation": "https://docs.seqera.io/multiqc/",
+              "doi": "10.1093/bioinformatics/btw354",
+              "publication": {
+                "author": "Ewels, P., Magnusson, M., Lundin, S. & Käller, M.",
+                "year": 2016,
+                "title": "MultiQC: summarize analysis results for multiple tools and samples in a single report",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "GPL-3.0-or-later"
               ],
@@ -259956,7 +260896,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "868791e991feaaeff234b79f7910b6b442627529",
       "pipelines": [
         {
           "name": "abotyper",
@@ -260678,7 +261618,7 @@
     {
       "name": "multiqcsav",
       "path": "modules/nf-core/multiqcsav/meta.yml",
-      "tree_sha": "8aac90d9ca3892359d47c5e46ac73857682338ca",
+      "tree_sha": "3705adce8cdb3fd00cddbe73249155d77404e890",
       "files": [
         "modules/nf-core/multiqcsav/.conda-lock/linux_amd64-bd-9b10d606ce2f36b6_1.txt",
         "modules/nf-core/multiqcsav/.conda-lock/linux_arm64-bd-077315907ed11315_1.txt",
@@ -260705,12 +261645,30 @@
           {
             "multiqc": {
               "description": "MultiQC searches a given directory for analysis logs and compiles a HTML report.\nIt's a general use tool, perfect for summarising the output from numerous bioinformatics tools.\n",
-              "homepage": "https://multiqc.info/",
-              "documentation": "https://multiqc.info/docs/",
+              "homepage": "https://seqera.io/multiqc/",
+              "documentation": "https://docs.seqera.io/multiqc/",
+              "doi": "10.1093/bioinformatics/btw354",
+              "publication": {
+                "author": "Ewels, P., Magnusson, M., Lundin, S. & Käller, M.",
+                "year": 2016,
+                "title": "MultiQC: summarize analysis results for multiple tools and samples in a single report",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "GPL-3.0-or-later"
               ],
               "identifier": "biotools:multiqc"
+            }
+          },
+          {
+            "multiqcsav": {
+              "description": "MultiQC plugin replicating the most used plots and tables from Illumina's Sequencing Analysis Viewer (SAV)",
+              "homepage": "https://github.com/MultiQC/MultiQC_SAV",
+              "documentation": "https://github.com/MultiQC/MultiQC_SAV",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
             }
           }
         ],
@@ -260962,7 +261920,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "0a1a7142f5390835e61b1d965e1b3139b73669d6",
       "pipelines": [
         {
           "name": "demultiplex",
@@ -305241,6 +306199,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -305548,6 +306510,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -332977,7 +333943,13 @@
           }
         }
       },
-      "git_sha": "ab7fc9664af8979ecc32818dc5af6195daff94b7"
+      "git_sha": "ab7fc9664af8979ecc32818dc5af6195daff94b7",
+      "pipelines": [
+        {
+          "name": "taxmarker",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "raxmlng_moose",
@@ -333185,7 +334157,13 @@
           }
         }
       },
-      "git_sha": "eb44d4f0bf0da54ea9ef40e56262d3d3dee7ba52"
+      "git_sha": "eb44d4f0bf0da54ea9ef40e56262d3d3dee7ba52",
+      "pipelines": [
+        {
+          "name": "taxmarker",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "raxmlng_search",
@@ -376377,7 +377355,7 @@
     {
       "name": "seqfu_check",
       "path": "modules/nf-core/seqfu/check/meta.yml",
-      "tree_sha": "0825ffb313d1ddcfd954f2a772d5f62f7cb7466c",
+      "tree_sha": "57a699a41c1d993e9625fd6b9ce90bab3494a80e",
       "files": [
         "modules/nf-core/seqfu/check/environment.yml",
         "modules/nf-core/seqfu/check/main.nf",
@@ -376403,7 +377381,7 @@
               "tool_dev_url": "https://github.com/telatin/seqfu2",
               "doi": "10.3390/bioengineering8050059",
               "publication": {
-                "author": "Telatin A., Fariselli P. & Birolo G.",
+                "author": "Telatin, A., Fariselli, P. & Birolo, G.",
                 "year": 2021,
                 "title": "SeqFu: A Suite of Utilities for the Robust and Reproducible Manipulation of Sequence Files",
                 "source": "Bioengineering"
@@ -376517,12 +377495,12 @@
           "@vagkaratzas"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "697192edd1bd7a330a5edbc4eb2f0f69ecfbb6ce"
     },
     {
       "name": "seqfu_derep",
       "path": "modules/nf-core/seqfu/derep/meta.yml",
-      "tree_sha": "ce7306a3c15f6bdf49bf86b1507f08d1ce051f8a",
+      "tree_sha": "617d693947e3509b60b0b3143bb5811b8a37164f",
       "files": [
         "modules/nf-core/seqfu/derep/environment.yml",
         "modules/nf-core/seqfu/derep/main.nf",
@@ -376548,7 +377526,7 @@
               "tool_dev_url": "https://telatin.github.io/seqfu2/tools/derep.html",
               "doi": "10.3390/bioengineering8050059",
               "publication": {
-                "author": "Telatin A., Fariselli P. & Birolo G.",
+                "author": "Telatin, A., Fariselli, P. & Birolo, G.",
                 "year": 2021,
                 "title": "SeqFu: A Suite of Utilities for the Robust and Reproducible Manipulation of Sequence Files",
                 "source": "Bioengineering"
@@ -376655,12 +377633,12 @@
           "@telatin"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "697192edd1bd7a330a5edbc4eb2f0f69ecfbb6ce"
     },
     {
       "name": "seqfu_stats",
       "path": "modules/nf-core/seqfu/stats/meta.yml",
-      "tree_sha": "1cac167ce9463cf55baae9b9b37158037a8b86d9",
+      "tree_sha": "35c49a03ed4f30747d4701ce94bafbb8db09683e",
       "files": [
         "modules/nf-core/seqfu/stats/environment.yml",
         "modules/nf-core/seqfu/stats/main.nf",
@@ -376686,7 +377664,7 @@
               "tool_dev_url": "https://github.com/telatin/seqfu2",
               "doi": "10.3390/bioengineering8050059",
               "publication": {
-                "author": "Telatin A., Fariselli P. & Birolo G.",
+                "author": "Telatin, A., Fariselli, P. & Birolo, G.",
                 "year": 2021,
                 "title": "SeqFu: A Suite of Utilities for the Robust and Reproducible Manipulation of Sequence Files",
                 "source": "Bioengineering"
@@ -376815,7 +377793,7 @@
           "@telatin"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "697192edd1bd7a330a5edbc4eb2f0f69ecfbb6ce",
       "pipelines": [
         {
           "name": "proteinannotator",
@@ -376834,7 +377812,7 @@
     {
       "name": "seqkit_concat",
       "path": "modules/nf-core/seqkit/concat/meta.yml",
-      "tree_sha": "f4de09c4c4095ec2ce3517c8a708351156be1062",
+      "tree_sha": "7154b7ae6895b257a1d832c5ef4525e0626b22f0",
       "files": [
         "modules/nf-core/seqkit/concat/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
         "modules/nf-core/seqkit/concat/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
@@ -376863,6 +377841,12 @@
               "documentation": "https://bioinf.shenwei.me/seqkit/",
               "tool_dev_url": "https://github.com/shenwei356/seqkit",
               "doi": "10.1371/journal.pone.0163962",
+              "publication": {
+                "author": "Shen, W., Le, S., Li, Y. & Hu, F.",
+                "year": 2016,
+                "title": "SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation",
+                "source": "PLoS ONE"
+              },
               "licence": [
                 "MIT"
               ],
@@ -377003,12 +377987,12 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "b37c02fb23e80372e4857dc6695b699d62fea612"
     },
     {
       "name": "seqkit_fq2fa",
       "path": "modules/nf-core/seqkit/fq2fa/meta.yml",
-      "tree_sha": "c47c1a99b11c1cedfdefae60785774d2e907e7c6",
+      "tree_sha": "f05b2734df595bc8e69683c02c66b5a8fd2134a0",
       "files": [
         "modules/nf-core/seqkit/fq2fa/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
         "modules/nf-core/seqkit/fq2fa/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
@@ -377034,6 +378018,12 @@
               "homepage": "https://github.com/shenwei356/seqkit",
               "documentation": "https://bioinf.shenwei.me/seqkit/",
               "doi": "10.1371/journal.pone.0163962",
+              "publication": {
+                "author": "Shen, W., Le, S., Li, Y. & Hu, F.",
+                "year": 2016,
+                "title": "SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation",
+                "source": "PLoS ONE"
+              },
               "licence": [
                 "MIT"
               ],
@@ -377167,7 +378157,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "b37c02fb23e80372e4857dc6695b699d62fea612",
       "pipelines": [
         {
           "name": "funcprofiler",
@@ -377182,7 +378172,7 @@
     {
       "name": "seqkit_fx2tab",
       "path": "modules/nf-core/seqkit/fx2tab/meta.yml",
-      "tree_sha": "5cb5299175cf75de8ed86b71ef8d7a9a2c2ed912",
+      "tree_sha": "5a11d9e629abdf5494da4892270819542b2f63fa",
       "files": [
         "modules/nf-core/seqkit/fx2tab/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
         "modules/nf-core/seqkit/fx2tab/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
@@ -377210,6 +378200,12 @@
               "homepage": "https://github.com/shenwei356/seqkit",
               "documentation": "https://bioinf.shenwei.me/seqkit/",
               "doi": "10.1371/journal.pone.0163962",
+              "publication": {
+                "author": "Shen, W., Le, S., Li, Y. & Hu, F.",
+                "year": 2016,
+                "title": "SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation",
+                "source": "PLoS ONE"
+              },
               "licence": [
                 "MIT"
               ],
@@ -377352,7 +378348,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "b37c02fb23e80372e4857dc6695b699d62fea612",
       "pipelines": [
         {
           "name": "circrna",
@@ -377363,7 +378359,7 @@
     {
       "name": "seqkit_grep",
       "path": "modules/nf-core/seqkit/grep/meta.yml",
-      "tree_sha": "efc33ad9ec0ec7887d783751d0e9caef536afc25",
+      "tree_sha": "e92e406499fc8222c74235a954b95df11637a2a7",
       "files": [
         "modules/nf-core/seqkit/grep/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
         "modules/nf-core/seqkit/grep/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
@@ -377392,6 +378388,12 @@
               "documentation": "https://bioinf.shenwei.me/seqkit/usage/",
               "tool_dev_url": "https://github.com/shenwei356/seqkit/",
               "doi": "10.1371/journal.pone.0163962",
+              "publication": {
+                "author": "Shen, W., Le, S., Li, Y. & Hu, F.",
+                "year": 2016,
+                "title": "SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation",
+                "source": "PLoS ONE"
+              },
               "licence": [
                 "MIT"
               ],
@@ -377544,7 +378546,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "b37c02fb23e80372e4857dc6695b699d62fea612",
       "pipelines": [
         {
           "name": "metatdenovo",
@@ -377563,7 +378565,7 @@
     {
       "name": "seqkit_head",
       "path": "modules/nf-core/seqkit/head/meta.yml",
-      "tree_sha": "0a4c7e38a2f55f4a77f1088912440c4da0934ab4",
+      "tree_sha": "6b56bf497b6b403d4ff68d8ecb53d1b9faeadf00",
       "files": [
         "modules/nf-core/seqkit/head/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
         "modules/nf-core/seqkit/head/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
@@ -377593,6 +378595,12 @@
               "documentation": "https://bioinf.shenwei.me/seqkit/usage/",
               "tool_dev_url": "https://github.com/shenwei356/seqkit",
               "doi": "10.1371/journal.pone.0163962",
+              "publication": {
+                "author": "Shen, W., Le, S., Li, Y. & Hu, F.",
+                "year": 2016,
+                "title": "SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation",
+                "source": "PLoS ONE"
+              },
               "licence": [
                 "MIT"
               ],
@@ -377739,7 +378747,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "b37c02fb23e80372e4857dc6695b699d62fea612",
       "pipelines": [
         {
           "name": "pathogensurveillance",
@@ -377750,7 +378758,7 @@
     {
       "name": "seqkit_pair",
       "path": "modules/nf-core/seqkit/pair/meta.yml",
-      "tree_sha": "4f0f42ae4d63b83161c75acd83914e4e59b6343c",
+      "tree_sha": "96f49e38bf6eac774f216c5226ae7d5e4b90981a",
       "files": [
         "modules/nf-core/seqkit/pair/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
         "modules/nf-core/seqkit/pair/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
@@ -377778,6 +378786,12 @@
               "documentation": "https://bioinf.shenwei.me/seqkit/usage/",
               "tool_dev_url": "https://github.com/shenwei356/seqkit/",
               "doi": "10.1371/journal.pone.0163962",
+              "publication": {
+                "author": "Shen, W., Le, S., Li, Y. & Hu, F.",
+                "year": 2016,
+                "title": "SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation",
+                "source": "PLoS ONE"
+              },
               "licence": [
                 "MIT"
               ],
@@ -377939,12 +378953,12 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "b37c02fb23e80372e4857dc6695b699d62fea612"
     },
     {
       "name": "seqkit_replace",
       "path": "modules/nf-core/seqkit/replace/meta.yml",
-      "tree_sha": "a29e0d58ec8659dfc160c642466a51450b4e3af8",
+      "tree_sha": "5c555aca7e0af230fbc6d360f6b228dc9a451ef9",
       "files": [
         "modules/nf-core/seqkit/replace/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
         "modules/nf-core/seqkit/replace/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
@@ -377974,6 +378988,12 @@
               "documentation": "https://bioinf.shenwei.me/seqkit/usage/",
               "tool_dev_url": "https://github.com/shenwei356/seqkit/",
               "doi": "10.1371/journal.pone.016396",
+              "publication": {
+                "author": "Shen, W., Le, S., Li, Y. & Hu, F.",
+                "year": 2016,
+                "title": "SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation",
+                "source": "PLoS ONE"
+              },
               "identifier": "biotools:seqkit"
             }
           }
@@ -378117,7 +379137,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "b37c02fb23e80372e4857dc6695b699d62fea612",
       "pipelines": [
         {
           "name": "proteinannotator",
@@ -378144,7 +379164,7 @@
     {
       "name": "seqkit_rmdup",
       "path": "modules/nf-core/seqkit/rmdup/meta.yml",
-      "tree_sha": "cde4950d7ca17314824b2f6be579ec055a7b8905",
+      "tree_sha": "e45d391de5a040285fe81fcfd589c34ea719ce74",
       "files": [
         "modules/nf-core/seqkit/rmdup/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
         "modules/nf-core/seqkit/rmdup/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
@@ -378173,6 +379193,12 @@
               "documentation": "https://bioinf.shenwei.me/seqkit/usage/",
               "tool_dev_url": "https://github.com/shenwei356/seqkit",
               "doi": "10.1371/journal.pone.0163962",
+              "publication": {
+                "author": "Shen, W., Le, S., Li, Y. & Hu, F.",
+                "year": 2016,
+                "title": "SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation",
+                "source": "PLoS ONE"
+              },
               "licence": [
                 "MIT"
               ],
@@ -378331,7 +379357,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "b37c02fb23e80372e4857dc6695b699d62fea612",
       "pipelines": [
         {
           "name": "genephylo",
@@ -378350,7 +379376,7 @@
     {
       "name": "seqkit_sample",
       "path": "modules/nf-core/seqkit/sample/meta.yml",
-      "tree_sha": "67a6bab695131252221daa9010c68e38cebe9b3c",
+      "tree_sha": "b172cffbd2733435b041054aea4a95ebd4beb936",
       "files": [
         "modules/nf-core/seqkit/sample/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
         "modules/nf-core/seqkit/sample/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
@@ -378381,6 +379407,12 @@
               "documentation": "https://bioinf.shenwei.me/seqkit/usage/",
               "tool_dev_url": "https://github.com/shenwei356/seqkit",
               "doi": "10.1371/journal.pone.0163962",
+              "publication": {
+                "author": "Shen, W., Le, S., Li, Y. & Hu, F.",
+                "year": 2016,
+                "title": "SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation",
+                "source": "PLoS ONE"
+              },
               "licence": [
                 "MIT"
               ],
@@ -378521,12 +379553,12 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "b37c02fb23e80372e4857dc6695b699d62fea612"
     },
     {
       "name": "seqkit_sana",
       "path": "modules/nf-core/seqkit/sana/meta.yml",
-      "tree_sha": "9188723d77d708b7b2890a4d3a1c18459a58f31e",
+      "tree_sha": "05e8a63b810be3ed877a62fcaad5a3b55414fdb4",
       "files": [
         "modules/nf-core/seqkit/sana/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
         "modules/nf-core/seqkit/sana/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
@@ -378554,6 +379586,12 @@
               "documentation": "https://bioinf.shenwei.me/seqkit",
               "tool_dev_url": "https://github.com/shenwei356/seqkit",
               "doi": "10.1371/journal.pone.0163962",
+              "publication": {
+                "author": "Shen, W., Le, S., Li, Y. & Hu, F.",
+                "year": 2016,
+                "title": "SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation",
+                "source": "PLoS ONE"
+              },
               "licence": [
                 "MIT"
               ],
@@ -378712,12 +379750,12 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "b37c02fb23e80372e4857dc6695b699d62fea612"
     },
     {
       "name": "seqkit_seq",
       "path": "modules/nf-core/seqkit/seq/meta.yml",
-      "tree_sha": "8eb269f046ee7ba336f06e281dfc3712b0d37879",
+      "tree_sha": "3803abbab48de9478d8016bc470dcc505da3d75e",
       "files": [
         "modules/nf-core/seqkit/seq/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
         "modules/nf-core/seqkit/seq/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
@@ -378749,6 +379787,12 @@
               "documentation": "https://bioinf.shenwei.me/seqkit/usage/",
               "tool_dev_url": "https://github.com/shenwei356/seqkit",
               "doi": "10.1371/journal.pone.0163962",
+              "publication": {
+                "author": "Shen, W., Le, S., Li, Y. & Hu, F.",
+                "year": 2016,
+                "title": "SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation",
+                "source": "PLoS ONE"
+              },
               "licence": [
                 "MIT"
               ],
@@ -378889,7 +379933,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "b37c02fb23e80372e4857dc6695b699d62fea612",
       "pipelines": [
         {
           "name": "funcscan",
@@ -378912,7 +379956,7 @@
     {
       "name": "seqkit_sliding",
       "path": "modules/nf-core/seqkit/sliding/meta.yml",
-      "tree_sha": "2828b7526c16880a328fbb7e61ac65772339ea98",
+      "tree_sha": "85ac7a3648e250e450991689e527348aa9a521f0",
       "files": [
         "modules/nf-core/seqkit/sliding/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
         "modules/nf-core/seqkit/sliding/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
@@ -378940,6 +379984,12 @@
               "documentation": "https://bioinf.shenwei.me/seqkit/usage/",
               "tool_dev_url": "https://github.com/shenwei356/seqkit/",
               "doi": "10.1371/journal.pone.016396",
+              "publication": {
+                "author": "Shen, W., Le, S., Li, Y. & Hu, F.",
+                "year": 2016,
+                "title": "SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation",
+                "source": "PLoS ONE"
+              },
               "identifier": "biotools:seqkit"
             }
           }
@@ -379077,7 +380127,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "b37c02fb23e80372e4857dc6695b699d62fea612",
       "pipelines": [
         {
           "name": "pathogensurveillance",
@@ -379088,7 +380138,7 @@
     {
       "name": "seqkit_sort",
       "path": "modules/nf-core/seqkit/sort/meta.yml",
-      "tree_sha": "c901b1d9887806e4938ff8fd20251baa059a3a2c",
+      "tree_sha": "08f70b895b2e0123ed92af16e1b538f2e05ae5b3",
       "files": [
         "modules/nf-core/seqkit/sort/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
         "modules/nf-core/seqkit/sort/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
@@ -379117,6 +380167,12 @@
               "documentation": "https://bioinf.shenwei.me/seqkit/usage/",
               "tool_dev_url": "https://github.com/shenwei356/seqkit",
               "doi": "10.1371/journal.pone.0163962",
+              "publication": {
+                "author": "Shen, W., Le, S., Li, Y. & Hu, F.",
+                "year": 2016,
+                "title": "SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation",
+                "source": "PLoS ONE"
+              },
               "licence": [
                 "MIT"
               ],
@@ -379253,7 +380309,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "b37c02fb23e80372e4857dc6695b699d62fea612",
       "pipelines": [
         {
           "name": "genomeqc",
@@ -379264,7 +380320,7 @@
     {
       "name": "seqkit_split2",
       "path": "modules/nf-core/seqkit/split2/meta.yml",
-      "tree_sha": "d87d3f200bbf0bceb9c981c9a10de13a2d869315",
+      "tree_sha": "393a15d15f7f3d019b01afd8ea5dd89bbd822539",
       "files": [
         "modules/nf-core/seqkit/split2/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
         "modules/nf-core/seqkit/split2/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
@@ -379291,6 +380347,12 @@
               "homepage": "https://github.com/shenwei356/seqkit",
               "documentation": "https://bioinf.shenwei.me/seqkit/",
               "doi": "10.1371/journal.pone.0163962",
+              "publication": {
+                "author": "Shen, W., Le, S., Li, Y. & Hu, F.",
+                "year": 2016,
+                "title": "SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation",
+                "source": "PLoS ONE"
+              },
               "licence": [
                 "MIT"
               ],
@@ -379425,7 +380487,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "b37c02fb23e80372e4857dc6695b699d62fea612",
       "pipelines": [
         {
           "name": "callingcards",
@@ -379440,7 +380502,7 @@
     {
       "name": "seqkit_stats",
       "path": "modules/nf-core/seqkit/stats/meta.yml",
-      "tree_sha": "e1541df16cfa7bbf57ccd1ae4bc0500379dcb8e8",
+      "tree_sha": "5906e36c980a10652c6daa017c61c46156031c79",
       "files": [
         "modules/nf-core/seqkit/stats/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
         "modules/nf-core/seqkit/stats/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
@@ -379467,6 +380529,12 @@
               "documentation": "https://bioinf.shenwei.me/seqkit/usage/",
               "tool_dev_url": "https://github.com/shenwei356/seqkit/",
               "doi": "10.1371/journal.pone.0163962",
+              "publication": {
+                "author": "Shen, W., Le, S., Li, Y. & Hu, F.",
+                "year": 2016,
+                "title": "SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation",
+                "source": "PLoS ONE"
+              },
               "licence": [
                 "MIT"
               ],
@@ -379609,7 +380677,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "b37c02fb23e80372e4857dc6695b699d62fea612",
       "pipelines": [
         {
           "name": "circrna",
@@ -379640,7 +380708,7 @@
     {
       "name": "seqkit_tab2fx",
       "path": "modules/nf-core/seqkit/tab2fx/meta.yml",
-      "tree_sha": "62826cf5fa70dcf7b417b1afccc9a98932d22b03",
+      "tree_sha": "db7f973d3ca2d4b98fcb1cd497bd79e8bb000a3f",
       "files": [
         "modules/nf-core/seqkit/tab2fx/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
         "modules/nf-core/seqkit/tab2fx/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
@@ -379668,6 +380736,12 @@
               "homepage": "https://github.com/shenwei356/seqkit",
               "documentation": "https://bioinf.shenwei.me/seqkit/",
               "doi": "10.1371/journal.pone.0163962",
+              "publication": {
+                "author": "Shen, W., Le, S., Li, Y. & Hu, F.",
+                "year": 2016,
+                "title": "SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation",
+                "source": "PLoS ONE"
+              },
               "licence": [
                 "MIT"
               ],
@@ -379810,12 +380884,12 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "b37c02fb23e80372e4857dc6695b699d62fea612"
     },
     {
       "name": "seqkit_translate",
       "path": "modules/nf-core/seqkit/translate/meta.yml",
-      "tree_sha": "d24a850db1e9878219bdb27d261261c2ea4e70fe",
+      "tree_sha": "b48b1fb15661c61ea32600b65334d7763dda9a31",
       "files": [
         "modules/nf-core/seqkit/translate/.conda-lock/linux_amd64-bd-3bacfb68370dd835_1.txt",
         "modules/nf-core/seqkit/translate/.conda-lock/linux_arm64-bd-2c3127bb2c908a0f_1.txt",
@@ -379842,6 +380916,12 @@
               "documentation": "https://bioinf.shenwei.me/seqkit/usage/",
               "tool_dev_url": "https://github.com/shenwei356/seqkit",
               "doi": "10.1371/journal.pone.0163962",
+              "publication": {
+                "author": "Shen, W., Le, S., Li, Y. & Hu, F.",
+                "year": 2016,
+                "title": "SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation",
+                "source": "PLoS ONE"
+              },
               "licence": [
                 "MIT"
               ],
@@ -379982,7 +381062,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "b37c02fb23e80372e4857dc6695b699d62fea612",
       "pipelines": [
         {
           "name": "riboseq",
@@ -381576,7 +382656,7 @@
     {
       "name": "sequali",
       "path": "modules/nf-core/sequali/meta.yml",
-      "tree_sha": "46773a819a515edc48bf484f0658cf21469592d6",
+      "tree_sha": "10bb4412b90d963fdd41fbb64287b2c0e1b88c48",
       "files": [
         "modules/nf-core/sequali/environment.yml",
         "modules/nf-core/sequali/main.nf",
@@ -381601,6 +382681,12 @@
               "documentation": "https://sequali.readthedocs.io/en/latest/",
               "tool_dev_url": "https://github.com/rhpvorderman/sequali",
               "doi": "10.5281/zenodo.10854010",
+              "publication": {
+                "author": "Vorderman, R. H. P.",
+                "year": 2025,
+                "title": "Sequali: a flexible and extensible quality control tool for FASTQ and uBAM files",
+                "source": "Bioinformatics Advances"
+              },
               "licence": [
                 "AGPL v3-or-later"
               ],
@@ -381727,7 +382813,7 @@
           "@DarkoCucin"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "d04d60e30d60e36014b766e2dbfcd4bb562d7795",
       "pipelines": [
         {
           "name": "seqinspector",
@@ -438019,8 +439105,10 @@
     {
       "name": "vcf2maf",
       "path": "modules/nf-core/vcf2maf/meta.yml",
-      "tree_sha": "bcc36bf587646a098253413128649f4a381df9a6",
+      "tree_sha": "17583e60b8919b6791601e4f5b4d17345f4bdcc3",
       "files": [
+        "modules/nf-core/vcf2maf/.conda-lock/linux_amd64-bd-032bb9f304259c9c_1.txt",
+        "modules/nf-core/vcf2maf/.conda-lock/linux_arm64-bd-ba425604b4cfc009_1.txt",
         "modules/nf-core/vcf2maf/environment.yml",
         "modules/nf-core/vcf2maf/main.nf",
         "modules/nf-core/vcf2maf/meta.yml",
@@ -438139,8 +439227,8 @@
                 }
               },
               {
-                "vep --help 2>&1 | sed -n \"s/^  ensembl-vep *: //p\"": {
-                  "type": "eval",
+                "113.4": {
+                  "type": "string",
                   "description": "The expression to obtain the version of the tool"
                 }
               }
@@ -438183,8 +439271,8 @@
                 }
               },
               {
-                "vep --help 2>&1 | sed -n \"s/^  ensembl-vep *: //p\"": {
-                  "type": "eval",
+                "113.4": {
+                  "type": "string",
                   "description": "The expression to obtain the version of the tool"
                 }
               }
@@ -438196,9 +439284,43 @@
         ],
         "maintainers": [
           "@adamrtalbot"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/ensembl-vep_vcf2maf:032bb9f304259c9c",
+              "build_id": "bd-032bb9f304259c9c_1",
+              "scan_id": "sc-24146333e220e9c5_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/ensembl-vep_vcf2maf:ba425604b4cfc009",
+              "build_id": "bd-ba425604b4cfc009_1",
+              "scan_id": "sc-1cb277d067294748_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/ensembl-vep_vcf2maf:63ee847fff38f65b",
+              "build_id": "bd-63ee847fff38f65b_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/dd/dd6d05067c8171db981b0a2e914561ba7ec4340719ffa8e4d39fcef7004fb230/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/ensembl-vep_vcf2maf:bce33b0a82fdfe2d",
+              "build_id": "bd-bce33b0a82fdfe2d_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/86/86e96328a7b8b6d128734a4181f0473d7b9e1f5a1c24fc6bec921a7a37fb725e/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/vcf2maf/.conda-lock/linux_amd64-bd-032bb9f304259c9c_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/vcf2maf/.conda-lock/linux_arm64-bd-ba425604b4cfc009_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "ae2dfdc77c79c0fb65cd3934ff0da77ed2aaebd7",
       "pipelines": [
         {
           "name": "rnadnavar",
@@ -463285,7 +464407,7 @@
     {
       "name": "fasta_index_dna",
       "path": "subworkflows/nf-core/fasta_index_dna/meta.yml",
-      "tree_sha": "19f75c6c5f3a20e5504a68828adfeb4dd606f6e2",
+      "tree_sha": "e5baf5402ba97da548008f0e82bff90fd2f74a7c",
       "files": [
         "subworkflows/nf-core/fasta_index_dna/main.nf",
         "subworkflows/nf-core/fasta_index_dna/meta.yml",
@@ -463358,7 +464480,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "ab8494845d8b27cab46419f69adf3afa3b352c9d"
+      "git_sha": "8de7382b73071351977d621eaa05750d189534e7"
     },
     {
       "name": "fasta_index_methylseq",
@@ -464671,6 +465793,125 @@
       ]
     },
     {
+      "name": "fastq_align_dedup_bwamem3",
+      "path": "subworkflows/nf-core/fastq_align_dedup_bwamem3/meta.yml",
+      "tree_sha": "3fc785bf07e89e7413f4df6c2584db1e45fda799",
+      "files": [
+        "subworkflows/nf-core/fastq_align_dedup_bwamem3/main.nf",
+        "subworkflows/nf-core/fastq_align_dedup_bwamem3/meta.yml",
+        "subworkflows/nf-core/fastq_align_dedup_bwamem3/tests/main.nf.test",
+        "subworkflows/nf-core/fastq_align_dedup_bwamem3/tests/main.nf.test.snap",
+        "subworkflows/nf-core/fastq_align_dedup_bwamem3/tests/nextflow.config"
+      ],
+      "type": "subworkflow",
+      "meta": {
+        "name": "fastq_align_dedup_bwamem3",
+        "description": "Align DNA, bisulfite/EM-seq or TAPS reads with bwa-mem3, coordinate-sort and index, optionally mark duplicates, and collect samtools stats",
+        "keywords": [
+          "bwamem3",
+          "alignment",
+          "map",
+          "5mC",
+          "methylseq",
+          "taps",
+          "DNA",
+          "fastq",
+          "bam"
+        ],
+        "components": [
+          "bwamem3/mem",
+          "picard/markduplicates",
+          "samtools/index",
+          "bam_stats_samtools"
+        ],
+        "input": [
+          {
+            "ch_reads": {
+              "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\nStructure: [ val(meta), [ path(reads) ] ]\n",
+              "pattern": "*.{fastq,fastq.gz}"
+            }
+          },
+          {
+            "ch_fasta_fai": {
+              "type": "file",
+              "description": "Reference genome fasta file and its index\nStructure: [ val(meta), path(fasta), path(fai) ]\n",
+              "pattern": "*.{fa,fa.gz,fasta,fasta.gz}"
+            }
+          },
+          {
+            "ch_bwamem3_index": {
+              "type": "directory",
+              "description": "bwa-mem3 genome index. The alignment mode comes from BWAMEM3_MEM `ext.args`:\nnone for plain DNA, `--meth` for bisulfite/EM-seq, `--meth=taps` for TAPS.\nBoth methylation modes need an index built with `bwa-mem3 index --meth`.\nStructure: [ val(meta), path(index) ]\n"
+            }
+          },
+          {
+            "skip_deduplication": {
+              "type": "boolean",
+              "description": "Skip marking duplicates with Picard MarkDuplicates\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "bam": {
+              "type": "file",
+              "description": "Coordinate-sorted BAM (duplicate-marked unless skip_deduplication)\nStructure: [ val(meta), path(bam) ]\n",
+              "pattern": "*.bam"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "BAI index of the BAM\nStructure: [ val(meta), path(bai) ]\n",
+              "pattern": "*.bai"
+            }
+          },
+          {
+            "samtools_flagstat": {
+              "type": "file",
+              "description": "samtools flagstat output\nStructure: [ val(meta), path(flagstat) ]\n",
+              "pattern": "*.flagstat"
+            }
+          },
+          {
+            "samtools_stats": {
+              "type": "file",
+              "description": "samtools stats output\nStructure: [ val(meta), path(stats) ]\n",
+              "pattern": "*.stats"
+            }
+          },
+          {
+            "samtools_idxstats": {
+              "type": "file",
+              "description": "samtools idxstats output\nStructure: [ val(meta), path(idxstats) ]\n",
+              "pattern": "*.idxstats"
+            }
+          },
+          {
+            "picard_metrics": {
+              "type": "file",
+              "description": "Duplicate metrics from Picard MarkDuplicates\nStructure: [ val(meta), path(metrics) ]\n",
+              "pattern": "*.metrics.txt"
+            }
+          },
+          {
+            "multiqc": {
+              "type": "file",
+              "description": "Files for MultiQC (duplicate metrics, stats, flagstat, idxstats)\nStructure: [ path(file) ]\n",
+              "pattern": "*{.txt,.stats,.flagstat,.idxstats}"
+            }
+          }
+        ],
+        "authors": [
+          "@eduard-watchmaker"
+        ],
+        "maintainers": [
+          "@eduard-watchmaker"
+        ]
+      },
+      "git_sha": "8de7382b73071351977d621eaa05750d189534e7"
+    },
+    {
       "name": "fastq_align_dedup_bwameth",
       "path": "subworkflows/nf-core/fastq_align_dedup_bwameth/meta.yml",
       "tree_sha": "b00d5e1c350722472c9119a6d9a85fd3d580116b",
@@ -464806,7 +466047,7 @@
     {
       "name": "fastq_align_dna",
       "path": "subworkflows/nf-core/fastq_align_dna/meta.yml",
-      "tree_sha": "d458c72c53c39a721c17d83b315b5969ea876879",
+      "tree_sha": "2266928c034a720a14d02464670ec67717623cf7",
       "files": [
         "subworkflows/nf-core/fastq_align_dna/main.nf",
         "subworkflows/nf-core/fastq_align_dna/meta.yml",
@@ -464907,7 +466148,7 @@
           "@matthdsm"
         ]
       },
-      "git_sha": "ab8494845d8b27cab46419f69adf3afa3b352c9d",
+      "git_sha": "8de7382b73071351977d621eaa05750d189534e7",
       "pipelines": [
         {
           "name": "sammyseq",
@@ -474041,6 +475282,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "8faff34023b16ecdc41b02bac42989834075e3f1",
-  "updated_at": "2026-11-09T14:14:55.569Z"
+  "commit_sha": "888b825b9af9c47573ceeae5828ade0eebcb7a6d",
+  "updated_at": "2026-11-10T02:14:37.323Z"
 }
