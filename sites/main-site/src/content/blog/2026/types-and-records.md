@@ -303,7 +303,6 @@ label 'process_single'
 
 ## Conclusion
 
-The move to typed records gives nf-core modules a clearer contract: each process takes one structured input and emits one structured output.
+With the move to typed records we simplify the concept of nf-core modules: each modules takes one structured input and emits one structured output.
 Making required values explicit and separating module arguments from pipeline-user configuration will also make modules easier to reuse and compose.
-Together with the new stage block and workflow-level conditional logic, these changes bring modules in line with modern Nextflow features.
-Migrating to these guidelines is a step towards more transparent, flexible, and maintainable nf-core modules.
+Migrating to these guidelines is a step towards more flexible and maintainable nf-core modules.
