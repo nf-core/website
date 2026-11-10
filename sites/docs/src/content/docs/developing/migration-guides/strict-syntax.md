@@ -80,8 +80,8 @@ First, check whether the variable is used multiple times.
 If it isn't, remove the variable entirely and use its contents directly where the variable was being used.
 If the variable is used multiple times, convert it to a parameter:
 
-```diff groovy
-- def variable_name = <code>
+```diff lang="groovy"
+- def variable_name = <code> // [!code error] Variable declarations cannot be mixed with config statements
 + params.variable_name = <code>
 ```
 
@@ -92,7 +92,7 @@ We recommend the format `<config_name>_<variable_name>`, but you can make it mor
 
 To prevent [nf-schema](https://github.com/nextflow-io/nf-schema) warnings during pipeline initialisation, add custom parameters to the `ignoreParams` list in your config:
 
-```groovy
+```nextflow
 validation {
     ignoreParams = [
         <list_all_used_parameters>
@@ -116,15 +116,15 @@ For static variables, see [Simple variables](#simple-variables).
 Convert these variables to parameters.
 For simple cases, the code can often be converted to a ternary one-liner:
 
-```groovy
+```nextflow
 params.random_var = something ? 'not_random' : 'random'
 ```
 
 For more complicated cases, embed the conditions inside a parameter containing a closure and use `.call()` to evaluate it on config resolution.
 For example, the following assignment:
 
-```groovy
-def random_var = ''
+```nextflow
+def random_var = '' // [!code error] Variable declarations cannot be mixed with config statements
 if (something == true) {
     random_var = 'not_random'
 } else {
@@ -134,7 +134,7 @@ if (something == true) {
 
 Becomes:
 
-```groovy
+```nextflow
 params.random_var = {
     if (something == true) {
         return 'not_random'
@@ -152,7 +152,7 @@ Without `.call()`, the parameter will be a closure instead of the expected value
 
 To prevent [nf-schema](https://github.com/nextflow-io/nf-schema) warnings during pipeline initialisation, add custom parameters to the `ignoreParams` list in your config:
 
-```groovy
+```nextflow
 validation {
     ignoreParams = [
         <list_all_used_parameters>
@@ -189,8 +189,8 @@ Error <config>.config:48:5: If statements cannot be mixed with config statements
 Shorten basic if statements (if-statements with one line per condition) using the Groovy `?:` ternary syntax.
 For example, the following if-else block:
 
-```groovy
-if(params.slurm) {
+```nextflow
+if(params.slurm) { // [!code error] If statements cannot be mixed with config statements
     process.executor = 'slurm'
 } else {
     process.executor = 'local'
@@ -199,13 +199,13 @@ if(params.slurm) {
 
 Becomes:
 
-```groovy
+```nextflow
 process.executor = params.slurm ? 'slurm' : 'local'
 ```
 
 For long lines, spread this over multiple lines for readability:
 
-```groovy
+```nextflow
 process.executor = params.slurm ?
     'slurm' :
     'local'
@@ -214,7 +214,7 @@ process.executor = params.slurm ?
 :::note
 You can also use a closure-wrapped approach:
 
-```groovy
+```nextflow
 process.executor = {
     if (params.slurm) {
         return 'slurm'
@@ -241,14 +241,9 @@ Error <config name>.config:21:32: `USER` is not defined (hint: use `env('...')` 
 Wrap any environment variables in the Groovy `System.getenv()` function.
 For example:
 
-```groovy
-scratch      = "/scratch/${USER}"
-```
-
-Becomes:
-
-```groovy
-scratch      = "/scratch/${System.getenv('USER')}"
+```diff lang="groovy"
+-scratch      = "/scratch/${USER}"
++scratch      = "/scratch/${System.getenv('USER')}"
 ```
 
 For a real-world example, see [nf-core/configs PR #1019](https://github.com/nf-core/configs/pull/1019/changes#diff-3a625144f9f4ce62e80059132891092abbf804c666dd1dd983ad1068e91f46d0R21).
@@ -264,10 +259,10 @@ Error <config name>.config:27:64: Unexpected input: ':'
 Change the switch statement to a closure-wrapped if-else statement.
 For example, the following switch block:
 
-```groovy
+```nextflow
 queue = {
   switch (task.memory) {
-      case { it >= 216.GB }:
+      case { it >= 216.GB }: // [!code error] Unexpected input: ':'
           switch (task.time) {
               case { it >= 7.d }:
                   return 'longmem'
@@ -291,7 +286,7 @@ queue = {
 
 Becomes:
 
-```groovy
+```nextflow
 queue = {
   if (task.memory >= 216.GB) {
       if (task.time >= 7.d) {

@@ -1,4 +1,4 @@
-# subworkflow\_changes
+# subworkflow_changes
 
 #### `SubworkflowLint.subworkflow_changes(subworkflow){:python}`
 
@@ -15,12 +15,12 @@ Only runs when linting a pipeline, not the modules repository
 
 The following checks are performed:
 
-## subworkflow\_patch
+## subworkflow_patch
 
 If the subworkflow is patched, the patch must apply
 cleanly in reverse against the remote version.
 
-## check\_local\_copy
+## check_local_copy
 
 Each subworkflow file must be identical to the
 corresponding file in the remote repository at the pinned commit SHA.

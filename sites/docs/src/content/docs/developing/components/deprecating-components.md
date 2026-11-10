@@ -1,19 +1,23 @@
 ---
-title: Deprecating modules
+title: Deprecating components
 subtitle: Deprecate a module or subworkflow
-shortTitle: Deprecating modules
+shortTitle: Deprecating components
 ---
 
-## Deprecating a module
+## Deprecating a module or subworkflow
 
 Sometimes modules or subworkflows become outdated and need to be deprecated (available, but no longer recommended).
 These modules or subworkflows should not be deleted as they could be used in private repositories, or used on other
 platforms.
-The recommended procedure is, once the alternative is available on nf-core modules, add a message to the
-top of the module code saying this module is deprecated, and an `assert` in the code body to print a deprecation
-message like so:
 
-```groovy title="main.nf"
+The recommended procedure is, once the alternative is available on nf-core modules, to add a message explaining that
+the module/subworkflow is deprecated, and an `assert` in the code body to print a deprecation
+the module/subworkflow is deprecated, and an `assert` in the code body to print a deprecation
+message.
+
+For modules:
+
+```nextflow title="main.nf"
 def deprecation_message = """
 WARNING: This module has been deprecated. Please use nf-core/modules/path/to/new/module
 
@@ -26,6 +30,23 @@ process OLD_MODULE {
   ...
 
   script:
+  assert false: deprecation_message
+}
+```
+
+For subworkflows:
+
+```nextflow title="main.nf"
+...
+  main:
+
+  def deprecation_message = """
+  WARNING: This subworkflow has been deprecated. Please use subworkflows/nf-core/path/to/new/module
+
+  Reason:
+  This subworkflow is no longer fit for purpose because ...
+  """
+
   assert false: deprecation_message
 }
 ```
@@ -51,14 +72,26 @@ This field is used by nf-core tools and the website to flag deprecated modules.
 
 Remove anything in the setup block.
 The addition of `assert false` will mean the nf-test will always fail.
-The `then` part of the nf-test should be updated with the following code:
+The `then` part of the nf-test should be updated with the following code for modules:
 
-```groovy title="main.nf.test"
+```nextflow title="main.nf.test"
 ...
   then {
     assertAll(
       { assert process.failed },
       { assert process.errorReport.contains("WARNING: This module has been deprecated.")}
+    )
+  }
+...
+```
+
+Or the following code for subworkflows:
+
+```nextflow title="main.nf.test"
+...
+  then {
+    assertAll(
+      { assert workflow.failed }
     )
   }
 ...

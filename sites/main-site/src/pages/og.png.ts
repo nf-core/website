@@ -6,12 +6,9 @@ import sharp from "sharp";
 import { ogFonts, ogImageHeaders } from "@utils/og-image";
 
 console.log("rendering og image");
-export const GET: APIRoute = async ({ params, request }) => {
+export const GET: APIRoute = async ({ request }) => {
     const searchParams = new URL(request.url).searchParams;
     const args = Object.fromEntries(searchParams);
-    const backgroundImage =
-        args.backgroundImage ||
-        "https://raw.githubusercontent.com/nf-core/website/main/public/images/logo/nf-core-logo-darkbg.png";
     let subtitle = "";
     const authors = args.authors ? args.authors.split(",") : [];
     if (args.title !== undefined) {
@@ -50,6 +47,7 @@ export const GET: APIRoute = async ({ params, request }) => {
             <div style="display: flex;
             width: 100%;
             height: 100%;
+            box-sizing: border-box;
             flex-direction: column;
             align-items: flex-start;
             justify-content: space-around;
@@ -83,10 +81,10 @@ export const GET: APIRoute = async ({ params, request }) => {
                             padding-top: 0.5rem;
                             padding-bottom: 0.5rem;
                             background: #2c2c2c;
-                            border: 3pt solid #757575;">
+                            border: 4px solid #757575;">
                         ${args.category ? args.category : "nf-co.re"}
                     </div>
-                    ${authors.length > 0 ? `<div style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start; margin-top:1rem">Written by:${authors.map((author) => `<img  src="https://github.com/${author}.png?" style="margin-left:0.75rem" width="10%"/>`).join("")}</div>` : ""}
+                    ${authors.length > 0 ? `<div style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start; margin-top:1rem">Written by:${authors.map((author) => `<img  src="https://github.com/${author}.png?" style="margin-left:0.75rem" width="75" height="75"/>`).join("")}</div>` : ""}
                 </div>
             </div>
     </div>`;

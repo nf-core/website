@@ -24,11 +24,10 @@ Pipelines in nf-core use different levels of granularity.
 A single catch-all rule that assigns all files to the pipeline maintainers.
 This is the simplest and most common pattern:
 
+```codeowners
 # Maintainers
-
-- @maintainer1 @maintainer2
-
-````
+* @maintainer1 @maintainer2
+```
 
 Used by: [ampliseq](https://github.com/nf-core/ampliseq/blob/main/.github/CODEOWNERS), [mag](https://github.com/nf-core/mag/blob/main/.github/CODEOWNERS), [methylseq](https://github.com/nf-core/methylseq/blob/main/.github/CODEOWNERS), [pixelator](https://github.com/nf-core/pixelator/blob/main/.github/CODEOWNERS), [taxprofiler](https://github.com/nf-core/taxprofiler/blob/main/.github/CODEOWNERS).
 
@@ -36,7 +35,7 @@ Used by: [ampliseq](https://github.com/nf-core/ampliseq/blob/main/.github/CODEOW
 
 Ownership split by local modules and subworkflows, optionally down to individual tools with their own tests, configs, and test data.
 
-```github-actions
+```codeowners title="CODEOWNERS"
 # Maintainers
 * @maintainer1 @maintainer2
 *.nf.test* @maintainer1 @maintainer2
@@ -47,11 +46,11 @@ modules/local/* @maintainer1
 
 # Local subworkflows
 subworkflows/local/* @maintainer2
-````
+```
 
 For pipelines with multiple tools maintained by different people, add per-tool rules:
 
-```github-actions
+```codeowners title="CODEOWNERS"
 # Tool A
 modules/nf-core/tool-a/ @tool-a-maintainer
 subworkflows/local/tool_a_workflow/ @tool-a-maintainer

@@ -13,18 +13,18 @@ For the normative requirements, see the [resource requirements](/docs/specificat
 
 ## Detecting a GPU request
 
-Modules detect whether a GPU has been requested with `task.accelerator{:groovy}`.
-A module never sets the `accelerator` directive itself; the pipeline controls GPU allocation by setting `accelerator = 1{:groovy}` in its process config (for example, via a `process_gpu` label or a `withName` block).
+Modules detect whether a GPU has been requested with `task.accelerator{:nextflow}`.
+A module never sets the `accelerator` directive itself; the pipeline controls GPU allocation by setting `accelerator = 1{:nextflow}` in its process config (for example, via a `process_gpu` label or a `withName` block).
 
 :::note{title="accelerator is a map"}
-The [`accelerator{:groovy}` directive](https://docs.seqera.io/nextflow/reference/process#accelerator) is a map with `request` and `type` keys.
-`accelerator = 1{:groovy}` is shorthand for `accelerator = [request: 1]{:groovy}`.
-Modules only ever need `task.accelerator.request{:groovy}` (the GPU count). In addition to its role in detecting GPU requests, it can serve the same role that `task.cpus{:groovy}` does for CPU cores.
-`task.accelerator.type{:groovy}` (the GPU model, e.g. `'nvidia-tesla-a100'`) is infrastructure-specific: it is set by an institutional profile or a user's local config, never hardcoded by a pipeline or module.
+The [`accelerator{:nextflow}` directive](https://docs.seqera.io/nextflow/reference/process#accelerator) is a map with `request` and `type` keys.
+`accelerator = 1{:nextflow}` is shorthand for `accelerator = [request: 1]{:nextflow}`.
+Modules only ever need `task.accelerator.request{:nextflow}` (the GPU count). In addition to its role in detecting GPU requests, it can serve the same role that `task.cpus{:nextflow}` does for CPU cores.
+`task.accelerator.type{:nextflow}` (the GPU model, e.g. `'nvidia-tesla-a100'`) is infrastructure-specific: it is set by an institutional profile or a user's local config, never hardcoded by a pipeline or module.
 :::
 
 :::info{title="Why modules check task.accelerator directly" collapse}
-A module reads `task.accelerator{:groovy}` itself so one implementation can serve both CPU and GPU
+A module reads `task.accelerator{:nextflow}` itself so one implementation can serve both CPU and GPU
 execution paths — switching container, binary, or command arguments per task, as
 [`ribodetector`](https://github.com/nf-core/modules/tree/master/modules/nf-core/ribodetector) does.
 
@@ -41,8 +41,8 @@ A module only ever reads `task.accelerator`; it never decides when a GPU is actu
 That decision flows through several configuration layers before it reaches the module:
 
 1. **The module** checks `task.accelerator` to pick a container/binary and reads `task.accelerator.request` for the GPU count (this page).
-2. **The pipeline's `conf/base.config`** assigns a global default to the processes with `label 'process_gpu'{:groovy}` (requires use of the `gpu` profile).
-3. **The pipeline's `conf/modules.config`** sets the default allocation using `withName{:groovy}`, typically `accelerator = 1{:groovy}` — often behind a pipeline parameter (for example, `accelerator = { params.use_gpu_ribodetector ? 1 : null }{:groovy}`) so users can opt in without needing a separate profile.
+2. **The pipeline's `conf/base.config`** assigns a global default to the processes with `label 'process_gpu'{:nextflow}` (requires use of the `gpu` profile).
+3. **The pipeline's `conf/modules.config`** sets the default allocation using `withName{:nextflow}`, typically `accelerator = 1{:nextflow}` — often behind a pipeline parameter (for example, `accelerator = { params.use_gpu_ribodetector ? 1 : null }{:nextflow}`) so users can opt in without needing a separate profile.
 4. **An institutional profile** (from [nf-core/configs](https://github.com/nf-core/configs)) intercepts `task.accelerator` and applies it to the resources requested - e.g. a `slurm` executor would typically use a `clusterOptions` closure to translate the request into the local scheduler's syntax (including considering `task.accelerator.type` if appropriate) and `containerOptions` to provide needed runtime options, whereas for example a Kubernetes setup should use `accelerator` automatically and e.g. a cloud VM executor might use the machine type to supply the needed resources. See [Writing process configuration](/docs/developing/institutional-profiles/configuration#process-scope) for the pattern institutional profiles use.
 5. **The user** can override the request count or target specific hardware for a single run with a `-c local.config` that targets the process by name.
 
@@ -57,7 +57,7 @@ Pick a container strategy based on the tool:
 - **Dual CPU/GPU variants where the GPU build has significant overhead** (e.g., CUDA PyTorch adds ~3 GB). Use the [dual-container pattern](#the-dual-container-pattern) so CPU-only users are not penalised. For example, [`ribodetector`](https://github.com/nf-core/modules/tree/master/modules/nf-core/ribodetector).
 - **Vendor-provided GPU containers** with no conda equivalent. For example, [`parabricks/rnafq2bam`](https://github.com/nf-core/modules/tree/master/modules/nf-core/parabricks/rnafq2bam) uses NVIDIA's container. Guard these modules against conda/mamba profiles:
 
-  ```groovy
+  ```nextflow
   if (workflow.profile.tokenize(',').intersect(['conda', 'mamba']).size() >= 1) {
       error("This module does not support Conda. Please use Docker / Singularity / Podman instead.")
   }
@@ -67,7 +67,7 @@ Pick a container strategy based on the tool:
 
 When the GPU container is substantially larger, switch between containers based on `task.accelerator`:
 
-```groovy
+```nextflow
 conda "${ task.accelerator ? "${moduleDir}/environment.gpu.yml" : "${moduleDir}/environment.yml" }"
 container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
     (task.accelerator ? '<singularity-gpu-url>' : '<singularity-cpu-url>') :
@@ -105,7 +105,7 @@ Modules that specifically want broader reach on legacy hosts MAY provide an alte
 Emit the CUDA runtime version on the `versions` topic channel so it appears in provenance reports alongside the tool version.
 One simple pattern uses the pytorch dependency that most CUDA-aware conda environments already pull in:
 
-```groovy
+```nextflow
 tuple val("${task.process}"), val('cuda'), eval('python -c "import torch; print(torch.version.cuda or \'no CUDA available\')"'), emit: versions_cuda, topic: versions
 ```
 
@@ -159,7 +159,7 @@ Backends installed from conda-forge ship RPATHs in their binaries and do not nee
 Tools that provide separate GPU and CPU binaries select between them based on `task.accelerator`.
 For example, [`ribodetector`](https://github.com/nf-core/modules/blob/20423f58f6ff54c4bc851dfd143d75f9b9f86f41/modules/nf-core/ribodetector/main.nf):
 
-```groovy
+```nextflow
 def binary = task.accelerator ? "ribodetector" : "ribodetector_cpu"
 ```
 
@@ -167,7 +167,7 @@ Tools that accept a GPU count specify it in the command using `task.accelerator.
 Do not hardcode this value.
 For example, [`parabricks/rnafq2bam`](https://github.com/nf-core/modules/blob/0c44f69eefe8a8c373c7cdd9528b3e1d60cb895f/modules/nf-core/parabricks/rnafq2bam/main.nf):
 
-```groovy
+```nextflow
 def num_gpus = task.accelerator ? "--num-gpus ${task.accelerator.request}" : ''
 ```
 

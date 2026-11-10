@@ -61,21 +61,6 @@ export function formatAdvisoryCategory(category: string): string {
     return category.charAt(0).toUpperCase() + category.slice(1);
 }
 
-export function getAdvisoryCategoryIcon(category: string): string {
-    switch (category) {
-        case "pipelines":
-            return "fa-project-diagram";
-        case "modules":
-            return "fa-cube";
-        case "subworkflows":
-            return "fa-sitemap";
-        case "configuration":
-            return "fa-cogs";
-        default:
-            return "fa-cogs";
-    }
-}
-
 interface SoftwareDependency {
     name: string;
     versions?: string[];
@@ -83,22 +68,22 @@ interface SoftwareDependency {
 
 type DependencyItem = string | SoftwareDependency;
 
-export function formatNextflowVersions(versions: string[]): string {
+function formatNextflowVersions(versions: string[]): string {
     return versions.join(", ");
 }
 
-export function formatNextflowExecutors(executors: string[]): string {
+function formatNextflowExecutors(executors: string[]): string {
     return executors.join(", ");
 }
 
-export function formatSoftwareDependency(dep: DependencyItem): string {
+function formatSoftwareDependency(dep: DependencyItem): string {
     if (typeof dep === "string") {
         return dep;
     }
     return `${dep.name}${dep.versions ? ` (${dep.versions.join(", ")})` : ""}`;
 }
 
-export function formatSoftwareDependencies(dependencies: DependencyItem[] | string): string {
+function formatSoftwareDependencies(dependencies: DependencyItem[] | string): string {
     if (typeof dependencies === "string") {
         return dependencies;
     }

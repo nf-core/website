@@ -136,13 +136,18 @@ New core members should request access from existing members.
 
 1. Share the container reference with the module author so they can update the module:
 
-    ```groovy
+    ```nextflow
     container "nf-core/<TOOL>:<VERSION>"
     ```
 
     :::note
     This replaces the entire Docker/Singularity condition in the module.
     :::
+
+## Remove the release-tag blocking ruleset before release
+
+To avoid accidental releases we add a ruleset prohibiting releases.
+Once a pipeline is ready to be released, one core member can remove the `block-releases` ruleset via the github settings > rulesets > rulesets.
 
 ## Activate Zenodo archiving of a new pipeline
 

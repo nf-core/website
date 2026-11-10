@@ -18,7 +18,7 @@ Snapshots are used to compare the current output of a process, workflow, or func
 
 Create snapshots using the `snapshot` keyword. The `match` method checks if the snapshot corresponds to the expected data in the snap file:
 
-```groovy
+```nextflow
 // Create a snapshot of a workflow channel
 assert snapshot(workflow.out.channel1).match('channel1')
 
@@ -38,13 +38,13 @@ The first test run generates a JSON snapshot file. Subsequent runs compare again
 
 You can specify parameters or include config files in your tests.
 
-```groovy
+```nextflow
 params {
   foo = 'bar'
 }
 ```
 
-```groovy
+```nextflow
 config "./nextflow.config"
 ```
 
@@ -58,9 +58,9 @@ nf-test replaces paths in snapshots with a unique fingerprint (MD5 sum by defaul
 
 ### Asserting channel item presence with `contains`
 
-Use Groovy's `contains` and `collect` methods to assert the presence of items in channel output.
+Use`nextflow's `contains`and`collect` methods to assert the presence of items in channel output.
 
-```groovy
+```nextflow
 // Example channel with tuples
 def exampleChannel = [
   ['Bonjour', '/.nf-test/tests/c563c/work/65/b62f/Bonjour.json'],
@@ -81,13 +81,13 @@ assert testData.contains('Hello')
 
 You can access elements in output channels using index notation, for example:
 
-```groovy
+```nextflow
 log.get(0).get(1)
 ```
 
 which is equivalent to
 
-```groovy
+```nextflow
 log[0][1]
 ```
 

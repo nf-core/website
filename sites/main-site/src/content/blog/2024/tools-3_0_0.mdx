@@ -224,7 +224,7 @@ Reject the incoming changes to keep your citations.
 
 The above mentioned removal of `check_max()` might cause conflicts in the config files
 
-```groovy title="conf/base.config" del={2-4} ins={6-9}
+```nextflow title="conf/base.config" del={2-4} ins={6-9}
 <<<<<<< HEAD
     cpus   = { check_max( 1    * task.attempt, 'cpus'   ) }
     memory = { check_max( 6.GB * task.attempt, 'memory' ) }
@@ -287,17 +287,17 @@ In `subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf` the switch 
 
 Be careful in accepting incoming changes. The main changes you should do are:
 
-```groovy title="subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf" del={1} ins={2}
+```nextflow title="subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf" del={1} ins={2}
 include { fromSamplesheet } from 'plugin/nf-validation'
 include { samplesheetToList } from 'plugin/nf-schema'
 ```
 
-```groovy title="subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf" del={1} ins={2}
+```nextflow title="subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf" del={1} ins={2}
 Channel.fromSamplesheet("input")
 Channel.fromList(samplesheetToList(params.input, "path/to/samplesheet/schema"))
 ```
 
-```groovy title="subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf" del={1} ins={2}
+```nextflow title="subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf" del={1} ins={2}
  UTILS_NFVALIDATION_PLUGIN (
  UTILS_NFSCHEMA_PLUGIN (
 ```

@@ -172,8 +172,8 @@
                                     title="sort"
                                     id={sor.replace(" ", "-")}
                                     class:active={sor === $SortBy}
-                                    onclick={(e) => handleSort(sor)}
-                                    onkeydown={(e) => handleSort(sor)}
+                                    onclick={() => handleSort(sor)}
+                                    onkeydown={() => handleSort(sor)}
                                     role="button"
                                     tabindex="0"
                                 >
@@ -192,7 +192,7 @@
                         <button
                             type="button"
                             class="btn btn-outline-success text-nowrap"
-                            onclick={(e) => handleDisplayStyle(dis.name)}
+                            onclick={() => handleDisplayStyle(dis.name)}
                             class:active={$DisplayStyle === dis.name}
                             title={dis.name + " view"}
                             data-bs-toggle="tooltip"

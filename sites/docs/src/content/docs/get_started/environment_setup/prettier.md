@@ -31,7 +31,7 @@ For VS Code, install the [Prettier extension](https://marketplace.visualstudio.c
 
 :::note
 The Prettier extension is included in the [nf-core extension pack](https://marketplace.visualstudio.com/items?itemName=nf-core.nf-core-extensionpack).
-See [nf-core extension pack](../../get_started/environment-setup/vs-code.md#nf-core-extension-pack) for more information.
+See [nf-core extension pack](./vs-code.md#nf-core-extension-pack) for more information.
 :::
 
 ## Run Prettier

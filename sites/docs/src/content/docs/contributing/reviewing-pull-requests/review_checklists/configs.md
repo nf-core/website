@@ -63,4 +63,3 @@ For sensitive data or offline clusters (if applicable):
 ## Config infrastructure
 
 - [ ] Entry added to `nfcore_custom.config`
-- [ ] Entry added to `.github/workflows/main.yaml`

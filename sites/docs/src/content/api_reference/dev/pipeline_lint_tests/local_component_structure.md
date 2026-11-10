@@ -1,4 +1,4 @@
-# modules\_structure
+# modules_structure
 
 #### `PipelineLint.local_component_structure(){:python}`
 

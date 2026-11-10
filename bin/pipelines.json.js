@@ -3,7 +3,7 @@ import { octokit, getDocFiles, getGitHubFile } from "../sites/main-site/src/comp
 import { fetchCO2FootprintFiles } from "./s3Utils.js";
 
 import { promises as fs, writeFileSync, existsSync } from "fs";
-import yaml from "js-yaml";
+import { load } from "js-yaml";
 import path, { join } from "path";
 import ProgressBar from "progress";
 
@@ -66,7 +66,7 @@ export const writePipelinesJson = async () => {
   const pipelines = JSON.parse(pipelinesJson);
 
   // get ignored_repos from ignored_reops.yml
-  const ignored_repos = yaml.load(ignoredTopicsYaml).ignore_repos;
+  const ignored_repos = load(ignoredTopicsYaml).ignore_repos;
 
   // get all repos for the nf-core org or use the specified pipeline
   let names = [];
@@ -81,7 +81,7 @@ export const writePipelinesJson = async () => {
         repo: singlePipelineName,
       });
       active_names = [singlePipelineName];
-    } catch (err) {
+    } catch {
       console.error(`Pipeline ${singlePipelineName} not found in nf-core organization`);
       process.exit(1);
     }
@@ -122,7 +122,7 @@ export const writePipelinesJson = async () => {
   }
 
   // get ignored_topics from ignored_repos.yml
-  const ignored_topics = yaml.load(ignoredTopicsYaml).ignore_topics;
+  const ignored_topics = load(ignoredTopicsYaml).ignore_topics;
 
   // Get latest tools release
   const latest_tools_release_date = (
@@ -344,10 +344,11 @@ export const writePipelinesJson = async () => {
         return { name: contributor.login, count: contributor.contributions, avatar_url: contributor.avatar_url };
       });
 
-    // get the releases
-    let { data: releases } = await octokit.rest.repos.listReleases({
+    // get all the releases (paginated, as some pipelines have more than the default 30 releases)
+    let releases = await octokit.paginate(octokit.rest.repos.listReleases, {
       owner: "nf-core",
       repo: name,
+      per_page: 100,
     });
 
     // remove empty values from releases (usually from draft releases)
@@ -361,9 +362,13 @@ export const writePipelinesJson = async () => {
 
     let old_releases = [];
     if (pipelineIndex > -1) {
-      old_releases = pipelines.remote_workflows[pipelineIndex].releases.filter((release) => release.tag_name !== "dev");
-      const existing_releases = old_releases.map((release) => release.tag_name);
-      new_releases = new_releases.filter((release) => !existing_releases.includes(release.tag_name));
+      // drop releases that were renamed or deleted on GitHub since they were added to pipelines.json
+      const current_releases = new Set(releases.map((release) => release.tag_name));
+      old_releases = pipelines.remote_workflows[pipelineIndex].releases.filter(
+        (release) => release.tag_name !== "dev" && current_releases.has(release.tag_name),
+      );
+      const existing_releases = new Set(old_releases.map((release) => release.tag_name));
+      new_releases = new_releases.filter((release) => !existing_releases.has(release.tag_name));
     }
     // get sha and schema info for each release in parallel
     await Promise.all(
@@ -466,11 +471,11 @@ export const writePipelinesJson = async () => {
                 .map((line) => line.match(/id\s*['"]([^'"]*)['"]/)[1])
             : [];
 
-          // get default branch from manifest
+          // get default branch and metro map diagram from manifest, ignoring commented-out lines (but not the "//" in "https://")
           const manifest = {};
-          const defaultBranchMatch = response.match(/manifest\s*{[^}]*defaultBranch\s*=\s*['"]([^'"]+)['"]/s);
-          if (defaultBranchMatch) {
-            manifest.defaultBranch = defaultBranchMatch[1];
+          const manifestBlock = response.replace(/(?<!:)\/\/.*$/gm, "").match(/manifest\s*{([^}]*)}/s)?.[1] ?? "";
+          for (const [, key, value] of manifestBlock.matchAll(/\b(defaultBranch|diagram)\s*=\s*['"]([^'"]+)['"]/g)) {
+            manifest[key] ??= value;
           }
 
           return { plugins: pluginsList, manifest };
@@ -531,12 +536,8 @@ export const writePipelinesJson = async () => {
             ref: tag_name,
           })
           .catch((error) => {
-            if (error.status === 404) {
-              // console.log(`modules.json not found in ${name} ${tag_name}`);
-              return;
-            } else {
+            if (error.status !== 404) {
               console.log(error);
-              return;
             }
           })
           .then((response) => {

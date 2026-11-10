@@ -61,7 +61,7 @@
                                         {#if group.data.pipelines && group.data.pipelines.length > 0}
                                             <p class="text-muted small mb-1">Pipelines:</p>
                                             {#each group.data.pipelines as pipeline}
-                                                <span class={`badge me-2 pipeline-badge small`}>{pipeline}</span>
+                                                <span class="badge me-2 pipeline-badge small">{pipeline}</span>
                                             {/each}
                                         {/if}
                                     </div>
@@ -117,7 +117,7 @@
                             </td>
                             <td class="pipeline-badges small col-3">
                                 {#each group.data.pipelines ?? [] as pipeline}
-                                    <span class={`badge me-2 pipeline-badge`}>{pipeline}</span>
+                                    <span class="badge me-2 pipeline-badge">{pipeline}</span>
                                 {/each}
                             </td>
                             <td class="">

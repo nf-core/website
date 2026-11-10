@@ -23,7 +23,7 @@
             return;
         }
         Object.entries(schemaDefs).forEach((heading) => {
-            const element = document.querySelector("#" + heading[0].replaceAll("_", "-"));
+            const element = document.getElementById(heading[0].replaceAll("_", "-"));
             if (element) {
                 observer.observe(element);
             }

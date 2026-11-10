@@ -13,7 +13,7 @@ Either way, declare the result in `nextflow.config`.
 
 Set `manifest.diagram` in `nextflow.config` to a relative path to your diagram, so that Nextflow and other tools can find it:
 
-```groovy title="nextflow.config"
+```nextflow title="nextflow.config"
 manifest {
     // ...
     diagram = 'docs/images/metro_map.svg'

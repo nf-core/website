@@ -25,18 +25,6 @@ events
         return a.data.start.getTime() - b.data.start.getTime();
     });
 
-const searchEvents = (search) => {
-    const searchTerms = search.toLowerCase().split(" ");
-    return events.filter((event) => {
-        const eventString = JSON.stringify(event.data).toLowerCase();
-        return searchTerms.every((term) => eventString.includes(term));
-    });
-};
-
-const filterEvents = (type) => {
-    return events.filter((event) => event.data.type === type);
-};
-
 let currentEvents = events.filter((event) => {
     const today = new Date();
     if (!event.data.start || !event.data.end) return false;
@@ -68,15 +56,15 @@ let sections: SidebarEntry[] = years.map((year) => {
 
 // sort entries by date
 sections.forEach((section) => {
-    section.type === "group" &&
-        section.entries?.sort((a, b) => {
-            const eventA = events.find((event) => event.id === a.id);
-            const eventB = events.find((event) => event.id === b.id);
-            if (eventA?.data.start && eventB?.data.start) {
-                return eventB.data.start.getTime() - eventA.data.start.getTime();
-            }
-            return 0;
-        });
+    if (section.type !== "group") return;
+    section.entries?.sort((a, b) => {
+        const eventA = events.find((event) => event.id === a.id);
+        const eventB = events.find((event) => event.id === b.id);
+        if (eventA?.data.start && eventB?.data.start) {
+            return eventB.data.start.getTime() - eventA.data.start.getTime();
+        }
+        return 0;
+    });
 });
 ---
 

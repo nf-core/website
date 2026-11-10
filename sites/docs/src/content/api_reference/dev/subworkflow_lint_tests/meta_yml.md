@@ -1,4 +1,4 @@
-# meta\_yml
+# meta_yml
 
 #### `SubworkflowLint.meta_yml(subworkflow, allow_missing: bool = False){:python}`
 
@@ -18,36 +18,36 @@ Checks that all included components in `main.nf` are specified in `meta.yml`.
 
 The following checks are performed:
 
-## meta\_yml\_exists
+## meta_yml_exists
 
 The `meta.yml` file must exist.
 
-## meta\_yml\_valid
+## meta_yml_valid
 
 The `meta.yml` must be valid according to the JSON
 schema defined at <https://raw.githubusercontent.com/nf-core/subworkflows/master/modules/environment-schema.json>.
 
-## meta\_input
+## meta_input
 
 All input channels declared in `main.nf` must be listed
 under the `input:` key in `meta.yml`.
 
-## meta\_output
+## meta_output
 
 All output channels declared in `main.nf` must be listed
 under the `output:` key in `meta.yml`.
 
-## meta\_name
+## meta_name
 
 The `name` field in `meta.yml` must match the workflow
 name declared in `main.nf`.
 
-## meta\_include
+## meta_include
 
 All modules and subworkflows included in `main.nf` must
 be listed under the `components:` key in `meta.yml`.
 
-## meta\_modules\_deprecated
+## meta_modules_deprecated
 
 The deprecated `modules:` section must not
 be present in `meta.yml`; use `components:` instead.

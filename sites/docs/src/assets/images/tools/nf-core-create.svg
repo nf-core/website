@@ -1,998 +1,178 @@
-<svg class="rich-terminal" viewBox="0 0 1238 5735.2" xmlns="http://www.w3.org/2000/svg">
+<svg class="rich-terminal" viewBox="0 0 1238 757.5999999999999" xmlns="http://www.w3.org/2000/svg">
     <!-- Generated with Rich https://www.textualize.io -->
+    <!--
+    Embedded by rich-codex, subset to the characters used above: Fira Code.
+    Copyright (c) 2014, The Fira Code Project Authors (https://github.com/tonsky/FiraCode)
+    Licensed under the SIL Open Font License, Version 1.1 (https://scripts.sil.org/OFL)
+    -->
     <style>
 
     @font-face {
         font-family: "Fira Code";
-        src: local("FiraCode-Regular"),
-                url("https://cdnjs.cloudflare.com/ajax/libs/firacode/6.2.0/woff2/FiraCode-Regular.woff2") format("woff2"),
-                url("https://cdnjs.cloudflare.com/ajax/libs/firacode/6.2.0/woff/FiraCode-Regular.woff") format("woff");
+        src: url("data:font/woff2;base64,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") format("woff2");
         font-style: normal;
         font-weight: 400;
     }
     @font-face {
         font-family: "Fira Code";
-        src: local("FiraCode-Bold"),
-                url("https://cdnjs.cloudflare.com/ajax/libs/firacode/6.2.0/woff2/FiraCode-Bold.woff2") format("woff2"),
-                url("https://cdnjs.cloudflare.com/ajax/libs/firacode/6.2.0/woff/FiraCode-Bold.woff") format("woff");
-        font-style: bold;
+        src: url("data:font/woff2;base64,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") format("woff2");
+        font-style: normal;
         font-weight: 700;
     }
 
-    .terminal-4092753965-matrix {
+    .rich-codex-623186999-matrix {
         font-family: Fira Code, monospace;
         font-size: 20px;
         line-height: 24.4px;
         font-variant-east-asian: full-width;
     }
 
-    .terminal-4092753965-title {
+    .rich-codex-623186999-title {
         font-size: 18px;
         font-weight: bold;
         font-family: arial;
     }
 
-    .terminal-4092753965-r1 { fill: #c5c8c6 }
-.terminal-4092753965-r2 { fill: #98a84b }
-.terminal-4092753965-r3 { fill: #9a9b99 }
-.terminal-4092753965-r4 { fill: #608ab1 }
-.terminal-4092753965-r5 { fill: #d0b344 }
-.terminal-4092753965-r6 { fill: #292929;font-weight: bold }
-.terminal-4092753965-r7 { fill: #c5c8c6;font-weight: bold }
-.terminal-4092753965-r8 { fill: #68a0b3;font-weight: bold }
-.terminal-4092753965-r9 { fill: #00823d;font-weight: bold }
-.terminal-4092753965-r10 { fill: #98729f;font-weight: bold }
-.terminal-4092753965-r11 { fill: #98729f }
-.terminal-4092753965-r12 { fill: #ff2c7a }
-.terminal-4092753965-r13 { fill: #98a84b;font-weight: bold }
-.terminal-4092753965-r14 { fill: #1984e9;text-decoration: underline; }
+    .rich-codex-623186999-r1 { fill: #c5c8c6 }
+.rich-codex-623186999-r2 { fill: #98a84b }
+.rich-codex-623186999-r3 { fill: #9a9b99 }
+.rich-codex-623186999-r4 { fill: #608ab1 }
+.rich-codex-623186999-r5 { fill: #d0b344 }
+.rich-codex-623186999-r6 { fill: #98729f }
+.rich-codex-623186999-r7 { fill: #ff2c7a }
+.rich-codex-623186999-r8 { fill: #98a84b;font-weight: bold }
+.rich-codex-623186999-r9 { fill: #1984e9;text-decoration: underline; }
     </style>
 
     <defs>
-    <clipPath id="terminal-4092753965-clip-terminal">
-      <rect x="0" y="0" width="1219.0" height="5684.2" />
+    <clipPath id="rich-codex-623186999-clip-terminal">
+      <rect x="0" y="0" width="1219.0" height="706.5999999999999" />
     </clipPath>
-    <clipPath id="terminal-4092753965-line-0">
+    <clipPath id="rich-codex-623186999-line-0">
     <rect x="0" y="1.5" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-1">
+<clipPath id="rich-codex-623186999-line-1">
     <rect x="0" y="25.9" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-2">
+<clipPath id="rich-codex-623186999-line-2">
     <rect x="0" y="50.3" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-3">
+<clipPath id="rich-codex-623186999-line-3">
     <rect x="0" y="74.7" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-4">
+<clipPath id="rich-codex-623186999-line-4">
     <rect x="0" y="99.1" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-5">
+<clipPath id="rich-codex-623186999-line-5">
     <rect x="0" y="123.5" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-6">
+<clipPath id="rich-codex-623186999-line-6">
     <rect x="0" y="147.9" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-7">
+<clipPath id="rich-codex-623186999-line-7">
     <rect x="0" y="172.3" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-8">
+<clipPath id="rich-codex-623186999-line-8">
     <rect x="0" y="196.7" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-9">
+<clipPath id="rich-codex-623186999-line-9">
     <rect x="0" y="221.1" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-10">
+<clipPath id="rich-codex-623186999-line-10">
     <rect x="0" y="245.5" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-11">
+<clipPath id="rich-codex-623186999-line-11">
     <rect x="0" y="269.9" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-12">
+<clipPath id="rich-codex-623186999-line-12">
     <rect x="0" y="294.3" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-13">
+<clipPath id="rich-codex-623186999-line-13">
     <rect x="0" y="318.7" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-14">
+<clipPath id="rich-codex-623186999-line-14">
     <rect x="0" y="343.1" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-15">
+<clipPath id="rich-codex-623186999-line-15">
     <rect x="0" y="367.5" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-16">
+<clipPath id="rich-codex-623186999-line-16">
     <rect x="0" y="391.9" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-17">
+<clipPath id="rich-codex-623186999-line-17">
     <rect x="0" y="416.3" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-18">
+<clipPath id="rich-codex-623186999-line-18">
     <rect x="0" y="440.7" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-19">
+<clipPath id="rich-codex-623186999-line-19">
     <rect x="0" y="465.1" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-20">
+<clipPath id="rich-codex-623186999-line-20">
     <rect x="0" y="489.5" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-21">
+<clipPath id="rich-codex-623186999-line-21">
     <rect x="0" y="513.9" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-22">
+<clipPath id="rich-codex-623186999-line-22">
     <rect x="0" y="538.3" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-23">
+<clipPath id="rich-codex-623186999-line-23">
     <rect x="0" y="562.7" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-24">
+<clipPath id="rich-codex-623186999-line-24">
     <rect x="0" y="587.1" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-25">
+<clipPath id="rich-codex-623186999-line-25">
     <rect x="0" y="611.5" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-26">
+<clipPath id="rich-codex-623186999-line-26">
     <rect x="0" y="635.9" width="1220" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-4092753965-line-27">
+<clipPath id="rich-codex-623186999-line-27">
     <rect x="0" y="660.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-28">
-    <rect x="0" y="684.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-29">
-    <rect x="0" y="709.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-30">
-    <rect x="0" y="733.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-31">
-    <rect x="0" y="757.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-32">
-    <rect x="0" y="782.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-33">
-    <rect x="0" y="806.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-34">
-    <rect x="0" y="831.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-35">
-    <rect x="0" y="855.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-36">
-    <rect x="0" y="879.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-37">
-    <rect x="0" y="904.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-38">
-    <rect x="0" y="928.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-39">
-    <rect x="0" y="953.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-40">
-    <rect x="0" y="977.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-41">
-    <rect x="0" y="1001.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-42">
-    <rect x="0" y="1026.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-43">
-    <rect x="0" y="1050.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-44">
-    <rect x="0" y="1075.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-45">
-    <rect x="0" y="1099.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-46">
-    <rect x="0" y="1123.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-47">
-    <rect x="0" y="1148.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-48">
-    <rect x="0" y="1172.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-49">
-    <rect x="0" y="1197.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-50">
-    <rect x="0" y="1221.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-51">
-    <rect x="0" y="1245.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-52">
-    <rect x="0" y="1270.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-53">
-    <rect x="0" y="1294.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-54">
-    <rect x="0" y="1319.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-55">
-    <rect x="0" y="1343.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-56">
-    <rect x="0" y="1367.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-57">
-    <rect x="0" y="1392.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-58">
-    <rect x="0" y="1416.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-59">
-    <rect x="0" y="1441.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-60">
-    <rect x="0" y="1465.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-61">
-    <rect x="0" y="1489.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-62">
-    <rect x="0" y="1514.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-63">
-    <rect x="0" y="1538.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-64">
-    <rect x="0" y="1563.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-65">
-    <rect x="0" y="1587.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-66">
-    <rect x="0" y="1611.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-67">
-    <rect x="0" y="1636.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-68">
-    <rect x="0" y="1660.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-69">
-    <rect x="0" y="1685.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-70">
-    <rect x="0" y="1709.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-71">
-    <rect x="0" y="1733.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-72">
-    <rect x="0" y="1758.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-73">
-    <rect x="0" y="1782.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-74">
-    <rect x="0" y="1807.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-75">
-    <rect x="0" y="1831.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-76">
-    <rect x="0" y="1855.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-77">
-    <rect x="0" y="1880.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-78">
-    <rect x="0" y="1904.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-79">
-    <rect x="0" y="1929.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-80">
-    <rect x="0" y="1953.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-81">
-    <rect x="0" y="1977.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-82">
-    <rect x="0" y="2002.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-83">
-    <rect x="0" y="2026.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-84">
-    <rect x="0" y="2051.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-85">
-    <rect x="0" y="2075.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-86">
-    <rect x="0" y="2099.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-87">
-    <rect x="0" y="2124.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-88">
-    <rect x="0" y="2148.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-89">
-    <rect x="0" y="2173.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-90">
-    <rect x="0" y="2197.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-91">
-    <rect x="0" y="2221.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-92">
-    <rect x="0" y="2246.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-93">
-    <rect x="0" y="2270.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-94">
-    <rect x="0" y="2295.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-95">
-    <rect x="0" y="2319.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-96">
-    <rect x="0" y="2343.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-97">
-    <rect x="0" y="2368.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-98">
-    <rect x="0" y="2392.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-99">
-    <rect x="0" y="2417.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-100">
-    <rect x="0" y="2441.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-101">
-    <rect x="0" y="2465.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-102">
-    <rect x="0" y="2490.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-103">
-    <rect x="0" y="2514.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-104">
-    <rect x="0" y="2539.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-105">
-    <rect x="0" y="2563.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-106">
-    <rect x="0" y="2587.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-107">
-    <rect x="0" y="2612.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-108">
-    <rect x="0" y="2636.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-109">
-    <rect x="0" y="2661.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-110">
-    <rect x="0" y="2685.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-111">
-    <rect x="0" y="2709.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-112">
-    <rect x="0" y="2734.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-113">
-    <rect x="0" y="2758.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-114">
-    <rect x="0" y="2783.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-115">
-    <rect x="0" y="2807.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-116">
-    <rect x="0" y="2831.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-117">
-    <rect x="0" y="2856.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-118">
-    <rect x="0" y="2880.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-119">
-    <rect x="0" y="2905.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-120">
-    <rect x="0" y="2929.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-121">
-    <rect x="0" y="2953.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-122">
-    <rect x="0" y="2978.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-123">
-    <rect x="0" y="3002.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-124">
-    <rect x="0" y="3027.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-125">
-    <rect x="0" y="3051.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-126">
-    <rect x="0" y="3075.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-127">
-    <rect x="0" y="3100.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-128">
-    <rect x="0" y="3124.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-129">
-    <rect x="0" y="3149.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-130">
-    <rect x="0" y="3173.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-131">
-    <rect x="0" y="3197.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-132">
-    <rect x="0" y="3222.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-133">
-    <rect x="0" y="3246.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-134">
-    <rect x="0" y="3271.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-135">
-    <rect x="0" y="3295.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-136">
-    <rect x="0" y="3319.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-137">
-    <rect x="0" y="3344.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-138">
-    <rect x="0" y="3368.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-139">
-    <rect x="0" y="3393.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-140">
-    <rect x="0" y="3417.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-141">
-    <rect x="0" y="3441.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-142">
-    <rect x="0" y="3466.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-143">
-    <rect x="0" y="3490.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-144">
-    <rect x="0" y="3515.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-145">
-    <rect x="0" y="3539.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-146">
-    <rect x="0" y="3563.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-147">
-    <rect x="0" y="3588.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-148">
-    <rect x="0" y="3612.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-149">
-    <rect x="0" y="3637.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-150">
-    <rect x="0" y="3661.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-151">
-    <rect x="0" y="3685.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-152">
-    <rect x="0" y="3710.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-153">
-    <rect x="0" y="3734.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-154">
-    <rect x="0" y="3759.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-155">
-    <rect x="0" y="3783.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-156">
-    <rect x="0" y="3807.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-157">
-    <rect x="0" y="3832.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-158">
-    <rect x="0" y="3856.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-159">
-    <rect x="0" y="3881.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-160">
-    <rect x="0" y="3905.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-161">
-    <rect x="0" y="3929.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-162">
-    <rect x="0" y="3954.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-163">
-    <rect x="0" y="3978.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-164">
-    <rect x="0" y="4003.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-165">
-    <rect x="0" y="4027.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-166">
-    <rect x="0" y="4051.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-167">
-    <rect x="0" y="4076.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-168">
-    <rect x="0" y="4100.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-169">
-    <rect x="0" y="4125.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-170">
-    <rect x="0" y="4149.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-171">
-    <rect x="0" y="4173.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-172">
-    <rect x="0" y="4198.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-173">
-    <rect x="0" y="4222.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-174">
-    <rect x="0" y="4247.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-175">
-    <rect x="0" y="4271.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-176">
-    <rect x="0" y="4295.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-177">
-    <rect x="0" y="4320.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-178">
-    <rect x="0" y="4344.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-179">
-    <rect x="0" y="4369.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-180">
-    <rect x="0" y="4393.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-181">
-    <rect x="0" y="4417.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-182">
-    <rect x="0" y="4442.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-183">
-    <rect x="0" y="4466.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-184">
-    <rect x="0" y="4491.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-185">
-    <rect x="0" y="4515.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-186">
-    <rect x="0" y="4539.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-187">
-    <rect x="0" y="4564.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-188">
-    <rect x="0" y="4588.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-189">
-    <rect x="0" y="4613.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-190">
-    <rect x="0" y="4637.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-191">
-    <rect x="0" y="4661.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-192">
-    <rect x="0" y="4686.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-193">
-    <rect x="0" y="4710.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-194">
-    <rect x="0" y="4735.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-195">
-    <rect x="0" y="4759.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-196">
-    <rect x="0" y="4783.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-197">
-    <rect x="0" y="4808.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-198">
-    <rect x="0" y="4832.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-199">
-    <rect x="0" y="4857.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-200">
-    <rect x="0" y="4881.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-201">
-    <rect x="0" y="4905.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-202">
-    <rect x="0" y="4930.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-203">
-    <rect x="0" y="4954.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-204">
-    <rect x="0" y="4979.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-205">
-    <rect x="0" y="5003.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-206">
-    <rect x="0" y="5027.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-207">
-    <rect x="0" y="5052.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-208">
-    <rect x="0" y="5076.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-209">
-    <rect x="0" y="5101.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-210">
-    <rect x="0" y="5125.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-211">
-    <rect x="0" y="5149.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-212">
-    <rect x="0" y="5174.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-213">
-    <rect x="0" y="5198.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-214">
-    <rect x="0" y="5223.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-215">
-    <rect x="0" y="5247.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-216">
-    <rect x="0" y="5271.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-217">
-    <rect x="0" y="5296.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-218">
-    <rect x="0" y="5320.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-219">
-    <rect x="0" y="5345.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-220">
-    <rect x="0" y="5369.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-221">
-    <rect x="0" y="5393.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-222">
-    <rect x="0" y="5418.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-223">
-    <rect x="0" y="5442.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-224">
-    <rect x="0" y="5467.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-225">
-    <rect x="0" y="5491.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-226">
-    <rect x="0" y="5515.9" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-227">
-    <rect x="0" y="5540.3" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-228">
-    <rect x="0" y="5564.7" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-229">
-    <rect x="0" y="5589.1" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-230">
-    <rect x="0" y="5613.5" width="1220" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-4092753965-line-231">
-    <rect x="0" y="5637.9" width="1220" height="24.65"/>
             </clipPath>
     </defs>
 
-    <rect fill="#292929" stroke="rgba(255,255,255,0.35)" stroke-width="1" x="1" y="1" width="1236" height="5733.2" rx="8"/>
+    <rect fill="#292929" stroke="rgba(255,255,255,0.35)" stroke-width="1" x="1" y="1" width="1236" height="755.6" rx="8"/>
             <g transform="translate(26,22)">
             <circle cx="0" cy="0" r="7" fill="#ff5f57"/>
             <circle cx="22" cy="0" r="7" fill="#febc2e"/>
             <circle cx="44" cy="0" r="7" fill="#28c840"/>
             </g>
         
-    <g transform="translate(9, 41)" clip-path="url(#terminal-4092753965-clip-terminal)">
-    <rect fill="#cc555a" x="0" y="367.5" width="97.6" height="24.65" shape-rendering="crispEdges"/><rect fill="#9a9b99" x="109.8" y="5442.7" width="48.8" height="24.65" shape-rendering="crispEdges"/><rect fill="#9a9b99" x="158.6" y="5442.7" width="463.6" height="24.65" shape-rendering="crispEdges"/><rect fill="#9a9b99" x="622.2" y="5442.7" width="244" height="24.65" shape-rendering="crispEdges"/><rect fill="#9a9b99" x="866.2" y="5442.7" width="12.2" height="24.65" shape-rendering="crispEdges"/><rect fill="#9a9b99" x="109.8" y="5467.1" width="744.2" height="24.65" shape-rendering="crispEdges"/><rect fill="#9a9b99" x="109.8" y="5491.5" width="744.2" height="24.65" shape-rendering="crispEdges"/>
-    <g class="terminal-4092753965-matrix">
-    <text class="terminal-4092753965-r1" x="0" y="20" textLength="1207.8" clip-path="url(#terminal-4092753965-line-0)">$ nf-core pipelines create -n nextbigthing -d &quot;This pipeline analyses data from the next big omics </text><text class="terminal-4092753965-r1" x="1220" y="20" textLength="12.2" clip-path="url(#terminal-4092753965-line-0)">
-</text><text class="terminal-4092753965-r1" x="0" y="44.4" textLength="305" clip-path="url(#terminal-4092753965-line-1)">technique&quot; -a &quot;Big Steve&quot;</text><text class="terminal-4092753965-r1" x="1220" y="44.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-1)">
-</text><text class="terminal-4092753965-r1" x="1220" y="68.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-2)">
-</text><text class="terminal-4092753965-r1" x="1220" y="93.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-3)">
-</text><text class="terminal-4092753965-r2" x="0" y="117.6" textLength="561.2" clip-path="url(#terminal-4092753965-line-4)">                                          ,--.</text><text class="terminal-4092753965-r3" x="561.2" y="117.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-4)">/</text><text class="terminal-4092753965-r2" x="573.4" y="117.6" textLength="36.6" clip-path="url(#terminal-4092753965-line-4)">,-.</text><text class="terminal-4092753965-r1" x="1220" y="117.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-4)">
-</text><text class="terminal-4092753965-r4" x="0" y="142" textLength="500.2" clip-path="url(#terminal-4092753965-line-5)">          ___     __   __   __   ___     </text><text class="terminal-4092753965-r2" x="500.2" y="142" textLength="134.2" clip-path="url(#terminal-4092753965-line-5)">/,-._.--~\ </text><text class="terminal-4092753965-r1" x="1220" y="142" textLength="12.2" clip-path="url(#terminal-4092753965-line-5)">
-</text><text class="terminal-4092753965-r4" x="0" y="166.4" textLength="500.2" clip-path="url(#terminal-4092753965-line-6)">    |\ | |__  __ /  ` /  \ |__) |__      </text><text class="terminal-4092753965-r5" x="500.2" y="166.4" textLength="85.4" clip-path="url(#terminal-4092753965-line-6)">   }  {</text><text class="terminal-4092753965-r1" x="1220" y="166.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-6)">
-</text><text class="terminal-4092753965-r4" x="0" y="190.8" textLength="500.2" clip-path="url(#terminal-4092753965-line-7)">    | \| |       \__, \__/ |  \ |___     </text><text class="terminal-4092753965-r2" x="500.2" y="190.8" textLength="122" clip-path="url(#terminal-4092753965-line-7)">\`-._,-`-,</text><text class="terminal-4092753965-r1" x="1220" y="190.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-7)">
-</text><text class="terminal-4092753965-r2" x="0" y="215.2" textLength="610" clip-path="url(#terminal-4092753965-line-8)">                                          `._,._,'</text><text class="terminal-4092753965-r1" x="1220" y="215.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-8)">
-</text><text class="terminal-4092753965-r1" x="1220" y="239.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-9)">
-</text><text class="terminal-4092753965-r3" x="0" y="264" textLength="414.8" clip-path="url(#terminal-4092753965-line-10)">    nf-core/tools version 3.5.2 - </text><text class="terminal-4092753965-r3" x="414.8" y="264" textLength="195.2" clip-path="url(#terminal-4092753965-line-10)">https://nf-co.re</text><text class="terminal-4092753965-r1" x="1220" y="264" textLength="12.2" clip-path="url(#terminal-4092753965-line-10)">
-</text><text class="terminal-4092753965-r1" x="1220" y="288.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-11)">
-</text><text class="terminal-4092753965-r1" x="1220" y="312.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-12)">
-</text><text class="terminal-4092753965-r4" x="0" y="337.2" textLength="97.6" clip-path="url(#terminal-4092753965-line-13)">INFO    </text><text class="terminal-4092753965-r1" x="97.6" y="337.2" textLength="292.8" clip-path="url(#terminal-4092753965-line-13)"> Creating new pipeline: </text><text class="terminal-4092753965-r2" x="390.4" y="337.2" textLength="170.8" clip-path="url(#terminal-4092753965-line-13)">'nextbigthing'</text><text class="terminal-4092753965-r1" x="1220" y="337.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-13)">
-</text><text class="terminal-4092753965-r4" x="0" y="361.6" textLength="97.6" clip-path="url(#terminal-4092753965-line-14)">INFO    </text><text class="terminal-4092753965-r1" x="97.6" y="361.6" textLength="305" clip-path="url(#terminal-4092753965-line-14)"> Saving metadata file to </text><text class="terminal-4092753965-r2" x="402.6" y="361.6" textLength="732" clip-path="url(#terminal-4092753965-line-14)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing'</text><text class="terminal-4092753965-r1" x="1220" y="361.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-14)">
-</text><text class="terminal-4092753965-r6" x="0" y="386" textLength="97.6" clip-path="url(#terminal-4092753965-line-15)">CRITICAL</text><text class="terminal-4092753965-r1" x="97.6" y="386" textLength="170.8" clip-path="url(#terminal-4092753965-line-15)"> Can't format </text><text class="terminal-4092753965-r7" x="268.4" y="386" textLength="12.2" clip-path="url(#terminal-4092753965-line-15)">[</text><text class="terminal-4092753965-r2" x="280.6" y="386" textLength="793" clip-path="url(#terminal-4092753965-line-15)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/conf'</text><text class="terminal-4092753965-r1" x="1073.6" y="386" textLength="146.4" clip-path="url(#terminal-4092753965-line-15)">,           </text><text class="terminal-4092753965-r1" x="1220" y="386" textLength="12.2" clip-path="url(#terminal-4092753965-line-15)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="410.4" textLength="890.6" clip-path="url(#terminal-4092753965-line-16)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/CHANGELOG.md'</text><text class="terminal-4092753965-r1" x="1000.4" y="410.4" textLength="219.6" clip-path="url(#terminal-4092753965-line-16)">,                 </text><text class="terminal-4092753965-r1" x="1220" y="410.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-16)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="434.8" textLength="829.6" clip-path="url(#terminal-4092753965-line-17)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/LICENSE'</text><text class="terminal-4092753965-r1" x="939.4" y="434.8" textLength="280.6" clip-path="url(#terminal-4092753965-line-17)">,                      </text><text class="terminal-4092753965-r1" x="1220" y="434.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-17)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="459.2" textLength="988.2" clip-path="url(#terminal-4092753965-line-18)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/nextflow_schema.json'</text><text class="terminal-4092753965-r1" x="1098" y="459.2" textLength="122" clip-path="url(#terminal-4092753965-line-18)">,         </text><text class="terminal-4092753965-r1" x="1220" y="459.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-18)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="483.6" textLength="829.6" clip-path="url(#terminal-4092753965-line-19)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.vscode'</text><text class="terminal-4092753965-r1" x="939.4" y="483.6" textLength="280.6" clip-path="url(#terminal-4092753965-line-19)">,                      </text><text class="terminal-4092753965-r1" x="1220" y="483.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-19)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="508" textLength="927.2" clip-path="url(#terminal-4092753965-line-20)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/nextflow.config'</text><text class="terminal-4092753965-r1" x="1037" y="508" textLength="183" clip-path="url(#terminal-4092753965-line-20)">,              </text><text class="terminal-4092753965-r1" x="1220" y="508" textLength="12.2" clip-path="url(#terminal-4092753965-line-20)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="532.4" textLength="829.6" clip-path="url(#terminal-4092753965-line-21)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github'</text><text class="terminal-4092753965-r1" x="939.4" y="532.4" textLength="280.6" clip-path="url(#terminal-4092753965-line-21)">,                      </text><text class="terminal-4092753965-r1" x="1220" y="532.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-21)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="556.8" textLength="915" clip-path="url(#terminal-4092753965-line-22)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.gitattributes'</text><text class="terminal-4092753965-r1" x="1024.8" y="556.8" textLength="195.2" clip-path="url(#terminal-4092753965-line-22)">,               </text><text class="terminal-4092753965-r1" x="1220" y="556.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-22)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="581.2" textLength="902.8" clip-path="url(#terminal-4092753965-line-23)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.devcontainer'</text><text class="terminal-4092753965-r1" x="1012.6" y="581.2" textLength="207.4" clip-path="url(#terminal-4092753965-line-23)">,                </text><text class="terminal-4092753965-r1" x="1220" y="581.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-23)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="605.6" textLength="890.6" clip-path="url(#terminal-4092753965-line-24)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/modules.json'</text><text class="terminal-4092753965-r1" x="1000.4" y="605.6" textLength="219.6" clip-path="url(#terminal-4092753965-line-24)">,                 </text><text class="terminal-4092753965-r1" x="1220" y="605.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-24)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="630" textLength="854" clip-path="url(#terminal-4092753965-line-25)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/workflows'</text><text class="terminal-4092753965-r1" x="963.8" y="630" textLength="256.2" clip-path="url(#terminal-4092753965-line-25)">,                    </text><text class="terminal-4092753965-r1" x="1220" y="630" textLength="12.2" clip-path="url(#terminal-4092753965-line-25)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="654.4" textLength="890.6" clip-path="url(#terminal-4092753965-line-26)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.nf-core.yml'</text><text class="terminal-4092753965-r1" x="1000.4" y="654.4" textLength="219.6" clip-path="url(#terminal-4092753965-line-26)">,                 </text><text class="terminal-4092753965-r1" x="1220" y="654.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-26)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="678.8" textLength="817.4" clip-path="url(#terminal-4092753965-line-27)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/assets'</text><text class="terminal-4092753965-r1" x="927.2" y="678.8" textLength="292.8" clip-path="url(#terminal-4092753965-line-27)">,                       </text><text class="terminal-4092753965-r1" x="1220" y="678.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-27)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="703.2" textLength="890.6" clip-path="url(#terminal-4092753965-line-28)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows'</text><text class="terminal-4092753965-r1" x="1000.4" y="703.2" textLength="219.6" clip-path="url(#terminal-4092753965-line-28)">,                 </text><text class="terminal-4092753965-r1" x="1220" y="703.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-28)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="727.6" textLength="915" clip-path="url(#terminal-4092753965-line-29)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/nf-test.config'</text><text class="terminal-4092753965-r1" x="1024.8" y="727.6" textLength="195.2" clip-path="url(#terminal-4092753965-line-29)">,               </text><text class="terminal-4092753965-r1" x="1220" y="727.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-29)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="752" textLength="866.2" clip-path="url(#terminal-4092753965-line-30)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.gitignore'</text><text class="terminal-4092753965-r1" x="976" y="752" textLength="244" clip-path="url(#terminal-4092753965-line-30)">,                   </text><text class="terminal-4092753965-r1" x="1220" y="752" textLength="12.2" clip-path="url(#terminal-4092753965-line-30)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="776.4" textLength="854" clip-path="url(#terminal-4092753965-line-31)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/README.md'</text><text class="terminal-4092753965-r1" x="963.8" y="776.4" textLength="256.2" clip-path="url(#terminal-4092753965-line-31)">,                    </text><text class="terminal-4092753965-r1" x="1220" y="776.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-31)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="800.8" textLength="793" clip-path="url(#terminal-4092753965-line-32)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/docs'</text><text class="terminal-4092753965-r1" x="902.8" y="800.8" textLength="317.2" clip-path="url(#terminal-4092753965-line-32)">,                         </text><text class="terminal-4092753965-r1" x="1220" y="800.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-32)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="825.2" textLength="829.6" clip-path="url(#terminal-4092753965-line-33)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/main.nf'</text><text class="terminal-4092753965-r1" x="939.4" y="825.2" textLength="280.6" clip-path="url(#terminal-4092753965-line-33)">,                      </text><text class="terminal-4092753965-r1" x="1220" y="825.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-33)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="849.6" textLength="927.2" clip-path="url(#terminal-4092753965-line-34)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.prettierignore'</text><text class="terminal-4092753965-r1" x="1037" y="849.6" textLength="183" clip-path="url(#terminal-4092753965-line-34)">,              </text><text class="terminal-4092753965-r1" x="1220" y="849.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-34)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="874" textLength="927.2" clip-path="url(#terminal-4092753965-line-35)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.prettierrc.yml'</text><text class="terminal-4092753965-r1" x="1037" y="874" textLength="183" clip-path="url(#terminal-4092753965-line-35)">,              </text><text class="terminal-4092753965-r1" x="1220" y="874" textLength="12.2" clip-path="url(#terminal-4092753965-line-35)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="898.4" textLength="1012.6" clip-path="url(#terminal-4092753965-line-36)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/ro-crate-metadata.json'</text><text class="terminal-4092753965-r1" x="1122.4" y="898.4" textLength="97.6" clip-path="url(#terminal-4092753965-line-36)">,       </text><text class="terminal-4092753965-r1" x="1220" y="898.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-36)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="922.8" textLength="854" clip-path="url(#terminal-4092753965-line-37)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/tower.yml'</text><text class="terminal-4092753965-r1" x="963.8" y="922.8" textLength="256.2" clip-path="url(#terminal-4092753965-line-37)">,                    </text><text class="terminal-4092753965-r1" x="1220" y="922.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-37)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="947.2" textLength="805.2" clip-path="url(#terminal-4092753965-line-38)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/tests'</text><text class="terminal-4092753965-r1" x="915" y="947.2" textLength="305" clip-path="url(#terminal-4092753965-line-38)">,                        </text><text class="terminal-4092753965-r1" x="1220" y="947.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-38)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="971.6" textLength="963.8" clip-path="url(#terminal-4092753965-line-39)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/CODE_OF_CONDUCT.md'</text><text class="terminal-4092753965-r1" x="1073.6" y="971.6" textLength="146.4" clip-path="url(#terminal-4092753965-line-39)">,           </text><text class="terminal-4092753965-r1" x="1220" y="971.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-39)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="996" textLength="890.6" clip-path="url(#terminal-4092753965-line-40)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/CITATIONS.md'</text><text class="terminal-4092753965-r1" x="1000.4" y="996" textLength="219.6" clip-path="url(#terminal-4092753965-line-40)">,                 </text><text class="terminal-4092753965-r1" x="1220" y="996" textLength="12.2" clip-path="url(#terminal-4092753965-line-40)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1020.4" textLength="1024.8" clip-path="url(#terminal-4092753965-line-41)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.pre-commit-config.yaml'</text><text class="terminal-4092753965-r1" x="1134.6" y="1020.4" textLength="85.4" clip-path="url(#terminal-4092753965-line-41)">,      </text><text class="terminal-4092753965-r1" x="1220" y="1020.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-41)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1044.8" textLength="829.6" clip-path="url(#terminal-4092753965-line-42)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/modules'</text><text class="terminal-4092753965-r1" x="939.4" y="1044.8" textLength="280.6" clip-path="url(#terminal-4092753965-line-42)">,                      </text><text class="terminal-4092753965-r1" x="1220" y="1044.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-42)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1069.2" textLength="1085.8" clip-path="url(#terminal-4092753965-line-43)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/conf/igenomes_ignored.config'</text><text class="terminal-4092753965-r1" x="1195.6" y="1069.2" textLength="24.4" clip-path="url(#terminal-4092753965-line-43)">, </text><text class="terminal-4092753965-r1" x="1220" y="1069.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-43)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1093.6" textLength="939.4" clip-path="url(#terminal-4092753965-line-44)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/conf/base.config'</text><text class="terminal-4092753965-r1" x="1049.2" y="1093.6" textLength="170.8" clip-path="url(#terminal-4092753965-line-44)">,             </text><text class="terminal-4092753965-r1" x="1220" y="1093.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-44)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1118" textLength="976" clip-path="url(#terminal-4092753965-line-45)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/conf/modules.config'</text><text class="terminal-4092753965-r1" x="1085.8" y="1118" textLength="134.2" clip-path="url(#terminal-4092753965-line-45)">,          </text><text class="terminal-4092753965-r1" x="1220" y="1118" textLength="12.2" clip-path="url(#terminal-4092753965-line-45)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1142.4" textLength="1000.4" clip-path="url(#terminal-4092753965-line-46)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/conf/test_full.config'</text><text class="terminal-4092753965-r1" x="1110.2" y="1142.4" textLength="109.8" clip-path="url(#terminal-4092753965-line-46)">,        </text><text class="terminal-4092753965-r1" x="1220" y="1142.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-46)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1166.8" textLength="939.4" clip-path="url(#terminal-4092753965-line-47)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/conf/test.config'</text><text class="terminal-4092753965-r1" x="1049.2" y="1166.8" textLength="170.8" clip-path="url(#terminal-4092753965-line-47)">,             </text><text class="terminal-4092753965-r1" x="1220" y="1166.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-47)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1191.2" textLength="988.2" clip-path="url(#terminal-4092753965-line-48)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/conf/igenomes.config'</text><text class="terminal-4092753965-r1" x="1098" y="1191.2" textLength="122" clip-path="url(#terminal-4092753965-line-48)">,         </text><text class="terminal-4092753965-r1" x="1220" y="1191.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-48)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1215.6" textLength="1000.4" clip-path="url(#terminal-4092753965-line-49)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.vscode/settings.json'</text><text class="terminal-4092753965-r1" x="1110.2" y="1215.6" textLength="109.8" clip-path="url(#terminal-4092753965-line-49)">,        </text><text class="terminal-4092753965-r1" x="1220" y="1215.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-49)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1240" textLength="1012.6" clip-path="url(#terminal-4092753965-line-50)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/.dockstore.yml'</text><text class="terminal-4092753965-r1" x="1122.4" y="1240" textLength="97.6" clip-path="url(#terminal-4092753965-line-50)">,       </text><text class="terminal-4092753965-r1" x="1220" y="1240" textLength="12.2" clip-path="url(#terminal-4092753965-line-50)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1264.4" textLength="1024.8" clip-path="url(#terminal-4092753965-line-51)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/CONTRIBUTING.md'</text><text class="terminal-4092753965-r1" x="1134.6" y="1264.4" textLength="85.4" clip-path="url(#terminal-4092753965-line-51)">,      </text><text class="terminal-4092753965-r1" x="1220" y="1264.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-51)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1288.8" textLength="951.6" clip-path="url(#terminal-4092753965-line-52)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/workflows'</text><text class="terminal-4092753965-r1" x="1061.4" y="1288.8" textLength="158.6" clip-path="url(#terminal-4092753965-line-52)">,            </text><text class="terminal-4092753965-r1" x="1220" y="1288.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-52)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1313.2" textLength="1110.2" clip-path="url(#terminal-4092753965-line-53)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/PULL_REQUEST_TEMPLATE.m</text><text class="terminal-4092753965-r1" x="1220" y="1313.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-53)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1337.6" textLength="24.4" clip-path="url(#terminal-4092753965-line-54)">d'</text><text class="terminal-4092753965-r1" x="134.2" y="1337.6" textLength="24.4" clip-path="url(#terminal-4092753965-line-54)">, </text><text class="terminal-4092753965-r2" x="158.6" y="1337.6" textLength="1012.6" clip-path="url(#terminal-4092753965-line-54)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/ISSUE_TEMPLATE'</text><text class="terminal-4092753965-r1" x="1171.2" y="1337.6" textLength="48.8" clip-path="url(#terminal-4092753965-line-54)">,   </text><text class="terminal-4092753965-r1" x="1220" y="1337.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-54)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1362" textLength="927.2" clip-path="url(#terminal-4092753965-line-55)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/actions'</text><text class="terminal-4092753965-r1" x="1037" y="1362" textLength="183" clip-path="url(#terminal-4092753965-line-55)">,              </text><text class="terminal-4092753965-r1" x="1220" y="1362" textLength="12.2" clip-path="url(#terminal-4092753965-line-55)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1386.4" textLength="1012.6" clip-path="url(#terminal-4092753965-line-56)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.devcontainer/setup.sh'</text><text class="terminal-4092753965-r1" x="1122.4" y="1386.4" textLength="97.6" clip-path="url(#terminal-4092753965-line-56)">,       </text><text class="terminal-4092753965-r1" x="1220" y="1386.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-56)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1410.8" textLength="1110.2" clip-path="url(#terminal-4092753965-line-57)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.devcontainer/devcontainer.json</text><text class="terminal-4092753965-r1" x="1220" y="1410.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-57)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1435.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-58)">'</text><text class="terminal-4092753965-r1" x="122" y="1435.2" textLength="24.4" clip-path="url(#terminal-4092753965-line-58)">, </text><text class="terminal-4092753965-r2" x="146.4" y="1435.2" textLength="1049.2" clip-path="url(#terminal-4092753965-line-58)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/workflows/nextbigthing.nf'</text><text class="terminal-4092753965-r1" x="1195.6" y="1435.2" textLength="24.4" clip-path="url(#terminal-4092753965-line-58)">, </text><text class="terminal-4092753965-r1" x="1220" y="1435.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-58)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1459.6" textLength="1110.2" clip-path="url(#terminal-4092753965-line-59)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/assets/nf-core-nextbigthing_log</text><text class="terminal-4092753965-r1" x="1220" y="1459.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-59)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1484" textLength="146.4" clip-path="url(#terminal-4092753965-line-60)">o_light.png'</text><text class="terminal-4092753965-r1" x="256.2" y="1484" textLength="963.8" clip-path="url(#terminal-4092753965-line-60)">,                                                                              </text><text class="terminal-4092753965-r1" x="1220" y="1484" textLength="12.2" clip-path="url(#terminal-4092753965-line-60)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1508.4" textLength="1037" clip-path="url(#terminal-4092753965-line-61)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/assets/adaptivecard.json'</text><text class="terminal-4092753965-r1" x="1146.8" y="1508.4" textLength="73.2" clip-path="url(#terminal-4092753965-line-61)">,     </text><text class="terminal-4092753965-r1" x="1220" y="1508.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-61)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1532.8" textLength="1037" clip-path="url(#terminal-4092753965-line-62)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/assets/schema_input.json'</text><text class="terminal-4092753965-r1" x="1146.8" y="1532.8" textLength="73.2" clip-path="url(#terminal-4092753965-line-62)">,     </text><text class="terminal-4092753965-r1" x="1220" y="1532.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-62)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1557.2" textLength="1110.2" clip-path="url(#terminal-4092753965-line-63)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/assets/methods_description_temp</text><text class="terminal-4092753965-r1" x="1220" y="1557.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-63)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1581.6" textLength="109.8" clip-path="url(#terminal-4092753965-line-64)">late.yml'</text><text class="terminal-4092753965-r1" x="219.6" y="1581.6" textLength="1000.4" clip-path="url(#terminal-4092753965-line-64)">,                                                                                 </text><text class="terminal-4092753965-r1" x="1220" y="1581.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-64)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1606" textLength="1085.8" clip-path="url(#terminal-4092753965-line-65)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/assets/sendmail_template.txt'</text><text class="terminal-4092753965-r1" x="1195.6" y="1606" textLength="24.4" clip-path="url(#terminal-4092753965-line-65)">, </text><text class="terminal-4092753965-r1" x="1220" y="1606" textLength="12.2" clip-path="url(#terminal-4092753965-line-65)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1630.4" textLength="1024.8" clip-path="url(#terminal-4092753965-line-66)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/assets/slackreport.json'</text><text class="terminal-4092753965-r1" x="1134.6" y="1630.4" textLength="85.4" clip-path="url(#terminal-4092753965-line-66)">,      </text><text class="terminal-4092753965-r1" x="1220" y="1630.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-66)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1654.8" textLength="1049.2" clip-path="url(#terminal-4092753965-line-67)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/assets/email_template.txt'</text><text class="terminal-4092753965-r1" x="1159" y="1654.8" textLength="61" clip-path="url(#terminal-4092753965-line-67)">,    </text><text class="terminal-4092753965-r1" x="1220" y="1654.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-67)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1679.2" textLength="1012.6" clip-path="url(#terminal-4092753965-line-68)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/assets/samplesheet.csv'</text><text class="terminal-4092753965-r1" x="1122.4" y="1679.2" textLength="97.6" clip-path="url(#terminal-4092753965-line-68)">,       </text><text class="terminal-4092753965-r1" x="1220" y="1679.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-68)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1703.6" textLength="1049.2" clip-path="url(#terminal-4092753965-line-69)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/assets/multiqc_config.yml'</text><text class="terminal-4092753965-r1" x="1159" y="1703.6" textLength="61" clip-path="url(#terminal-4092753965-line-69)">,    </text><text class="terminal-4092753965-r1" x="1220" y="1703.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-69)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1728" textLength="1061.4" clip-path="url(#terminal-4092753965-line-70)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/assets/email_template.html'</text><text class="terminal-4092753965-r1" x="1171.2" y="1728" textLength="48.8" clip-path="url(#terminal-4092753965-line-70)">,   </text><text class="terminal-4092753965-r1" x="1220" y="1728" textLength="12.2" clip-path="url(#terminal-4092753965-line-70)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1752.4" textLength="963.8" clip-path="url(#terminal-4092753965-line-71)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/local'</text><text class="terminal-4092753965-r1" x="1073.6" y="1752.4" textLength="146.4" clip-path="url(#terminal-4092753965-line-71)">,           </text><text class="terminal-4092753965-r1" x="1220" y="1752.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-71)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1776.8" textLength="988.2" clip-path="url(#terminal-4092753965-line-72)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core'</text><text class="terminal-4092753965-r1" x="1098" y="1776.8" textLength="122" clip-path="url(#terminal-4092753965-line-72)">,         </text><text class="terminal-4092753965-r1" x="1220" y="1776.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-72)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1801.2" textLength="902.8" clip-path="url(#terminal-4092753965-line-73)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/docs/usage.md'</text><text class="terminal-4092753965-r1" x="1012.6" y="1801.2" textLength="207.4" clip-path="url(#terminal-4092753965-line-73)">,                </text><text class="terminal-4092753965-r1" x="1220" y="1801.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-73)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1825.6" textLength="878.4" clip-path="url(#terminal-4092753965-line-74)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/docs/images'</text><text class="terminal-4092753965-r1" x="988.2" y="1825.6" textLength="231.8" clip-path="url(#terminal-4092753965-line-74)">,                  </text><text class="terminal-4092753965-r1" x="1220" y="1825.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-74)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1850" textLength="915" clip-path="url(#terminal-4092753965-line-75)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/docs/README.md'</text><text class="terminal-4092753965-r1" x="1024.8" y="1850" textLength="195.2" clip-path="url(#terminal-4092753965-line-75)">,               </text><text class="terminal-4092753965-r1" x="1220" y="1850" textLength="12.2" clip-path="url(#terminal-4092753965-line-75)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1874.4" textLength="915" clip-path="url(#terminal-4092753965-line-76)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/docs/output.md'</text><text class="terminal-4092753965-r1" x="1024.8" y="1874.4" textLength="195.2" clip-path="url(#terminal-4092753965-line-76)">,               </text><text class="terminal-4092753965-r1" x="1220" y="1874.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-76)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1898.8" textLength="1000.4" clip-path="url(#terminal-4092753965-line-77)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/tests/nextflow.config'</text><text class="terminal-4092753965-r1" x="1110.2" y="1898.8" textLength="109.8" clip-path="url(#terminal-4092753965-line-77)">,        </text><text class="terminal-4092753965-r1" x="1220" y="1898.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-77)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1923.2" textLength="1000.4" clip-path="url(#terminal-4092753965-line-78)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/tests/default.nf.test'</text><text class="terminal-4092753965-r1" x="1110.2" y="1923.2" textLength="109.8" clip-path="url(#terminal-4092753965-line-78)">,        </text><text class="terminal-4092753965-r1" x="1220" y="1923.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-78)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1947.6" textLength="939.4" clip-path="url(#terminal-4092753965-line-79)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/tests/.nftignore'</text><text class="terminal-4092753965-r1" x="1049.2" y="1947.6" textLength="170.8" clip-path="url(#terminal-4092753965-line-79)">,             </text><text class="terminal-4092753965-r1" x="1220" y="1947.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-79)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1972" textLength="927.2" clip-path="url(#terminal-4092753965-line-80)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/modules/nf-core'</text><text class="terminal-4092753965-r1" x="1037" y="1972" textLength="183" clip-path="url(#terminal-4092753965-line-80)">,              </text><text class="terminal-4092753965-r1" x="1220" y="1972" textLength="12.2" clip-path="url(#terminal-4092753965-line-80)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="1996.4" textLength="1012.6" clip-path="url(#terminal-4092753965-line-81)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/modules/nf-core/fastqc'</text><text class="terminal-4092753965-r1" x="1122.4" y="1996.4" textLength="97.6" clip-path="url(#terminal-4092753965-line-81)">,       </text><text class="terminal-4092753965-r1" x="1220" y="1996.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-81)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2020.8" textLength="1024.8" clip-path="url(#terminal-4092753965-line-82)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/modules/nf-core/multiqc'</text><text class="terminal-4092753965-r1" x="1134.6" y="2020.8" textLength="85.4" clip-path="url(#terminal-4092753965-line-82)">,      </text><text class="terminal-4092753965-r1" x="1220" y="2020.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-82)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2045.2" textLength="1110.2" clip-path="url(#terminal-4092753965-line-83)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/modules/nf-core/fastqc/meta.yml</text><text class="terminal-4092753965-r1" x="1220" y="2045.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-83)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2069.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-84)">'</text><text class="terminal-4092753965-r1" x="122" y="2069.6" textLength="1098" clip-path="url(#terminal-4092753965-line-84)">,                                                                                         </text><text class="terminal-4092753965-r1" x="1220" y="2069.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-84)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2094" textLength="1110.2" clip-path="url(#terminal-4092753965-line-85)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/modules/nf-core/fastqc/environm</text><text class="terminal-4092753965-r1" x="1220" y="2094" textLength="12.2" clip-path="url(#terminal-4092753965-line-85)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2118.4" textLength="97.6" clip-path="url(#terminal-4092753965-line-86)">ent.yml'</text><text class="terminal-4092753965-r1" x="207.4" y="2118.4" textLength="1012.6" clip-path="url(#terminal-4092753965-line-86)">,                                                                                  </text><text class="terminal-4092753965-r1" x="1220" y="2118.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-86)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2142.8" textLength="1110.2" clip-path="url(#terminal-4092753965-line-87)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/modules/nf-core/fastqc/main.nf'</text><text class="terminal-4092753965-r1" x="1220" y="2142.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-87)">
-</text><text class="terminal-4092753965-r1" x="0" y="2167.2" textLength="1220" clip-path="url(#terminal-4092753965-line-88)">         ,                                                                                          </text><text class="terminal-4092753965-r1" x="1220" y="2167.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-88)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2191.6" textLength="1085.8" clip-path="url(#terminal-4092753965-line-89)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/modules/nf-core/fastqc/tests'</text><text class="terminal-4092753965-r1" x="1195.6" y="2191.6" textLength="24.4" clip-path="url(#terminal-4092753965-line-89)">, </text><text class="terminal-4092753965-r1" x="1220" y="2191.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-89)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2216" textLength="1110.2" clip-path="url(#terminal-4092753965-line-90)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/modules/nf-core/multiqc/meta.ym</text><text class="terminal-4092753965-r1" x="1220" y="2216" textLength="12.2" clip-path="url(#terminal-4092753965-line-90)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2240.4" textLength="24.4" clip-path="url(#terminal-4092753965-line-91)">l'</text><text class="terminal-4092753965-r1" x="134.2" y="2240.4" textLength="1085.8" clip-path="url(#terminal-4092753965-line-91)">,                                                                                        </text><text class="terminal-4092753965-r1" x="1220" y="2240.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-91)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2264.8" textLength="1110.2" clip-path="url(#terminal-4092753965-line-92)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/modules/nf-core/multiqc/environ</text><text class="terminal-4092753965-r1" x="1220" y="2264.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-92)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2289.2" textLength="109.8" clip-path="url(#terminal-4092753965-line-93)">ment.yml'</text><text class="terminal-4092753965-r1" x="219.6" y="2289.2" textLength="1000.4" clip-path="url(#terminal-4092753965-line-93)">,                                                                                 </text><text class="terminal-4092753965-r1" x="1220" y="2289.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-93)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2313.6" textLength="1110.2" clip-path="url(#terminal-4092753965-line-94)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/modules/nf-core/multiqc/main.nf</text><text class="terminal-4092753965-r1" x="1220" y="2313.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-94)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2338" textLength="12.2" clip-path="url(#terminal-4092753965-line-95)">'</text><text class="terminal-4092753965-r1" x="122" y="2338" textLength="1098" clip-path="url(#terminal-4092753965-line-95)">,                                                                                         </text><text class="terminal-4092753965-r1" x="1220" y="2338" textLength="12.2" clip-path="url(#terminal-4092753965-line-95)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2362.4" textLength="1098" clip-path="url(#terminal-4092753965-line-96)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/modules/nf-core/multiqc/tests'</text><text class="terminal-4092753965-r1" x="1207.8" y="2362.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-96)">,</text><text class="terminal-4092753965-r1" x="1220" y="2362.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-96)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2386.8" textLength="1110.2" clip-path="url(#terminal-4092753965-line-97)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/modules/nf-core/multiqc/tests/n</text><text class="terminal-4092753965-r1" x="1220" y="2386.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-97)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2411.2" textLength="183" clip-path="url(#terminal-4092753965-line-98)">extflow.config'</text><text class="terminal-4092753965-r1" x="292.8" y="2411.2" textLength="927.2" clip-path="url(#terminal-4092753965-line-98)">,                                                                           </text><text class="terminal-4092753965-r1" x="1220" y="2411.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-98)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2435.6" textLength="1110.2" clip-path="url(#terminal-4092753965-line-99)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/modules/nf-core/multiqc/tests/m</text><text class="terminal-4092753965-r1" x="1220" y="2435.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-99)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2460" textLength="146.4" clip-path="url(#terminal-4092753965-line-100)">ain.nf.test'</text><text class="terminal-4092753965-r1" x="256.2" y="2460" textLength="963.8" clip-path="url(#terminal-4092753965-line-100)">,                                                                              </text><text class="terminal-4092753965-r1" x="1220" y="2460" textLength="12.2" clip-path="url(#terminal-4092753965-line-100)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2484.4" textLength="1110.2" clip-path="url(#terminal-4092753965-line-101)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/modules/nf-core/multiqc/tests/m</text><text class="terminal-4092753965-r1" x="1220" y="2484.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-101)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2508.8" textLength="207.4" clip-path="url(#terminal-4092753965-line-102)">ain.nf.test.snap'</text><text class="terminal-4092753965-r1" x="317.2" y="2508.8" textLength="902.8" clip-path="url(#terminal-4092753965-line-102)">,                                                                         </text><text class="terminal-4092753965-r1" x="1220" y="2508.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-102)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2533.2" textLength="1110.2" clip-path="url(#terminal-4092753965-line-103)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/modules/nf-core/fastqc/tests/ma</text><text class="terminal-4092753965-r1" x="1220" y="2533.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-103)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2557.6" textLength="134.2" clip-path="url(#terminal-4092753965-line-104)">in.nf.test'</text><text class="terminal-4092753965-r1" x="244" y="2557.6" textLength="976" clip-path="url(#terminal-4092753965-line-104)">,                                                                               </text><text class="terminal-4092753965-r1" x="1220" y="2557.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-104)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2582" textLength="1110.2" clip-path="url(#terminal-4092753965-line-105)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/modules/nf-core/fastqc/tests/ma</text><text class="terminal-4092753965-r1" x="1220" y="2582" textLength="12.2" clip-path="url(#terminal-4092753965-line-105)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2606.4" textLength="195.2" clip-path="url(#terminal-4092753965-line-106)">in.nf.test.snap'</text><text class="terminal-4092753965-r1" x="305" y="2606.4" textLength="915" clip-path="url(#terminal-4092753965-line-106)">,                                                                          </text><text class="terminal-4092753965-r1" x="1220" y="2606.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-106)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2630.8" textLength="1110.2" clip-path="url(#terminal-4092753965-line-107)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/docs/images/nf-core-nextbigthin</text><text class="terminal-4092753965-r1" x="1220" y="2630.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-107)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2655.2" textLength="207.4" clip-path="url(#terminal-4092753965-line-108)">g_logo_light.png'</text><text class="terminal-4092753965-r1" x="317.2" y="2655.2" textLength="902.8" clip-path="url(#terminal-4092753965-line-108)">,                                                                         </text><text class="terminal-4092753965-r1" x="1220" y="2655.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-108)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2679.6" textLength="1110.2" clip-path="url(#terminal-4092753965-line-109)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/docs/images/nf-core-nextbigthin</text><text class="terminal-4092753965-r1" x="1220" y="2679.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-109)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2704" textLength="195.2" clip-path="url(#terminal-4092753965-line-110)">g_logo_dark.png'</text><text class="terminal-4092753965-r1" x="305" y="2704" textLength="915" clip-path="url(#terminal-4092753965-line-110)">,                                                                          </text><text class="terminal-4092753965-r1" x="1220" y="2704" textLength="12.2" clip-path="url(#terminal-4092753965-line-110)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2728.4" textLength="1110.2" clip-path="url(#terminal-4092753965-line-111)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/local/utils_nfcore</text><text class="terminal-4092753965-r1" x="1220" y="2728.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-111)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2752.8" textLength="280.6" clip-path="url(#terminal-4092753965-line-112)">_nextbigthing_pipeline'</text><text class="terminal-4092753965-r1" x="390.4" y="2752.8" textLength="829.6" clip-path="url(#terminal-4092753965-line-112)">,                                                                   </text><text class="terminal-4092753965-r1" x="1220" y="2752.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-112)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2777.2" textLength="1110.2" clip-path="url(#terminal-4092753965-line-113)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_nfco</text><text class="terminal-4092753965-r1" x="1220" y="2777.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-113)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2801.6" textLength="146.4" clip-path="url(#terminal-4092753965-line-114)">re_pipeline'</text><text class="terminal-4092753965-r1" x="256.2" y="2801.6" textLength="963.8" clip-path="url(#terminal-4092753965-line-114)">,                                                                              </text><text class="terminal-4092753965-r1" x="1220" y="2801.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-114)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2826" textLength="1110.2" clip-path="url(#terminal-4092753965-line-115)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_next</text><text class="terminal-4092753965-r1" x="1220" y="2826" textLength="12.2" clip-path="url(#terminal-4092753965-line-115)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2850.4" textLength="170.8" clip-path="url(#terminal-4092753965-line-116)">flow_pipeline'</text><text class="terminal-4092753965-r1" x="280.6" y="2850.4" textLength="939.4" clip-path="url(#terminal-4092753965-line-116)">,                                                                            </text><text class="terminal-4092753965-r1" x="1220" y="2850.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-116)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2874.8" textLength="1110.2" clip-path="url(#terminal-4092753965-line-117)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_nfsc</text><text class="terminal-4092753965-r1" x="1220" y="2874.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-117)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2899.2" textLength="146.4" clip-path="url(#terminal-4092753965-line-118)">hema_plugin'</text><text class="terminal-4092753965-r1" x="256.2" y="2899.2" textLength="963.8" clip-path="url(#terminal-4092753965-line-118)">,                                                                              </text><text class="terminal-4092753965-r1" x="1220" y="2899.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-118)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2923.6" textLength="1110.2" clip-path="url(#terminal-4092753965-line-119)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_nfco</text><text class="terminal-4092753965-r1" x="1220" y="2923.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-119)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2948" textLength="256.2" clip-path="url(#terminal-4092753965-line-120)">re_pipeline/meta.yml'</text><text class="terminal-4092753965-r1" x="366" y="2948" textLength="854" clip-path="url(#terminal-4092753965-line-120)">,                                                                     </text><text class="terminal-4092753965-r1" x="1220" y="2948" textLength="12.2" clip-path="url(#terminal-4092753965-line-120)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2972.4" textLength="1110.2" clip-path="url(#terminal-4092753965-line-121)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_nfco</text><text class="terminal-4092753965-r1" x="1220" y="2972.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-121)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="2996.8" textLength="244" clip-path="url(#terminal-4092753965-line-122)">re_pipeline/main.nf'</text><text class="terminal-4092753965-r1" x="353.8" y="2996.8" textLength="866.2" clip-path="url(#terminal-4092753965-line-122)">,                                                                      </text><text class="terminal-4092753965-r1" x="1220" y="2996.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-122)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3021.2" textLength="1110.2" clip-path="url(#terminal-4092753965-line-123)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_nfco</text><text class="terminal-4092753965-r1" x="1220" y="3021.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-123)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3045.6" textLength="219.6" clip-path="url(#terminal-4092753965-line-124)">re_pipeline/tests'</text><text class="terminal-4092753965-r1" x="329.4" y="3045.6" textLength="890.6" clip-path="url(#terminal-4092753965-line-124)">,                                                                        </text><text class="terminal-4092753965-r1" x="1220" y="3045.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-124)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3070" textLength="1110.2" clip-path="url(#terminal-4092753965-line-125)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_next</text><text class="terminal-4092753965-r1" x="1220" y="3070" textLength="12.2" clip-path="url(#terminal-4092753965-line-125)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3094.4" textLength="280.6" clip-path="url(#terminal-4092753965-line-126)">flow_pipeline/meta.yml'</text><text class="terminal-4092753965-r1" x="390.4" y="3094.4" textLength="829.6" clip-path="url(#terminal-4092753965-line-126)">,                                                                   </text><text class="terminal-4092753965-r1" x="1220" y="3094.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-126)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3118.8" textLength="1110.2" clip-path="url(#terminal-4092753965-line-127)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_next</text><text class="terminal-4092753965-r1" x="1220" y="3118.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-127)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3143.2" textLength="268.4" clip-path="url(#terminal-4092753965-line-128)">flow_pipeline/main.nf'</text><text class="terminal-4092753965-r1" x="378.2" y="3143.2" textLength="841.8" clip-path="url(#terminal-4092753965-line-128)">,                                                                    </text><text class="terminal-4092753965-r1" x="1220" y="3143.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-128)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3167.6" textLength="1110.2" clip-path="url(#terminal-4092753965-line-129)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_next</text><text class="terminal-4092753965-r1" x="1220" y="3167.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-129)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3192" textLength="244" clip-path="url(#terminal-4092753965-line-130)">flow_pipeline/tests'</text><text class="terminal-4092753965-r1" x="353.8" y="3192" textLength="866.2" clip-path="url(#terminal-4092753965-line-130)">,                                                                      </text><text class="terminal-4092753965-r1" x="1220" y="3192" textLength="12.2" clip-path="url(#terminal-4092753965-line-130)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3216.4" textLength="1110.2" clip-path="url(#terminal-4092753965-line-131)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_nfsc</text><text class="terminal-4092753965-r1" x="1220" y="3216.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-131)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3240.8" textLength="256.2" clip-path="url(#terminal-4092753965-line-132)">hema_plugin/meta.yml'</text><text class="terminal-4092753965-r1" x="366" y="3240.8" textLength="854" clip-path="url(#terminal-4092753965-line-132)">,                                                                     </text><text class="terminal-4092753965-r1" x="1220" y="3240.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-132)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3265.2" textLength="1110.2" clip-path="url(#terminal-4092753965-line-133)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_nfsc</text><text class="terminal-4092753965-r1" x="1220" y="3265.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-133)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3289.6" textLength="244" clip-path="url(#terminal-4092753965-line-134)">hema_plugin/main.nf'</text><text class="terminal-4092753965-r1" x="353.8" y="3289.6" textLength="866.2" clip-path="url(#terminal-4092753965-line-134)">,                                                                      </text><text class="terminal-4092753965-r1" x="1220" y="3289.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-134)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3314" textLength="1110.2" clip-path="url(#terminal-4092753965-line-135)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_nfsc</text><text class="terminal-4092753965-r1" x="1220" y="3314" textLength="12.2" clip-path="url(#terminal-4092753965-line-135)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3338.4" textLength="219.6" clip-path="url(#terminal-4092753965-line-136)">hema_plugin/tests'</text><text class="terminal-4092753965-r1" x="329.4" y="3338.4" textLength="890.6" clip-path="url(#terminal-4092753965-line-136)">,                                                                        </text><text class="terminal-4092753965-r1" x="1220" y="3338.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-136)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3362.8" textLength="1110.2" clip-path="url(#terminal-4092753965-line-137)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_nfsc</text><text class="terminal-4092753965-r1" x="1220" y="3362.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-137)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3387.2" textLength="475.8" clip-path="url(#terminal-4092753965-line-138)">hema_plugin/tests/nextflow_schema.json'</text><text class="terminal-4092753965-r1" x="585.6" y="3387.2" textLength="634.4" clip-path="url(#terminal-4092753965-line-138)">,                                                   </text><text class="terminal-4092753965-r1" x="1220" y="3387.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-138)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3411.6" textLength="1110.2" clip-path="url(#terminal-4092753965-line-139)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_nfsc</text><text class="terminal-4092753965-r1" x="1220" y="3411.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-139)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3436" textLength="414.8" clip-path="url(#terminal-4092753965-line-140)">hema_plugin/tests/nextflow.config'</text><text class="terminal-4092753965-r1" x="524.6" y="3436" textLength="695.4" clip-path="url(#terminal-4092753965-line-140)">,                                                        </text><text class="terminal-4092753965-r1" x="1220" y="3436" textLength="12.2" clip-path="url(#terminal-4092753965-line-140)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3460.4" textLength="1110.2" clip-path="url(#terminal-4092753965-line-141)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_nfsc</text><text class="terminal-4092753965-r1" x="1220" y="3460.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-141)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3484.8" textLength="378.2" clip-path="url(#terminal-4092753965-line-142)">hema_plugin/tests/main.nf.test'</text><text class="terminal-4092753965-r1" x="488" y="3484.8" textLength="732" clip-path="url(#terminal-4092753965-line-142)">,                                                           </text><text class="terminal-4092753965-r1" x="1220" y="3484.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-142)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3509.2" textLength="1110.2" clip-path="url(#terminal-4092753965-line-143)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_next</text><text class="terminal-4092753965-r1" x="1220" y="3509.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-143)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3533.6" textLength="439.2" clip-path="url(#terminal-4092753965-line-144)">flow_pipeline/tests/nextflow.config'</text><text class="terminal-4092753965-r1" x="549" y="3533.6" textLength="671" clip-path="url(#terminal-4092753965-line-144)">,                                                      </text><text class="terminal-4092753965-r1" x="1220" y="3533.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-144)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3558" textLength="1110.2" clip-path="url(#terminal-4092753965-line-145)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_next</text><text class="terminal-4092753965-r1" x="1220" y="3558" textLength="12.2" clip-path="url(#terminal-4092753965-line-145)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3582.4" textLength="512.4" clip-path="url(#terminal-4092753965-line-146)">flow_pipeline/tests/main.function.nf.test'</text><text class="terminal-4092753965-r1" x="622.2" y="3582.4" textLength="597.8" clip-path="url(#terminal-4092753965-line-146)">,                                                </text><text class="terminal-4092753965-r1" x="1220" y="3582.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-146)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3606.8" textLength="1110.2" clip-path="url(#terminal-4092753965-line-147)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_next</text><text class="terminal-4092753965-r1" x="1220" y="3606.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-147)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3631.2" textLength="573.4" clip-path="url(#terminal-4092753965-line-148)">flow_pipeline/tests/main.function.nf.test.snap'</text><text class="terminal-4092753965-r1" x="683.2" y="3631.2" textLength="536.8" clip-path="url(#terminal-4092753965-line-148)">,                                           </text><text class="terminal-4092753965-r1" x="1220" y="3631.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-148)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3655.6" textLength="1110.2" clip-path="url(#terminal-4092753965-line-149)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_next</text><text class="terminal-4092753965-r1" x="1220" y="3655.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-149)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3680" textLength="512.4" clip-path="url(#terminal-4092753965-line-150)">flow_pipeline/tests/main.workflow.nf.test'</text><text class="terminal-4092753965-r1" x="622.2" y="3680" textLength="597.8" clip-path="url(#terminal-4092753965-line-150)">,                                                </text><text class="terminal-4092753965-r1" x="1220" y="3680" textLength="12.2" clip-path="url(#terminal-4092753965-line-150)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3704.4" textLength="1110.2" clip-path="url(#terminal-4092753965-line-151)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_nfco</text><text class="terminal-4092753965-r1" x="1220" y="3704.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-151)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3728.8" textLength="414.8" clip-path="url(#terminal-4092753965-line-152)">re_pipeline/tests/nextflow.config'</text><text class="terminal-4092753965-r1" x="524.6" y="3728.8" textLength="695.4" clip-path="url(#terminal-4092753965-line-152)">,                                                        </text><text class="terminal-4092753965-r1" x="1220" y="3728.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-152)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3753.2" textLength="1110.2" clip-path="url(#terminal-4092753965-line-153)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_nfco</text><text class="terminal-4092753965-r1" x="1220" y="3753.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-153)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3777.6" textLength="488" clip-path="url(#terminal-4092753965-line-154)">re_pipeline/tests/main.function.nf.test'</text><text class="terminal-4092753965-r1" x="597.8" y="3777.6" textLength="622.2" clip-path="url(#terminal-4092753965-line-154)">,                                                  </text><text class="terminal-4092753965-r1" x="1220" y="3777.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-154)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3802" textLength="1110.2" clip-path="url(#terminal-4092753965-line-155)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_nfco</text><text class="terminal-4092753965-r1" x="1220" y="3802" textLength="12.2" clip-path="url(#terminal-4092753965-line-155)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3826.4" textLength="549" clip-path="url(#terminal-4092753965-line-156)">re_pipeline/tests/main.workflow.nf.test.snap'</text><text class="terminal-4092753965-r1" x="658.8" y="3826.4" textLength="561.2" clip-path="url(#terminal-4092753965-line-156)">,                                             </text><text class="terminal-4092753965-r1" x="1220" y="3826.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-156)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3850.8" textLength="1110.2" clip-path="url(#terminal-4092753965-line-157)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_nfco</text><text class="terminal-4092753965-r1" x="1220" y="3850.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-157)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3875.2" textLength="549" clip-path="url(#terminal-4092753965-line-158)">re_pipeline/tests/main.function.nf.test.snap'</text><text class="terminal-4092753965-r1" x="658.8" y="3875.2" textLength="561.2" clip-path="url(#terminal-4092753965-line-158)">,                                             </text><text class="terminal-4092753965-r1" x="1220" y="3875.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-158)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3899.6" textLength="1110.2" clip-path="url(#terminal-4092753965-line-159)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/nf-core/utils_nfco</text><text class="terminal-4092753965-r1" x="1220" y="3899.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-159)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3924" textLength="488" clip-path="url(#terminal-4092753965-line-160)">re_pipeline/tests/main.workflow.nf.test'</text><text class="terminal-4092753965-r1" x="597.8" y="3924" textLength="622.2" clip-path="url(#terminal-4092753965-line-160)">,                                                  </text><text class="terminal-4092753965-r1" x="1220" y="3924" textLength="12.2" clip-path="url(#terminal-4092753965-line-160)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3948.4" textLength="1110.2" clip-path="url(#terminal-4092753965-line-161)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/subworkflows/local/utils_nfcore</text><text class="terminal-4092753965-r1" x="1220" y="3948.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-161)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3972.8" textLength="378.2" clip-path="url(#terminal-4092753965-line-162)">_nextbigthing_pipeline/main.nf'</text><text class="terminal-4092753965-r1" x="488" y="3972.8" textLength="732" clip-path="url(#terminal-4092753965-line-162)">,                                                           </text><text class="terminal-4092753965-r1" x="1220" y="3972.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-162)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="3997.2" textLength="1098" clip-path="url(#terminal-4092753965-line-163)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/workflows/linting.yml'</text><text class="terminal-4092753965-r1" x="1207.8" y="3997.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-163)">,</text><text class="terminal-4092753965-r1" x="1220" y="3997.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-163)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4021.6" textLength="1110.2" clip-path="url(#terminal-4092753965-line-164)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/workflows/download_pipe</text><text class="terminal-4092753965-r1" x="1220" y="4021.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-164)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4046" textLength="109.8" clip-path="url(#terminal-4092753965-line-165)">line.yml'</text><text class="terminal-4092753965-r1" x="219.6" y="4046" textLength="1000.4" clip-path="url(#terminal-4092753965-line-165)">,                                                                                 </text><text class="terminal-4092753965-r1" x="1220" y="4046" textLength="12.2" clip-path="url(#terminal-4092753965-line-165)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4070.4" textLength="1110.2" clip-path="url(#terminal-4092753965-line-166)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/workflows/template-vers</text><text class="terminal-4092753965-r1" x="1220" y="4070.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-166)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4094.8" textLength="195.2" clip-path="url(#terminal-4092753965-line-167)">ion-comment.yml'</text><text class="terminal-4092753965-r1" x="305" y="4094.8" textLength="915" clip-path="url(#terminal-4092753965-line-167)">,                                                                          </text><text class="terminal-4092753965-r1" x="1220" y="4094.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-167)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4119.2" textLength="1110.2" clip-path="url(#terminal-4092753965-line-168)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/workflows/linting_comme</text><text class="terminal-4092753965-r1" x="1220" y="4119.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-168)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4143.6" textLength="85.4" clip-path="url(#terminal-4092753965-line-169)">nt.yml'</text><text class="terminal-4092753965-r1" x="195.2" y="4143.6" textLength="1024.8" clip-path="url(#terminal-4092753965-line-169)">,                                                                                   </text><text class="terminal-4092753965-r1" x="1220" y="4143.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-169)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4168" textLength="1110.2" clip-path="url(#terminal-4092753965-line-170)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/workflows/release-annou</text><text class="terminal-4092753965-r1" x="1220" y="4168" textLength="12.2" clip-path="url(#terminal-4092753965-line-170)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4192.4" textLength="158.6" clip-path="url(#terminal-4092753965-line-171)">ncements.yml'</text><text class="terminal-4092753965-r1" x="268.4" y="4192.4" textLength="951.6" clip-path="url(#terminal-4092753965-line-171)">,                                                                             </text><text class="terminal-4092753965-r1" x="1220" y="4192.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-171)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4216.8" textLength="1110.2" clip-path="url(#terminal-4092753965-line-172)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/workflows/fix_linting.y</text><text class="terminal-4092753965-r1" x="1220" y="4216.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-172)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4241.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-173)">ml'</text><text class="terminal-4092753965-r1" x="146.4" y="4241.2" textLength="1073.6" clip-path="url(#terminal-4092753965-line-173)">,                                                                                       </text><text class="terminal-4092753965-r1" x="1220" y="4241.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-173)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4265.6" textLength="1098" clip-path="url(#terminal-4092753965-line-174)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/workflows/nf-test.yml'</text><text class="terminal-4092753965-r1" x="1207.8" y="4265.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-174)">,</text><text class="terminal-4092753965-r1" x="1220" y="4265.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-174)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4290" textLength="1110.2" clip-path="url(#terminal-4092753965-line-175)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/workflows/awsfulltest.y</text><text class="terminal-4092753965-r1" x="1220" y="4290" textLength="12.2" clip-path="url(#terminal-4092753965-line-175)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4314.4" textLength="36.6" clip-path="url(#terminal-4092753965-line-176)">ml'</text><text class="terminal-4092753965-r1" x="146.4" y="4314.4" textLength="1073.6" clip-path="url(#terminal-4092753965-line-176)">,                                                                                       </text><text class="terminal-4092753965-r1" x="1220" y="4314.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-176)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4338.8" textLength="1085.8" clip-path="url(#terminal-4092753965-line-177)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/workflows/branch.yml'</text><text class="terminal-4092753965-r1" x="1195.6" y="4338.8" textLength="24.4" clip-path="url(#terminal-4092753965-line-177)">, </text><text class="terminal-4092753965-r1" x="1220" y="4338.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-177)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4363.2" textLength="1098" clip-path="url(#terminal-4092753965-line-178)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/workflows/awstest.yml'</text><text class="terminal-4092753965-r1" x="1207.8" y="4363.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-178)">,</text><text class="terminal-4092753965-r1" x="1220" y="4363.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-178)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4387.6" textLength="1110.2" clip-path="url(#terminal-4092753965-line-179)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/workflows/clean-up.yml'</text><text class="terminal-4092753965-r1" x="1220" y="4387.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-179)">
-</text><text class="terminal-4092753965-r1" x="0" y="4412" textLength="1220" clip-path="url(#terminal-4092753965-line-180)">         ,                                                                                          </text><text class="terminal-4092753965-r1" x="1220" y="4412" textLength="12.2" clip-path="url(#terminal-4092753965-line-180)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4436.4" textLength="1110.2" clip-path="url(#terminal-4092753965-line-181)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/ISSUE_TEMPLATE/bug_repo</text><text class="terminal-4092753965-r1" x="1220" y="4436.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-181)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4460.8" textLength="85.4" clip-path="url(#terminal-4092753965-line-182)">rt.yml'</text><text class="terminal-4092753965-r1" x="195.2" y="4460.8" textLength="1024.8" clip-path="url(#terminal-4092753965-line-182)">,                                                                                   </text><text class="terminal-4092753965-r1" x="1220" y="4460.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-182)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4485.2" textLength="1110.2" clip-path="url(#terminal-4092753965-line-183)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/ISSUE_TEMPLATE/config.y</text><text class="terminal-4092753965-r1" x="1220" y="4485.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-183)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4509.6" textLength="36.6" clip-path="url(#terminal-4092753965-line-184)">ml'</text><text class="terminal-4092753965-r1" x="146.4" y="4509.6" textLength="1073.6" clip-path="url(#terminal-4092753965-line-184)">,                                                                                       </text><text class="terminal-4092753965-r1" x="1220" y="4509.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-184)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4534" textLength="1110.2" clip-path="url(#terminal-4092753965-line-185)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/ISSUE_TEMPLATE/feature_</text><text class="terminal-4092753965-r1" x="1220" y="4534" textLength="12.2" clip-path="url(#terminal-4092753965-line-185)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4558.4" textLength="146.4" clip-path="url(#terminal-4092753965-line-186)">request.yml'</text><text class="terminal-4092753965-r1" x="256.2" y="4558.4" textLength="963.8" clip-path="url(#terminal-4092753965-line-186)">,                                                                              </text><text class="terminal-4092753965-r1" x="1220" y="4558.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-186)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4582.8" textLength="1024.8" clip-path="url(#terminal-4092753965-line-187)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/actions/nf-test'</text><text class="terminal-4092753965-r1" x="1134.6" y="4582.8" textLength="85.4" clip-path="url(#terminal-4092753965-line-187)">,      </text><text class="terminal-4092753965-r1" x="1220" y="4582.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-187)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4607.2" textLength="1061.4" clip-path="url(#terminal-4092753965-line-188)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/actions/get-shards'</text><text class="terminal-4092753965-r1" x="1171.2" y="4607.2" textLength="48.8" clip-path="url(#terminal-4092753965-line-188)">,   </text><text class="terminal-4092753965-r1" x="1220" y="4607.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-188)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4631.6" textLength="1110.2" clip-path="url(#terminal-4092753965-line-189)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/actions/nf-test/action.</text><text class="terminal-4092753965-r1" x="1220" y="4631.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-189)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4656" textLength="48.8" clip-path="url(#terminal-4092753965-line-190)">yml'</text><text class="terminal-4092753965-r1" x="158.6" y="4656" textLength="1061.4" clip-path="url(#terminal-4092753965-line-190)">,                                                                                      </text><text class="terminal-4092753965-r1" x="1220" y="4656" textLength="12.2" clip-path="url(#terminal-4092753965-line-190)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4680.4" textLength="1110.2" clip-path="url(#terminal-4092753965-line-191)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing/.github/actions/get-shards/acti</text><text class="terminal-4092753965-r1" x="1220" y="4680.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-191)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="4704.8" textLength="85.4" clip-path="url(#terminal-4092753965-line-192)">on.yml'</text><text class="terminal-4092753965-r7" x="195.2" y="4704.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-192)">]</text><text class="terminal-4092753965-r1" x="207.4" y="4704.8" textLength="1012.6" clip-path="url(#terminal-4092753965-line-192)"> because it has a syntax error.                                                    </text><text class="terminal-4092753965-r1" x="1220" y="4704.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-192)">
-</text><text class="terminal-4092753965-r1" x="0" y="4729.2" textLength="207.4" clip-path="url(#terminal-4092753965-line-193)">         prettier</text><text class="terminal-4092753965-r5" x="207.4" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r5" x="244" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r5" x="280.6" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r5" x="317.2" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r5" x="353.8" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r5" x="390.4" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r5" x="427" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r5" x="463.6" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r5" x="500.2" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r5" x="536.8" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r5" x="573.4" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r5" x="610" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r5" x="646.6" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r5" x="683.2" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r5" x="719.8" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r5" x="756.4" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r5" x="793" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r5" x="829.6" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r5" x="866.2" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r5" x="902.8" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r5" x="939.4" y="4729.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-193)">...</text><text class="terminal-4092753965-r1" x="976" y="4729.2" textLength="244" clip-path="url(#terminal-4092753965-line-193)">..Failed            </text><text class="terminal-4092753965-r1" x="1220" y="4729.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-193)">
-</text><text class="terminal-4092753965-r1" x="0" y="4753.6" textLength="1220" clip-path="url(#terminal-4092753965-line-194)">         - hook id: prettier                                                                        </text><text class="terminal-4092753965-r1" x="1220" y="4753.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-194)">
-</text><text class="terminal-4092753965-r1" x="0" y="4778" textLength="268.4" clip-path="url(#terminal-4092753965-line-195)">         - exit code: </text><text class="terminal-4092753965-r8" x="268.4" y="4778" textLength="12.2" clip-path="url(#terminal-4092753965-line-195)">2</text><text class="terminal-4092753965-r1" x="1220" y="4778" textLength="12.2" clip-path="url(#terminal-4092753965-line-195)">
-</text><text class="terminal-4092753965-r1" x="1220" y="4802.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-196)">
-</text><text class="terminal-4092753965-r1" x="0" y="4826.8" textLength="1220" clip-path="url(#terminal-4092753965-line-197)">         tmp/nf-core-nextbigthing/.github/workflows/nf-test.yml                                     </text><text class="terminal-4092753965-r1" x="1220" y="4826.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-197)">
-</text><text class="terminal-4092753965-r1" x="0" y="4851.2" textLength="1220" clip-path="url(#terminal-4092753965-line-198)">         tmp/nf-core-nextbigthing/assets/email_template.html                                        </text><text class="terminal-4092753965-r1" x="1220" y="4851.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-198)">
-</text><text class="terminal-4092753965-r1" x="0" y="4875.6" textLength="1220" clip-path="url(#terminal-4092753965-line-199)">         tmp/nf-core-nextbigthing/ro-crate-metadata.json                                            </text><text class="terminal-4092753965-r1" x="1220" y="4875.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-199)">
-</text><text class="terminal-4092753965-r1" x="1220" y="4900" textLength="12.2" clip-path="url(#terminal-4092753965-line-200)">
-</text><text class="terminal-4092753965-r1" x="0" y="4924.4" textLength="1098" clip-path="url(#terminal-4092753965-line-201)">          tmp/nf-core-nextbigthing/assets/slackreport.json: SyntaxError: Unexpected token </text><text class="terminal-4092753965-r7" x="1098" y="4924.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-201)">(</text><text class="terminal-4092753965-r9" x="1110.2" y="4924.4" textLength="61" clip-path="url(#terminal-4092753965-line-201)">15:18</text><text class="terminal-4092753965-r7" x="1171.2" y="4924.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-201)">)</text><text class="terminal-4092753965-r1" x="1220" y="4924.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-201)">
-</text><text class="terminal-4092753965-r8" x="146.4" y="4948.8" textLength="24.4" clip-path="url(#terminal-4092753965-line-202)">13</text><text class="terminal-4092753965-r1" x="170.8" y="4948.8" textLength="280.6" clip-path="url(#terminal-4092753965-line-202)"> |                     </text><text class="terminal-4092753965-r2" x="451.4" y="4948.8" textLength="85.4" clip-path="url(#terminal-4092753965-line-202)">&quot;short&quot;</text><text class="terminal-4092753965-r1" x="536.8" y="4948.8" textLength="683.2" clip-path="url(#terminal-4092753965-line-202)">: false                                                 </text><text class="terminal-4092753965-r1" x="1220" y="4948.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-202)">
-</text><text class="terminal-4092753965-r8" x="146.4" y="4973.2" textLength="24.4" clip-path="url(#terminal-4092753965-line-203)">14</text><text class="terminal-4092753965-r1" x="170.8" y="4973.2" textLength="231.8" clip-path="url(#terminal-4092753965-line-203)"> |                 </text><text class="terminal-4092753965-r7" x="402.6" y="4973.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-203)">}</text><text class="terminal-4092753965-r1" x="1220" y="4973.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-203)">
-</text><text class="terminal-4092753965-r1" x="0" y="4997.6" textLength="146.4" clip-path="url(#terminal-4092753965-line-204)">          &gt; </text><text class="terminal-4092753965-r8" x="146.4" y="4997.6" textLength="24.4" clip-path="url(#terminal-4092753965-line-204)">15</text><text class="terminal-4092753965-r1" x="170.8" y="4997.6" textLength="231.8" clip-path="url(#terminal-4092753965-line-204)"> |                 </text><text class="terminal-4092753965-r7" x="402.6" y="4997.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-204)">&lt;</text><text class="terminal-4092753965-r1" x="414.8" y="4997.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-204)">%</text><text class="terminal-4092753965-r1" x="1220" y="4997.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-204)">
-</text><text class="terminal-4092753965-r1" x="109.8" y="5022" textLength="317.2" clip-path="url(#terminal-4092753965-line-205)">      |                  ^</text><text class="terminal-4092753965-r1" x="1220" y="5022" textLength="12.2" clip-path="url(#terminal-4092753965-line-205)">
-</text><text class="terminal-4092753965-r8" x="146.4" y="5046.4" textLength="24.4" clip-path="url(#terminal-4092753965-line-206)">16</text><text class="terminal-4092753965-r1" x="170.8" y="5046.4" textLength="317.2" clip-path="url(#terminal-4092753965-line-206)"> |                     if </text><text class="terminal-4092753965-r7" x="488" y="5046.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-206)">(</text><text class="terminal-4092753965-r1" x="500.2" y="5046.4" textLength="97.6" clip-path="url(#terminal-4092753965-line-206)">!success</text><text class="terminal-4092753965-r7" x="597.8" y="5046.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-206)">)</text><text class="terminal-4092753965-r7" x="622.2" y="5046.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-206)">{</text><text class="terminal-4092753965-r1" x="634.4" y="5046.4" textLength="36.6" clip-path="url(#terminal-4092753965-line-206)"> %&gt;</text><text class="terminal-4092753965-r1" x="1220" y="5046.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-206)">
-</text><text class="terminal-4092753965-r8" x="146.4" y="5070.8" textLength="24.4" clip-path="url(#terminal-4092753965-line-207)">17</text><text class="terminal-4092753965-r1" x="170.8" y="5070.8" textLength="292.8" clip-path="url(#terminal-4092753965-line-207)"> |                     ,</text><text class="terminal-4092753965-r1" x="1220" y="5070.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-207)">
-</text><text class="terminal-4092753965-r8" x="146.4" y="5095.2" textLength="24.4" clip-path="url(#terminal-4092753965-line-208)">18</text><text class="terminal-4092753965-r1" x="170.8" y="5095.2" textLength="280.6" clip-path="url(#terminal-4092753965-line-208)"> |                     </text><text class="terminal-4092753965-r7" x="451.4" y="5095.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-208)">{</text><text class="terminal-4092753965-r1" x="1220" y="5095.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-208)">
-</text><text class="terminal-4092753965-r1" x="1220" y="5119.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-209)">
-</text><text class="terminal-4092753965-r1" x="109.8" y="5144" textLength="1000.4" clip-path="url(#terminal-4092753965-line-210)"> tmp/nf-core-nextbigthing/assets/adaptivecard.json: SyntaxError: Unexpected token </text><text class="terminal-4092753965-r7" x="1110.2" y="5144" textLength="12.2" clip-path="url(#terminal-4092753965-line-210)">(</text><text class="terminal-4092753965-r9" x="1122.4" y="5144" textLength="61" clip-path="url(#terminal-4092753965-line-210)">57:47</text><text class="terminal-4092753965-r7" x="1183.4" y="5144" textLength="12.2" clip-path="url(#terminal-4092753965-line-210)">)</text><text class="terminal-4092753965-r1" x="1220" y="5144" textLength="12.2" clip-path="url(#terminal-4092753965-line-210)">
-</text><text class="terminal-4092753965-r8" x="146.4" y="5168.4" textLength="24.4" clip-path="url(#terminal-4092753965-line-211)">55</text><text class="terminal-4092753965-r1" x="170.8" y="5168.4" textLength="427" clip-path="url(#terminal-4092753965-line-211)"> |                                 </text><text class="terminal-4092753965-r7" x="597.8" y="5168.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-211)">{</text><text class="terminal-4092753965-r1" x="1220" y="5168.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-211)">
-</text><text class="terminal-4092753965-r8" x="146.4" y="5192.8" textLength="24.4" clip-path="url(#terminal-4092753965-line-212)">56</text><text class="terminal-4092753965-r1" x="170.8" y="5192.8" textLength="475.8" clip-path="url(#terminal-4092753965-line-212)"> |                                     </text><text class="terminal-4092753965-r2" x="646.6" y="5192.8" textLength="73.2" clip-path="url(#terminal-4092753965-line-212)">&quot;type&quot;</text><text class="terminal-4092753965-r1" x="719.8" y="5192.8" textLength="24.4" clip-path="url(#terminal-4092753965-line-212)">: </text><text class="terminal-4092753965-r2" x="744.2" y="5192.8" textLength="109.8" clip-path="url(#terminal-4092753965-line-212)">&quot;FactSet&quot;</text><text class="terminal-4092753965-r1" x="854" y="5192.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-212)">,</text><text class="terminal-4092753965-r1" x="1220" y="5192.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-212)">
-</text><text class="terminal-4092753965-r1" x="109.8" y="5217.2" textLength="36.6" clip-path="url(#terminal-4092753965-line-213)"> &gt; </text><text class="terminal-4092753965-r8" x="146.4" y="5217.2" textLength="24.4" clip-path="url(#terminal-4092753965-line-213)">57</text><text class="terminal-4092753965-r1" x="170.8" y="5217.2" textLength="475.8" clip-path="url(#terminal-4092753965-line-213)"> |                                     </text><text class="terminal-4092753965-r2" x="646.6" y="5217.2" textLength="85.4" clip-path="url(#terminal-4092753965-line-213)">&quot;facts&quot;</text><text class="terminal-4092753965-r1" x="732" y="5217.2" textLength="24.4" clip-path="url(#terminal-4092753965-line-213)">: </text><text class="terminal-4092753965-r7" x="756.4" y="5217.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-213)">[</text><text class="terminal-4092753965-r1" x="768.6" y="5217.2" textLength="305" clip-path="url(#terminal-4092753965-line-213)">&lt;% out &lt;&lt; summary.collect</text><text class="terminal-4092753965-r7" x="1073.6" y="5217.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-213)">{</text><text class="terminal-4092753965-r1" x="1085.8" y="5217.2" textLength="97.6" clip-path="url(#terminal-4092753965-line-213)"> k,v -&gt; </text><text class="terminal-4092753965-r1" x="1220" y="5217.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-213)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="5241.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-214)">&quot;</text><text class="terminal-4092753965-r2" x="122" y="5241.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-214)">{</text><text class="terminal-4092753965-r2" x="134.2" y="5241.6" textLength="451.4" clip-path="url(#terminal-4092753965-line-214)">\&quot;title\&quot;: \&quot;$k\&quot;, \&quot;value\&quot; : \&quot;$v\&quot;</text><text class="terminal-4092753965-r2" x="585.6" y="5241.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-214)">}</text><text class="terminal-4092753965-r2" x="597.8" y="5241.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-214)">&quot;</text><text class="terminal-4092753965-r7" x="610" y="5241.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-214)">}</text><text class="terminal-4092753965-r10" x="622.2" y="5241.6" textLength="61" clip-path="url(#terminal-4092753965-line-214)">.join</text><text class="terminal-4092753965-r7" x="683.2" y="5241.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-214)">(</text><text class="terminal-4092753965-r2" x="695.4" y="5241.6" textLength="61" clip-path="url(#terminal-4092753965-line-214)">&quot;,\n&quot;</text><text class="terminal-4092753965-r7" x="756.4" y="5241.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-214)">)</text><text class="terminal-4092753965-r1" x="768.6" y="5241.6" textLength="24.4" clip-path="url(#terminal-4092753965-line-214)"> %</text><text class="terminal-4092753965-r7" x="793" y="5241.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-214)">&gt;</text><text class="terminal-4092753965-r1" x="1220" y="5241.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-214)">
-</text><text class="terminal-4092753965-r1" x="0" y="5266" textLength="1220" clip-path="url(#terminal-4092753965-line-215)">               |                                               ^                                    </text><text class="terminal-4092753965-r1" x="1220" y="5266" textLength="12.2" clip-path="url(#terminal-4092753965-line-215)">
-</text><text class="terminal-4092753965-r8" x="146.4" y="5290.4" textLength="24.4" clip-path="url(#terminal-4092753965-line-216)">58</text><text class="terminal-4092753965-r1" x="170.8" y="5290.4" textLength="475.8" clip-path="url(#terminal-4092753965-line-216)"> |                                     </text><text class="terminal-4092753965-r7" x="646.6" y="5290.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-216)">]</text><text class="terminal-4092753965-r1" x="1220" y="5290.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-216)">
-</text><text class="terminal-4092753965-r8" x="146.4" y="5314.8" textLength="24.4" clip-path="url(#terminal-4092753965-line-217)">59</text><text class="terminal-4092753965-r1" x="170.8" y="5314.8" textLength="427" clip-path="url(#terminal-4092753965-line-217)"> |                                 </text><text class="terminal-4092753965-r7" x="597.8" y="5314.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-217)">}</text><text class="terminal-4092753965-r1" x="1220" y="5314.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-217)">
-</text><text class="terminal-4092753965-r8" x="146.4" y="5339.2" textLength="24.4" clip-path="url(#terminal-4092753965-line-218)">60</text><text class="terminal-4092753965-r1" x="170.8" y="5339.2" textLength="378.2" clip-path="url(#terminal-4092753965-line-218)"> |                             </text><text class="terminal-4092753965-r7" x="549" y="5339.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-218)">]</text><text class="terminal-4092753965-r1" x="1220" y="5339.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-218)">
-</text><text class="terminal-4092753965-r1" x="1220" y="5363.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-219)">
-</text><text class="terminal-4092753965-r1" x="1220" y="5388" textLength="12.2" clip-path="url(#terminal-4092753965-line-220)">
-</text><text class="terminal-4092753965-r4" x="0" y="5412.4" textLength="97.6" clip-path="url(#terminal-4092753965-line-221)">INFO    </text><text class="terminal-4092753965-r1" x="97.6" y="5412.4" textLength="1122.4" clip-path="url(#terminal-4092753965-line-221)"> Initialising local pipeline git repository                                                 </text><text class="terminal-4092753965-r1" x="1220" y="5412.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-221)">
-</text><text class="terminal-4092753965-r4" x="0" y="5436.8" textLength="97.6" clip-path="url(#terminal-4092753965-line-222)">INFO    </text><text class="terminal-4092753965-r1" x="97.6" y="5436.8" textLength="1122.4" clip-path="url(#terminal-4092753965-line-222)"> Done. Remember to add a remote and push to GitHub:                                         </text><text class="terminal-4092753965-r1" x="1220" y="5436.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-222)">
-</text><text class="terminal-4092753965-r1" x="109.8" y="5461.2" textLength="48.8" clip-path="url(#terminal-4092753965-line-223)"> cd </text><text class="terminal-4092753965-r11" x="158.6" y="5461.2" textLength="463.6" clip-path="url(#terminal-4092753965-line-223)">/home/runner/work/website/website/tmp/</text><text class="terminal-4092753965-r12" x="622.2" y="5461.2" textLength="244" clip-path="url(#terminal-4092753965-line-223)">nf-core-nextbigthing</text><text class="terminal-4092753965-r1" x="1220" y="5461.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-223)">
-</text><text class="terminal-4092753965-r1" x="109.8" y="5485.6" textLength="744.2" clip-path="url(#terminal-4092753965-line-224)"> git remote add origin git@github.com:USERNAME/REPO_NAME.git </text><text class="terminal-4092753965-r1" x="1220" y="5485.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-224)">
-</text><text class="terminal-4092753965-r1" x="109.8" y="5510" textLength="744.2" clip-path="url(#terminal-4092753965-line-225)"> git push --all origin                                       </text><text class="terminal-4092753965-r1" x="1220" y="5510" textLength="12.2" clip-path="url(#terminal-4092753965-line-225)">
-</text><text class="terminal-4092753965-r4" x="0" y="5534.4" textLength="97.6" clip-path="url(#terminal-4092753965-line-226)">INFO    </text><text class="terminal-4092753965-r1" x="97.6" y="5534.4" textLength="1122.4" clip-path="url(#terminal-4092753965-line-226)"> This will also push your newly created dev branch and the TEMPLATE branch for syncing.     </text><text class="terminal-4092753965-r1" x="1220" y="5534.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-226)">
-</text><text class="terminal-4092753965-r4" x="0" y="5558.8" textLength="97.6" clip-path="url(#terminal-4092753965-line-227)">INFO    </text><text class="terminal-4092753965-r13" x="109.8" y="5558.8" textLength="280.6" clip-path="url(#terminal-4092753965-line-227)">!!!!!! IMPORTANT !!!!!!</text><text class="terminal-4092753965-r1" x="1220" y="5558.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-227)">
-</text><text class="terminal-4092753965-r1" x="1220" y="5583.2" textLength="12.2" clip-path="url(#terminal-4092753965-line-228)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="5607.6" textLength="866.2" clip-path="url(#terminal-4092753965-line-229)">If you are interested in adding your pipeline to the nf-core community,</text><text class="terminal-4092753965-r1" x="1220" y="5607.6" textLength="12.2" clip-path="url(#terminal-4092753965-line-229)">
-</text><text class="terminal-4092753965-r2" x="109.8" y="5632" textLength="878.4" clip-path="url(#terminal-4092753965-line-230)">PLEASE COME AND TALK TO US IN THE NF-CORE SLACK BEFORE WRITING ANY CODE!</text><text class="terminal-4092753965-r1" x="1220" y="5632" textLength="12.2" clip-path="url(#terminal-4092753965-line-230)">
-</text><text class="terminal-4092753965-r1" x="1220" y="5656.4" textLength="12.2" clip-path="url(#terminal-4092753965-line-231)">
-</text><text class="terminal-4092753965-r1" x="109.8" y="5680.8" textLength="158.6" clip-path="url(#terminal-4092753965-line-232)">Please read: </text><text class="terminal-4092753965-r14" x="268.4" y="5680.8" textLength="939.4" clip-path="url(#terminal-4092753965-line-232)">https://nf-co.re/docs/tutorials/adding_a_pipeline/overview#join-the-community</text><text class="terminal-4092753965-r1" x="1220" y="5680.8" textLength="12.2" clip-path="url(#terminal-4092753965-line-232)">
+    <g transform="translate(9, 41)" clip-path="url(#rich-codex-623186999-clip-terminal)">
+    <rect fill="#9a9b99" x="109.8" y="440.7" width="48.8" height="24.65" shape-rendering="crispEdges"/><rect fill="#9a9b99" x="158.6" y="440.7" width="463.6" height="24.65" shape-rendering="crispEdges"/><rect fill="#9a9b99" x="622.2" y="440.7" width="244" height="24.65" shape-rendering="crispEdges"/><rect fill="#9a9b99" x="866.2" y="440.7" width="12.2" height="24.65" shape-rendering="crispEdges"/><rect fill="#9a9b99" x="109.8" y="465.1" width="744.2" height="24.65" shape-rendering="crispEdges"/><rect fill="#9a9b99" x="109.8" y="489.5" width="744.2" height="24.65" shape-rendering="crispEdges"/>
+    <g class="rich-codex-623186999-matrix">
+    <text class="rich-codex-623186999-r1" x="0" y="20" textLength="1207.8" clip-path="url(#rich-codex-623186999-line-0)">$ nf-core pipelines create -n nextbigthing -d &quot;This pipeline analyses data from the next big omics </text><text class="rich-codex-623186999-r1" x="1220" y="20" textLength="12.2" clip-path="url(#rich-codex-623186999-line-0)">
+</text><text class="rich-codex-623186999-r1" x="0" y="44.4" textLength="305" clip-path="url(#rich-codex-623186999-line-1)">technique&quot; -a &quot;Big Steve&quot;</text><text class="rich-codex-623186999-r1" x="1220" y="44.4" textLength="12.2" clip-path="url(#rich-codex-623186999-line-1)">
+</text><text class="rich-codex-623186999-r1" x="1220" y="68.8" textLength="12.2" clip-path="url(#rich-codex-623186999-line-2)">
+</text><text class="rich-codex-623186999-r1" x="1220" y="93.2" textLength="12.2" clip-path="url(#rich-codex-623186999-line-3)">
+</text><text class="rich-codex-623186999-r2" x="0" y="117.6" textLength="561.2" clip-path="url(#rich-codex-623186999-line-4)">                                          ,--.</text><text class="rich-codex-623186999-r3" x="561.2" y="117.6" textLength="12.2" clip-path="url(#rich-codex-623186999-line-4)">/</text><text class="rich-codex-623186999-r2" x="573.4" y="117.6" textLength="36.6" clip-path="url(#rich-codex-623186999-line-4)">,-.</text><text class="rich-codex-623186999-r1" x="1220" y="117.6" textLength="12.2" clip-path="url(#rich-codex-623186999-line-4)">
+</text><text class="rich-codex-623186999-r4" x="0" y="142" textLength="500.2" clip-path="url(#rich-codex-623186999-line-5)">          ___     __   __   __   ___     </text><text class="rich-codex-623186999-r2" x="500.2" y="142" textLength="134.2" clip-path="url(#rich-codex-623186999-line-5)">/,-._.--~\ </text><text class="rich-codex-623186999-r1" x="1220" y="142" textLength="12.2" clip-path="url(#rich-codex-623186999-line-5)">
+</text><text class="rich-codex-623186999-r4" x="0" y="166.4" textLength="500.2" clip-path="url(#rich-codex-623186999-line-6)">    |\ | |__  __ /  ` /  \ |__) |__      </text><text class="rich-codex-623186999-r5" x="500.2" y="166.4" textLength="85.4" clip-path="url(#rich-codex-623186999-line-6)">   }  {</text><text class="rich-codex-623186999-r1" x="1220" y="166.4" textLength="12.2" clip-path="url(#rich-codex-623186999-line-6)">
+</text><text class="rich-codex-623186999-r4" x="0" y="190.8" textLength="500.2" clip-path="url(#rich-codex-623186999-line-7)">    | \| |       \__, \__/ |  \ |___     </text><text class="rich-codex-623186999-r2" x="500.2" y="190.8" textLength="122" clip-path="url(#rich-codex-623186999-line-7)">\`-._,-`-,</text><text class="rich-codex-623186999-r1" x="1220" y="190.8" textLength="12.2" clip-path="url(#rich-codex-623186999-line-7)">
+</text><text class="rich-codex-623186999-r2" x="0" y="215.2" textLength="610" clip-path="url(#rich-codex-623186999-line-8)">                                          `._,._,'</text><text class="rich-codex-623186999-r1" x="1220" y="215.2" textLength="12.2" clip-path="url(#rich-codex-623186999-line-8)">
+</text><text class="rich-codex-623186999-r1" x="1220" y="239.6" textLength="12.2" clip-path="url(#rich-codex-623186999-line-9)">
+</text><text class="rich-codex-623186999-r3" x="0" y="264" textLength="414.8" clip-path="url(#rich-codex-623186999-line-10)">    nf-core/tools version 4.2.1 - </text><text class="rich-codex-623186999-r3" x="414.8" y="264" textLength="195.2" clip-path="url(#rich-codex-623186999-line-10)">https://nf-co.re</text><text class="rich-codex-623186999-r1" x="1220" y="264" textLength="12.2" clip-path="url(#rich-codex-623186999-line-10)">
+</text><text class="rich-codex-623186999-r1" x="1220" y="288.4" textLength="12.2" clip-path="url(#rich-codex-623186999-line-11)">
+</text><text class="rich-codex-623186999-r1" x="1220" y="312.8" textLength="12.2" clip-path="url(#rich-codex-623186999-line-12)">
+</text><text class="rich-codex-623186999-r4" x="0" y="337.2" textLength="97.6" clip-path="url(#rich-codex-623186999-line-13)">INFO    </text><text class="rich-codex-623186999-r1" x="97.6" y="337.2" textLength="292.8" clip-path="url(#rich-codex-623186999-line-13)"> Creating new pipeline: </text><text class="rich-codex-623186999-r2" x="390.4" y="337.2" textLength="170.8" clip-path="url(#rich-codex-623186999-line-13)">'nextbigthing'</text><text class="rich-codex-623186999-r1" x="1220" y="337.2" textLength="12.2" clip-path="url(#rich-codex-623186999-line-13)">
+</text><text class="rich-codex-623186999-r4" x="0" y="361.6" textLength="97.6" clip-path="url(#rich-codex-623186999-line-14)">INFO    </text><text class="rich-codex-623186999-r1" x="97.6" y="361.6" textLength="305" clip-path="url(#rich-codex-623186999-line-14)"> Saving metadata file to </text><text class="rich-codex-623186999-r2" x="402.6" y="361.6" textLength="732" clip-path="url(#rich-codex-623186999-line-14)">'/home/runner/work/website/website/tmp/nf-core-nextbigthing'</text><text class="rich-codex-623186999-r1" x="1220" y="361.6" textLength="12.2" clip-path="url(#rich-codex-623186999-line-14)">
+</text><text class="rich-codex-623186999-r4" x="0" y="386" textLength="97.6" clip-path="url(#rich-codex-623186999-line-15)">INFO    </text><text class="rich-codex-623186999-r1" x="97.6" y="386" textLength="1122.4" clip-path="url(#rich-codex-623186999-line-15)"> Generated container configs for the pipeline.                                              </text><text class="rich-codex-623186999-r1" x="1220" y="386" textLength="12.2" clip-path="url(#rich-codex-623186999-line-15)">
+</text><text class="rich-codex-623186999-r4" x="0" y="410.4" textLength="97.6" clip-path="url(#rich-codex-623186999-line-16)">INFO    </text><text class="rich-codex-623186999-r1" x="97.6" y="410.4" textLength="1122.4" clip-path="url(#rich-codex-623186999-line-16)"> Initialising local pipeline git repository                                                 </text><text class="rich-codex-623186999-r1" x="1220" y="410.4" textLength="12.2" clip-path="url(#rich-codex-623186999-line-16)">
+</text><text class="rich-codex-623186999-r4" x="0" y="434.8" textLength="97.6" clip-path="url(#rich-codex-623186999-line-17)">INFO    </text><text class="rich-codex-623186999-r1" x="97.6" y="434.8" textLength="1122.4" clip-path="url(#rich-codex-623186999-line-17)"> Done. Remember to add a remote and push to GitHub:                                         </text><text class="rich-codex-623186999-r1" x="1220" y="434.8" textLength="12.2" clip-path="url(#rich-codex-623186999-line-17)">
+</text><text class="rich-codex-623186999-r1" x="109.8" y="459.2" textLength="48.8" clip-path="url(#rich-codex-623186999-line-18)"> cd </text><text class="rich-codex-623186999-r6" x="158.6" y="459.2" textLength="463.6" clip-path="url(#rich-codex-623186999-line-18)">/home/runner/work/website/website/tmp/</text><text class="rich-codex-623186999-r7" x="622.2" y="459.2" textLength="244" clip-path="url(#rich-codex-623186999-line-18)">nf-core-nextbigthing</text><text class="rich-codex-623186999-r1" x="1220" y="459.2" textLength="12.2" clip-path="url(#rich-codex-623186999-line-18)">
+</text><text class="rich-codex-623186999-r1" x="109.8" y="483.6" textLength="744.2" clip-path="url(#rich-codex-623186999-line-19)"> git remote add origin git@github.com:USERNAME/REPO_NAME.git </text><text class="rich-codex-623186999-r1" x="1220" y="483.6" textLength="12.2" clip-path="url(#rich-codex-623186999-line-19)">
+</text><text class="rich-codex-623186999-r1" x="109.8" y="508" textLength="744.2" clip-path="url(#rich-codex-623186999-line-20)"> git push --all origin                                       </text><text class="rich-codex-623186999-r1" x="1220" y="508" textLength="12.2" clip-path="url(#rich-codex-623186999-line-20)">
+</text><text class="rich-codex-623186999-r4" x="0" y="532.4" textLength="97.6" clip-path="url(#rich-codex-623186999-line-21)">INFO    </text><text class="rich-codex-623186999-r1" x="97.6" y="532.4" textLength="1122.4" clip-path="url(#rich-codex-623186999-line-21)"> This will also push your newly created dev branch and the TEMPLATE branch for syncing.     </text><text class="rich-codex-623186999-r1" x="1220" y="532.4" textLength="12.2" clip-path="url(#rich-codex-623186999-line-21)">
+</text><text class="rich-codex-623186999-r4" x="0" y="556.8" textLength="97.6" clip-path="url(#rich-codex-623186999-line-22)">INFO    </text><text class="rich-codex-623186999-r8" x="109.8" y="556.8" textLength="280.6" clip-path="url(#rich-codex-623186999-line-22)">!!!!!! IMPORTANT !!!!!!</text><text class="rich-codex-623186999-r1" x="1220" y="556.8" textLength="12.2" clip-path="url(#rich-codex-623186999-line-22)">
+</text><text class="rich-codex-623186999-r1" x="1220" y="581.2" textLength="12.2" clip-path="url(#rich-codex-623186999-line-23)">
+</text><text class="rich-codex-623186999-r2" x="109.8" y="605.6" textLength="866.2" clip-path="url(#rich-codex-623186999-line-24)">If you are interested in adding your pipeline to the nf-core community,</text><text class="rich-codex-623186999-r1" x="1220" y="605.6" textLength="12.2" clip-path="url(#rich-codex-623186999-line-24)">
+</text><text class="rich-codex-623186999-r2" x="109.8" y="630" textLength="878.4" clip-path="url(#rich-codex-623186999-line-25)">PLEASE COME AND TALK TO US IN THE NF-CORE SLACK BEFORE WRITING ANY CODE!</text><text class="rich-codex-623186999-r1" x="1220" y="630" textLength="12.2" clip-path="url(#rich-codex-623186999-line-25)">
+</text><text class="rich-codex-623186999-r1" x="1220" y="654.4" textLength="12.2" clip-path="url(#rich-codex-623186999-line-26)">
+</text><text class="rich-codex-623186999-r1" x="109.8" y="678.8" textLength="158.6" clip-path="url(#rich-codex-623186999-line-27)">Please read: </text><text class="rich-codex-623186999-r9" x="268.4" y="678.8" textLength="719.8" clip-path="url(#rich-codex-623186999-line-27)">https://nf-co.re/docs/contributing/contribute-new-pipelines</text><text class="rich-codex-623186999-r1" x="1220" y="678.8" textLength="12.2" clip-path="url(#rich-codex-623186999-line-27)">
+</text><text class="rich-codex-623186999-r1" x="1220" y="703.2" textLength="12.2" clip-path="url(#rich-codex-623186999-line-28)">
 </text>
     </g>
     </g>

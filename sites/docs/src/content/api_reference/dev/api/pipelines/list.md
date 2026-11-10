@@ -1,4 +1,4 @@
-# nf\_core.pipelines.list
+# nf_core.pipelines.list
 
 Lists available nf-core pipelines and versions.
 
@@ -32,8 +32,8 @@ Is used to collect local and remote nf-core pipelines. Pipelines
 can be sorted, filtered and compared.
 
 - **Parameters:**
-  - **filter\_by** (_list_) – A list of strings that can be used for filtering.
-  - **sort\_by** (_str_) – workflows can be sorted by keywords. Keyword must be one of
+  - **filter_by** (_list_) – A list of strings that can be used for filtering.
+  - **sort_by** (_str_) – workflows can be sorted by keywords. Keyword must be one of
     release (default), name, stars.
 
 #### `compare_remote_local(){:python}`
@@ -84,7 +84,8 @@ Return the Nextflow assets directory used for local workflow caches.
 Resolve the actual pipeline working tree for a given assets dir / workflow path.
 
 Nextflow 26.04+ uses a worktree layout under .repos:
-: <org>/<pipeline>/clones/<sha>/ ← working tree <org>/<pipeline>/bare/ ← bare git repo
+: <org>/<pipeline>/clones/<sha>/ ← working tree
+<org>/<pipeline>/bare/ ← bare git repo
 
 Prefers the clone matching the bare repo’s HEAD; falls back to the most
 recently modified clone if HEAD’s clone is missing or the bare repo is unreadable.
@@ -101,10 +102,10 @@ Check if this workflow has a local copy and use nextflow to pull it if not
 Prints out a list of all nf-core workflows.
 
 - **Parameters:**
-  - **filter\_by** (_list_) – A list of strings that can be used for filtering.
-  - **sort\_by** (_str_) – workflows can be sorted by keywords. Keyword must be one of
+  - **filter_by** (_list_) – A list of strings that can be used for filtering.
+  - **sort_by** (_str_) – workflows can be sorted by keywords. Keyword must be one of
     release (default), name, stars.
-  - **as\_json** (_boolean_) – Set to true, if the lists should be printed in JSON.
+  - **as_json** (_boolean_) – Set to true, if the lists should be printed in JSON.
 
 ### `nf_core.pipelines.list.pretty_date(time){:python}`
 

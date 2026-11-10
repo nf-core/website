@@ -1,4 +1,4 @@
-# module\_patch
+# module_patch
 
 #### `ModuleLint.module_patch(module: NFCoreComponent){:python}`
 
