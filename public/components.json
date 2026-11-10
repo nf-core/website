@@ -44268,7 +44268,7 @@
     {
       "name": "biscuit_biscuitblaster",
       "path": "modules/nf-core/biscuit/biscuitblaster/meta.yml",
-      "tree_sha": "c6421d03779a446ea8291c4f5dca2df598943ad5",
+      "tree_sha": "e72d4501d3d4fc9638394cc940c0f9622c8a4505",
       "files": [
         "modules/nf-core/biscuit/biscuitblaster/environment.yml",
         "modules/nf-core/biscuit/biscuitblaster/main.nf",
@@ -44320,6 +44320,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -44549,7 +44555,7 @@
           "@sateeshperi"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
     },
     {
       "name": "biscuit_bsconv",
@@ -55438,7 +55444,7 @@
     {
       "name": "bwamem3_mem",
       "path": "modules/nf-core/bwamem3/mem/meta.yml",
-      "tree_sha": "bac4da566b835c7b82a1b2f80ebd896d7aed93a7",
+      "tree_sha": "afb549f8469c024164cfcfdb6ae35f86f4a2ed9f",
       "files": [
         "modules/nf-core/bwamem3/mem/.conda-lock/linux_amd64-bd-f271e572b6aa004b_1.txt",
         "modules/nf-core/bwamem3/mem/.conda-lock/linux_arm64-bd-e73cbc14b9a6cced_1.txt",
@@ -55481,6 +55487,12 @@
               "homepage": "http://www.htslib.org",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -55745,7 +55757,7 @@
           }
         }
       },
-      "git_sha": "8de7382b73071351977d621eaa05750d189534e7",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "pathogenepidemiology",
@@ -56190,7 +56202,7 @@
     {
       "name": "bwameth_align",
       "path": "modules/nf-core/bwameth/align/meta.yml",
-      "tree_sha": "976d99262413b3ce0dd12fca1c76e9b60110045e",
+      "tree_sha": "488fd99ddde77b2545424ae9059b42efef40b992",
       "files": [
         "modules/nf-core/bwameth/align/.conda-lock/linux_amd64-bd-1ff0dd4d9a699bdc_1.txt",
         "modules/nf-core/bwameth/align/.conda-lock/linux_arm64-bd-e1514a97a6d49562_1.txt",
@@ -56427,7 +56439,7 @@
           }
         }
       },
-      "git_sha": "47eb51529f3a6eabb7da7cd2d22b327e67066eee",
+      "git_sha": "acdb643bad6e7377d5d3b983577d71f51d336d0d",
       "pipelines": [
         {
           "name": "methylseq",
@@ -71296,7 +71308,7 @@
     {
       "name": "ciri2",
       "path": "modules/nf-core/ciri2/meta.yml",
-      "tree_sha": "cc0d6c179954ac396c6ec29501c92300a35583cc",
+      "tree_sha": "864f539a35bc26c97f07c44496032215b77f6ef4",
       "files": [
         "modules/nf-core/ciri2/environment.yml",
         "modules/nf-core/ciri2/main.nf",
@@ -71336,6 +71348,12 @@
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "tool_dev_url": "http://www.htslib.org/",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "GPL-3.0-only"
               ],
@@ -71576,7 +71594,7 @@
           "@razmia02"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
     },
     {
       "name": "civicpy_annotate",
@@ -91385,7 +91403,7 @@
     {
       "name": "custom_getchromsizes",
       "path": "modules/nf-core/custom/getchromsizes/meta.yml",
-      "tree_sha": "fd09ff7e97ee4eedd630e0f4aa47e135bb8f4c7c",
+      "tree_sha": "313f2dd2e3eca50f84171221704476e0eae87622",
       "files": [
         "modules/nf-core/custom/getchromsizes/.conda-lock/linux_amd64-bd-ef1e734834ad9fa5_1.txt",
         "modules/nf-core/custom/getchromsizes/.conda-lock/linux_arm64-bd-fe9f11c26e616a8e_1.txt",
@@ -91413,6 +91431,12 @@
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "tool_dev_url": "https://github.com/samtools/samtools",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -91569,7 +91593,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "atacseq",
@@ -102978,6 +103002,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -116515,6 +116547,10 @@
         {
           "name": "rnaseq",
           "version": "3.27.0"
+        },
+        {
+          "name": "rnaseq",
+          "version": "3.27.0"
         }
       ]
     },
@@ -129756,7 +129792,7 @@
     {
       "name": "fastqscreen_fastqscreen",
       "path": "modules/nf-core/fastqscreen/fastqscreen/meta.yml",
-      "tree_sha": "b0583333a214ee1b653e4eb92a82ece7d05fd124",
+      "tree_sha": "8a7a2ef199d1a7b15a754f4e12f61a58824dd78b",
       "files": [
         "modules/nf-core/fastqscreen/fastqscreen/environment.yml",
         "modules/nf-core/fastqscreen/fastqscreen/main.nf",
@@ -129784,7 +129820,13 @@
               "homepage": "https://www.bioinformatics.babraham.ac.uk/projects/fastq_screen/",
               "documentation": "https://stevenwingett.github.io/FastQ-Screen/",
               "tool_dev_url": "https://github.com/StevenWingett/FastQ-Screen/archive/refs/tags/v0.15.3.zip",
-              "doi": "10.5281/zenodo.5838377",
+              "doi": "10.12688/f1000research.15931.2",
+              "publication": {
+                "author": "Wingett, S. W. & Andrews, S.",
+                "year": 2018,
+                "title": "FastQ Screen: A tool for multi-genome mapping and quality control",
+                "source": "F1000Research"
+              },
               "licence": [
                 "GPL-3.0-or-later"
               ],
@@ -129945,7 +129987,7 @@
           "@JPejovicApis"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "a6fef5daee9e23daab1f8b0603a9a17bcdabc7d2",
       "pipelines": [
         {
           "name": "seqinspector",
@@ -130264,6 +130306,384 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "fastvep_annotate",
+      "path": "modules/nf-core/fastvep/annotate/meta.yml",
+      "tree_sha": "7409fe94f5bc35011c0cbbd30fe01076ef44c9aa",
+      "files": [
+        "modules/nf-core/fastvep/annotate/.conda-lock/linux_amd64-bd-1cb9b1d86ed7c379_1.txt",
+        "modules/nf-core/fastvep/annotate/environment.yml",
+        "modules/nf-core/fastvep/annotate/main.nf",
+        "modules/nf-core/fastvep/annotate/meta.yml",
+        "modules/nf-core/fastvep/annotate/tests/main.nf.test",
+        "modules/nf-core/fastvep/annotate/tests/main.nf.test.snap",
+        "modules/nf-core/fastvep/annotate/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "fastvep_annotate",
+        "description": "Annotate variants with predicted consequences using fastVEP, a fast Rust reimplementation of Ensembl VEP",
+        "keywords": [
+          "vcf",
+          "annotation",
+          "variant effect prediction",
+          "vep",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "fastvep": {
+              "description": "A high-performance variant effect predictor with clinical database integration, written in Rust",
+              "homepage": "https://github.com/Huang-lab/fastVEP/blob/master/README.md",
+              "documentation": "https://github.com/Huang-lab/fastVEP/blob/master/README.md",
+              "tool_dev_url": "https://github.com/Huang-lab/fastVEP",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": ""
+            }
+          },
+          {
+            "htslib": {
+              "description": "C library for high-throughput sequencing data formats",
+              "homepage": "https://github.com/samtools/htslib",
+              "documentation": "https://www.htslib.org/doc/",
+              "tool_dev_url": "https://github.com/samtools/htslib",
+              "doi": "10.1093/gigascience/giab007",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:htslib"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "VCF file to annotate, optionally gzip compressed",
+                "pattern": "*.{vcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            },
+            {
+              "custom_extra_files": {
+                "type": "file",
+                "description": "Optional sample-specific files to be staged and used with `ext.args`\n(e.g. path to a gene panel file)\n",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing annotation information\ne.g. `[ id:'genome' ]`\n"
+              }
+            },
+            {
+              "gff3": {
+                "type": "file",
+                "description": "GFF3 file with the transcript models used for annotation",
+                "pattern": "*.{gff,gff3}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1975"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'genome' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Optional reference genome FASTA file",
+                "pattern": "*.{fa,fasta,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Optional reference genome FASTA index file",
+                "pattern": "*.fai",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3326"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "sa_files": {
+              "type": "file",
+              "description": "Optional fastVEP supplementary annotation files (.osa, .osa2, .osi, .oga),\nstaged into a `fastvep_sa/` directory and passed with `--sa-dir`. You can generate these annotation files with `fastvep sa-build`\n",
+              "pattern": "*.{osa,osa2,osi,oga}",
+              "ontologies": []
+            }
+          },
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing VEP cache information\ne.g. `[ id:'115_WBcel235' ]`\n"
+              }
+            },
+            {
+              "cache_dir": {
+                "type": "directory",
+                "description": "Optional VEP cache directory for known-variant lookup.\n",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "output_format": {
+              "type": "string",
+              "description": "Output format, passed to `--output-format`. One of `vcf`, `tab` or `json`.\nThe output is always bgzip compressed.\n"
+            }
+          }
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.vcf.gz": {
+                  "type": "file",
+                  "description": "Annotated bgzip compressed VCF file, produced when `output_format` is `vcf`",
+                  "pattern": "*.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tab": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.tab.gz": {
+                  "type": "file",
+                  "description": "Annotated variants in bgzip compressed tab-delimited format, produced when `output_format` is `tab`",
+                  "pattern": "*.tab.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.json.gz": {
+                  "type": "file",
+                  "description": "Annotated variants in bgzip compressed JSON format, produced when `output_format` is `json`",
+                  "pattern": "*.json.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "transcript_cache": [
+            [
+              {
+                "meta2": {
+                  "type": "map",
+                  "description": "Groovy Map containing annotation information\ne.g. `[ id:'genome' ]`\n"
+                }
+              },
+              {
+                "${gff3}.fastvep.cache": {
+                  "type": "file",
+                  "description": "Binary transcript cache built by fastVEP from the GFF3",
+                  "pattern": "*.fastvep.cache",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2333"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_fastvep": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fastvep": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "fastvep --version | sed 's/^fastvep //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_htslib": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "htslib": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bgzip --version | sed '1!d; s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fastvep": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "fastvep --version | sed 's/^fastvep //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "htslib": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bgzip --version | sed '1!d; s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@DylanMHouse"
+        ],
+        "maintainers": [
+          "@DylanMHouse"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fastvep_htslib:1cb9b1d86ed7c379",
+              "build_id": "bd-1cb9b1d86ed7c379_1",
+              "scan_id": "sc-58f43c01a4abf17b_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fastvep_htslib:c478897ef6e609a2",
+              "build_id": "bd-c478897ef6e609a2_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c3/c3dda8b0c7fd437d6a0e82050ea78debf20dfbcb566dd8b63dbfecef51ae5979/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fastvep/annotate/.conda-lock/linux_amd64-bd-1cb9b1d86ed7c379_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "081cd23035c0aa73a3d06f37d712633c3f95e07d"
     },
     {
       "name": "fastx_collapser",
@@ -189849,7 +190269,7 @@
     {
       "name": "hifitrimmer_filterbam",
       "path": "modules/nf-core/hifitrimmer/filterbam/meta.yml",
-      "tree_sha": "40188ee3892522fa230dd57660368e91fc6fe1b4",
+      "tree_sha": "35b82103ca3380ef0aca29a1473ad64116805275",
       "files": [
         "modules/nf-core/hifitrimmer/filterbam/environment.yml",
         "modules/nf-core/hifitrimmer/filterbam/main.nf",
@@ -189890,6 +190310,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -190043,7 +190469,7 @@
           "@sainsachiko"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
     },
     {
       "name": "hifitrimmer_processblast",
@@ -198282,7 +198708,7 @@
     {
       "name": "homer_maketagdirectory",
       "path": "modules/nf-core/homer/maketagdirectory/meta.yml",
-      "tree_sha": "dcc555079deb26387cc9e7cfe978f8e5e221fd75",
+      "tree_sha": "b9c968be9bdb5b206d6bb28f0303bebd579f2226",
       "files": [
         "modules/nf-core/homer/maketagdirectory/environment.yml",
         "modules/nf-core/homer/maketagdirectory/main.nf",
@@ -198319,6 +198745,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -198593,7 +199025,7 @@
           "@edmundmiller"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "nascent",
@@ -208835,6 +209267,277 @@
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
     },
     {
+      "name": "isescan",
+      "path": "modules/nf-core/isescan/meta.yml",
+      "tree_sha": "9136c5e2383aed76f3a7cc07b7d61ffaca2b96b4",
+      "files": [
+        "modules/nf-core/isescan/.conda-lock/linux_amd64-bd-3b76a4d36cb407ff_1.txt",
+        "modules/nf-core/isescan/environment.yml",
+        "modules/nf-core/isescan/main.nf",
+        "modules/nf-core/isescan/meta.yml",
+        "modules/nf-core/isescan/tests/main.nf.test",
+        "modules/nf-core/isescan/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "isescan",
+        "description": "Identify insertion sequence (IS) elements in prokaryotic genome or metagenome assemblies",
+        "keywords": [
+          "insertion sequence",
+          "is element",
+          "transposase",
+          "mobile genetic elements",
+          "prokaryote",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "isescan": {
+              "description": "A python pipeline to identify insertion sequence (IS) elements in genome and metagenome",
+              "homepage": "https://github.com/xiezhq/ISEScan",
+              "documentation": "https://github.com/xiezhq/ISEScan",
+              "tool_dev_url": "https://github.com/xiezhq/ISEScan",
+              "doi": "10.1093/bioinformatics/btx433",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:isescan"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Genome or metagenome assembly in FASTA format (can be gzipped)",
+                "pattern": "*.{fa,fasta,fna,fas}{,.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "sum": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.sum": {
+                  "type": "file",
+                  "description": "Summary of the IS copies found for each IS family",
+                  "pattern": "*.sum",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.tsv": {
+                  "type": "file",
+                  "description": "Details of each IS copy, one copy per line",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "gff": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.gff": {
+                  "type": "file",
+                  "description": "Annotation of each IS copy and its terminal inverted repeats",
+                  "pattern": "*.gff",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1975"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "is_fna": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.is.fna": {
+                  "type": "file",
+                  "description": "Nucleotide sequence of each IS copy",
+                  "pattern": "*.is.fna",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "orf_fna": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.orf.fna": {
+                  "type": "file",
+                  "description": "Nucleotide sequence of the transposase gene in each IS copy",
+                  "pattern": "*.orf.fna",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "orf_faa": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.orf.faa": {
+                  "type": "file",
+                  "description": "Amino acid sequence of the transposase in each IS copy",
+                  "pattern": "*.orf.faa",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_isescan": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "isescan": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "isescan.py --version 2>&1 | sed 's/isescan //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "isescan": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "isescan.py --version 2>&1 | sed 's/isescan //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@pabloestepaa"
+        ],
+        "maintainers": [
+          "@pabloestepaa"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/isescan_gzip:3b76a4d36cb407ff",
+              "build_id": "bd-3b76a4d36cb407ff_1",
+              "scan_id": "sc-496191f534b5f3bd_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/isescan_gzip:8beee00ef67972aa",
+              "build_id": "bd-8beee00ef67972aa_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/df/df934e3ebb408aeb00babbbbbc2775ac67fe1ec85bfae8b46053616164bdc9f6/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/isescan/.conda-lock/linux_amd64-bd-3b76a4d36cb407ff_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "784dcb9c864a77cbe8cc7f91bccb2e155c53f786"
+    },
+    {
       "name": "islandpath",
       "path": "modules/nf-core/islandpath/meta.yml",
       "tree_sha": "f3a692494ec89548d3a1a495ce2014107ad18f47",
@@ -218635,7 +219338,7 @@
     {
       "name": "kraken2_kraken2",
       "path": "modules/nf-core/kraken2/kraken2/meta.yml",
-      "tree_sha": "e35488a99c096d4ddde8e796c7f13fce453ec57f",
+      "tree_sha": "02f4b4705bd8b276ee02882a2ee8b8bb214c265e",
       "files": [
         "modules/nf-core/kraken2/kraken2/environment.yml",
         "modules/nf-core/kraken2/kraken2/main.nf",
@@ -218670,6 +219373,17 @@
                 "MIT"
               ],
               "identifier": "biotools:kraken2"
+            }
+          },
+          {
+            "pigz": {
+              "description": "Parallel implementation of the gzip algorithm.",
+              "homepage": "https://zlib.net/pigz/",
+              "documentation": "https://zlib.net/pigz/pigz.pdf",
+              "licence": [
+                "Zlib"
+              ],
+              "identifier": ""
             }
           }
         ],
@@ -218878,7 +219592,7 @@
           "@drpatelh"
         ]
       },
-      "git_sha": "697192edd1bd7a330a5edbc4eb2f0f69ecfbb6ce",
+      "git_sha": "1b52056300c8c4758970226e57979dbc1903ee95",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -247750,7 +248464,7 @@
     {
       "name": "minibwa_map",
       "path": "modules/nf-core/minibwa/map/meta.yml",
-      "tree_sha": "595149f16ff63baba1740ee134074f09cf7119f6",
+      "tree_sha": "a09190bffe2542270c952de5bac148939a67e49f",
       "files": [
         "modules/nf-core/minibwa/map/environment.yml",
         "modules/nf-core/minibwa/map/main.nf",
@@ -247789,6 +248503,12 @@
               "homepage": "http://www.htslib.org",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -248013,7 +248733,7 @@
           "@nh13"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
     },
     {
       "name": "minimac4_compressref",
@@ -306203,6 +306923,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -306510,6 +307234,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -355041,7 +355769,7 @@
     {
       "name": "samtools_addreplacerg",
       "path": "modules/nf-core/samtools/addreplacerg/meta.yml",
-      "tree_sha": "1d0d3c02ee890568dd38dc06e18de9f7db2fdb57",
+      "tree_sha": "600e24803bcdf23c15cdbb2d3971e0ad4b08aaba",
       "files": [
         "modules/nf-core/samtools/addreplacerg/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/addreplacerg/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -355070,6 +355798,12 @@
               "documentation": "https://www.htslib.org/doc/samtools-addreplacerg.html",
               "tool_dev_url": "https://github.com/samtools/samtools",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -355304,12 +356038,12 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91"
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
     },
     {
       "name": "samtools_ampliconclip",
       "path": "modules/nf-core/samtools/ampliconclip/meta.yml",
-      "tree_sha": "9951ad75744ae323c0622ac769a1dc381be075f0",
+      "tree_sha": "6dbd144c3999707eb4ea8a32777e2cb2157c057d",
       "files": [
         "modules/nf-core/samtools/ampliconclip/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/ampliconclip/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -355336,6 +356070,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -355525,12 +356265,12 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91"
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
     },
     {
       "name": "samtools_bam2fq",
       "path": "modules/nf-core/samtools/bam2fq/meta.yml",
-      "tree_sha": "9631a10b79fee0f5b1979ea2529fe0f15f4560fc",
+      "tree_sha": "ae94c4078ad68e0e3addbd5ee205fac263d08fa0",
       "files": [
         "modules/nf-core/samtools/bam2fq/.conda-lock/linux_amd64-bd-ca51bc8a00d53523_4.txt",
         "modules/nf-core/samtools/bam2fq/.conda-lock/linux_arm64-bd-3c311ea7eb225a00_5.txt",
@@ -355555,6 +356295,13 @@
             "samtools": {
               "description": "Tools for dealing with SAM, BAM and CRAM files",
               "documentation": "http://www.htslib.org/doc/1.1/samtools.html",
+              "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -355740,7 +356487,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "rnadnavar",
@@ -355755,7 +356502,7 @@
     {
       "name": "samtools_bedcov",
       "path": "modules/nf-core/samtools/bedcov/meta.yml",
-      "tree_sha": "67c6ca4c867774113f49e69e10eb9c80d427283b",
+      "tree_sha": "27ed62a94bd55c94f4711ab8697f4860abfd1400",
       "files": [
         "modules/nf-core/samtools/bedcov/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/bedcov/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -355787,6 +356534,12 @@
               "documentation": "http://www.htslib.org/doc/samtools-bedcov.html",
               "tool_dev_url": "https://github.com/samtools/samtools",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -355990,12 +356743,12 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91"
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
     },
     {
       "name": "samtools_bgzip",
       "path": "modules/nf-core/samtools/bgzip/meta.yml",
-      "tree_sha": "ef4795a4dd60c8b633c96137896d8276c4923a28",
+      "tree_sha": "717d04c99e18ced9cb3cc2424e3113f844eb4eeb",
       "files": [
         "modules/nf-core/samtools/bgzip/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/bgzip/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -356026,6 +356779,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -356165,12 +356924,12 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91"
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
     },
     {
       "name": "samtools_calmd",
       "path": "modules/nf-core/samtools/calmd/meta.yml",
-      "tree_sha": "5e34b6d76e0dbdd1c8376c44f82697cfb5f8c3fc",
+      "tree_sha": "c99ebbeca55665daf2b39f9e9f454e6e14a4a0e2",
       "files": [
         "modules/nf-core/samtools/calmd/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/calmd/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -356197,6 +356956,12 @@
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "tool_dev_url": "https://github.com/samtools/samtools",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -356354,7 +357119,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "rnastructurome",
@@ -356365,7 +357130,7 @@
     {
       "name": "samtools_cat",
       "path": "modules/nf-core/samtools/cat/meta.yml",
-      "tree_sha": "acf5750ffce832aa053ff9cba70c699635a262fd",
+      "tree_sha": "ced08d5be900d33e80fc87ac92be9df3131752b6",
       "files": [
         "modules/nf-core/samtools/cat/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/cat/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -356392,6 +357157,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -356542,12 +357313,12 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91"
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
     },
     {
       "name": "samtools_collate",
       "path": "modules/nf-core/samtools/collate/meta.yml",
-      "tree_sha": "38464a7a9bb32e21f036cf11241b0e5e11cca710",
+      "tree_sha": "641c74287f365fae89c1b41a87d517df61f7e65b",
       "files": [
         "modules/nf-core/samtools/collate/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/collate/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -356575,6 +357346,12 @@
               "documentation": "https://www.htslib.org/doc/samtools-collate.html",
               "tool_dev_url": "https://github.com/samtools/samtools",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -356768,7 +357545,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "raredisease",
@@ -356779,7 +357556,7 @@
     {
       "name": "samtools_collatefastq",
       "path": "modules/nf-core/samtools/collatefastq/meta.yml",
-      "tree_sha": "86ed86838b92032afccd94298eb35a3982ea8686",
+      "tree_sha": "ec451fc34b6c953768ca4df0e97468060d188964",
       "files": [
         "modules/nf-core/samtools/collatefastq/.conda-lock/linux_amd64-bd-ca51bc8a00d53523_4.txt",
         "modules/nf-core/samtools/collatefastq/.conda-lock/linux_arm64-bd-3c311ea7eb225a00_5.txt",
@@ -356806,6 +357583,12 @@
               "documentation": "https://www.htslib.org/doc/samtools.html",
               "tool_dev_url": "https://github.com/samtools/samtools",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -357034,7 +357817,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "bamtofastq",
@@ -357061,7 +357844,7 @@
     {
       "name": "samtools_consensus",
       "path": "modules/nf-core/samtools/consensus/meta.yml",
-      "tree_sha": "3af955a19fe1c89f35319039662a7cbe2fe91823",
+      "tree_sha": "708e7a83a69b28b3f1b773cdce2b35f47dfa5797",
       "files": [
         "modules/nf-core/samtools/consensus/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/consensus/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -357091,6 +357874,12 @@
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "tool_dev_url": "https://github.com/samtools/samtools",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -357272,12 +358061,12 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91"
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
     },
     {
       "name": "samtools_convert",
       "path": "modules/nf-core/samtools/convert/meta.yml",
-      "tree_sha": "0cf7814fb444ebb8e6d5bba880c0710e83474812",
+      "tree_sha": "901ebf692a2e6ff4c650753d666ce0e98af608c8",
       "files": [
         "modules/nf-core/samtools/convert/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/convert/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -357304,6 +358093,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -357525,7 +358320,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "drop",
@@ -357552,7 +358347,7 @@
     {
       "name": "samtools_coverage",
       "path": "modules/nf-core/samtools/coverage/meta.yml",
-      "tree_sha": "08b13b0de058f95584c0e1ebeb4188eee199ed2f",
+      "tree_sha": "b3e9e89dbf8c758bb8251a6b7af679be90fe4812",
       "files": [
         "modules/nf-core/samtools/coverage/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/coverage/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -357578,6 +358373,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -357743,7 +358544,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "abotyper",
@@ -357758,7 +358559,7 @@
     {
       "name": "samtools_cramsize",
       "path": "modules/nf-core/samtools/cramsize/meta.yml",
-      "tree_sha": "7e17aab68886ce686e412e9d20fcfa587a09fc12",
+      "tree_sha": "0b157bd1d0bf6ccd3353b7403f2ae4eb1de2374a",
       "files": [
         "modules/nf-core/samtools/cramsize/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/cramsize/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -357784,6 +358585,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -357913,12 +358720,12 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91"
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
     },
     {
       "name": "samtools_depth",
       "path": "modules/nf-core/samtools/depth/meta.yml",
-      "tree_sha": "b96b333517737e6a0a43f1c2352f9db742fcf785",
+      "tree_sha": "50694547dc0d11bbc931713eae5b50f099586678",
       "files": [
         "modules/nf-core/samtools/depth/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/depth/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -357946,6 +358753,12 @@
               "documentation": "http://www.htslib.org/doc/samtools-depth.html",
               "tool_dev_url": "https://github.com/samtools/samtools",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -358125,7 +358938,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "phaseimpute",
@@ -358136,7 +358949,7 @@
     {
       "name": "samtools_dict",
       "path": "modules/nf-core/samtools/dict/meta.yml",
-      "tree_sha": "eddb8602e7179337e21c84d1e545f340ec65ee99",
+      "tree_sha": "367a228f021a60c5e5fbd46671d70bae4848f454",
       "files": [
         "modules/nf-core/samtools/dict/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/dict/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -358162,6 +358975,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -358295,7 +359114,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "fastquorum",
@@ -358318,7 +359137,7 @@
     {
       "name": "samtools_faidx",
       "path": "modules/nf-core/samtools/faidx/meta.yml",
-      "tree_sha": "61e71164e06d42235a1cdce2efb1dc44fcbdb459",
+      "tree_sha": "9d921c54b6e1adc2ec62230f6502aeecf4ed7154",
       "files": [
         "modules/nf-core/samtools/faidx/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/faidx/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -358346,6 +359165,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -358550,7 +359375,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "bamtofastq",
@@ -358705,7 +359530,7 @@
     {
       "name": "samtools_fasta",
       "path": "modules/nf-core/samtools/fasta/meta.yml",
-      "tree_sha": "e7676f0c1369a6bf64ab5c95e19e5d554b3860c0",
+      "tree_sha": "b270bcb29ce844aad06ea80d81ebc5dc4eb8ca7e",
       "files": [
         "modules/nf-core/samtools/fasta/.conda-lock/linux_amd64-bd-ca51bc8a00d53523_4.txt",
         "modules/nf-core/samtools/fasta/.conda-lock/linux_arm64-bd-3c311ea7eb225a00_5.txt",
@@ -358733,6 +359558,12 @@
               "documentation": "https://www.htslib.org/doc/samtools-fasta.html",
               "tool_dev_url": "https://github.com/samtools/samtools",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -358938,12 +359769,12 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91"
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
     },
     {
       "name": "samtools_fastq",
       "path": "modules/nf-core/samtools/fastq/meta.yml",
-      "tree_sha": "6bc3719f209ff0b673d5c8ee3c39f76b4bf86b9b",
+      "tree_sha": "54d338b81ef6da2a9e7b757d455f1919ba9eafbc",
       "files": [
         "modules/nf-core/samtools/fastq/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/fastq/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -358970,6 +359801,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -359177,7 +360014,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "genomeassembler",
@@ -359216,7 +360053,7 @@
     {
       "name": "samtools_fixmate",
       "path": "modules/nf-core/samtools/fixmate/meta.yml",
-      "tree_sha": "506004452bce4bf405a639914ab3ecd0ab8420d4",
+      "tree_sha": "4472b984b08b8fa976112f955dcf2d35cd9eda38",
       "files": [
         "modules/nf-core/samtools/fixmate/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/fixmate/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -359248,6 +360085,12 @@
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "tool_dev_url": "https://github.com/samtools/samtools",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -359484,7 +360327,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "rnastructurome",
@@ -359495,7 +360338,7 @@
     {
       "name": "samtools_flagstat",
       "path": "modules/nf-core/samtools/flagstat/meta.yml",
-      "tree_sha": "8d494b84320dc43f263bdb13886e294f6ad0c230",
+      "tree_sha": "2d75c6ef01fc85f0e9cceda5f15dbeb63886a022",
       "files": [
         "modules/nf-core/samtools/flagstat/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/flagstat/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -359524,6 +360367,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -359665,7 +360514,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "abotyper",
@@ -359808,7 +360657,7 @@
     {
       "name": "samtools_getrg",
       "path": "modules/nf-core/samtools/getrg/meta.yml",
-      "tree_sha": "8a432308c6365b1bc176d376b856e4de2f69e1a9",
+      "tree_sha": "9a3721b4e041d5c87b823f635dfab2a2b1644160",
       "files": [
         "modules/nf-core/samtools/getrg/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/getrg/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -359836,6 +360685,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -359958,12 +360813,12 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91"
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
     },
     {
       "name": "samtools_idxstats",
       "path": "modules/nf-core/samtools/idxstats/meta.yml",
-      "tree_sha": "8d1c1b9ea4f1d4cd7463127dafff6397adffec3f",
+      "tree_sha": "ea354890874ed5e85513b5ea1ba88a1722745064",
       "files": [
         "modules/nf-core/samtools/idxstats/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/idxstats/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -359993,6 +360848,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -360134,7 +360995,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "atacseq",
@@ -360277,7 +361138,7 @@
     {
       "name": "samtools_import",
       "path": "modules/nf-core/samtools/import/meta.yml",
-      "tree_sha": "24729586295e79fc9248f24991530e2c7d794a0f",
+      "tree_sha": "fa6de8374437ff94848435c8e48444e6eb8607e5",
       "files": [
         "modules/nf-core/samtools/import/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/import/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -360305,6 +361166,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -360477,7 +361344,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "methylong",
@@ -360488,7 +361355,7 @@
     {
       "name": "samtools_index",
       "path": "modules/nf-core/samtools/index/meta.yml",
-      "tree_sha": "c7c3ecfa69d8a3603f17ecce2229df50440f0b1d",
+      "tree_sha": "638f365da7c9c01482360d649112fe9ed8cb10d5",
       "files": [
         "modules/nf-core/samtools/index/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/index/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -360516,6 +361383,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -360651,7 +361524,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "alleleexpression",
@@ -360894,7 +361767,7 @@
     {
       "name": "samtools_markdup",
       "path": "modules/nf-core/samtools/markdup/meta.yml",
-      "tree_sha": "b648d7b331c5a4b50d7737c90b99f50e59cb7e5f",
+      "tree_sha": "30f70ff4997cd911dbdf1ec8bc5734e1414094ba",
       "files": [
         "modules/nf-core/samtools/markdup/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/markdup/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -360923,6 +361796,12 @@
               "documentation": "https://www.htslib.org/doc/samtools-markdup.html",
               "tool_dev_url": "https://github.com/samtools/samtools",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -361116,7 +361995,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "rnastructurome",
@@ -361127,7 +362006,7 @@
     {
       "name": "samtools_merge",
       "path": "modules/nf-core/samtools/merge/meta.yml",
-      "tree_sha": "8ad243c0c7202b7deb26066fd0ca846f174966b0",
+      "tree_sha": "6b733e3b770596178a952f196d00253c6c3d264b",
       "files": [
         "modules/nf-core/samtools/merge/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/merge/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -361155,6 +362034,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -361377,7 +362262,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "bamtofastq",
@@ -361452,7 +362337,7 @@
     {
       "name": "samtools_mpileup",
       "path": "modules/nf-core/samtools/mpileup/meta.yml",
-      "tree_sha": "a814e6fc74ab9948af96e81d8cdb6d7b12201ea9",
+      "tree_sha": "cdeec4da3bf6fc6112000cebace7b1dadcd12693",
       "files": [
         "modules/nf-core/samtools/mpileup/.conda-lock/linux_amd64-bd-ca51bc8a00d53523_4.txt",
         "modules/nf-core/samtools/mpileup/.conda-lock/linux_arm64-bd-3c311ea7eb225a00_5.txt",
@@ -361480,6 +362365,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -361655,7 +362546,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "rnadnavar",
@@ -361670,7 +362561,7 @@
     {
       "name": "samtools_quickcheck",
       "path": "modules/nf-core/samtools/quickcheck/meta.yml",
-      "tree_sha": "37df1f286115f97b4eab6848c6682ea969a8e250",
+      "tree_sha": "b51b4f61c2f68483d5ee5fb467dec305015c8c87",
       "files": [
         "modules/nf-core/samtools/quickcheck/.conda-lock/linux_amd64-bd-65a8db39c6e3f5bd_2.txt",
         "modules/nf-core/samtools/quickcheck/.conda-lock/linux_arm64-bd-e0d65265d9f74d26_2.txt",
@@ -361700,6 +362591,12 @@
               "documentation": "https://www.htslib.org/doc/samtools-quickcheck.html",
               "tool_dev_url": "https://github.com/samtools/",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -361866,12 +362763,12 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91"
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
     },
     {
       "name": "samtools_reheader",
       "path": "modules/nf-core/samtools/reheader/meta.yml",
-      "tree_sha": "6975a7256b401401ba01da539878c45d389597a7",
+      "tree_sha": "af45d1569fdc76273a3cd01f3a11d9f0e374c71d",
       "files": [
         "modules/nf-core/samtools/reheader/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/reheader/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -361899,6 +362796,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -362040,7 +362943,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "epigenomesegmentation",
@@ -362059,7 +362962,7 @@
     {
       "name": "samtools_samples",
       "path": "modules/nf-core/samtools/samples/meta.yml",
-      "tree_sha": "ab547c5d414fbe81dd773e764adf3dc56c4fe4fc",
+      "tree_sha": "20703c32dc16f61552c591e9e10db17f24b190c0",
       "files": [
         "modules/nf-core/samtools/samples/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/samples/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -362086,6 +362989,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -362262,12 +363171,12 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91"
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
     },
     {
       "name": "samtools_sormadup",
       "path": "modules/nf-core/samtools/sormadup/meta.yml",
-      "tree_sha": "0bb0beb584dc9c024f290ab418b1cf6d914e8eee",
+      "tree_sha": "35de1260704c7205045be35e7278eb882a303602",
       "files": [
         "modules/nf-core/samtools/sormadup/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/sormadup/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -362301,6 +363210,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -362314,6 +363229,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -362327,6 +363248,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -362340,6 +363267,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -362353,6 +363286,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -362582,12 +363521,12 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91"
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
     },
     {
       "name": "samtools_sort",
       "path": "modules/nf-core/samtools/sort/meta.yml",
-      "tree_sha": "8c239200834163d71b2b534b43309a00ca9d14c4",
+      "tree_sha": "5f678511ea1d17e2701bc77f5e383411407ef394",
       "files": [
         "modules/nf-core/samtools/sort/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/sort/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -362617,6 +363556,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -362840,7 +363785,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "alleleexpression",
@@ -363015,7 +363960,7 @@
     {
       "name": "samtools_splitheader",
       "path": "modules/nf-core/samtools/splitheader/meta.yml",
-      "tree_sha": "1b829732d102abebdb71f6e1c7d01038694f9e31",
+      "tree_sha": "3022860a8bf77c86856c2e94be3526a4f91ffd7d",
       "files": [
         "modules/nf-core/samtools/splitheader/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/splitheader/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -363046,6 +363991,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -363235,12 +364186,12 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91"
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
     },
     {
       "name": "samtools_stats",
       "path": "modules/nf-core/samtools/stats/meta.yml",
-      "tree_sha": "c9eb949dd0e7317818ab4248cdaed5309e81c44a",
+      "tree_sha": "5d7b17dd9507f909bc87da5dbcdf89343ef48e59",
       "files": [
         "modules/nf-core/samtools/stats/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/stats/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -363268,6 +364219,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -363437,7 +364394,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "abotyper",
@@ -363604,7 +364561,7 @@
     {
       "name": "samtools_trimheader",
       "path": "modules/nf-core/samtools/trimheader/meta.yml",
-      "tree_sha": "aafb9c012b0ca3a7921f4406b09064085524ac41",
+      "tree_sha": "7ecfa2c6998e995ae7a81129bad51ae99b63f112",
       "files": [
         "modules/nf-core/samtools/trimheader/.conda-lock/linux_amd64-bd-5366169842fe8538_2.txt",
         "modules/nf-core/samtools/trimheader/.conda-lock/linux_arm64-bd-585d544d62828600_2.txt",
@@ -363632,6 +364589,12 @@
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "tool_dev_url": "https://github.com/samtools/samtools",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -363796,7 +364759,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "metatdenovo",
@@ -363807,7 +364770,7 @@
     {
       "name": "samtools_view",
       "path": "modules/nf-core/samtools/view/meta.yml",
-      "tree_sha": "03973a4a848d391c805c4019969cfe73c0a64303",
+      "tree_sha": "2f8561e3418815d63d5482611b93ad9230dd2dc5",
       "files": [
         "modules/nf-core/samtools/view/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/view/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -363835,6 +364798,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -364183,7 +365152,7 @@
           }
         }
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "alleleexpression",
@@ -378549,6 +379518,10 @@
       "git_sha": "b37c02fb23e80372e4857dc6695b699d62fea612",
       "pipelines": [
         {
+          "name": "genephylo",
+          "version": "dev"
+        },
+        {
           "name": "metatdenovo",
           "version": "2.0.0"
         },
@@ -391778,7 +392751,7 @@
     {
       "name": "sniffles",
       "path": "modules/nf-core/sniffles/meta.yml",
-      "tree_sha": "720925f3735f4fec2f3989561e6eff781a1fe4c5",
+      "tree_sha": "56a45c410df0bbb9e00841c1fde2a11f98dba57d",
       "files": [
         "modules/nf-core/sniffles/.conda-lock/linux_amd64-bd-14a95caca8d8452b_1.txt",
         "modules/nf-core/sniffles/.conda-lock/linux_arm64-bd-0caddb2114424a6f_1.txt",
@@ -391848,6 +392821,18 @@
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            },
+            {
+              "regions": {
+                "type": "file",
+                "description": "Optional BED file of regions to process. Sniffles only processes reads in these regions. Use an empty list (`[]`) to process all regions.",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
                   }
                 ]
               }
@@ -392054,7 +393039,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "d25165ced4e544afaa3ef0223d643343b9ba2112",
       "pipelines": [
         {
           "name": "longraredisease",
@@ -401677,7 +402662,7 @@
     {
       "name": "star_genomegenerate",
       "path": "modules/nf-core/star/genomegenerate/meta.yml",
-      "tree_sha": "202d678d050ce75198656addc761a4dca262ca37",
+      "tree_sha": "9c0c84bc0fd89208c9edcf1128166cd1b4e8035e",
       "files": [
         "modules/nf-core/star/genomegenerate/.conda-lock/linux_amd64-bd-3ffb3e46ac3bf2ea_1.txt",
         "modules/nf-core/star/genomegenerate/.conda-lock/linux_arm64-bd-adccd64be154a89d_1.txt",
@@ -401721,6 +402706,12 @@
               "homepage": "http://www.htslib.org/",
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -401974,7 +402965,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
       "pipelines": [
         {
           "name": "alleleexpression",
@@ -405328,7 +406319,7 @@
     {
       "name": "strdrop_build",
       "path": "modules/nf-core/strdrop/build/meta.yml",
-      "tree_sha": "43e2135426d9ad13db4ad67864be14b40c9e77ec",
+      "tree_sha": "acf40c5ddb2cda4d4f9460edca9ca52b8af3f417",
       "files": [
         "modules/nf-core/strdrop/build/.conda-lock/linux_amd64-bd-de2d4e2fcc806913_1.txt",
         "modules/nf-core/strdrop/build/.conda-lock/linux_arm64-bd-95f1c5459d42f2f0_1.txt",
@@ -405497,12 +406488,12 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "a09b8547c2ee560d45e55f79f1557f45548cf39e"
     },
     {
       "name": "strdrop_call",
       "path": "modules/nf-core/strdrop/call/meta.yml",
-      "tree_sha": "cb1547c75b7c2e2b55eb93b9cdb5708a7db3bc66",
+      "tree_sha": "e0a9bcfd7757863daf70628aa37cae548e8edfbc",
       "files": [
         "modules/nf-core/strdrop/call/.conda-lock/linux_amd64-bd-de2d4e2fcc806913_1.txt",
         "modules/nf-core/strdrop/call/.conda-lock/linux_arm64-bd-95f1c5459d42f2f0_1.txt",
@@ -405713,7 +406704,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "a09b8547c2ee560d45e55f79f1557f45548cf39e"
     },
     {
       "name": "strdust",
@@ -420156,13 +421147,7 @@
           "@khersameesh24"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
-      "pipelines": [
-        {
-          "name": "genephylo",
-          "version": "dev"
-        }
-      ]
+      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
     },
     {
       "name": "telescope_assign",
@@ -421170,7 +422155,7 @@
     {
       "name": "telseq",
       "path": "modules/nf-core/telseq/meta.yml",
-      "tree_sha": "03b7e84fc7c353df1328ea2acbc8d158ea03b5a3",
+      "tree_sha": "b8f550a3f8a88907eeea214e5242c8aede1fa037",
       "files": [
         "modules/nf-core/telseq/environment.yml",
         "modules/nf-core/telseq/main.nf",
@@ -421212,6 +422197,12 @@
               "documentation": "http://www.htslib.org/doc/samtools.html",
               "tool_dev_url": "https://github.com/samtools/samtools",
               "doi": "10.1093/bioinformatics/btp352",
+              "publication": {
+                "author": "Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R. & 1000 Genome Project Data Processing Subgroup",
+                "year": 2009,
+                "title": "The Sequence Alignment/Map format and SAMtools",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -421396,7 +422387,7 @@
           "@lindenb"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
     },
     {
       "name": "tesorter",
@@ -426168,18 +427159,25 @@
           "@leapicard"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "pipelines": [
+        {
+          "name": "genephylo",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "trgt_genotype",
       "path": "modules/nf-core/trgt/genotype/meta.yml",
-      "tree_sha": "2ca44624e20fb922a491502fb43e83a7b3ce1d58",
+      "tree_sha": "b5ba511f7c8ec18c4703099a04206bde3d40920f",
       "files": [
         "modules/nf-core/trgt/genotype/environment.yml",
         "modules/nf-core/trgt/genotype/main.nf",
         "modules/nf-core/trgt/genotype/meta.yml",
         "modules/nf-core/trgt/genotype/tests/main.nf.test",
-        "modules/nf-core/trgt/genotype/tests/main.nf.test.snap"
+        "modules/nf-core/trgt/genotype/tests/main.nf.test.snap",
+        "modules/nf-core/trgt/genotype/tests/nextflow.config"
       ],
       "type": "module",
       "meta": {
@@ -426225,7 +427223,25 @@
               "bai": {
                 "type": "file",
                 "description": "Index of the BAM file",
+                "pattern": "*.bai",
+                "ontologies": []
+              }
+            },
+            {
+              "fail_reads_bam": {
+                "type": "file",
+                "description": "Optional sorted BAM file with failed reads",
                 "pattern": "*.bam",
+                "optional": true,
+                "ontologies": []
+              }
+            },
+            {
+              "fail_reads_bai": {
+                "type": "file",
+                "description": "Index of the failed reads BAM file; required when fail_reads_bam is supplied",
+                "pattern": "*.bai",
+                "optional": true,
                 "ontologies": []
               }
             },
@@ -426385,7 +427401,7 @@
           "@Schmytzi"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "a09b8547c2ee560d45e55f79f1557f45548cf39e",
       "pipelines": [
         {
           "name": "longraredisease",
@@ -426400,7 +427416,7 @@
     {
       "name": "trgt_merge",
       "path": "modules/nf-core/trgt/merge/meta.yml",
-      "tree_sha": "2f7de7f91fb011d3ee116cf917f54a684d67d88d",
+      "tree_sha": "9d3db3af68f17c0a5235b350c539fb60da423e46",
       "files": [
         "modules/nf-core/trgt/merge/environment.yml",
         "modules/nf-core/trgt/merge/main.nf",
@@ -426581,12 +427597,12 @@
           "@Schmytzi"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "a09b8547c2ee560d45e55f79f1557f45548cf39e"
     },
     {
       "name": "trgt_plot",
       "path": "modules/nf-core/trgt/plot/meta.yml",
-      "tree_sha": "6225bd71da80da663380cce2b143644a4c80b67b",
+      "tree_sha": "441d855cc3cea09c272e5138e62846ca25d9d16c",
       "files": [
         "modules/nf-core/trgt/plot/environment.yml",
         "modules/nf-core/trgt/plot/main.nf",
@@ -426794,7 +427810,7 @@
           "@Schmytzi"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "a09b8547c2ee560d45e55f79f1557f45548cf39e",
       "pipelines": [
         {
           "name": "pacvar",
@@ -442960,8 +443976,10 @@
     {
       "name": "vembrane_filter",
       "path": "modules/nf-core/vembrane/filter/meta.yml",
-      "tree_sha": "41db795266aa1c8ea412d18e44e12e427f01ad54",
+      "tree_sha": "056b549cb6b3b60e5ab93e83635a80fec479770d",
       "files": [
+        "modules/nf-core/vembrane/filter/.conda-lock/linux_amd64-bd-0bc429af0e13a402_1.txt",
+        "modules/nf-core/vembrane/filter/.conda-lock/linux_arm64-bd-93bdc53f19ef010a_1.txt",
         "modules/nf-core/vembrane/filter/environment.yml",
         "modules/nf-core/vembrane/filter/main.nf",
         "modules/nf-core/vembrane/filter/meta.yml",
@@ -443092,15 +444110,51 @@
         ],
         "maintainers": [
           "@trangdo-hsc"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/vembrane:2.6.2--0bc429af0e13a402",
+              "build_id": "bd-0bc429af0e13a402_1",
+              "scan_id": "sc-d77bb71ef731dbe7_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/vembrane:2.6.2--93bdc53f19ef010a",
+              "build_id": "bd-93bdc53f19ef010a_1",
+              "scan_id": "sc-53b8f3768f97e880_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/vembrane:2.6.2--c43928f6abce806c",
+              "build_id": "bd-c43928f6abce806c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/6a/6a1bc5a7c85eebca118ae436bda77e005cc6c1ca0e60687185fb1d2f195e5eaf/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/vembrane:2.6.2--7d9e57608c399937",
+              "build_id": "bd-7d9e57608c399937_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/53/538011e96a2fa9325c351e0301ff607c17ddc8659d89036632c947a7cb4a3cc7/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/vembrane/filter/.conda-lock/linux_amd64-bd-0bc429af0e13a402_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/vembrane/filter/.conda-lock/linux_arm64-bd-93bdc53f19ef010a_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "93d6285eee070ae0ef4a2c09fea17d8b5599c3e6"
     },
     {
       "name": "vembrane_sort",
       "path": "modules/nf-core/vembrane/sort/meta.yml",
-      "tree_sha": "979aa99d491479bbb00c7ad20b76b187c427a782",
+      "tree_sha": "14275d289fb96936090fe7ae4ef68f6b8b7b5247",
       "files": [
+        "modules/nf-core/vembrane/sort/.conda-lock/linux_amd64-bd-0bc429af0e13a402_1.txt",
+        "modules/nf-core/vembrane/sort/.conda-lock/linux_arm64-bd-93bdc53f19ef010a_1.txt",
         "modules/nf-core/vembrane/sort/environment.yml",
         "modules/nf-core/vembrane/sort/main.nf",
         "modules/nf-core/vembrane/sort/meta.yml",
@@ -443241,15 +444295,51 @@
         "maintainers": [
           "@mkatsanto",
           "@trangdo-hsc"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/vembrane:2.6.2--0bc429af0e13a402",
+              "build_id": "bd-0bc429af0e13a402_1",
+              "scan_id": "sc-d77bb71ef731dbe7_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/vembrane:2.6.2--93bdc53f19ef010a",
+              "build_id": "bd-93bdc53f19ef010a_1",
+              "scan_id": "sc-53b8f3768f97e880_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/vembrane:2.6.2--c43928f6abce806c",
+              "build_id": "bd-c43928f6abce806c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/6a/6a1bc5a7c85eebca118ae436bda77e005cc6c1ca0e60687185fb1d2f195e5eaf/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/vembrane:2.6.2--7d9e57608c399937",
+              "build_id": "bd-7d9e57608c399937_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/53/538011e96a2fa9325c351e0301ff607c17ddc8659d89036632c947a7cb4a3cc7/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/vembrane/sort/.conda-lock/linux_amd64-bd-0bc429af0e13a402_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/vembrane/sort/.conda-lock/linux_arm64-bd-93bdc53f19ef010a_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "93d6285eee070ae0ef4a2c09fea17d8b5599c3e6"
     },
     {
       "name": "vembrane_table",
       "path": "modules/nf-core/vembrane/table/meta.yml",
-      "tree_sha": "a96c27bfc5f2a81c2f07d0e704a9cd8e9eae3515",
+      "tree_sha": "0768b58324e92a323a76e83cb4df55417b8b51d3",
       "files": [
+        "modules/nf-core/vembrane/table/.conda-lock/linux_amd64-bd-0bc429af0e13a402_1.txt",
+        "modules/nf-core/vembrane/table/.conda-lock/linux_arm64-bd-93bdc53f19ef010a_1.txt",
         "modules/nf-core/vembrane/table/environment.yml",
         "modules/nf-core/vembrane/table/main.nf",
         "modules/nf-core/vembrane/table/meta.yml",
@@ -443390,9 +444480,43 @@
         "maintainers": [
           "@mkatsanto",
           "@trangdo-hsc"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/vembrane:2.6.2--93bdc53f19ef010a",
+              "build_id": "bd-93bdc53f19ef010a_1",
+              "scan_id": "sc-53b8f3768f97e880_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/vembrane:2.6.2--0bc429af0e13a402",
+              "build_id": "bd-0bc429af0e13a402_1",
+              "scan_id": "sc-d77bb71ef731dbe7_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/vembrane:2.6.2--c43928f6abce806c",
+              "build_id": "bd-c43928f6abce806c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/6a/6a1bc5a7c85eebca118ae436bda77e005cc6c1ca0e60687185fb1d2f195e5eaf/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/vembrane:2.6.2--7d9e57608c399937",
+              "build_id": "bd-7d9e57608c399937_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/53/538011e96a2fa9325c351e0301ff607c17ddc8659d89036632c947a7cb4a3cc7/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/vembrane/table/.conda-lock/linux_amd64-bd-0bc429af0e13a402_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/vembrane/table/.conda-lock/linux_arm64-bd-93bdc53f19ef010a_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "93d6285eee070ae0ef4a2c09fea17d8b5599c3e6"
     },
     {
       "name": "vepyr_annotate",
@@ -464485,7 +465609,7 @@
     {
       "name": "fasta_index_methylseq",
       "path": "subworkflows/nf-core/fasta_index_methylseq/meta.yml",
-      "tree_sha": "ba3cbabd66ece2c87d12eb860006833ffd00951d",
+      "tree_sha": "2c886503c5cb7650be8e5957bfaa24b98ee1af44",
       "files": [
         "subworkflows/nf-core/fasta_index_methylseq/main.nf",
         "subworkflows/nf-core/fasta_index_methylseq/meta.yml",
@@ -464496,11 +465620,12 @@
       "type": "subworkflow",
       "meta": {
         "name": "fasta_index_methylseq",
-        "description": "Generate index files from reference fasta for bismark, bwameth and bwamem aligners",
+        "description": "Generate index files from reference fasta for bismark, bwameth, bwamem and bwamem3 aligners",
         "keywords": [
           "bismark",
           "bwameth",
           "bwamem",
+          "bwamem3",
           "prepare genome",
           "index"
         ],
@@ -464510,6 +465635,7 @@
           "bismark/genomepreparation",
           "bwameth/index",
           "bwa/index",
+          "bwamem3/index",
           "samtools/faidx"
         ],
         "input": [
@@ -464542,13 +465668,13 @@
           {
             "bwamem_index": {
               "type": "file",
-              "description": "Bwamem genome index files\nStructure: [ val(meta), path(bwamem_index) ]\n"
+              "description": "Bwamem genome index files, or a bwa-mem3 methylation index (`bwa-mem3 index --meth`) when the aligner is bwamem3\nStructure: [ val(meta), path(bwamem_index) ]\n"
             }
           },
           {
             "aligner": {
               "type": "string",
-              "description": "Aligner name (bismark, bismark_hisat, bwameth, or bwamem)\n"
+              "description": "Aligner name (bismark, bismark_hisat, bwameth, bwamem or bwamem3).\nFor bwamem3, set `ext.args = '--meth'` on `BWAMEM3_INDEX` so the generated index supports `bwa-mem3 mem --meth`.\n"
             }
           },
           {
@@ -464594,7 +465720,7 @@
           {
             "bwamem_index": {
               "type": "file",
-              "description": "Bwamem genome index files\nStructure: [ val(meta), path(bwamem_index) ]\npattern: \"index\"\n"
+              "description": "Bwamem genome index files, or the bwa-mem3 methylation index when the aligner is bwamem3\nStructure: [ val(meta), path(bwamem_index) ]\npattern: \"index\"\n"
             }
           }
         ],
@@ -464609,7 +465735,7 @@
           "@eduard.watchmaker"
         ]
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "9f33d5b46919fb18bca6044a3ead2dd215c7e942",
       "pipelines": [
         {
           "name": "methylseq",
@@ -475282,6 +476408,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "888b825b9af9c47573ceeae5828ade0eebcb7a6d",
-  "updated_at": "2026-11-10T02:14:37.323Z"
+  "commit_sha": "081cd23035c0aa73a3d06f37d712633c3f95e07d",
+  "updated_at": "2026-11-10T14:15:39.510Z"
 }
