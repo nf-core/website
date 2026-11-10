@@ -23,7 +23,7 @@ All _non-mandatory_ command-line tool _non-file_ arguments MUST be provided as a
 Supply `task.ext.args` from the `modules.config` file by assigning a closure that returns a string to `ext.args`.
 The closure allows parameters supplied in a config with `-c` to be updated.
 
-```groovy {2} title="<module>.nf"
+```nextflow {2} title="<module>.nf"
 script:
 def args = task.ext.args ?: ''
 def prefix = task.ext.prefix ?: "${meta.id}"
@@ -34,7 +34,7 @@ fastqc \\
 """
 ```
 
-```groovy {3-6} title="modules.config"
+```nextflow {3-6} title="modules.config"
   process {
     withName: <module> {
         ext.args = { [                                                        // Assign a closure which returns a string
@@ -59,7 +59,7 @@ Using the 'native' `ext` functionality provided by Nextflow was easier to unders
 Sample-specific parameters can still be provided to an instance of a process by storing these in `meta`, and providing these to the `ext.args` definition in `modules.config`.
 A closure is used to make Nextflow evaluate the code in the string:
 
-```groovy
+```nextflow
 ext.args = { "--id ${meta.id}" }
 ```
 
@@ -177,7 +177,7 @@ They maybe omitted if there is no possible cases where a meta map would be requi
 
 Examples:
 
-```groovy title='main.nf'
+```nextflow title='main.nf'
 ...
 input:
 tuple val(meta), path(fastq)
@@ -185,7 +185,7 @@ tuple val(cleanup)
 ...
 ```
 
-```groovy title='main.nf'
+```nextflow title='main.nf'
 ...
 input:
 tuple val(meta), path(fastq)
@@ -239,7 +239,7 @@ my_command \\
 
 ... but rather:
 
-```groovy title="modules.conf"
+```nextflow title="modules.conf"
 ext.args = { "-r ${meta.library_type}" }
 ```
 
@@ -317,7 +317,7 @@ All modules MUST report the versions of all tools used within it.
 
 All reported versions MUST be without a leading `v` or similar (that is, must start with a numeric character), or for unversioned software, a Git SHA commit id (40 character hexadecimal string).
 
-```groovy title="main.nf"
+```nextflow title="main.nf"
 tuple val("${task.process}"), val('tool'), val('1.2.3'), emit: versions_tool, topic: versions
 ```
 
@@ -348,7 +348,7 @@ This feature allows collecting of version information from all tools without com
 
 See the [fastqc module](https://github.com/nf-core/modules/blob/0c47e4193ddde2c5edbc206b5420cbcbee5c9797/modules/nf-core/fastqc/main.nf#L16) as an example.
 
-```groovy title="main.nf"
+```nextflow title="main.nf"
 tuple val("${task.process}"), val('fastqc'), eval('fastqc --version | sed "/FastQC v/!d; s/.*v//"'), emit: versions_fastqc, topic: versions
 ```
 
@@ -357,7 +357,7 @@ For modules that use the template process directive, they will currently continu
 
 The topic output qualifier MUST still be used to send the `versions.yml` file to the versions topic:
 
-```groovy title="main.nf"
+```nextflow title="main.nf"
 path "versions.yml", emit: versions, topic: versions
 ```
 
@@ -391,7 +391,7 @@ For example, [homer/annotatepeaks module](https://github.com/nf-core/modules/blo
 
 Include the accompanying comments above the software packing directives and beside the version string.
 
-```groovy {4,15,21}
+```nextflow {4,15,21}
 process TOOL {
 
 ...
@@ -429,7 +429,7 @@ Each tool used in the module MUST have a dedicated version emission output chann
 
 If the tool does not provide a version via the command line, use `val()` with a hard-coded version string instead of `eval()`:
 
-```groovy title="main.nf"
+```nextflow title="main.nf"
 tuple val("${task.process}"), val('tool'), val('1.2.3'), emit: versions_tool, topic: versions
 ```
 
@@ -438,7 +438,7 @@ tuple val("${task.process}"), val('tool'), val('1.2.3'), emit: versions_tool, to
 The `when` statement MUST NOT be changed in the process definition.
 Supply `when` conditions using the `process.ext.when` directive in a configuration file instead.
 
-```groovy
+```nextflow
 process {
     withName: 'FOO' {
         ext.when = !params.skip_module
@@ -459,7 +459,7 @@ This is especially useful when using `process.scratch` (which executes the proce
 The stream output is preserved in the process's `.command.log` and `.command.err` files.
 If information is only written to files, it could be lost if the job scheduler reclaims the job allocation.
 
-```groovy {7-8}
+```nextflow {7-8}
 script:
 """
 tool \\
@@ -481,7 +481,7 @@ Since some shells also treat this stream redirection as an error, we use the for
 Similarly, if the tool itself captures STDOUT or STDERR to a file, it's best to redirect those to the corresponding streams as well.
 For instance, if a timeout aborts execution, it's often more reliable to have background tasks handle this redirection.
 
-```groovy {3-4}
+```nextflow {3-4}
 script:
 """
 tail -F stored_stderr.log >&2 &
@@ -496,7 +496,7 @@ wait
 Some tools do not exit with the expected exit code of 0 upon successful execution.
 In these cases, use the `||` operator to run another useful command when the exit code is not 0 (for example, testing if a file is not size 0).
 
-```groovy {6}
+```nextflow {6}
 script:
 """
 tool \\
@@ -600,7 +600,7 @@ Include the same variables (for example, `prefix`) and HEREDOC code in the stub 
 
 Include the creation of at least one file for every output channel (both mandatory and optional) in the stub block, generated with touch, for example:
 
-```groovy
+```nextflow
 stub:
 """
 touch ${prefix}.txt

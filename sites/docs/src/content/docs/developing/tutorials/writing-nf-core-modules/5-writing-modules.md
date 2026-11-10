@@ -15,7 +15,7 @@ The `environment.yml` file is a Conda environment specification.
 
 If `nf-core modules create` found your tool on Bioconda, the file already contains the channel, tool name, and version:
 
-```yaml
+```yaml title="environment.yml"
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/environment-schema.json
 channels:

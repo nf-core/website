@@ -42,7 +42,7 @@ Output file (and/or directory) names SHOULD consist of only `${prefix}` and the 
 - This provides re-usability, giving developers flexibility to name their output files when using the module.
 - As a result of using this syntax, if the module could _potentially_ have the same named inputs and outputs, add a line in the `script` section like below (another example [here](https://github.com/nf-core/modules/blob/e20e57f90b6787ac9a010a980cf6ea98bd990046/modules/lima/main.nf#L37)) which will raise an error asking the developer to change the `ext.prefix` variable to rename the output files so they don't clash.
 
-  ```groovy
+  ```nextflow
   script:
   if ("$bam" == "${prefix}.bam") error "Input and output names are the same, set prefix in module configuration to disambiguate!"
   ```

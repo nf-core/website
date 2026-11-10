@@ -1,7 +1,7 @@
 ---
-# Copied from docs/NfCoreUtilities.md of nf-core/nf-core-utils 0.5.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
-title: "nf-core Utilities Guide"
-shortTitle: "nf-core Utilities Guide"
+# Copied from docs/NfCoreUtilities.md of nf-core/nf-core-utils 0.7.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+title: nf-core Utilities Guide
+shortTitle: nf-core Utilities Guide
 weight: 1
 parentWeight: 3
 md_github_url: https://github.com/nf-core/nf-core-utils/blob/main/docs/NfCoreUtilities.md
@@ -126,7 +126,7 @@ include {
 
 // Advanced features for comprehensive pipelines
 include {
-    getCitation; autoToolCitationText;
+    citationsOnTheFly; getCitation; autoToolCitationText;
     generateComprehensiveReport
 } from 'plugin/nf-core-utils'
 ```
@@ -142,6 +142,13 @@ Understanding when and how to use each function is key to building robust pipeli
 ### 3.1. Pipeline Initialization Functions
 
 These functions should be called early in your pipeline to validate setup:
+
+Startup validation is owned by the pipeline. Loading the plugin does not run these
+checks automatically. Call each check once, using either the exported function or
+your existing template-local implementation, not both. Pipelines that previously
+relied only on the observer must add these calls. In particular, call
+`checkProfileProvided(args, params.monochrome_logs)` to reject a trailing comma in
+`-profile` with a nonzero exit status; observer-only runs do not validate it.
 
 | Function                                      | When to Use                            | Example                                              |
 | --------------------------------------------- | -------------------------------------- | ---------------------------------------------------- |
@@ -220,9 +227,33 @@ workflow {
 
 Citation management comes in two flavors: modern topic-channel based (recommended) and legacy file-based approaches.
 
-**Modern Topic Channel Citations (Recommended)**
+**Citations on the Fly (Recommended)**
 
-These functions work with the new topic channel citation system:
+The lowest-friction option: derive citations from the tools that actually ran (the `versions` topic every nf-core module already emits) and resolve their metadata from each module's `meta.yml`. No per-module changes, no hand-maintained tool list.
+
+| Function                                          | Purpose                                                | Usage Context       |
+| ------------------------------------------------- | ------------------------------------------------------ | ------------------- |
+| `toolsFromVersionsTopic(topicVersions)`           | Tool names that actually ran, from the `versions` data | Workflow completion |
+| `citationsOnTheFly(topicVersions, metaFilePaths)` | Citations for only the tools that ran, from `meta.yml` | Workflow completion |
+
+```nextflow title="Citations on the fly"
+include { citationsOnTheFly; methodsDescriptionText } from 'plugin/nf-core-utils'
+
+def meta_yml_paths = files("${projectDir}/modules/**/meta.yml").collect { it.toString() }
+
+ch_methods_description = channel.topic('versions')
+    .collect(flat: false)
+    .map { versions ->
+        def citations = citationsOnTheFly(versions, meta_yml_paths)
+        methodsDescriptionText("${projectDir}/assets/methods_description_template.yml", citations, [:])
+    }
+```
+
+See [NfcoreCitationUtils](utilities/NfcoreCitationUtils.md#citations-on-the-fly-recommended) for the full walkthrough.
+
+**Modern Topic Channel Citations**
+
+These functions work with a dedicated `citation` topic that each module emits to:
 
 | Function                                   | Purpose                                        | Usage Context        |
 | ------------------------------------------ | ---------------------------------------------- | -------------------- |

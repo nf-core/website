@@ -21,14 +21,20 @@ jobs:
           path: "nf-core-utils"
 
       - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+      - uses: jdx/mise-action@b44d12e7d0d8ee7461bb893e1b1993500433185b # v5.2.7
+        with:
+          install: false
 
-      # scripts/website-docs.py of nf-core-utils writes its user docs as docs pages, with their frontmatter
+      # The website-docs task of nf-core-utils writes its user docs as docs pages, with their frontmatter.
+      # It only needs uv, so mise doesn't install the plugin's own tools (Java, Nextflow, nf-test) for it.
       - name: Copy the docs
+        working-directory: nf-core-utils
         env:
           REF_NAME: ${{ inputs.ref_name }}
+          MISE_TASK_RUN_AUTO_INSTALL: "false"
         run: |
-          cd nf-core-utils
-          uv run scripts/website-docs.py --release "$REF_NAME"
+          mise trust .
+          mise run website-docs --release "$REF_NAME"
 
       - name: remove nf-core-utils code
         run: rm -rf nf-core-utils
@@ -52,7 +58,7 @@ jobs:
           git commit -m "[automated] Update nf-core-utils docs for ${{ inputs.ref_name }}"
 
       - name: Create PR
-        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8
+        uses: peter-evans/create-pull-request@15733dbdfeedb4f7fdb73d13c6f5ac83b710fab8 # v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Update nf-core-utils docs for ${{inputs.ref_name}}

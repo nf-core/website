@@ -1,4 +1,4 @@
-# merge\_markers
+# merge_markers
 
 #### `PipelineLint.merge_markers(){:python}`
 

@@ -32,7 +32,7 @@ The easiest way to install Java is using SDKMAN:
 3. Install Java:
 
    ```bash
-   sdk install java 17.0.10-tem
+   sdk install java
    ```
 
 4. Confirm that Java is installed correctly:

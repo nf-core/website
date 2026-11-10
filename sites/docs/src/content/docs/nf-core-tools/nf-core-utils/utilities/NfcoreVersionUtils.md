@@ -1,7 +1,7 @@
 ---
-# Copied from docs/utilities/NfcoreVersionUtils.md of nf-core/nf-core-utils 0.5.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
-title: "NfcoreVersionUtils"
-shortTitle: "NfcoreVersionUtils"
+# Copied from docs/utilities/NfcoreVersionUtils.md of nf-core/nf-core-utils 0.7.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+title: NfcoreVersionUtils
+shortTitle: NfcoreVersionUtils
 weight: 9
 md_github_url: https://github.com/nf-core/nf-core-utils/blob/main/docs/utilities/NfcoreVersionUtils.md
 ---
@@ -40,7 +40,7 @@ String getWorkflowVersion(String version = null, String commitId = null)
 **Parameters:**
 
 - `version` (String, optional): Explicit version string to use (defaults to workflow.manifest.version)
-- `commitId` (String, optional): Explicit commit ID to use (defaults to workflow.commitId)
+- `commitId` (String, optional): Explicit commit ID to use (defaults to workflow.commitId when no `version` is given, so runs from a repository get the `-g<sha>` suffix)
 
 **Returns:**
 
@@ -247,8 +247,8 @@ String processMixedVersionSources(List<List> topicVersions, List<String> version
 
 **Parameters:**
 
-- `topicVersions` (List<List>): Topic channel data in `[process, name, version]` format
-- `versionsFiles` (List<String>): List of paths to legacy `versions.yml` files
+- `topicVersions` (List\<List\>): Topic channel data in `[process, name, version]` format
+- `versionsFiles` (List\<String\>): List of paths to legacy `versions.yml` files
 
 **Returns:**
 
@@ -366,7 +366,7 @@ String generateYamlFromEvalSyntax(List<List> evalData, boolean includeWorkflow =
 
 **Parameters:**
 
-- `evalData` (List<List>): Topic channel data in `[process, name, version]` format
+- `evalData` (List\<List\>): Topic channel data in `[process, name, version]` format
 - `includeWorkflow` (boolean, optional): Include workflow version information (defaults to true)
 
 **Returns:**
@@ -429,7 +429,7 @@ String processVersionsFromTopic(List<List> topicData)
 
 **Parameters:**
 
-- `topicData` (List<List>): Topic channel data in `[process, name, version]` format
+- `topicData` (List\<List\>): Topic channel data in `[process, name, version]` format
 
 **Returns:**
 
@@ -498,7 +498,7 @@ String processVersionsFromFile(List<String> versionsFiles)
 
 **Parameters:**
 
-- `versionsFiles` (List<String>): List of paths to `versions.yml` files
+- `versionsFiles` (List\<String\>): List of paths to `versions.yml` files
 
 **Returns:**
 
@@ -968,4 +968,4 @@ workflow {
 }
 ```
 
-For more information on version management and topic channels, see the [Nextflow documentation](https://www.nextflow.io/docs/latest/channel.html#topic) and [nf-core best practices](https://nf-co.re/docs/contributing/modules#software-versions).
+For more information on version management and topic channels, see the [Nextflow documentation](https://www.nextflow.io/docs/latest/channel.html#topic) and [nf-core best practices](https://nf-co.re/docs/specifications/components/modules/general#emission-of-versions).

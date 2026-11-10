@@ -1,7 +1,7 @@
 ---
-# Copied from docs/utilities/NfcoreCitationUtils.md of nf-core/nf-core-utils 0.5.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
-title: "NfcoreCitationUtils"
-shortTitle: "NfcoreCitationUtils"
+# Copied from docs/utilities/NfcoreCitationUtils.md of nf-core/nf-core-utils 0.7.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+title: NfcoreCitationUtils
+shortTitle: NfcoreCitationUtils
 weight: 4
 md_github_url: https://github.com/nf-core/nf-core-utils/blob/main/docs/utilities/NfcoreCitationUtils.md
 ---
@@ -25,6 +25,149 @@ Similar to version management, the citation system supports a three-phase migrat
 This migration strategy ensures backward compatibility while enabling pipelines to benefit from runtime-accurate citations where only tools that actually execute are included in the final reports.
 
 ## Available Functions
+
+### Citations on the Fly (Recommended)
+
+The lowest-friction way to make citations reflect the tools a pipeline actually ran — generated _on the fly_ from the run itself, not from a hand-maintained list. It requires **no per-module changes**: every nf-core module already emits a `[process, tool, version]` tuple to the `versions` topic when it executes, so that topic _is_ the list of tools that ran. These functions intersect that list with citation metadata parsed from each module's `meta.yml`, so only tools that actually executed are cited.
+
+Two functions cover the flow:
+
+| Function                                          | Purpose                                                 | When to call        |
+| ------------------------------------------------- | ------------------------------------------------------- | ------------------- |
+| `toolsFromVersionsTopic(topicVersions)`           | Reduce collected `versions` data to the tool names used | Workflow completion |
+| `citationsOnTheFly(topicVersions, metaFilePaths)` | Citations for only the tools that ran, from `meta.yml`  | Workflow completion |
+
+---
+
+#### `citationsOnTheFly()`
+
+`citationsOnTheFly(List topicVersions, List<String> metaFilePaths)`
+
+**Description:**
+Builds a citations map for **only the tools that ran**, by intersecting the `versions` topic (what executed) with citations parsed from the supplied `meta.yml` files (the citation source). The returned map plugs directly into `toolCitationText()`, `toolBibliographyText()`, and `methodsDescriptionText()`.
+
+Each **short citation** is formatted for a methods paragraph — `tool (version, Author (year))` — with the version taken from the `versions` topic and the author/year from `meta.yml`. The reference segment degrades gracefully: short author + year → `doi: …` → homepage url → description. So richer `meta.yml` files produce richer citations:
+
+!!! note "HTML output"
+Short citations are HTML, meant for the MultiQC methods section: the reference links to the DOI (else the homepage) and `et al.` is wrapped in `<em>`. The table below shows the rendered text. Save `toolCitationText(citations)` to an `.html` file, such as `auto_citations.html`, not a `.txt` file. To reuse a citation in a manuscript, open that file or the MultiQC report in a browser and copy the rendered text. Pasting the HTML source without formatting does not remove literal tags.
+
+!!! info "Harvard style"
+Short citations follow the Harvard style recommended by [nf-core/modules](https://github.com/nf-core/modules/blob/master/modules/meta-schema.json) for `meta.yml` author fields: `Last, F. M.` for author names, with `Author (year)` for single authors and `Author et al. (year)` for multiple.
+For example, `Andrews, S.` renders as `Andrews (2010)`, while `van der Walt, S.` preserves the full surname. Legacy `Last Initials` author lists remain supported, including flat `author`/`year` metadata when no `publication` object is present.
+
+| `meta.yml` fields present                           | Short citation                                       |
+| --------------------------------------------------- | ---------------------------------------------------- |
+| `publication.author`, `publication.year`            | `fastqc (0.12.1, Andrews (2010))`                    |
+| `publication.author` (multiple), `publication.year` | `samtools (1.21, Danecek et al. (2021))`             |
+| `doi` only                                          | `multiqc (1.21, doi: 10.1093/bioinformatics/btw354)` |
+| `homepage` only                                     | `seqtk (1.4, https://github.com/lh3/seqtk)`          |
+
+The full `bibliography` entry includes author, year, title and source when available, followed by a DOI link or, when no DOI is supplied, the homepage link. This applies to both nested publication metadata and legacy flat fields.
+
+**Function Signature:**
+
+```nextflow
+Map citationsOnTheFly(List topicVersions, List<String> metaFilePaths)
+```
+
+**Parameters:**
+
+- `topicVersions` (List): Collected `versions` topic data — `[process, tool, version]` tuples. Collect with `.collect(flat: false)` so the tuples are preserved (plain `.collect()` flattens them, and the function logs a warning if it receives flattened data).
+- `metaFilePaths` (List\<String\>): Paths to module `meta.yml` files to resolve citation metadata from.
+- `extraTools` (List\<String\>, optional): Tool names to cite even though they never emit a version — e.g. a MultiQC plugin like `multiqcsav`. They're resolved from `meta.yml` like everything else (with no version segment), so you can still add a tool by hand: `citationsOnTheFly(versions, meta_yml_paths, ['multiqcsav'])`.
+
+**Returns:**
+
+- `Map`: Citations keyed by tool name (`[citation: ..., bibliography: ...]`), restricted to tools that ran.
+
+:::note{title="Tool-name matching"}
+Tool names from the `versions` topic are matched against `meta.yml` tool keys **exactly first, then case-insensitively** (so `FastQC` lines up with `fastqc`). A tool that ran but has no matching `meta.yml` citation entry is logged as a warning — add it to that module's `meta.yml` `tools:` section to silence it.
+:::
+
+**Pipeline Integration (`utils_nfcore_<pipeline>_pipeline/main.nf`):**
+
+This is the reproducible replacement for a hand-maintained `toolReferencesMap` and a static `toolCitationText()` / `toolBibliographyText()`. Wire it into the methods-description channel:
+
+```nextflow title="subworkflows/local/utils_nfcore_<pipeline>_pipeline/main.nf"
+include { citationsOnTheFly; methodsDescriptionText } from 'plugin/nf-core-utils'
+
+// Resolve every module meta.yml once (citation metadata source).
+// files() returns an empty list when nothing matches the glob.
+def meta_yml_paths = files("${projectDir}/modules/**/meta.yml").collect { it.toString() }
+
+ch_methods_description = channel.topic('versions')   // every module emits here when it runs
+    .collect(flat: false)                            // flat: false keeps each [process, tool, version] tuple
+    .map { topic_versions ->
+        // Citations for ONLY the tools that ran, resolved from meta.yml
+        def citations = citationsOnTheFly(topic_versions, meta_yml_paths)
+        methodsDescriptionText(
+            "${projectDir}/assets/methods_description_template.yml",
+            citations,
+            [:]
+        )
+    }
+
+ch_multiqc_files = ch_multiqc_files.mix(
+    ch_methods_description.collectFile(name: 'methods_description_mqc.yaml', sort: true)
+)
+```
+
+**Before / After:**
+
+```nextflow title="Before — static, hand-maintained"
+// Every tool listed by hand; cited even if it never ran
+def citation_text = [
+    "Tools used in the workflow included:",
+    "BWAMEM2 (Vasimuddin et al. 2019)",
+    "FastQC (Andrews 2010),",
+    // ...one line per tool, forever...
+].join(' ').trim()
+```
+
+```nextflow title="After — citations on the fly, zero maintenance"
+// Cites exactly the tools that ran, metadata from each module's meta.yml
+def citations = citationsOnTheFly(topic_versions, meta_yml_paths)
+def citation_text = toolCitationText(citations)
+```
+
+---
+
+#### `toolsFromVersionsTopic()`
+
+**Description:**
+Extracts the unique, sorted set of tool names that actually executed from collected `versions` topic data. Useful on its own — e.g. for conditional logic like `if ('star' in tools)`. (`citationsOnTheFly()` uses it internally to select which citations to emit.)
+
+**Function Signature:**
+
+```nextflow
+List<String> toolsFromVersionsTopic(List topicVersions)
+```
+
+**Parameters:**
+
+- `topicVersions` (List): Collected `versions` topic data — `[process, tool, version]` tuples (collect with `.collect(flat: false)`).
+
+**Returns:**
+
+- `List<String>`: Sorted, de-duplicated tool names. Empty list for `null`/empty input.
+
+**Usage Example:**
+
+```nextflow
+include { toolsFromVersionsTopic } from 'plugin/nf-core-utils'
+
+channel.topic('versions').collect(flat: false).map { versions ->
+    def tools = toolsFromVersionsTopic(versions)
+    log.info "Tools that ran: ${tools.join(', ')}"
+    // e.g. "Tools that ran: fastqc, multiqc, samtools"
+}
+```
+
+:::tip{title="meta.yml vs. the citation topic"}
+`citationsOnTheFly()` keeps the citation source as canonical `meta.yml` files while gating by what ran — no need to add `getCitation(...)` emissions to every module. If you have already migrated modules to emit a dedicated `citation` topic, the [`getCitation` + `autoToolCitationText`](#getcitation) path below is equivalent and needs no `meta.yml` paths.
+:::
+
+---
 
 ### Modern Approach Functions (Recommended)
 
@@ -125,9 +268,9 @@ workflow {
     def citation_ch = channel.topic('citations').collect()
 
     citation_ch.map { citations ->
-        def citationText = autoToolCitationText(citations)
-        log.info "Generated citations: ${citationText}"
-        // Returns: "Tools used in the workflow included: fastqc (Andrews et al. 2010), multiqc (Ewels et al. 2016)."
+    def citationText = autoToolCitationText(citations)
+    log.info "Generated citations: ${citationText}"
+    // Returns: "Tools used in the workflow included: fastqc (Andrews et al. (2010)), multiqc (Ewels et al. (2016))."
     }
 }
 ```
@@ -200,7 +343,7 @@ include { generateModuleToolCitation } from 'plugin/nf-core-utils'
 
 // Extract citations from specific module
 def fastqcCitations = generateModuleToolCitation('modules/nf-core/fastqc/meta.yml')
-// Returns: [fastqc: [citation: 'fastqc (Andrews et al. 2010)', bibliography: '<li>Andrews S...</li>']]
+// Returns: [fastqc: [citation: 'fastqc (Andrews et al. (2010))', bibliography: '<li>Andrews S...</li>']]
 
 log.info "FASTQC citations: ${fastqcCitations}"
 ```
@@ -238,7 +381,7 @@ allCitations.putAll(generateModuleToolCitation('modules/nf-core/multiqc/meta.yml
 
 def citationText = toolCitationText(allCitations)
 log.info "Citations: ${citationText}"
-// Returns: "Tools used in the workflow included: fastqc (Andrews et al. 2010), multiqc (Ewels et al. 2016)."
+// Returns: "Tools used in the workflow included: fastqc (Andrews et al. (2010)), multiqc (Ewels et al. (2016))."
 ```
 
 ---
@@ -343,7 +486,7 @@ Map collectCitationsFromFiles(List<String> metaFilePaths)
 
 **Parameters:**
 
-- `metaFilePaths` (List<String>): List of paths to module meta.yml files
+- `metaFilePaths` (List\<String\>): List of paths to module meta.yml files
 
 **Returns:**
 
@@ -382,8 +525,8 @@ Map processMixedCitationSources(List<List> topicCitations, List<String> citation
 
 **Parameters:**
 
-- `topicCitations` (List<List>): Citation data from topic channels
-- `citationFiles` (List<String>): List of meta.yml file paths
+- `topicCitations` (List\<List\>): Citation data from topic channels
+- `citationFiles` (List\<String\>): List of meta.yml file paths
 
 **Returns:**
 
@@ -466,7 +609,7 @@ Map processCitationsFromTopic(List<List> topicData)
 
 **Parameters:**
 
-- `topicData` (List<List>): List of `[module, tool, citation_data]` tuples
+- `topicData` (List\<List\>): List of `[module, tool, citation_data]` tuples
 
 **Returns:**
 
@@ -509,7 +652,7 @@ Map processCitationsFromFile(List<String> citationFiles)
 
 **Parameters:**
 
-- `citationFiles` (List<String>): List of file paths to meta.yml files
+- `citationFiles` (List\<String\>): List of file paths to meta.yml files
 
 **Returns:**
 
@@ -710,8 +853,8 @@ Test citation processing across migration stages:
 test("Modern topic channel citations") {
     when {
         def topicCitations = [
-            ['FASTQC', 'fastqc', [doi: '10.1093/bioinformatics/btv033', author: 'Andrews S']],
-            ['MULTIQC', 'multiqc', [doi: '10.1093/bioinformatics/btw354', author: 'Ewels P']]
+            ['FASTQC', 'fastqc', [doi: '10.1093/bioinformatics/btv033', publication: [author: 'Andrews S']]],
+            ['MULTIQC', 'multiqc', [doi: '10.1093/bioinformatics/btw354', publication: [author: 'Ewels P']]]
         ]
         def result = autoToolCitationText(topicCitations)
     }
@@ -957,4 +1100,4 @@ workflow {
 }
 ```
 
-For more information on citation management and topic channels, see the [Nextflow documentation](https://www.nextflow.io/docs/latest/channel.html#topic) and [nf-core modules documentation](https://nf-co.re/docs/contributing/modules#meta-yml).
+For more information on citation management and topic channels, see the [Nextflow documentation](https://www.nextflow.io/docs/latest/channel.html#topic) and [nf-core modules documentation](https://nf-co.re/docs/specifications/components/modules/documentation#documenting-of-all-tools).

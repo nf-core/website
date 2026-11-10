@@ -1,7 +1,7 @@
 ---
-# Copied from docs/utilities/NfcoreConfigValidator.md of nf-core/nf-core-utils 0.5.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
-title: "Configuration Validation Tutorial"
-shortTitle: "Configuration Validation Tutorial"
+# Copied from docs/utilities/NfcoreConfigValidator.md of nf-core/nf-core-utils 0.7.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+title: Configuration Validation Tutorial
+shortTitle: Configuration Validation Tutorial
 weight: 5
 md_github_url: https://github.com/nf-core/nf-core-utils/blob/main/docs/utilities/NfcoreConfigValidator.md
 ---
@@ -36,6 +36,15 @@ The utility provides two essential validation functions:
 
 - **`checkConfigProvided()`**: Validates that custom configuration or profiles are being used
 - **`checkProfileProvided(args, monochromeLogs)`**: Validates command-line profile arguments and warns about common mistakes
+
+These checks are explicit: the plugin's observer does not run them. Call each once
+during pipeline initialization, or retain the equivalent template-local check.
+Do not call both implementations of the same check. Pipelines that only load the
+plugin must add the calls if they want validation, including trailing-comma
+rejection. An uncaught profile validation error aborts Nextflow with a nonzero exit
+status and a single `ERROR` label (with optional colour); missing custom config and
+positional arguments remain warnings. Call validation from pipeline initialization,
+not an observer callback, where Nextflow catches and logs exceptions.
 
 ## 2. Getting Started with Configuration Validation
 

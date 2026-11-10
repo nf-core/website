@@ -7,10 +7,11 @@ startDate: "2026-10-21"
 startTime: "16:00+02:00"
 endDate: "2026-10-21"
 endTime: "17:00+02:00"
+youtubeEmbed: https://youtu.be/F_lyQnR7jvc
 locations:
   - name: Online
     links:
-      - https://rediris.zoom.us/j/96536598788
+      - https://youtu.be/F_lyQnR7jvc
 ---
 
 October 2026 talk of the monthly meeting of the [_#animal-genomics_ special interest group](/special-interest-groups/animal-genomics).

@@ -6,7 +6,7 @@
 
     let contributors = contributors_yml.contributors
         .filter((contributor) => contributor.image_fn)
-        .sort((a, b) => 0.5 - Math.random());
+        .sort(() => 0.5 - Math.random());
 
     let displayContributors = $state(contributors.slice(0, 10)); // start by displaying 10 contributors
 

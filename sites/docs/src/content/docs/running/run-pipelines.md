@@ -15,14 +15,16 @@ For a hands-on introduction, see the [Run your first pipeline](../get_started/ru
 
 All nf-core pipelines follow a consistent command structure:
 
-```bash
-nextflow run nf-core/<pipeline> -r <version> -profile <config-name> <pipeline-parameters>
+```bash placeholder="<pipeline>,<version>,<config>,<pipeline-parameters>"
+# [!ref] The pipeline name (for example, `nf-core/rnaseq` or `nf-core/sarek`).
+nextflow run nf-core/<pipeline> \
+  # [!ref] The version, tag, or commit of the pipeline to execute (for example, `1.2.0`, `b52fa53`). Optional but recommended.
+  -r <version> \
+  # [!ref] Configuration profile(s) for software dependencies and execution environment.
+  -profile <config> \
+  # [!ref] Pipeline-specific parameters and Nextflow options.
+  <pipeline-parameters>
 ```
-
-- `nf-core/<pipeline>`: The pipeline name (for example, `nf-core/rnaseq` or `nf-core/sarek`).
-- `-r <version>`: The version, tag, or commit of the pipeline to execute (for example, `1.2.0`, `b52fa53`). Optional but recommended.
-- `-profile <config-name>`: Configuration profile(s) for software dependencies and execution environment.
-- `<pipeline-parameters>`: Pipeline-specific parameters and Nextflow options.
 
 ## Common operations
 
@@ -32,7 +34,7 @@ The following sections cover common operations for running nf-core pipelines.
 
 All nf-core pipelines include a `test` profile with small datasets for verifying your setup:
 
-```bash
+```bash placeholder="<pipeline>,<config>"
 nextflow run nf-core/<pipeline> -profile test,<config> --outdir results
 ```
 
@@ -73,7 +75,7 @@ Most nf-core pipelines use a samplesheet to specify input files:
 
 2. Run the pipeline with your samplesheet:
 
-   ```bash
+   ```bash placeholder="<pipeline>,<config>"
    nextflow run nf-core/<pipeline> \
      -profile <config> \
      --input samplesheet.csv \
@@ -107,7 +109,7 @@ Parameter files let you specify pipeline options in a structured format rather t
 
 2. Run the pipeline with your parameter file:
 
-   ```bash
+   ```bash placeholder="<pipeline>,<config>"
    nextflow run nf-core/<pipeline> \
      -profile <config> \
      -params-file params.json
@@ -123,7 +125,7 @@ Create a custom configuration file to specify execution settings:
 
 1. Create a file (for example, `custom.config`) with your configuration:
 
-   ```groovy
+   ```nextflow
    // Resource requests for all processes
    process {
      cpus   = 8
@@ -140,7 +142,7 @@ Create a custom configuration file to specify execution settings:
 
 2. Apply your configuration with the `-c` flag:
 
-   ```bash
+   ```bash placeholder="<pipeline>,<config>"
    nextflow run nf-core/<pipeline> \
      -profile <config> \
      -c custom.config \
@@ -154,7 +156,7 @@ Common configuration scenarios include:
 
 - Adjust resource requests
 
-  ```groovy
+  ```nextflow
   process {
     withName: 'PROCESS_NAME' {
       cpus   = 16
@@ -165,7 +167,7 @@ Common configuration scenarios include:
 
 - Limit maximum resource requests
 
-  ```groovy
+  ```nextflow
   process {
     resourceLimits = [
         memory: 1000.GB,
@@ -177,7 +179,7 @@ Common configuration scenarios include:
 
 - Configure cluster execution
 
-  ```groovy
+  ```nextflow
   process {
     executor = 'slurm'
     queue    = 'high-priority'
@@ -187,7 +189,7 @@ Common configuration scenarios include:
 
 - Set custom paths
 
-  ```groovy
+  ```nextflow
   params {
     custom_config_base = '/path/to/configs'
   }
@@ -203,7 +205,7 @@ For detailed configuration options, see the [Configuration guide](./configuratio
 
 Add `-resume` to continue from where a pipeline stopped (due to errors or cancellation):
 
-```bash
+```bash placeholder="<pipeline>,<config>"
 nextflow run nf-core/<pipeline> \
   -profile <config> \
   --input samplesheet.csv \

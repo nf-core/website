@@ -1,7 +1,7 @@
 ---
-# Copied from docs/NextflowPipelineExtension.md of nf-core/nf-core-utils 0.5.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
-title: "Nextflow Pipeline Extension"
-shortTitle: "Nextflow Pipeline Extension"
+# Copied from docs/NextflowPipelineExtension.md of nf-core/nf-core-utils 0.7.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+title: Nextflow Pipeline Extension
+shortTitle: Nextflow Pipeline Extension
 weight: 2
 parentWeight: 3
 md_github_url: https://github.com/nf-core/nf-core-utils/blob/main/docs/NextflowPipelineExtension.md
@@ -128,6 +128,8 @@ log.info "Full version: ${version_str}"
 ```console title="Output"
 Full version: v1.0.0-gabc1234
 ```
+
+Called without arguments, `getWorkflowVersion()` takes both from the running workflow, so it gives the same result.
 
 **Function Parameters**
 

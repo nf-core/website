@@ -2,7 +2,7 @@
 // Heavily inspired by Astro Starlight
 
 import { type SidebarEntry } from "@utils/types";
-import { sanitizeNfCoreLabels } from "@utils/functions";
+import { flattenSidebar, sanitizeNfCoreLabels } from "@utils/functions";
 
 import { Icon } from "astro-icon/components";
 
@@ -15,15 +15,6 @@ let { items, nested = false } = Astro.props;
 if (!items) {
     items = [];
 }
-
-const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
-    if (!sidebar) {
-        return [];
-    }
-    return sidebar.flatMap((entry) =>
-        entry.type === "group" && entry.entries ? flattenSidebar(entry.entries) : entry,
-    );
-};
 ---
 
 <script is:inline>

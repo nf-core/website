@@ -38,23 +38,44 @@ Available for:
 - [nf-core/website](https://github.com/nf-core/website/blob/main/.github/workflows/fix-linting.yml)
   :::
 
-### `@nf-core-bot update gpu snapshot path: $PATH`
+### `@nf-core-bot update gpu snapshot`
 
 To update outdated nf-test snapshots for GPU-based tests, comment on the PR:
 
 ```text
-@nf-core-bot update gpu snapshot path: $PATH
+@nf-core-bot update gpu snapshot
 ```
 
-Replace `$PATH` with the path to the test file.
-For example, `modules/nf-core/parabricks/applybqsr/tests/main.nf.test`.
+Without a path, the bot updates the snapshots of the GPU tests related to the changes in the PR.
+It finds tests tagged `gpu` or `gpu_highmem`.
+
+To limit the update to specific tests, add a path and, optionally, an extra tag:
+
+```text
+@nf-core-bot update gpu snapshot path: $PATH tag: $TAG
+```
+
+- `$PATH` is a test file, a directory, or a glob below a component, for example:
+  - `modules/nf-core/parabricks/applybqsr/tests/main.nf.test`
+  - `modules/nf-core/parabricks/rnafq2bam/tests`
+  - `modules/nf-core/parabricks/*`
+- `$TAG` is an nf-test tag to run in addition to `gpu`, for example `gpu_highmem`.
+
+The command must be on its own line, in lowercase, with a space after `path:` and `tag:`, and `path:` before `tag:`.
+Paths must start with `modules/nf-core/<name>` or `subworkflows/nf-core/<name>`.
 
 The workflow will:
 
 1. React with 👀
-1. Update the snapshots
-1. Commit and push the changes
-1. React with 🎉 on success
+1. Run the selected tests with `--update-snapshot` on a GPU runner (a larger one for `gpu_highmem` tests)
+1. Commit and push the changed snapshots
+
+If the command is invalid, no tests match, or a step fails, the bot reacts with 👎.
+Check the workflow run for details.
+
+:::note
+The bot only updates existing snapshot files and only changes snapshots of the tests that were run.
+:::
 
 :::info
 Available for: [nf-core/modules](https://github.com/nf-core/modules/blob/master/.github/workflows/update-gpu-snapshot.yml).

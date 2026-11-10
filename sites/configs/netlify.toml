@@ -2,7 +2,7 @@
 external_node_modules = ["vscode-oniguruma","shiki"]
 node_bundler = "esbuild"
 [build]
-environment = { NODE_VERSION = "22" }
+environment = { NODE_VERSION = "24" }
 command = "npm run build -w sites/configs"
 ignore = "[ \"$CACHED_COMMIT_REF\" != \"$COMMIT_REF\" ] && git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF sites/main-site/src/components sites/main-site/src/layouts sites/main-site/src/styles sites/main-site/src/icons sites/main-site/src/assets sites/main-site/src/config sites/main-site/utils bin/satteri astro.config.base.mjs package.json package-lock.json sites/configs public/pipelines.json" # don't build if there are no changes
 [images]

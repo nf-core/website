@@ -1,7 +1,7 @@
 ---
-# Copied from docs/utilities/NfcoreReportingUtils.md of nf-core/nf-core-utils 0.5.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
-title: "MultiQC Integration Tutorial"
-shortTitle: "MultiQC Integration Tutorial"
+# Copied from docs/utilities/NfcoreReportingUtils.md of nf-core/nf-core-utils 0.7.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+title: MultiQC Integration Tutorial
+shortTitle: MultiQC Integration Tutorial
 weight: 8
 md_github_url: https://github.com/nf-core/nf-core-utils/blob/main/docs/utilities/NfcoreReportingUtils.md
 ---
@@ -125,7 +125,7 @@ static Map workflowSummaryMQC(Map summary, List<String> nfMetadataList, Map resu
 **Parameters:**
 
 - `summary` (Map): Map of workflow parameters and metadata
-- `nfMetadataList` (List<String>): List of metadata fields to include from workflow
+- `nfMetadataList` (List\<String\>): List of metadata fields to include from workflow
 - `results` (Map): Map of pipeline results and statistics
 
 **Returns:**
@@ -744,4 +744,4 @@ workflow MEMORY_EFFICIENT_REPORTING {
 }
 ```
 
-For more information on MultiQC integration and pipeline reporting, see the [MultiQC documentation](https://multiqc.info/) and [nf-core reporting guidelines](https://nf-co.re/docs/contributing/pipelines/reporting).
+For more information on MultiQC integration and pipeline reporting, see the [MultiQC documentation](https://multiqc.info/) and [nf-core reporting guidelines](https://nf-co.re/docs/developing/components/automated-methods-text).
