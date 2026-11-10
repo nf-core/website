@@ -163,7 +163,6 @@ The output section of the module will change like this:
 + record(process: "${task.process}", tool: 'samtools', version: eval('samtools version | sed "1!d;s/.* //"')) >> 'versions'
 ```
 
-
 ## Changes to `ext` variables
 
 As seen in the input of the module, some extra inputs were added that have a similar function to the current `ext` variables.
