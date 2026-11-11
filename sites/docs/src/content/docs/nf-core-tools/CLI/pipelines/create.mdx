@@ -7,6 +7,11 @@ weight: 10
 
 import Features from "@components/Features.astro";
 
+:::warning{title="Propose your pipeline first"}
+If you plan to contribute your pipeline to nf-core, discuss your idea and open a proposal before you run this command.
+See [Propose before you build](/docs/contributing/contribute-new-pipelines#propose-before-you-build).
+:::
+
 The `create` subcommand makes a new pipeline using the nf-core base template.
 With a given pipeline name, description and author, it makes a starter pipeline which follows nf-core best practices.
 
@@ -21,12 +26,6 @@ Once you have run the command, create a new empty repository on GitHub under you
 You can then continue to edit, commit and push normally as you build your pipeline.
 
 Please see the [nf-core documentation](/docs/tutorials/adding_a_pipeline/overview) for a full walkthrough of how to create a new nf-core workflow.
-
-:::warning
-Remember to come and discuss your idea for a pipeline as early as possible!
-
-See the [documentation](/docs/tutorials/adding_a_pipeline/move_to_nf-core_org) for instructions.
-:::
 
 If you prefer, you can supply the pipeline metadata also as command line arguments.
 See `nf-core pipelines create --help` for more information.

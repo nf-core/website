@@ -10,6 +10,10 @@ The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as describ
 
 All nf-core pipelines MUST be built using the nf-core template.
 
+:::note
+Propose your pipeline to the community before you create it. See [Propose before you build](/docs/contributing/contribute-new-pipelines#propose-before-you-build).
+:::
+
 Workflows MUST be started using the `nf-core pipelines create` command which makes a new git repository and the initial commits and branches.
 This ensures that the automated sync process that keeps all nf-core pipelines up to date can work.
 See the [sync docs](/docs/tutorials/sync/overview) for details.
