@@ -193,7 +193,7 @@ modules/nf-core/<tool>/tests/
 
 For an example, see the [`ribodetector` GPU tests](https://github.com/nf-core/modules/tree/master/modules/nf-core/ribodetector/tests).
 
-:::caution{title="GPU concurrency under Singularity"}
+:::warning{title="GPU concurrency under Singularity"}
 Multiple concurrent GPU processes sharing a single GPU can deadlock under Singularity.
 Docker's NVIDIA runtime handles GPU memory arbitration, but Singularity does not.
 This can happen in CI (where all tasks share one GPU), on HPC nodes with a local executor, or any setup where multiple GPU tasks land on the same machine.

@@ -57,7 +57,7 @@ nextflow run nf-core/methylseq \
     --input samplesheet.csv --genome GRCh38
 ```
 
-:::caution{title="`-profile gpu` applies to the whole run"}
+:::warning{title="`-profile gpu` applies to the whole run"}
 In this pattern, the `gpu` profile might set the container engine's GPU flags globally (`docker.runOptions`, `singularity.runOptions`, etc.), so every process in the run gets them — not just the GPU-accelerated one - check the pipeline configuration.
 
 Check the pipeline's usage docs for whether you also need to set the `accelerator` directive yourself in a custom config — some pipelines only set it automatically on cloud/Kubernetes executors (`awsbatch`, `google-batch`, `k8s`, `hq`), leaving it up to you elsewhere.
