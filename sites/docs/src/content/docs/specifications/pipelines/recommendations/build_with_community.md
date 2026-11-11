@@ -20,5 +20,5 @@ This includes any necessary adjustments, which are often easier to do early in t
 :::
 
 :::tip
-See [Propose before you build](/docs/contributing/contribute-new-pipelines#propose-before-you-build) for how proposing early works in practice, including ownership, publication, and private development.
+See [Propose before you build](../../../contributing/contribute-new-pipelines#propose-before-you-build) for guidance on ownership, publication, and private development.
 :::

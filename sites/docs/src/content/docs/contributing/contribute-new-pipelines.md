@@ -8,15 +8,17 @@ nf-core pipelines use a standardized template that provides file structure, boil
 By starting with the nf-core template, you benefit from automated testing, consistent structure, and easier integration with the nf-core community.
 
 Follow these steps to create a new nf-core pipeline, from initial proposal through to development.
-You will start by proposing your pipeline to the community before you write any code.
-Once your proposal is accepted, you will create the pipeline from the template and develop it on your own GitHub account.
-When it is ready, you can request to move the repository to the nf-core GitHub organisation for final development, review, and release.
+You start by proposing your pipeline to the community, before you write any code.
+After your proposal is accepted, you create the pipeline from the template and develop it on your own GitHub account.
+When the pipeline is ready, you request to move the repository to the nf-core GitHub organisation for final development, review, and release.
 
 :::warning{title="Propose your pipeline before you build it"}
 nf-core is a community of builders, not a registry of finished pipelines.
 If you plan to contribute your pipeline to nf-core, discuss your idea and open a proposal before you start development.
-See [Propose before you build](#propose-before-you-build) for why this matters.
+See [Propose before you build](#propose-before-you-build).
 :::
+
+To contribute features, bug fixes, or improvements to existing nf-core pipelines, see [Contributing to existing pipelines](./contribute-existing-pipelines).
 
 :::note{title="Prerequisites"}
 You will need the following to get started:
@@ -30,51 +32,48 @@ You will need the following to get started:
 
 :::
 
-:::tip
-To contribute features, bug fixes, or improvements to existing nf-core pipelines, see [Contributing to existing pipelines](/docs/contributing/contribute-existing-pipelines).
-:::
-
 ## Propose before you build
 
 Not every pipeline built with nf-core tooling needs to become an nf-core pipeline.
 You can use the nf-core template, tools, and components for your own pipelines without contributing them to nf-core.
-See [External use of nf-core resources](/docs/developing/external-use).
+See [External use of nf-core resources](../developing/external-use).
 
 If you plan to contribute your pipeline to nf-core, involve the community from the start.
-nf-core is a community of builders, not a registry of pipelines.
-You should discuss your idea and [propose your pipeline before starting work on it](/docs/specifications/pipelines/recommendations/build_with_community), rather than proposing a pipeline that is already complete.
-Proposals are public so that they can start a collaboration.
+[Discuss your idea and propose your pipeline before you start work on it](../specifications/pipelines/recommendations/build_with_community), not after the pipeline is complete.
+Proposals are public so that you can find collaborators.
 
-Proposing early has several benefits:
+Propose early to:
 
-- **You avoid duplicated work.** There must be only [a single pipeline for a given data and analysis type](/docs/specifications/pipelines/requirements/workflow_specificity).
+- Avoid duplicated work.
+  nf-core allows only [one pipeline for a given data and analysis type](../specifications/pipelines/requirements/workflow_specificity).
   If a pipeline with a similar purpose already exists, or is proposed before yours, you may be asked to contribute to it instead.
-- **You get feedback while changes are cheap.** Design adjustments needed to meet the [nf-core specifications](/docs/specifications/pipelines/overview) are easier early in development than after the pipeline is complete.
-- **You find collaborators.** Other community members working on similar data can help develop, test, and maintain the pipeline.
-- **You confirm the pipeline is suitable for nf-core** before you put time into development.
+- Get feedback while changes are cheap.
+  Changes needed to meet the [nf-core specifications](../specifications/pipelines/overview) are easier early in development than after the pipeline is complete.
+- Find collaborators who can help develop, test, and maintain the pipeline.
+- Confirm that the pipeline is suitable for nf-core before you put time into development.
 
-If you are unsure whether your idea fits, ask on the [#help](https://nfcore.slack.com/channels/help) Slack channel before opening a proposal.
+If you are unsure whether your idea fits, ask on the [#help](https://nfcore.slack.com/channels/help) Slack channel before you open a proposal.
 
 ### Ownership and publication
 
-nf-core pipelines are [community owned](/docs/specifications/pipelines/requirements/community_owned).
+nf-core pipelines are [community owned](../specifications/pipelines/requirements/community_owned).
 By adding a pipeline to nf-core, you agree to the following:
 
-- You will work with other contributors.
-- Decisions about the pipeline are made by community consensus, with final say from the core team and steering committee if needed.
+- You work with other contributors.
+- The community makes decisions about the pipeline by consensus, with final say from the core team and steering committee if needed.
 - Other people may add features and make releases.
 
 Community ownership means the pipeline is not tied to a single person or group.
 As people's time commitments and funding change, maintenance can shift between groups and the pipeline stays up to date.
 
 Community ownership does not stop you from publishing your work.
-Publication of the pipeline by its primary developers is explicitly permitted, and nf-core encourages publications and presentations about its pipelines.
-If you are developing a pipeline as part of a paper or thesis, you can still propose it publicly before the work is published.
-See [Publication credit](/docs/specifications/pipelines/recommendations/publication_credit) for how to acknowledge nf-core and discuss co-authorship with other contributors.
+The primary developers of a pipeline are explicitly permitted to publish it, and nf-core encourages publications and presentations about its pipelines.
+If your pipeline is part of a paper or thesis, you can still propose it publicly before the work is published.
+See [Publication credit](../specifications/pipelines/recommendations/publication_credit) for how to acknowledge nf-core and discuss co-authorship with other contributors.
 
 ### Developing pipelines privately
 
-While nf-core encourages open development, private development is possible with some considerations:
+nf-core encourages open development, but you can develop a pipeline privately with the following considerations:
 
 - Private pipelines receive the same review process as public pipelines.
 - Follow the same development steps but use a private repository.
@@ -88,24 +87,22 @@ In this case, you may need to release independently or merge with the existing p
 
 If you plan to develop a pipeline privately and release through nf-core, contact the core team on Slack to discuss your strategy.
 
-### Contributing a pre-existing pipeline
+### Contribute a pre-existing pipeline
 
-You might have a Nextflow pipeline built outside of nf-core that you believe would be a valuable addition to the community.
-Make sure to [start the discussion](https://github.com/nf-core/proposals/issues) as early as possible.
+If you have a Nextflow pipeline built outside nf-core, [start the discussion](https://github.com/nf-core/proposals/issues) as early as possible.
 
-While nf-core can accept this type of contribution, be aware of the following caveats:
+nf-core can accept pre-existing pipelines, with the following caveats:
 
-- You must ensure your pipeline already uses the nf-core template.
+- Your pipeline must already use the nf-core template.
 - You may be asked to contribute to an existing pipeline instead if one with an identical or similar purpose exists, even if your pipeline is more mature at the time of submission.
 - You may need to make major (possibly breaking) changes to your pipeline to meet [the guidelines](/docs/guidelines/pipelines/overview).
 - You may need to change the name of the pipeline to follow the [pipeline specifications](../specifications/pipelines/requirements/workflow_name).
 
 A rejected proposal is not a statement on the quality of the pipeline.
-However, as collaboration is a core philosophy of nf-core, the community will always promote building larger teams around a single pipeline.
+Collaboration is a core principle of nf-core, and the community promotes larger teams around a single pipeline.
 
 :::info
-If your proposal is turned down, you can still [contribute to existing pipelines](../contributing/contribute-existing-pipelines) and use the nf-core template, tooling, and components for your own project.
-See [External use of nf-core resources](/docs/developing/external-use).
+If your proposal is turned down, you can still contribute to existing pipelines, and use the nf-core template, tools, and components for your own pipeline.
 :::
 
 ## Request a new pipeline
@@ -129,7 +126,6 @@ To propose a new nf-core pipeline:
 
 :::warning
 Create your pipeline only after you have [proposed it](#request-a-new-pipeline) and discussed it with the community.
-See [Propose before you build](#propose-before-you-build).
 :::
 
 To create a new pipeline from the nf-core template:
