@@ -51,7 +51,11 @@ if (isset($_POST['post_content']) && $_POST['post_content'] == $post_content_typ
     // Build a dict with the schema and 'status' => 'waiting_for_user'
     $cache = [];
     foreach ($post_keys as $k) {
-        $cache[$k] = $_POST[$k];
+        $cache[$k] = $_POST[$k] ?? null;
+    }
+    // The web form doesn't send a status, default to waiting for the user
+    if (empty($cache['status']) && in_array('status', $post_keys)) {
+        $cache['status'] = 'waiting_for_user';
     }
     $cache_json = json_encode($cache, JSON_PRETTY_PRINT) . "\n";
 
@@ -93,9 +97,9 @@ elseif (isset($_GET['id']) && !isset($_POST['post_content'])) {
     }
 
     // API check response
-    if (isset($_GET['api']) && ($_GET['api'] = 'true')) {
+    if (isset($_GET['api']) && $_GET['api'] == 'true') {
         // Return just 'waiting_for_user' if flag still set
-        if ($cache['status'] == 'waiting_for_user') {
+        if (($cache['status'] ?? null) == 'waiting_for_user') {
             return_json(['status' => 'waiting_for_user']);
         }
         // Presumably has been saved, so just return everything
