@@ -23,6 +23,6 @@ If in doubt, you can always ask on the [`#help`](https://nfcore.slack.com/channe
 
 :::warning
 Building a pipeline in private before proposing it risks duplicating an existing or proposed pipeline.
-If that happens, you will be asked to contribute to the other pipeline instead.
+If that happens, you may be asked to contribute to the other pipeline instead.
 See [Propose before you build](/docs/contributing/contribute-new-pipelines#propose-before-you-build).
 :::
