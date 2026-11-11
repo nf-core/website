@@ -30,7 +30,7 @@ nf-core pipelines are end-to-end bioinformatics workflows built using the nf-cor
 
 :::warning{title="Starting a new pipeline?"}
 nf-core is a community of builders, not a registry of finished pipelines.
-Propose your pipeline before you start development. See [Propose before you build](/docs/contributing/contribute-new-pipelines#propose-before-you-build).
+If you plan to contribute a pipeline to nf-core, propose it before you start development. See [Propose before you build](/docs/contributing/contribute-new-pipelines#propose-before-you-build).
 :::
 
 ## Components

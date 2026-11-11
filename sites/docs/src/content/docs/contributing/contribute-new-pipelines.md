@@ -14,7 +14,7 @@ When it is ready, you can request to move the repository to the nf-core GitHub o
 
 :::warning{title="Propose your pipeline before you build it"}
 nf-core is a community of builders, not a registry of finished pipelines.
-Discuss your idea and open a proposal before you start development.
+If you plan to contribute your pipeline to nf-core, discuss your idea and open a proposal before you start development.
 See [Propose before you build](#propose-before-you-build) for why this matters.
 :::
 
@@ -36,6 +36,11 @@ To contribute features, bug fixes, or improvements to existing nf-core pipelines
 
 ## Propose before you build
 
+Not every pipeline built with nf-core tooling needs to become an nf-core pipeline.
+You can use the nf-core template, tools, and components for your own pipelines without contributing them to nf-core.
+See [External use of nf-core resources](/docs/developing/external-use).
+
+If you plan to contribute your pipeline to nf-core, involve the community from the start.
 nf-core is a community of builders, not a registry of pipelines.
 You should discuss your idea and [propose your pipeline before starting work on it](/docs/specifications/pipelines/recommendations/build_with_community), rather than proposing a pipeline that is already complete.
 Proposals are public so that they can start a collaboration.
