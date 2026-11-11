@@ -18343,7 +18343,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -27007,7 +27007,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -28250,7 +28250,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "variantbenchmarking",
@@ -28697,7 +28697,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -30154,7 +30154,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -30398,7 +30398,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "tbanalyzer",
@@ -30677,7 +30677,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "tumourevo",
@@ -30938,7 +30938,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "variantbenchmarking",
@@ -34181,7 +34181,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "variantbenchmarking",
@@ -34657,7 +34657,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "variantbenchmarking",
@@ -34927,7 +34927,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "tbanalyzer",
@@ -40225,6 +40225,10 @@
         {
           "name": "radseq",
           "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.12.0"
         },
         {
           "name": "ssds",
@@ -49253,10 +49257,10 @@
     {
       "name": "bowtie2_align",
       "path": "modules/nf-core/bowtie2/align/meta.yml",
-      "tree_sha": "ddfe04f84e30325898010120a3d390bef0d5b7b0",
+      "tree_sha": "0908c08c70c60225bb4312cb0e0a7cfb53859be4",
       "files": [
-        "modules/nf-core/bowtie2/align/.conda-lock/linux_amd64-bd-dbd18842ad7cb278_1.txt",
-        "modules/nf-core/bowtie2/align/.conda-lock/linux_arm64-bd-9f290da29567318c_1.txt",
+        "modules/nf-core/bowtie2/align/.conda-lock/linux_amd64-bd-e1c7af09e1513a6c_1.txt",
+        "modules/nf-core/bowtie2/align/.conda-lock/linux_arm64-bd-6b1d52d30298d2b2_1.txt",
         "modules/nf-core/bowtie2/align/environment.yml",
         "modules/nf-core/bowtie2/align/main.nf",
         "modules/nf-core/bowtie2/align/meta.yml",
@@ -49506,7 +49510,7 @@
                 }
               },
               {
-                "bowtie2 --version 2>&1 | sed -n 's/.*bowtie2-align-s version //p'": {
+                "bowtie2 --version 2>&1 | sed -En 's/.*bowtie2-align-s(-v[0-9]+)? version //p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of bowtie2"
                 }
@@ -49574,7 +49578,7 @@
                 }
               },
               {
-                "bowtie2 --version 2>&1 | sed -n 's/.*bowtie2-align-s version //p'": {
+                "bowtie2 --version 2>&1 | sed -En 's/.*bowtie2-align-s(-v[0-9]+)? version //p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of bowtie2"
                 }
@@ -49632,40 +49636,40 @@
         ],
         "containers": {
           "docker": {
-            "linux/arm64": {
-              "name": "community.wave.seqera.io/library/bowtie2_htslib_samtools_pigz:9f290da29567318c",
-              "build_id": "bd-9f290da29567318c_1",
-              "scan_id": "sc-98905ced68bda5f0_1"
-            },
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/bowtie2_htslib_samtools_pigz:dbd18842ad7cb278",
-              "build_id": "bd-dbd18842ad7cb278_1",
-              "scan_id": "sc-c9fff40d1921fb76_1"
+              "name": "community.wave.seqera.io/library/bowtie2_htslib_samtools_pigz:e1c7af09e1513a6c",
+              "build_id": "bd-e1c7af09e1513a6c_1",
+              "scan_id": "sc-02541d8602e7f719_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/bowtie2_htslib_samtools_pigz:6b1d52d30298d2b2",
+              "build_id": "bd-6b1d52d30298d2b2_1",
+              "scan_id": "sc-44672350bef23f3b_1"
             }
           },
           "singularity": {
             "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/bowtie2_htslib_samtools_pigz:f2ceb0358c026249",
-              "build_id": "bd-f2ceb0358c026249_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/92/9266ea4da38d6a8ace999a5d57cd4b4b77bfef573633da7ac18e6eb01531e1d0/data"
+              "name": "oras://community.wave.seqera.io/library/bowtie2_htslib_samtools_pigz:346827d9a7966ca8",
+              "build_id": "bd-346827d9a7966ca8_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/45/45e88a89dab2752d16f23d7a43cd7c6850fd3b85465c8077bea282efe7955c15/data"
             },
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/bowtie2_htslib_samtools_pigz:1d137fae829780dd",
-              "build_id": "bd-1d137fae829780dd_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/d4/d4990a9e13c1aad32d60f19e0ced204f2f1e231fe856290ce75713505a1bfe44/data"
+              "name": "oras://community.wave.seqera.io/library/bowtie2_htslib_samtools_pigz:17bc0abde2c56dd2",
+              "build_id": "bd-17bc0abde2c56dd2_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/70/7093a62c894ad3337cabda5efadce78a3ecdb5ba34cf8646743c6d43d8c4b77d/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/bowtie2/align/.conda-lock/linux_amd64-bd-dbd18842ad7cb278_1.txt"
+              "lock_file": "modules/nf-core/bowtie2/align/.conda-lock/linux_amd64-bd-e1c7af09e1513a6c_1.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/bowtie2/align/.conda-lock/linux_arm64-bd-9f290da29567318c_1.txt"
+              "lock_file": "modules/nf-core/bowtie2/align/.conda-lock/linux_arm64-bd-6b1d52d30298d2b2_1.txt"
             }
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "f6a5109d8f1b6f80b53bf999bc51bbb5fcb02440",
       "pipelines": [
         {
           "name": "atacseq",
@@ -49752,10 +49756,10 @@
     {
       "name": "bowtie2_build",
       "path": "modules/nf-core/bowtie2/build/meta.yml",
-      "tree_sha": "6128ac54d0344c66cb9b5d906ea1a99191fb4dd8",
+      "tree_sha": "d94be2f295bf0ae069a378153270e3bd9538e337",
       "files": [
-        "modules/nf-core/bowtie2/build/.conda-lock/linux_amd64-bd-dbd18842ad7cb278_1.txt",
-        "modules/nf-core/bowtie2/build/.conda-lock/linux_arm64-bd-9f290da29567318c_1.txt",
+        "modules/nf-core/bowtie2/build/.conda-lock/linux_amd64-bd-e1c7af09e1513a6c_1.txt",
+        "modules/nf-core/bowtie2/build/.conda-lock/linux_arm64-bd-6b1d52d30298d2b2_1.txt",
         "modules/nf-core/bowtie2/build/environment.yml",
         "modules/nf-core/bowtie2/build/main.nf",
         "modules/nf-core/bowtie2/build/meta.yml",
@@ -49843,7 +49847,7 @@
                 }
               },
               {
-                "bowtie2 --version 2>&1 | sed -n 's/.*bowtie2-align-s version //p'": {
+                "bowtie2 --version 2>&1 | sed -En 's/.*bowtie2-align-s(-v[0-9]+)? version //p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -49867,7 +49871,7 @@
                 }
               },
               {
-                "bowtie2 --version 2>&1 | sed -n 's/.*bowtie2-align-s version //p'": {
+                "bowtie2 --version 2>&1 | sed -En 's/.*bowtie2-align-s(-v[0-9]+)? version //p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -49885,40 +49889,40 @@
         ],
         "containers": {
           "docker": {
-            "linux/amd64": {
-              "name": "community.wave.seqera.io/library/bowtie2_htslib_samtools_pigz:dbd18842ad7cb278",
-              "build_id": "bd-dbd18842ad7cb278_1",
-              "scan_id": "sc-c9fff40d1921fb76_1"
-            },
             "linux/arm64": {
-              "name": "community.wave.seqera.io/library/bowtie2_htslib_samtools_pigz:9f290da29567318c",
-              "build_id": "bd-9f290da29567318c_1",
-              "scan_id": "sc-98905ced68bda5f0_1"
+              "name": "community.wave.seqera.io/library/bowtie2_htslib_samtools_pigz:6b1d52d30298d2b2",
+              "build_id": "bd-6b1d52d30298d2b2_1",
+              "scan_id": "sc-44672350bef23f3b_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bowtie2_htslib_samtools_pigz:e1c7af09e1513a6c",
+              "build_id": "bd-e1c7af09e1513a6c_1",
+              "scan_id": "sc-02541d8602e7f719_1"
             }
           },
           "singularity": {
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/bowtie2_htslib_samtools_pigz:1d137fae829780dd",
-              "build_id": "bd-1d137fae829780dd_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/d4/d4990a9e13c1aad32d60f19e0ced204f2f1e231fe856290ce75713505a1bfe44/data"
+              "name": "oras://community.wave.seqera.io/library/bowtie2_htslib_samtools_pigz:17bc0abde2c56dd2",
+              "build_id": "bd-17bc0abde2c56dd2_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/70/7093a62c894ad3337cabda5efadce78a3ecdb5ba34cf8646743c6d43d8c4b77d/data"
             },
             "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/bowtie2_htslib_samtools_pigz:f2ceb0358c026249",
-              "build_id": "bd-f2ceb0358c026249_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/92/9266ea4da38d6a8ace999a5d57cd4b4b77bfef573633da7ac18e6eb01531e1d0/data"
+              "name": "oras://community.wave.seqera.io/library/bowtie2_htslib_samtools_pigz:346827d9a7966ca8",
+              "build_id": "bd-346827d9a7966ca8_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/45/45e88a89dab2752d16f23d7a43cd7c6850fd3b85465c8077bea282efe7955c15/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/bowtie2/build/.conda-lock/linux_amd64-bd-dbd18842ad7cb278_1.txt"
+              "lock_file": "modules/nf-core/bowtie2/build/.conda-lock/linux_amd64-bd-e1c7af09e1513a6c_1.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/bowtie2/build/.conda-lock/linux_arm64-bd-9f290da29567318c_1.txt"
+              "lock_file": "modules/nf-core/bowtie2/build/.conda-lock/linux_arm64-bd-6b1d52d30298d2b2_1.txt"
             }
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "f6a5109d8f1b6f80b53bf999bc51bbb5fcb02440",
       "pipelines": [
         {
           "name": "atacseq",
@@ -53360,7 +53364,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "ssds",
@@ -53744,7 +53748,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "ssds",
@@ -54905,7 +54909,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "seqinspector",
@@ -55280,7 +55284,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "seqinspector",
@@ -59646,7 +59650,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "scnanoseq",
@@ -75123,7 +75127,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -75579,7 +75583,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -75758,7 +75762,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -76153,7 +76157,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -76514,7 +76518,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -76834,7 +76838,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -82122,7 +82126,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -82548,7 +82552,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -82721,7 +82725,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -82894,7 +82898,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -83325,7 +83329,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -99637,7 +99641,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -103877,6 +103881,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -104900,7 +104912,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -113621,7 +113633,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -113796,7 +113808,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -116480,6 +116492,10 @@
       },
       "git_sha": "1298fbd2004c2913d6682ce4a419647d97a8fc3f",
       "pipelines": [
+        {
+          "name": "rnaseq",
+          "version": "3.27.0"
+        },
         {
           "name": "rnaseq",
           "version": "3.27.0"
@@ -121103,7 +121119,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "tumourevo",
@@ -121840,7 +121856,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "tumourevo",
@@ -128533,7 +128549,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "seqinspector",
@@ -129243,7 +129259,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "scnanoseq",
@@ -132258,7 +132274,7 @@
     {
       "name": "fgbio_callduplexconsensusreads",
       "path": "modules/nf-core/fgbio/callduplexconsensusreads/meta.yml",
-      "tree_sha": "c8d53d485133e4f5fd03a5568818aac9218f0775",
+      "tree_sha": "f716f2e230d39f7363d7afebd2818ad1294fde00",
       "files": [
         "modules/nf-core/fgbio/callduplexconsensusreads/environment.yml",
         "modules/nf-core/fgbio/callduplexconsensusreads/main.nf",
@@ -132392,7 +132408,7 @@
           "@lescai"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "3c23b0c6537dbc9219157c12c0ba2e828a3cf1a3",
       "pipelines": [
         {
           "name": "radseq",
@@ -132403,7 +132419,7 @@
     {
       "name": "fgbio_callmolecularconsensusreads",
       "path": "modules/nf-core/fgbio/callmolecularconsensusreads/meta.yml",
-      "tree_sha": "c19cd9dc7b8cf7da2510b4efd7851c6112460a8d",
+      "tree_sha": "aed622b1744f6c2f3d9065056eaf9cbe3e458544",
       "files": [
         "modules/nf-core/fgbio/callmolecularconsensusreads/environment.yml",
         "modules/nf-core/fgbio/callmolecularconsensusreads/main.nf",
@@ -132537,7 +132553,7 @@
           "@sruthipsuresh"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "3c23b0c6537dbc9219157c12c0ba2e828a3cf1a3",
       "pipelines": [
         {
           "name": "radseq",
@@ -132545,14 +132561,14 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
     {
       "name": "fgbio_collectduplexseqmetrics",
       "path": "modules/nf-core/fgbio/collectduplexseqmetrics/meta.yml",
-      "tree_sha": "8ac389720721874f3baa47391ff59e28260241b4",
+      "tree_sha": "33605e7b4fbae16d346b9e0b72d1633e6cd298fa",
       "files": [
         "modules/nf-core/fgbio/collectduplexseqmetrics/environment.yml",
         "modules/nf-core/fgbio/collectduplexseqmetrics/main.nf",
@@ -132827,12 +132843,12 @@
           "@georgiakes"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "3c23b0c6537dbc9219157c12c0ba2e828a3cf1a3"
     },
     {
       "name": "fgbio_copyumifromreadname",
       "path": "modules/nf-core/fgbio/copyumifromreadname/meta.yml",
-      "tree_sha": "2e2d90ef86cd6326340144a2d50bb0cc71a48824",
+      "tree_sha": "c98b994f5ab5bb2e1beefcc3df4e82b10a8085c2",
       "files": [
         "modules/nf-core/fgbio/copyumifromreadname/environment.yml",
         "modules/nf-core/fgbio/copyumifromreadname/main.nf",
@@ -133010,18 +133026,18 @@
           "@sppearce"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "3c23b0c6537dbc9219157c12c0ba2e828a3cf1a3",
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
     {
       "name": "fgbio_fastqtobam",
       "path": "modules/nf-core/fgbio/fastqtobam/meta.yml",
-      "tree_sha": "95afe8dd02a3985712ee0c6f26c21da3d3eaf1f5",
+      "tree_sha": "04a896a6efba7326c84dc0e411b65a0d204bc1b7",
       "files": [
         "modules/nf-core/fgbio/fastqtobam/environment.yml",
         "modules/nf-core/fgbio/fastqtobam/main.nf",
@@ -133158,7 +133174,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "3c23b0c6537dbc9219157c12c0ba2e828a3cf1a3",
       "pipelines": [
         {
           "name": "radseq",
@@ -133166,14 +133182,14 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
     {
       "name": "fgbio_filterconsensusreads",
       "path": "modules/nf-core/fgbio/filterconsensusreads/meta.yml",
-      "tree_sha": "079c2272448cd804ef0704f15d288bda9761c0d2",
+      "tree_sha": "d790fee725add202d22995a6375cb9e191f1aafb",
       "files": [
         "modules/nf-core/fgbio/filterconsensusreads/environment.yml",
         "modules/nf-core/fgbio/filterconsensusreads/main.nf",
@@ -133349,7 +133365,7 @@
           "@lescai"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "3c23b0c6537dbc9219157c12c0ba2e828a3cf1a3",
       "pipelines": [
         {
           "name": "radseq",
@@ -133360,7 +133376,7 @@
     {
       "name": "fgbio_groupreadsbyumi",
       "path": "modules/nf-core/fgbio/groupreadsbyumi/meta.yml",
-      "tree_sha": "948df88d07b7f5e27dc754d171fc78cd4777a01f",
+      "tree_sha": "1627477bd68c146b7b96e218f82c1069115ed320",
       "files": [
         "modules/nf-core/fgbio/groupreadsbyumi/environment.yml",
         "modules/nf-core/fgbio/groupreadsbyumi/main.nf",
@@ -133530,7 +133546,7 @@
           "@lescai"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "3c23b0c6537dbc9219157c12c0ba2e828a3cf1a3",
       "pipelines": [
         {
           "name": "radseq",
@@ -133538,14 +133554,14 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
     {
       "name": "fgbio_sortbam",
       "path": "modules/nf-core/fgbio/sortbam/meta.yml",
-      "tree_sha": "5b8ead5f922832c227043ab171fe0e3016e4f8a8",
+      "tree_sha": "7a09f706be3a0bb6774c95b34550e70bb0afb359",
       "files": [
         "modules/nf-core/fgbio/sortbam/environment.yml",
         "modules/nf-core/fgbio/sortbam/main.nf",
@@ -133666,12 +133682,12 @@
           "@sruthipsuresh"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "3c23b0c6537dbc9219157c12c0ba2e828a3cf1a3"
     },
     {
       "name": "fgbio_zipperbams",
       "path": "modules/nf-core/fgbio/zipperbams/meta.yml",
-      "tree_sha": "34d6e2153a73e2b6e621a6a16c4f3dae9a1359af",
+      "tree_sha": "261b5cc7bc0a3861b40ffb32a2a3e13096973bbf",
       "files": [
         "modules/nf-core/fgbio/zipperbams/environment.yml",
         "modules/nf-core/fgbio/zipperbams/main.nf",
@@ -133836,7 +133852,7 @@
           "@lescai"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "3c23b0c6537dbc9219157c12c0ba2e828a3cf1a3",
       "pipelines": [
         {
           "name": "radseq",
@@ -139462,7 +139478,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "seqsubmit",
@@ -143078,7 +143094,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -150033,7 +150049,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "tbanalyzer",
@@ -150289,7 +150305,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "tbanalyzer",
@@ -150784,7 +150800,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -151170,7 +151186,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -151830,7 +151846,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -153651,7 +153667,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -154481,7 +154497,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -155149,7 +155165,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "variantcatalogue",
@@ -155388,7 +155404,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -155553,7 +155569,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -155723,7 +155739,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -155974,7 +155990,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -156273,7 +156289,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -156738,7 +156754,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -157071,7 +157087,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -157399,7 +157415,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -157733,7 +157749,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -158259,7 +158275,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "tbanalyzer",
@@ -158631,7 +158647,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "variantcatalogue",
@@ -158859,7 +158875,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "variantcatalogue",
@@ -159379,7 +159395,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "variantcatalogue",
@@ -163355,7 +163371,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "tbanalyzer",
@@ -163855,7 +163871,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -164075,7 +164091,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -164301,7 +164317,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -165181,7 +165197,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "scrnaseq",
@@ -178116,7 +178132,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -184690,7 +184706,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "scrnaseq",
@@ -200795,7 +200811,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "variantbenchmarking",
@@ -226999,7 +227015,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -234065,7 +234081,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -234415,7 +234431,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -234709,7 +234725,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -250957,7 +250973,7 @@
     {
       "name": "mirtop_counts",
       "path": "modules/nf-core/mirtop/counts/meta.yml",
-      "tree_sha": "527ffff1b5ac569d2208d02317a2442abdd73965",
+      "tree_sha": "b0382e8055abda5c59c844e37a01d614b0fb65ac",
       "files": [
         "modules/nf-core/mirtop/counts/environment.yml",
         "modules/nf-core/mirtop/counts/main.nf",
@@ -251123,7 +251139,7 @@
           "@lpantano"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "7f232b0ad8f467a936860be81ead70b75cfe6c4a",
       "pipelines": [
         {
           "name": "smrnaseq",
@@ -251134,7 +251150,7 @@
     {
       "name": "mirtop_export",
       "path": "modules/nf-core/mirtop/export/meta.yml",
-      "tree_sha": "59a85fd5213302a004086abbfee86a184c855b42",
+      "tree_sha": "8de1857c7be80f30576a8e0770c0088d2f5d251e",
       "files": [
         "modules/nf-core/mirtop/export/environment.yml",
         "modules/nf-core/mirtop/export/main.nf",
@@ -251335,7 +251351,7 @@
           "@lpantano"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "7f232b0ad8f467a936860be81ead70b75cfe6c4a",
       "pipelines": [
         {
           "name": "smrnaseq",
@@ -251346,7 +251362,7 @@
     {
       "name": "mirtop_gff",
       "path": "modules/nf-core/mirtop/gff/meta.yml",
-      "tree_sha": "9af19c18e6366e2c9016841db93613ba304adef8",
+      "tree_sha": "98708f26a2a9499ce687d47e57bd5019756804cf",
       "files": [
         "modules/nf-core/mirtop/gff/environment.yml",
         "modules/nf-core/mirtop/gff/main.nf",
@@ -251507,7 +251523,7 @@
           "@lpantano"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "7f232b0ad8f467a936860be81ead70b75cfe6c4a",
       "pipelines": [
         {
           "name": "smrnaseq",
@@ -251518,7 +251534,7 @@
     {
       "name": "mirtop_stats",
       "path": "modules/nf-core/mirtop/stats/meta.yml",
-      "tree_sha": "69003a9f5b88ee130c22a3e9d0e1da12a690a051",
+      "tree_sha": "ffd50a2f4c9279e19bc87b9385908ce34575f30f",
       "files": [
         "modules/nf-core/mirtop/stats/environment.yml",
         "modules/nf-core/mirtop/stats/main.nf",
@@ -251659,7 +251675,7 @@
           "@lpantano"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "7f232b0ad8f467a936860be81ead70b75cfe6c4a",
       "pipelines": [
         {
           "name": "smrnaseq",
@@ -259285,7 +259301,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "variantcatalogue",
@@ -260140,7 +260156,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -261002,7 +261018,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -261410,7 +261426,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -262709,7 +262725,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "scdownstream",
@@ -264801,7 +264817,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -265016,7 +265032,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -271997,7 +272013,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -287478,7 +287494,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -287879,7 +287895,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -288081,7 +288097,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -288436,7 +288452,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -289008,7 +289024,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -289815,7 +289831,13 @@
           "@famosab"
         ]
       },
-      "git_sha": "b7e7de899fa7e63258475cc3d72cd805c537cae5"
+      "git_sha": "b7e7de899fa7e63258475cc3d72cd805c537cae5",
+      "pipelines": [
+        {
+          "name": "sarek",
+          "version": "3.12.0"
+        }
+      ]
     },
     {
       "name": "parabricks_rnafq2bam",
@@ -307742,6 +307764,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -308049,6 +308075,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -313478,6 +313508,223 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "plink_homozyg",
+      "path": "modules/nf-core/plink/homozyg/meta.yml",
+      "tree_sha": "ae096c8ea77dafd872c8cc760ae2485d4030eac0",
+      "files": [
+        "modules/nf-core/plink/homozyg/.conda-lock/linux_amd64-bd-0baa44af6db8f28d_1.txt",
+        "modules/nf-core/plink/homozyg/environment.yml",
+        "modules/nf-core/plink/homozyg/main.nf",
+        "modules/nf-core/plink/homozyg/meta.yml",
+        "modules/nf-core/plink/homozyg/tests/main.nf.test",
+        "modules/nf-core/plink/homozyg/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "plink_homozyg",
+        "description": "Runs of homozygosity (ROH) detection with PLINK 1.9 (--homozyg)",
+        "keywords": [
+          "roh",
+          "homozyg",
+          "plink",
+          "inbreeding"
+        ],
+        "tools": [
+          {
+            "plink": {
+              "description": "Whole genome association analysis toolset.",
+              "homepage": "https://www.cog-genomics.org/plink",
+              "documentation": "https://www.cog-genomics.org/plink/1.9/",
+              "licence": [
+                "GPL"
+              ],
+              "identifier": "biotools:plink"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information"
+              }
+            },
+            {
+              "bed": {
+                "type": "file",
+                "description": "PLINK binary genotype table",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            },
+            {
+              "bim": {
+                "type": "file",
+                "description": "PLINK variant table",
+                "pattern": "*.bim"
+              }
+            },
+            {
+              "fam": {
+                "type": "file",
+                "description": "PLINK sample table",
+                "pattern": "*.fam"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "hom": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.hom": {
+                  "type": "file",
+                  "description": "ROH segments, one line per segment",
+                  "pattern": "*.hom"
+                }
+              }
+            ]
+          ],
+          "hom_indiv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.hom.indiv": {
+                  "type": "file",
+                  "description": "ROH totals per individual",
+                  "pattern": "*.hom.indiv"
+                }
+              }
+            ]
+          ],
+          "hom_summary": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.hom.summary": {
+                  "type": "file",
+                  "description": "ROH summary statistics",
+                  "pattern": "*.hom.summary"
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "PLINK log",
+                  "pattern": "*.log"
+                }
+              }
+            ]
+          ],
+          "versions_plink": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "plink": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "plink --version 2>&1 | sed 's/^PLINK v//;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "plink": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "plink --version 2>&1 | sed 's/^PLINK v//;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@Othmanaljurayyad"
+        ],
+        "maintainers": [
+          "@Othmanaljurayyad"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/plink:1.90b6.21--0baa44af6db8f28d",
+              "build_id": "bd-0baa44af6db8f28d_1",
+              "scan_id": "sc-588ceddb77be18ec_2"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/plink:1.90b6.21--95e2ee960c26adef",
+              "build_id": "bd-95e2ee960c26adef_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/59/5901c2e9a6b11094536c8b0ab0932bd61bb55dbfe9ad270d3babc8f7246a4759/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/plink/homozyg/.conda-lock/linux_amd64-bd-0baa44af6db8f28d_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "b65ed91c4031ebf813dcd937608479c4f3ab62cc"
     },
     {
       "name": "plink_hwe",
@@ -336220,7 +336467,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -357350,7 +357597,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -358692,7 +358939,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -359195,7 +359442,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -360362,7 +360609,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "scnanoseq",
@@ -361187,6 +361434,10 @@
         {
           "name": "rnastructurome",
           "version": "1.1.0"
+        },
+        {
+          "name": "sarek",
+          "version": "3.12.0"
         }
       ]
     },
@@ -362575,7 +362826,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "scnanoseq",
@@ -363177,7 +363428,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "scnanoseq",
@@ -363409,7 +363660,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -365385,7 +365636,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "scnanoseq",
@@ -366087,7 +366338,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "scnanoseq",
@@ -372699,7 +372950,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -373066,7 +373317,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -374208,7 +374459,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -374453,7 +374704,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -374803,7 +375054,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -375074,7 +375325,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -375398,7 +375649,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -378246,7 +378497,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -378496,7 +378747,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -394854,7 +395105,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "tbanalyzer",
@@ -395226,7 +395477,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "tbanalyzer",
@@ -395438,7 +395689,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -395587,7 +395838,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -400679,7 +400930,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -408095,7 +408346,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -408384,7 +408635,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -413451,7 +413702,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -424711,7 +424962,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -436466,7 +436717,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "scdownstream",
@@ -436833,7 +437084,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "scrnaseq",
@@ -438959,7 +439210,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -439170,7 +439421,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -439365,7 +439616,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -439600,7 +439851,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -442406,7 +442657,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -444277,7 +444528,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -448481,7 +448732,7 @@
     {
       "name": "virusrecom",
       "path": "modules/nf-core/virusrecom/meta.yml",
-      "tree_sha": "b3e0d3085eb49881d253cedd5753bfc7f1ac013e",
+      "tree_sha": "feba9b7647f8ecdfb337118b7753c66efb783f24",
       "files": [
         "modules/nf-core/virusrecom/.conda-lock/linux_amd64-bd-b0b2c64800fa6452_1.txt",
         "modules/nf-core/virusrecom/.conda-lock/linux_arm64-bd-f4e62778510f3556_1.txt",
@@ -448669,7 +448920,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "46d721e057dd00790db0345b5ba8cfc03bfe4191"
     },
     {
       "name": "vizgenpostprocessing_compiletilesegmentation",
@@ -458593,7 +458844,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -459348,7 +459599,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -461523,7 +461774,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -464514,7 +464765,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -467265,7 +467516,7 @@
     {
       "name": "fastq_align_bowtie2",
       "path": "subworkflows/nf-core/fastq_align_bowtie2/meta.yml",
-      "tree_sha": "6e95745022b03a6a0573bb1d47065939fac0b8e9",
+      "tree_sha": "0c5bc3ee0050a66cc83002d10aadac9d880cf6c8",
       "files": [
         "subworkflows/nf-core/fastq_align_bowtie2/main.nf",
         "subworkflows/nf-core/fastq_align_bowtie2/meta.yml",
@@ -467391,7 +467642,7 @@
           "@drpatelh"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "f6a5109d8f1b6f80b53bf999bc51bbb5fcb02440",
       "pipelines": [
         {
           "name": "atacseq",
@@ -474336,7 +474587,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -474788,7 +475039,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "scdownstream",
@@ -475300,7 +475551,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "scdownstream",
@@ -475848,7 +476099,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         },
         {
           "name": "scdownstream",
@@ -476452,7 +476703,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.11.0"
+          "version": "3.12.0"
         }
       ]
     },
@@ -477576,6 +477827,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "cec21033a6f9ededcf304d2370ec644493559198",
-  "updated_at": "2026-11-11T02:15:05.501Z"
+  "commit_sha": "3c23b0c6537dbc9219157c12c0ba2e828a3cf1a3",
+  "updated_at": "2026-11-11T14:15:13.039Z"
 }
