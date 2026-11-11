@@ -43,7 +43,7 @@ Proposals are public so that they can start a collaboration.
 Proposing early has several benefits:
 
 - **You avoid duplicated work.** There must be only [a single pipeline for a given data and analysis type](/docs/specifications/pipelines/requirements/workflow_specificity).
-  If a pipeline with a similar purpose already exists, or is proposed before yours, you will be asked to contribute to it instead.
+  If a pipeline with a similar purpose already exists, or is proposed before yours, you may be asked to contribute to it instead.
 - **You get feedback while changes are cheap.** Design adjustments needed to meet the [nf-core specifications](/docs/specifications/pipelines/overview) are easier early in development than after the pipeline is complete.
 - **You find collaborators.** Other community members working on similar data can help develop, test, and maintain the pipeline.
 - **You confirm the pipeline is suitable for nf-core** before you put time into development.
@@ -91,7 +91,7 @@ Make sure to [start the discussion](https://github.com/nf-core/proposals/issues)
 While nf-core can accept this type of contribution, be aware of the following caveats:
 
 - You must ensure your pipeline already uses the nf-core template.
-- You will be asked to contribute to an existing pipeline instead if one with an identical or similar purpose exists, even if your pipeline is more mature at the time of submission.
+- You may be asked to contribute to an existing pipeline instead if one with an identical or similar purpose exists, even if your pipeline is more mature at the time of submission.
 - You may need to make major (possibly breaking) changes to your pipeline to meet [the guidelines](/docs/guidelines/pipelines/overview).
 - You may need to change the name of the pipeline to follow the [pipeline specifications](../specifications/pipelines/requirements/workflow_name).
 
