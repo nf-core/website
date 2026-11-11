@@ -8,7 +8,7 @@ nf-core pipelines use a standardized template that provides file structure, boil
 By starting with the nf-core template, you benefit from automated testing, consistent structure, and easier integration with the nf-core community.
 
 Follow these steps to create a new nf-core pipeline, from initial proposal through to development.
-You start by proposing your pipeline to the community, before you write any code.
+Start by proposing your pipeline to the community, before you write any code.
 After your proposal is accepted, you create the pipeline from the template and develop it on your own GitHub account.
 When the pipeline is ready, you request to move the repository to the nf-core GitHub organisation for final development, review, and release.
 
@@ -84,8 +84,6 @@ Private pipelines receive no priority over publicly developed pipelines.
 If another similar pipeline is released first, your pipeline may not be accepted into nf-core.
 In this case, you may need to release independently or merge with the existing pipeline.
 :::
-
-If you plan to develop a pipeline privately and release through nf-core, contact the core team on Slack to discuss your strategy.
 
 ### Contribute a pre-existing pipeline
 
