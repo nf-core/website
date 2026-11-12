@@ -70,11 +70,12 @@ Affected versions, when run with `--download_cache`:
 - sarek 3.2.0 to 3.5.1
 - rnavar 1.1.0 to 1.2.1
 
-Runs that use the default annotation cache (`--snpeff_cache`) or a cache you downloaded yourself do not download from snpEff.
+Runs that use the default annotation cache or a cache you downloaded yourself are not affected.
 
 # Resolution
 
 Update to sarek 3.6.0 or later, or rnavar 1.2.2 or later.
 These versions use snpEff 5.3 and default to cache version 99 instead of 105.
 
-If you need cache version 105, use a copy you downloaded before the change, and pass it with `--snpeff_cache`.
+If you need cache version 105, do not use `--download_cache`.
+The default annotation cache (`--snpeff_cache s3://annotation-cache/snpeff_cache/`) still provides it.
