@@ -1,43 +1,81 @@
 ---
-title: snpEff cache location change in pipelines using snpEff
-subtitle: All pipelines using snpEff are affected by the change of the default cache location in snpEff happening in August 2025.
+title: snpEff cache download fails in sarek and rnavar
+subtitle: The snpEff cache moved to a new hosting location, so older pipeline versions can no longer download it.
 category:
   - pipelines
-  - configuration
+  - modules
+  - subworkflows
 type: incompatibility
 severity: high
-publishedDate: "2025-10-22"
+publishedDate: "2026-11-12"
 reporter:
   - maxulysse
-  -
 reviewer:
-  - maxulysse
-  -
+  - mashehu
 pipelines:
-  - name: sarek
-    versions:
-      - 2.12.0
   - name: rnavar
     versions:
-      - 4.2.0
+      - "1.0.0"
+      - "1.1.0"
+      - "1.1.1"
+      - "1.2.0"
+      - "1.2.1"
+  - name: sarek
+    versions:
+      - "3.0"
+      - "3.0.1"
+      - "3.0.2"
+      - "3.1"
+      - "3.1.1"
+      - "3.1.2"
+      - "3.2.0"
+      - "3.2.1"
+      - "3.2.2"
+      - "3.2.3"
+      - "3.3.0"
+      - "3.3.1"
+      - "3.3.2"
+      - "3.4.0"
+      - "3.4.1"
+      - "3.4.2"
+      - "3.4.3"
+      - "3.4.4"
+      - "3.5.0"
+      - "3.5.1"
 modules:
-  - name: snpeff_download
-  - name: snpeff_snpeff
+  - snpeff/download
+  - snpeff/snpeff
 subworkflows:
-  - name: vcf_annotation_snpeff
+  - vcf_annotate_snpeff
+configuration:
 nextflowVersions:
-  - ">=25.04.0 <25.04.3"
+nextflowExecutors:
+softwareDependencies:
 references:
-  - title: snpeff issue regarding change of hosting location of cache and binaries
-    description: Issues reporting the issue with snpeff download after the change of hosting location
+  - title: SnpEff issue 602
+    description: GitHub issue about the problem with snpeff download after the change of hosting location
     url: https://github.com/pcingola/SnpEff/issues/602
+  - title: SnpEff issue 609
+    description: GitHub issue about snpEff cache version 105 no longer being available
+    url: https://github.com/pcingola/SnpEff/issues/609
 ---
 
 # Issue
 
-https://github.com/pcingola/SnpEff/issues/602
+In August 2025, snpEff moved the hosting location of its caches.
+snpEff versions older than 5.3 still point to the old location, so `snpEff download` fails with an error such as:
 
-snpeff download is broken with older versions of sarek/rnavar due to changes in location for the storage of snpeff cache.
-snpeff download works with newer versions of sarek/rnavar with an updated of snpeff, but cache 105 is now not valid anymore (hopefully until a fix comes).
+```console
+FATAL ERROR: Failed to download database from [https://snpeff.blob.core.windows.net/databases/...
+```
 
--> https://github.com/pcingola/SnpEff/issues/609
+This affects every pipeline version that downloads the snpEff cache with an older snpEff, including sarek before 3.6.0 and rnavar before 1.2.2.
+
+Newer snpEff versions download from the new location, but cache version 105 is no longer available there.
+
+# Resolution
+
+Update to sarek 3.6.0 or later, or rnavar 1.2.2 or later.
+These versions use snpEff 5.3 and default to snpEff database version 99 or earlier.
+
+If you need cache version 105, use a copy you downloaded before the change, and pass it with `--snpeff_cache`.
