@@ -62,7 +62,7 @@ snpEff versions older than 5.3 still point to the old location, so downloading a
 FATAL ERROR: Failed to download database from [https://snpeff.blob.core.windows.net/databases/...
 ```
 
-In addition, cache version 105 is no longer available at the new location ([SnpEff#609](https://github.com/pcingola/SnpEff/issues/609)).
+In addition, cache version 105 no longer exists in snpEff and cannot be resolved ([SnpEff#609](https://github.com/pcingola/SnpEff/issues/609)).
 The affected pipeline versions use version 105 by default for `GRCh38`, `R64-1-1` and `WBcel235`.
 
 Affected versions, when run with `--download_cache`:
@@ -77,5 +77,4 @@ Runs that use the default annotation cache or a cache you downloaded yourself ar
 Update to sarek 3.6.0 or later, or rnavar 1.2.2 or later.
 These versions use snpEff 5.3 and default to cache version 99 instead of 105.
 
-If you need cache version 105, do not use `--download_cache`.
-The default annotation cache (`--snpeff_cache s3://annotation-cache/snpeff_cache/`) still provides it.
+Do not use cache version 105 with these versions: use version 99 or earlier (for example `--snpeff_db GRCh38.99`).
