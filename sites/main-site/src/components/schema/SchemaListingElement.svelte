@@ -8,7 +8,6 @@
     let longPattern = $derived(
         (() => {
             const pattern = property?.pattern;
-
             // explicitly handle patterns which are an enum work around, i.e. they have multiple values, eg. "^(foo|bar)$"
             if (
                 pattern &&
@@ -46,6 +45,10 @@
     </div>
     <div class="col description text-small">
         {@html property.description_rendered}
+        {#if !property.help_text && longPattern.length}
+            This parameter must be a combination of the following values:
+            {@html formattedLongPattern}
+        {/if}
     </div>
     <div class="col-12 col-md-3 text-nowrap d-flex flex-column align-items-end justify-content-between">
         {#if property.hidden}

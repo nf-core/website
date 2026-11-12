@@ -52,28 +52,24 @@ const admonitionTypes = {
             class={`title mb-0 alert alert-${admonitionTypes[title].id} fw-bold px-3 py-2 d-flex align-items-center rounded-0 border-0`}
         >
             {icon && <i class={`fa-solid ${icon} me-2`} />}
-            {
-                !icon && (
-                    <svg class="icon fill-current me-2" viewBox={admonitionTypes[title].viewBox}>
-                        <path d={admonitionTypes[title].svg} />
-                    </svg>
-                )
-            }
+            {!icon && (
+                <svg class="icon fill-current me-2" viewBox={admonitionTypes[title].viewBox}>
+                    <path d={admonitionTypes[title].svg} />
+                </svg>
+            )}
             {titleText && <span set:html={titleText} />}
             {!titleText && title.charAt(0).toUpperCase() + title.slice(1)}
-            {
-                collapse && (
-                    <button
-                        class="btn btn-sm text-secondary flex-shrink-1 ms-auto admonition-collapse-button"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target={`#admonition-${randomId}`}
-                        aria-expanded="true"
-                    >
-                        Expand
-                    </button>
-                )
-            }
+            {collapse && (
+                <button
+                    class="btn btn-sm text-secondary flex-shrink-1 ms-auto admonition-collapse-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target={`#admonition-${randomId}`}
+                    aria-expanded="true"
+                >
+                    Expand
+                </button>
+            )}
         </div>
         <div class:list={[{ collapse: collapse }]} id={`admonition-${randomId}`}>
             <div class="p-3 admonition-body-content">

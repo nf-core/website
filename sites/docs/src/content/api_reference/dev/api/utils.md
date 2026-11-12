@@ -2,1636 +2,24 @@
 
 Common utility functions for the nf-core python package.
 
-### _`class{:python}`_`nf_core.utils.GitHubAPISession{:python}`
+### _`exception{:python}`_`nf_core.utils.CommandError(cmd: str, returncode: int, stdout: bytes, stderr: bytes){:python}`
 
-Bases: `CachedSession`
+Bases: `RuntimeError`
 
-Class to provide a single session for interacting with the GitHub API for a run.
-Inherits the requests_cache.CachedSession and adds additional functionality,
-such as automatically setting up GitHub authentication if we can.
+Raised by run_cmd when a command exits with a non-zero code.
 
-#### `get(url, **kwargs){:python}`
+Keeps the captured streams, so callers can inspect the command’s output instead of parsing the error message.
+output holds both streams decoded, since Nextflow prints error details to stdout and only a summary to stderr.
 
-Initialise the session if we haven’t already, then call the superclass get method.
+### _`class{:python}`_`nf_core.utils.ContainerRegistryUrls(*values){:python}`
 
-#### `lazy_init() → None{:python}`
+Bases: `Enum`
 
-Initialise the object.
+#### `GALAXY_SINGULARITY{:python}`_= 'depot.galaxyproject.org/singularity'_
 
-Only do this when it’s actually being used (due to global import)
+#### `SEQERA_DOCKER{:python}`_= 'community.wave.seqera.io/library'_
 
-#### `log_content_headers(request, post_data=None){:python}`
-
-Try to dump everything to the console, useful when things go wrong.
-
-#### `request_retry(url, post_data=None){:python}`
-
-Try to fetch a URL, keep retrying if we get a certain return code.
-
-Used in nf-core pipelines sync code because we get 403 errors: too many simultaneous requests
-See <https://github.com/nf-core/tools/issues/911>
-
-#### `safe_get(url){:python}`
-
-Run a GET request, raise a nice exception with lots of logging if it fails.
-
-#### `setup_github_auth(auth=None){:python}`
-
-Try to automatically set up GitHub authentication
-
-### _`pydantic model{:python}`_`nf_core.utils.NFCoreTemplateConfig{:python}`
-
-Bases: `BaseModel`
-
-Template configuration schema
-
-<p><details  class="autodoc_pydantic_collapsable_json">
-<summary>Show JSON schema</summary>
-```json
-{
-   "title": "NFCoreTemplateConfig",
-   "description": "Template configuration schema",
-   "type": "object",
-   "properties": {
-      "org": {
-         "anyOf": [
-            {
-               "type": "string"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Org"
-      },
-      "name": {
-         "anyOf": [
-            {
-               "type": "string"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Name"
-      },
-      "description": {
-         "anyOf": [
-            {
-               "type": "string"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Description"
-      },
-      "author": {
-         "anyOf": [
-            {
-               "type": "string"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Author"
-      },
-      "version": {
-         "anyOf": [
-            {
-               "type": "string"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Version"
-      },
-      "force": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": true,
-         "title": "Force"
-      },
-      "outdir": {
-         "anyOf": [
-            {
-               "type": "string"
-            },
-            {
-               "format": "path",
-               "type": "string"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Outdir"
-      },
-      "skip_features": {
-         "anyOf": [
-            {
-               "items": {},
-               "type": "array"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Skip Features"
-      },
-      "is_nfcore": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Is Nfcore"
-      }
-   }
-}
-```
-
-</details></p>
-* **Fields:**
-  - [`author (str | None)`](#nf_core.utils.NFCoreTemplateConfig.author)
-  - [`description (str | None)`](#nf_core.utils.NFCoreTemplateConfig.description)
-  - [`force (bool | None)`](#nf_core.utils.NFCoreTemplateConfig.force)
-  - [`is_nfcore (bool | None)`](#nf_core.utils.NFCoreTemplateConfig.is_nfcore)
-  - [`name (str | None)`](#nf_core.utils.NFCoreTemplateConfig.name)
-  - [`org (str | None)`](#nf_core.utils.NFCoreTemplateConfig.org)
-  - [`outdir (str | pathlib.Path | None)`](#nf_core.utils.NFCoreTemplateConfig.outdir)
-  - [`skip_features (list | None)`](#nf_core.utils.NFCoreTemplateConfig.skip_features)
-  - [`version (str | None)`](#nf_core.utils.NFCoreTemplateConfig.version)
-* **Validators:**
-  - [`outdir_to_str`](#nf_core.utils.NFCoreTemplateConfig.outdir_to_str) » [`outdir`](#nf_core.utils.NFCoreTemplateConfig.outdir)
-
-#### _`field{:python}`_`author{:python}`_: str | None_`{:python}`_= None_
-
-Pipeline author
-
-#### _`field{:python}`_`description{:python}`_: str | None_`{:python}`_= None_
-
-Pipeline description
-
-#### _`field{:python}`_`force{:python}`_: bool | None_`{:python}`_= True_
-
-Force overwrite of existing files
-
-#### _`field{:python}`_`is_nfcore{:python}`_: bool | None_`{:python}`_= None_
-
-Whether the pipeline is an nf-core pipeline.
-
-#### _`field{:python}`_`name{:python}`_: str | None_`{:python}`_= None_
-
-Pipeline name
-
-#### _`field{:python}`_`org{:python}`_: str | None_`{:python}`_= None_
-
-Organisation name
-
-#### _`field{:python}`_`outdir{:python}`_: str | Path | None_`{:python}`_= None_
-
-Output directory
-
-- **Validated by:**
-  - [`outdir_to_str`](#nf_core.utils.NFCoreTemplateConfig.outdir_to_str)
-
-#### _`field{:python}`_`skip_features{:python}`_: list | None_`{:python}`_= None_
-
-Skip features. See <https://nf-co.re/docs/nf-core-tools/pipelines/create> for a list of features.
-
-#### _`field{:python}`_`version{:python}`_: str | None_`{:python}`_= None_
-
-Pipeline version
-
-#### _`validator{:python}`_`outdir_to_str{:python}`_»_`{:python}`[_outdir_](#nf_core.utils.NFCoreTemplateConfig.outdir)
-
-#### `get(item: str, default: Any = None) → Any{:python}`
-
-#### `_abc_impl{:python}`_= <\_abc.\_abc_data object>_
-
-### _`pydantic model{:python}`_`nf_core.utils.NFCoreYamlConfig{:python}`
-
-Bases: `BaseModel`
-
-.nf-core.yml configuration file schema
-
-<p><details  class="autodoc_pydantic_collapsable_json">
-<summary>Show JSON schema</summary>
-```json
-{
-   "title": "NFCoreYamlConfig",
-   "description": ".nf-core.yml configuration file schema",
-   "type": "object",
-   "properties": {
-      "repository_type": {
-         "anyOf": [
-            {
-               "enum": [
-                  "pipeline",
-                  "modules"
-               ],
-               "type": "string"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Repository Type"
-      },
-      "nf_core_version": {
-         "anyOf": [
-            {
-               "type": "string"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Nf Core Version"
-      },
-      "org_path": {
-         "anyOf": [
-            {
-               "type": "string"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Org Path"
-      },
-      "lint": {
-         "anyOf": [
-            {
-               "$ref": "#/$defs/NFCoreYamlLintConfig"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null
-      },
-      "template": {
-         "anyOf": [
-            {
-               "$ref": "#/$defs/NFCoreTemplateConfig"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null
-      },
-      "bump_version": {
-         "anyOf": [
-            {
-               "additionalProperties": {
-                  "type": "boolean"
-               },
-               "type": "object"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Bump Version"
-      },
-      "update": {
-         "anyOf": [
-            {
-               "additionalProperties": {
-                  "anyOf": [
-                     {
-                        "type": "string"
-                     },
-                     {
-                        "type": "boolean"
-                     },
-                     {
-                        "additionalProperties": {
-                           "anyOf": [
-                              {
-                                 "type": "string"
-                              },
-                              {
-                                 "additionalProperties": {
-                                    "anyOf": [
-                                       {
-                                          "type": "string"
-                                       },
-                                       {
-                                          "type": "boolean"
-                                       }
-                                    ]
-                                 },
-                                 "type": "object"
-                              }
-                           ]
-                        },
-                        "type": "object"
-                     }
-                  ]
-               },
-               "type": "object"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Update"
-      }
-   },
-   "$defs": {
-      "NFCoreTemplateConfig": {
-         "description": "Template configuration schema",
-         "properties": {
-            "org": {
-               "anyOf": [
-                  {
-                     "type": "string"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Org"
-            },
-            "name": {
-               "anyOf": [
-                  {
-                     "type": "string"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Name"
-            },
-            "description": {
-               "anyOf": [
-                  {
-                     "type": "string"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Description"
-            },
-            "author": {
-               "anyOf": [
-                  {
-                     "type": "string"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Author"
-            },
-            "version": {
-               "anyOf": [
-                  {
-                     "type": "string"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Version"
-            },
-            "force": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": true,
-               "title": "Force"
-            },
-            "outdir": {
-               "anyOf": [
-                  {
-                     "type": "string"
-                  },
-                  {
-                     "format": "path",
-                     "type": "string"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Outdir"
-            },
-            "skip_features": {
-               "anyOf": [
-                  {
-                     "items": {},
-                     "type": "array"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Skip Features"
-            },
-            "is_nfcore": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Is Nfcore"
-            }
-         },
-         "title": "NFCoreTemplateConfig",
-         "type": "object"
-      },
-      "NFCoreYamlLintConfig": {
-         "description": "schema for linting config in `.nf-core.yml` should cover:\n\n.. code-block:: yaml\n\n    files_unchanged:\n        - .github/workflows/branch.yml\n    modules_config: False\n    modules_config:\n            - fastqc\n    # merge_markers: False\n    merge_markers:\n            - docs/my_pdf.pdf\n    nextflow_config: False\n    nextflow_config:\n        - manifest.name\n        - config_defaults:\n            - params.annotation_db\n            - params.multiqc_comment_headers\n            - params.custom_table_headers\n    # multiqc_config: False\n    multiqc_config:\n        - report_section_order\n        - report_comment\n    files_exist:\n        - .github/CONTRIBUTING.md\n        - CITATIONS.md\n    template_strings: False\n    template_strings:\n            - docs/my_pdf.pdf\n    nfcore_components: False\n    # nf_test_content: False\n    nf_test_content:\n        - tests/<test_name>.nf.test\n        - tests/nextflow.config\n        - nf-test.config",
-         "properties": {
-            "files_unchanged": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "items": {
-                        "type": "string"
-                     },
-                     "type": "array"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Files Unchanged"
-            },
-            "modules_config": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "items": {
-                        "type": "string"
-                     },
-                     "type": "array"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Modules Config"
-            },
-            "merge_markers": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "items": {
-                        "type": "string"
-                     },
-                     "type": "array"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Merge Markers"
-            },
-            "nextflow_config": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "items": {
-                        "anyOf": [
-                           {
-                              "type": "string"
-                           },
-                           {
-                              "additionalProperties": {
-                                 "items": {
-                                    "type": "string"
-                                 },
-                                 "type": "array"
-                              },
-                              "type": "object"
-                           }
-                        ]
-                     },
-                     "type": "array"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Nextflow Config"
-            },
-            "nf_test_content": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "items": {
-                        "type": "string"
-                     },
-                     "type": "array"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Nf Test Content"
-            },
-            "multiqc_config": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "items": {
-                        "type": "string"
-                     },
-                     "type": "array"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Multiqc Config"
-            },
-            "files_exist": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "items": {
-                        "type": "string"
-                     },
-                     "type": "array"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Files Exist"
-            },
-            "template_strings": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "items": {
-                        "type": "string"
-                     },
-                     "type": "array"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Template Strings"
-            },
-            "readme": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "items": {
-                        "type": "string"
-                     },
-                     "type": "array"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Readme"
-            },
-            "nfcore_components": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Nfcore Components"
-            },
-            "actions_nf_test": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Actions Nf Test"
-            },
-            "actions_awstest": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Actions Awstest"
-            },
-            "actions_awsfulltest": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Actions Awsfulltest"
-            },
-            "pipeline_todos": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Pipeline Todos"
-            },
-            "pipeline_if_empty_null": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Pipeline If Empty Null"
-            },
-            "plugin_includes": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Plugin Includes"
-            },
-            "pipeline_name_conventions": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Pipeline Name Conventions"
-            },
-            "schema_lint": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Schema Lint"
-            },
-            "schema_params": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Schema Params"
-            },
-            "system_exit": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "System Exit"
-            },
-            "schema_description": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Schema Description"
-            },
-            "actions_schema_validation": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Actions Schema Validation"
-            },
-            "modules_json": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Modules Json"
-            },
-            "modules_structure": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Modules Structure"
-            },
-            "base_config": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Base Config"
-            },
-            "nfcore_yml": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Nfcore Yml"
-            },
-            "version_consistency": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Version Consistency"
-            },
-            "included_configs": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Included Configs"
-            },
-            "local_component_structure": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Local Component Structure"
-            },
-            "rocrate_readme_sync": {
-               "anyOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "null"
-                  }
-               ],
-               "default": null,
-               "title": "Rocrate Readme Sync"
-            }
-         },
-         "title": "NFCoreYamlLintConfig",
-         "type": "object"
-      }
-   }
-}
-```
-
-</details></p>
-* **Fields:**
-  - [`bump_version (dict[str, bool] | None)`](#nf_core.utils.NFCoreYamlConfig.bump_version)
-  - [`lint (nf_core.utils.NFCoreYamlLintConfig | None)`](#nf_core.utils.NFCoreYamlConfig.lint)
-  - [`nf_core_version (str | None)`](#nf_core.utils.NFCoreYamlConfig.nf_core_version)
-  - [`org_path (str | None)`](#nf_core.utils.NFCoreYamlConfig.org_path)
-  - [`repository_type (Literal['pipeline', 'modules'] | None)`](#nf_core.utils.NFCoreYamlConfig.repository_type)
-  - [`template (nf_core.utils.NFCoreTemplateConfig | None)`](#nf_core.utils.NFCoreYamlConfig.template)
-  - [`update (dict[str, str | bool | dict[str, str | dict[str, str | bool]]] | None)`](#nf_core.utils.NFCoreYamlConfig.update)
-
-#### _`field{:python}`_`bump_version{:python}`_: dict\[str, bool] | None_`{:python}`_= None_
-
-Disable bumping of the version for a module/subworkflow (when repository_type is modules). See <https://nf-co.re/docs/nf-core-tools/modules/bump-versions> for more information.
-
-#### _`field{:python}`_`lint{:python}`_: [NFCoreYamlLintConfig](#nf_core.utils.NFCoreYamlLintConfig) | None_`{:python}`_= None_
-
-Pipeline linting configuration, see <https://nf-co.re/docs/nf-core-tools/pipelines/lint#linting-config> for examples and documentation
-
-#### _`field{:python}`_`nf_core_version{:python}`_: str | None_`{:python}`_= None_
-
-Version of nf-core/tools used to create/update the pipeline
-
-#### _`field{:python}`_`org_path{:python}`_: str | None_`{:python}`_= None_
-
-Path to the organisation’s modules repository (used for modules repo_type only)
-
-#### _`field{:python}`_`repository_type{:python}`_: Literal\['pipeline', 'modules'] | None_`{:python}`_= None_
-
-Type of repository
-
-#### _`field{:python}`_`template{:python}`_: [NFCoreTemplateConfig](#nf_core.utils.NFCoreTemplateConfig) | None_`{:python}`_= None_
-
-Pipeline template configuration
-
-#### _`field{:python}`_`update{:python}`_: dict\[str, str | bool | dict\[str, str | dict\[str, str | bool]]] | None_`{:python}`_= None_
-
-Disable updating specific modules/subworkflows (when repository_type is pipeline). See <https://nf-co.re/docs/nf-core-tools/modules/update> for more information.
-
-#### `get(item: str, default: Any = None) → Any{:python}`
-
-#### `model_dump(**kwargs) → dict[str, Any]{:python}`
-
-!!! abstract “Usage Documentation”
-: [model_dump](../concepts/serialization#python-mode)
-
-Generate a dictionary representation of the model, optionally specifying which fields to include or exclude.
-
-- **Parameters:**
-  - **mode** – The mode in which to_python should run.
-    If mode is ‘json’, the output will only contain JSON serializable types.
-    If mode is ‘python’, the output may contain non-JSON-serializable Python objects.
-  - **include** – A set of fields to include in the output.
-  - **exclude** – A set of fields to exclude from the output.
-  - **context** – Additional context to pass to the serializer.
-  - **by_alias** – Whether to use the field’s alias in the dictionary key if defined.
-  - **exclude_unset** – Whether to exclude fields that have not been explicitly set.
-  - **exclude_defaults** – Whether to exclude fields that are set to their default value.
-  - **exclude_none** – Whether to exclude fields that have a value of None.
-  - **exclude_computed_fields** – Whether to exclude computed fields.
-    While this can be useful for round-tripping, it is usually recommended tu use the dedicated
-    round_trip parameter instead.
-  - **round_trip** – If True, dumped values should be valid as input for non-idempotent types such as Json\[T].
-  - **warnings** – How to handle serialization errors. False/”none” ignores them, True/”warn” logs errors,
-    “error” raises a \[PydanticSerializationError]\[pydantic_core.PydanticSerializationError].
-  - **fallback** – A function to call when an unknown value is encountered. If not provided,
-    a \[PydanticSerializationError]\[pydantic_core.PydanticSerializationError] error is raised.
-  - **serialize_as_any** – Whether to serialize fields with duck-typing serialization behavior.
-- **Returns:**
-  A dictionary representation of the model.
-
-#### `_abc_impl{:python}`_= <\_abc.\_abc_data object>_
-
-### _`pydantic model{:python}`_`nf_core.utils.NFCoreYamlLintConfig{:python}`
-
-Bases: `BaseModel`
-
-schema for linting config in .nf-core.yml should cover:
-
-```yaml
-files_unchanged:
-    - .github/workflows/branch.yml
-modules_config: False
-modules_config:
-        - fastqc
-# merge_markers: False
-merge_markers:
-        - docs/my_pdf.pdf
-nextflow_config: False
-nextflow_config:
-    - manifest.name
-    - config_defaults:
-        - params.annotation_db
-        - params.multiqc_comment_headers
-        - params.custom_table_headers
-# multiqc_config: False
-multiqc_config:
-    - report_section_order
-    - report_comment
-files_exist:
-    - .github/CONTRIBUTING.md
-    - CITATIONS.md
-template_strings: False
-template_strings:
-        - docs/my_pdf.pdf
-nfcore_components: False
-# nf_test_content: False
-nf_test_content:
-    - tests/<test_name>.nf.test
-    - tests/nextflow.config
-    - nf-test.config
-```
-
-<p><details  class="autodoc_pydantic_collapsable_json">
-<summary>Show JSON schema</summary>
-```json
-{
-   "title": "NFCoreYamlLintConfig",
-   "description": "schema for linting config in `.nf-core.yml` should cover:\n\n.. code-block:: yaml\n\n    files_unchanged:\n        - .github/workflows/branch.yml\n    modules_config: False\n    modules_config:\n            - fastqc\n    # merge_markers: False\n    merge_markers:\n            - docs/my_pdf.pdf\n    nextflow_config: False\n    nextflow_config:\n        - manifest.name\n        - config_defaults:\n            - params.annotation_db\n            - params.multiqc_comment_headers\n            - params.custom_table_headers\n    # multiqc_config: False\n    multiqc_config:\n        - report_section_order\n        - report_comment\n    files_exist:\n        - .github/CONTRIBUTING.md\n        - CITATIONS.md\n    template_strings: False\n    template_strings:\n            - docs/my_pdf.pdf\n    nfcore_components: False\n    # nf_test_content: False\n    nf_test_content:\n        - tests/<test_name>.nf.test\n        - tests/nextflow.config\n        - nf-test.config",
-   "type": "object",
-   "properties": {
-      "files_unchanged": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "items": {
-                  "type": "string"
-               },
-               "type": "array"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Files Unchanged"
-      },
-      "modules_config": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "items": {
-                  "type": "string"
-               },
-               "type": "array"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Modules Config"
-      },
-      "merge_markers": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "items": {
-                  "type": "string"
-               },
-               "type": "array"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Merge Markers"
-      },
-      "nextflow_config": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "items": {
-                  "anyOf": [
-                     {
-                        "type": "string"
-                     },
-                     {
-                        "additionalProperties": {
-                           "items": {
-                              "type": "string"
-                           },
-                           "type": "array"
-                        },
-                        "type": "object"
-                     }
-                  ]
-               },
-               "type": "array"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Nextflow Config"
-      },
-      "nf_test_content": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "items": {
-                  "type": "string"
-               },
-               "type": "array"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Nf Test Content"
-      },
-      "multiqc_config": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "items": {
-                  "type": "string"
-               },
-               "type": "array"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Multiqc Config"
-      },
-      "files_exist": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "items": {
-                  "type": "string"
-               },
-               "type": "array"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Files Exist"
-      },
-      "template_strings": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "items": {
-                  "type": "string"
-               },
-               "type": "array"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Template Strings"
-      },
-      "readme": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "items": {
-                  "type": "string"
-               },
-               "type": "array"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Readme"
-      },
-      "nfcore_components": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Nfcore Components"
-      },
-      "actions_nf_test": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Actions Nf Test"
-      },
-      "actions_awstest": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Actions Awstest"
-      },
-      "actions_awsfulltest": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Actions Awsfulltest"
-      },
-      "pipeline_todos": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Pipeline Todos"
-      },
-      "pipeline_if_empty_null": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Pipeline If Empty Null"
-      },
-      "plugin_includes": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Plugin Includes"
-      },
-      "pipeline_name_conventions": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Pipeline Name Conventions"
-      },
-      "schema_lint": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Schema Lint"
-      },
-      "schema_params": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Schema Params"
-      },
-      "system_exit": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "System Exit"
-      },
-      "schema_description": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Schema Description"
-      },
-      "actions_schema_validation": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Actions Schema Validation"
-      },
-      "modules_json": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Modules Json"
-      },
-      "modules_structure": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Modules Structure"
-      },
-      "base_config": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Base Config"
-      },
-      "nfcore_yml": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Nfcore Yml"
-      },
-      "version_consistency": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Version Consistency"
-      },
-      "included_configs": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Included Configs"
-      },
-      "local_component_structure": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Local Component Structure"
-      },
-      "rocrate_readme_sync": {
-         "anyOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "null"
-            }
-         ],
-         "default": null,
-         "title": "Rocrate Readme Sync"
-      }
-   }
-}
-```
-
-</details></p>
-* **Fields:**
-  - [`actions_awsfulltest (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.actions_awsfulltest)
-  - [`actions_awstest (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.actions_awstest)
-  - [`actions_nf_test (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.actions_nf_test)
-  - [`actions_schema_validation (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.actions_schema_validation)
-  - [`base_config (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.base_config)
-  - [`files_exist (bool | list[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.files_exist)
-  - [`files_unchanged (bool | list[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.files_unchanged)
-  - [`included_configs (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.included_configs)
-  - [`local_component_structure (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.local_component_structure)
-  - [`merge_markers (bool | list[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.merge_markers)
-  - [`modules_config (bool | list[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.modules_config)
-  - [`modules_json (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.modules_json)
-  - [`modules_structure (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.modules_structure)
-  - [`multiqc_config (bool | list[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.multiqc_config)
-  - [`nextflow_config (bool | list[str | dict[str, list[str]]] | None)`](#nf_core.utils.NFCoreYamlLintConfig.nextflow_config)
-  - [`nf_test_content (bool | list[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.nf_test_content)
-  - [`nfcore_components (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.nfcore_components)
-  - [`nfcore_yml (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.nfcore_yml)
-  - [`pipeline_if_empty_null (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.pipeline_if_empty_null)
-  - [`pipeline_name_conventions (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.pipeline_name_conventions)
-  - [`pipeline_todos (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.pipeline_todos)
-  - [`plugin_includes (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.plugin_includes)
-  - [`readme (bool | list[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.readme)
-  - [`rocrate_readme_sync (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.rocrate_readme_sync)
-  - [`schema_description (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.schema_description)
-  - [`schema_lint (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.schema_lint)
-  - [`schema_params (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.schema_params)
-  - [`system_exit (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.system_exit)
-  - [`template_strings (bool | list[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.template_strings)
-  - [`version_consistency (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.version_consistency)
-
-#### _`field{:python}`_`actions_awsfulltest{:python}`_: bool | None_`{:python}`_= None_
-
-Lint all required files to run full tests on AWS
-
-#### _`field{:python}`_`actions_awstest{:python}`_: bool | None_`{:python}`_= None_
-
-Lint all required files to run tests on AWS
-
-#### _`field{:python}`_`actions_nf_test{:python}`_: bool | None_`{:python}`_= None_
-
-Lint all required files to use GitHub Actions CI
-
-#### _`field{:python}`_`actions_schema_validation{:python}`_: bool | None_`{:python}`_= None_
-
-Lint GitHub Action workflow files with schema
-
-#### _`field{:python}`_`base_config{:python}`_: bool | None_`{:python}`_= None_
-
-Lint base.config file
-
-#### _`field{:python}`_`files_exist{:python}`_: bool | list\[str] | None_`{:python}`_= None_
-
-List of files that can not exist
-
-#### _`field{:python}`_`files_unchanged{:python}`_: bool | list\[str] | None_`{:python}`_= None_
-
-List of files that should not be changed
-
-#### _`field{:python}`_`included_configs{:python}`_: bool | None_`{:python}`_= None_
-
-Lint for included configs
-
-#### _`field{:python}`_`local_component_structure{:python}`_: bool | None_`{:python}`_= None_
-
-Lint local components use correct structure mirroring remote
-
-#### _`field{:python}`_`merge_markers{:python}`_: bool | list\[str] | None_`{:python}`_= None_
-
-List of files that should not contain merge markers
-
-#### _`field{:python}`_`modules_config{:python}`_: bool | list\[str] | None_`{:python}`_= None_
-
-List of modules that should not be changed
-
-#### _`field{:python}`_`modules_json{:python}`_: bool | None_`{:python}`_= None_
-
-Lint modules.json file
-
-#### _`field{:python}`_`modules_structure{:python}`_: bool | None_`{:python}`_= None_
-
-Lint modules structure
-
-#### _`field{:python}`_`multiqc_config{:python}`_: bool | list\[str] | None_`{:python}`_= None_
-
-List of MultiQC config options that be changed
-
-#### _`field{:python}`_`nextflow_config{:python}`_: bool | list\[str | dict\[str, list\[str]]] | None_`{:python}`_= None_
-
-List of Nextflow config files that should not be changed
-
-#### _`field{:python}`_`nf_test_content{:python}`_: bool | list\[str] | None_`{:python}`_= None_
-
-List of nf-test content that should not be changed
-
-#### _`field{:python}`_`nfcore_components{:python}`_: bool | None_`{:python}`_= None_
-
-Lint all required files to use nf-core modules and subworkflows
-
-#### _`field{:python}`_`nfcore_yml{:python}`_: bool | None_`{:python}`_= None_
-
-Lint nf-core.yml
-
-#### _`field{:python}`_`pipeline_if_empty_null{:python}`_: bool | None_`{:python}`_= None_
-
-Lint for ifEmpty(null) statements
-
-#### _`field{:python}`_`pipeline_name_conventions{:python}`_: bool | None_`{:python}`_= None_
-
-Lint for pipeline name conventions
-
-#### _`field{:python}`_`pipeline_todos{:python}`_: bool | None_`{:python}`_= None_
-
-Lint for TODOs statements
-
-#### _`field{:python}`_`plugin_includes{:python}`_: bool | None_`{:python}`_= None_
-
-Lint for nextflow plugin
-
-#### _`field{:python}`_`readme{:python}`_: bool | list\[str] | None_`{:python}`_= None_
-
-Lint the README.md file
-
-#### _`field{:python}`_`rocrate_readme_sync{:python}`_: bool | None_`{:python}`_= None_
-
-Lint for README.md and rocrate.json sync
-
-#### _`field{:python}`_`schema_description{:python}`_: bool | None_`{:python}`_= None_
-
-Check that every parameter in the schema has a description.
-
-#### _`field{:python}`_`schema_lint{:python}`_: bool | None_`{:python}`_= None_
-
-Lint nextflow_schema.json file
-
-#### _`field{:python}`_`schema_params{:python}`_: bool | None_`{:python}`_= None_
-
-Lint schema for all params
-
-#### _`field{:python}`_`system_exit{:python}`_: bool | None_`{:python}`_= None_
-
-Lint for System.exit calls in groovy/nextflow code
-
-#### _`field{:python}`_`template_strings{:python}`_: bool | list\[str] | None_`{:python}`_= None_
-
-List of files that can contain template strings
-
-#### _`field{:python}`_`version_consistency{:python}`_: bool | None_`{:python}`_= None_
-
-Lint for version consistency
-
-#### `get(item: str, default: Any = None) → Any{:python}`
-
-#### `_abc_impl{:python}`_= <\_abc.\_abc_data object>_
+#### `SEQERA_SINGULARITY{:python}`_= 'community-cr-prod.seqera.io/docker/registry/v2'_
 
 ### _`class{:python}`_`nf_core.utils.Pipeline(wf_path: Path){:python}`
 
@@ -1717,6 +105,14 @@ Run core load functions
 
 Try to load the pipeline environment.yml file, if it exists
 
+#### `conda_config{:python}`_: dict_
+
+#### `conda_package_info{:python}`_: dict_
+
+#### `files{:python}`_: list\[Path]_
+
+#### `git_sha{:python}`_: str | None_
+
 #### `list_files() → list[Path]{:python}`
 
 Get a list of all files in the pipeline
@@ -1727,21 +123,27 @@ Get the nextflow config for this pipeline
 
 Once loaded, set a few convenience reference class attributes
 
-### _`class{:python}`_`nf_core.utils.SingularityCacheFilePathValidator{:python}`
+#### `minNextflowVersion{:python}`_: str | None_
 
-Bases: `Validator`
+#### `nf_config{:python}`_: dict_
 
-Validator for file path specified as –singularity-cache-index argument in nf-core pipelines download
+#### `pipeline_name{:python}`_: str | None_
 
-#### `_abc_impl{:python}`_= <\_abc.\_abc_data object>_
+#### `pipeline_prefix{:python}`_: str | None_
 
-#### `validate(value){:python}`
+#### `repo{:python}`_: git.Repo | None_
 
-Validate the input.
-If invalid, this should raise a `ValidationError`.
+#### `schema_obj{:python}`_: [PipelineSchema](pipelines/schema#nf_core.pipelines.schema.PipelineSchema) | None_
 
-- **Parameters:**
-  **document** – `Document` instance.
+### `nf_core.utils._load_cached_remote_version() → str | None{:python}`
+
+### `nf_core.utils._load_version_cache() → dict{:python}`
+
+### `nf_core.utils._nfcore_question_style(){:python}`
+
+### `nf_core.utils._spawn_remote_version_refresh(source_url: str) → None{:python}`
+
+Kick off a detached background process to refresh the remote version cache.
 
 ### `nf_core.utils.anaconda_package(dep, dep_channels=None){:python}`
 
@@ -1754,7 +156,7 @@ Sends a HTTP GET request to the Anaconda remote API.
   - **dep_channels** (_list_) – list of conda channels to use
 - **Raises:**
   - **A LookupError**\*\*,\*\* **if the connection fails** **or** **times out** **or** **gives an unexpected status code** –
-  - **A ValueError**\*\*,\*\* **if the package name can not be found** **(\*\***404\***\*)** –
+  - **A ValueError**\*\*,\*\* **if the package name can not be found** **(****404****)** –
 
 ### `nf_core.utils.check_if_outdated(current_version=None, remote_version=None, source_url='https://nf-co.re/tools_version'){:python}`
 
@@ -1777,8 +179,6 @@ Check the version of Nextflow installed on the system.
 Overwrite default PyYAML output to make Prettier YAML linting happy
 
 ### `nf_core.utils.determine_base_dir(directory: Path | str = '.') → Path{:python}`
-
-### `nf_core.utils.fetch_remote_version(source_url){:python}`
 
 ### `nf_core.utils.fetch_wf_config(wf_path: Path, cache_config: bool = True) → dict{:python}`
 
@@ -1813,13 +213,13 @@ Returns the most recent container versions by default.
 
 - **Raises:**
   - **A LookupError**\*\*,\*\* **if the connection fails** **or** **times out** **or** **gives an unexpected status code** –
-  - **A ValueError**\*\*,\*\* **if the package name can not be found** **(\*\***404\***\*)** –
+  - **A ValueError**\*\*,\*\* **if the package name can not be found** **(****404****)** –
 
 ### `nf_core.utils.get_first_available_path(directory: Path | str, paths: list[str]) → Path | None{:python}`
 
 ### `nf_core.utils.get_nf_version() → tuple[int, int, int, bool] | None{:python}`
 
-Get the version of Nextflow installed on the system.
+Get the version of Nextflow installed on the system. Cached for the lifetime of the process.
 
 ### `nf_core.utils.get_repo_commit(pipeline, commit_id){:python}`
 
@@ -1855,6 +255,10 @@ Return a list of all files in a directory (ignores .gitigore files)
 
 Check file path to see if it is a binary file
 
+### `nf_core.utils.is_interactive() → bool{:python}`
+
+Check if the current session is interactive (has a TTY on stdin, stdout, and stderr).
+
 ### `nf_core.utils.is_pipeline_directory(wf_path){:python}`
 
 Checks if the specified directory have the minimum required files
@@ -1874,7 +278,21 @@ Should mimic Path.is_relative_to which not available in Python < 3.9
 path1 (Path | str): The path that could be a subpath
 path2 (Path | str): The path the could be the superpath
 
-### `nf_core.utils.load_tools_config(directory: str | Path = '.') → tuple[Path | None,{:python}`[`NFCoreYamlConfig{:python}`](#nf_core.utils.NFCoreYamlConfig)`| None]{:python}`
+### `nf_core.utils.lazy_attrs(module_globals: dict, mapping: dict[str, str | Callable]){:python}`
+
+Build module-level `__getattr__` and `__dir__` for lazy attributes (PEP 562).
+
+Each attribute maps either to the dotted path of the module to import it
+from, or to a zero-argument callable that builds it. Resolved attributes
+are cached in the module’s globals, so the hook only fires once per name.
+
+Usage:
+
+```default
+__getattr__, __dir__ = lazy_attrs(globals(), {"PipelineCreateApp": "nf_core.pipelines.create"})
+```
+
+### `nf_core.utils.load_tools_config(directory: str | Path = '.') → tuple[Path | None,{:python}`[`NFCoreYamlConfig{:python}`](nf_core_yml#nf_core.utils.NFCoreYamlConfig)`| None]{:python}`
 
 Parse the nf-core.yml configuration file
 
@@ -1907,6 +325,16 @@ Sets the value in a nested dict using a list of keys to traverse
 Given a response from the anaconda API using anaconda_package, parse the software licences.
 
 Returns: Set of licence types
+
+### `nf_core.utils.parse_nextflow_json(text: str) → Any{:python}`
+
+Parse the JSON output of a Nextflow command, ignoring status lines printed around it.
+
+Nextflow can print status lines to stdout next to the JSON, e.g. \[PIPELINE] …
+or, before 26.05, the Seqera Platform monitoring URL.
+
+- **Raises:**
+  **json.JSONDecodeError** – If the text contains no valid JSON object.
 
 ### `nf_core.utils.pip_package(dep){:python}`
 
@@ -1968,6 +396,10 @@ Prompt for the pipeline name with questionary
 - **Raises:**
   **AssertionError**\*\*,\*\* **if pipeline cannot be found** –
 
+### `nf_core.utils.read_module_name(main_nf: Path) → str | None{:python}`
+
+Return the process name declared in a Nextflow `main.nf` file, or `None`.
+
 ### `nf_core.utils.rich_force_colors(){:python}`
 
 Check if any environment variables are set to force Rich to use coloured output
@@ -1983,15 +415,20 @@ Sets the working directory for this context.
 - **Parameters:**
   **path** (_Path_) – Path to the working directory to be used inside this context.
 
-### `nf_core.utils.setup_nfcore_cachedir(cache_fn: str | Path) → Path{:python}`
+### `nf_core.utils.set_wd_tempdir(base_dir: Path | None = None) → Generator[Path, None, None]{:python}`
+
+Context manager to create a tempdir and change into it, ensuring its removal and a return to
+the original working directory on exit (including exceptions).
+
+- **Parameters:**
+  **base_dir** – Directory in which to create the tempdir. Defaults to the system temp location.
+
+### `nf_core.utils.setup_nfcore_cachedir(cache_fn: str | Path | None = None) → Path{:python}`
 
 Sets up local caching for caching files between sessions.
 
-### `nf_core.utils.setup_nfcore_dir() → bool{:python}`
-
-Creates a directory for files that need to be kept between sessions
-
-Currently only used for keeping local copies of modules repos
+Creates and returns a subdirectory of the nf-core cache directory,
+or the cache directory itself if no subdirectory is given.
 
 ### `nf_core.utils.setup_requests_cachedir() → dict[str, Path | timedelta | str]{:python}`
 
@@ -2012,6 +449,21 @@ Sorts a nested dictionary recursively
 Strip ANSI colouring codes from a string to return plain text.
 
 From Stack Overflow: <https://stackoverflow.com/a/14693789/713980>
+
+### `nf_core.utils.unquote(s: str) → str{:python}`
+
+Remove paired quotes (single or double) from start and end of string.
+
+Uses ast.literal_eval to safely parse Python string literals, preserving
+the original string if it’s not a valid literal.
+
+Special handling for ruamel.yaml DoubleQuotedScalarString to preserve
+strings that should not be converted to numbers (e.g., “123” stays as string).
+
+- **Parameters:**
+  **s** – String potentially containing quotes
+- **Returns:**
+  String with outer quotes removed if present, otherwise original string
 
 ### `nf_core.utils.validate_file_md5(file_name, expected_md5hex){:python}`
 

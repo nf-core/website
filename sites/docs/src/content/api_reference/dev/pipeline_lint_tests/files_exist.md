@@ -22,7 +22,7 @@ Files that _must_ be present:
 .prettierignore
 .prettierrc.yml
 .github/.dockstore.yml
-.github/CONTRIBUTING.md
+docs/CONTRIBUTING.md
 .github/ISSUE_TEMPLATE/bug_report.yml
 .github/ISSUE_TEMPLATE/config.yml
 .github/ISSUE_TEMPLATE/feature_request.yml
@@ -31,7 +31,7 @@ Files that _must_ be present:
 .github/workflows/nf-test.yml
 .github/actions/get-shards/action.yml
 .github/actions/nf-test/action.yml
-.github/workflows/linting_comment.yml
+.github/workflows/pr-comment.yml
 .github/workflows/linting.yml
 [LICENSE, LICENSE.md, LICENCE, LICENCE.md]  # NB: British / American spelling
 assets/email_template.html

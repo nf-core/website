@@ -1,5 +1,5 @@
 # Slack invite URL
-/join/slack https://join.slack.com/t/nfcore/shared_invite/zt-19925m8f9-9UsNumo2tBvrxWv_LuIuVA
+/join/slack https://join.slack.com/t/nfcore/shared_invite/zt-3utsoyy3l-C8jJaYEhjLKND5MEkw9cZA
 
 # Force a 404 header on custom 404 page
 # See https://answers.netlify.com/t/bug-and-workaround-404-page-returns-http-200/21154
@@ -11,76 +11,254 @@
 
 
 # Temporary oldsite redirections
-/logo/*  https://oldsite.nf-co.re/logo/:splat 200
+/logo/*                    https://oldsite.nf-co.re/logo/:splat 200
 /pipeline_schema_builder/* https://oldsite.nf-co.re/pipeline_schema_builder/:splat 200
-/launch/* https://oldsite.nf-co.re/launch/:splat 200
-/assets/* https://oldsite.nf-co.re/assets/:splat 200
+/launch/*                  https://oldsite.nf-co.re/launch/:splat 200
 
 # New site July 2023 - URL changes
-/community /contributors
-/usage/* /docs/usage/:splat
-/developers/* /docs/contributing/:splat
-/contributing/* /docs/contributing/:splat
-/assets/img/* /images/:splat
-/tools-docs/lint_tests/* /tools/docs/latest/pipeline_lint_tests/:splat
+/community               /contributors
+/assets/img/*            /images/:splat
+/assets/*                https://oldsite.nf-co.re/assets/:splat 200
+/tools-docs/lint_tests/* /docs/nf-core-tools/api_reference/latest/pipeline_lint_tests/:splat 301
+
+# /usage/* shortcuts — direct routes to avoid two-hop chain through /docs/usage/:splat
+/usage/introduction                                          /docs/get_started/nf-core 301
+/usage/installation                                          /docs/get_started/environment_setup/nextflow 301
+/usage/configuration                                         /docs/get_started/environment_setup/nextflow 301
+/usage/offline                                               /docs/running/run-pipelines-offline 301
+/usage/troubleshooting                                       /docs/running/configuration/nextflow-for-your-system#troubleshooting
+/usage/troubleshooting/*                                     /docs/running/configuration/nextflow-for-your-system#troubleshooting
+/usage/tutorials/step_by_step_institutional_profile          /docs/developing/institutional-profiles/overview 301
+/usage/data_management                                       /blog/2020/data_management
+/usage/getting_started/configuration                         /docs/get_started/environment_setup/nextflow 301
+/usage/getting_started/installation                          /docs/get_started/environment_setup/nextflow 301
+/usage/getting_started/introduction                          /docs/get_started/nf-core 301
+/usage/getting_started/offline                               /docs/running/run-pipelines-offline 301
+/usage/getting_started/terminology                           /docs/community/terminology 301
+/usage/reference_genomes                                     /docs/running/reference-genomes 301
+/usage/*                                                     /docs/usage/:splat 301
+
+# /contributing/* and /developers/* shortcuts — direct routes to avoid two-hop chain through /docs/contributing/:splat
+/contributing/code_formatting                                /docs/developing/documentation/prettier 301
+/contributing/website_markdown                               /docs/developing/documentation/markdown 301
+/contributing/editor_plugins                                 /docs/get_started/environment_setup/vs-code 301
+/contributing/tutorials/nf-test_assertions                   /docs/developing/testing/assertions 301
+/contributing/release_checklist                              /docs/contributing/reviewing-pull-requests/review_checklists/pipeline-release 301
+/contributing/pipeline_release_review_guidelines             /docs/contributing/reviewing-pull-requests/review_checklists/pipeline-release 301
+/contributing/adding_pipelines                               /docs/contributing/contribute-new-pipelines 301
+/contributing/contributing_to_pipelines                      /docs/contributing/contribute-existing-pipelines 301
+/contributing/gitpod                                         /docs/tutorials/gitpod/overview 301
+/contributing/gitpod/nf_core_repo                            /docs/tutorials/gitpod/nf-core_repo 301
+/contributing/gitpod/other_tutorials                         /docs/tutorials/gitpod/overview 301
+/contributing/gitpod/*                                       /docs/tutorials/gitpod/:splat 301
+/contributing/tutorials/adding_modules_to_pipelines          /docs/developing/pipelines/adding-modules 301
+/contributing/tutorials/nf_core_configs_outside_nf_core      /docs/developing/institutional-profiles/outside-nf-core 301
+/contributing/sync                                           /docs/developing/template-syncs/overview 301
+/contributing/guidelines                                     /docs/specifications/pipelines/overview 301
+/contributing/guidelines/recommendations/*                   /docs/specifications/pipelines/recommendations/:splat 301
+/contributing/guidelines/requirements/*                      /docs/specifications/pipelines/requirements/:splat 301
+/contributing/nfcore_component-specifications                /docs/specifications/overview 301
+/contributing/tutorials/unofficial_pipelines                 /docs/developing/pipelines/external-use 301
+/developers/*                                                /docs/contributing/:splat 301
+/contributing/*                                              /docs/contributing/:splat 301
 
 
 # Big docs restructure - April 2024
-/tools                                     https://nf-core-docs.netlify.app/docs/nf-core-tools 200
-/tools/docs/*                              https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:splat 200
-/tools/*                                   https://nf-core-docs.netlify.app/docs/nf-core-tools/:splat 200
+/tools                                     /docs/nf-core-tools 301
+/tools/docs/*                              /docs/nf-core-tools/api_reference/:splat 301
+/tools/*                                   /docs/nf-core-tools/:splat 301
 
-/docs/nf-core-tools/api_reference/:version/api/index  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/api 200
+# Shortened API reference URLs: /:version/:command -> /:version/api/:command
+/docs/nf-core-tools/api_reference/:version/api/index  /docs/nf-core-tools/api_reference/:version/api 301
+/docs/nf-core-tools/api_reference/:version/api  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/api 200
 /docs/nf-core-tools/api_reference/:version/pipeline_lint_tests  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/pipeline_lint_tests 200
 /docs/nf-core-tools/api_reference/:version/module_lint_tests  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/module_lint_tests 200
 /docs/nf-core-tools/api_reference/:version/subworkflow_lint_tests  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/subworkflow_lint_tests 200
-/docs/nf-core-tools/api_reference/:version/:command  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/api/:command 200
+# Tools 1.x docs have no api/ subfolder: commands live directly under the version
+/docs/nf-core-tools/api_reference/1.5/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.5/:splat 200
+/docs/nf-core-tools/api_reference/1.6/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.6/:splat 200
+/docs/nf-core-tools/api_reference/1.7/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.7/:splat 200
+/docs/nf-core-tools/api_reference/1.8/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.8/:splat 200
+/docs/nf-core-tools/api_reference/1.9/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.9/:splat 200
+/docs/nf-core-tools/api_reference/1.10/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.10/:splat 200
+/docs/nf-core-tools/api_reference/1.10.1/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.10.1/:splat 200
+/docs/nf-core-tools/api_reference/1.10.2/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.10.2/:splat 200
+/docs/nf-core-tools/api_reference/1.11/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.11/:splat 200
+/docs/nf-core-tools/api_reference/1.12/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.12/:splat 200
+/docs/nf-core-tools/api_reference/1.12.1/*  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/1.12.1/:splat 200
+/docs/nf-core-tools/api_reference/:version/:command  /docs/nf-core-tools/api_reference/:version/api/:command 301
 
+/docs/usage/introduction                                              /docs/get_started/nf-core 301
+/docs/usage/installation                                              /docs/get_started/environment_setup/nextflow 301
+/docs/usage/configuration                                             /docs/get_started/environment_setup/nextflow 301
+/docs/usage/offline                                                   /docs/running/run-pipelines-offline 301
+/docs/usage/troubleshooting                                           /docs/running/configuration/nextflow-for-your-system#troubleshooting
+/docs/usage/tutorials/step_by_step_institutional_profile              /docs/developing/institutional-profiles/overview 301
+/docs/tutorials/use_nf-core_pipelines/config_institutional_profile    /docs/developing/institutional-profiles/overview 301
+/docs/usage/data_management                                           /blog/2020/data_management
 
-/docs/usage/introduction                                     https://nf-core-docs.netlify.app/docs/usage/getting_started/introduction 200
-/docs/usage/installation                                     https://nf-core-docs.netlify.app/docs/usage/getting_started/installation 200
-/docs/usage/configuration                                    https://nf-core-docs.netlify.app/docs/usage/getting_started/configuration 200
-/docs/usage/offline                                          https://nf-core-docs.netlify.app/docs/usage/getting_started/offline 200
-/docs/usage/troubleshooting                                  https://nf-core-docs.netlify.app/docs/usage/troubleshooting/overview 200
-/docs/usage/tutorials                                        https://nf-core-docs.netlify.app/docs/tutorials 200
-/docs/usage/tutorials/step_by_step_institutional_profile     https://nf-core-docs.netlify.app/docs/tutorials/use_nf-core_pipelines/writing_institutional_profile 200
-/docs/tutorials/use_nf-core_pipelines/config_institutional_profile           https://nf-core-docs.netlify.app/docs/tutorials/use_nf-core_pipelines/writing_institutional_profile 200
-/docs/usage/tutorials/nf_core_usage_tutorial                 https://nf-core-docs.netlify.app/docs/tutorials/nf-core_contributing_overview 200
-/docs/usage/tutorials/institution                            https://nf-core-docs.netlify.app/docs/tutorials/contributing_to_nf-core/contributors_institution 200
-/docs/usage/data_management                                  /blog/2020/data_management
+/docs/contributing/code_formatting                           /docs/developing/documentation/prettier 301
+/docs/contributing/website_markdown                          /docs/developing/documentation/markdown 301
+/docs/contributing/editor_plugins                            /docs/get_started/environment_setup/vs-code 301
+/docs/contributing/tutorials/nf-test_assertions              /docs/developing/testing/assertions 301
+/docs/contributing/release_checklist                         /docs/contributing/reviewing-pull-requests/review_checklists/pipeline-release 301
+/docs/contributing/pipeline_release_review_guidelines        /docs/contributing/reviewing-pull-requests/review_checklists/pipeline-release 301
+/docs/contributing/adding_pipelines                          /docs/contributing/contribute-new-pipelines 301
+/docs/contributing/contributing_to_pipelines                 /docs/contributing/contribute-existing-pipelines 301
+/docs/contributing/gitpod                                    /docs/tutorials/gitpod/overview 301
+/docs/contributing/gitpod/nf_core_repo                       /docs/tutorials/gitpod/nf-core_repo 301
+/docs/contributing/gitpod/other_tutorials                    /docs/tutorials/gitpod/overview 301
+/docs/contributing/gitpod/*                                  /docs/tutorials/gitpod/:splat 301
+/docs/contributing/tutorials/adding_modules_to_pipelines     /docs/developing/pipelines/adding-modules 301
+/docs/contributing/tutorials/nf_core_configs_outside_nf_core /docs/developing/institutional-profiles/outside-nf-core 301
+/docs/contributing/sync                                      /docs/developing/template-syncs/overview 301
+/docs/contributing/guidelines                                /docs/specifications/pipelines/overview 301
+/docs/contributing/guidelines/recommendations/*              /docs/specifications/pipelines/recommendations/:splat 301
+/docs/contributing/guidelines/requirements/*                 /docs/specifications/pipelines/requirements/:splat 301
+/docs/contributing/nfcore_component-specifications           /docs/specifications/overview 301
+/docs/contributing/tutorials/unofficial_pipelines            /docs/developing/pipelines/external-use 301
 
-/docs/contributing/code_formatting                           https://nf-core-docs.netlify.app/docs/contributing/code_editors_and_styling/code_formatting 200
-/docs/contributing/website_markdown                          https://nf-core-docs.netlify.app/docs/contributing/website/markdown 200
-/docs/contributing/editor_plugins                            https://nf-core-docs.netlify.app/docs/contributing/code_editors_and_styling/editor_plugins 200
-/docs/contributing/tutorials/nf-test_assertions              https://nf-core-docs.netlify.app/docs/contributing/nf-test/assertions 200
-/docs/contributing/release_checklist                         https://nf-core-docs.netlify.app/docs/checklists/pipeline_release 200
-/docs/contributing/pipeline_release_review_guidelines        https://nf-core-docs.netlify.app/docs/checklists/reviews/pipeline_release_pr 200
-/docs/contributing/tutorials                                 https://nf-core-docs.netlify.app/docs/tutorials 200
-/docs/contributing/adding_pipelines                          https://nf-core-docs.netlify.app/docs/tutorials/adding_a_pipeline/overview 200
-/docs/contributing/contributing_to_pipelines                 https://nf-core-docs.netlify.app/docs/tutorials/contributing_to_nf-core/contributing_to_pipelines 200
-/docs/contributing/gitpod                                    https://nf-core-docs.netlify.app/docs/tutorials/gitpod/overview 200
-/docs/contributing/gitpod/nf_core_repo                       https://nf-core-docs.netlify.app/docs/tutorials/gitpod/nf-core_repo 200
-/docs/contributing/gitpod/other_tutorials                    https://nf-core-docs.netlify.app/docs/tutorials/gitpod/overview 200
-/docs/contributing/gitpod/*                                  https://nf-core-docs.netlify.app/docs/tutorials/gitpod/:splat 200
-/docs/contributing/tutorials/adding_modules_to_pipelines     https://nf-core-docs.netlify.app/docs/tutorials/nf-core_components/adding_modules_to_pipelines 200
-/docs/contributing/tutorials/nf_core_configs_outside_nf_core https://nf-core-docs.netlify.app/docs/tutorials/external_usage/nf-core_configs_outside_nf-core 200
-/docs/contributing/subworkflows                              https://nf-core-docs.netlify.app/docs/tutorials/nf-core_components/components 200
-/docs/contributing/modules                                   https://nf-core-docs.netlify.app/docs/tutorials/nf-core_components/components 200
-/docs/contributing/sync                                      https://nf-core-docs.netlify.app/docs/tutorials/sync/overview 200
-/docs/contributing/test_data_guidelines                      https://nf-core-docs.netlify.app/docs/tutorials/tests_and_test_data/test_data 200
-/docs/contributing/training_guide                            https://nf-core-docs.netlify.app/docs/tutorials/contributing_to_nf-core/writing_training 200
-/docs/contributing/tutorials/creating_with_nf_core           https://nf-core-docs.netlify.app/docs/tutorials/nextflow_training/creating_with_nf-core 200
-/docs/usage/tutorials/nextflow                               https://nf-core-docs.netlify.app/docs/tutorials/nextflow_training/nextflow 200
-/docs/contributing/tutorials/dsl2_modules_tutorial           https://nf-core-docs.netlify.app/docs/tutorials/nf-core_components/components  # Not the same page, but equivalent 200
-/docs/contributing/tutorials/nf_core_contributing_overview   https://nf-core-docs.netlify.app/docs/tutorials/nf-core_contributing_overview 200
-/docs/contributing/design_guidelines                         https://nf-core-docs.netlify.app/docs/guidelines/graphic_design 200
-/docs/contributing/guidelines                                https://nf-core-docs.netlify.app/docs/guidelines/pipelines/overview 200
-/docs/contributing/guidelines/recommendations/*              https://nf-core-docs.netlify.app/docs/guidelines/pipelines/recommendations/:splat 200
-/docs/contributing/guidelines/requirements/*                 https://nf-core-docs.netlify.app/docs/guidelines/pipelines/requirements/:splat 200
-/docs/contributing/nfcore_component-specifications           https://nf-core-docs.netlify.app/docs/guidelines/components/overview 200
-/docs/contributing/nfcore_component-specifications/*         https://nf-core-docs.netlify.app/docs/guidelines/components/:splat 200
-/docs/contributing/tutorials/unofficial_pipelines            https://nf-core-docs.netlify.app/docs/guidelines/external_use 200
-/docs/tutorials/nf-core_contributing_overview                https://nf-core-docs.netlify.app/docs/tutorials/nf-core_training/contributing-training/nf-core_contributing_overview 200
+# Docs v2 restructure redirects
+# ---------------------------------------------------------------------------
+# Checklists
+# ---------------------------------------------------------------------------
+/docs/checklists/community_governance/*               /docs/community/governance/:splat 301
+/docs/checklists/pipeline_release                             /docs/contributing/reviewing-pull-requests/review_checklists/pipeline-release 301
+/docs/checklists/reviews/components_pr                        /docs/contributing/reviewing-pull-requests/review_checklists/component 301
+/docs/checklists/reviews/pipeline_release_pr                  /docs/contributing/reviewing-pull-requests/review_checklists/pipeline-release 301
+/docs/checklists/reviews/tools_pr                             /docs/contributing/reviewing-pull-requests/review_checklists/nf-core-tools 301
+
+# ---------------------------------------------------------------------------
+# Contributing
+# ---------------------------------------------------------------------------
+/docs/contributing/code_editors_and_styling/code_formatting                              /docs/developing/documentation/prettier 301
+/docs/contributing/code_editors_and_styling/editor_plugins                               /docs/get_started/environment_setup/vs-code 301
+/docs/contributing/code_editors_and_styling/harshil_alignment                            /docs/developing/documentation/harshil-alignment 301
+/docs/contributing/components/ext_args                                                   /docs/developing/components/ext-args 301
+/docs/contributing/components/meta_map                                                   /docs/developing/components/ext-args 301
+/docs/contributing/github/nf-core-bot                                                    /docs/contributing/reviewing-pull-requests/nf-core-bot 301
+/docs/contributing/how_to_contribute_to_nf-core                                          /docs/contributing/overview 301
+/docs/contributing/nf-test/assertions                                                    /docs/developing/testing/assertions 301
+/docs/contributing/pipelines/contribution_types                                          /docs/contributing/contributor-types 301
+/docs/contributing/pipelines/pipeline_file_structure                                     /docs/developing/pipelines/template-files 301
+/docs/contributing/project_proposals                                                     /docs/contributing/project-proposals 301
+/docs/contributing/software_packaging/arm64_builds                                       /docs/developing/containers/arm64-on-bioconda 301
+/docs/contributing/website/markdown                                                      /docs/developing/documentation/markdown 301
+
+# Release procedure moved from developing to contributing
+/docs/developing/pipelines/release-procedure                                            /docs/contributing/release-procedure 301
+
+# ---------------------------------------------------------------------------
+# Guidelines - Components
+# ---------------------------------------------------------------------------
+/docs/guidelines/components/module_deprecation                                           /docs/contributing/depreciate-modules 301
+/docs/guidelines/components/modules                                                      /docs/specifications/components/modules/general 301
+/docs/guidelines/components/overview                                                     /docs/specifications/overview 301
+/docs/guidelines/components/subworkflows                                                 /docs/specifications/components/subworkflows/general 301
+/docs/guidelines/components/test_data                                                    /docs/specifications/test-data/overview 301
+
+# Guidelines - Documentation
+/docs/guidelines/documentation/writing_style                                             /docs/developing/documentation/style-guide 301
+
+# Guidelines - External use
+/docs/guidelines/external_use                                                            /docs/developing/pipelines/external-use 301
+
+# Guidelines - Graphic design
+/docs/guidelines/graphic_design/colours                                                  /docs/community/brand/colours 301
+/docs/guidelines/graphic_design/fonts                                                    /docs/community/brand/fonts 301
+/docs/guidelines/graphic_design/logo                                                     /docs/community/brand/logos 301
+/docs/guidelines/graphic_design/overview                                                 /docs/community/brand/overview 301
+/docs/guidelines/graphic_design/presenting                                               /docs/community/brand/presentations 301
+/docs/guidelines/graphic_design/workflow_diagrams                                        /docs/community/brand/workflow-schematics 301
+
+# Guidelines - Pipelines
+/docs/guidelines/pipelines/overview                                                      /docs/specifications/pipelines/overview 301
+/docs/guidelines/pipelines/recommendations                                               /docs/specifications/pipelines/recommendations/publication_credit 301
+/docs/guidelines/pipelines/recommendations/*                                             /docs/specifications/pipelines/recommendations/:splat 301
+/docs/guidelines/pipelines/requirements/*                                                /docs/specifications/pipelines/requirements/:splat 301
+
+# Guidelines - Pull request review
+/docs/guidelines/pull_request_review                                                     /docs/specifications/reviews/overview 301
+
+# Guidelines - Regulatory
+/docs/guidelines/regulatory/*                                                            /docs/community/regulatory/:splat 301
+
+# ---------------------------------------------------------------------------
+# Tutorials - Adding a pipeline (all subpages merged into single page)
+# ---------------------------------------------------------------------------
+/docs/tutorials/adding_a_pipeline/*                                                     /docs/contributing/contribute-new-pipelines 301
+
+# Tutorials - Contributing to nf-core
+/docs/tutorials/contributing_to_nf-core/contributing_to_pipelines                       /docs/contributing/contribute-existing-pipelines 301
+/docs/tutorials/contributing_to_nf-core/github                                          /docs/contributing/reviewing-pull-requests/nf-core-bot 301
+# NOTE: contributing_to_nf-core/writing_training is deprecated (replaced by style guide) - no redirect
+# NOTE: contributing_to_nf-core/contributors_institution is unchanged - no redirect needed
+
+# Tutorials - Dev container (all subpages merged into single page)
+/docs/tutorials/devcontainer/*                                                          /docs/get_started/environment_setup/dev-containers 301
+
+# Tutorials - External usage
+/docs/tutorials/external_usage/cross_organisational_subworkflows                        /docs/developing/components/cross-org-components 301
+/docs/tutorials/external_usage/nf-core_configs_outside_nf-core                          /docs/developing/institutional-profiles/outside-nf-core 301
+
+# Tutorials - Google Colab
+/docs/tutorials/google_colab/nf-core_colab_guide                                        /docs/running/advanced-topics/google-colab 301
+
+# Tutorials - Migrate to topics (all subpages merged into single page)
+/docs/tutorials/migrate_to_topics/*                                                     /docs/developing/migration-guides/update-pipelines 301
+
+# Tutorials - Migrate to strict syntax
+/docs/tutorials/migrate_to_strict_syntax/config_strict_syntax                           /docs/developing/migration-guides/strict-syntax 301
+
+# Tutorials - nf-core components
+/docs/tutorials/nf-core_components/adding_modules_to_pipelines                          /docs/developing/pipelines/adding-modules 301
+/docs/tutorials/nf-core_components/publish_advisories                                   /docs/community/advisories 301
+/docs/tutorials/nf-core_components/using_seqera_containers                              /docs/developing/containers/seqera-containers 301
+/docs/tutorials/nf-core_components/writing_automated_methods_descriptions               /docs/developing/components/automated-methods 301
+# NOTE: nf-core_components/components.mdx has no mapping yet - skip
+
+# Tutorials - nf-core training (writing nf-core modules)
+/docs/tutorials/nf-core_training/writing-nf-core-modules                                /docs/developing/tutorials/writing-nf-core-modules/1-introduction 301
+/docs/tutorials/nf-core_training/writing-nf-core-modules/chapter-1-introduction         /docs/developing/tutorials/writing-nf-core-modules/1-introduction 301
+/docs/tutorials/nf-core_training/writing-nf-core-modules/chapter-2-getting-started      /docs/developing/tutorials/writing-nf-core-modules/2-getting-started 301
+/docs/tutorials/nf-core_training/writing-nf-core-modules/chapter-3-what-is-a-nf-core-module             /docs/developing/tutorials/writing-nf-core-modules/3-what-is-a-module 301
+/docs/tutorials/nf-core_training/writing-nf-core-modules/chapter-4-generating-boilerplate-files         /docs/developing/tutorials/writing-nf-core-modules/4-boilerplate 301
+/docs/tutorials/nf-core_training/writing-nf-core-modules/chapter-5-writing-an-nf-core-module            /docs/developing/tutorials/writing-nf-core-modules/5-writing-modules 301
+/docs/tutorials/nf-core_training/writing-nf-core-modules/chapter-6-testing-an-nf-core-module            /docs/developing/tutorials/writing-nf-core-modules/6-testing 301
+/docs/tutorials/nf-core_training/writing-nf-core-modules/chapter-7-development-workflow                 /docs/developing/tutorials/writing-nf-core-modules/7-development 301
+/docs/tutorials/nf-core_training/writing-nf-core-modules/chapter-8-using-in-pipelines                   /docs/developing/tutorials/writing-nf-core-modules/8-using 301
+
+# Tutorials - Pipelines
+/docs/tutorials/pipelines/switching_master_to_main                                      /docs/developing/pipelines/master_to_main 301
+
+# Tutorials - Storage utilization
+/docs/tutorials/storage_utilization/managing_work_directory_growth                      /docs/running/advanced-topics/managing_work_directory_growth 301
+
+# Tutorials - Sync
+/docs/tutorials/sync/fixing_broken_template_branch                                      /docs/developing/template-syncs/fix-broken-template-branch 301
+/docs/tutorials/sync/manual_sync                                                        /docs/developing/template-syncs/manual-sync 301
+/docs/tutorials/sync/merging_automated_prs                                              /docs/developing/template-syncs/merge-automated-pull-requests 301
+/docs/tutorials/sync/overview                                                           /docs/developing/template-syncs/overview 301
+/docs/tutorials/sync/sync_retrospectively                                               /docs/developing/template-syncs/set-up-pipeline-sync 301
+
+# Tutorials - Tests and test data
+/docs/tutorials/tests_and_test_data/nf-test_writing_tests                               /docs/developing/testing/overview 301
+# NOTE: remaining tests_and_test_data pages are missing/being redone - no redirects yet
+
+# Tutorials - Use nf-core pipelines
+/docs/tutorials/use_nf-core_pipelines/writing_institutional_profiles                    /docs/developing/institutional-profiles/overview 301
+# NOTE: nextflow_training/ is largely depreciated with no links
+
+# ---------------------------------------------------------------------------
+# Usage
+# ---------------------------------------------------------------------------
+/docs/usage/getting_started/configuration                                               /docs/get_started/environment_setup/nextflow 301
+/docs/usage/getting_started/installation                                                /docs/get_started/environment_setup/nextflow 301
+/docs/usage/getting_started/introduction                                                /docs/get_started/nf-core 301
+/docs/usage/getting_started/offline                                                     /docs/running/run-pipelines-offline 301
+/docs/usage/getting_started/terminology                                                 /docs/community/terminology 301
+/docs/usage/reference_genomes                                                           /docs/running/reference-genomes 301
+/docs/usage/troubleshooting/*                                                           /docs/running/configuration/nextflow-for-your-system#troubleshooting
 
 # Redirects to subsites
 /docs/* https://nf-core-docs.netlify.app/docs/:splat 200!
@@ -101,6 +279,4 @@
 /modules/* https://nf-core-modules-subworkflows.netlify.app/modules/:splat 200!
 /subworkflows/* https://nf-core-modules-subworkflows.netlify.app/subworkflows/:splat 200!
 /configs/* https://nf-core-configs.netlify.app/configs/:splat 200!
-
-# temporary redirecs due to updated event URL #TODO: remove after 19th Feb 2025
-/events/2025/sig_animalgenomics_february /events/2025/sig_animalgenomics_feb
+/stickers https://nf-core-stickers.netlify.app/stickers 200!

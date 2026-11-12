@@ -18,22 +18,20 @@ if (!activeItem) {
 
 <div class="tab-bar">
     <ul class="d-none d-lg-flex nav nav-tabs nav-fill">
-        {
-            items.map((item) => {
-                return (
-                    <li class="nav-item">
-                        <a
-                            class={"nav-link " + (item.active ? "active" : "")}
-                            href={item.href}
-                            rel="prefetch"
-                            title={item.label.toLowerCase().replaceAll(" ", "_")}
-                        >
-                            <i class={item.icon ? item.icon : "fa-regular fa-book"} /> {item.label}
-                        </a>
-                    </li>
-                );
-            })
-        }
+        {items.map((item) => {
+            return (
+                <li class="nav-item">
+                    <a
+                        class={"nav-link " + (item.active ? "active" : "")}
+                        href={item.href}
+                        rel="prefetch"
+                        title={item.label.toLowerCase().replaceAll(" ", "_")}
+                    >
+                        <i class={item.icon ? item.icon : "fa-regular fa-book"} /> {item.label}
+                    </a>
+                </li>
+            );
+        })}
 
         <li class="nav-item">
             <slot />
@@ -55,20 +53,17 @@ if (!activeItem) {
                 {activeItem.label}
             </button>
             <div class="dropdown-menu py-1" aria-labelledby="tabs">
-                {
-                    items.map((item) => {
-                        return (
-                            <a
-                                class={"dropdown-item px-2 " + (item.active ? "active" : "")}
-                                href={item.href}
-                                rel="prefetch"
-                            >
-                                <i class:list={["fa-fw", item.icon, { "fa-regular fa-book": !item.icon }]} />{" "}
-                                {item.label}
-                            </a>
-                        );
-                    })
-                }
+                {items.map((item) => {
+                    return (
+                        <a
+                            class={"dropdown-item px-2 " + (item.active ? "active" : "")}
+                            href={item.href}
+                            rel="prefetch"
+                        >
+                            <i class:list={["fa-fw", item.icon, { "fa-regular fa-book": !item.icon }]} /> {item.label}
+                        </a>
+                    );
+                })}
             </div>
         </div>
         <slot />

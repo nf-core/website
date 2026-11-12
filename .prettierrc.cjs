@@ -5,15 +5,17 @@ module.exports = {
     plugins: ["prettier-plugin-astro", "prettier-plugin-svelte"],
     overrides: [
         {
-            files: "*.astro",
+            files: "**/*.astro",
             options: {
                 parser: "astro",
+                astroAllowShorthand: true,
             },
         },
         {
-            files: "*.svelte",
+            files: "**/*.svelte",
             options: {
                 parser: "svelte",
+                svelteAllowShorthand: true,
             },
         },
     ],

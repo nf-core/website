@@ -1,6 +1,8 @@
 ---
 title: Data management
 subtitle: How to plan your project, estimate resources, and share your results.
+headerImage: https://images.unsplash.com/photo-1558494949-ef010cbdcc31
+headerImageAlt: Server room with rows of data storage hardware
 pubDate: 2020-04-14T12:00:00+01:00
 authors:
   - "elinkronander"

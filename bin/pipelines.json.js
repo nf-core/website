@@ -1,8 +1,9 @@
 #! /usr/bin/env node
-import { octokit, getDocFiles, getGitHubFile, githubFolderExists } from "../sites/main-site/src/components/octokit.js";
+import { octokit, getDocFiles, getGitHubFile } from "../sites/main-site/src/components/octokit.js";
+import { fetchCO2FootprintFiles } from "./s3Utils.js";
 
 import { promises as fs, writeFileSync, existsSync } from "fs";
-import yaml from "js-yaml";
+import { load } from "js-yaml";
 import path, { join } from "path";
 import ProgressBar from "progress";
 
@@ -27,6 +28,24 @@ const extractNfCoreVersion = (content) => {
   return match ? match[1] : null;
 };
 
+// Fetch the full recursive file tree for a given repo ref and cache it, so multiple
+// existence checks against the same ref (branch, tag or "dev") share a single API call
+// instead of each doing its own raw file request.
+const treeCache = new Map();
+const getGitTreePaths = async (repo, ref) => {
+  const cacheKey = `${repo}@${ref}`;
+  if (!treeCache.has(cacheKey)) {
+    treeCache.set(
+      cacheKey,
+      octokit.rest.git
+        .getTree({ owner: "nf-core", repo, tree_sha: ref, recursive: "true" })
+        .then(({ data }) => new Set(data.tree.map((entry) => entry.path)))
+        .catch(() => new Set()),
+    );
+  }
+  return treeCache.get(cacheKey);
+};
+
 // Get pipeline name from command line argument if provided
 const args = process.argv.slice(2);
 const singlePipelineName = args[0] || null;
@@ -47,7 +66,7 @@ export const writePipelinesJson = async () => {
   const pipelines = JSON.parse(pipelinesJson);
 
   // get ignored_repos from ignored_reops.yml
-  const ignored_repos = yaml.load(ignoredTopicsYaml).ignore_repos;
+  const ignored_repos = load(ignoredTopicsYaml).ignore_repos;
 
   // get all repos for the nf-core org or use the specified pipeline
   let names = [];
@@ -62,7 +81,7 @@ export const writePipelinesJson = async () => {
         repo: singlePipelineName,
       });
       active_names = [singlePipelineName];
-    } catch (err) {
+    } catch {
       console.error(`Pipeline ${singlePipelineName} not found in nf-core organization`);
       process.exit(1);
     }
@@ -103,7 +122,7 @@ export const writePipelinesJson = async () => {
   }
 
   // get ignored_topics from ignored_repos.yml
-  const ignored_topics = yaml.load(ignoredTopicsYaml).ignore_topics;
+  const ignored_topics = load(ignoredTopicsYaml).ignore_topics;
 
   // Get latest tools release
   const latest_tools_release_date = (
@@ -325,15 +344,15 @@ export const writePipelinesJson = async () => {
         return { name: contributor.login, count: contributor.contributions, avatar_url: contributor.avatar_url };
       });
 
-    // get the releases
-    let { data: releases } = await octokit.rest.repos.listReleases({
+    // get all the releases (paginated, as some pipelines have more than the default 30 releases)
+    let releases = await octokit.paginate(octokit.rest.repos.listReleases, {
       owner: "nf-core",
       repo: name,
+      per_page: 100,
     });
 
     // remove empty values from releases (usually from draft releases)
     releases = releases.filter((release) => release.tag_name !== "" && release.draft === false);
-
     // remove releases that are already in the pipelines.json file
     const pipelineIndex = pipelines.remote_workflows.findIndex((workflow) => workflow.name === name);
     let new_releases = releases;
@@ -343,32 +362,38 @@ export const writePipelinesJson = async () => {
 
     let old_releases = [];
     if (pipelineIndex > -1) {
-      old_releases = pipelines.remote_workflows[pipelineIndex].releases.filter((release) => release.tag_name !== "dev");
-      const existing_releases = old_releases.map((release) => release.tag_name);
-      new_releases = new_releases.filter((release) => !existing_releases.includes(release.tag_name));
+      // drop releases that were renamed or deleted on GitHub since they were added to pipelines.json
+      const current_releases = new Set(releases.map((release) => release.tag_name));
+      old_releases = pipelines.remote_workflows[pipelineIndex].releases.filter(
+        (release) => release.tag_name !== "dev" && current_releases.has(release.tag_name),
+      );
+      const existing_releases = new Set(old_releases.map((release) => release.tag_name));
+      new_releases = new_releases.filter((release) => !existing_releases.has(release.tag_name));
     }
     // get sha and schema info for each release in parallel
     await Promise.all(
       new_releases.map(async (release) => {
-        // Fetch commit info and schema existence in parallel
-        const [commitData, schemaExists] = await Promise.all([
+        // Fetch commit info and the release's file tree in parallel
+        const [commitData, releaseTree] = await Promise.all([
           octokit.rest.repos.getCommit({
             owner: "nf-core",
             repo: name,
             ref: release.tag_name,
           }),
-          getGitHubFile(name, "nextflow_schema.json", release.tag_name).then((response) => {
-            return response ? true : false;
-          }),
+          getGitTreePaths(name, release.tag_name),
         ]);
 
         release.tag_sha = commitData.data.sha;
-        release.has_schema = schemaExists;
+        release.has_schema = releaseTree.has("nextflow_schema.json");
       }),
     );
 
-    // Parallelize commit fetching and file existence checks
-    const [{ data: default_branch }, lastReleaseCommit, { data: dev_branch }, isDSL2, hasNfTest, hasNfTestDev] =
+    // Ref used for "current state" checks (DSL2, nf-test) when no releases exist yet
+    const defaultRef = releases?.[0]?.tag_name ?? data.default_branch;
+
+    // Parallelize commit fetching and file tree lookups (one recursive tree fetch per ref,
+    // shared by every existence check against that ref, instead of a raw file request each)
+    const [{ data: default_branch }, lastReleaseCommit, { data: dev_branch }, defaultRefTree, devTree] =
       await Promise.all([
         // Get default branch commits
         octokit.rest.repos.listCommits({
@@ -393,16 +418,10 @@ export const writePipelinesJson = async () => {
             sha: "dev",
           })
           .catch(() => ({ data: [] })), // Handle case where dev branch doesn't exist
-        // Check DSL2 status
-        githubFolderExists(name, "modules", releases?.[0]?.tag_name ?? data.default_branch),
-        // Check nf-test usage
-        getGitHubFile(name, "nf-test.config", releases?.[0]?.tag_name ?? data.default_branch).then((response) => {
-          return response ? true : false;
-        }),
-        // Check nf-test dev usage
-        getGitHubFile(name, "nf-test.config", "dev").then((response) => {
-          return response ? true : false;
-        }),
+        // Get the file tree for the default ref, used for DSL2 + nf-test.config checks
+        getGitTreePaths(name, defaultRef),
+        // Get the file tree for the dev branch, used for nf-test.config + schema checks
+        getGitTreePaths(name, "dev"),
       ]);
 
     data["head_sha"] = default_branch[0]?.sha;
@@ -412,15 +431,13 @@ export const writePipelinesJson = async () => {
       : "";
 
     data["commits_to_dev"] = dev_branch?.length;
-    data["is_DSL2"] = isDSL2;
-    data["has_nf_test"] = hasNfTest;
-    data["has_nf_test_dev"] = hasNfTestDev;
+    data["is_DSL2"] = defaultRefTree.has("modules");
+    data["has_nf_test"] = defaultRefTree.has("nf-test.config");
+    data["has_nf_test_dev"] = devTree.has("nf-test.config");
 
     if (dev_branch.length > 0) {
-      // Get dev schema in parallel with other operations
-      const devSchema = await getGitHubFile(name, "nextflow_schema.json", "dev").then((response) => {
-        return response ? true : false;
-      });
+      // Reuse the dev tree fetched above instead of a separate schema request
+      const devSchema = devTree.has("nextflow_schema.json");
 
       new_releases = [
         ...new_releases,
@@ -454,11 +471,11 @@ export const writePipelinesJson = async () => {
                 .map((line) => line.match(/id\s*['"]([^'"]*)['"]/)[1])
             : [];
 
-          // get default branch from manifest
+          // get default branch and metro map diagram from manifest, ignoring commented-out lines (but not the "//" in "https://")
           const manifest = {};
-          const defaultBranchMatch = response.match(/manifest\s*{[^}]*defaultBranch\s*=\s*['"]([^'"]+)['"]/s);
-          if (defaultBranchMatch) {
-            manifest.defaultBranch = defaultBranchMatch[1];
+          const manifestBlock = response.replace(/(?<!:)\/\/.*$/gm, "").match(/manifest\s*{([^}]*)}/s)?.[1] ?? "";
+          for (const [, key, value] of manifestBlock.matchAll(/\b(defaultBranch|diagram)\s*=\s*['"]([^'"]+)['"]/g)) {
+            manifest[key] ??= value;
           }
 
           return { plugins: pluginsList, manifest };
@@ -468,6 +485,15 @@ export const writePipelinesJson = async () => {
 
       data[`${branch}_nextflow_config_plugins`] = nextflowConfig.plugins;
       data[`${branch}_nextflow_config_manifest`] = nextflowConfig.manifest;
+
+      // Check if the root main.nf file declares a `params {` block
+      const mainNf = await getGitHubFile(name, "main.nf", branch);
+      data[`${branch}_uses_params_block`] = mainNf ? /params\s*\{/.test(mainNf) : false;
+
+      // Check if the branch has adopted the secure pr-comment.yml workflow (nf-core/tools >= 4.0.3)
+      // Reuses the cached tree fetched above when branch === defaultRef or "dev"
+      const branchTree = await getGitTreePaths(name, branch);
+      data[`${branch}_has_pr_comment_workflow`] = branchTree.has(".github/workflows/pr-comment.yml");
     }
 
     new_releases = await Promise.all(
@@ -491,6 +517,17 @@ export const writePipelinesJson = async () => {
           nf_core_version = extractNfCoreVersion(nfCoreYml);
         }
 
+        // Check if this release has plugins already stored either as dev or as "main"/"master"
+        let plugins = data[`main_nextflow_config_plugins`] || data[`master_nextflow_config_plugins`] || [];
+
+        // Fetch CO2 footprint files if nf-co2footprint plugin is used and we are not in the dev tree
+        console.log(plugins);
+        let co2footprint_files = null;
+        if (plugins.join(" ").includes("nf-co2footprint") && tag_name !== "dev") {
+          console.log(`Fetching CO2 footprint files for ${name} ${tag_name}`);
+          co2footprint_files = await fetchCO2FootprintFiles(name, tag_sha);
+        }
+
         let components = await octokit
           .request("GET /repos/{owner}/{repo}/contents/{path}?ref={ref}", {
             owner: "nf-core",
@@ -499,12 +536,8 @@ export const writePipelinesJson = async () => {
             ref: tag_name,
           })
           .catch((error) => {
-            if (error.status === 404) {
-              // console.log(`modules.json not found in ${name} ${tag_name}`);
-              return;
-            } else {
+            if (error.status !== 404) {
               console.log(error);
-              return;
             }
           })
           .then((response) => {
@@ -556,6 +589,8 @@ export const writePipelinesJson = async () => {
           components,
           nextflow_version,
           nf_core_version,
+          plugins,
+          co2footprint_files,
         };
       }),
     );

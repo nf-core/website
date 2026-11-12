@@ -16,11 +16,9 @@ const { profiles } = Astro.props;
 ---
 
 <div class="d-flex flex-wrap">
-    {
-        profiles.map((profile) => (
-            <Profile username={profile.username} affiliation={profile.affiliation}>
-                {profile.name}
-            </Profile>
-        ))
-    }
+    {profiles.map((profile) => (
+        <Profile username={profile.username} affiliation={profile.affiliation}>
+            {profile.name}
+        </Profile>
+    ))}
 </div>

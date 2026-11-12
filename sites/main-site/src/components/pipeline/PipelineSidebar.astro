@@ -18,11 +18,17 @@ export interface Props {
         open_issues_count: number;
         open_pr_count: number;
         releases: {
+            tag_name: string;
             published_at: string;
             components?: {
                 modules?: string[];
                 subworkflows?: string[];
             };
+            co2footprint_files: {
+                co2e_emissions: number;
+                energy_consumption: number;
+            };
+            nextflow_version: string;
         }[];
         stargazers_count: number;
         subscribers_count: number;
@@ -50,9 +56,11 @@ const videoId = videoUrl
           .replace("https://youtu.be/", "")
           .replace("https://youtube.com/watch?v=", "")
     : "";
+const version_name = version === "latest" ? meta.releases[0].tag_name : version;
+const release = meta.releases.filter((release) => release.tag_name === version_name)[0];
 
-const modules: string[] = meta.releases[0].components?.modules || [];
-const subworkflows: string[] = meta.releases[0].components?.subworkflows || [];
+const modules: string[] = release?.components?.modules || [];
+const subworkflows: string[] = release?.components?.subworkflows || [];
 ---
 
 <div class="sidebar mt-3 sticky-top-under">
@@ -94,12 +102,13 @@ const subworkflows: string[] = meta.releases[0].components?.subworkflows || [];
                         icon={false}
                         cmd={`tw launch https://github.com/nf-core/${pipeline} -r ${version}`}
                     />
-                    <span class="text-body-secondary small py-1 px-2 d-inline-block"
-                        >See the <a href="https://github.com/seqeralabs/tower-cli/#2-configuration" target="_blank"
-                            >docs</a
-                        >
-                        on how to configure the Seqera Platform CLI.</span
-                    >
+                    <span class="text-body-secondary small py-1 px-2 d-inline-block">
+                        See the{" "}
+                        <a href="https://github.com/seqeralabs/tower-cli/#2-configuration" target="_blank">
+                            docs
+                        </a>
+                        on how to configure the Seqera Platform CLI.
+                    </span>
                 </div>
             </div>
             <ul class="nav flex-column flex-xl-row nav-fill small border-top" role="tablist">
@@ -112,8 +121,10 @@ const subworkflows: string[] = meta.releases[0].components?.subworkflows || [];
                         type="button"
                         role="tab"
                         aria-controls="nf-core-tab-pane"
-                        aria-selected="true">nf-core</a
+                        aria-selected="true"
                     >
+                        nf-core
+                    </a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a
@@ -124,8 +135,10 @@ const subworkflows: string[] = meta.releases[0].components?.subworkflows || [];
                         type="button"
                         role="tab"
                         aria-controls="nextflow-tab-pane"
-                        aria-selected="false">Nextflow</a
+                        aria-selected="false"
                     >
+                        Nextflow
+                    </a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a
@@ -136,19 +149,19 @@ const subworkflows: string[] = meta.releases[0].components?.subworkflows || [];
                         type="button"
                         role="tab"
                         aria-controls="tower-tab-pane"
-                        aria-selected="false">Seqera Platform</a
+                        aria-selected="false"
                     >
+                        Seqera Platform
+                    </a>
                 </li>
             </ul>
         </div>
     </SidebarStatsRow>
-    {
-        videoId && (
-            <SidebarStatsRow content={[{ title: "video introduction", icon: "fa-brands fa-youtube" }]}>
-                <YouTube id={videoId} poster={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`} />
-            </SidebarStatsRow>
-        )
-    }
+    {videoId && (
+        <SidebarStatsRow content={[{ title: "video introduction", icon: "fa-brands fa-youtube" }]}>
+            <YouTube id={videoId} poster={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`} />
+        </SidebarStatsRow>
+    )}
     <SidebarStatsRow
         content={[
             { title: "subscribers", value: meta.subscribers_count },
@@ -167,9 +180,7 @@ const subworkflows: string[] = meta.releases[0].components?.subworkflows || [];
                 title: "last release",
                 value:
                     meta.releases.length > 1
-                        ? formatDistance(new Date(meta.releases[0].published_at), new Date(), {
-                              addSuffix: true,
-                          })
+                        ? formatDistance(new Date(meta.releases[0].published_at), new Date(), { addSuffix: true })
                         : "not yet released",
             },
             {
@@ -178,47 +189,60 @@ const subworkflows: string[] = meta.releases[0].components?.subworkflows || [];
             },
         ]}
     />
-    {
-        modules.length > 0 && (
-            <SidebarStatsRow content={[{ title: "included modules" }]}>
-                <TagSection tags={modules} type="modules" maxShown={5} client:load />
-            </SidebarStatsRow>
-        )
-    }
-    {
-        subworkflows.length > 0 && (
-            <SidebarStatsRow content={[{ title: "included subworkflows" }]}>
-                <TagSection tags={subworkflows} type="subworkflows" maxShown={5} client:load />
-            </SidebarStatsRow>
-        )
-    }
+    {release && release.co2footprint_files && (
+        <SidebarStatsRow
+            content={[
+                {
+                    title: "CO<sub>2</sub>e emissions <i class='fas fa-info-circle' title='calculated using the nf-co2footprint plugin and `-profile test_full`.' data-bs-toggle='tooltip'></i>",
+                    value: release.co2footprint_files.co2e_emissions + " g",
+                },
+                {
+                    title: "energy consumption<i class='fas fa-info-circle' title='calculated using the nf-co2footprint plugin and `-profile test_full`.' data-bs-toggle='tooltip'></i>",
+                    value: release.co2footprint_files.energy_consumption + " Wh",
+                },
+            ]}
+        />
+    )}
+    {release?.nextflow_version && (
+        <SidebarStatsRow content={[{ title: "minimum Nextflow version" }]}>
+            <code>{release.nextflow_version}</code>
+        </SidebarStatsRow>
+    )}
+    {modules.length > 0 && (
+        <SidebarStatsRow content={[{ title: "included modules" }]}>
+            <TagSection tags={modules} type="modules" maxShown={5} client:load />
+        </SidebarStatsRow>
+    )}
+    {subworkflows.length > 0 && (
+        <SidebarStatsRow content={[{ title: "included subworkflows" }]}>
+            <TagSection tags={subworkflows} type="subworkflows" maxShown={5} client:load />
+        </SidebarStatsRow>
+    )}
     <SidebarStatsRow content={[{ title: "contributors" }]} lastChild={true}>
         {
-            (
-                <div class="d-flex flex-wrap justify">
-                    {meta.contributors.map((contributor) => {
-                        return (
-                            <GitHubProfilePicture
-                                name={contributor.name}
-                                image={contributor.avatar_url}
-                                size={50}
-                                count={contributor.count}
-                                imgClasses="mb-2 me-2"
-                            />
-                        );
-                    })}
-                </div>
-            )
+            <div class="d-flex flex-wrap justify">
+                {meta.contributors.map((contributor) => {
+                    return (
+                        <GitHubProfilePicture
+                            name={contributor.name}
+                            image={contributor.avatar_url}
+                            size={50}
+                            count={contributor.count}
+                            imgClasses="mb-2 me-2"
+                        />
+                    );
+                })}
+            </div>
         }
     </SidebarStatsRow>
     <SidebarStatsRow content={[{ title: "get help" }]}>
         <div class="d-flex flex-column">
-            <a class="btn btn-outline-info mb-2" href={"https://nfcore.slack.com/channels/" + pipeline}
-                ><i class="fab fa-slack me-1"></i> Ask a question on Slack</a
-            >
-            <a class="btn btn-outline-secondary" href={"https://github.com/nf-core/" + pipeline + "/issues"}
-                ><i class="fab fa-github me-1"></i> Open an issue on GitHub</a
-            >
+            <a class="btn btn-outline-info mb-2" href={"https://nfcore.slack.com/channels/" + pipeline}>
+                <i class="fab fa-slack me-1"></i> Ask a question on Slack
+            </a>
+            <a class="btn btn-outline-secondary" href={"https://github.com/nf-core/" + pipeline + "/issues"}>
+                <i class="fab fa-github me-1"></i> Open an issue on GitHub
+            </a>
         </div>
     </SidebarStatsRow>
     <style lang="scss">

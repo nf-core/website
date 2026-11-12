@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from "@components/store";
+    import { SortBy } from "@components/store";
 
     interface Props {
         name?: string;
@@ -8,7 +8,8 @@
         textCenter?: boolean;
     }
 
-    let { name = "", title = "Sort by " + name.toLowerCase(), textEnd = false, textCenter = false }: Props = $props();
+    let { name = "", title, textEnd = false, textCenter = false }: Props = $props();
+    const resolvedTitle = $derived(title ?? "Sort by " + name.toLowerCase());
     let sortInverse = false;
 
     function handleSort(sor) {
@@ -28,7 +29,7 @@
     scope="col"
     data-bs-toggle="tooltip"
     data-bs-delay="500"
-    {title}
+    title={resolvedTitle}
     onclick={() => handleSort(name)}
 >
     <i

@@ -16,38 +16,26 @@ const { title, icon, icon_color, icon_class = "", icon_dark = "", fontawesome, b
                 </div>
             </div>
             <div class="mt-2">
-                {
-                    btn_txt && btn_href && (
-                        <a href={btn_href} class="btn btn-sm btn-outline-success arrow-hover">
-                            <span>{btn_txt}</span>
-                        </a>
-                    )
-                }
+                {btn_txt && btn_href && (
+                    <a href={btn_href} class="btn btn-sm btn-outline-success arrow-hover">
+                        <span>{btn_txt}</span>
+                    </a>
+                )}
             </div>
         </div>
         <div class="icons d-flex align-items-center ms-3">
-            {
-                icon && (
-                    <Icon
-                        name={icon}
-                        color={icon_color}
-                        class={(icon_dark && "hide-dark ") + icon_class}
-                        height="6rem"
-                        width="7rem"
-                    />
-                )
-            }
-            {
-                icon_dark && (
-                    <Icon
-                        name={icon_dark}
-                        color="white"
-                        class={"hide-light " + icon_class}
-                        height="6rem"
-                        width="7rem"
-                    />
-                )
-            }
+            {icon && (
+                <Icon
+                    name={icon}
+                    color={icon_color}
+                    class={(icon_dark && "hide-dark ") + icon_class}
+                    height="6rem"
+                    width="7rem"
+                />
+            )}
+            {icon_dark && (
+                <Icon name={icon_dark} color="white" class={"hide-light " + icon_class} height="6rem" width="7rem" />
+            )}
             <i class={fontawesome + " fa-5x"}></i>
         </div>
     </div>

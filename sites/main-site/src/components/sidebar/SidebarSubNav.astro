@@ -2,7 +2,7 @@
 // Heavily inspired by Astro Starlight
 
 import { type SidebarEntry } from "@utils/types";
-import { sanitizeNfCoreLabels } from "@utils/functions";
+import { flattenSidebar, sanitizeNfCoreLabels } from "@utils/functions";
 
 import { Icon } from "astro-icon/components";
 
@@ -15,15 +15,6 @@ let { items, nested = false } = Astro.props;
 if (!items) {
     items = [];
 }
-
-const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
-    if (!sidebar) {
-        return [];
-    }
-    return sidebar.flatMap((entry) =>
-        entry.type === "group" && entry.entries ? flattenSidebar(entry.entries) : entry,
-    );
-};
 ---
 
 <script is:inline>
@@ -36,50 +27,48 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
     }
 </script>
 <ul class:list={[{ "top-level": !nested }, "w-100"]}>
-    {
-        items.map((item) => {
-            const containsCurrent =
-                item.type === "group" &&
-                (flattenSidebar(item.entries).some((i) => i.isCurrent) || item.entries.some((i) => i.isCurrent));
-            return (
-                <li>
-                    {item.type === "link" ? (
-                        <a
-                            href={item.href}
-                            aria-current={item.isCurrent && "page"}
-                            class:list={["px-2 py-2"]}
-                            data-weight={item.weight}
-                        >
-                            <span class="section-link" set:html={sanitizeNfCoreLabels(item.label)} />
-                        </a>
-                    ) : (
-                        <details open={containsCurrent || item.isCurrent || !item.collapsed}>
-                            <summary aria-current={item.isCurrent && "page"}>
-                                <div class:list={[{ h6: !nested }, "group-label flex-grow-1"]}>
-                                    <span
-                                        class="group-header d-flex align-items-start"
-                                        data-weight={item.weight}
-                                        set:html={sanitizeNfCoreLabels(item.label)}
-                                    >
-                                        {item.icon &&
-                                            (item.icon.includes(":") ? (
-                                                <Icon name={item.icon} class="me-2 fs-5" is:inline />
-                                            ) : (
-                                                <i class={`me-2 fa-fw mt-1 ${item.icon} text-reset`} />
-                                            ))}
-                                    </span>
-                                </div>
-                                <div class="hover-target">
-                                    <i class:list={["fa-solid fa-chevron-right fa-xs mx-3 h-100 caret"]} />
-                                </div>
-                            </summary>
-                            <Astro.self items={item.entries} nested={true} />
-                        </details>
-                    )}
-                </li>
-            );
-        })
-    }
+    {items.map((item) => {
+        const containsCurrent =
+            item.type === "group" &&
+            (flattenSidebar(item.entries).some((i) => i.isCurrent) || item.entries.some((i) => i.isCurrent));
+        return (
+            <li>
+                {item.type === "link" ? (
+                    <a
+                        href={item.href}
+                        aria-current={item.isCurrent && "page"}
+                        class:list={["px-2 py-2"]}
+                        data-weight={item.weight}
+                    >
+                        <span class="section-link" set:html={sanitizeNfCoreLabels(item.label)} />
+                    </a>
+                ) : (
+                    <details open={containsCurrent || item.isCurrent || !item.collapsed}>
+                        <summary aria-current={item.isCurrent && "page"}>
+                            <div class:list={[{ h6: !nested }, "group-label flex-grow-1"]}>
+                                <span
+                                    class="group-header d-flex align-items-start"
+                                    data-weight={item.weight}
+                                    set:html={sanitizeNfCoreLabels(item.label)}
+                                >
+                                    {item.icon &&
+                                        (item.icon.includes(":") ? (
+                                            <Icon name={item.icon} class="me-2 fs-5" is:inline />
+                                        ) : (
+                                            <i class={`me-2 fa-fw mt-1 ${item.icon} text-reset`} />
+                                        ))}
+                                </span>
+                            </div>
+                            <div class="hover-target">
+                                <i class:list={["fa-solid fa-chevron-right fa-xs mx-3 h-100 caret"]} />
+                            </div>
+                        </summary>
+                        <Astro.self items={item.entries} nested={true} />
+                    </details>
+                )}
+            </li>
+        );
+    })}
 </ul>
 <style lang="scss">
     @import "@styles/_variables.scss";

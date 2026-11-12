@@ -44,7 +44,7 @@ export const octokit = new MyOctokit({
         return true;
       }
     },
-    onSecondaryRateLimit: (retryAfter, options, octokit) => {
+    onSecondaryRateLimit: (retryAfter, options) => {
       // does not retry, only logs a warning
       console.log(`Secondary quota detected for request ${options.method} ${options.url}`);
     },
@@ -69,9 +69,6 @@ export async function getCurrentRateLimitRemaining() {
     console.error("Error occurred:", error);
   }
 }
-export const githubFolderExists = async (repo, path, ref) => {
-  return fetch(`https://github.com/nf-core/${repo}/tree/${ref}/${path}`).then((response) => response.ok);
-};
 export const getGitHubFile = async (repo, path, ref) => {
   try {
     const response = await fetch(`https://raw.githubusercontent.com/nf-core/${repo}/${ref}/${path}`);

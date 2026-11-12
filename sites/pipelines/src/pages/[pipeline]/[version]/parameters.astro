@@ -48,7 +48,7 @@ const version_tag_name = version === "latest" ? versions[0] : version;
 // Simply await the getEntry result directly
 const schemaEntry = await getEntry("pipelines", `${pipeline}/${version_tag_name}/nextflow_schema`);
 const schema = JSON.parse(schemaEntry?.rendered?.html ?? "{}");
-const headings = schemaEntry?.rendered?.metadata?.headings as {
+const headings = (schemaEntry?.rendered?.metadata?.headings ?? []) as {
     slug: string;
     text: string;
     depth: number;
@@ -58,12 +58,12 @@ const headings = schemaEntry?.rendered?.metadata?.headings as {
 ---
 
 <PipelinePageLayout
-    pipeline={pipeline}
+    {pipeline}
     meta_title={pipeline + ": Parameters"}
     subtitle={String(description || "")}
-    headings={headings}
-    version={version}
-    versions={versions}
+    {headings}
+    {version}
+    {versions}
     tabItems={md_files}
     showHiddenBtn={true}
 >

@@ -1,0 +1,189 @@
+---
+title: Migrating to topic channels
+subtitle: Migrate to topic channels
+description: Migrating nf-core modules and pipelines to use topic channels
+shortTitle: Migrating to topic channels
+---
+
+[Topic channels](https://docs.seqera.io/nextflow/process-typed#topics) are a new feature in Nextflow that allow for more flexible and efficient handling of version outputs across modules and pipelines.
+Instead of collecting versions through YAML files, topic channels enable direct version tracking through structured channel outputs.
+
+This migration guide provides step-by-step instructions for three different scenarios:
+
+- **Updating modules**: For standard modules that generate version outputs in scripts
+- **Updating modules with templates**: For modules that use template scripts to generate version information
+- **Updating pipelines**: For pipelines that consume modules with topic channels
+
+:::note{title="Prerequisites"}
+
+You will need the following to get started:
+
+- nf-core tools version 3.5.0 or later
+- A clone of the `nf-core/modules` repository (for module updates)
+- Nextflow version 25.04.0 or later
+
+:::
+
+## Migrate modules
+
+To migrate a module to use topic channels for version outputs:
+
+1. Open the module `main.nf` file.
+
+1. Identify the code that looks similar to the following:
+
+   ```nextflow title="main.nf"
+   cat <<-END_VERSIONS > versions.yml
+   "${task.process}":
+       <tool1>: \$(tool1 --version)
+       <tool2>: \$(tool2 --version)
+   END_VERSIONS
+   ```
+
+1. Remove the `versions.yml` file from the `output` and `script` block.
+
+1. Add outputs for each tool in the module:
+
+   ```nextflow title="main.nf"
+   tuple val("${task.process}"), val('<tool1>'), eval('tool1 --version'), emit: versions_tool1, topic: versions
+   ```
+
+   Replace `<tool1>` and `tool1 --version` with the tool name and version command.
+   - Repeat this for each tool used in the module.
+
+:::note{title="Hard-coded version"}
+
+If your tool has no `--version` available or if you need to override it, replace `eval('tool1 --version'){:nxtflow}` in the example above with `val("1.2.3")`.
+`topic` does not allow to use version value defined by an intermediate variable (eg: `def tool_version = '1.2.3'{:nxtflow}`).
+
+:::
+
+1. Run `nf-core modules lint <module-name> --fix{:bash}` to migrate the `meta.yml` file with the new topic outputs.
+
+1. Add a `type` and `description` for each field in the versions output:
+
+   ```yaml title="meta.yml"
+   versions_<tool>:
+     - - ${task.process}:
+           type: string
+           description: The process the versions were collected from
+       - <tool>:
+           type: string
+           description: The tool name
+       - <versions-command>:
+           type: string
+           description: The version of the tool
+   ```
+
+   Update `<tool>` and `<versions-command>` to the output channel values.
+
+1. Add the topics block to the `meta.yml`file below the outputs section:
+
+   ```yaml title="meta.yml"
+   topics:
+     versions:
+       - - process:
+             type: string
+             description: The process the versions were collected from
+         - tool:
+             type: string
+             description: The tool name
+         - version:
+             type: string
+             description: The version of the tool
+   ```
+
+1. Update the `main.nf.test` file to check for the new version outputs.
+   - If the test runs on all process output (`snapshot(process.out).match()`), do nothing.
+   - If the test checks for specific outputs, update it to check for the new version outputs. `process.out.versions` should be changed to `process.out.findAll { key, val -> key.startsWith('versions') }{:nxtflow}`.
+
+1. Run tests to regenerate the snapshots:
+
+   ```bash
+   nf-core modules test <module-name> --update
+   ```
+
+1. Check that the snapshot is correct and that all versions are being captured correctly.
+   - If not, return to step 3 and migrate any incorrect information in the module.
+
+1. Commit and push changes to your fork.
+
+1. Open a pull request to the main `nf-core/modules` repository.
+
+## Migrate modules with template scripts
+
+To migrate modules that use template scripts to use topic channels for version outputs:
+
+1. Open the modules `main.nf` file.
+
+1. Update the `path "versions.yml", emit: versions` line:
+
+   ```diff lang="groovy" title="main.nf"
+   -path "versions.yml", emit: versions
+   +path "versions.yml", emit: versions, topic: versions
+   ```
+
+1. Add the following to the `meta.yml` file below the outputs section:
+
+   ```yaml title="meta.yml"
+   versions:
+     - versions.yml:
+         type: file
+         description: YAML file containing versions of tools used in the module
+   ```
+
+1. Commit and push changes to your fork.
+
+1. Open a pull request to the main `nf-core/modules` repository.
+
+## Migrate pipelines
+
+To migrate a pipelines to use topic channels for version outputs:
+
+1. Update the pipeline template a version that includes support for topic channels (version 3.5.0 or later).
+
+   The main change in the template include:
+
+   ```nextflow title="$PIPELINE_NAME.nf" ins={1-17,19-20} del={18}
+     def topic_versions = channel.topic("versions")
+         .distinct()
+         .branch { entry ->
+             versions_file: entry instanceof Path
+             versions_tuple: true
+         }
+
+     def topic_versions_string = topic_versions.versions_tuple
+         .map { process, tool, version ->
+             [ process[process.lastIndexOf(':')+1..-1], "  ${tool}: ${version}" ]
+         }
+         .groupTuple(by:0)
+         .map { process, tool_versions ->
+             tool_versions.unique().sort()
+             "${process}:\n${tool_versions.join('\n')}"
+         }
+
+     ch_collated_versions = softwareVersionsToYAML(ch_versions)
+     ch_collated_versions = softwareVersionsToYAML(ch_versions.mix(topic_versions.versions_file))
+         .mix(topic_versions_string)
+   ```
+
+1. Run `nf-core modules update` to pull the latest changes.
+
+1. Find and remove instances in the pipeline code where `versions` is referenced as an invalid process output.
+   These outputs are now handled by topic channels and should be removed.
+
+   You may encounter errors like this:
+
+   ```console title="nextflow.log"
+   ERROR ~ No such variable: Exception evaluating property 'versions' for nextflow.script.ChannelOut,
+   Reason: groovy.lang.MissingPropertyException:
+   No such property: versions for class: groovyx.gpars.dataflow.DataflowBroadcast
+   ```
+
+   **Example**: A workflow using the `samtools/sort` module might have code like the following.
+   **Fix**: Remove the line referencing `SAMTOOLS_SORT.out.versions`:
+
+   ```nextflow title="main.nf" del={2}
+   SAMTOOLS_SORT(input)
+   ch_versions = ch_versions.mix(SAMTOOLS_SORT.out.versions) // [!code error] No such property: versions
+   ```

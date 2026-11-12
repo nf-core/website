@@ -37,13 +37,11 @@ const sections: SidebarEntry[] = years.map((year) => {
 ---
 
 <div class="sidebar-left d-none d-md-inline pt-1">
-    {
-        sidebarTitle && (
-            <a href="/advisories" class="sidebar-title text-decoration-none">
-                <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
-            </a>
-        )
-    }
+    {sidebarTitle && (
+        <a href="/advisories" class="sidebar-title text-decoration-none">
+            <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
+        </a>
+    )}
     <SidebarNav items={sections}>
         <div class="text-muted" slot="post-nav">
             <a

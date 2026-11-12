@@ -4,9 +4,14 @@ import pipelines_json from "@public/pipelines.json";
 import { getEntry } from "astro:content";
 import PipelineSidebar from "@components/pipeline/PipelineSidebar.astro";
 import MarkdownWrapper from "@components/markdown/MarkdownWrapper.svelte";
+import { renderPipelineMarkdown } from "@utils/pipelineMarkdown";
 
 export function getStaticPaths() {
-    var paths: { params: { pipeline: string; version: string }; props: { versions: string[]; md_files; meta } }[] = [];
+    var paths: {
+        params: { pipeline: string; version: string };
+        props: { versions: string[]; md_files; meta };
+        cacheKey?: string;
+    }[] = [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
         const releases = pipeline.releases;
         const extended_releases = [...releases, { tag_name: "latest", doc_files: releases[0].doc_files }];
@@ -14,6 +19,8 @@ export function getStaticPaths() {
             const md_files = release.doc_files.map((file) =>
                 file.replace("docs/", "").replace(".mdx", "").replace(".md", ""),
             );
+            // release tags are immutable, "latest" resolves to its tag; dev changes, so always render it
+            const tag_name = release.tag_name === "latest" ? releases[0].tag_name : release.tag_name;
             paths.push({
                 params: {
                     pipeline: pipeline.name,
@@ -24,6 +31,7 @@ export function getStaticPaths() {
                     md_files: md_files,
                     meta: pipeline,
                 },
+                cacheKey: tag_name !== "dev" ? tag_name : undefined,
             });
         });
     });
@@ -37,35 +45,40 @@ const is_archived = meta.archived;
 const version_tag_name = version === "latest" ? versions[0] : version;
 let entry = await getEntry("pipelines", pipeline + "/" + version_tag_name + "/README");
 
-const headings = entry?.rendered?.metadata?.headings;
-const Content = entry?.rendered?.html;
+const { html: Content, headings } = await renderPipelineMarkdown(
+    entry?.body ?? "",
+    pipeline,
+    version_tag_name,
+    "",
+    version,
+);
 if (version_tag_name !== "dev") {
     meta.doi = entry?.data?.doi;
 }
 
-const md_github_url = "https://github.com/nf-core/" + pipeline + "/blob/" + version + "/README.md";
+const md_github_url = "https://github.com/nf-core/" + pipeline + "/blob/" + version_tag_name + "/README.md";
 ---
 
 <PipelinePageLayout
-    pipeline={pipeline}
+    {pipeline}
     subtitle={description}
     meta_title={pipeline + ": Introduction"}
-    headings={headings}
-    version={version}
-    versions={versions}
-    is_archived={is_archived}
+    {headings}
+    {version}
+    {versions}
+    {is_archived}
     tabItems={md_files}
-    md_github_url={md_github_url}
+    {md_github_url}
     docSearchTags={[{ name: "page_rank", content: (meta.stargazers_count / 100 + 10).toString() }]}
 >
     <div class="row">
         <div class="col-12 col-md-8 col-xxl-9 pt-3 markdown-content">
-            <MarkdownWrapper headings={headings} client:load>
+            <MarkdownWrapper {headings} client:load>
                 <Fragment set:html={Content} />
             </MarkdownWrapper>
         </div>
         <div class="col-12 col-md-4 col-xxl-3 toc">
-            <PipelineSidebar pipeline={pipeline} version={version} meta={meta} />
+            <PipelineSidebar {pipeline} {version} {meta} />
         </div>
     </div>
 </PipelinePageLayout>

@@ -14,13 +14,12 @@ Files that must be unchanged:
 .gitattributes
 .prettierrc.yml
 .github/.dockstore.yml
-.github/CONTRIBUTING.md
 .github/ISSUE_TEMPLATE/bug_report.yml
 .github/ISSUE_TEMPLATE/config.yml
 .github/ISSUE_TEMPLATE/feature_request.yml
 .github/PULL_REQUEST_TEMPLATE.md
 .github/workflows/branch.yml
-.github/workflows/linting_comment.yml
+.github/workflows/pr-comment.yml
 .github/workflows/linting.yml
 assets/email_template.html
 assets/email_template.txt

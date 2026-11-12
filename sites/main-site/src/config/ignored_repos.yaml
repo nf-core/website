@@ -1,38 +1,59 @@
-# GitHub nf-core repositories that are not pipelines
+# GitHub nf-core repositories that should be excluded from the website
+
 ignore_repos:
+  # Early-stage pipelines
+  - tandemrepeat # 2025-11-21
+  - crossmirna # 2025-11-21
+  - pharmstarcaller # 2026-02-19
+  - msproteomics # 2026-03-19
+  - eupathpopgen # 2026-09-17
+  - genomeannotator # 2026-10-05
+  - glpopgen # 2026-10-11
+  - captnseq # 2026-10-15
+
+  # Non-pipeline repos
   - .github
-  - awsmegatests
+  - actions
   - actions-runners
+  - agents
   - basic_training
-  - connectgame
   - configs
-  - cookiecutter
-  - gh-actions-lint
+  - connectgame
   - hackathon
+  - hackathon-infra
   - logos
   - megatest-seqerakit
   - modules
   - modules-template
-  - nf-core.github.io
+  - newsletter
+  - nf-core-utils
   - nft-tiff
   - nft-utils
-  - nf-core-utils
   - ops
-  - prettier-plugin-nextflow
   - proposals
+  - r-nf-core-utils
   - references-assets
   - references-datasheets
   - setup-nextflow
   - setup-nf-test
+  - slackbot
   - stats
+  - strict-syntax-health
   - sublime
   - test-datasets
   - testpipeline
   - tools
-  - tower-action
   - vale
   - vscode-extensionpack
   - website
+
+  # Archived repos
+  - awsmegatests
+  - cookiecutter
+  - gh-actions-lint
+  - nf-core.github.io
+  - prettier-plugin-nextflow
+  - tower-action
 
 ignore_topics:
   - nf-core

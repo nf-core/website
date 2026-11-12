@@ -1,9 +1,10 @@
-import { z, defineCollection } from "astro:content";
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
 import { glob } from "astro/loaders";
-import type { AstroConfig } from "astro";
-import { githubFileLoader } from "@utils/loaders";
-import { octokit } from "@components/octokit.js";
 import semver from "semver";
+import { markdown } from "@mashehu/astropub-md";
+import { metroMapLoader } from "@utils/loaders";
+import pipelines_json from "@public/pipelines.json";
 
 // Define reusable schemas for common validation patterns
 const commonSchemas = {
@@ -31,13 +32,6 @@ const commonSchemas = {
     ]),
 };
 
-const teams = await octokit.request("GET /orgs/{org}/teams", {
-    org: "nf-core",
-    headers: {
-        "X-GitHub-Api-Version": "2022-11-28",
-    },
-});
-
 const events = defineCollection({
     loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/events" }),
     schema: z
@@ -61,30 +55,35 @@ const events = defineCollection({
                 .array(
                     z.object({
                         name: z.string().optional(),
-                        links: z.string().url().or(z.string().startsWith("#")).or(z.array(z.string().url())).optional(),
-                        geoCoordinates: z.array(z.number(), z.number()).optional(),
+                        links: z.url().or(z.string().startsWith("#")).or(z.array(z.url())).optional(),
+                        geoCoordinates: z.tuple([z.number(), z.number()]).optional(),
                         address: z.string().optional(),
                         country: z.string().optional(),
                         city: z.string().optional(),
                     }),
                 )
                 .optional(),
-            links: z.array(z.string().url()).optional(),
+            links: z.array(z.url()).optional(),
             start: z.date().optional(),
             end: z.date().optional(),
             duration: z.string().optional(),
             embedAt: z.string().optional(),
             importTypeform: z.boolean().optional(),
             hackathonProjectListModals: z.string().optional(),
-            youtubeEmbed: z.array(z.string().url()).optional().or(z.string().url()).optional(),
+            youtubeEmbed: z.array(z.url()).optional().or(z.url()).optional(),
             hideExportButton: z.boolean().optional(),
+            headerImage: z.url().or(z.string().startsWith("/assets/images/events/")).optional(),
+            headerImageAlt: z.string().optional(),
         })
-        .transform((data) => {
+        .refine((data) => !data.headerImage || data.headerImageAlt, {
+            message: "Please provide alt text for your `headerImage` in `headerImageAlt`.",
+        })
+        .transform(async (data) => {
             // Create start and end date objects
             try {
                 data.start = data.start ?? new Date(data.startDate + "T" + data.startTime);
                 data.end = data.end ?? new Date(data.endDate + "T" + data.endTime);
-            } catch (e) {
+            } catch {
                 throw new Error("startDate and startTime must be in the format YYYY-MM-DD and HH:MM+|-HH:MM");
             }
             // Validate dates
@@ -106,6 +105,9 @@ const events = defineCollection({
                 ...data,
                 start: data.start!,
                 end: data.end!,
+                // Subtitle rendered to HTML for listings that support inline markdown. Kept separate
+                // so `subtitle` stays plain text for everything else (e.g. the newsletter).
+                renderedSubtitle: String(await markdown(data.subtitle)),
             };
         }),
 });
@@ -115,7 +117,7 @@ const about = defineCollection({
     schema: z.object({
         title: z.string(),
         description: z.string(),
-        md_github_url: z.string().url().optional(),
+        md_github_url: z.url().optional(),
         minHeadingDepth: z.number().optional(),
         maxHeadingDepth: z.number().optional(),
     }),
@@ -159,10 +161,10 @@ const advisories = defineCollection({
                 .transform((val) => (Array.isArray(val) ? val : [val])),
             severity: z.enum(["low", "medium", "high", "critical"]),
             publishedDate: commonSchemas.dateFormat.transform((date) => new Date(date)),
-            reporter: z.nullable(z.array(z.string()).or(z.array(z.record(z.string())))),
+            reporter: z.nullable(z.array(z.string()).or(z.array(z.record(z.string(), z.string())))),
             reviewer: z
                 .array(z.string())
-                .or(z.array(z.record(z.string())))
+                .or(z.array(z.record(z.string(), z.string())))
                 .optional(),
             // pipelines is an array of pipeline names strings or an array of objects with pipeline name and versions
             pipelines: z
@@ -216,7 +218,7 @@ const advisories = defineCollection({
                             return semver.valid(semver.coerce(v));
                         },
                         {
-                            message: "Must follow semantic versioning (e.g., 1.0, 1.0.0, 2.1.3-beta.1)",
+                            error: "Must follow semantic versioning (e.g., 1.0, 1.0.0, 2.1.3-beta.1)",
                         },
                     ),
                 ),
@@ -262,7 +264,7 @@ const advisories = defineCollection({
                     z.object({
                         title: z.string(),
                         description: z.string(),
-                        url: z.string().url(),
+                        url: z.url(),
                     }),
                 ),
             ),
@@ -283,7 +285,9 @@ const advisories = defineCollection({
                 throw new Error("Affected `subworkflows` must be named set if `category` is `subworkflows`.");
             }
             return true;
-        }),
+        })
+        // Subtitle rendered to HTML for listings; `subtitle` stays plain text (see events above).
+        .transform(async (data) => ({ ...data, renderedSubtitle: String(await markdown(data.subtitle)) })),
 });
 
 const blog = defineCollection({
@@ -293,9 +297,9 @@ const blog = defineCollection({
             title: z.string(),
             subtitle: z.string(),
             shortTitle: z.string().optional(),
-            headerImage: z.string().url().optional().or(z.string().startsWith("/assets/images/blog/")).optional(),
-            headerImageAlt: z.string().optional(),
-            headerImageDim: z.array(z.number(), z.number()).optional(),
+            headerImage: z.url().or(z.string().startsWith("/assets/images/blog/")),
+            headerImageAlt: z.string(),
+            headerImageDim: z.tuple([z.number(), z.number()]).optional(),
             label: z.array(z.string()),
             pubDate: z.date(),
             authors: z.array(z.string()),
@@ -311,10 +315,6 @@ const blog = defineCollection({
             maxHeadingDepth: z.number().optional(),
         })
         .refine((data) => {
-            // Check if headerImage is present but headerImageAlt is not
-            if (data.headerImage && !data.headerImageAlt) {
-                throw new Error("Please provide alt text for your `headerImage` in `headerImageAlt`.");
-            }
             // Check if headerImageDim is present but headerImage is not present or does not start with /assets/
             if (data.headerImageDim && (!data.headerImage || !data.headerImage.startsWith("/assets/"))) {
                 throw new Error(
@@ -346,7 +346,7 @@ const specialInterestGroups = defineCollection({
             // for index.md pages also require lead and pipelines
             leads: z
                 .array(z.string())
-                .or(z.array(z.record(z.string())))
+                .or(z.array(z.record(z.string(), z.string())))
                 .optional(),
             pipelines: z
                 .array(z.string())
@@ -370,18 +370,18 @@ const hackathonProjects = defineCollection({
         .object({
             title: z.string(),
             category: z.enum(["pipelines", "components", "tooling", "community", "special-interest-groups"]),
+            location: z.string().optional(),
             leaders: z.record(
+                z.string(),
                 z.object({
                     name: z.string(),
                     slack: z
                         .string()
                         .url()
-                        .refine((url) => {
-                            if (url && !url.startsWith("https://nfcore.slack.com/")) {
-                                throw new Error("leaders `slack` must be a nf-core or Nextflow slack URL: " + url);
-                            }
-                            return true;
-                        })
+                        .refine(
+                            (url) => !url || url.startsWith("https://nfcore.slack.com/"),
+                            (url) => ({ message: "leaders `slack` must be a nf-core or Nextflow slack URL: " + url }),
+                        )
                         .optional(),
                 }),
             ),
@@ -417,98 +417,21 @@ const hackathonProjects = defineCollection({
         }),
 });
 
-const stickers = defineCollection({
-    loader: githubFileLoader({
-        org: "nf-core",
-        repo: "logos",
-        ref: "master",
-        path: /^hexagon-stickers\/.+\.png$/,
-        getDates: false,
-        processors: {
-            png: async (text: string, config: AstroConfig, filepath?: string) => {
-                if (!filepath) {
-                    console.log("filepath is undefined");
-                    return {
-                        html: "",
-                        metadata: {},
-                    };
-                }
-                // skip template and preview images
-                if (filepath.includes("-TEMPLATE-") || filepath.includes("-preview")) {
-                    console.log("skipping template or preview image", filepath);
-                    return {
-                        html: "",
-                        metadata: {},
-                    };
-                }
-                // Extract category and name from the file path
-                const pathMatch = filepath.match(/^hexagon-stickers\/([^/]+)(?:\/([^/]+))?\/[^/]+\.png$/);
-                if (!pathMatch) {
-                    return {
-                        html: "",
-                        metadata: {
-                            name: "unknown",
-                            category: "other",
-                            imageUrl: "",
-                            alt: "Unknown sticker",
-                            link: "https://nf-co.re",
-                            description: "Unknown sticker",
-                        },
-                    };
-                }
-
-                const [, category, subdir] = pathMatch;
-                const name = subdir || category;
-                const imageUrl = `https://raw.githubusercontent.com/nf-core/logos/master/${filepath}`;
-                let description = subdir ? `${name} pipeline sticker` : "";
-                if (category === "pipelines") {
-                    const response = await octokit.request("GET /repos/{owner}/{repo}", {
-                        owner: "nf-core",
-                        repo: name,
-                        headers: {
-                            "X-GitHub-Api-Version": "2022-11-28",
-                        },
-                    });
-                    description = response.data.description || description;
-                }
-                if (category === "teams") {
-                    description =
-                        teams.data.find(
-                            (team) =>
-                                team.name === filepath.split("/").pop()?.replace("nf-core-", "").replace(".png", ""),
-                        )?.description || description;
-                }
-
-                return {
-                    html: "",
-                    metadata: {
-                        name,
-                        category,
-                        imageUrl,
-                        alt: `${name} sticker`,
-                        link: subdir ? `https://github.com/nf-core/${name}` : "https://nf-co.re",
-                        description,
-                    },
-                };
-            },
-        },
-    }),
+const metroMaps = defineCollection({
+    loader: metroMapLoader(pipelines_json),
     schema: z.object({
         name: z.string(),
-        category: z.string(),
-        imageUrl: z.string(),
-        alt: z.string(),
-        link: z.string().url(),
-        description: z.string(),
+        url: z.url(),
+        svg: z.string().optional(),
     }),
 });
 
 export const collections = {
+    "metro-maps": metroMaps,
     events,
     about,
     blog,
     "special-interest-groups": specialInterestGroups,
     "hackathon-projects": hackathonProjects,
-    stickers,
     advisories,
 };

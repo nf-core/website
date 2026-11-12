@@ -11,7 +11,21 @@
 
     let { groups = [] }: Props = $props();
 
-    let filteredGroups = groups;
+    let filteredGroups = $derived(
+        groups.filter((group) => {
+            if ($SearchQuery === "") {
+                return true;
+            }
+            const q = $SearchQuery.toLowerCase();
+            if (group.data.groupName.toLowerCase().includes(q)) {
+                return true;
+            }
+            if (group.data.subtitle?.toLowerCase().includes(q)) {
+                return true;
+            }
+            return (group.data.pipelines ?? []).some((p) => typeof p === "string" && p.toLowerCase().includes(q));
+        }),
+    );
 
     const getLeadName = (lead: string | object): string => {
         return typeof lead === "string" ? lead : Object.keys(lead)[0];
@@ -47,7 +61,7 @@
                                         {#if group.data.pipelines && group.data.pipelines.length > 0}
                                             <p class="text-muted small mb-1">Pipelines:</p>
                                             {#each group.data.pipelines as pipeline}
-                                                <span class={`badge me-2 pipeline-badge small`}>{pipeline}</span>
+                                                <span class="badge me-2 pipeline-badge small">{pipeline}</span>
                                             {/each}
                                         {/if}
                                     </div>
@@ -103,7 +117,7 @@
                             </td>
                             <td class="pipeline-badges small col-3">
                                 {#each group.data.pipelines ?? [] as pipeline}
-                                    <span class={`badge me-2 pipeline-badge`}>{pipeline}</span>
+                                    <span class="badge me-2 pipeline-badge">{pipeline}</span>
                                 {/each}
                             </td>
                             <td class="">

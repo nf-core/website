@@ -25,13 +25,12 @@ export interface Props {
     icon: string;
     params?: Params;
 }
-console.log("params_start", params);
-if (name === "Input" || name === "Output") {
+if (name === "Input" || name === "Output" || name === "Topics") {
     // console.log('is Array', Array.isArray(params));
     const paramsArray = Array.isArray(params) ? params : [params];
     params = paramsArray.map((param, i) => {
         const paramArray = Array.isArray(param) ? param : [param];
-        return name === "Output" && paramArray.length === 1
+        return (name === "Output" || name === "Topics") && paramArray.length === 1
             ? paramArray[0]
             : { [`${name.toLowerCase()}[${i}]`]: paramArray };
     });
@@ -47,33 +46,19 @@ if (name === "Input" || name === "Output") {
     </a>
 </h2>
 
-{
-    params.length > 0 && (
-        <div class="row border-bottom border-3 d-none d-md-flex">
-            <div class="col-12 col-md-4 col-xxl-3">
-                <span class="text-body-secondary ps-3">
-                    name<span class="ps-0 font-monospace opacity-75 small">:type</span>
-                </span>
-            </div>
-            <div class="col-12 col-md-7">
-                <span class="text-body-secondary text-start ps-3">description</span>
-            </div>
-            <div class="col-12 col-md">
-                <span class="text-body-secondary float-end">pattern</span>
-            </div>
+{params.length > 0 && (
+    <div class="row border-bottom border-3 d-none d-md-flex">
+        <div class="col-12 col-md-4 col-xxl-3">
+            <span class="text-body-secondary ps-3">
+                name<span class="ps-0 font-monospace opacity-75 small">:type</span>
+            </span>
         </div>
-    )
-}
-{params.length > 0 ? <ComponentParamList params={params} /> : <p class="text-body-secondary">No input parameters</p>}
-
-<style>
-    h4 {
-        overflow: hidden;
-    }
-    .description :global(p) {
-        margin-bottom: 0;
-    }
-    .pattern {
-        line-break: anywhere;
-    }
-</style>
+        <div class="col-12 col-md-7">
+            <span class="text-body-secondary text-start ps-3">description</span>
+        </div>
+        <div class="col-12 col-md">
+            <span class="text-body-secondary">pattern</span>
+        </div>
+    </div>
+)}
+{params.length > 0 ? <ComponentParamList {params} /> : <p class="text-body-secondary">No input parameters</p>}

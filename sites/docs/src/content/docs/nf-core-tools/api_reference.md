@@ -1,8 +1,8 @@
 ---
-title: API Reference
-subtitle: nf-core/tools API Reference
-shortTitle: API Reference
-weight: 100
+title: API
+subtitle: Browse API reference
+shortTitle: API
+weight: 2
 ---
 
 empty placeholder

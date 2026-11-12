@@ -30,7 +30,14 @@ Please refrain from posting about your products and services in Slack, with some
   - For example: _"The things you're trying to achieve can be done with tool XYZ, let me know if you would like more details."_
   - Please use common sense: don't swamp the thread and push too hard.
 
-Posts that the nf-core core team / safety team deem to violate these principles will be deleted, and the authors may be banned.
+Additionally, please adhere to some common-sense rules:
+
+- Not too frequent: only one post per topic, please avoid frequent repetitive posts.
+- Keep it personal: avoid generic marketing text.
+- Not spammy or annoying: the core team / safety team decides what this constitutes.
+
+Posts do not have to specifically break the above rules, they are guidelines only.
+If the core or safety teams deem your posts inappropriate, it will be deleted and you will get one warning. If it happens again, you will be permanently banned.
 
 If in doubt, please reach out to one of the [core team](/governance#core-team) to ask if your idea is ok or not.
 

@@ -7,7 +7,6 @@ startTime: "13:00+01:00"
 endDate: "2023-02-28"
 endTime: "13:30+01:00"
 youtubeEmbed: https://www.youtube.com/watch?v=IiorfDHeoLo
-embedAt: "mag"
 locations:
   - name: Online
     links:

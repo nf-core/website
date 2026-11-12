@@ -2,7 +2,7 @@
 
 Create a YAML parameter file
 
-### _`class{:python}`_`nf_core.pipelines.params_file.ParamsFileBuilder(pipeline=None, revision=None){:python}`
+### _`class{:python}`_`nf_core.pipelines.params_file.ParamsFileBuilder(pipeline=None, revision=None, no_prompts=False){:python}`
 
 Bases: `object`
 
@@ -24,7 +24,7 @@ Format a group of parameters of the schema as commented YAML.
 - **Return type:**
   str
 
-#### `format_param(name: str, properties: dict, required_properties: list[str] = [], show_hidden: bool = False) → str | None{:python}`
+#### `format_param(name: str, properties: dict, required_properties: list[str] | None = None, show_hidden: bool = False) → str | None{:python}`
 
 Format a single parameter of the schema as commented YAML
 
