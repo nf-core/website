@@ -65,7 +65,7 @@ By adding a pipeline to nf-core, you agree to the following:
 - The community makes decisions about the pipeline by consensus, with the pipeline maintainers as the guiding figures, but with final say from the core team and steering committee if needed.
 - Other people may add features and make releases.
 
-Community ownership means the pipeline development is not exclusive single person or group, even if it is maintained by just one person.
+Community ownership means the pipeline development is not exclusive to a single person or group, even if it is maintained by just one person.
 As people's time commitments and funding change, maintenance can shift between groups and the pipeline stays up to date.
 
 Community ownership does not stop you from publishing your work.

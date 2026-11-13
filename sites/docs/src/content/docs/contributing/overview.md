@@ -10,8 +10,10 @@ Whether you're fixing a bug, developing a new pipeline, writing documentation, o
 
 This section covers the different ways you can contribute to nf-core.
 
-:::note{title="Very Important Pipelines"}
-Some widely adopted nf-core pipelines play a critical role in the ecosystem and have additional considerations for contributions. See [Very Important Pipelines](../community/very-important-pipelines) for more information.
+:::danger{title="New pipelines must be proposed early"}
+nf-core is a community of builders, not a registry of finished pipelines.
+If you plan to contribute a pipeline to nf-core, propose it before you start development.
+See [Propose before you build](./contribute-new-pipelines#propose-before-you-build).
 :::
 
 ## Quick start
@@ -28,10 +30,8 @@ nf-core pipelines are end-to-end bioinformatics workflows built using the nf-cor
 - **[Contributing to existing pipelines](./contribute-existing-pipelines):** Add features, fix bugs, or improve documentation in existing nf-core pipelines
 - **[Release procedure](./release-procedure):** Step-by-step checklist for preparing and publishing a new pipeline release
 
-:::caution{title="New pipelines must be proposed early"}
-nf-core is a community of builders, not a registry of finished pipelines.
-If you plan to contribute a pipeline to nf-core, propose it before you start development.
-See [Propose before you build](./contribute-new-pipelines#propose-before-you-build).
+:::note{title="Very Important Pipelines"}
+Some widely adopted nf-core pipelines play a critical role in the ecosystem and have additional considerations for contributions. See [Very Important Pipelines](../community/very-important-pipelines) for more information.
 :::
 
 ## Components
