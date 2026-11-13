@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 252" width="800" height="252" role="img" aria-labelledby="nfp-t nfp-d">
+  <title id="nfp-t">Outcome of nf-core pipeline proposals, Nov 2018 to Nov 2026</title>
+  <desc id="nfp-d">Of 307 proposals decided on Slack and GitHub, 187 (61%) were accepted by the core team, 99 (32%) were asked to join an existing pipeline, and 21 (7%) were turned down for another reason.</desc>
+  <style>
+    .nfp-h { font: 600 22px 'Maven Pro', Inter, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; }
+    .nfp-b { font-family: Inter, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; }
+    .nfp-g { fill: #24af63; }
+    .nfp-y { fill: #ecdc86; }
+    .nfp-on-g { fill: #ffffff; }
+    .nfp-on-y { fill: #3f2b29; }
+    .nfp-fg{fill:#dee2e6} .nfp-mut{fill:#adb5bd} .nfp-br{fill:#a0918f} .nfp-on-br{fill:#241917}
+  </style>
+
+  <text class="nfp-h nfp-fg" x="24" y="36">Outcome of nf-core pipeline proposals</text>
+  <text class="nfp-b nfp-mut" x="24" y="61" font-size="14">All 307 proposals decided on Slack and GitHub, Nov 2018 – Nov 2026</text>
+
+  <clipPath id="nfp-bar"><rect x="24" y="82" width="752" height="52" rx="6"/></clipPath>
+  <g clip-path="url(#nfp-bar)">
+    <rect class="nfp-g"  x="24"    y="82" width="455.6" height="52"/>
+    <rect class="nfp-y"  x="481.6" y="82" width="241.2" height="52"/>
+    <rect class="nfp-br" x="724.8" y="82" width="51.2"  height="52"/>
+  </g>
+  <g class="nfp-b" font-size="24" font-weight="700">
+    <text class="nfp-on-g"  x="40"    y="116.5">61%</text>
+    <text class="nfp-on-y"  x="497.6" y="116.5">32%</text>
+    <text class="nfp-on-br" x="750.4" y="116.5" text-anchor="middle">7%</text>
+  </g>
+
+  <rect class="nfp-g"  x="24"    y="148" width="3" height="56" rx="1.5"/>
+  <rect class="nfp-y"  x="481.6" y="148" width="3" height="56" rx="1.5"/>
+  <rect class="nfp-br" x="773"   y="148" width="3" height="56" rx="1.5"/>
+  <g class="nfp-b" font-size="15" font-weight="600">
+    <text class="nfp-fg" x="36" y="162">Accepted by</text>
+    <text class="nfp-fg" x="36" y="181">the core team</text>
+    <text class="nfp-fg" x="493.6" y="162">Asked to join an</text>
+    <text class="nfp-fg" x="493.6" y="181">existing pipeline</text>
+    <text class="nfp-fg" x="764" y="162" text-anchor="end">Turned down for</text>
+    <text class="nfp-fg" x="764" y="181" text-anchor="end">another reason</text>
+  </g>
+  <g class="nfp-b nfp-mut" font-size="14">
+    <text x="36" y="200">187 proposals</text>
+    <text x="493.6" y="200">99 proposals</text>
+    <text x="764" y="200" text-anchor="end">21 proposals</text>
+  </g>
+
+  <text class="nfp-b nfp-mut" x="24" y="238" font-size="12.5">Proposals that stalled or timed out without a decision are not counted.</text>
+</svg>

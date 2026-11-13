@@ -27,6 +27,9 @@ The second is feedback. Arriving with a finished pipeline means taking fundament
 
 These recommendations come from experience. Since the #new-pipelines channel opened in November 2018, nf-core has decided on more than 300 pipeline proposals, first on Slack and since March 2025 through GitHub. About three in five were accepted. Of the roughly 120 that were not, about 100 were asked to join an existing pipeline instead. Four in five of those had already written code.
 
+<img src="/images/blog/propose-before-you-build/nf-core-proposals-all-time-light.svg" class="hide-dark" alt="Outcome of nf-core pipeline proposals, Nov 2018 to Nov 2026" />
+<img src="/images/blog/propose-before-you-build/nf-core-proposals-all-time-dark.svg" class="hide-light" alt="Outcome of nf-core pipeline proposals, Nov 2018 to Nov 2026" />
+
 ## What works instead
 
 Propose the idea while it is still an idea. Work out the scope with people who know the field, including whether it is [the right size](/docs/specifications/pipelines/requirements/workflow_size) to be a pipeline at all. Contribute your modules one at a time, each reviewed independently as it goes in, then assemble them into a pipeline. By the time you have something running end to end you have had a long run of small reviews instead of one enormous one, and you have usually picked up a few people who care whether it works.
