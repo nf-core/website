@@ -3337,7 +3337,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         }
       ]
     },
@@ -3703,7 +3703,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         }
       ]
     },
@@ -16592,7 +16592,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         }
       ]
     },
@@ -16967,7 +16967,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         }
       ]
     },
@@ -42788,7 +42788,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "smrnaseq",
@@ -59748,7 +59748,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "scnanoseq",
@@ -59981,7 +59981,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -88839,7 +88839,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         }
       ]
     },
@@ -89230,7 +89230,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         }
       ]
     },
@@ -103398,6 +103398,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -129207,7 +129215,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -129901,7 +129909,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -145423,7 +145431,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         }
       ]
     },
@@ -145759,7 +145767,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         }
       ]
     },
@@ -146055,7 +146063,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         }
       ]
     },
@@ -146176,7 +146184,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         }
       ]
     },
@@ -151846,7 +151854,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnavar",
@@ -154589,7 +154597,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnavar",
@@ -157775,7 +157783,7 @@
     {
       "name": "gatk4_haplotypecaller",
       "path": "modules/nf-core/gatk4/haplotypecaller/meta.yml",
-      "tree_sha": "d7ce7a5da39bc21e7db76adce08f27d43aeb2bd8",
+      "tree_sha": "b3341a220170af2c12430b9b344224957dba9a5f",
       "files": [
         "modules/nf-core/gatk4/haplotypecaller/.conda-lock/linux_amd64-bd-79918b8b2632f4b1_1.txt",
         "modules/nf-core/gatk4/haplotypecaller/environment.yml",
@@ -157943,10 +157951,10 @@
                 }
               },
               {
-                "*.vcf.gz": {
+                "${prefix}.vcf.gz": {
                   "type": "file",
                   "description": "Compressed VCF file",
-                  "pattern": "*.vcf.gz",
+                  "pattern": "${prefix}.vcf.gz",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3989"
@@ -157965,10 +157973,10 @@
                 }
               },
               {
-                "*.tbi": {
+                "${prefix}.vcf.gz.tbi": {
                   "type": "file",
                   "description": "Index of VCF file",
-                  "pattern": "*.vcf.gz.tbi",
+                  "pattern": "${prefix}.vcf.gz.tbi",
                   "ontologies": []
                 }
               }
@@ -158087,7 +158095,7 @@
           }
         }
       },
-      "git_sha": "3ecf9eb9ab27caca69736d3d411a60d53c3383e1",
+      "git_sha": "a727b680a30724b24ae4d346c9f95ee37a1691f1",
       "pipelines": [
         {
           "name": "genomicrelatedness",
@@ -159327,7 +159335,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "sarek",
@@ -175789,7 +175797,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -185905,6 +185913,10 @@
         {
           "name": "rnadnavar",
           "version": "1.0.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -260109,6 +260121,279 @@
       "git_sha": "10d5bc958ad3d70a30ecd69cd9f4c84cb467c878"
     },
     {
+      "name": "modkit_localize",
+      "path": "modules/nf-core/modkit/localize/meta.yml",
+      "tree_sha": "82821b0f275aa44b5ccc9db12ae8fb8e32617275",
+      "files": [
+        "modules/nf-core/modkit/localize/.conda-lock/linux_amd64-bd-0c623277f8775a30_1.txt",
+        "modules/nf-core/modkit/localize/.conda-lock/linux_arm64-bd-b0cf3a2b01aa496e_1.txt",
+        "modules/nf-core/modkit/localize/environment.yml",
+        "modules/nf-core/modkit/localize/main.nf",
+        "modules/nf-core/modkit/localize/meta.yml",
+        "modules/nf-core/modkit/localize/tests/main.nf.test",
+        "modules/nf-core/modkit/localize/tests/main.nf.test.snap",
+        "modules/nf-core/modkit/localize/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "modkit_localize",
+        "description": "Investigate patterns of base modifications by aggregating pileup counts localized around genomic features of interest",
+        "keywords": [
+          "methylation",
+          "ont",
+          "long-read",
+          "localize",
+          "enrichment"
+        ],
+        "tools": [
+          {
+            "modkit": {
+              "description": "A bioinformatics tool for working with modified bases in Oxford Nanopore sequencing data",
+              "homepage": "https://github.com/nanoporetech/modkit",
+              "documentation": "https://github.com/nanoporetech/modkit",
+              "tool_dev_url": "https://github.com/nanoporetech/modkit",
+              "licence": [
+                "Oxford Nanopore Technologies PLC. Public License Version 1.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+              }
+            },
+            {
+              "bedmethyl": {
+                "type": "file",
+                "description": "bgzip-compressed bedMethyl file from modkit pileup",
+                "pattern": "*.{bed,bedmethyl}.gz",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            },
+            {
+              "tbi": {
+                "type": "file",
+                "description": "Tabix index for the bedMethyl file",
+                "pattern": "*.gz.tbi",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3616"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing genome sizes information\ne.g. `[ id:'hg38' ]`\n"
+              }
+            },
+            {
+              "sizes": {
+                "type": "file",
+                "description": "TSV of genome sizes with columns chrom and size_in_bp",
+                "pattern": "*.{sizes,tsv,txt,genome}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing regions BED file information\ne.g. `[ id:'CpG_islands' ]`\n"
+              }
+            },
+            {
+              "regions": {
+                "type": "file",
+                "description": "BED file of regions to calculate enrichment around. These serve\nas the points from which the window number of bases is centered\n(e.g. CpG islands, gene bodies, repeat elements).\n",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "TSV output with percent-modification vs. offset from feature midpoints",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "chart": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.html": {
+                  "type": "file",
+                  "description": "HTML document with interactive chart showing percent-modification vs. offset",
+                  "pattern": "*.html",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2331"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "Debug log written by modkit (`--log-filepath`)",
+                  "pattern": "*.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_modkit": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "modkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "modkit --version | sed 's/modkit //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "modkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "modkit --version | sed 's/modkit //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@sahuno"
+        ],
+        "maintainers": [
+          "@sahuno"
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/ont-modkit:0.6.4--b0cf3a2b01aa496e",
+              "build_id": "bd-b0cf3a2b01aa496e_1",
+              "scan_id": "sc-bd1a1a2850f5e5a1_3"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/ont-modkit:0.6.4--0c623277f8775a30",
+              "build_id": "bd-0c623277f8775a30_1",
+              "scan_id": "sc-e1e7c8b0343af77b_3"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/ont-modkit:0.6.4--3622b11f63dc1e51",
+              "build_id": "bd-3622b11f63dc1e51_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/7d/7d6b7620af280be798b98266ea5e8542a84991bec149446f2f29567bf89259da/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/ont-modkit:0.6.4--b279ba2d2cbcbf95",
+              "build_id": "bd-b279ba2d2cbcbf95_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/65/65e515e445d31be38188af5fe636e71af18abc601afacf80e9021a4752da6332/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/modkit/localize/.conda-lock/linux_amd64-bd-0c623277f8775a30_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/modkit/localize/.conda-lock/linux_arm64-bd-b0cf3a2b01aa496e_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "5eae6c7eae2b72cae6f82fd3dc35a9f7fc9e08d2"
+    },
+    {
       "name": "modkit_pileup",
       "path": "modules/nf-core/modkit/pileup/meta.yml",
       "tree_sha": "cad67ca3d15fc98b9dcaa273c38a4638d3e9a7c0",
@@ -264887,7 +265172,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -289949,7 +290234,7 @@
     {
       "name": "parabricks_dbsnp",
       "path": "modules/nf-core/parabricks/dbsnp/meta.yml",
-      "tree_sha": "e2ac1c04f848f975803041d85fd49785598c14f5",
+      "tree_sha": "6aba0744e38a83e351d9acab11d235f771a2d6d3",
       "files": [
         "modules/nf-core/parabricks/dbsnp/main.nf",
         "modules/nf-core/parabricks/dbsnp/meta.yml",
@@ -290126,7 +290411,7 @@
           "@famosab"
         ]
       },
-      "git_sha": "2f4120d7069e90f09b4c9a85773ae5550cfd55b1"
+      "git_sha": "75a894467e613591b25718c577dedfb6e2ce57cf"
     },
     {
       "name": "parabricks_deepsomatic",
@@ -291303,7 +291588,7 @@
     {
       "name": "parabricks_haplotypecaller",
       "path": "modules/nf-core/parabricks/haplotypecaller/meta.yml",
-      "tree_sha": "725e566f6c829343f64f92347d1d3cb9391101b5",
+      "tree_sha": "e0d4b2f4427964b4bebf3fb4d9db15032c0f0fd1",
       "files": [
         "modules/nf-core/parabricks/haplotypecaller/main.nf",
         "modules/nf-core/parabricks/haplotypecaller/meta.yml",
@@ -291382,7 +291667,18 @@
                 "ontologies": []
               }
             }
-          ]
+          ],
+          {
+            "out_ext": {
+              "type": "string",
+              "enum": [
+                "vcf",
+                "vcf.gz",
+                "g.vcf.gz"
+              ],
+              "description": "Extension of the output variant file: `vcf`, `vcf.gz` or `g.vcf.gz`.\nWith `vcf.gz`, pbrun writes a bgzipped VCF and its tabix index.\nWith `g.vcf.gz`, the module runs pbrun with --gvcf, which writes a bgzipped gVCF\nand its tabix index. Do not pass --gvcf in ext.args.\n"
+            }
+          }
         ],
         "output": {
           "vcf": [
@@ -291394,10 +291690,50 @@
                 }
               },
               {
-                "*.vcf": {
+                "${prefix}.vcf": {
                   "type": "file",
-                  "description": "variant file.",
+                  "description": "variant file. Emitted when out_ext is \"vcf\".",
                   "pattern": "*.vcf",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "vcf_gz": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.vcf.gz": {
+                  "type": "file",
+                  "description": "bgzipped variant file. Emitted when out_ext is \"vcf.gz\".",
+                  "pattern": "*.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "vcf_tbi": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "tabix index of the bgzipped variant file. Emitted when out_ext is \"vcf.gz\".",
+                  "pattern": "*.vcf.gz.tbi",
                   "ontologies": []
                 }
               }
@@ -291412,15 +291748,33 @@
                 }
               },
               {
-                "*.g.vcf.gz": {
+                "${prefix}.g.vcf.gz": {
                   "type": "file",
-                  "description": "genomic variant file, gzipped.",
+                  "description": "bgzipped genomic variant file. Emitted when out_ext is \"g.vcf.gz\".",
                   "pattern": "*.g.vcf.gz",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3989"
                     }
                   ]
+                }
+              }
+            ]
+          ],
+          "gvcf_tbi": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.g.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "tabix index of the genomic variant file. Emitted when out_ext is \"g.vcf.gz\".",
+                  "pattern": "*.g.vcf.gz.tbi",
+                  "ontologies": []
                 }
               }
             ]
@@ -291490,7 +291844,7 @@
           "@bsiranosian"
         ]
       },
-      "git_sha": "b205fddb6874f8bf00c1d9d98246686b7b071e48",
+      "git_sha": "72f815e273b68c748f43cebebbd27a6f209007cd",
       "pipelines": [
         {
           "name": "sarek",
@@ -303039,7 +303393,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         }
       ]
     },
@@ -303506,7 +303860,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         }
       ]
     },
@@ -303975,7 +304329,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "variantcatalogue",
@@ -310246,6 +310600,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -310553,6 +310911,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -332519,7 +332881,7 @@
     {
       "name": "quarto_notebook",
       "path": "modules/nf-core/quarto/notebook/meta.yml",
-      "tree_sha": "b3603c0579e1fb6118b0f7775b6b617e9fab5e86",
+      "tree_sha": "e051c46ac3d0b018310c55ead8e52e9e12dfeeb3",
       "files": [
         "modules/nf-core/quarto/notebook/environment.yml",
         "modules/nf-core/quarto/notebook/main.nf",
@@ -332818,7 +333180,7 @@
           "@fasterius"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "3689538423807d90a454c87b24a55f6df17f1f9b",
       "pipelines": [
         {
           "name": "provenancereport",
@@ -332837,7 +333199,7 @@
     {
       "name": "quarto_prerender",
       "path": "modules/nf-core/quarto/prerender/meta.yml",
-      "tree_sha": "f22e67c0087f251c0268c6e9ebb1a04c5bda7a22",
+      "tree_sha": "f8dc95c111832f6c7636301c7ee88915750f4c10",
       "files": [
         "modules/nf-core/quarto/prerender/environment.yml",
         "modules/nf-core/quarto/prerender/main.nf",
@@ -333110,7 +333472,7 @@
           "@fasterius"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "3689538423807d90a454c87b24a55f6df17f1f9b"
     },
     {
       "name": "quartonotebook",
@@ -356765,7 +357127,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -357028,7 +357390,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -361855,7 +362217,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "sarek",
@@ -362358,7 +362720,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "sarek",
@@ -363505,7 +363867,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -364640,7 +365002,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -365117,7 +365479,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -365722,7 +366084,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -367947,7 +368309,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -368536,7 +368898,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -369518,7 +369880,7 @@
     {
       "name": "savana_cna",
       "path": "modules/nf-core/savana/cna/meta.yml",
-      "tree_sha": "f76f3e09c805b24606323ad61b96c994c7bf3a49",
+      "tree_sha": "b27bd19dfa5c125b8274b7ac6914a82d1aeeea35",
       "files": [
         "modules/nf-core/savana/cna/environment.yml",
         "modules/nf-core/savana/cna/main.nf",
@@ -369582,7 +369944,11 @@
                 "type": "file",
                 "description": "Tumour BAM/CRAM index",
                 "pattern": "*.{bai,crai}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2333"
+                  }
+                ]
               }
             },
             {
@@ -369607,7 +369973,11 @@
                 "description": "Optional normal BAM/CRAM index",
                 "pattern": "*.{bai,crai}",
                 "optional": true,
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2333"
+                  }
+                ]
               }
             },
             {
@@ -369944,10 +370314,11 @@
           "@manascripts"
         ],
         "maintainers": [
-          "@manascripts"
+          "@manascripts",
+          "@DylanMHouse"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "ab924177eec79a69188e9a3663254b5702fb282c"
     },
     {
       "name": "savana_run",
@@ -406679,7 +407050,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -407061,7 +407432,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -409026,7 +409397,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         }
       ]
     },
@@ -409214,7 +409585,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         }
       ]
     },
@@ -411734,7 +412105,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -411967,7 +412338,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -436662,7 +437033,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "scnanoseq",
@@ -438581,7 +438952,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -456047,6 +456418,10 @@
         {
           "name": "pathogenepidemiology",
           "version": "dev"
+        },
+        {
+          "name": "rnafusion",
+          "version": "4.2.0"
         }
       ]
     },
@@ -465975,7 +466350,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -466289,7 +466664,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -466405,7 +466780,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -472408,7 +472783,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnavar",
@@ -473255,7 +473630,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnaseq",
@@ -478363,7 +478738,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnasplice",
@@ -478871,7 +479246,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnasplice",
@@ -479415,7 +479790,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.3"
+          "version": "4.2.0"
         },
         {
           "name": "rnasplice",
@@ -481159,6 +481534,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "2f4120d7069e90f09b4c9a85773ae5550cfd55b1",
-  "updated_at": "2026-11-12T14:15:44.972Z"
+  "commit_sha": "a727b680a30724b24ae4d346c9f95ee37a1691f1",
+  "updated_at": "2026-11-13T02:15:16.923Z"
 }
