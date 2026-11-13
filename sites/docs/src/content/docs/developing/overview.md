@@ -92,6 +92,7 @@ These guides walk through specific migrations step by step.
 
 - **[Migrating to topic channels](migration-guides/update-pipelines):** Update modules and pipelines to use Nextflow topic channels for version tracking
 - **[Migrating to strict syntax](migration-guides/strict-syntax)**: Update nf-core/configs for Nextflow strict syntax compliance
+- **[Migrating to static types](migration-guides/static-types):** Update modules to use Nextflow static types and records
 
 ## External documentation
 

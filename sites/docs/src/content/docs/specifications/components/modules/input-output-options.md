@@ -8,6 +8,11 @@ weight: 3
 
 The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
+:::note
+Modules that use static types define inputs and outputs as records, including optional inputs.
+See [static types and records](/docs/specifications/components/modules/static-types).
+:::
+
 ## Required `path` channel inputs
 
 Input channel `path` declarations MUST be defined for all _possible_ input files (i.e., both required and optional files).
