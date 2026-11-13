@@ -10,7 +10,7 @@ By starting with the nf-core template, you benefit from automated testing, consi
 Follow these steps to create a new nf-core pipeline, from initial proposal through to development.
 Start by proposing your pipeline to the community, before you write any code.
 After your proposal is accepted, you create the pipeline from the template and develop it on your own GitHub account.
-When the pipeline is ready, you request to move the repository to the nf-core GitHub organisation for final development, review, and release.
+Once multiple people are working on the pipeline, request to move the repository to the nf-core GitHub organisation. Otherwise, request the move when the pipeline is ready for final development, review, and release.
 
 :::danger{title="Propose your pipeline before you build it"}
 nf-core is a community of builders, not a registry of finished pipelines.
