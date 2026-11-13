@@ -3,6 +3,7 @@ title: "Propose your pipeline before you build it"
 subtitle: "Building in private and submitting a finished pipeline is the hardest way into nf-core"
 headerImage: "https://images.unsplash.com/photo-1503387762-592deb58ef4e"
 headerImageAlt: "A person drawing an architectural plan on paper with a ruler"
+embedHeaderImage: true
 pubDate: 2026-11-13T10:00:00+01:00
 authors:
   - "ewels"
