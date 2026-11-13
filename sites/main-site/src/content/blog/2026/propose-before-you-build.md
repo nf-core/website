@@ -25,7 +25,7 @@ If you build in private, you take on two risks. The first is duplication. nf-cor
 
 The second is feedback. Arriving with a finished pipeline means taking fundamental design comments when acting on them costs the most. There are fairly straightforward requirements such as [using the nf-core template](/docs/specifications/pipelines/requirements/use_the_template), [passing the lint tests](/docs/specifications/pipelines/requirements/linting) and being released under an [MIT licence](/docs/specifications/pipelines/requirements/mit_license), but code review itself can be more of an art than a science at times and often uncovers unforeseen issues or approaches which may need significant work.
 
-These recommendations come from experience. nf-core has been using the current pipeline proposal system since March 2025; of the 83 proposals decided since then, 56 were accepted. Of the 27 that were not, 19 (23% of those decided) were asked to join an existing pipeline instead. Four in five of those had already written code.
+These recommendations come from experience. Since the #new-pipelines channel opened in November 2018, nf-core has decided on more than 300 pipeline proposals, first on Slack and since March 2025 through GitHub. About three in five were accepted. Of the roughly 120 that were not, about 100 were asked to join an existing pipeline instead. Four in five of those had already written code.
 
 ## What works instead
 
