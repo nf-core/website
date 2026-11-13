@@ -20,3 +20,9 @@ Maintaining a single pipeline per analysis type reduces duplication, consolidate
 :::
 
 If in doubt, you can always ask on the [`#help`](https://nfcore.slack.com/channels/help) nf-core Slack channel, which is designed for exactly these kinds of discussions.
+
+:::caution
+If you build a pipeline privately before you propose it, it might duplicate an existing or proposed pipeline.
+If that happens, you may be asked to contribute to the other pipeline instead.
+See [Propose before you build](../../../contributing/contribute-new-pipelines#propose-before-you-build).
+:::

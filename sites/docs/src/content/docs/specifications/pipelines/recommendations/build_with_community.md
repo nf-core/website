@@ -18,3 +18,7 @@ It provides a checkpoint that there are not already existing pipelines which you
 It also means that you can check that your pipeline is suitable for nf-core before putting time into development.
 This includes any necessary adjustments, which are often easier to do early in the development process.
 :::
+
+:::tip
+See [Propose before you build](../../../contributing/contribute-new-pipelines#propose-before-you-build) for guidance on ownership, publication, and private development.
+:::

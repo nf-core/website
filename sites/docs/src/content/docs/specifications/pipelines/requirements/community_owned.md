@@ -24,3 +24,8 @@ The following are explicitly permitted:
 
 - Publication of the pipeline by the primary developers
 - Use and publicity of the pipeline and nf-core
+
+:::tip{title="Planning to publish?"}
+You can propose a pipeline to nf-core before you publish a paper or thesis about it.
+See [Ownership and publication](../../../contributing/contribute-new-pipelines#ownership-and-publication).
+:::
