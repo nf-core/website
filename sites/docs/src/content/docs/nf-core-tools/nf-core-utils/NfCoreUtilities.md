@@ -1,9 +1,10 @@
 ---
-# Copied from docs/NfCoreUtilities.md of nf-core/nf-core-utils 0.6.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
-title: "nf-core Utilities Guide"
-shortTitle: "nf-core Utilities Guide"
+# Copied from docs/NfCoreUtilities.md of nf-core/nf-core-utils 0.7.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+title: nf-core Utilities Guide
+shortTitle: nf-core Utilities Guide
 weight: 1
 parentWeight: 3
+md_github_url: https://github.com/nf-core/nf-core-utils/blob/main/docs/NfCoreUtilities.md
 ---
 
 # nf-core Utilities Guide
@@ -78,7 +79,7 @@ INFO: Pipeline started with proper validation!
 
 Let's expand our example to include completion summaries:
 
-```nextflow title="notification_example.nf" {5,14-16}
+```nextflow title="notification_example.nf" hl_lines="5 14-16"
 #!/usr/bin/env nextflow
 
 nextflow.enable.dsl = 2
@@ -111,7 +112,7 @@ Succeeded   : 3
 
 For production pipelines, you'll typically need multiple utilities. Here's a recommended import pattern:
 
-```nextflow title="production_imports.nf" {4-10}
+```nextflow title="production_imports.nf" hl_lines="4-10"
 #!/usr/bin/env nextflow
 
 nextflow.enable.dsl = 2
@@ -141,6 +142,13 @@ Understanding when and how to use each function is key to building robust pipeli
 ### 3.1. Pipeline Initialization Functions
 
 These functions should be called early in your pipeline to validate setup:
+
+Startup validation is owned by the pipeline. Loading the plugin does not run these
+checks automatically. Call each check once, using either the exported function or
+your existing template-local implementation, not both. Pipelines that previously
+relied only on the observer must add these calls. In particular, call
+`checkProfileProvided(args, params.monochrome_logs)` to reject a trailing comma in
+`-profile` with a nonzero exit status; observer-only runs do not validate it.
 
 | Function                                      | When to Use                            | Example                                              |
 | --------------------------------------------- | -------------------------------------- | ---------------------------------------------------- |
@@ -493,7 +501,7 @@ Use `softwareVersionsToYAML()` as your primary version collection function. It h
 
 Let's put everything together in a comprehensive example that shows a production-ready nf-core pipeline using all major utility functions:
 
-```nextflow title="complete_nfcore_pipeline.nf" {5-12,17-19,21-22,42-43,53,60-81} expandable={45}
+```nextflow title="complete_nfcore_pipeline.nf" hl_lines="5-12 17-19 26-28 41-43 60-76"
 #!/usr/bin/env nextflow
 
 nextflow.enable.dsl = 2

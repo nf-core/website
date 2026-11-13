@@ -1,9 +1,10 @@
 ---
-# Copied from docs/NextflowPipelineExtension.md of nf-core/nf-core-utils 0.6.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
-title: "Nextflow Pipeline Extension"
-shortTitle: "Nextflow Pipeline Extension"
+# Copied from docs/NextflowPipelineExtension.md of nf-core/nf-core-utils 0.7.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+title: Nextflow Pipeline Extension
+shortTitle: Nextflow Pipeline Extension
 weight: 2
 parentWeight: 3
+md_github_url: https://github.com/nf-core/nf-core-utils/blob/main/docs/NextflowPipelineExtension.md
 ---
 
 # Nextflow Pipeline Extension
@@ -28,7 +29,7 @@ These functions replace those previously found in the `utils_nextflow_pipeline` 
 
 Let's start by importing the essential functions into your pipeline:
 
-```nextflow title="main.nf" {3}
+```nextflow title="main.nf" hl_lines="3"
 #!/usr/bin/env nextflow
 
 include { getWorkflowVersion; dumpParametersToJSON; checkCondaChannels } from 'plugin/nf-core-utils'
@@ -333,7 +334,7 @@ The function is designed to be non-blocking. If conda is not available or checki
 
 Here's a comprehensive example showing all functions working together in a real pipeline:
 
-```nextflow title="complete_pipeline.nf" {5-9,14-15,28-34,40-44}
+```nextflow title="complete_pipeline.nf" hl_lines="7-9 15-17 27-35"
 #!/usr/bin/env nextflow
 
 nextflow.enable.dsl = 2
