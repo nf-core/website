@@ -16,6 +16,8 @@ If you’re using AI tools, try to stick by these guidelines:
 - Review all generated code yourself before opening a PR, and ensure that you understand it
 - Engage with the community review process and expect to make revisions
 - Do not flood repositories with many PRs or Issues
+- Do not use LLMs to resolve issues labeled as `good-first-issue`. These are there to help on-board people.
+
 
 _The nf-core community members reserve the right to reject contributions that do not meet our guidelines_
 
