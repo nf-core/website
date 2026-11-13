@@ -15,6 +15,10 @@ The aim of the combined task force was to develop the nf-core guidelines related
 
 This blog post gives an overview of all the upcoming changes to nf-core/modules along with the reasoning behind each one.
 
+:::attention
+Nextflow version 26.10.6 or higher should be used to take full advantage of these changes
+:::
+
 ![Meme photo based on the TV show Community, where one character comes into a room holding a stack of picture boxes, they are captioned with "Random pipeline maintainer". Underneath is a scene where one person is swinging a burning towel, they are captioned with "Records". There is burning liquid on the floor captioned "static typing". Two people kneeling aroudn a person shot in the leg, captioned "ext changes". One more person is standing a bit in the background looking shot, captioned "when removed". ](../../../assets/images/blog/types-and-records/community.jpg)
 
 ## Singular inputs and outputs
