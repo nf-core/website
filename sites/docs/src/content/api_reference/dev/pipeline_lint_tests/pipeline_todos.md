@@ -1,6 +1,6 @@
 # pipeline_todos
 
-#### `PipelineLint.pipeline_todos(root_dir=None){:python}`
+#### `PipelineLint.pipeline_todos(root_dir: Path | None = None) → dict[str, list[str] | list[Path]]{:python}`
 
 Check for nf-core _TODO_ lines.
 
