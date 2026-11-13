@@ -12,24 +12,25 @@ label:
 ---
 
 nf-core is quite an unusual community.
+We build one set of best-practice pipelines that the community owns together, it is not simply a registry for listing compliant pipelines.
 The people who maintain its pipelines share no employer and no funding body.
 Thousands of modules get written once and reused across hundreds of workflows.
 Pipelines outlive the PhD projects that started them.
 Our most recent paper in [Genome Biology](https://doi.org/10.1186/s13059-025-03673-9) goes into this properly.
-You can see it happening in older pipelines, for example the [contributor graph for nf-core/rnaseq](https://ewels.github.io/contributor-graphs/rnaseq.html) shows development passing between people over eight years as jobs and interests change.
+You can see it happening in older pipelines: the [contributor graph for nf-core/rnaseq](https://ewels.github.io/contributor-graphs/rnaseq.html) shows development passing between people over eight years as jobs and interests change.
 
-In order to make this work, we have [guidelines](/docs/specifications/pipelines/overview) for how pipelines get built.
+To make this work, we have [guidelines](/docs/specifications/pipelines/overview) for how pipelines get built.
 The [Specificity](/docs/specifications/pipelines/requirements/workflow_specificity) guideline says that nf-core carries one pipeline per data and analysis type, rather than having several pipelines that overlap.
 [Community ownership](/docs/specifications/pipelines/requirements/community_owned) states that a pipeline belongs to the community rather than to the lab that started it, so when someone moves on, other people can pick it up.
 
 It's far easier to satisfy the nf-core guidelines if you start the conversation early.
-We encourage people to submit a pipeline proposal before starting any code, and then to build in public - in collaboration with the community.
+We encourage people to submit a pipeline proposal before starting any code, and then to build in public, together with the community.
 
 ## What building in private costs you
 
 It's not unusual to have people proposing already-completed pipelines to nf-core.
 Most proposals arrive with some code already written: 62% link to existing work, with varying degrees of completeness.
-You can do that, but [building with the community](/docs/specifications/pipelines/recommendations/build_with_community) is a written recommendation, and it's a key tenet of the nf-core ethos.
+You can do that, but [building with the community](/docs/specifications/pipelines/recommendations/build_with_community) is a written recommendation, and it's central to how nf-core works.
 
 If you build in private, you take on two risks.
 The first is duplication.
@@ -52,7 +53,8 @@ Four in five of those had already written code.
 
 Propose the idea while it is still an idea.
 Work out the scope with people who know the field, including whether it is [the right size](/docs/specifications/pipelines/requirements/workflow_size) to be a pipeline at all.
-Contribute your modules one at a time, each reviewed independently as it goes in, then assemble them into a pipeline.
+Contribute your modules to [nf-core/modules](https://github.com/nf-core/modules) one at a time, each reviewed as it goes in, then assemble them into a pipeline.
+Avoid building a pipeline mostly from local modules that nobody else can reuse.
 By the time you have something running end to end you have had a long run of small reviews instead of one enormous one, and you have usually picked up a few people who care whether it works.
 
 ## "Does the idea stop being mine?"
@@ -75,15 +77,13 @@ If you move on and stop maintaining the pipeline, other people can pick it up an
 
 ## Publishing in a journal
 
-You can propose a pipeline publicly before the paper or thesis about it is published (see docs: [ownership and publication](/docs/contributing/contribute-new-pipelines#ownership-and-publication)).
+We actively want people to publish manuscripts about nf-core pipelines.
+You can propose a pipeline in public before the paper or thesis about it comes out.
+The primary developers of a pipeline are very welcome to publish it, and plenty already have, as the [publications list](/publications) shows.
 
-We want people to publish.
-The primary developers of a pipeline are permitted to publish it, and our [publication credit](/docs/specifications/pipelines/recommendations/publication_credit) recommendation covers how to cite the nf-core papers and how to handle co-authorship for people who contributed.
-It also suggests telling people in the pipeline Slack channel while you are writing, so you settle authorship early instead of awkwardly.
-If you reuse code from another pipeline, [credit the original authors](/docs/specifications/pipelines/requirements/acknowledgements) and tell them you are doing it.
-Tagging releases with [a DOI](/docs/specifications/pipelines/recommendations/dois) makes the pipeline citable in its own right.
-
-Plenty of people have published papers and finished theses on nf-core pipelines already, as the [publications list](/publications) shows.
+The one thing that we do recommend is to talk about authorship early, if the pipeline has multiple contributors.
+Say in the pipeline's Slack channel that you are writing a paper, so contributors know and you settle co-authorship before submission instead of after.
+The [publication credit](/docs/specifications/pipelines/recommendations/publication_credit) recommendation and the [ownership and publication](/docs/contributing/contribute-new-pipelines#ownership-and-publication) docs cover the details, including how to cite nf-core and how to [mint a DOI](/docs/specifications/pipelines/recommendations/dois) for each release.
 
 ## If development really has to stay closed
 
@@ -99,7 +99,7 @@ To try to make it clearer, we have recently reorganised the documentation a litt
 The warning now appears much earlier too, on the [contributing overview](/docs/contributing/overview), [how to contribute](/docs/contributing/how-to-contribute), the [what is nf-core](/docs/get_started/nf-core) page, and the specification pages people tend to land on first.
 
 If you are weighing up a new pipeline, read that section and then come and talk to us.
-Post in [Slack](/join), open a proposal, and ask the awkward questions scope and licensing while they are still cheap to answer.
+Post in [Slack](/join), open a proposal, and ask the awkward questions about scope and licensing while they are still cheap to answer.
 If a supervisor needs convincing, the paper and the contributor graphs above are a reasonable place to start.
 Much better to have that conversation now, instead of after six months of work.
 
