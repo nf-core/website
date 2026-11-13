@@ -99,7 +99,7 @@ For detailed guidance on contributing to specific nf-core repositories, see:
 - [Contribute to existing pipelines](../contributing/contribute-existing-pipelines)
 - [Contribute to new pipelines](../contributing/contribute-new-pipelines)
 
-:::warning{title="Starting a new pipeline?"}
+:::danger{title="Collaboration is core"}
 nf-core is not a registry of Nextflow pipelines.
 Collaboration is a core requirement.
 If you plan to contribute a pipeline to nf-core, propose it before you write any code.

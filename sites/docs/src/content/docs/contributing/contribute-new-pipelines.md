@@ -12,9 +12,11 @@ Start by proposing your pipeline to the community, before you write any code.
 After your proposal is accepted, you create the pipeline from the template and develop it on your own GitHub account.
 When the pipeline is ready, you request to move the repository to the nf-core GitHub organisation for final development, review, and release.
 
-:::warning{title="Propose your pipeline before you build it"}
+:::danger{title="Propose your pipeline before you build it"}
 nf-core is a community of builders, not a registry of finished pipelines.
-If you plan to contribute your pipeline to nf-core, discuss your idea and open a proposal before you start development.
+
+If you plan to contribute your pipeline to nf-core, discuss your idea and open a proposal **before you start development**.
+
 See [Propose before you build](#propose-before-you-build).
 :::
 
@@ -46,7 +48,7 @@ Propose early to:
 
 - Avoid duplicated work.
   nf-core allows only [one pipeline for a given data and analysis type](../specifications/pipelines/requirements/workflow_specificity).
-  If a pipeline with a similar purpose already exists, or is proposed before yours, you may be asked to contribute to it instead.
+  If a pipeline with a similar purpose already exists or is proposed before yours, you will be asked to contribute to it instead - even if your pipeline is more complete or comprehensive.
 - Get feedback while changes are cheap.
   Changes needed to meet the [nf-core specifications](../specifications/pipelines/overview) are easier early in development than after the pipeline is complete.
 - Find collaborators who can help develop, test, and maintain the pipeline.
@@ -60,30 +62,16 @@ nf-core pipelines are [community owned](../specifications/pipelines/requirements
 By adding a pipeline to nf-core, you agree to the following:
 
 - You work with other contributors.
-- The community makes decisions about the pipeline by consensus, with final say from the core team and steering committee if needed.
+- The community makes decisions about the pipeline by consensus, with the pipeline maintainers as the guiding figures, but with final say from the core team and steering committee if needed.
 - Other people may add features and make releases.
 
-Community ownership means the pipeline is not tied to a single person or group.
+Community ownership means the pipeline development is not exclusive single person or group, even if it is maintained by just one person.
 As people's time commitments and funding change, maintenance can shift between groups and the pipeline stays up to date.
 
 Community ownership does not stop you from publishing your work.
 The primary developers of a pipeline are explicitly permitted to publish it, and nf-core encourages publications and presentations about its pipelines.
 If your pipeline is part of a paper or thesis, you can still propose it publicly before the work is published.
 See [Publication credit](../specifications/pipelines/recommendations/publication_credit) for how to acknowledge nf-core and discuss co-authorship with other contributors.
-
-### Developing pipelines privately
-
-nf-core encourages open development, but you can develop a pipeline privately with the following considerations:
-
-- Private pipelines receive the same review process as public pipelines.
-- Follow the same development steps but use a private repository.
-- Make the repository public before release, or request reviews in the `#request-review` Slack channel if you cannot make it public until after release.
-
-:::warning
-Private pipelines receive no priority over publicly developed pipelines.
-If another similar pipeline is released first, your pipeline may not be accepted into nf-core.
-In this case, you may need to release independently or merge with the existing pipeline.
-:::
 
 ### Contribute a pre-existing pipeline
 
