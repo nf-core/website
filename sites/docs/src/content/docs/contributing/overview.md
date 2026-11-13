@@ -10,7 +10,7 @@ Whether you're fixing a bug, developing a new pipeline, writing documentation, o
 
 This section covers the different ways you can contribute to nf-core.
 
-:::caution{title="New pipelines must be proposed early"}
+:::danger{title="New pipelines must be proposed early"}
 nf-core is a community of builders, not a registry of finished pipelines.
 If you plan to contribute a pipeline to nf-core, propose it before you start development.
 See [Propose before you build](./contribute-new-pipelines#propose-before-you-build).
