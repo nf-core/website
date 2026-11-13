@@ -40,8 +40,8 @@ All contributions go through a community-driven peer review process to maintain 
 
 [Learn how to contribute to nf-core](/docs/contributing/overview)
 
-:::tip{title="Planning a new pipeline?"}
-If you plan to contribute a new pipeline to nf-core, propose it to the community before you write any code.
+:::caution{title="Planning a new pipeline?"}
+If you plan to contribute a new pipeline to nf-core, you should propose it to the community before you write any code.
 See [Propose before you build](../contributing/contribute-new-pipelines#propose-before-you-build).
 :::
 
