@@ -18,7 +18,6 @@ If you’re using AI tools, try to stick by these guidelines:
 - Do not flood repositories with many PRs or Issues
 - Do not use LLMs to resolve issues labeled as `good-first-issue`. These are there to help on-board people.
 
-
 _The nf-core community members reserve the right to reject contributions that do not meet our guidelines_
 
 ## Communication
@@ -37,7 +36,7 @@ If you use AI to avoid language barriers, please make sure the output reflects y
 If you wish to include context from an interaction with AI in your issue and pull request descriptions and comments:
 
 - Disclose that you used AI to write the text
-- We suggest AI text should ideally be in a quote block (e.g., using `>`) or `<details>` tag and disclosed as such.
+- We suggest AI text should ideally be in a `<details>` tag and disclosed as such.
 - Tell your LLM to reduce verbosity as far as possible ([example skill](https://gist.github.com/bavanws/123e0343f8a79cec825d9141124a0a83))
 
 Following these guides will make your interactions with a wider portion of community more friendly and productive.
