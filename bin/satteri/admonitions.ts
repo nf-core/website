@@ -45,6 +45,8 @@ const acceptableAdmonitionTypes: Record<string, { title: string; id: string; svg
     },
 };
 
+acceptableAdmonitionTypes.caution = { ...acceptableAdmonitionTypes.warning, title: "Caution" };
+
 // First pass of the old plugin: a text directive directly preceded by a text node is
 // not a real directive but an accidental match (e.g. version numbers, host:port).
 // Satteri visitors don't expose parent/siblings, so the merge happens in the parents
