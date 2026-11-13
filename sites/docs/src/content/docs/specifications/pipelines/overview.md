@@ -15,7 +15,7 @@ While these specifications are mandatory for pipelines contributed to the nf-cor
 If you're thinking of adding a new pipeline to nf-core or contributing to an existing pipeline, see [adding a new pipeline](../../contributing/contribute-new-pipelines) and [contributing to a pipeline](../../contributing/contribute-existing-pipelines).
 :::
 
-:::warning{title="Build with the community"}
+:::caution{title="Build with the community"}
 nf-core is a community of builders, not a registry of pipelines.
 Propose your pipeline and develop with us, rather than proposing an already-complete pipeline.
 See recommendation: [Build with the community](recommendations/build_with_community) and [Propose before you build](../../contributing/contribute-new-pipelines#propose-before-you-build).
