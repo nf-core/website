@@ -53466,7 +53466,7 @@
     {
       "name": "bwa_index",
       "path": "modules/nf-core/bwa/index/meta.yml",
-      "tree_sha": "c2bb4b00d9b490a4cde3606f50c17676354bc963",
+      "tree_sha": "90e50dd0b1041d2330f71c26b3434081af6f755c",
       "files": [
         "modules/nf-core/bwa/index/environment.yml",
         "modules/nf-core/bwa/index/main.nf",
@@ -53614,7 +53614,7 @@
           "@gallvp"
         ]
       },
-      "git_sha": "f5408179d4b14af7c2429fa5cf8ef1075b3a4071",
+      "git_sha": "3b0d9821716a51645b641577551c03eddacd04fc",
       "pipelines": [
         {
           "name": "atacseq",
@@ -75140,7 +75140,7 @@
     {
       "name": "cnvkit_access",
       "path": "modules/nf-core/cnvkit/access/meta.yml",
-      "tree_sha": "f67b1972745b7152258cd4b706fc5df83edbc3e6",
+      "tree_sha": "abf5e73996e9787f37ecd2730fc723ca2fb62cb7",
       "files": [
         "modules/nf-core/cnvkit/access/.conda-lock/linux_amd64-bd-288e98d6210b7304_1.txt",
         "modules/nf-core/cnvkit/access/environment.yml",
@@ -75167,6 +75167,12 @@
               "documentation": "https://cnvkit.readthedocs.io/en/stable/index.html",
               "tool_dev_url": "https://github.com/etal/cnvkit",
               "doi": "10.1371/journal.pcbi.1004873",
+              "publication": {
+                "author": "Talevich, E., Shain, A. H., Botton, T. & Bastian, B. C.",
+                "year": 2016,
+                "title": "CNVkit: Genome-Wide Copy Number Detection and Visualization from Targeted DNA Sequencing",
+                "source": "PLOS Computational Biology"
+              },
               "licence": [
                 "Apache-2.0"
               ],
@@ -75313,12 +75319,12 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fbc1279e3d38f35a205f5ba029d6b63d9c9e9d5f"
     },
     {
       "name": "cnvkit_antitarget",
       "path": "modules/nf-core/cnvkit/antitarget/meta.yml",
-      "tree_sha": "66e3e11ccae238bdbad89abd8ad9ae0a59570558",
+      "tree_sha": "d7513f8f82e21f402aa46d0a4672ee65ebd2518f",
       "files": [
         "modules/nf-core/cnvkit/antitarget/.conda-lock/linux_amd64-bd-288e98d6210b7304_1.txt",
         "modules/nf-core/cnvkit/antitarget/environment.yml",
@@ -75345,6 +75351,12 @@
               "documentation": "https://cnvkit.readthedocs.io/en/stable/index.html",
               "tool_dev_url": "https://github.com/etal/cnvkit",
               "doi": "10.1371/journal.pcbi.1004873",
+              "publication": {
+                "author": "Talevich, E., Shain, A. H., Botton, T. & Bastian, B. C.",
+                "year": 2016,
+                "title": "CNVkit: Genome-Wide Copy Number Detection and Visualization from Targeted DNA Sequencing",
+                "source": "PLOS Computational Biology"
+              },
               "licence": [
                 "Apache-2.0"
               ],
@@ -75478,7 +75490,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "fbc1279e3d38f35a205f5ba029d6b63d9c9e9d5f",
       "pipelines": [
         {
           "name": "sarek",
@@ -75489,7 +75501,7 @@
     {
       "name": "cnvkit_batch",
       "path": "modules/nf-core/cnvkit/batch/meta.yml",
-      "tree_sha": "7568b40dd16d4bce76fb901bd796a9e3f36a33af",
+      "tree_sha": "837269298697cfc7a8837ae04571d036feda7458",
       "files": [
         "modules/nf-core/cnvkit/batch/.conda-lock/linux_amd64-bd-10abfe6987f6efe6_1.txt",
         "modules/nf-core/cnvkit/batch/.conda-lock/linux_arm64-bd-9cce2aad3f7d51c9_1.txt",
@@ -75516,6 +75528,13 @@
               "description": "CNVkit is a Python library and command-line software toolkit to infer and visualize copy number from high-throughput DNA sequencing data. It is designed for use with hybrid capture, including both whole-exome and custom target panels, and short-read sequencing platforms such as Illumina and Ion Torrent.\n",
               "homepage": "https://cnvkit.readthedocs.io/en/stable/index.html",
               "documentation": "https://cnvkit.readthedocs.io/en/stable/index.html",
+              "doi": "10.1371/journal.pcbi.1004873",
+              "publication": {
+                "author": "Talevich, E., Shain, A. H., Botton, T. & Bastian, B. C.",
+                "year": 2016,
+                "title": "CNVkit: Genome-Wide Copy Number Detection and Visualization from Targeted DNA Sequencing",
+                "source": "PLOS Computational Biology"
+              },
               "licence": [
                 "Apache-2.0"
               ],
@@ -75926,7 +75945,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "fbc1279e3d38f35a205f5ba029d6b63d9c9e9d5f",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -75945,7 +75964,7 @@
     {
       "name": "cnvkit_call",
       "path": "modules/nf-core/cnvkit/call/meta.yml",
-      "tree_sha": "7205cd7a33af85aef4b794982df0007a0732b1fd",
+      "tree_sha": "a9fe634cbfd553f9fb99eec5a0f59bb411aa5c29",
       "files": [
         "modules/nf-core/cnvkit/call/.conda-lock/linux_amd64-bd-288e98d6210b7304_1.txt",
         "modules/nf-core/cnvkit/call/environment.yml",
@@ -75970,6 +75989,13 @@
               "description": "CNVkit is a Python library and command-line software toolkit to infer and visualize copy number from high-throughput DNA sequencing data. It is designed for use with hybrid capture, including both whole-exome and custom target panels, and short-read sequencing platforms such as Illumina and Ion Torrent.\n",
               "homepage": "https://cnvkit.readthedocs.io/en/stable/index.html",
               "documentation": "https://cnvkit.readthedocs.io/en/stable/index.html",
+              "doi": "10.1371/journal.pcbi.1004873",
+              "publication": {
+                "author": "Talevich, E., Shain, A. H., Botton, T. & Bastian, B. C.",
+                "year": 2016,
+                "title": "CNVkit: Genome-Wide Copy Number Detection and Visualization from Targeted DNA Sequencing",
+                "source": "PLOS Computational Biology"
+              },
               "licence": [
                 "Apache-2.0"
               ],
@@ -76109,7 +76135,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "fbc1279e3d38f35a205f5ba029d6b63d9c9e9d5f",
       "pipelines": [
         {
           "name": "pacsomatic",
@@ -76124,7 +76150,7 @@
     {
       "name": "cnvkit_coverage",
       "path": "modules/nf-core/cnvkit/coverage/meta.yml",
-      "tree_sha": "9c9558e444ddda9d40ca17096611622dbd2eb97e",
+      "tree_sha": "ec7fa5908d0d7dfc196362625a58487b6651006f",
       "files": [
         "modules/nf-core/cnvkit/coverage/.conda-lock/linux_amd64-bd-288e98d6210b7304_1.txt",
         "modules/nf-core/cnvkit/coverage/environment.yml",
@@ -76154,6 +76180,12 @@
               "documentation": "https://cnvkit.readthedocs.io/en/stable",
               "tool_dev_url": "https://github.com/etal/cnvkit",
               "doi": "10.1371/journal.pcbi.1004873",
+              "publication": {
+                "author": "Talevich, E., Shain, A. H., Botton, T. & Bastian, B. C.",
+                "year": 2016,
+                "title": "CNVkit: Genome-Wide Copy Number Detection and Visualization from Targeted DNA Sequencing",
+                "source": "PLOS Computational Biology"
+              },
               "licence": [
                 "Apache-2.0"
               ],
@@ -76348,12 +76380,12 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fbc1279e3d38f35a205f5ba029d6b63d9c9e9d5f"
     },
     {
       "name": "cnvkit_export",
       "path": "modules/nf-core/cnvkit/export/meta.yml",
-      "tree_sha": "99a1902dee3070f16dd02726608236fc101df3ca",
+      "tree_sha": "3fdac695115550057b78b9a5f1823a20c005cbfb",
       "files": [
         "modules/nf-core/cnvkit/export/.conda-lock/linux_amd64-bd-288e98d6210b7304_1.txt",
         "modules/nf-core/cnvkit/export/environment.yml",
@@ -76378,6 +76410,13 @@
               "description": "CNVkit is a Python library and command-line software toolkit to infer and\nvisualize copy number from high-throughput DNA sequencing data.\nIt is designed for use with hybrid capture, including both whole-exome and custom\ntarget panels, and short-read sequencing platforms such as Illumina and Ion Torrent.\n",
               "homepage": "https://cnvkit.readthedocs.io/en/stable/index.html",
               "documentation": "https://cnvkit.readthedocs.io/en/stable/index.html",
+              "doi": "10.1371/journal.pcbi.1004873",
+              "publication": {
+                "author": "Talevich, E., Shain, A. H., Botton, T. & Bastian, B. C.",
+                "year": 2016,
+                "title": "CNVkit: Genome-Wide Copy Number Detection and Visualization from Targeted DNA Sequencing",
+                "source": "PLOS Computational Biology"
+              },
               "licence": [
                 "Apache-2.0"
               ],
@@ -76508,7 +76547,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "fbc1279e3d38f35a205f5ba029d6b63d9c9e9d5f",
       "pipelines": [
         {
           "name": "sarek",
@@ -76519,7 +76558,7 @@
     {
       "name": "cnvkit_fix",
       "path": "modules/nf-core/cnvkit/fix/meta.yml",
-      "tree_sha": "0697d42b4b36ba4353249f183cab7e2f96e356dc",
+      "tree_sha": "f0a62061f293835c4da5733325d31735ee7f8922",
       "files": [
         "modules/nf-core/cnvkit/fix/.conda-lock/linux_amd64-bd-288e98d6210b7304_1.txt",
         "modules/nf-core/cnvkit/fix/environment.yml",
@@ -76549,6 +76588,12 @@
               "documentation": "https://cnvkit.readthedocs.io/en/stable",
               "tool_dev_url": "https://github.com/etal/cnvkit",
               "doi": "10.1371/journal.pcbi.1004873",
+              "publication": {
+                "author": "Talevich, E., Shain, A. H., Botton, T. & Bastian, B. C.",
+                "year": 2016,
+                "title": "CNVkit: Genome-Wide Copy Number Detection and Visualization from Targeted DNA Sequencing",
+                "source": "PLOS Computational Biology"
+              },
               "licence": [
                 "Apache-2.0"
               ],
@@ -76694,12 +76739,12 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fbc1279e3d38f35a205f5ba029d6b63d9c9e9d5f"
     },
     {
       "name": "cnvkit_genemetrics",
       "path": "modules/nf-core/cnvkit/genemetrics/meta.yml",
-      "tree_sha": "31f8ac05518bf388f8f9fa86199918ff048cebf9",
+      "tree_sha": "925c0a9b0d041caa1ede56e2cfb7cd347dd4a27e",
       "files": [
         "modules/nf-core/cnvkit/genemetrics/.conda-lock/linux_amd64-bd-288e98d6210b7304_1.txt",
         "modules/nf-core/cnvkit/genemetrics/environment.yml",
@@ -76724,6 +76769,13 @@
               "description": "CNVkit is a Python library and command-line software toolkit to infer and visualize copy number from high-throughput DNA sequencing data. It is designed for use with hybrid capture, including both whole-exome and custom target panels, and short-read sequencing platforms such as Illumina and Ion Torrent.\n",
               "homepage": "https://cnvkit.readthedocs.io/en/stable/index.html",
               "documentation": "https://cnvkit.readthedocs.io/en/stable/index.html",
+              "doi": "10.1371/journal.pcbi.1004873",
+              "publication": {
+                "author": "Talevich, E., Shain, A. H., Botton, T. & Bastian, B. C.",
+                "year": 2016,
+                "title": "CNVkit: Genome-Wide Copy Number Detection and Visualization from Targeted DNA Sequencing",
+                "source": "PLOS Computational Biology"
+              },
               "licence": [
                 "Apache-2.0"
               ],
@@ -76869,7 +76921,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "fbc1279e3d38f35a205f5ba029d6b63d9c9e9d5f",
       "pipelines": [
         {
           "name": "sarek",
@@ -76880,7 +76932,7 @@
     {
       "name": "cnvkit_purity",
       "path": "modules/nf-core/cnvkit/purity/meta.yml",
-      "tree_sha": "0dc1afabc68b473d8762657f37fd3b7b3fa60d3b",
+      "tree_sha": "1cda2d963e07331f8afe01ec4255d05d3edfe7a9",
       "files": [
         "modules/nf-core/cnvkit/purity/environment.yml",
         "modules/nf-core/cnvkit/purity/main.nf",
@@ -76907,6 +76959,12 @@
               "documentation": "https://cnvkit.readthedocs.io/en/stable",
               "tool_dev_url": "https://github.com/etal/cnvkit",
               "doi": "10.1371/journal.pcbi.1004873",
+              "publication": {
+                "author": "Talevich, E., Shain, A. H., Botton, T. & Bastian, B. C.",
+                "year": 2016,
+                "title": "CNVkit: Genome-Wide Copy Number Detection and Visualization from Targeted DNA Sequencing",
+                "source": "PLOS Computational Biology"
+              },
               "licence": [
                 "Apache-2.0"
               ],
@@ -77024,12 +77082,12 @@
           "@aadecock"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fbc1279e3d38f35a205f5ba029d6b63d9c9e9d5f"
     },
     {
       "name": "cnvkit_reference",
       "path": "modules/nf-core/cnvkit/reference/meta.yml",
-      "tree_sha": "530433783c292dc080b71b856dcb0579dd7ce651",
+      "tree_sha": "46bbad62c41abec97f43323e85d9d2a7714e0ce8",
       "files": [
         "modules/nf-core/cnvkit/reference/.conda-lock/linux_amd64-bd-288e98d6210b7304_1.txt",
         "modules/nf-core/cnvkit/reference/environment.yml",
@@ -77056,6 +77114,12 @@
               "documentation": "https://cnvkit.readthedocs.io/en/stable/index.html",
               "tool_dev_url": "https://github.com/etal/cnvkit",
               "doi": "10.1371/journal.pcbi.1004873",
+              "publication": {
+                "author": "Talevich, E., Shain, A. H., Botton, T. & Bastian, B. C.",
+                "year": 2016,
+                "title": "CNVkit: Genome-Wide Copy Number Detection and Visualization from Targeted DNA Sequencing",
+                "source": "PLOS Computational Biology"
+              },
               "licence": [
                 "Apache-2.0"
               ],
@@ -77189,7 +77253,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "fbc1279e3d38f35a205f5ba029d6b63d9c9e9d5f",
       "pipelines": [
         {
           "name": "sarek",
@@ -77200,7 +77264,7 @@
     {
       "name": "cnvkit_segment",
       "path": "modules/nf-core/cnvkit/segment/meta.yml",
-      "tree_sha": "f47a88ae3331cb41a969b00758772f00e02bfbdf",
+      "tree_sha": "5badfa4f66d477e9e7a41424b00aec66e75841fc",
       "files": [
         "modules/nf-core/cnvkit/segment/.conda-lock/linux_amd64-bd-288e98d6210b7304_1.txt",
         "modules/nf-core/cnvkit/segment/environment.yml",
@@ -77233,6 +77297,12 @@
               "documentation": "https://cnvkit.readthedocs.io/en/stable",
               "tool_dev_url": "https://github.com/etal/cnvkit",
               "doi": "10.1371/journal.pcbi.1004873",
+              "publication": {
+                "author": "Talevich, E., Shain, A. H., Botton, T. & Bastian, B. C.",
+                "year": 2016,
+                "title": "CNVkit: Genome-Wide Copy Number Detection and Visualization from Targeted DNA Sequencing",
+                "source": "PLOS Computational Biology"
+              },
               "licence": [
                 "Apache-2.0"
               ],
@@ -77362,12 +77432,12 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fbc1279e3d38f35a205f5ba029d6b63d9c9e9d5f"
     },
     {
       "name": "cnvkit_target",
       "path": "modules/nf-core/cnvkit/target/meta.yml",
-      "tree_sha": "b3ea6e38ebd64a4cbf7071edc78b9c3cf6033741",
+      "tree_sha": "ca24fdc661bceea1dcd64ed8440afa688bc4b3da",
       "files": [
         "modules/nf-core/cnvkit/target/.conda-lock/linux_amd64-bd-288e98d6210b7304_1.txt",
         "modules/nf-core/cnvkit/target/environment.yml",
@@ -77394,6 +77464,12 @@
               "documentation": "https://cnvkit.readthedocs.io/en/stable/index.html",
               "tool_dev_url": "https://github.com/etal/cnvkit",
               "doi": "10.1371/journal.pcbi.1004873",
+              "publication": {
+                "author": "Talevich, E., Shain, A. H., Botton, T. & Bastian, B. C.",
+                "year": 2016,
+                "title": "CNVkit: Genome-Wide Copy Number Detection and Visualization from Targeted DNA Sequencing",
+                "source": "PLOS Computational Biology"
+              },
               "licence": [
                 "Apache-2.0"
               ],
@@ -77541,7 +77617,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "fbc1279e3d38f35a205f5ba029d6b63d9c9e9d5f",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -103398,6 +103474,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -145774,7 +145858,7 @@
     {
       "name": "fusionreport_detect",
       "path": "modules/nf-core/fusionreport/detect/meta.yml",
-      "tree_sha": "248f18c6b56573f41ee3f7e9605ada5a3c3767e0",
+      "tree_sha": "a4c9d847378d3b7ba6a6bc170336d4da461db409",
       "files": [
         "modules/nf-core/fusionreport/detect/environment.yml",
         "modules/nf-core/fusionreport/detect/main.nf",
@@ -145799,7 +145883,6 @@
               "description": "Tool for parsing outputs from fusion detection tools",
               "homepage": "https://github.com/Clinical-Genomics/fusion-report",
               "documentation": "https://github.com/Clinical-Genomics/fusion-report",
-              "doi": "10.1101/011650",
               "licence": [
                 "GPL v3"
               ],
@@ -146059,7 +146142,7 @@
           "@rannick"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "22e5802bfde4095c2a58a5c2194e7a85e64999ea",
       "pipelines": [
         {
           "name": "rnafusion",
@@ -175523,7 +175606,7 @@
     {
       "name": "gffread",
       "path": "modules/nf-core/gffread/meta.yml",
-      "tree_sha": "393a7e151a2972cbaba10f5a5b57f2ace0f1ebd4",
+      "tree_sha": "9e5cd2ed9c3c28e9ab8dcf996f4135ac3ae8b64d",
       "files": [
         "modules/nf-core/gffread/.conda-lock/linux_amd64-bd-fde1489f7e69618e_1.txt",
         "modules/nf-core/gffread/.conda-lock/linux_arm64-bd-09577fef8a4d5cda_1.txt",
@@ -175553,7 +175636,13 @@
               "homepage": "http://ccb.jhu.edu/software/stringtie/gff.shtml#gffread",
               "documentation": "http://ccb.jhu.edu/software/stringtie/gff.shtml#gffread",
               "tool_dev_url": "https://github.com/gpertea/gffread",
-              "doi": "10.12688/f1000research.23297.1",
+              "doi": "10.12688/f1000research.23297.2",
+              "publication": {
+                "author": "Pertea, G. & Pertea, M.",
+                "year": 2020,
+                "title": "GFF Utilities: GffRead and GffCompare",
+                "source": "F1000Research"
+              },
               "licence": [
                 "MIT"
               ],
@@ -175749,7 +175838,7 @@
           }
         }
       },
-      "git_sha": "f72135da1c6152ac6826c8048259eda4bde5b538",
+      "git_sha": "fc934fa053c37584ae5ccd879a7dae0ec123e713",
       "pipelines": [
         {
           "name": "atacseq",
@@ -193764,7 +193853,7 @@
     {
       "name": "hisat2_align",
       "path": "modules/nf-core/hisat2/align/meta.yml",
-      "tree_sha": "ad65895367319db789084c20b5c2ed58bbc8414f",
+      "tree_sha": "1f2e9ad977989c8b3ac9b29fa64d37db737c44df",
       "files": [
         "modules/nf-core/hisat2/align/.conda-lock/linux_amd64-bd-a0c9b8ccf8116a89_1.txt",
         "modules/nf-core/hisat2/align/.conda-lock/linux_arm64-bd-2061bdd7bd29b1cd_1.txt",
@@ -193791,6 +193880,12 @@
               "homepage": "https://daehwankimlab.github.io/hisat2/",
               "documentation": "https://daehwankimlab.github.io/hisat2/manual/",
               "doi": "10.1038/s41587-019-0201-4",
+              "publication": {
+                "author": "Kim, D., Paggi, J. M., Park, C., Bennett, C. & Salzberg, S. L.",
+                "year": 2019,
+                "title": "Graph-based genome alignment and genotyping with HISAT2 and HISAT-genotype",
+                "source": "Nature Biotechnology"
+              },
               "licence": [
                 "MIT"
               ],
@@ -194045,7 +194140,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "2d1a9bd65d96494ffb62f5b8a060dcb560e02f3b",
       "pipelines": [
         {
           "name": "circrna",
@@ -194076,7 +194171,7 @@
     {
       "name": "hisat2_build",
       "path": "modules/nf-core/hisat2/build/meta.yml",
-      "tree_sha": "5b1ed6585b3ee1ea896ba1f2cb84235ef601a0b9",
+      "tree_sha": "c28a895cf5805de36be23b15c4140e6178d89d0e",
       "files": [
         "modules/nf-core/hisat2/build/.conda-lock/linux_amd64-bd-2616fa83d3b9d8f8_1.txt",
         "modules/nf-core/hisat2/build/environment.yml",
@@ -194103,6 +194198,12 @@
               "homepage": "https://daehwankimlab.github.io/hisat2/",
               "documentation": "https://daehwankimlab.github.io/hisat2/manual/",
               "doi": "10.1038/s41587-019-0201-4",
+              "publication": {
+                "author": "Kim, D., Paggi, J. M., Park, C., Bennett, C. & Salzberg, S. L.",
+                "year": 2019,
+                "title": "Graph-based genome alignment and genotyping with HISAT2 and HISAT-genotype",
+                "source": "Nature Biotechnology"
+              },
               "licence": [
                 "MIT"
               ],
@@ -194255,7 +194356,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "2d1a9bd65d96494ffb62f5b8a060dcb560e02f3b",
       "pipelines": [
         {
           "name": "circrna",
@@ -194290,7 +194391,7 @@
     {
       "name": "hisat2_extractsplicesites",
       "path": "modules/nf-core/hisat2/extractsplicesites/meta.yml",
-      "tree_sha": "2dfd20f8396727e8dda7b99e776c94a959df5629",
+      "tree_sha": "4d664ef2ba5ef3ef9239132b2e354a4df6eb760a",
       "files": [
         "modules/nf-core/hisat2/extractsplicesites/.conda-lock/linux_amd64-bd-a0c9b8ccf8116a89_1.txt",
         "modules/nf-core/hisat2/extractsplicesites/.conda-lock/linux_arm64-bd-2061bdd7bd29b1cd_1.txt",
@@ -194317,6 +194418,12 @@
               "homepage": "https://daehwankimlab.github.io/hisat2/",
               "documentation": "https://daehwankimlab.github.io/hisat2/manual/",
               "doi": "10.1038/s41587-019-0201-4",
+              "publication": {
+                "author": "Kim, D., Paggi, J. M., Park, C., Bennett, C. & Salzberg, S. L.",
+                "year": 2019,
+                "title": "Graph-based genome alignment and genotyping with HISAT2 and HISAT-genotype",
+                "source": "Nature Biotechnology"
+              },
               "licence": [
                 "MIT"
               ],
@@ -194493,7 +194600,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "2d1a9bd65d96494ffb62f5b8a060dcb560e02f3b",
       "pipelines": [
         {
           "name": "circrna",
@@ -202011,7 +202118,7 @@
     {
       "name": "htslib_bgziptabix",
       "path": "modules/nf-core/htslib/bgziptabix/meta.yml",
-      "tree_sha": "25fe159e6835f2c91f542c1040b40b8d6a01bafe",
+      "tree_sha": "88cfc02b93a0d80c6eb6cd2bc86c144ca1000b33",
       "files": [
         "modules/nf-core/htslib/bgziptabix/.conda-lock/linux_amd64-bd-0923e29158171c28_1.txt",
         "modules/nf-core/htslib/bgziptabix/.conda-lock/linux_arm64-bd-3acc2684784cd5dc_1.txt",
@@ -202044,6 +202151,12 @@
               "documentation": "http://www.htslib.org/doc/",
               "tool_dev_url": "https://github.com/samtools/htslib",
               "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
               "licence": [
                 "MIT"
               ],
@@ -202303,7 +202416,7 @@
           }
         }
       },
-      "git_sha": "0fc371314e7612fa13b8164bd86b53683a59a8f0",
+      "git_sha": "e316df2a11df4c74988d68a1147878d76c5972a0",
       "pipelines": [
         {
           "name": "genomeassembler",
@@ -206246,7 +206359,7 @@
     {
       "name": "icountmini_metagene",
       "path": "modules/nf-core/icountmini/metagene/meta.yml",
-      "tree_sha": "e43ec2a28fa4af0390ba4955d70d46a2677fab37",
+      "tree_sha": "2aeebca069400655478194ac44314b13ddd9f259",
       "files": [
         "modules/nf-core/icountmini/metagene/environment.yml",
         "modules/nf-core/icountmini/metagene/main.nf",
@@ -206404,12 +206517,12 @@
           "@charlotteanne"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "9176b3c03802fa2abc12293b813cb75942e269d8"
     },
     {
       "name": "icountmini_peaks",
       "path": "modules/nf-core/icountmini/peaks/meta.yml",
-      "tree_sha": "6a6b5ef4b33754b9b5caad5a7229404aa8e3e2c5",
+      "tree_sha": "72cfbbc888ef816ff1036b562560e18c22110b1f",
       "files": [
         "modules/nf-core/icountmini/peaks/environment.yml",
         "modules/nf-core/icountmini/peaks/main.nf",
@@ -206548,12 +206661,12 @@
           "@charlotteanne"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "9176b3c03802fa2abc12293b813cb75942e269d8"
     },
     {
       "name": "icountmini_segment",
       "path": "modules/nf-core/icountmini/segment/meta.yml",
-      "tree_sha": "aa2f4a61033d0279d8dac6e689786f96e2192cdf",
+      "tree_sha": "e3366cccb6bedf9678a2623de33fedba5ef04ade",
       "files": [
         "modules/nf-core/icountmini/segment/environment.yml",
         "modules/nf-core/icountmini/segment/main.nf",
@@ -206706,12 +206819,12 @@
           "@charlotteanne"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "9176b3c03802fa2abc12293b813cb75942e269d8"
     },
     {
       "name": "icountmini_sigxls",
       "path": "modules/nf-core/icountmini/sigxls/meta.yml",
-      "tree_sha": "3c4a78b7f24bb205dece3409946d25d477c8c0d4",
+      "tree_sha": "dfd2e373fa92eafef05d12d0e7dfd7203957553e",
       "files": [
         "modules/nf-core/icountmini/sigxls/environment.yml",
         "modules/nf-core/icountmini/sigxls/main.nf",
@@ -206869,12 +206982,12 @@
           "@charlotteanne"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "9176b3c03802fa2abc12293b813cb75942e269d8"
     },
     {
       "name": "icountmini_summary",
       "path": "modules/nf-core/icountmini/summary/meta.yml",
-      "tree_sha": "dae846bebdca2eb8bd806cc69caf132530f00d82",
+      "tree_sha": "cc000ea05439b38b44aa19ef1bb5002b1a5b6619",
       "files": [
         "modules/nf-core/icountmini/summary/environment.yml",
         "modules/nf-core/icountmini/summary/main.nf",
@@ -207054,7 +207167,7 @@
           "@charlotteanne"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "9176b3c03802fa2abc12293b813cb75942e269d8"
     },
     {
       "name": "idemux",
@@ -217155,7 +217268,7 @@
     {
       "name": "kallisto_index",
       "path": "modules/nf-core/kallisto/index/meta.yml",
-      "tree_sha": "c29886eb6b3836dab4f63c4d2da6d41589369955",
+      "tree_sha": "e6b3b63fd915b42076dffb75c182dc2cbdd31527",
       "files": [
         "modules/nf-core/kallisto/index/environment.yml",
         "modules/nf-core/kallisto/index/main.nf",
@@ -217179,6 +217292,13 @@
               "homepage": "https://pachterlab.github.io/kallisto/",
               "documentation": "https://pachterlab.github.io/kallisto/manual",
               "tool_dev_url": "https://github.com/pachterlab/kallisto",
+              "doi": "10.1038/nbt.3519",
+              "publication": {
+                "author": "Bray, N. L., Pimentel, H., Melsted, P. & Pachter, L.",
+                "year": 2016,
+                "title": "Near-optimal probabilistic RNA-seq quantification",
+                "source": "Nature Biotechnology"
+              },
               "licence": [
                 "BSD-2-Clause"
               ],
@@ -217276,7 +217396,7 @@
           "@ggabernet"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "f903a43b5e0bedd4293b2b9c6cc381076d69c72f",
       "pipelines": [
         {
           "name": "lncpipe",
@@ -217299,7 +217419,7 @@
     {
       "name": "kallisto_quant",
       "path": "modules/nf-core/kallisto/quant/meta.yml",
-      "tree_sha": "149636ebe5a8fa72ab803afdb8889b48f0771737",
+      "tree_sha": "8369cd22b9d275764fdb320ca6dc1c9094d88a0a",
       "files": [
         "modules/nf-core/kallisto/quant/environment.yml",
         "modules/nf-core/kallisto/quant/main.nf",
@@ -217325,6 +217445,12 @@
               "documentation": "https://pachterlab.github.io/kallisto/manual",
               "tool_dev_url": "https://github.com/pachterlab/kallisto",
               "doi": "10.1038/nbt.3519",
+              "publication": {
+                "author": "Bray, N. L., Pimentel, H., Melsted, P. & Pachter, L.",
+                "year": 2016,
+                "title": "Near-optimal probabilistic RNA-seq quantification",
+                "source": "Nature Biotechnology"
+              },
               "licence": [
                 "BSD_2_clause"
               ],
@@ -217514,7 +217640,7 @@
           "@anoronh4"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "f903a43b5e0bedd4293b2b9c6cc381076d69c72f",
       "pipelines": [
         {
           "name": "riboseq",
@@ -243333,8 +243459,10 @@
     {
       "name": "meryl_count",
       "path": "modules/nf-core/meryl/count/meta.yml",
-      "tree_sha": "699c999b600d83aa43e31742aa88b96efe83a9c4",
+      "tree_sha": "f3f8a53751c4444b4c365a46b20ebea02d5dc3fd",
       "files": [
+        "modules/nf-core/meryl/count/.conda-lock/linux_amd64-bd-2481ef1dd13fafa3_1.txt",
+        "modules/nf-core/meryl/count/.conda-lock/linux_arm64-bd-f8285daf44585b1a_1.txt",
         "modules/nf-core/meryl/count/environment.yml",
         "modules/nf-core/meryl/count/main.nf",
         "modules/nf-core/meryl/count/meta.yml",
@@ -243420,9 +243548,9 @@
                 }
               },
               {
-                "meryl --version |& sed 's/meryl //'": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.4.1": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -243444,9 +243572,9 @@
                 }
               },
               {
-                "meryl --version |& sed 's/meryl //'": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.4.1": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -243458,9 +243586,43 @@
         "maintainers": [
           "@mahesh-panchal",
           "@gallvp"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/meryl:1.4.1--2481ef1dd13fafa3",
+              "build_id": "bd-2481ef1dd13fafa3_1",
+              "scan_id": "sc-760b8c2f25e6bece_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/meryl:1.4.1--f8285daf44585b1a",
+              "build_id": "bd-f8285daf44585b1a_1",
+              "scan_id": "sc-cce256fea780b9a0_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/meryl:1.4.1--d02619bc43206ada",
+              "build_id": "bd-d02619bc43206ada_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/6e/6ec81612fbb2f77bcb10975aa2e84d61b80959ab379824aa02b2508bac3cf8ac/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/meryl:1.4.1--ae4c26e57436f4a4",
+              "build_id": "bd-ae4c26e57436f4a4_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/7d/7df6a8db5e64dc18ecc1aa31b12308fc9d5e07ddefcc64f5ffffa1716c029da8/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/meryl/count/.conda-lock/linux_amd64-bd-2481ef1dd13fafa3_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/meryl/count/.conda-lock/linux_arm64-bd-f8285daf44585b1a_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "3f10df6804f18c40f80f9df5fd2b1bed0a8ab74d",
       "pipelines": [
         {
           "name": "genomeassembler",
@@ -243475,8 +243637,10 @@
     {
       "name": "meryl_histogram",
       "path": "modules/nf-core/meryl/histogram/meta.yml",
-      "tree_sha": "421f8658e40ca86af8b43b32155427e302d0af86",
+      "tree_sha": "633c1bfa366d17b186bc1b6d6ddfb724a112f527",
       "files": [
+        "modules/nf-core/meryl/histogram/.conda-lock/linux_amd64-bd-2481ef1dd13fafa3_1.txt",
+        "modules/nf-core/meryl/histogram/.conda-lock/linux_arm64-bd-f8285daf44585b1a_1.txt",
         "modules/nf-core/meryl/histogram/environment.yml",
         "modules/nf-core/meryl/histogram/main.nf",
         "modules/nf-core/meryl/histogram/meta.yml",
@@ -243562,9 +243726,9 @@
                 }
               },
               {
-                "meryl --version |& sed 's/meryl //'": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.4.1": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -243586,9 +243750,9 @@
                 }
               },
               {
-                "meryl --version |& sed 's/meryl //'": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.4.1": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -243600,15 +243764,51 @@
         "maintainers": [
           "@mahesh-panchal",
           "@gallvp"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/meryl:1.4.1--f8285daf44585b1a",
+              "build_id": "bd-f8285daf44585b1a_1",
+              "scan_id": "sc-cce256fea780b9a0_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/meryl:1.4.1--2481ef1dd13fafa3",
+              "build_id": "bd-2481ef1dd13fafa3_1",
+              "scan_id": "sc-760b8c2f25e6bece_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/meryl:1.4.1--d02619bc43206ada",
+              "build_id": "bd-d02619bc43206ada_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/6e/6ec81612fbb2f77bcb10975aa2e84d61b80959ab379824aa02b2508bac3cf8ac/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/meryl:1.4.1--ae4c26e57436f4a4",
+              "build_id": "bd-ae4c26e57436f4a4_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/7d/7df6a8db5e64dc18ecc1aa31b12308fc9d5e07ddefcc64f5ffffa1716c029da8/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/meryl/histogram/.conda-lock/linux_amd64-bd-2481ef1dd13fafa3_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/meryl/histogram/.conda-lock/linux_arm64-bd-f8285daf44585b1a_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "3f10df6804f18c40f80f9df5fd2b1bed0a8ab74d"
     },
     {
       "name": "meryl_unionsum",
       "path": "modules/nf-core/meryl/unionsum/meta.yml",
-      "tree_sha": "8455d93e8bf5234696bcc3f66f17474edd370b0d",
+      "tree_sha": "7fdeee2d53bb19419b266dd47ce12c87be5093c4",
       "files": [
+        "modules/nf-core/meryl/unionsum/.conda-lock/linux_amd64-bd-2481ef1dd13fafa3_1.txt",
+        "modules/nf-core/meryl/unionsum/.conda-lock/linux_arm64-bd-f8285daf44585b1a_1.txt",
         "modules/nf-core/meryl/unionsum/environment.yml",
         "modules/nf-core/meryl/unionsum/main.nf",
         "modules/nf-core/meryl/unionsum/meta.yml",
@@ -243693,9 +243893,9 @@
                 }
               },
               {
-                "meryl --version |& sed 's/meryl //'": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.4.1": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -243717,9 +243917,9 @@
                 }
               },
               {
-                "meryl --version |& sed 's/meryl //'": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.4.1": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -243731,9 +243931,43 @@
         "maintainers": [
           "@mahesh-panchal",
           "@gallvp"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/meryl:1.4.1--f8285daf44585b1a",
+              "build_id": "bd-f8285daf44585b1a_1",
+              "scan_id": "sc-cce256fea780b9a0_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/meryl:1.4.1--2481ef1dd13fafa3",
+              "build_id": "bd-2481ef1dd13fafa3_1",
+              "scan_id": "sc-760b8c2f25e6bece_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/meryl:1.4.1--d02619bc43206ada",
+              "build_id": "bd-d02619bc43206ada_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/6e/6ec81612fbb2f77bcb10975aa2e84d61b80959ab379824aa02b2508bac3cf8ac/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/meryl:1.4.1--ae4c26e57436f4a4",
+              "build_id": "bd-ae4c26e57436f4a4_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/7d/7df6a8db5e64dc18ecc1aa31b12308fc9d5e07ddefcc64f5ffffa1716c029da8/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/meryl/unionsum/.conda-lock/linux_amd64-bd-2481ef1dd13fafa3_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/meryl/unionsum/.conda-lock/linux_arm64-bd-f8285daf44585b1a_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "3f10df6804f18c40f80f9df5fd2b1bed0a8ab74d",
       "pipelines": [
         {
           "name": "genomeassembler",
@@ -245832,8 +246066,10 @@
     {
       "name": "metaphlan_makedb",
       "path": "modules/nf-core/metaphlan/makedb/meta.yml",
-      "tree_sha": "a7e7dc6055e349fcab6f14bbe31547a74da6af3b",
+      "tree_sha": "4c290bb3f6d4fa2650b75b3c2a2d29393024c47c",
       "files": [
+        "modules/nf-core/metaphlan/makedb/.conda-lock/linux_amd64-bd-59796ca881a8bb02_1.txt",
+        "modules/nf-core/metaphlan/makedb/.conda-lock/linux_arm64-bd-729d587efd21f3af_1.txt",
         "modules/nf-core/metaphlan/makedb/environment.yml",
         "modules/nf-core/metaphlan/makedb/main.nf",
         "modules/nf-core/metaphlan/makedb/meta.yml",
@@ -245927,15 +246163,51 @@
         ],
         "maintainers": [
           "@LilyAnderssonLee"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/metaphlan_numpy_python:729d587efd21f3af",
+              "build_id": "bd-729d587efd21f3af_1",
+              "scan_id": "sc-911b10c06b2a2f9d_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/metaphlan_numpy_python:59796ca881a8bb02",
+              "build_id": "bd-59796ca881a8bb02_1",
+              "scan_id": "sc-f98b614bb73250be_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/metaphlan_numpy_python:373e0586cfa7f0cb",
+              "build_id": "bd-373e0586cfa7f0cb_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/01/0198f5dc14251a57ec171969072954f8acfe03827ee492d8962325b61db128c9/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/metaphlan_numpy_python:1276de67df48518a",
+              "build_id": "bd-1276de67df48518a_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/59/59f3aa387903d5b87b6e2d3c0172f462f701c662e73cb2e26066d4ec6fd3e8c6/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/metaphlan/makedb/.conda-lock/linux_amd64-bd-59796ca881a8bb02_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/metaphlan/makedb/.conda-lock/linux_arm64-bd-729d587efd21f3af_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "3f10df6804f18c40f80f9df5fd2b1bed0a8ab74d"
     },
     {
       "name": "metaphlan_mergemetaphlantables",
       "path": "modules/nf-core/metaphlan/mergemetaphlantables/meta.yml",
-      "tree_sha": "6bb9a3dbd0019e634733e253dabafb1f74607a4d",
+      "tree_sha": "3d8cdfce4cb545ad5edba322b8b3aa7e48b0e492",
       "files": [
+        "modules/nf-core/metaphlan/mergemetaphlantables/.conda-lock/linux_amd64-bd-59796ca881a8bb02_1.txt",
+        "modules/nf-core/metaphlan/mergemetaphlantables/.conda-lock/linux_arm64-bd-729d587efd21f3af_1.txt",
         "modules/nf-core/metaphlan/mergemetaphlantables/environment.yml",
         "modules/nf-core/metaphlan/mergemetaphlantables/main.nf",
         "modules/nf-core/metaphlan/mergemetaphlantables/meta.yml",
@@ -246059,9 +246331,43 @@
         "maintainers": [
           "@jfy133",
           "@LilyAnderssonLee"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/metaphlan_numpy_python:729d587efd21f3af",
+              "build_id": "bd-729d587efd21f3af_1",
+              "scan_id": "sc-911b10c06b2a2f9d_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/metaphlan_numpy_python:59796ca881a8bb02",
+              "build_id": "bd-59796ca881a8bb02_1",
+              "scan_id": "sc-f98b614bb73250be_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/metaphlan_numpy_python:373e0586cfa7f0cb",
+              "build_id": "bd-373e0586cfa7f0cb_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/01/0198f5dc14251a57ec171969072954f8acfe03827ee492d8962325b61db128c9/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/metaphlan_numpy_python:1276de67df48518a",
+              "build_id": "bd-1276de67df48518a_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/59/59f3aa387903d5b87b6e2d3c0172f462f701c662e73cb2e26066d4ec6fd3e8c6/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/metaphlan/mergemetaphlantables/.conda-lock/linux_amd64-bd-59796ca881a8bb02_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/metaphlan/mergemetaphlantables/.conda-lock/linux_arm64-bd-729d587efd21f3af_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "3f10df6804f18c40f80f9df5fd2b1bed0a8ab74d",
       "pipelines": [
         {
           "name": "taxprofiler",
@@ -246072,8 +246378,10 @@
     {
       "name": "metaphlan_metaphlan",
       "path": "modules/nf-core/metaphlan/metaphlan/meta.yml",
-      "tree_sha": "f934169759a1d0c7ac18401d79739ac1fb028a88",
+      "tree_sha": "40e76bf5f5615c2e68c8240be077186f4c36833e",
       "files": [
+        "modules/nf-core/metaphlan/metaphlan/.conda-lock/linux_amd64-bd-59796ca881a8bb02_1.txt",
+        "modules/nf-core/metaphlan/metaphlan/.conda-lock/linux_arm64-bd-729d587efd21f3af_1.txt",
         "modules/nf-core/metaphlan/metaphlan/environment.yml",
         "modules/nf-core/metaphlan/metaphlan/main.nf",
         "modules/nf-core/metaphlan/metaphlan/meta.yml",
@@ -246269,9 +246577,43 @@
         "maintainers": [
           "@MGordon09",
           "@LilyAnderssonLee"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/metaphlan_numpy_python:729d587efd21f3af",
+              "build_id": "bd-729d587efd21f3af_1",
+              "scan_id": "sc-911b10c06b2a2f9d_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/metaphlan_numpy_python:59796ca881a8bb02",
+              "build_id": "bd-59796ca881a8bb02_1",
+              "scan_id": "sc-f98b614bb73250be_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/metaphlan_numpy_python:373e0586cfa7f0cb",
+              "build_id": "bd-373e0586cfa7f0cb_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/01/0198f5dc14251a57ec171969072954f8acfe03827ee492d8962325b61db128c9/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/metaphlan_numpy_python:1276de67df48518a",
+              "build_id": "bd-1276de67df48518a_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/59/59f3aa387903d5b87b6e2d3c0172f462f701c662e73cb2e26066d4ec6fd3e8c6/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/metaphlan/metaphlan/.conda-lock/linux_amd64-bd-59796ca881a8bb02_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/metaphlan/metaphlan/.conda-lock/linux_arm64-bd-729d587efd21f3af_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "3f10df6804f18c40f80f9df5fd2b1bed0a8ab74d",
       "pipelines": [
         {
           "name": "funcprofiler",
@@ -247754,8 +248096,10 @@
     {
       "name": "methyldackel_extract",
       "path": "modules/nf-core/methyldackel/extract/meta.yml",
-      "tree_sha": "dce619b770e789ed7619cd846f9d82f8fb21c44a",
+      "tree_sha": "744aff551390596c9928c78d1add33f423ff3109",
       "files": [
+        "modules/nf-core/methyldackel/extract/.conda-lock/linux_amd64-bd-aaf947cb078b2f30_1.txt",
+        "modules/nf-core/methyldackel/extract/.conda-lock/linux_arm64-bd-769ec54297040036_1.txt",
         "modules/nf-core/methyldackel/extract/environment.yml",
         "modules/nf-core/methyldackel/extract/main.nf",
         "modules/nf-core/methyldackel/extract/meta.yml",
@@ -247931,9 +248275,43 @@
         "maintainers": [
           "@phue",
           "@eduard-watchmaker"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/methyldackel:0.6.1--769ec54297040036",
+              "build_id": "bd-769ec54297040036_1",
+              "scan_id": "sc-72bbcd3d93e1d4af_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/methyldackel:0.6.1--aaf947cb078b2f30",
+              "build_id": "bd-aaf947cb078b2f30_1",
+              "scan_id": "sc-79f913ce2c0ac045_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/methyldackel:0.6.1--5f840295e921e91c",
+              "build_id": "bd-5f840295e921e91c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/4b/4b6f0f4d9e822f6def26b6f69a27cddd59475192c57c4a51385ef9ed13dd8078/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/methyldackel:0.6.1--aaad445a705dbf21",
+              "build_id": "bd-aaad445a705dbf21_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/00/00913ecf35e56bec298575bde8acc4052b22e2620558ee3160681cefb20549c4/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/methyldackel/extract/.conda-lock/linux_amd64-bd-aaf947cb078b2f30_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/methyldackel/extract/.conda-lock/linux_arm64-bd-769ec54297040036_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "3f10df6804f18c40f80f9df5fd2b1bed0a8ab74d",
       "pipelines": [
         {
           "name": "methylseq",
@@ -247944,8 +248322,10 @@
     {
       "name": "methyldackel_mbias",
       "path": "modules/nf-core/methyldackel/mbias/meta.yml",
-      "tree_sha": "4fc0b47f0cb6e5017b2306ac8a4cef4af6fd01ec",
+      "tree_sha": "2d06b8f70a936a9598e938e79d386d034bc989ec",
       "files": [
+        "modules/nf-core/methyldackel/mbias/.conda-lock/linux_amd64-bd-aaf947cb078b2f30_1.txt",
+        "modules/nf-core/methyldackel/mbias/.conda-lock/linux_arm64-bd-769ec54297040036_1.txt",
         "modules/nf-core/methyldackel/mbias/environment.yml",
         "modules/nf-core/methyldackel/mbias/main.nf",
         "modules/nf-core/methyldackel/mbias/meta.yml",
@@ -248103,9 +248483,43 @@
         "maintainers": [
           "@phue",
           "@eduard-watchmaker"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/methyldackel:0.6.1--aaf947cb078b2f30",
+              "build_id": "bd-aaf947cb078b2f30_1",
+              "scan_id": "sc-79f913ce2c0ac045_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/methyldackel:0.6.1--769ec54297040036",
+              "build_id": "bd-769ec54297040036_1",
+              "scan_id": "sc-72bbcd3d93e1d4af_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/methyldackel:0.6.1--5f840295e921e91c",
+              "build_id": "bd-5f840295e921e91c_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/4b/4b6f0f4d9e822f6def26b6f69a27cddd59475192c57c4a51385ef9ed13dd8078/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/methyldackel:0.6.1--aaad445a705dbf21",
+              "build_id": "bd-aaad445a705dbf21_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/00/00913ecf35e56bec298575bde8acc4052b22e2620558ee3160681cefb20549c4/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/methyldackel/mbias/.conda-lock/linux_amd64-bd-aaf947cb078b2f30_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/methyldackel/mbias/.conda-lock/linux_arm64-bd-769ec54297040036_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "3f10df6804f18c40f80f9df5fd2b1bed0a8ab74d",
       "pipelines": [
         {
           "name": "methylseq",
@@ -261242,7 +261656,7 @@
     {
       "name": "mosdepth",
       "path": "modules/nf-core/mosdepth/meta.yml",
-      "tree_sha": "6bf5dd03f4d7fb0e7de468824a06c6cac46452f1",
+      "tree_sha": "07f049012bb41343c5ad732d17e20d948a41882f",
       "files": [
         "modules/nf-core/mosdepth/environment.yml",
         "modules/nf-core/mosdepth/main.nf",
@@ -261267,6 +261681,12 @@
               "description": "Fast BAM/CRAM depth calculation for WGS, exome, or targeted sequencing.\n",
               "documentation": "https://github.com/brentp/mosdepth",
               "doi": "10.1093/bioinformatics/btx699",
+              "publication": {
+                "author": "Pedersen, B. S. & Quinlan, A. R.",
+                "year": 2018,
+                "title": "Mosdepth: quick coverage calculation for genomes and exomes",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -261648,7 +262068,7 @@
           "@matthdsm"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "4bb3a64846ec51065b2b275b813ce27f8afae10c",
       "pipelines": [
         {
           "name": "createpanelrefs",
@@ -263073,7 +263493,7 @@
     {
       "name": "msisensorpro_baseline",
       "path": "modules/nf-core/msisensorpro/baseline/meta.yml",
-      "tree_sha": "dd9635b74af4801ca38b8fab78605eff4e11cae5",
+      "tree_sha": "bf321f2d7a2d85cbb82c2e2553cd68b58736f2f6",
       "files": [
         "modules/nf-core/msisensorpro/baseline/environment.yml",
         "modules/nf-core/msisensorpro/baseline/main.nf",
@@ -263094,12 +263514,18 @@
         ],
         "tools": [
           {
-            "msisensorpro": {
+            "msisensor-pro": {
               "description": "Microsatellite Instability (MSI) detection using high-throughput sequencing data.",
               "homepage": "https://github.com/xjtu-omics/msisensor-pro",
               "documentation": "https://github.com/xjtu-omics/msisensor-pro/wiki",
               "tool_dev_url": "https://github.com/xjtu-omics/msisensor-pro",
               "doi": "10.1016/j.gpb.2020.02.001",
+              "publication": {
+                "author": "Jia, P., Yang, X., Guo, L., Liu, B., Lin, J., Liang, H., Sun, J., Zhang, C. & Ye, K.",
+                "year": 2020,
+                "title": "MSIsensor-Pro: Fast, Accurate, and Matched-Normal-Sample-Free Detection of Microsatellite Instability",
+                "source": "Genomics, Proteomics & Bioinformatics"
+              },
               "licence": [
                 "Custom Licence"
               ],
@@ -263214,12 +263640,12 @@
           "@nh13"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "aaeb00a36220625b2ff3b9bc8edb40343f71a2da"
     },
     {
       "name": "msisensorpro_msisomatic",
       "path": "modules/nf-core/msisensorpro/msisomatic/meta.yml",
-      "tree_sha": "6bffafb332f84f3ad295a01a6805d26065757774",
+      "tree_sha": "bb5eba731fe2f4906e943670821b38bcc37b84f2",
       "files": [
         "modules/nf-core/msisensorpro/msisomatic/.conda-lock/linux_amd64-bd-31bc4af4e656f312_1.txt",
         "modules/nf-core/msisensorpro/msisomatic/.conda-lock/linux_arm64-bd-dd8fd5ba4d009a4b_1.txt",
@@ -263241,12 +263667,18 @@
         ],
         "tools": [
           {
-            "msisensorpro": {
+            "msisensor-pro": {
               "description": "Microsatellite Instability (MSI) detection using high-throughput sequencing data.",
               "homepage": "https://github.com/xjtu-omics/msisensor-pro",
               "documentation": "https://github.com/xjtu-omics/msisensor-pro/wiki",
               "tool_dev_url": "https://github.com/xjtu-omics/msisensor-pro",
               "doi": "10.1016/j.gpb.2020.02.001",
+              "publication": {
+                "author": "Jia, P., Yang, X., Guo, L., Liu, B., Lin, J., Liang, H., Sun, J., Zhang, C. & Ye, K.",
+                "year": 2020,
+                "title": "MSIsensor-Pro: Fast, Accurate, and Matched-Normal-Sample-Free Detection of Microsatellite Instability",
+                "source": "Genomics, Proteomics & Bioinformatics"
+              },
               "licence": [
                 "Custom Licence"
               ],
@@ -263485,7 +263917,7 @@
           }
         }
       },
-      "git_sha": "fb925e2dde859040a69871ad22a15b6ed971cbc6",
+      "git_sha": "aaeb00a36220625b2ff3b9bc8edb40343f71a2da",
       "pipelines": [
         {
           "name": "sarek",
@@ -263496,7 +263928,7 @@
     {
       "name": "msisensorpro_pro",
       "path": "modules/nf-core/msisensorpro/pro/meta.yml",
-      "tree_sha": "b4546805ff5bbee16de15cee4859e906990057fd",
+      "tree_sha": "39272756cb866017d99815abb6e0d4678bffbb95",
       "files": [
         "modules/nf-core/msisensorpro/pro/environment.yml",
         "modules/nf-core/msisensorpro/pro/main.nf",
@@ -263515,12 +263947,18 @@
         ],
         "tools": [
           {
-            "msisensorpro": {
+            "msisensor-pro": {
               "description": "Microsatellite Instability (MSI) detection using high-throughput sequencing data.",
               "homepage": "https://github.com/xjtu-omics/msisensor-pro",
               "documentation": "https://github.com/xjtu-omics/msisensor-pro/wiki",
               "tool_dev_url": "https://github.com/xjtu-omics/msisensor-pro",
               "doi": "10.1016/j.gpb.2020.02.001",
+              "publication": {
+                "author": "Jia, P., Yang, X., Guo, L., Liu, B., Lin, J., Liang, H., Sun, J., Zhang, C. & Ye, K.",
+                "year": 2020,
+                "title": "MSIsensor-Pro: Fast, Accurate, and Matched-Normal-Sample-Free Detection of Microsatellite Instability",
+                "source": "Genomics, Proteomics & Bioinformatics"
+              },
               "licence": [
                 "Custom Licence"
               ],
@@ -263725,12 +264163,12 @@
           "@Tuur-ds"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "aaeb00a36220625b2ff3b9bc8edb40343f71a2da"
     },
     {
       "name": "msisensorpro_scan",
       "path": "modules/nf-core/msisensorpro/scan/meta.yml",
-      "tree_sha": "271f7cfd3babea8d6547ef2a31acf079e9d3910c",
+      "tree_sha": "6e8a69886929382349739f653419db4835fe9ee4",
       "files": [
         "modules/nf-core/msisensorpro/scan/.conda-lock/linux_amd64-bd-31bc4af4e656f312_1.txt",
         "modules/nf-core/msisensorpro/scan/.conda-lock/linux_arm64-bd-dd8fd5ba4d009a4b_1.txt",
@@ -263751,12 +264189,18 @@
         ],
         "tools": [
           {
-            "msisensorpro": {
+            "msisensor-pro": {
               "description": "Microsatellite Instability (MSI) detection using high-throughput sequencing data.",
               "homepage": "https://github.com/xjtu-omics/msisensor-pro",
               "documentation": "https://github.com/xjtu-omics/msisensor-pro/wiki",
               "tool_dev_url": "https://github.com/xjtu-omics/msisensor-pro",
               "doi": "10.1016/j.gpb.2020.02.001",
+              "publication": {
+                "author": "Jia, P., Yang, X., Guo, L., Liu, B., Lin, J., Liang, H., Sun, J., Zhang, C. & Ye, K.",
+                "year": 2020,
+                "title": "MSIsensor-Pro: Fast, Accurate, and Matched-Normal-Sample-Free Detection of Microsatellite Instability",
+                "source": "Genomics, Proteomics & Bioinformatics"
+              },
               "licence": [
                 "Custom Licence"
               ],
@@ -263889,7 +264333,7 @@
           }
         }
       },
-      "git_sha": "fb925e2dde859040a69871ad22a15b6ed971cbc6",
+      "git_sha": "aaeb00a36220625b2ff3b9bc8edb40343f71a2da",
       "pipelines": [
         {
           "name": "references",
@@ -294351,8 +294795,9 @@
     {
       "name": "paraphase",
       "path": "modules/nf-core/paraphase/meta.yml",
-      "tree_sha": "dcece46d81d671d5b7a1dbf0be708e9c485f440f",
+      "tree_sha": "50d449345514c547f61ee8cc8bf8f2e8a3525eb5",
       "files": [
+        "modules/nf-core/paraphase/.conda-lock/linux_amd64-bd-a8b6d83e5ede5c2a_1.txt",
         "modules/nf-core/paraphase/environment.yml",
         "modules/nf-core/paraphase/main.nf",
         "modules/nf-core/paraphase/meta.yml",
@@ -294583,7 +295028,7 @@
                 }
               },
               {
-                "paraphase --version": {
+                "paraphase --version | sed '1!d;s/.* //'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -294649,7 +295094,7 @@
                 }
               },
               {
-                "paraphase --version": {
+                "paraphase --version | sed '1!d;s/.* //'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -294682,14 +295127,35 @@
         ],
         "maintainers": [
           "@fellen31"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/minimap2_paraphase_samtools:a8b6d83e5ede5c2a",
+              "build_id": "bd-a8b6d83e5ede5c2a_1",
+              "scan_id": "sc-3ca699582aacc576_2"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/minimap2_paraphase_samtools:4ef9e51e203c4849",
+              "build_id": "bd-4ef9e51e203c4849_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/de/de44130118e18c30320d86f99095e5029b0df286554893c5406013276e4b8e45/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/paraphase/.conda-lock/linux_amd64-bd-a8b6d83e5ede5c2a_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "9638b276356e5a51afbdf811ebc38d34a18dd34c"
     },
     {
       "name": "paraphrase",
       "path": "modules/nf-core/paraphrase/meta.yml",
-      "tree_sha": "061ec6dedb6277b0855fc57f0e27185ea387cc19",
+      "tree_sha": "30024e281adb64fef0cc3e26835d77e00f878dc9",
       "files": [
         "modules/nf-core/paraphrase/environment.yml",
         "modules/nf-core/paraphrase/main.nf",
@@ -294873,7 +295339,7 @@
           "@fellen31"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "9638b276356e5a51afbdf811ebc38d34a18dd34c"
     },
     {
       "name": "parsesdrf_convert",
@@ -310604,6 +311070,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -310911,6 +311381,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -350715,7 +351189,7 @@
     {
       "name": "rsem_calculateexpression",
       "path": "modules/nf-core/rsem/calculateexpression/meta.yml",
-      "tree_sha": "921098c6411c443326880e063d6ecb9ca4847493",
+      "tree_sha": "b69fc9b915126c24e691dbc2590d09a5a60b04ca",
       "files": [
         "modules/nf-core/rsem/calculateexpression/environment.yml",
         "modules/nf-core/rsem/calculateexpression/main.nf",
@@ -350735,11 +351209,17 @@
         ],
         "tools": [
           {
-            "rseqc": {
+            "rsem": {
               "description": "RSEM: accurate transcript quantification from RNA-Seq data with or without a reference genome\n",
               "homepage": "https://github.com/deweylab/RSEM",
               "documentation": "https://github.com/deweylab/RSEM",
               "doi": "10.1186/1471-2105-12-323",
+              "publication": {
+                "author": "Li, B. & Dewey, C. N.",
+                "year": 2011,
+                "title": "RSEM: accurate transcript quantification from RNA-Seq data with or without a reference genome",
+                "source": "BMC Bioinformatics"
+              },
               "licence": [
                 "GPL-3.0-or-later"
               ],
@@ -351005,7 +351485,7 @@
           "@kevinmenden"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "373be8c8c8901b6840ddd9264d2ebacd7b60cfa3",
       "pipelines": [
         {
           "name": "rnaseq",
@@ -351016,7 +351496,7 @@
     {
       "name": "rsem_preparereference",
       "path": "modules/nf-core/rsem/preparereference/meta.yml",
-      "tree_sha": "d341eb1ed2c8ea5112f82db22dd9d4d037ec4afa",
+      "tree_sha": "7a5a2994a4e71587cebbbf9a692fb2595ee5a417",
       "files": [
         "modules/nf-core/rsem/preparereference/environment.yml",
         "modules/nf-core/rsem/preparereference/main.nf",
@@ -351035,11 +351515,17 @@
         ],
         "tools": [
           {
-            "rseqc": {
+            "rsem": {
               "description": "RSEM: accurate transcript quantification from RNA-Seq data with or without a reference genome\n",
               "homepage": "https://github.com/deweylab/RSEM",
               "documentation": "https://github.com/deweylab/RSEM",
               "doi": "10.1186/1471-2105-12-323",
+              "publication": {
+                "author": "Li, B. & Dewey, C. N.",
+                "year": 2011,
+                "title": "RSEM: accurate transcript quantification from RNA-Seq data with or without a reference genome",
+                "source": "BMC Bioinformatics"
+              },
               "licence": [
                 "GPL-3.0-or-later"
               ],
@@ -351183,7 +351669,7 @@
           "@kevinmenden"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "373be8c8c8901b6840ddd9264d2ebacd7b60cfa3",
       "pipelines": [
         {
           "name": "lncpipe",
@@ -356941,7 +357427,7 @@
     {
       "name": "salmon_index",
       "path": "modules/nf-core/salmon/index/meta.yml",
-      "tree_sha": "cbdf789bdb055e4cf212ce0e14957e3429155615",
+      "tree_sha": "16da7f288f6c2fafa63cf7cc6b19068676410858",
       "files": [
         "modules/nf-core/salmon/index/.conda-lock/linux_amd64-bd-989e01c80144b039_1.txt",
         "modules/nf-core/salmon/index/.conda-lock/linux_arm64-bd-491d544a92249d6b_1.txt",
@@ -356966,8 +357452,14 @@
             "salmon": {
               "description": "Salmon is a tool for wicked-fast transcript quantification from RNA-seq data\n",
               "homepage": "https://salmon.readthedocs.io/en/latest/salmon.html",
-              "manual": "https://salmon.readthedocs.io/en/latest/salmon.html",
               "doi": "10.1038/nmeth.4197",
+              "publication": {
+                "author": "Patro, R., Duggal, G., Love, M. I., Irizarry, R. A. & Kingsford, C.",
+                "year": 2017,
+                "title": "Salmon provides fast and bias-aware quantification of transcript expression",
+                "source": "Nature Methods"
+              },
+              "manual": "https://salmon.readthedocs.io/en/latest/salmon.html",
               "licence": [
                 "GPL-3.0-or-later"
               ],
@@ -357107,7 +357599,7 @@
           }
         }
       },
-      "git_sha": "4913348a152767d43ab4ab0215410678dfba3ca9",
+      "git_sha": "bcf5ac44e897d3a0055d9b37985cc21ea60ae8ab",
       "pipelines": [
         {
           "name": "denovotranscript",
@@ -357142,7 +357634,7 @@
     {
       "name": "salmon_quant",
       "path": "modules/nf-core/salmon/quant/meta.yml",
-      "tree_sha": "16e234a69457445281f74a02b988f218af9c3e32",
+      "tree_sha": "07e111325398e53a959dc6b29b5ee91a9209704b",
       "files": [
         "modules/nf-core/salmon/quant/.conda-lock/linux_amd64-bd-989e01c80144b039_1.txt",
         "modules/nf-core/salmon/quant/.conda-lock/linux_arm64-bd-491d544a92249d6b_1.txt",
@@ -357168,8 +357660,14 @@
             "salmon": {
               "description": "Salmon is a tool for wicked-fast transcript quantification from RNA-seq data\n",
               "homepage": "https://salmon.readthedocs.io/en/latest/salmon.html",
-              "manual": "https://salmon.readthedocs.io/en/latest/salmon.html",
               "doi": "10.1038/nmeth.4197",
+              "publication": {
+                "author": "Patro, R., Duggal, G., Love, M. I., Irizarry, R. A. & Kingsford, C.",
+                "year": 2017,
+                "title": "Salmon provides fast and bias-aware quantification of transcript expression",
+                "source": "Nature Methods"
+              },
+              "manual": "https://salmon.readthedocs.io/en/latest/salmon.html",
               "licence": [
                 "GPL-3.0-or-later"
               ],
@@ -357374,7 +357872,7 @@
           }
         }
       },
-      "git_sha": "4913348a152767d43ab4ab0215410678dfba3ca9",
+      "git_sha": "bcf5ac44e897d3a0055d9b37985cc21ea60ae8ab",
       "pipelines": [
         {
           "name": "denovotranscript",
@@ -396802,7 +397300,7 @@
     {
       "name": "snapaligner_align",
       "path": "modules/nf-core/snapaligner/align/meta.yml",
-      "tree_sha": "80918de1ebcfe3472d70965579527ed6c74080ba",
+      "tree_sha": "e273d7999d1945a312ed0ba10689d23ba65b22e0",
       "files": [
         "modules/nf-core/snapaligner/align/environment.yml",
         "modules/nf-core/snapaligner/align/main.nf",
@@ -396824,12 +397322,18 @@
         ],
         "tools": [
           {
-            "snapaligner": {
+            "snap-aligner": {
               "description": "Scalable Nucleotide Alignment Program -- a fast and accurate read aligner for high-throughput sequencing data",
               "homepage": "http://snap.cs.berkeley.edu",
               "documentation": "https://1drv.ms/b/s!AhuEg_0yZD86hcpblUt-muHKYsG8fA?e=R8ogug",
               "tool_dev_url": "https://github.com/amplab/snap",
               "doi": "10.1101/2021.11.23.469039",
+              "publication": {
+                "author": "Bolosky, W. J., Subramaniyan, A., Zaharia, M., Pandya, R., Sittler, T. & Patterson, D.",
+                "year": 2021,
+                "title": "Fuzzy set intersection based paired-end short-read alignment",
+                "source": "bioRxiv"
+              },
               "licence": [
                 "Apache v2"
               ],
@@ -396976,7 +397480,7 @@
           "@sofiromano"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "8d9d482e31a2375f21f19fb622d51674db3e74a3",
       "pipelines": [
         {
           "name": "sammyseq",
@@ -396987,7 +397491,7 @@
     {
       "name": "snapaligner_index",
       "path": "modules/nf-core/snapaligner/index/meta.yml",
-      "tree_sha": "b13d568384c8099ee9874643119dcc2d0887d297",
+      "tree_sha": "d16855918d1896181e7edb8fa9cee255c709511d",
       "files": [
         "modules/nf-core/snapaligner/index/environment.yml",
         "modules/nf-core/snapaligner/index/main.nf",
@@ -397007,12 +397511,18 @@
         ],
         "tools": [
           {
-            "snapaligner": {
+            "snap-aligner": {
               "description": "Scalable Nucleotide Alignment Program -- a fast and accurate read aligner for high-throughput sequencing data",
               "homepage": "http://snap.cs.berkeley.edu",
               "documentation": "https://1drv.ms/b/s!AhuEg_0yZD86hcpblUt-muHKYsG8fA?e=R8ogug",
               "tool_dev_url": "https://github.com/amplab/snap",
               "doi": "10.1101/2021.11.23.469039",
+              "publication": {
+                "author": "Bolosky, W. J., Subramaniyan, A., Zaharia, M., Pandya, R., Sittler, T. & Patterson, D.",
+                "year": 2021,
+                "title": "Fuzzy set intersection based paired-end short-read alignment",
+                "source": "bioRxiv"
+              },
               "licence": [
                 "Apache v2"
               ],
@@ -397147,7 +397657,7 @@
           "@matthdsm"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "8d9d482e31a2375f21f19fb622d51674db3e74a3"
     },
     {
       "name": "sniffles",
@@ -406470,7 +406980,7 @@
     {
       "name": "star_align",
       "path": "modules/nf-core/star/align/meta.yml",
-      "tree_sha": "52af08dac9a47ec7c203ea8d5db9457bf2a08b66",
+      "tree_sha": "1f76ee3dc35359cdcb64e3a2cf75c8b7a0d0ff14",
       "files": [
         "modules/nf-core/star/align/environment.yml",
         "modules/nf-core/star/align/main.nf",
@@ -406496,8 +407006,14 @@
             "star": {
               "description": "STAR is a software package for mapping DNA sequences against\na large reference genome, such as the human genome.\n",
               "homepage": "https://github.com/alexdobin/STAR",
-              "manual": "https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf",
               "doi": "10.1093/bioinformatics/bts635",
+              "publication": {
+                "author": "Dobin, A., Davis, C. A., Schlesinger, F., Drenkow, J., Zaleski, C., Jha, S., Batut, P., Chaisson, M. & Gingeras, T. R.",
+                "year": 2012,
+                "title": "STAR: ultrafast universal RNA-seq aligner",
+                "source": "Bioinformatics"
+              },
+              "manual": "https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf",
               "licence": [
                 "MIT"
               ],
@@ -407006,7 +407522,7 @@
           "@praveenraj2018"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "d59feee750b190a65b99d945e91a58ac0931fda1",
       "pipelines": [
         {
           "name": "alleleexpression",
@@ -407077,7 +407593,7 @@
     {
       "name": "star_genomegenerate",
       "path": "modules/nf-core/star/genomegenerate/meta.yml",
-      "tree_sha": "9c0c84bc0fd89208c9edcf1128166cd1b4e8035e",
+      "tree_sha": "15fbf8817f5fbaebcfce0d264451d8dc244e73d0",
       "files": [
         "modules/nf-core/star/genomegenerate/.conda-lock/linux_amd64-bd-3ffb3e46ac3bf2ea_1.txt",
         "modules/nf-core/star/genomegenerate/.conda-lock/linux_arm64-bd-adccd64be154a89d_1.txt",
@@ -407106,8 +407622,14 @@
             "star": {
               "description": "STAR is a software package for mapping DNA sequences against\na large reference genome, such as the human genome.\n",
               "homepage": "https://github.com/alexdobin/STAR",
-              "manual": "https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf",
               "doi": "10.1093/bioinformatics/bts635",
+              "publication": {
+                "author": "Dobin, A., Davis, C. A., Schlesinger, F., Drenkow, J., Zaleski, C., Jha, S., Batut, P., Chaisson, M. & Gingeras, T. R.",
+                "year": 2012,
+                "title": "STAR: ultrafast universal RNA-seq aligner",
+                "source": "Bioinformatics"
+              },
+              "manual": "https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf",
               "licence": [
                 "MIT"
               ],
@@ -407380,7 +407902,7 @@
           }
         }
       },
-      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
+      "git_sha": "d59feee750b190a65b99d945e91a58ac0931fda1",
       "pipelines": [
         {
           "name": "alleleexpression",
@@ -407463,7 +407985,7 @@
     {
       "name": "star_indexversion",
       "path": "modules/nf-core/star/indexversion/meta.yml",
-      "tree_sha": "5bcd5dedf605749dc94b330041a00595329f467a",
+      "tree_sha": "d95576e3189fc1c1687bc270da15fdce766ede1e",
       "files": [
         "modules/nf-core/star/indexversion/environment.yml",
         "modules/nf-core/star/indexversion/main.nf",
@@ -407485,8 +408007,14 @@
             "star": {
               "description": "STAR is a software package for mapping DNA sequences against\na large reference genome, such as the human genome.\n",
               "homepage": "https://github.com/alexdobin/STAR",
-              "manual": "https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf",
               "doi": "10.1093/bioinformatics/bts635",
+              "publication": {
+                "author": "Dobin, A., Davis, C. A., Schlesinger, F., Drenkow, J., Zaleski, C., Jha, S., Batut, P., Chaisson, M. & Gingeras, T. R.",
+                "year": 2012,
+                "title": "STAR: ultrafast universal RNA-seq aligner",
+                "source": "Bioinformatics"
+              },
+              "manual": "https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf",
               "licence": [
                 "MIT"
               ],
@@ -407559,7 +408087,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "d59feee750b190a65b99d945e91a58ac0931fda1",
       "pipelines": [
         {
           "name": "rnavar",
@@ -407570,7 +408098,7 @@
     {
       "name": "star_starsolo",
       "path": "modules/nf-core/star/starsolo/meta.yml",
-      "tree_sha": "63fe5c17eaf510e23bf0dbabc80cd1a9b4bf9e56",
+      "tree_sha": "ca9865afe713a98608c6acc3781890e118520a35",
       "files": [
         "modules/nf-core/star/starsolo/.conda-lock/linux_amd64-bd-f22f015f7eb1383f_1.txt",
         "modules/nf-core/star/starsolo/.conda-lock/linux_arm64-bd-113eeacc5216db85_1.txt",
@@ -407595,11 +408123,17 @@
         ],
         "tools": [
           {
-            "starsolo": {
+            "star": {
               "description": "Mapping, demultiplexing and quantification for single cell RNA-seq.",
               "homepage": "https://github.com/alexdobin/STAR/",
               "documentation": "https://github.com/alexdobin/STAR/blob/master/docs/STARsolo.md",
-              "doi": "10.1101/2021.05.05.442755",
+              "doi": "10.1093/bioinformatics/bts635",
+              "publication": {
+                "author": "Dobin, A., Davis, C. A., Schlesinger, F., Drenkow, J., Zaleski, C., Jha, S., Batut, P., Chaisson, M. & Gingeras, T. R.",
+                "year": 2012,
+                "title": "STAR: ultrafast universal RNA-seq aligner",
+                "source": "Bioinformatics"
+              },
               "licence": [
                 "MIT"
               ],
@@ -408236,7 +408770,7 @@
           }
         }
       },
-      "git_sha": "b4070340f85cc0822351c854733820811ac4339a"
+      "git_sha": "d59feee750b190a65b99d945e91a58ac0931fda1"
     },
     {
       "name": "staramr_search",
@@ -436092,7 +436626,7 @@
     {
       "name": "ucsc_bedclip",
       "path": "modules/nf-core/ucsc/bedclip/meta.yml",
-      "tree_sha": "050c50c890a43d5ae8891aa17582bd24169a79db",
+      "tree_sha": "87616a2232faf22489c6e6203323d24356fc0463",
       "files": [
         "modules/nf-core/ucsc/bedclip/.conda-lock/linux_amd64-bd-c81ad102fb2a5968_1.txt",
         "modules/nf-core/ucsc/bedclip/.conda-lock/linux_arm64-bd-d778f82dce9efacf_1.txt",
@@ -436117,6 +436651,13 @@
             "ucsc": {
               "description": "Remove lines from bed file that refer to off-chromosome locations.",
               "homepage": "http://hgdownload.cse.ucsc.edu/admin/exe/",
+              "doi": "10.1093/bib/bbs038",
+              "publication": {
+                "author": "Kuhn, R. M., Haussler, D. & Kent, W. J.",
+                "year": 2013,
+                "title": "The UCSC genome browser and associated tools",
+                "source": "Briefings in Bioinformatics"
+              },
               "licence": [
                 "varies; see http://genome.ucsc.edu/license"
               ],
@@ -436256,7 +436797,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "5f44eee78cb8353ffe8ada75149cbacb25e96fe7",
       "pipelines": [
         {
           "name": "cutandrun",
@@ -436279,7 +436820,7 @@
     {
       "name": "ucsc_bedgraphtobigwig",
       "path": "modules/nf-core/ucsc/bedgraphtobigwig/meta.yml",
-      "tree_sha": "9c301e154ceb932715e5e24013b395b8cf2c202d",
+      "tree_sha": "adb77e85ca27a2c44b9aa27fe9ecfb5c204ef9fc",
       "files": [
         "modules/nf-core/ucsc/bedgraphtobigwig/.conda-lock/linux_amd64-bd-2d280d39bedffa30_1.txt",
         "modules/nf-core/ucsc/bedgraphtobigwig/.conda-lock/linux_arm64-bd-f331c1c158fc967b_1.txt",
@@ -436306,6 +436847,13 @@
               "description": "Convert a bedGraph file to bigWig format.",
               "homepage": "http://hgdownload.cse.ucsc.edu/admin/exe/",
               "documentation": "https://genome.ucsc.edu/goldenPath/help/bigWig.html",
+              "doi": "10.1093/bib/bbs038",
+              "publication": {
+                "author": "Kuhn, R. M., Haussler, D. & Kent, W. J.",
+                "year": 2013,
+                "title": "The UCSC genome browser and associated tools",
+                "source": "Briefings in Bioinformatics"
+              },
               "licence": [
                 "varies; see http://genome.ucsc.edu/license"
               ],
@@ -436446,7 +436994,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "5f44eee78cb8353ffe8ada75149cbacb25e96fe7",
       "pipelines": [
         {
           "name": "atacseq",
@@ -436485,7 +437033,7 @@
     {
       "name": "ucsc_bedtobigbed",
       "path": "modules/nf-core/ucsc/bedtobigbed/meta.yml",
-      "tree_sha": "dea387d22f44cfc1902e1c0d96ca44336d7c5a8f",
+      "tree_sha": "a35c14d620bc5db45e463e6df20df0d324403525",
       "files": [
         "modules/nf-core/ucsc/bedtobigbed/.conda-lock/linux_amd64-bd-f9a75c5237cbfded_1.txt",
         "modules/nf-core/ucsc/bedtobigbed/.conda-lock/linux_arm64-bd-c718ac25f6adb1c8_1.txt",
@@ -436513,6 +437061,13 @@
               "description": "Convert file from bed to bigBed format",
               "homepage": "http://hgdownload.cse.ucsc.edu/admin/exe/",
               "documentation": "https://genome.ucsc.edu/goldenPath/help/bigBed.html",
+              "doi": "10.1093/bib/bbs038",
+              "publication": {
+                "author": "Kuhn, R. M., Haussler, D. & Kent, W. J.",
+                "year": 2013,
+                "title": "The UCSC genome browser and associated tools",
+                "source": "Briefings in Bioinformatics"
+              },
               "licence": [
                 "varies; see http://genome.ucsc.edu/license"
               ],
@@ -436661,12 +437216,12 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "5f44eee78cb8353ffe8ada75149cbacb25e96fe7"
     },
     {
       "name": "ucsc_bigwigaverageoverbed",
       "path": "modules/nf-core/ucsc/bigwigaverageoverbed/meta.yml",
-      "tree_sha": "43144d9fbd233e07a0487249f6cf9059dc1aa9d8",
+      "tree_sha": "c695d28985783c412825dbdcc9b3f8cfda1f3fe9",
       "files": [
         "modules/nf-core/ucsc/bigwigaverageoverbed/.conda-lock/linux_amd64-bd-09b4685dee7c8b33_1.txt",
         "modules/nf-core/ucsc/bigwigaverageoverbed/.conda-lock/linux_arm64-bd-8e872cbd04957de0_1.txt",
@@ -436691,6 +437246,13 @@
               "description": "Compute average score of big wig over each bed, which may have introns.",
               "homepage": "http://hgdownload.cse.ucsc.edu/admin/exe/",
               "documentation": "http://www.genome.ucsc.edu/goldenPath/help/bigWig.html",
+              "doi": "10.1093/bib/bbs038",
+              "publication": {
+                "author": "Kuhn, R. M., Haussler, D. & Kent, W. J.",
+                "year": 2013,
+                "title": "The UCSC genome browser and associated tools",
+                "source": "Briefings in Bioinformatics"
+              },
               "licence": [
                 "varies; see http://genome.ucsc.edu/license"
               ],
@@ -436835,7 +437397,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "5f44eee78cb8353ffe8ada75149cbacb25e96fe7",
       "pipelines": [
         {
           "name": "hicar",
@@ -436846,7 +437408,7 @@
     {
       "name": "ucsc_gtftogenepred",
       "path": "modules/nf-core/ucsc/gtftogenepred/meta.yml",
-      "tree_sha": "75fdf5c85cd55bb8b0ae903ad9eb960b039c7445",
+      "tree_sha": "59b1af87f6aea926f4ffa2e4fdd240c0c8f9604d",
       "files": [
         "modules/nf-core/ucsc/gtftogenepred/.conda-lock/linux_amd64-bd-ace98be9f7cb069f_1.txt",
         "modules/nf-core/ucsc/gtftogenepred/.conda-lock/linux_arm64-bd-caa77d3a5de8d736_1.txt",
@@ -436873,6 +437435,13 @@
             "ucsc": {
               "description": "Convert GTF files to GenePred format",
               "homepage": "http://hgdownload.cse.ucsc.edu/admin/exe/",
+              "doi": "10.1093/bib/bbs038",
+              "publication": {
+                "author": "Kuhn, R. M., Haussler, D. & Kent, W. J.",
+                "year": 2013,
+                "title": "The UCSC genome browser and associated tools",
+                "source": "Briefings in Bioinformatics"
+              },
               "licence": [
                 "varies; see http://genome.ucsc.edu/license"
               ],
@@ -437025,7 +437594,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "5f44eee78cb8353ffe8ada75149cbacb25e96fe7",
       "pipelines": [
         {
           "name": "circrna",
@@ -437044,7 +437613,7 @@
     {
       "name": "ucsc_liftover",
       "path": "modules/nf-core/ucsc/liftover/meta.yml",
-      "tree_sha": "6daf2e1c6605baf498d83f0171163959393861c3",
+      "tree_sha": "0fd135ce26b0efa74f5d8f1293e74b32184a7623",
       "files": [
         "modules/nf-core/ucsc/liftover/.conda-lock/linux_amd64-bd-f8639164c0f3b5bf_1.txt",
         "modules/nf-core/ucsc/liftover/.conda-lock/linux_arm64-bd-c6d821f59cc751f0_1.txt",
@@ -437069,6 +437638,13 @@
             "ucsc": {
               "description": "Move annotations from one assembly to another",
               "homepage": "http://hgdownload.cse.ucsc.edu/admin/exe/",
+              "doi": "10.1093/bib/bbs038",
+              "publication": {
+                "author": "Kuhn, R. M., Haussler, D. & Kent, W. J.",
+                "year": 2013,
+                "title": "The UCSC genome browser and associated tools",
+                "source": "Briefings in Bioinformatics"
+              },
               "licence": [
                 "varies; see http://genome.ucsc.edu/license"
               ],
@@ -437231,7 +437807,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "5f44eee78cb8353ffe8ada75149cbacb25e96fe7",
       "pipelines": [
         {
           "name": "variantbenchmarking",
@@ -437242,7 +437818,7 @@
     {
       "name": "ucsc_wigtobigwig",
       "path": "modules/nf-core/ucsc/wigtobigwig/meta.yml",
-      "tree_sha": "11946604bcf3ba82e1651e097f519b7282cee8e4",
+      "tree_sha": "1283e3172c1cc06eaffaf41a8c932d089c232c1b",
       "files": [
         "modules/nf-core/ucsc/wigtobigwig/.conda-lock/linux_amd64-bd-4eb74e15915ee878_1.txt",
         "modules/nf-core/ucsc/wigtobigwig/.conda-lock/linux_arm64-bd-941e7055f3ccae9d_1.txt",
@@ -437266,6 +437842,13 @@
             "ucsc": {
               "description": "Convert ascii format wig file (in fixedStep, variableStep\nor bedGraph format) to binary big wig format\n",
               "homepage": "http://www.genome.ucsc.edu/goldenPath/help/bigWig.html",
+              "doi": "10.1093/bib/bbs038",
+              "publication": {
+                "author": "Kuhn, R. M., Haussler, D. & Kent, W. J.",
+                "year": 2013,
+                "title": "The UCSC genome browser and associated tools",
+                "source": "Briefings in Bioinformatics"
+              },
               "licence": [
                 "varies; see http://genome.ucsc.edu/license"
               ],
@@ -437409,7 +437992,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "5f44eee78cb8353ffe8ada75149cbacb25e96fe7",
       "pipelines": [
         {
           "name": "hicar",
@@ -448059,8 +448642,10 @@
     {
       "name": "vclust_align",
       "path": "modules/nf-core/vclust/align/meta.yml",
-      "tree_sha": "81ad584b8aeed62f95cf49b5aa161f95eaf636f5",
+      "tree_sha": "6c0016f2f3f9a4518add536f343c920584401b47",
       "files": [
+        "modules/nf-core/vclust/align/.conda-lock/linux_amd64-bd-039ae9c4872009ec_1.txt",
+        "modules/nf-core/vclust/align/.conda-lock/linux_arm64-bd-fc49db6b6723c838_1.txt",
         "modules/nf-core/vclust/align/environment.yml",
         "modules/nf-core/vclust/align/main.nf",
         "modules/nf-core/vclust/align/meta.yml",
@@ -448261,15 +448846,51 @@
         ],
         "maintainers": [
           "@Joon-klaps"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/vclust:1.3.1--fc49db6b6723c838",
+              "build_id": "bd-fc49db6b6723c838_1",
+              "scan_id": "sc-05777e8e7c35d650_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/vclust:1.3.1--039ae9c4872009ec",
+              "build_id": "bd-039ae9c4872009ec_1",
+              "scan_id": "sc-36a1485631433201_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/vclust:1.3.1--3d44f310e3a4dbb3",
+              "build_id": "bd-3d44f310e3a4dbb3_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/04/04cb9a3b37b513bfdabb8f0e87050c5573bb7be92926617294cb3de221d37301/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/vclust:1.3.1--ce338a46497a7ee5",
+              "build_id": "bd-ce338a46497a7ee5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/6b/6be94f5ce851d2d04684510c7d95d9ba9204470533da10bf904c0496c33e2a86/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/vclust/align/.conda-lock/linux_amd64-bd-039ae9c4872009ec_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/vclust/align/.conda-lock/linux_arm64-bd-fc49db6b6723c838_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "3f10df6804f18c40f80f9df5fd2b1bed0a8ab74d"
     },
     {
       "name": "vclust_cluster",
       "path": "modules/nf-core/vclust/cluster/meta.yml",
-      "tree_sha": "d373467180dd65ded562999b50a8376d3d9e53da",
+      "tree_sha": "ca5fc8a9fe25cf64095cf3e2e87995fc4deeb014",
       "files": [
+        "modules/nf-core/vclust/cluster/.conda-lock/linux_amd64-bd-039ae9c4872009ec_1.txt",
+        "modules/nf-core/vclust/cluster/.conda-lock/linux_arm64-bd-fc49db6b6723c838_1.txt",
         "modules/nf-core/vclust/cluster/environment.yml",
         "modules/nf-core/vclust/cluster/main.nf",
         "modules/nf-core/vclust/cluster/meta.yml",
@@ -448463,15 +449084,51 @@
         ],
         "maintainers": [
           "@Joon-Klaps"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/vclust:1.3.1--fc49db6b6723c838",
+              "build_id": "bd-fc49db6b6723c838_1",
+              "scan_id": "sc-05777e8e7c35d650_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/vclust:1.3.1--039ae9c4872009ec",
+              "build_id": "bd-039ae9c4872009ec_1",
+              "scan_id": "sc-36a1485631433201_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/vclust:1.3.1--3d44f310e3a4dbb3",
+              "build_id": "bd-3d44f310e3a4dbb3_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/04/04cb9a3b37b513bfdabb8f0e87050c5573bb7be92926617294cb3de221d37301/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/vclust:1.3.1--ce338a46497a7ee5",
+              "build_id": "bd-ce338a46497a7ee5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/6b/6be94f5ce851d2d04684510c7d95d9ba9204470533da10bf904c0496c33e2a86/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/vclust/cluster/.conda-lock/linux_amd64-bd-039ae9c4872009ec_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/vclust/cluster/.conda-lock/linux_arm64-bd-fc49db6b6723c838_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "3f10df6804f18c40f80f9df5fd2b1bed0a8ab74d"
     },
     {
       "name": "vclust_prefilter",
       "path": "modules/nf-core/vclust/prefilter/meta.yml",
-      "tree_sha": "13a2c1920aba2160e0ecda86ba6cea0daae56111",
+      "tree_sha": "8266e6fc644a0d5986317611deefc72c199c6673",
       "files": [
+        "modules/nf-core/vclust/prefilter/.conda-lock/linux_amd64-bd-039ae9c4872009ec_1.txt",
+        "modules/nf-core/vclust/prefilter/.conda-lock/linux_arm64-bd-fc49db6b6723c838_1.txt",
         "modules/nf-core/vclust/prefilter/environment.yml",
         "modules/nf-core/vclust/prefilter/main.nf",
         "modules/nf-core/vclust/prefilter/meta.yml",
@@ -448605,9 +449262,43 @@
         ],
         "maintainers": [
           "@Joon-Klaps"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/vclust:1.3.1--fc49db6b6723c838",
+              "build_id": "bd-fc49db6b6723c838_1",
+              "scan_id": "sc-05777e8e7c35d650_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/vclust:1.3.1--039ae9c4872009ec",
+              "build_id": "bd-039ae9c4872009ec_1",
+              "scan_id": "sc-36a1485631433201_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/vclust:1.3.1--3d44f310e3a4dbb3",
+              "build_id": "bd-3d44f310e3a4dbb3_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/04/04cb9a3b37b513bfdabb8f0e87050c5573bb7be92926617294cb3de221d37301/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/vclust:1.3.1--ce338a46497a7ee5",
+              "build_id": "bd-ce338a46497a7ee5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/6b/6be94f5ce851d2d04684510c7d95d9ba9204470533da10bf904c0496c33e2a86/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/vclust/prefilter/.conda-lock/linux_amd64-bd-039ae9c4872009ec_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/vclust/prefilter/.conda-lock/linux_arm64-bd-fc49db6b6723c838_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "3f10df6804f18c40f80f9df5fd2b1bed0a8ab74d"
     },
     {
       "name": "vcontact3_prepareddatabases",
@@ -481534,6 +482225,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "a727b680a30724b24ae4d346c9f95ee37a1691f1",
-  "updated_at": "2026-11-13T02:15:16.923Z"
+  "commit_sha": "9638b276356e5a51afbdf811ebc38d34a18dd34c",
+  "updated_at": "2026-11-13T14:14:50.241Z"
 }
