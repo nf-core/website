@@ -7,7 +7,7 @@ repos:
         entry: prettier --experimental-cli --write --ignore-unknown
         # NOTE https://github.com/pre-commit/pre-commit/issues/3133
         additional_dependencies:
-          - prettier@3.9.10
+          - prettier@3.10.0
           - prettier-plugin-svelte@4.1.1
           - prettier-plugin-astro@1.1.2
         files: \.(astro|svelte|mdx|md|yml|yaml)$
