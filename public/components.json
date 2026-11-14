@@ -55658,10 +55658,10 @@
     {
       "name": "bwamem3_index",
       "path": "modules/nf-core/bwamem3/index/meta.yml",
-      "tree_sha": "5bffbc91931ea75cf1abd16462f17f9891fac90f",
+      "tree_sha": "abddbe644ae40508d86af886bd0d37ca13b542ec",
       "files": [
-        "modules/nf-core/bwamem3/index/.conda-lock/linux_amd64-bd-b56ccc800b165a7e_1.txt",
-        "modules/nf-core/bwamem3/index/.conda-lock/linux_arm64-bd-d9c39c7fb055095e_1.txt",
+        "modules/nf-core/bwamem3/index/.conda-lock/linux_amd64-bd-dfd4e361b022ff06_1.txt",
+        "modules/nf-core/bwamem3/index/.conda-lock/linux_arm64-bd-b1708a369edc0a4b_1.txt",
         "modules/nf-core/bwamem3/index/environment.yml",
         "modules/nf-core/bwamem3/index/main.nf",
         "modules/nf-core/bwamem3/index/meta.yml",
@@ -55796,39 +55796,39 @@
         "containers": {
           "docker": {
             "linux/arm64": {
-              "name": "community.wave.seqera.io/library/bwa-mem3:0.16.0--d9c39c7fb055095e",
-              "build_id": "bd-d9c39c7fb055095e_1",
-              "scan_id": "sc-2da9986395531902_1"
+              "name": "community.wave.seqera.io/library/bwa-mem3:0.17.0--b1708a369edc0a4b",
+              "build_id": "bd-b1708a369edc0a4b_1",
+              "scan_id": "sc-31a62c0d7d3f953d_1"
             },
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/bwa-mem3:0.16.0--b56ccc800b165a7e",
-              "build_id": "bd-b56ccc800b165a7e_1",
-              "scan_id": "sc-57ddb57e00375a8c_1"
+              "name": "community.wave.seqera.io/library/bwa-mem3:0.17.0--dfd4e361b022ff06",
+              "build_id": "bd-dfd4e361b022ff06_1",
+              "scan_id": "sc-1c1d837e52a8e73c_1"
             }
           },
           "singularity": {
-            "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/bwa-mem3:0.16.0--17e1d29274d441bb",
-              "build_id": "bd-17e1d29274d441bb_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/98/98b0f53f5aed4a3743c17acf6fe59bb0587228a320a6bbe01b3ff3e9ccf85d43/data"
-            },
             "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/bwa-mem3:0.16.0--6b818219a81b827f",
-              "build_id": "bd-6b818219a81b827f_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/6c/6c07549c04bd7c7c8fc6b1d63eed3707b98996ca5c9ac1a0a99c6ac9ca71f9ad/data"
+              "name": "oras://community.wave.seqera.io/library/bwa-mem3:0.17.0--f0b577e015f4da29",
+              "build_id": "bd-f0b577e015f4da29_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/19/197c726992576ee3cb8a1f5c1e7efc48884f355691176fd9beea1b0c63d90ff3/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bwa-mem3:0.17.0--81afc3b4105fd554",
+              "build_id": "bd-81afc3b4105fd554_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/fa/fa51b6d8b6924f5ccb76a0b6d5380899901edbe821bf1440a3517029f198593a/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/bwamem3/index/.conda-lock/linux_amd64-bd-b56ccc800b165a7e_1.txt"
+              "lock_file": "modules/nf-core/bwamem3/index/.conda-lock/linux_amd64-bd-dfd4e361b022ff06_1.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/bwamem3/index/.conda-lock/linux_arm64-bd-d9c39c7fb055095e_1.txt"
+              "lock_file": "modules/nf-core/bwamem3/index/.conda-lock/linux_arm64-bd-b1708a369edc0a4b_1.txt"
             }
           }
         }
       },
-      "git_sha": "89004b3c117e685e84f5cc0d280da3a3e74c25c2",
+      "git_sha": "2d590fdee3e25a93d4757ca14159a42e1406970b",
       "pipelines": [
         {
           "name": "pathogenepidemiology",
@@ -55839,10 +55839,10 @@
     {
       "name": "bwamem3_mem",
       "path": "modules/nf-core/bwamem3/mem/meta.yml",
-      "tree_sha": "154de6ce3aa82cb7e9da27d3471fbc44b4723a28",
+      "tree_sha": "902ae9d9c165b1dbbe96e89f4ec0974969276d91",
       "files": [
-        "modules/nf-core/bwamem3/mem/.conda-lock/linux_amd64-bd-f271e572b6aa004b_1.txt",
-        "modules/nf-core/bwamem3/mem/.conda-lock/linux_arm64-bd-e73cbc14b9a6cced_1.txt",
+        "modules/nf-core/bwamem3/mem/.conda-lock/linux_amd64-bd-ac58207ad8b29268_1.txt",
+        "modules/nf-core/bwamem3/mem/.conda-lock/linux_arm64-bd-1b8229347711c377_1.txt",
         "modules/nf-core/bwamem3/mem/environment.yml",
         "modules/nf-core/bwamem3/mem/main.nf",
         "modules/nf-core/bwamem3/mem/meta.yml",
@@ -55928,7 +55928,7 @@
             {
               "index": {
                 "type": "file",
-                "description": "bwa-mem3 genome index files. Methylation-aware alignment (`ext.args = '--meth=taps'`\nfor TAPS; the `=` is required) needs an index built with `bwa-mem3 index --meth`,\nwhich adds the `*.meth.*` seed index. Aligning against a `--meth` index needs about\n1.7x the memory of a plain index (measured on human chr21 with bwa-mem3 0.16.0);\nfor a human genome that is tens of GB.\n",
+                "description": "bwa-mem3 genome index files. Methylation-aware alignment (`ext.args = '--meth=taps'`\nfor TAPS; the `=` is required) needs an index built with `bwa-mem3 index --meth`,\nwhich adds the `*.meth.*` seed index. Aligning against a `--meth` index needs about\n1.7x the memory of a plain index (measured on human chr21 with bwa-mem3 0.16.0);\nfor a human genome that is tens of GB. Since bwa-mem3 0.17.0, bare `--meth`\n(bisulfite/EM-seq) scores mismatches as `--meth-scoring genomic`; pass\n`--meth-scoring collapsed` to keep the 0.16.0 scores, MAPQ and placements.\n",
                 "pattern": "Directory containing bwa-mem3 index *.{amb,ann,bwt.2bit.64,pac}",
                 "ontologies": [
                   {
@@ -56119,40 +56119,40 @@
         ],
         "containers": {
           "docker": {
-            "linux/arm64": {
-              "name": "community.wave.seqera.io/library/bwa-mem3_htslib_samtools_findutils:e73cbc14b9a6cced",
-              "build_id": "bd-e73cbc14b9a6cced_1",
-              "scan_id": "sc-88dd26a648f84e35_1"
-            },
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/bwa-mem3_htslib_samtools_findutils:f271e572b6aa004b",
-              "build_id": "bd-f271e572b6aa004b_1",
-              "scan_id": "sc-f2ead31ae29e9b64_1"
+              "name": "community.wave.seqera.io/library/bwa-mem3_htslib_samtools_findutils:ac58207ad8b29268",
+              "build_id": "bd-ac58207ad8b29268_1",
+              "scan_id": "sc-0581889347908187_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/bwa-mem3_htslib_samtools_findutils:1b8229347711c377",
+              "build_id": "bd-1b8229347711c377_1",
+              "scan_id": "sc-113843aa1a9c1b59_1"
             }
           },
           "singularity": {
-            "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/bwa-mem3_htslib_samtools_findutils:6b077b9587af43f7",
-              "build_id": "bd-6b077b9587af43f7_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/f3/f32caea810da83646cb7c62800d7952f4246ca68799f53fa6b0e1a02e19009b5/data"
-            },
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/bwa-mem3_htslib_samtools_findutils:9ae3c28116c5de4c",
-              "build_id": "bd-9ae3c28116c5de4c_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/ff/ffd9362ddd396e0eb431def1812e02a274552b162355b242d974af65fcf83167/data"
+              "name": "oras://community.wave.seqera.io/library/bwa-mem3_htslib_samtools_findutils:faf85ebedc129476",
+              "build_id": "bd-faf85ebedc129476_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/6c/6c7e01f3fbb256f4cb63f77d5630fe44f9c41557cd25abccf1da96fd693bbbf8/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/bwa-mem3_htslib_samtools_findutils:a93f66d3bd891ac5",
+              "build_id": "bd-a93f66d3bd891ac5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/26/2620fede02f2bcc887412dbb17f5d0b7658fee3f9bc94f4bb3fdcef97fdd35b3/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/bwamem3/mem/.conda-lock/linux_amd64-bd-f271e572b6aa004b_1.txt"
+              "lock_file": "modules/nf-core/bwamem3/mem/.conda-lock/linux_amd64-bd-ac58207ad8b29268_1.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/bwamem3/mem/.conda-lock/linux_arm64-bd-e73cbc14b9a6cced_1.txt"
+              "lock_file": "modules/nf-core/bwamem3/mem/.conda-lock/linux_arm64-bd-1b8229347711c377_1.txt"
             }
           }
         }
       },
-      "git_sha": "89004b3c117e685e84f5cc0d280da3a3e74c25c2",
+      "git_sha": "2d590fdee3e25a93d4757ca14159a42e1406970b",
       "pipelines": [
         {
           "name": "pathogenepidemiology",
@@ -104353,13 +104353,21 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
     {
       "name": "deepvariant_callvariants",
       "path": "modules/nf-core/deepvariant/callvariants/meta.yml",
-      "tree_sha": "520c4fcba8183976ca0dd662a3f2b72c0317c295",
+      "tree_sha": "a88d2b580b3856e8a0ec21f41ade47458a27f599",
       "files": [
         "modules/nf-core/deepvariant/callvariants/main.nf",
         "modules/nf-core/deepvariant/callvariants/meta.yml",
@@ -104384,6 +104392,12 @@
               "documentation": "https://github.com/google/deepvariant",
               "tool_dev_url": "https://github.com/google/deepvariant",
               "doi": "10.1038/nbt.4235",
+              "publication": {
+                "author": "Poplin, R., Chang, P., Alexander, D., Schwartz, S., Colthurst, T., Ku, A., Newburger, D., Dijamco, J., Nguyen, N., Afshar, P. T., Gross, S. S., Dorfman, L., McLean, C. Y. & DePristo, M. A.",
+                "year": 2018,
+                "title": "A universal SNP and small-indel variant caller using deep neural networks",
+                "source": "Nature Biotechnology"
+              },
               "licence": [
                 "BSD-3-clause"
               ],
@@ -104487,7 +104501,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "5e1c0d5dbc2cf5fd234c292210c2c36be62face5",
       "pipelines": [
         {
           "name": "pacvar",
@@ -104502,7 +104516,7 @@
     {
       "name": "deepvariant_makeexamples",
       "path": "modules/nf-core/deepvariant/makeexamples/meta.yml",
-      "tree_sha": "082a8ffd06072c7c0aa0c1573e63fbafdb3df6ac",
+      "tree_sha": "73761f771bde1bc2fa605234ad0542f65fe71342",
       "files": [
         "modules/nf-core/deepvariant/makeexamples/main.nf",
         "modules/nf-core/deepvariant/makeexamples/meta.yml",
@@ -104528,6 +104542,12 @@
               "documentation": "https://github.com/google/deepvariant",
               "tool_dev_url": "https://github.com/google/deepvariant",
               "doi": "10.1038/nbt.4235",
+              "publication": {
+                "author": "Poplin, R., Chang, P., Alexander, D., Schwartz, S., Colthurst, T., Ku, A., Newburger, D., Dijamco, J., Nguyen, N., Afshar, P. T., Gross, S. S., Dorfman, L., McLean, C. Y. & DePristo, M. A.",
+                "year": 2018,
+                "title": "A universal SNP and small-indel variant caller using deep neural networks",
+                "source": "Nature Biotechnology"
+              },
               "licence": [
                 "BSD-3-clause"
               ],
@@ -104761,7 +104781,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "5e1c0d5dbc2cf5fd234c292210c2c36be62face5",
       "pipelines": [
         {
           "name": "pacvar",
@@ -104776,7 +104796,7 @@
     {
       "name": "deepvariant_postprocessvariants",
       "path": "modules/nf-core/deepvariant/postprocessvariants/meta.yml",
-      "tree_sha": "2b7b3f70b1aa47d96f72fe814db1cd3537910a0f",
+      "tree_sha": "93278ffe7fe5ddb1568cb445f842bf994967a551",
       "files": [
         "modules/nf-core/deepvariant/postprocessvariants/main.nf",
         "modules/nf-core/deepvariant/postprocessvariants/meta.yml",
@@ -104801,6 +104821,12 @@
               "documentation": "https://github.com/google/deepvariant",
               "tool_dev_url": "https://github.com/google/deepvariant",
               "doi": "10.1038/nbt.4235",
+              "publication": {
+                "author": "Poplin, R., Chang, P., Alexander, D., Schwartz, S., Colthurst, T., Ku, A., Newburger, D., Dijamco, J., Nguyen, N., Afshar, P. T., Gross, S. S., Dorfman, L., McLean, C. Y. & DePristo, M. A.",
+                "year": 2018,
+                "title": "A universal SNP and small-indel variant caller using deep neural networks",
+                "source": "Nature Biotechnology"
+              },
               "licence": [
                 "BSD-3-clause"
               ],
@@ -105056,7 +105082,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "5e1c0d5dbc2cf5fd234c292210c2c36be62face5",
       "pipelines": [
         {
           "name": "pacvar",
@@ -105071,7 +105097,7 @@
     {
       "name": "deepvariant_rundeepvariant",
       "path": "modules/nf-core/deepvariant/rundeepvariant/meta.yml",
-      "tree_sha": "bd6dbabc0ecf58fb25acd63bfc7537ab3c149c12",
+      "tree_sha": "aac5bd4925a4873799d970697b90287b2e7de276",
       "files": [
         "modules/nf-core/deepvariant/rundeepvariant/main.nf",
         "modules/nf-core/deepvariant/rundeepvariant/meta.yml",
@@ -105096,6 +105122,12 @@
               "documentation": "https://github.com/google/deepvariant",
               "tool_dev_url": "https://github.com/google/deepvariant",
               "doi": "10.1038/nbt.4235",
+              "publication": {
+                "author": "Poplin, R., Chang, P., Alexander, D., Schwartz, S., Colthurst, T., Ku, A., Newburger, D., Dijamco, J., Nguyen, N., Afshar, P. T., Gross, S. S., Dorfman, L., McLean, C. Y. & DePristo, M. A.",
+                "year": 2018,
+                "title": "A universal SNP and small-indel variant caller using deep neural networks",
+                "source": "Nature Biotechnology"
+              },
               "licence": [
                 "BSD-3-clause"
               ],
@@ -105356,7 +105388,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "5e1c0d5dbc2cf5fd234c292210c2c36be62face5",
       "pipelines": [
         {
           "name": "longraredisease",
@@ -105383,7 +105415,7 @@
     {
       "name": "deepvariant_vcfstatsreport",
       "path": "modules/nf-core/deepvariant/vcfstatsreport/meta.yml",
-      "tree_sha": "d978cd9c966b7b4569b5aa319f53e8aa8d6c35a6",
+      "tree_sha": "36a3b3d5d9cf85d2b96933dc3c5b456c3dda381a",
       "files": [
         "modules/nf-core/deepvariant/vcfstatsreport/main.nf",
         "modules/nf-core/deepvariant/vcfstatsreport/meta.yml",
@@ -105407,6 +105439,12 @@
               "documentation": "https://github.com/google/deepvariant",
               "tool_dev_url": "https://github.com/google/deepvariant",
               "doi": "10.1038/nbt.4235",
+              "publication": {
+                "author": "Poplin, R., Chang, P., Alexander, D., Schwartz, S., Colthurst, T., Ku, A., Newburger, D., Dijamco, J., Nguyen, N., Afshar, P. T., Gross, S. S., Dorfman, L., McLean, C. Y. & DePristo, M. A.",
+                "year": 2018,
+                "title": "A universal SNP and small-indel variant caller using deep neural networks",
+                "source": "Nature Biotechnology"
+              },
               "licence": [
                 "BSD-3-clause"
               ],
@@ -105505,7 +105543,7 @@
           "@fellen31"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "5e1c0d5dbc2cf5fd234c292210c2c36be62face5",
       "pipelines": [
         {
           "name": "longraredisease",
@@ -113700,7 +113738,7 @@
     {
       "name": "dragmap_align",
       "path": "modules/nf-core/dragmap/align/meta.yml",
-      "tree_sha": "698850d2d8e66206f90416198470ba60d87acadc",
+      "tree_sha": "2b7ebf275bfaf536590ac7b69c8a65325fc7767e",
       "files": [
         "modules/nf-core/dragmap/align/.conda-lock/linux_amd64-bd-53a3f0cf77356ef1_1.txt",
         "modules/nf-core/dragmap/align/environment.yml",
@@ -113727,6 +113765,13 @@
               "homepage": "https://github.com/Illumina/dragmap",
               "documentation": "https://github.com/Illumina/dragmap",
               "tool_dev_url": "https://github.com/Illumina/dragmap#basic-command-line-usage",
+              "doi": "10.1038/s41587-024-02382-1",
+              "publication": {
+                "author": "Behera, S., Catreux, S., Rossi, M., Truong, S., Huang, Z., Ruehle, M., Visvanath, A., Parnaby, G., Roddey, C., Onuchic, V., Finocchio, A., Cameron, D. L., English, A., Mehtalia, S., Han, J., Mehio, R. & Sedlazeck, F. J.",
+                "year": 2024,
+                "title": "Comprehensive genome analysis and variant detection at scale using DRAGEN",
+                "source": "Nature Biotechnology"
+              },
               "licence": [
                 "GPL v3"
               ],
@@ -114081,7 +114126,7 @@
           }
         }
       },
-      "git_sha": "fb925e2dde859040a69871ad22a15b6ed971cbc6",
+      "git_sha": "a98c3221c21b131a7d3ed1f105c7a636ac6057bc",
       "pipelines": [
         {
           "name": "nascent",
@@ -114104,7 +114149,7 @@
     {
       "name": "dragmap_hashtable",
       "path": "modules/nf-core/dragmap/hashtable/meta.yml",
-      "tree_sha": "4394bea2fde8e4fb83145493179456a0ecb845bd",
+      "tree_sha": "f216e5ae1d2e4a9eec5cc8f8c96819e9b1d381a6",
       "files": [
         "modules/nf-core/dragmap/hashtable/.conda-lock/linux_amd64-bd-5d9f1388ce4b8f33_1.txt",
         "modules/nf-core/dragmap/hashtable/environment.yml",
@@ -114130,6 +114175,13 @@
               "homepage": "https://github.com/Illumina/dragmap",
               "documentation": "https://github.com/Illumina/dragmap",
               "tool_dev_url": "https://github.com/Illumina/dragmap#basic-command-line-usage",
+              "doi": "10.1038/s41587-024-02382-1",
+              "publication": {
+                "author": "Behera, S., Catreux, S., Rossi, M., Truong, S., Huang, Z., Ruehle, M., Visvanath, A., Parnaby, G., Roddey, C., Onuchic, V., Finocchio, A., Cameron, D. L., English, A., Mehtalia, S., Han, J., Mehio, R. & Sedlazeck, F. J.",
+                "year": 2024,
+                "title": "Comprehensive genome analysis and variant detection at scale using DRAGEN",
+                "source": "Nature Biotechnology"
+              },
               "licence": [
                 "GPL v3"
               ],
@@ -114256,7 +114308,7 @@
           }
         }
       },
-      "git_sha": "fb925e2dde859040a69871ad22a15b6ed971cbc6",
+      "git_sha": "a98c3221c21b131a7d3ed1f105c7a636ac6057bc",
       "pipelines": [
         {
           "name": "nascent",
@@ -125011,6 +125063,191 @@
         }
       },
       "git_sha": "86e852ef429e021d16f7279aaddb9b81eb067f8a"
+    },
+    {
+      "name": "fairbioheaders_verify",
+      "path": "modules/nf-core/fairbioheaders/verify/meta.yml",
+      "tree_sha": "1789fdc007f1fe00ce84f824c01b2b98ce00aff8",
+      "files": [
+        "modules/nf-core/fairbioheaders/verify/.conda-lock/linux_amd64-bd-71029206d3ce1119_1.txt",
+        "modules/nf-core/fairbioheaders/verify/.conda-lock/linux_arm64-bd-1ff11621d7e9a7c8_1.txt",
+        "modules/nf-core/fairbioheaders/verify/environment.yml",
+        "modules/nf-core/fairbioheaders/verify/main.nf",
+        "modules/nf-core/fairbioheaders/verify/meta.yml",
+        "modules/nf-core/fairbioheaders/verify/tests/main.nf.test",
+        "modules/nf-core/fairbioheaders/verify/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "fairbioheaders_verify",
+        "description": "Verify the FAIR-bioHeaders header (FHR, FHP or FHGFF3) of a FASTA, protein FASTA, GFA or\nGFF3 file: validate the header against its schema and check that the SHA-512/256 checksum\nit records matches the file. The task fails when the file has no header, the header is\ninvalid or the checksum does not match, so a failed check cannot pass unnoticed.\n",
+        "keywords": [
+          "fasta",
+          "gfa",
+          "gff3",
+          "metadata",
+          "provenance",
+          "fair",
+          "checksum",
+          "validation"
+        ],
+        "tools": [
+          {
+            "fair-bioheaders": {
+              "description": "Toolkit to validate, convert, combine, strip and verify FAIR-bioHeaders (FHR, FHP, FHGFF3) provenance metadata embedded in FASTA, GFA and GFF3 headers",
+              "homepage": "https://github.com/FAIR-bioHeaders/FAIR-bioHeaders-Tools",
+              "documentation": "https://github.com/FAIR-bioHeaders/FAIR-bioHeaders-Tools#readme",
+              "tool_dev_url": "https://github.com/FAIR-bioHeaders/FAIR-bioHeaders-Tools",
+              "doi": "10.1093/bib/bbae122",
+              "licence": [
+                "MPL-2.0"
+              ],
+              "identifier": "biotools:fair-bioheaders",
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "sequence": {
+                "type": "file",
+                "description": "Genome FASTA or GFA with an FHR header, protein FASTA with an FHP header, or\nGFF3 with an FHGFF3 header, plain or gzip/BGZF-compressed (`.gz` or `.bgz`)\n",
+                "pattern": "*.{fa,fasta,fna,fas,faa,ffn,frn,fsa,mpfa,gfa,gff,gff3}{,.gz,.bgz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3975"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1975"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.verify.txt": {
+                  "type": "file",
+                  "description": "Text report naming the verified file and the result",
+                  "pattern": "*.verify.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_fairbioheaders": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fair-bioheaders": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bioheaders --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fair-bioheaders": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bioheaders --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@adamjohnwright"
+        ],
+        "maintainers": [
+          "@adamjohnwright",
+          "@molikd"
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/fair-bioheaders:0.9.0--1ff11621d7e9a7c8",
+              "build_id": "bd-1ff11621d7e9a7c8_1",
+              "scan_id": "sc-94d51cd9641c2d5a_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/fair-bioheaders:0.9.0--71029206d3ce1119",
+              "build_id": "bd-71029206d3ce1119_1",
+              "scan_id": "sc-96639927185509c4_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/fair-bioheaders:0.9.0--bd870dcf0291b69f",
+              "build_id": "bd-bd870dcf0291b69f_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/86/862c484484f878e5a99c0ee038f1e03206cac16d3f1763ae65a0663762a19f93/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/fair-bioheaders:0.9.0--85ff19c0d1de6e1f",
+              "build_id": "bd-85ff19c0d1de6e1f_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/3a/3a69700529d3e088166672547fbd632315145414a75ee81a1686e1208038a937/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fairbioheaders/verify/.conda-lock/linux_amd64-bd-71029206d3ce1119_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/fairbioheaders/verify/.conda-lock/linux_arm64-bd-1ff11621d7e9a7c8_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "6fb4f8f1f3f70a34a1f0efdc84729c5dacbc33e5"
     },
     {
       "name": "fairy_coverage",
@@ -180843,7 +181080,7 @@
     {
       "name": "gridss_assemble",
       "path": "modules/nf-core/gridss/assemble/meta.yml",
-      "tree_sha": "969e1849f85b4a881a5f197a8b4aca2ed004c4e7",
+      "tree_sha": "652b843407e376041c463deb0e3a2df673034f71",
       "files": [
         "modules/nf-core/gridss/assemble/environment.yml",
         "modules/nf-core/gridss/assemble/main.nf",
@@ -181050,12 +181287,12 @@
           "@imsarath"
         ]
       },
-      "git_sha": "f5408179d4b14af7c2429fa5cf8ef1075b3a4071"
+      "git_sha": "2632114390d4d3b6135353c50e50e764aa589b7f"
     },
     {
       "name": "gridss_call",
       "path": "modules/nf-core/gridss/call/meta.yml",
-      "tree_sha": "c60e2055f54101fae91b54f629c8c1958f02f406",
+      "tree_sha": "14ae934628c69e5d6c59c966adbad1e84996fd6c",
       "files": [
         "modules/nf-core/gridss/call/environment.yml",
         "modules/nf-core/gridss/call/main.nf",
@@ -181268,7 +181505,7 @@
           "@imsarath"
         ]
       },
-      "git_sha": "f5408179d4b14af7c2429fa5cf8ef1075b3a4071"
+      "git_sha": "2632114390d4d3b6135353c50e50e764aa589b7f"
     },
     {
       "name": "gridss_extractoverlappingfragments",
@@ -265504,7 +265741,7 @@
         },
         {
           "name": "nanostring",
-          "version": "1.3.3"
+          "version": "2.0.0"
         },
         {
           "name": "nascent",
@@ -269020,7 +269257,7 @@
       "pipelines": [
         {
           "name": "nanostring",
-          "version": "1.3.3"
+          "version": "2.0.0"
         }
       ]
     },
@@ -269218,7 +269455,7 @@
       "pipelines": [
         {
           "name": "nanostring",
-          "version": "1.3.3"
+          "version": "2.0.0"
         }
       ]
     },
@@ -311074,6 +311311,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -311381,6 +311622,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -408098,7 +408343,7 @@
     {
       "name": "star_starsolo",
       "path": "modules/nf-core/star/starsolo/meta.yml",
-      "tree_sha": "ca9865afe713a98608c6acc3781890e118520a35",
+      "tree_sha": "8fbb353be7a4300048a3a8a9166c7db8abcf2f9d",
       "files": [
         "modules/nf-core/star/starsolo/.conda-lock/linux_amd64-bd-f22f015f7eb1383f_1.txt",
         "modules/nf-core/star/starsolo/.conda-lock/linux_arm64-bd-113eeacc5216db85_1.txt",
@@ -408123,16 +408368,16 @@
         ],
         "tools": [
           {
-            "star": {
+            "starsolo": {
               "description": "Mapping, demultiplexing and quantification for single cell RNA-seq.",
               "homepage": "https://github.com/alexdobin/STAR/",
               "documentation": "https://github.com/alexdobin/STAR/blob/master/docs/STARsolo.md",
-              "doi": "10.1093/bioinformatics/bts635",
+              "doi": "10.1101/2021.05.05.442755",
               "publication": {
-                "author": "Dobin, A., Davis, C. A., Schlesinger, F., Drenkow, J., Zaleski, C., Jha, S., Batut, P., Chaisson, M. & Gingeras, T. R.",
-                "year": 2012,
-                "title": "STAR: ultrafast universal RNA-seq aligner",
-                "source": "Bioinformatics"
+                "author": "Kaminow, B., Yunusov, D. & Dobin, A.",
+                "year": 2021,
+                "title": "STARsolo: accurate, fast and versatile mapping/quantification of single-cell and single-nucleus RNA-seq data",
+                "source": "bioRxiv"
               },
               "licence": [
                 "MIT"
@@ -408338,7 +408583,7 @@
               }
             ]
           ],
-          "versions_star": [
+          "versions_starsolo": [
             [
               {
                 "${task.process}": {
@@ -408347,7 +408592,7 @@
                 }
               },
               {
-                "star": {
+                "starsolo": {
                   "type": "string",
                   "description": "The name of the tool"
                 }
@@ -408699,7 +408944,7 @@
                 }
               },
               {
-                "star": {
+                "starsolo": {
                   "type": "string",
                   "description": "The name of the tool"
                 }
@@ -408770,7 +409015,7 @@
           }
         }
       },
-      "git_sha": "d59feee750b190a65b99d945e91a58ac0931fda1"
+      "git_sha": "3c18e32977e2d142af7759b3064402715bc254a8"
     },
     {
       "name": "staramr_search",
@@ -479317,7 +479562,7 @@
         },
         {
           "name": "nanostring",
-          "version": "1.3.3"
+          "version": "2.0.0"
         },
         {
           "name": "nascent",
@@ -479825,7 +480070,7 @@
         },
         {
           "name": "nanostring",
-          "version": "1.3.3"
+          "version": "2.0.0"
         },
         {
           "name": "nascent",
@@ -480373,7 +480618,7 @@
         },
         {
           "name": "nanostring",
-          "version": "1.3.3"
+          "version": "2.0.0"
         },
         {
           "name": "nascent",
@@ -482225,6 +482470,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "9638b276356e5a51afbdf811ebc38d34a18dd34c",
-  "updated_at": "2026-11-13T14:14:50.241Z"
+  "commit_sha": "a98c3221c21b131a7d3ed1f105c7a636ac6057bc",
+  "updated_at": "2026-11-14T02:14:56.187Z"
 }
