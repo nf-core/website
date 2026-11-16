@@ -15,7 +15,7 @@ The aim of the combined task force was to develop the nf-core guidelines related
 
 This blog post gives an overview of all the upcoming changes to nf-core/modules along with the reasoning behind each one.
 
-:::attention
+:::warning
 Static typing and record types have been pretty much stable since Nextflow 26.04.0. There are however some cases where possibly breaking bugs were patched in later versions. Keep an eye out for notes like this throughout the blog post to know in what versions the bugs for that specific section were fixed.
 :::
 
@@ -31,7 +31,7 @@ This change will be enforced due to many reasons, these are the most prominent o
 2. Having a single output with record types will make it easier to subset the record type and merge it back into another record type. This is especially useful for processes that emit a lot of files as there will be no need for multi-line joins anymore.
 3. Due to this, each sample travels through the pipeline as a single record that collects results at every process, making the dataflow much clearer.
 
-:::attention
+:::warning
 Any records returned by a typed function (e.g. `def f(x: Record) -> Record) have a different hash on every run, causing processes to never resume since they think the record is always different. This has been fixed in Nextflow 26.10.4 so it's advised to use this or any later version if you use typed functions that return a Record type.
 :::
 
@@ -107,7 +107,7 @@ stage:
 stageAs file("${moduleDir}/bin/template_script.py"), '*'
 ```
 
-:::attention
+:::warning
 A bug was recently fixed where the staged files weren't being accounted for in the process hash. This means that the process would still resume even though the script has been updated. This bug was patched in Nextflow version 26.10.6 and it's highly advised to use this or higher versions if you want to stage scripts in this way.
 :::
 
