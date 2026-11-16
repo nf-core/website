@@ -18758,7 +18758,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "3.0.4"
+          "version": "3.0.5"
         }
       ]
     },
@@ -35872,7 +35872,7 @@
     {
       "name": "beagle5_beagle",
       "path": "modules/nf-core/beagle5/beagle/meta.yml",
-      "tree_sha": "af4bfc673793d58e579f0a818accfbd09fd37842",
+      "tree_sha": "df80f65517a714d5de26149349241ae2ebe9f0cf",
       "files": [
         "modules/nf-core/beagle5/beagle/.conda-lock/linux_amd64-bd-30bdd31e53923776_1.txt",
         "modules/nf-core/beagle5/beagle/.conda-lock/linux_arm64-bd-91b06b1834ac8be3_1.txt",
@@ -35897,7 +35897,7 @@
               "description": "Beagle is a software package for phasing genotypes and for imputing ungenotyped markers.",
               "homepage": "https://faculty.washington.edu/browning/beagle/beagle.html",
               "documentation": "https://faculty.washington.edu/browning/beagle/beagle_5.5_17Dec24.pdf",
-              "doi": "10.1016/j.ajhg.2021.08.005; doi:10.1016/j.ajhg.2018.07.015",
+              "doi": "10.1016/j.ajhg.2021.08.005",
               "licence": [
                 "GPL v3"
               ],
@@ -36110,7 +36110,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63",
       "pipelines": [
         {
           "name": "alleleexpression",
@@ -51563,7 +51563,7 @@
     {
       "name": "bracken_build",
       "path": "modules/nf-core/bracken/build/meta.yml",
-      "tree_sha": "6587c541e016fa738e35cf4cfd9652d142714d17",
+      "tree_sha": "69bf9bb8f6ae41b09ca7662372c9bb75a25fd64b",
       "files": [
         "modules/nf-core/bracken/build/environment.yml",
         "modules/nf-core/bracken/build/main.nf",
@@ -51588,7 +51588,7 @@
               "homepage": "https://ccb.jhu.edu/software/bracken/",
               "documentation": "https://ccb.jhu.edu/software/bracken/",
               "tool_dev_url": "https://github.com/jenniferlu717/Bracken/",
-              "doi": "10.7717/peerj-cs.104 ",
+              "doi": "10.7717/peerj-cs.104",
               "licence": [
                 "GPL v3"
               ],
@@ -51765,7 +51765,7 @@
           "@jfy133"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63",
       "pipelines": [
         {
           "name": "createtaxdb",
@@ -52328,7 +52328,7 @@
     {
       "name": "bullseye_findeditsites",
       "path": "modules/nf-core/bullseye/findeditsites/meta.yml",
-      "tree_sha": "bc461799c0a83aa79f018e8ca998811d336e213c",
+      "tree_sha": "54434a8e7d910cd35e96aa9446bc8825d7384f49",
       "files": [
         "modules/nf-core/bullseye/findeditsites/.conda-lock/linux_amd64-bd-6a0a52edc73ac840_1.txt",
         "modules/nf-core/bullseye/findeditsites/.conda-lock/linux_arm64-bd-74ed95edbe3333bd_1.txt",
@@ -52588,7 +52588,7 @@
           }
         }
       },
-      "git_sha": "9cd497ee98998d2736799512a4b7b2a6fd08890b"
+      "git_sha": "ed980491ca81929e5adc438923e7beef7e251d14"
     },
     {
       "name": "bullseye_parsebam",
@@ -72063,7 +72063,7 @@
     {
       "name": "circularmapper_circulargenerator",
       "path": "modules/nf-core/circularmapper/circulargenerator/meta.yml",
-      "tree_sha": "bb8a150c248c33ffd1adf9e11350e89ac50a1911",
+      "tree_sha": "fc0d2b357307baa1ecb487f2006ae840ab108c5c",
       "files": [
         "modules/nf-core/circularmapper/circulargenerator/.conda-lock/linux_amd64-bd-971f1a9d9b285bbc_1.txt",
         "modules/nf-core/circularmapper/circulargenerator/.conda-lock/linux_arm64-bd-fa8dc996a2cc506e_1.txt",
@@ -72090,7 +72090,7 @@
               "homepage": "https://github.com/apeltzer/CircularMapper",
               "documentation": "https://github.com/apeltzer/CircularMapper/blob/master/docs/contents/userguide.rst",
               "tool_dev_url": "https://github.com/apeltzer/CircularMapper",
-              "doi": "no DOI available",
+              "doi": "",
               "licence": [
                 "GPL v3"
               ],
@@ -72270,7 +72270,7 @@
           }
         }
       },
-      "git_sha": "189046f6068569f45162cec9a8a57fabdf2239d1"
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63"
     },
     {
       "name": "circularmapper_realignsamfile",
@@ -105653,6 +105653,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -121871,7 +121879,7 @@
     {
       "name": "emboss_cons",
       "path": "modules/nf-core/emboss/cons/meta.yml",
-      "tree_sha": "2f091275e59bd399a295837221c2c1e034c6fcc3",
+      "tree_sha": "9549eb3a7dfa76fe6fb9bd04f21813db4e139d7b",
       "files": [
         "modules/nf-core/emboss/cons/environment.yml",
         "modules/nf-core/emboss/cons/main.nf",
@@ -121897,7 +121905,7 @@
               "homepage": "https://www.ebi.ac.uk/Tools/sfc/emboss_seqret/",
               "documentation": "https://emboss.bioinformatics.nl/cgi-bin/emboss/help/seqret",
               "tool_dev_url": "http://emboss.open-bio.org/",
-              "doi": "10.1016/s0168-9525(00)02024-2 ",
+              "doi": "10.1016/s0168-9525(00)02024-2",
               "licence": [
                 "GPL"
               ],
@@ -121996,12 +122004,12 @@
           "@Joon-Klaps"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63"
     },
     {
       "name": "emboss_revseq",
       "path": "modules/nf-core/emboss/revseq/meta.yml",
-      "tree_sha": "be5d9255702b45c3098c0af47fa01bed5fb123fb",
+      "tree_sha": "7bd38529ccbba4f87d230180cd1de7bbbcb886d5",
       "files": [
         "modules/nf-core/emboss/revseq/environment.yml",
         "modules/nf-core/emboss/revseq/main.nf",
@@ -122025,7 +122033,7 @@
               "homepage": "https://www.ebi.ac.uk/Tools/sfc/emboss_seqret/",
               "documentation": "https://emboss.bioinformatics.nl/cgi-bin/emboss/help/seqret",
               "tool_dev_url": "http://emboss.open-bio.org/",
-              "doi": "10.1016/s0168-9525(00)02024-2 ",
+              "doi": "10.1016/s0168-9525(00)02024-2",
               "licence": [
                 "GPL"
               ],
@@ -122124,12 +122132,12 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63"
     },
     {
       "name": "emboss_seqret",
       "path": "modules/nf-core/emboss/seqret/meta.yml",
-      "tree_sha": "02632ce1a8b9461a5f6e6934cad410a967325830",
+      "tree_sha": "3fc68934cb3cfb06c1e2f361ebaec401e16a92c8",
       "files": [
         "modules/nf-core/emboss/seqret/environment.yml",
         "modules/nf-core/emboss/seqret/main.nf",
@@ -122157,7 +122165,7 @@
               "homepage": "https://www.ebi.ac.uk/Tools/sfc/emboss_seqret/",
               "documentation": "https://emboss.bioinformatics.nl/cgi-bin/emboss/help/seqret",
               "tool_dev_url": "http://emboss.open-bio.org/",
-              "doi": "10.1016/s0168-9525(00)02024-2 ",
+              "doi": "10.1016/s0168-9525(00)02024-2",
               "licence": [
                 "GPL"
               ],
@@ -122262,7 +122270,7 @@
           "@MillironX"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63",
       "pipelines": [
         {
           "name": "taxmarker",
@@ -125012,7 +125020,7 @@
     {
       "name": "evigene_tr2aacds",
       "path": "modules/nf-core/evigene/tr2aacds/meta.yml",
-      "tree_sha": "62d3fe1bf069d7fcec89bf6acc6b4a63e09e27b1",
+      "tree_sha": "6440eb5dfda049bd0a25519c364beaafb22a9783",
       "files": [
         "modules/nf-core/evigene/tr2aacds/environment.yml",
         "modules/nf-core/evigene/tr2aacds/main.nf",
@@ -125041,7 +125049,7 @@
               "homepage": "http://arthropods.eugenes.org/EvidentialGene/evigene/",
               "documentation": "http://arthropods.eugenes.org/EvidentialGene/evigene/",
               "tool_dev_url": "http://arthropods.eugenes.org/EvidentialGene/evigene/",
-              "doi": "10.7490/f1000research.1112594.1 ",
+              "doi": "10.7490/f1000research.1112594.1",
               "licence": [
                 "Don Gilbert, gilbertd At indiana edu, 2018"
               ],
@@ -125156,7 +125164,7 @@
           "@GallVp"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63",
       "pipelines": [
         {
           "name": "denovotranscript",
@@ -176699,7 +176707,7 @@
     {
       "name": "gfatools_gfa2fa",
       "path": "modules/nf-core/gfatools/gfa2fa/meta.yml",
-      "tree_sha": "4832eba18bc817aa7f201d7ff6ce3cb4e1358571",
+      "tree_sha": "62ee70c36a6bc79f48dfddac25d6cbdd121bbfbd",
       "files": [
         "modules/nf-core/gfatools/gfa2fa/environment.yml",
         "modules/nf-core/gfatools/gfa2fa/main.nf",
@@ -176726,7 +176734,7 @@
               "homepage": "https://github.com/lh3/gfatools",
               "documentation": "https://github.com/lh3/gfatools",
               "tool_dev_url": "https://github.com/lh3/gfatools",
-              "doi": "no DOI available",
+              "doi": "",
               "licence": [
                 "Unknown"
               ],
@@ -176829,7 +176837,7 @@
           "@mahesh-panchal"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63",
       "pipelines": [
         {
           "name": "genomeassembler",
@@ -176840,7 +176848,7 @@
     {
       "name": "gfatools_stat",
       "path": "modules/nf-core/gfatools/stat/meta.yml",
-      "tree_sha": "5e44c349827b066f6c82ac99275cd23d44f842f5",
+      "tree_sha": "23a5f5fda2fd07196c8236ccf0caf76b1d921295",
       "files": [
         "modules/nf-core/gfatools/stat/environment.yml",
         "modules/nf-core/gfatools/stat/main.nf",
@@ -176867,7 +176875,7 @@
               "homepage": "https://github.com/lh3/gfatools",
               "documentation": "https://github.com/lh3/gfatools",
               "tool_dev_url": "https://github.com/lh3/gfatools",
-              "doi": "no DOI available",
+              "doi": "",
               "licence": [
                 "Unknown"
               ],
@@ -176970,7 +176978,7 @@
           "@mahesh-panchal"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63"
     },
     {
       "name": "gffcompare",
@@ -188088,7 +188096,7 @@
     {
       "name": "gzrt",
       "path": "modules/nf-core/gzrt/meta.yml",
-      "tree_sha": "2db2ad2efbd1c0c2a623a6e90a3b3ae668011227",
+      "tree_sha": "8b8e8a5473c11f8419aadf9912f35a943be4d7fc",
       "files": [
         "modules/nf-core/gzrt/environment.yml",
         "modules/nf-core/gzrt/main.nf",
@@ -188112,7 +188120,7 @@
               "homepage": "https://www.urbanophile.com/arenn/hacking/gzrt/gzrt.html",
               "documentation": "https://www.urbanophile.com/arenn/hacking/gzrt/gzrt.html",
               "tool_dev_url": "https://github.com/arenn/gzrt",
-              "doi": "no DOI available",
+              "doi": "",
               "licence": [
                 "GPL v2"
               ],
@@ -188220,7 +188228,7 @@
           "@tm4zza"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63",
       "pipelines": [
         {
           "name": "fastqrepair",
@@ -204381,7 +204389,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "3.0.4"
+          "version": "3.0.5"
         },
         {
           "name": "rnadnavar",
@@ -217223,7 +217231,7 @@
     {
       "name": "jvarkit_vcffilterjdk",
       "path": "modules/nf-core/jvarkit/vcffilterjdk/meta.yml",
-      "tree_sha": "598187ba72af8d29979a1b437e93a2842be1c733",
+      "tree_sha": "32886b5c01637dca09d0d831549b34409d03c050",
       "files": [
         "modules/nf-core/jvarkit/vcffilterjdk/environment.yml",
         "modules/nf-core/jvarkit/vcffilterjdk/main.nf",
@@ -217251,7 +217259,7 @@
               "homepage": "https://github.com/lindenb/jvarkit",
               "documentation": "https://jvarkit.readthedocs.io/",
               "tool_dev_url": "https://github.com/lindenb/jvarkit",
-              "doi": "10.1093/bioinformatics/btx734 ",
+              "doi": "10.1093/bioinformatics/btx734",
               "licence": [
                 "MIT License"
               ],
@@ -217559,7 +217567,7 @@
           "@lindenb"
         ]
       },
-      "git_sha": "b489eb2587cb508cc9eef65c53f04f7419b5f6d9"
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63"
     },
     {
       "name": "jvarkit_vcfpolyx",
@@ -225757,7 +225765,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "3.0.4"
+          "version": "3.0.5"
         }
       ]
     },
@@ -225933,7 +225941,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "3.0.4"
+          "version": "3.0.5"
         }
       ]
     },
@@ -226072,7 +226080,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "3.0.4"
+          "version": "3.0.5"
         },
         {
           "name": "raredisease",
@@ -226302,7 +226310,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "3.0.4"
+          "version": "3.0.5"
         }
       ]
     },
@@ -226717,7 +226725,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "3.0.4"
+          "version": "3.0.5"
         }
       ]
     },
@@ -226886,7 +226894,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "3.0.4"
+          "version": "3.0.5"
         }
       ]
     },
@@ -261438,7 +261446,7 @@
     {
       "name": "modkit_callmods",
       "path": "modules/nf-core/modkit/callmods/meta.yml",
-      "tree_sha": "aab708c1981255643505f9c23438f1ab974c9cf2",
+      "tree_sha": "d5b4c0c0939feea05b3f2579fc591a8f588fc333",
       "files": [
         "modules/nf-core/modkit/callmods/.conda-lock/linux_amd64-bd-0c623277f8775a30_1.txt",
         "modules/nf-core/modkit/callmods/.conda-lock/linux_arm64-bd-b0cf3a2b01aa496e_1.txt",
@@ -261464,7 +261472,7 @@
               "homepage": "https://nanoporetech.github.io/modkit/",
               "documentation": "https://nanoporetech.github.io/modkit/",
               "tool_dev_url": "https://github.com/nanoporetech/modkit",
-              "doi": "no DOI available",
+              "doi": "",
               "licence": [
                 "Oxford Nanopore Technologies PLC. Public License Version 1.0"
               ],
@@ -261625,7 +261633,7 @@
           }
         }
       },
-      "git_sha": "10d5bc958ad3d70a30ecd69cd9f4c84cb467c878",
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63",
       "pipelines": [
         {
           "name": "methylong",
@@ -267646,7 +267654,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "3.0.4"
+          "version": "3.0.5"
         },
         {
           "name": "pangenome",
@@ -272714,7 +272722,7 @@
     {
       "name": "nanomonsv_parse",
       "path": "modules/nf-core/nanomonsv/parse/meta.yml",
-      "tree_sha": "82346248f73761e2f4bd08bcb0ab2c33fd998c2b",
+      "tree_sha": "f1be30076ac4a2b0b6fce9061d7cc907947a51aa",
       "files": [
         "modules/nf-core/nanomonsv/parse/environment.yml",
         "modules/nf-core/nanomonsv/parse/main.nf",
@@ -272741,7 +272749,7 @@
               "homepage": "https://github.com/friend1ws/nanomonsv",
               "documentation": "https://github.com/friend1ws/nanomonsv#commands",
               "tool_dev_url": "https://github.com/friend1ws/nanomonsv",
-              "doi": "10.1101/2020.07.22.214262 ",
+              "doi": "10.1101/2020.07.22.214262",
               "licence": [
                 "GPL v3"
               ],
@@ -273184,7 +273192,7 @@
           "@awgymer"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63"
     },
     {
       "name": "nanoplot",
@@ -299005,7 +299013,7 @@
     {
       "name": "pbjasmine",
       "path": "modules/nf-core/pbjasmine/meta.yml",
-      "tree_sha": "837578d18f0360e3d242a059ead3fb9efce03726",
+      "tree_sha": "03861d17b7a3a524caef89834f4d94008eb73666",
       "files": [
         "modules/nf-core/pbjasmine/environment.yml",
         "modules/nf-core/pbjasmine/main.nf",
@@ -299030,7 +299038,7 @@
               "homepage": "https://github.com/pacificbiosciences/jasmine",
               "documentation": "https://github.com/pacificbiosciences/jasmine",
               "tool_dev_url": "https://github.com/pacificbiosciences/jasmine",
-              "doi": "no DOI available",
+              "doi": "",
               "licence": [
                 "BSD-3-clause-Clear"
               ],
@@ -299140,7 +299148,7 @@
           "@YiJin-Xiong"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63",
       "pipelines": [
         {
           "name": "methylong",
@@ -300011,7 +300019,7 @@
     {
       "name": "pbtk_bam2fastq",
       "path": "modules/nf-core/pbtk/bam2fastq/meta.yml",
-      "tree_sha": "873a39b5bc3f2d924e964310f13beb81d89a192f",
+      "tree_sha": "aa5013f9a2d8c6fa23add6932a2d490df60dc08c",
       "files": [
         "modules/nf-core/pbtk/bam2fastq/environment.yml",
         "modules/nf-core/pbtk/bam2fastq/main.nf",
@@ -300037,7 +300045,7 @@
               "homepage": "https://github.com/PacificBiosciences/pbtk",
               "documentation": "https://github.com/PacificBiosciences/pbtk#usage",
               "tool_dev_url": "https://github.com/PacificBiosciences/pbtk",
-              "doi": "no DOI available",
+              "doi": "",
               "licence": [
                 "BSD-3-clause-Clear"
               ],
@@ -300150,7 +300158,7 @@
           "@gallvp"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63"
     },
     {
       "name": "pbtk_pbindex",
@@ -300283,7 +300291,7 @@
     {
       "name": "pbtk_pbmerge",
       "path": "modules/nf-core/pbtk/pbmerge/meta.yml",
-      "tree_sha": "1249f797ebb7e3519d86d413a2a9062bb1f4ad95",
+      "tree_sha": "64b977dbfdb6d1d486f0f0c55b0c02320bb18841",
       "files": [
         "modules/nf-core/pbtk/pbmerge/environment.yml",
         "modules/nf-core/pbtk/pbmerge/main.nf",
@@ -300309,7 +300317,7 @@
               "homepage": "https://github.com/PacificBiosciences/pbtk",
               "documentation": "https://github.com/PacificBiosciences/pbtk#usage",
               "tool_dev_url": "https://github.com/PacificBiosciences/pbtk",
-              "doi": "no DOI available",
+              "doi": "",
               "licence": [
                 "BSD-3-clause-Clear"
               ],
@@ -300434,7 +300442,7 @@
           "@haidyi"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63",
       "pipelines": [
         {
           "name": "pacsomatic",
@@ -313338,6 +313346,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -313645,6 +313657,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -342379,7 +342395,7 @@
     {
       "name": "rbt_vcfsplit",
       "path": "modules/nf-core/rbt/vcfsplit/meta.yml",
-      "tree_sha": "5e16f9f7cc303d1228d82c87c9c38495f418c005",
+      "tree_sha": "65b2b956f5a52fcb3cbc3bc0ad9233438ee285c1",
       "files": [
         "modules/nf-core/rbt/vcfsplit/.conda-lock/linux_amd64-bd-996dcdf3f4b075e4_1.txt",
         "modules/nf-core/rbt/vcfsplit/.conda-lock/linux_arm64-bd-799b7c6e93d0757c_1.txt",
@@ -342407,7 +342423,7 @@
               "homepage": "https://github.com/rust-bio/rust-bio-tools",
               "documentation": "https://github.com/rust-bio/rust-bio-tools",
               "tool_dev_url": "https://github.com/rust-bio/rust-bio-tools",
-              "doi": "no DOI available",
+              "doi": "",
               "licence": [
                 "MIT"
               ],
@@ -342478,7 +342494,7 @@
                 }
               },
               {
-                "rbt": {
+                "rust-bio-tools": {
                   "type": "string",
                   "description": "The tool name"
                 }
@@ -342502,7 +342518,7 @@
                 }
               },
               {
-                "rbt": {
+                "rust-bio-tools": {
                   "type": "string",
                   "description": "The tool name"
                 }
@@ -342557,7 +342573,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "b6403fdd610a2d5e3383857fca9057ad39eea966",
       "pipelines": [
         {
           "name": "sarek",
@@ -361873,7 +361889,7 @@
     {
       "name": "samclip",
       "path": "modules/nf-core/samclip/meta.yml",
-      "tree_sha": "dddf757f38a99cc2f0d44c70eea880c4febe1eb8",
+      "tree_sha": "9e8a823b9a405a05ac81c470a9eb495610b9b4a3",
       "files": [
         "modules/nf-core/samclip/environment.yml",
         "modules/nf-core/samclip/main.nf",
@@ -361901,7 +361917,7 @@
               "homepage": "https://github.com/tseemann/samclip",
               "documentation": "https://github.com/tseemann/samclip",
               "tool_dev_url": "https://github.com/tseemann/samclip",
-              "doi": "no DOI available",
+              "doi": "",
               "licence": [
                 "GPL v3"
               ],
@@ -362099,7 +362115,7 @@
           "@emmcauley"
         ]
       },
-      "git_sha": "2ea7b517421e97210c41585f2347ad113e643a12"
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63"
     },
     {
       "name": "samplesheetparser_diff",
@@ -366422,7 +366438,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "3.0.4"
+          "version": "3.0.5"
         }
       ]
     },
@@ -366735,7 +366751,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "3.0.4"
+          "version": "3.0.5"
         },
         {
           "name": "pangenome",
@@ -369594,7 +369610,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "3.0.4"
+          "version": "3.0.5"
         },
         {
           "name": "phaseimpute",
@@ -378913,7 +378929,7 @@
     {
       "name": "sentieon_applyvarcal",
       "path": "modules/nf-core/sentieon/applyvarcal/meta.yml",
-      "tree_sha": "34dbcf4c4f319fd1d5266cc2d4c0b83c59d4e430",
+      "tree_sha": "be6da667244bdd3110666e9b2a2c1557367a22db",
       "files": [
         "modules/nf-core/sentieon/applyvarcal/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt",
         "modules/nf-core/sentieon/applyvarcal/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt",
@@ -378940,6 +378956,13 @@
               "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
               "homepage": "https://www.sentieon.com/",
               "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
               "identifier": ""
             }
           }
@@ -379155,7 +379178,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9",
       "pipelines": [
         {
           "name": "sarek",
@@ -379166,7 +379189,7 @@
     {
       "name": "sentieon_bwaindex",
       "path": "modules/nf-core/sentieon/bwaindex/meta.yml",
-      "tree_sha": "604c9fb6ddd1a5c442c8b29674fbcd8109ddff9d",
+      "tree_sha": "a534d9ea7e4c1f9a71b37ef06807a9092c0e6262",
       "files": [
         "modules/nf-core/sentieon/bwaindex/environment.yml",
         "modules/nf-core/sentieon/bwaindex/main.nf",
@@ -379192,6 +379215,13 @@
               "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
               "homepage": "https://www.sentieon.com/",
               "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
               "identifier": ""
             }
           }
@@ -379286,7 +379316,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9",
       "pipelines": [
         {
           "name": "raredisease",
@@ -379297,7 +379327,7 @@
     {
       "name": "sentieon_bwamem",
       "path": "modules/nf-core/sentieon/bwamem/meta.yml",
-      "tree_sha": "4371c7ba6daa214116594ee5225e0e56aaa3103f",
+      "tree_sha": "936914eedc93867b77fde63078ef2283aaa32b92",
       "files": [
         "modules/nf-core/sentieon/bwamem/environment.yml",
         "modules/nf-core/sentieon/bwamem/main.nf",
@@ -379325,6 +379355,13 @@
               "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
               "homepage": "https://www.sentieon.com/",
               "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
               "identifier": ""
             }
           },
@@ -379537,7 +379574,7 @@
           "@DonFreed"
         ]
       },
-      "git_sha": "3d5975d9e06ac15d4d44eef499ff454b27d3339b",
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9",
       "pipelines": [
         {
           "name": "raredisease",
@@ -379552,7 +379589,7 @@
     {
       "name": "sentieon_collectvcmetrics",
       "path": "modules/nf-core/sentieon/collectvcmetrics/meta.yml",
-      "tree_sha": "50f3c227b4d4390f8a59cdc0cdf815adbbd26e36",
+      "tree_sha": "3b56130fbc6ee066e7a02b06449e285e268c4a74",
       "files": [
         "modules/nf-core/sentieon/collectvcmetrics/environment.yml",
         "modules/nf-core/sentieon/collectvcmetrics/main.nf",
@@ -379576,6 +379613,13 @@
               "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
               "homepage": "https://www.sentieon.com/",
               "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
               "licence": [
                 "Commercial (requires license for use; redistribution allowed)"
               ],
@@ -379772,12 +379816,12 @@
           "@adamrtalbot"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9"
     },
     {
       "name": "sentieon_coveragemetrics",
       "path": "modules/nf-core/sentieon/coveragemetrics/meta.yml",
-      "tree_sha": "6f509f5ac62468ceda77a1f0e16453fb5091a015",
+      "tree_sha": "f4b801b745aa5fc524ed7faf4f7d3e28e84761d4",
       "files": [
         "modules/nf-core/sentieon/coveragemetrics/environment.yml",
         "modules/nf-core/sentieon/coveragemetrics/main.nf",
@@ -379801,6 +379845,13 @@
               "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
               "homepage": "https://www.sentieon.com/",
               "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
               "licence": [
                 "Commercial (requires license for use; redistribution allowed)"
               ],
@@ -380061,12 +380112,12 @@
           "@adamrtalbot"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9"
     },
     {
       "name": "sentieon_datametrics",
       "path": "modules/nf-core/sentieon/datametrics/meta.yml",
-      "tree_sha": "9fe3a557f19be0e74a4d05e621cd2af19cd0b19f",
+      "tree_sha": "f0917b2e48710c0a7cf7c40a72a05a425d906028",
       "files": [
         "modules/nf-core/sentieon/datametrics/environment.yml",
         "modules/nf-core/sentieon/datametrics/main.nf",
@@ -380090,6 +380141,13 @@
               "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
               "homepage": "https://www.sentieon.com/",
               "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
               "identifier": ""
             }
           }
@@ -380394,7 +380452,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9",
       "pipelines": [
         {
           "name": "raredisease",
@@ -380405,7 +380463,7 @@
     {
       "name": "sentieon_dedup",
       "path": "modules/nf-core/sentieon/dedup/meta.yml",
-      "tree_sha": "33a088e7ff53b112feb74892387f4bd075e90c9e",
+      "tree_sha": "8b4746a2b5744be9e4f9bcb1b4e1942043360fb7",
       "files": [
         "modules/nf-core/sentieon/dedup/environment.yml",
         "modules/nf-core/sentieon/dedup/main.nf",
@@ -380432,6 +380490,13 @@
               "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
               "homepage": "https://www.sentieon.com/",
               "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
               "identifier": ""
             }
           }
@@ -380679,7 +380744,7 @@
           "@asp8200"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9",
       "pipelines": [
         {
           "name": "raredisease",
@@ -380694,7 +380759,7 @@
     {
       "name": "sentieon_dnamodelapply",
       "path": "modules/nf-core/sentieon/dnamodelapply/meta.yml",
-      "tree_sha": "7a84978aefc4486b1fea345073d33b8a53ba6aa4",
+      "tree_sha": "96343113db99c8446b8e314eb216530337ab3ce2",
       "files": [
         "modules/nf-core/sentieon/dnamodelapply/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt",
         "modules/nf-core/sentieon/dnamodelapply/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt",
@@ -380721,6 +380786,13 @@
               "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
               "homepage": "https://www.sentieon.com/",
               "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
               "identifier": ""
             }
           }
@@ -380924,7 +380996,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9",
       "pipelines": [
         {
           "name": "raredisease",
@@ -380939,7 +381011,7 @@
     {
       "name": "sentieon_dnascope",
       "path": "modules/nf-core/sentieon/dnascope/meta.yml",
-      "tree_sha": "5d717f0f839bc87e3711d7d01a8cdb111c965c03",
+      "tree_sha": "1b116a6c97ae9a66a88b71990c7fa88380d1bac4",
       "files": [
         "modules/nf-core/sentieon/dnascope/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt",
         "modules/nf-core/sentieon/dnascope/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt",
@@ -380965,6 +381037,13 @@
               "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
               "homepage": "https://www.sentieon.com/",
               "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
               "identifier": ""
             }
           }
@@ -381274,7 +381353,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9",
       "pipelines": [
         {
           "name": "raredisease",
@@ -381289,7 +381368,7 @@
     {
       "name": "sentieon_gvcftyper",
       "path": "modules/nf-core/sentieon/gvcftyper/meta.yml",
-      "tree_sha": "7eb7c9a382a62d01f0ddc93043efca04b02bc8de",
+      "tree_sha": "b82c6ec08d7071aa17b73947528de06e2f945dae",
       "files": [
         "modules/nf-core/sentieon/gvcftyper/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt",
         "modules/nf-core/sentieon/gvcftyper/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt",
@@ -381315,6 +381394,13 @@
               "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
               "homepage": "https://www.sentieon.com/",
               "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
               "identifier": ""
             }
           }
@@ -381549,7 +381635,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9",
       "pipelines": [
         {
           "name": "sarek",
@@ -381560,7 +381646,7 @@
     {
       "name": "sentieon_haplotyper",
       "path": "modules/nf-core/sentieon/haplotyper/meta.yml",
-      "tree_sha": "a71757e48348014cf1e1d741c294d725b6ba7aeb",
+      "tree_sha": "e927953c462041fb394891bd18dfe73709b6a126",
       "files": [
         "modules/nf-core/sentieon/haplotyper/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt",
         "modules/nf-core/sentieon/haplotyper/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt",
@@ -381586,6 +381672,13 @@
               "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
               "homepage": "https://www.sentieon.com/",
               "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
               "identifier": ""
             }
           }
@@ -381873,7 +381966,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9",
       "pipelines": [
         {
           "name": "sarek",
@@ -381884,7 +381977,7 @@
     {
       "name": "sentieon_hsmetrics",
       "path": "modules/nf-core/sentieon/hsmetrics/meta.yml",
-      "tree_sha": "b3fe6605e82542ceaa09d3923e119ccdf930a780",
+      "tree_sha": "9da8a1d1ea82890e7a033ed3522d8ee955f42c82",
       "files": [
         "modules/nf-core/sentieon/hsmetrics/environment.yml",
         "modules/nf-core/sentieon/hsmetrics/main.nf",
@@ -381908,6 +382001,13 @@
               "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
               "homepage": "https://www.sentieon.com/",
               "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
               "identifier": ""
             }
           }
@@ -382075,12 +382175,12 @@
           "@sppearce"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9"
     },
     {
       "name": "sentieon_qualcal",
       "path": "modules/nf-core/sentieon/qualcal/meta.yml",
-      "tree_sha": "db158ebebe7f86d731c28125a9aed6b4f9b09f11",
+      "tree_sha": "9e2a23c9efc7e604facc50d76d212806f85410a5",
       "files": [
         "modules/nf-core/sentieon/qualcal/environment.yml",
         "modules/nf-core/sentieon/qualcal/main.nf",
@@ -382104,6 +382204,13 @@
               "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
               "homepage": "https://www.sentieon.com/",
               "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
               "identifier": ""
             }
           }
@@ -382373,12 +382480,12 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9"
     },
     {
       "name": "sentieon_readwriter",
       "path": "modules/nf-core/sentieon/readwriter/meta.yml",
-      "tree_sha": "15ff474f535cb76e9adb7b97fd6257fb6670d425",
+      "tree_sha": "980b73271656a39eaafe2f8be68641e0bcef0c17",
       "files": [
         "modules/nf-core/sentieon/readwriter/environment.yml",
         "modules/nf-core/sentieon/readwriter/main.nf",
@@ -382403,6 +382510,13 @@
               "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
               "homepage": "https://www.sentieon.com/",
               "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
               "identifier": ""
             }
           }
@@ -382582,7 +382696,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9",
       "pipelines": [
         {
           "name": "raredisease",
@@ -382593,7 +382707,7 @@
     {
       "name": "sentieon_rsemcalculateexpression",
       "path": "modules/nf-core/sentieon/rsemcalculateexpression/meta.yml",
-      "tree_sha": "0a59f5115def35381d762c1e26380ca9bda55fc0",
+      "tree_sha": "88f0acb9cf12be22834551ba26aa6f72b2e461bc",
       "files": [
         "modules/nf-core/sentieon/rsemcalculateexpression/environment.yml",
         "modules/nf-core/sentieon/rsemcalculateexpression/main.nf",
@@ -382613,6 +382727,21 @@
           "sentieon"
         ],
         "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
+              "identifier": ""
+            }
+          },
           {
             "rsem": {
               "description": "RSEM: accurate transcript quantification from RNA-Seq data with or without a reference genome\n",
@@ -382945,7 +383074,7 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "d0ec0c6d51a892e4dd17e221a8405d719ece229e",
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9",
       "pipelines": [
         {
           "name": "rnaseq",
@@ -382956,7 +383085,7 @@
     {
       "name": "sentieon_rsempreparereference",
       "path": "modules/nf-core/sentieon/rsempreparereference/meta.yml",
-      "tree_sha": "c5ac9c41d0e7f3c221c33c9141a2ba6fbea6a7a1",
+      "tree_sha": "fa59905e2e0e03d3109ff3d8548f0f5384a1f66b",
       "files": [
         "modules/nf-core/sentieon/rsempreparereference/environment.yml",
         "modules/nf-core/sentieon/rsempreparereference/main.nf",
@@ -382976,6 +383105,21 @@
           "sentieon"
         ],
         "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
+              "identifier": ""
+            }
+          },
           {
             "rsem": {
               "description": "RSEM: accurate transcript quantification from RNA-Seq data with or without a reference genome\n",
@@ -383189,7 +383333,7 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "d0ec0c6d51a892e4dd17e221a8405d719ece229e",
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9",
       "pipelines": [
         {
           "name": "rnaseq",
@@ -383200,7 +383344,7 @@
     {
       "name": "sentieon_staralign",
       "path": "modules/nf-core/sentieon/staralign/meta.yml",
-      "tree_sha": "eb0114ab18bee04c4858866390e615bf542df919",
+      "tree_sha": "d9071bd46c1ad5f32fb592c071021b0c88759dc1",
       "files": [
         "modules/nf-core/sentieon/staralign/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt",
         "modules/nf-core/sentieon/staralign/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt",
@@ -383229,6 +383373,13 @@
               "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
               "homepage": "https://www.sentieon.com/",
               "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
               "identifier": ""
             }
           },
@@ -383740,7 +383891,7 @@
           }
         }
       },
-      "git_sha": "6fea5536ee814e30fc594c437f46c45ea33afb4d",
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9",
       "pipelines": [
         {
           "name": "rnaseq",
@@ -383751,7 +383902,7 @@
     {
       "name": "sentieon_tnfilter",
       "path": "modules/nf-core/sentieon/tnfilter/meta.yml",
-      "tree_sha": "f0c40c5d74144ad3eb660cb44e9bc3c9577f9f37",
+      "tree_sha": "920d192a3a4512047439edb57f71d99226106be0",
       "files": [
         "modules/nf-core/sentieon/tnfilter/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt",
         "modules/nf-core/sentieon/tnfilter/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt",
@@ -383779,6 +383930,13 @@
               "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
               "homepage": "https://www.sentieon.com/",
               "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
               "identifier": ""
             }
           }
@@ -384047,12 +384205,12 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9"
     },
     {
       "name": "sentieon_tnhaplotyper2",
       "path": "modules/nf-core/sentieon/tnhaplotyper2/meta.yml",
-      "tree_sha": "84a9985786ce10ec2ad33ef78a103935be27a993",
+      "tree_sha": "cc9eb5c457a7a9ecc68b05461ed55c7c20972a9a",
       "files": [
         "modules/nf-core/sentieon/tnhaplotyper2/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt",
         "modules/nf-core/sentieon/tnhaplotyper2/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt",
@@ -384079,6 +384237,13 @@
               "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
               "homepage": "https://www.sentieon.com/",
               "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
               "identifier": ""
             }
           }
@@ -384453,12 +384618,12 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9"
     },
     {
       "name": "sentieon_tnscope",
       "path": "modules/nf-core/sentieon/tnscope/meta.yml",
-      "tree_sha": "2b95545641fa2c8fed9a5128c6130f15f4f8b268",
+      "tree_sha": "3a9c3feeb2951778dfcfab4e07e3e265a4f162f4",
       "files": [
         "modules/nf-core/sentieon/tnscope/.conda-lock/linux_amd64-bd-5e34aa16344b911c_1.txt",
         "modules/nf-core/sentieon/tnscope/.conda-lock/linux_arm64-bd-493a9352fdfbacc5_1.txt",
@@ -384484,6 +384649,13 @@
               "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
               "homepage": "https://www.sentieon.com/",
               "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
               "identifier": ""
             }
           }
@@ -384787,7 +384959,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9",
       "pipelines": [
         {
           "name": "sarek",
@@ -384798,7 +384970,7 @@
     {
       "name": "sentieon_varcal",
       "path": "modules/nf-core/sentieon/varcal/meta.yml",
-      "tree_sha": "6064749f965bd4564f67ef5bb4864333ebe5b596",
+      "tree_sha": "0fa08d73c3803cbf9e989b28c737d6500e1d8536",
       "files": [
         "modules/nf-core/sentieon/varcal/environment.yml",
         "modules/nf-core/sentieon/varcal/main.nf",
@@ -384822,6 +384994,13 @@
               "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
               "homepage": "https://www.sentieon.com/",
               "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
               "identifier": ""
             }
           }
@@ -385037,7 +385216,7 @@
           "@asp8200"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9",
       "pipelines": [
         {
           "name": "sarek",
@@ -385048,7 +385227,7 @@
     {
       "name": "sentieon_wgsmetrics",
       "path": "modules/nf-core/sentieon/wgsmetrics/meta.yml",
-      "tree_sha": "5c9a67583f0e4f57994d27511c42fef776f9afb6",
+      "tree_sha": "af498b3eca86577485628eb5863f9087da610efa",
       "files": [
         "modules/nf-core/sentieon/wgsmetrics/environment.yml",
         "modules/nf-core/sentieon/wgsmetrics/main.nf",
@@ -385072,6 +385251,13 @@
               "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
               "homepage": "https://www.sentieon.com/",
               "documentation": "https://www.sentieon.com/",
+              "doi": "10.1101/115717",
+              "publication": {
+                "author": "Freed, D., Aldana, R., Weber, J. A. & Edwards, J. S.",
+                "year": 2017,
+                "title": "The Sentieon Genomics Tools - A fast and accurate solution to variant calling from next-generation sequence data",
+                "source": "bioRxiv"
+              },
               "identifier": ""
             }
           }
@@ -385222,7 +385408,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "234d789489a7a684e9d9807cc1bc693b2fbab1e9",
       "pipelines": [
         {
           "name": "raredisease",
@@ -389956,7 +390142,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "3.0.4"
+          "version": "3.0.5"
         }
       ]
     },
@@ -392980,7 +393166,7 @@
     {
       "name": "shapeit5_phasecommon",
       "path": "modules/nf-core/shapeit5/phasecommon/meta.yml",
-      "tree_sha": "f5fd0500f5e03a1d578d0ad8b0857feb49af7c41",
+      "tree_sha": "2621e941f8217851173f1c609555af6d115292b3",
       "files": [
         "modules/nf-core/shapeit5/phasecommon/environment.yml",
         "modules/nf-core/shapeit5/phasecommon/main.nf",
@@ -393005,7 +393191,7 @@
               "homepage": "https://github.com/odelaneau/shapeit5",
               "documentation": "https://github.com/odelaneau/shapeit5",
               "tool_dev_url": "https://github.com/odelaneau/shapeit5",
-              "doi": "10.1101/2022.10.19.512867 ",
+              "doi": "10.1101/2022.10.19.512867",
               "licence": [
                 "MIT"
               ],
@@ -393167,7 +393353,7 @@
           "@LouisLeNezet"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63",
       "pipelines": [
         {
           "name": "phaseimpute",
@@ -393178,7 +393364,7 @@
     {
       "name": "shapeit5_phaserare",
       "path": "modules/nf-core/shapeit5/phaserare/meta.yml",
-      "tree_sha": "c788007cb4ec719217763122c6945699faef0a9b",
+      "tree_sha": "cc8f7c30471f2133d88fa8d97093ad315f457157",
       "files": [
         "modules/nf-core/shapeit5/phaserare/environment.yml",
         "modules/nf-core/shapeit5/phaserare/main.nf",
@@ -393204,7 +393390,7 @@
               "homepage": "https://github.com/odelaneau/shapeit5",
               "documentation": "https://github.com/odelaneau/shapeit5",
               "tool_dev_url": "https://github.com/odelaneau/shapeit5",
-              "doi": "10.1101/2022.10.19.512867 ",
+              "doi": "10.1101/2022.10.19.512867",
               "licence": [
                 "MIT"
               ],
@@ -393365,12 +393551,12 @@
         ],
         "requirement": "AVX2"
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63"
     },
     {
       "name": "shapeit5_switch",
       "path": "modules/nf-core/shapeit5/switch/meta.yml",
-      "tree_sha": "8fe1ef8934517fbc61cb30b375ecd63cfdbf29a0",
+      "tree_sha": "12bf6efe79c9711f54ab1b2178e4260753344850",
       "files": [
         "modules/nf-core/shapeit5/switch/environment.yml",
         "modules/nf-core/shapeit5/switch/main.nf",
@@ -393396,7 +393582,7 @@
               "homepage": "https://github.com/odelaneau/shapeit5",
               "documentation": "https://github.com/odelaneau/shapeit5",
               "tool_dev_url": "https://github.com/odelaneau/shapeit5",
-              "doi": "10.1101/2022.10.19.512867 ",
+              "doi": "10.1101/2022.10.19.512867",
               "licence": [
                 "MIT"
               ],
@@ -393554,7 +393740,7 @@
           "@LouisLeNezet"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63"
     },
     {
       "name": "shasta",
@@ -395830,7 +396016,7 @@
     {
       "name": "sigprofiler",
       "path": "modules/nf-core/sigprofiler/meta.yml",
-      "tree_sha": "d8b53d7775fe53ce3671bff519d0188acd3af01e",
+      "tree_sha": "0edc411731824f76630d3c6c3f4fbc23fb7559ed",
       "files": [
         "modules/nf-core/sigprofiler/environment.yml",
         "modules/nf-core/sigprofiler/main.nf",
@@ -395867,7 +396053,7 @@
               "description": "SigProfilerExtractor is a Python-based tool. It allows de novo extraction of mutational signatures from data generated in a matrix format, identification of the number of operative mutational signatures, and their activities in each sample.",
               "documentation": "https://osf.io/t6j7u/wiki/home/",
               "tool_dev_url": "https://github.com/AlexandrovLab/SigProfilerExtractor",
-              "doi": "10.1016/j.xgen.2022.100179 ",
+              "doi": "10.1016/j.xgen.2022.100179",
               "licence": [
                 "BSD-2-clause"
               ],
@@ -395972,7 +396158,7 @@
           "@kdavydzenka"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63",
       "pipelines": [
         {
           "name": "tumourevo",
@@ -414273,7 +414459,7 @@
     {
       "name": "strdust",
       "path": "modules/nf-core/strdust/meta.yml",
-      "tree_sha": "831532c9eae021d7f17d7854e139827821463d18",
+      "tree_sha": "262faa9d8c7b7bdccdbf09df180e179d4c410269",
       "files": [
         "modules/nf-core/strdust/environment.yml",
         "modules/nf-core/strdust/main.nf",
@@ -414298,7 +414484,7 @@
               "homepage": "https://github.com/wdecoster/STRdust/",
               "documentation": "https://github.com/wdecoster/STRdust/blob/main/README.md",
               "tool_dev_url": "https://github.com/wdecoster/STRdust",
-              "doi": "10.1101/gr.279265.124 ",
+              "doi": "10.1101/gr.279265.124",
               "licence": [
                 "MIT"
               ],
@@ -414535,7 +414721,7 @@
           "@Schmytzi"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63"
     },
     {
       "name": "strelka_germline",
@@ -435814,6 +436000,138 @@
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
     },
     {
+      "name": "trident_validate",
+      "path": "modules/nf-core/trident/validate/meta.yml",
+      "tree_sha": "9f95575cfb015e0b0e16373b71b351ef79c58ac9",
+      "files": [
+        "modules/nf-core/trident/validate/environment.yml",
+        "modules/nf-core/trident/validate/main.nf",
+        "modules/nf-core/trident/validate/meta.yml",
+        "modules/nf-core/trident/validate/tests/main.nf.test",
+        "modules/nf-core/trident/validate/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "trident_validate",
+        "description": "Check Poseidon packages or package components for structural correctness",
+        "keywords": [
+          "poseidon-trident",
+          "poseidon",
+          "trident",
+          "validate"
+        ],
+        "tools": [
+          {
+            "trident": {
+              "description": "A tool (trident) to work with modular genotype databases formatted using Poseidon.",
+              "homepage": "https://www.poseidon-adna.org/",
+              "documentation": "https://www.poseidon-adna.org/#/trident?id=validate-command",
+              "tool_dev_url": "https://github.com/poseidon-framework/poseidon-hs/",
+              "doi": "10.7554/eLife.98317.1",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', version: \"2.1.0\", snpSet: \"1240K\", format:'EIGENSTRAT' ]\n"
+              }
+            },
+            {
+              "input_package": {
+                "type": "directory",
+                "description": "Path to the directory containing the Poseidon package(s) to be validated."
+              }
+            }
+          ]
+        ],
+        "output": {
+          "validated_packages": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "The meta information of the input package."
+                }
+              },
+              {
+                "input_package": {
+                  "type": "directory",
+                  "description": "Path to the directory containing the Poseidon package(s) that was validated."
+                }
+              },
+              {
+                "EXIT_CODE": {
+                  "type": "string",
+                  "description": "Exit code (0 for success, non-zero otherwise) that is the result of the validation check.",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_trident": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "trident": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "trident --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "trident": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "trident --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@TCLamnidis"
+        ],
+        "maintainers": [
+          "@TCLamnidis"
+        ]
+      },
+      "git_sha": "219cf3ce66c6a6688d5a5e188652d6fdbf171c06"
+    },
+    {
       "name": "trimal",
       "path": "modules/nf-core/trimal/meta.yml",
       "tree_sha": "3d2fe7d4058f7f7315832ee37df62273c001d246",
@@ -444641,7 +444959,7 @@
     {
       "name": "vardictjava",
       "path": "modules/nf-core/vardictjava/meta.yml",
-      "tree_sha": "a0d9f1d890e7da790c28b55c8c8d080becea4d9b",
+      "tree_sha": "0b8993e8aacaad6d12a3473ccaec730887f7eded",
       "files": [
         "modules/nf-core/vardictjava/environment.yml",
         "modules/nf-core/vardictjava/main.nf",
@@ -444668,7 +444986,7 @@
               "homepage": "https://github.com/AstraZeneca-NGS/VarDictJava",
               "documentation": "https://github.com/AstraZeneca-NGS/VarDictJava",
               "tool_dev_url": "https://github.com/AstraZeneca-NGS/VarDictJava",
-              "doi": "10.1093/nar/gkw227 ",
+              "doi": "10.1093/nar/gkw227",
               "licence": [
                 "MIT"
               ],
@@ -444922,7 +445240,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "a4d631ef346c1fda93106a54053e95e6d0fca1a2"
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63"
     },
     {
       "name": "vardictrust",
@@ -461465,7 +461783,7 @@
     {
       "name": "wipertools_fastqgather",
       "path": "modules/nf-core/wipertools/fastqgather/meta.yml",
-      "tree_sha": "0f9573831a54f869dea845a9f281308710d95452",
+      "tree_sha": "36c8d0277f359716a267e858a1b9695919503d54",
       "files": [
         "modules/nf-core/wipertools/fastqgather/.conda-lock/linux_amd64-bd-042a9b3f81640596_1.txt",
         "modules/nf-core/wipertools/fastqgather/.conda-lock/linux_arm64-bd-d208bc94207abfca_1.txt",
@@ -461492,7 +461810,7 @@
               "homepage": "https://github.com/mazzalab/fastqwiper",
               "documentation": "https://github.com/mazzalab/fastqwiper",
               "tool_dev_url": "https://github.com/mazzalab/fastqwiper",
-              "doi": "no DOI available",
+              "doi": "",
               "licence": [
                 "GPL v2-or-later"
               ],
@@ -461641,7 +461959,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63",
       "pipelines": [
         {
           "name": "fastqrepair",
@@ -461652,7 +461970,7 @@
     {
       "name": "wipertools_fastqscatter",
       "path": "modules/nf-core/wipertools/fastqscatter/meta.yml",
-      "tree_sha": "fc22f2e435c5d2182983e797751fd86b4948e56e",
+      "tree_sha": "51a16c8821620dce7f911d20a1800fbd5472cabe",
       "files": [
         "modules/nf-core/wipertools/fastqscatter/.conda-lock/linux_amd64-bd-042a9b3f81640596_1.txt",
         "modules/nf-core/wipertools/fastqscatter/.conda-lock/linux_arm64-bd-d208bc94207abfca_1.txt",
@@ -461679,7 +461997,7 @@
               "homepage": "https://github.com/mazzalab/fastqwiper",
               "documentation": "https://github.com/mazzalab/fastqwiper",
               "tool_dev_url": "https://github.com/mazzalab/fastqwiper",
-              "doi": "no DOI available",
+              "doi": "",
               "licence": [
                 "GPL v2-or-later"
               ],
@@ -461832,7 +462150,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63",
       "pipelines": [
         {
           "name": "fastqrepair",
@@ -461843,7 +462161,7 @@
     {
       "name": "wipertools_fastqwiper",
       "path": "modules/nf-core/wipertools/fastqwiper/meta.yml",
-      "tree_sha": "a44bef4d2b89dc40e22d848a3f2f4f55261fd974",
+      "tree_sha": "78dad545c4ebe86c181035f2bac9c4ad5da1b009",
       "files": [
         "modules/nf-core/wipertools/fastqwiper/.conda-lock/linux_amd64-bd-042a9b3f81640596_1.txt",
         "modules/nf-core/wipertools/fastqwiper/.conda-lock/linux_arm64-bd-d208bc94207abfca_1.txt",
@@ -461871,7 +462189,7 @@
               "homepage": "https://github.com/mazzalab/fastqwiper",
               "documentation": "https://github.com/mazzalab/fastqwiper",
               "tool_dev_url": "https://github.com/mazzalab/fastqwiper",
-              "doi": "no DOI available",
+              "doi": "",
               "licence": [
                 "GPL v2-or-later"
               ],
@@ -462042,7 +462360,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63",
       "pipelines": [
         {
           "name": "fastqrepair",
@@ -462053,7 +462371,7 @@
     {
       "name": "wipertools_reportgather",
       "path": "modules/nf-core/wipertools/reportgather/meta.yml",
-      "tree_sha": "6a054e56dff1039c8c6f6ee237cb5ea6c090b9ef",
+      "tree_sha": "ebb32355be2100a2fcdad73fbcbca629bd4be3e3",
       "files": [
         "modules/nf-core/wipertools/reportgather/.conda-lock/linux_amd64-bd-042a9b3f81640596_1.txt",
         "modules/nf-core/wipertools/reportgather/.conda-lock/linux_arm64-bd-d208bc94207abfca_1.txt",
@@ -462079,7 +462397,7 @@
               "homepage": "https://github.com/mazzalab/fastqwiper",
               "documentation": "https://github.com/mazzalab/fastqwiper",
               "tool_dev_url": "https://github.com/mazzalab/fastqwiper",
-              "doi": "no DOI available",
+              "doi": "",
               "licence": [
                 "GPL v2-or-later"
               ],
@@ -462222,7 +462540,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63",
       "pipelines": [
         {
           "name": "fastqrepair",
@@ -472803,7 +473121,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "3.0.4"
+          "version": "3.0.5"
         }
       ]
     },
@@ -482263,7 +482581,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "3.0.4"
+          "version": "3.0.5"
         },
         {
           "name": "pangenome",
@@ -482771,7 +483089,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "3.0.4"
+          "version": "3.0.5"
         },
         {
           "name": "pangenome",
@@ -483319,7 +483637,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "3.0.4"
+          "version": "3.0.5"
         },
         {
           "name": "pangenome",
@@ -485147,6 +485465,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "c87ca93172a37577c25034898e187b82265d72c8",
-  "updated_at": "2026-11-16T02:15:26.101Z"
+  "commit_sha": "b6403fdd610a2d5e3383857fca9057ad39eea966",
+  "updated_at": "2026-11-16T14:22:29.480Z"
 }
