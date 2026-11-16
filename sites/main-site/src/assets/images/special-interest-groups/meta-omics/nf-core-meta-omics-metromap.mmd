@@ -1,0 +1,102 @@
+%% nf-core meta-omics SIG metro map: how the SIG's pipelines chain.
+%% Edges follow docs/data.json (the validation table) plus the SIG-agreed map additions.
+%% Render and check: .claude/skills/update-metro-map/SKILL.md (nf-metro >= 2.1.0).
+%% Replaced the hand-drawn Inkscape map on 2026-11-09; nf-co.re keeps the old one until the SIG approves (12 Nov meeting).
+%%metro title: nf-core meta-omics pipelines
+%%metro style: nfcore
+%%metro mode: light
+%% line order matters: with line_spread centered, this order is one of few that render without crossings (others swap lines or crash the router: nf-metro#2119, #2069)
+%%metro line: viral | viral contigs | #d0453a
+%%metro line: shotgun | shotgun reads | #24b064
+%%metro line: mags | MAGs / genome bins | #3e2f2f
+%%metro line: mt | metatranscriptome contigs | #7b4fa0
+%%metro line: amplicon | amplicon reads | #e8c547
+%%metro line: db | reference database | #7a7a7a | dashed
+%%metro file: ref_in | FASTA | reference genomes
+%%metro files: magmap_reads | FASTQ | MG / MT reads
+%%metro legend: bl
+%% centered: fans sit around the middle, so lines cross between sections at mid-height (SIG page review, nf-core/website#4561); input stays bundled
+%%metro line_spread: centered
+%%metro line_spread: bundle | input
+%% off_track: the FASTQ icon would otherwise claim a track on the differentialabundance trunk
+%%metro off_track: magmap_reads
+
+graph LR
+    subgraph input [Data input]
+        ref_in[ ]
+        fetchngs[fetchngs]
+        detaxizer[detaxizer]
+        createtaxdb[createtaxdb]
+
+        fetchngs -->|amplicon,shotgun| detaxizer
+        ref_in -->|db| createtaxdb
+    end
+
+    subgraph primary [Primary analysis]
+        _reads
+        ampliseq[ampliseq]
+        taxprofiler[taxprofiler]
+        funcprofiler[funcprofiler]
+        eager[eager]
+        mag[mag]
+        metatdenovo[metatdenovo]
+        viralmetagenome[viralmetagenome]
+        _prof
+
+        _reads -->|amplicon| ampliseq
+        _reads -->|shotgun| taxprofiler
+        _reads -->|shotgun| funcprofiler
+        _reads -->|shotgun| eager
+        _reads -->|shotgun| mag
+        _reads -->|shotgun| metatdenovo
+        _reads -->|shotgun| viralmetagenome
+    end
+
+    subgraph secondary [Secondary analysis]
+        magmap_reads[ ]
+        magmap[magmap]
+        differentialabundance[differentialabundance]
+        metapep[metapep]
+        phageannotator[phageannotator]
+        funcscan[funcscan]
+        phyloplace[phyloplace]
+        proteinfamilies[proteinfamilies]
+        bacmodel[bacmodel]
+
+        magmap_reads -->|shotgun| magmap
+        magmap -->|mags| differentialabundance
+    end
+
+    subgraph upload [Data upload]
+        seqsubmit[seqsubmit]
+    end
+
+    %% detaxizer is optional: reads reach primary analysis from either station
+    fetchngs -->|amplicon,shotgun| _reads
+    detaxizer -->|amplicon,shotgun| _reads
+
+    createtaxdb -->|db| taxprofiler
+    createtaxdb -->|db| metatdenovo
+
+    %% profiles and count tables
+    ampliseq -->|amplicon| differentialabundance
+    %% _prof merges the two profile lines inside primary: without it nf-metro bends the amplicon line and swaps it with shotgun at the secondary entry (nf-metro#2119)
+    taxprofiler -->|shotgun| _prof
+    funcprofiler -->|shotgun| _prof
+    _prof -->|shotgun| differentialabundance
+    metatdenovo -->|mt| differentialabundance
+
+    %% magmap maps the reads back onto the MAGs (reads drawn as a local FASTQ icon: a line from _reads loops and breaks the bundle order)
+    mag -->|mags| magmap
+
+    mag -->|mags| metapep
+    mag -->|mags| phageannotator
+    mag -->|mags| funcscan
+    mag -->|mags| phyloplace
+    mag -->|mags| proteinfamilies
+    mag -->|mags| bacmodel
+    mag -->|mags| seqsubmit
+    metatdenovo -->|mt| proteinfamilies
+    metatdenovo -->|mt| seqsubmit
+    viralmetagenome -->|viral| phageannotator
+    viralmetagenome -->|viral| phyloplace
