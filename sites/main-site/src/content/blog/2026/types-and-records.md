@@ -35,7 +35,6 @@ This change will be enforced due to many reasons, these are the most prominent o
 Any records returned by a typed function (e.g. `def f(x: Record) -> Record{:nextflow}`) have a different hash on every run, causing processes to never resume since they think the record is always different. This has been fixed in Nextflow 26.10.4 so it's advised to use this or any later version if you use typed functions that return a Record type.
 :::
 
-
 ## Composition of the input record type
 
 The **input record should consist of several required and optional typed fields**.
@@ -110,7 +109,6 @@ stageAs file("${moduleDir}/bin/template_script.py"), '*'
 :::warning
 A bug was recently fixed where the staged files weren't being accounted for in the process hash. This means that the process would still resume even though the script has been updated. This bug was patched in Nextflow version 26.10.6 and it's highly advised to use this or higher versions if you want to stage scripts in this way.
 :::
-
 
 ### Example
 
