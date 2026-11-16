@@ -32,7 +32,7 @@ This change will be enforced due to many reasons, these are the most prominent o
 3. Due to this, each sample travels through the pipeline as a single record that collects results at every process, making the dataflow much clearer.
 
 :::warning
-Any records returned by a typed function (e.g. `def f(x: Record) -> Record) have a different hash on every run, causing processes to never resume since they think the record is always different. This has been fixed in Nextflow 26.10.4 so it's advised to use this or any later version if you use typed functions that return a Record type.
+Any records returned by a typed function (e.g. `def f(x: Record) -> Record{:nextflow}`) have a different hash on every run, causing processes to never resume since they think the record is always different. This has been fixed in Nextflow 26.10.4 so it's advised to use this or any later version if you use typed functions that return a Record type.
 :::
 
 
