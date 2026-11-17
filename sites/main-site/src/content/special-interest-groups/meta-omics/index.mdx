@@ -25,8 +25,9 @@ pipelines:
     - viralmetagenome
 ---
 
-import metro_omics_metro from "@assets/images/special-interest-groups/meta-omics/nf-core-meta-omics-metromap.png";
-import { Image } from "astro:assets";
+import metro_omics_metro from "@assets/images/special-interest-groups/meta-omics/nf-core-meta-omics-metromap_light.png";
+import metro_omics_metro_dark from "@assets/images/special-interest-groups/meta-omics/nf-core-meta-omics-metromap_dark.png";
+import DarkModeImage from "../../../components/DarkModeImage.astro";
 
 # Introduction
 
@@ -39,11 +40,10 @@ The aims of this interest group are:
 3. Developing standard parameters for different sub-disciplines (e.g. microbiome analysis) for each pipeline
 4. Documenting usage of "primary" meta-omic pipelines (createtaxdb, ampliseq, eager, taxprofiler, mag, metatdenovo) followed by complementary analyses with "secondary" pipelines (e.g. funcscan, phageannotator, phyloplace, rnaseq, differentialabundance)
 
-<Image
-    src={metro_omics_metro}
-    class="d-block m-auto"
+<DarkModeImage
+    lightSrc={metro_omics_metro}
+    darkSrc={metro_omics_metro_dark}
     width={800}
-    density={[1.5, 2]}
     alt="Diagram showcasing how nf-core pipelines can potentially be used for complementary and sequential analysis within meta-omics disciplines using a London Underground style 'tube map'"
 />
 
