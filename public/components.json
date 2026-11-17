@@ -36125,7 +36125,7 @@
     {
       "name": "bedgovcf",
       "path": "modules/nf-core/bedgovcf/meta.yml",
-      "tree_sha": "02ab1fcadc9e0be1c190c68aec9ba37137f26228",
+      "tree_sha": "bb1fc749bcd84834f49ae416df73df4dc67470e5",
       "files": [
         "modules/nf-core/bedgovcf/.conda-lock/linux_amd64-bd-2bbad2d9385390fd_1.txt",
         "modules/nf-core/bedgovcf/environment.yml",
@@ -36155,6 +36155,25 @@
                 "MIT"
               ],
               "identifier": ""
+            }
+          },
+          {
+            "bgzip": {
+              "description": "Block compression/decompression utility",
+              "homepage": "https://www.htslib.org/doc/bgzip.html",
+              "documentation": "https://www.htslib.org/doc/bgzip.html",
+              "tool_dev_url": "https://github.com/samtools/htslib",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:htslib"
             }
           }
         ],
@@ -36341,7 +36360,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7"
     },
     {
       "name": "bedops_convert2bed",
@@ -45834,7 +45853,7 @@
     {
       "name": "biscuit_pileup",
       "path": "modules/nf-core/biscuit/pileup/meta.yml",
-      "tree_sha": "6cfa127bac5f7af655979513b8f1216fc46d8cf4",
+      "tree_sha": "68063b30c59ceea3fe4f2c6396fb2f4562004977",
       "files": [
         "modules/nf-core/biscuit/pileup/environment.yml",
         "modules/nf-core/biscuit/pileup/main.nf",
@@ -45867,6 +45886,25 @@
                 "MIT"
               ],
               "identifier": "biotools:biscuit"
+            }
+          },
+          {
+            "bgzip": {
+              "description": "Block compression/decompression utility",
+              "homepage": "https://www.htslib.org/doc/bgzip.html",
+              "documentation": "https://www.htslib.org/doc/bgzip.html",
+              "tool_dev_url": "https://github.com/samtools/htslib",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:htslib"
             }
           }
         ],
@@ -46057,7 +46095,7 @@
           "@sateeshperi"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7"
     },
     {
       "name": "biscuit_qc",
@@ -73003,8 +73041,10 @@
     {
       "name": "clair3",
       "path": "modules/nf-core/clair3/meta.yml",
-      "tree_sha": "52483e50206e5c04bbb550bc832d2c9bc6b14146",
+      "tree_sha": "254b2524e151cb0d97bc9b3afd2480e8be9a3a9f",
       "files": [
+        "modules/nf-core/clair3/.conda-lock/linux_amd64-bd-af64dfa2c8f0b388_1.txt",
+        "modules/nf-core/clair3/.conda-lock/linux_arm64-bd-d716697d8603446d_1.txt",
         "modules/nf-core/clair3/environment.yml",
         "modules/nf-core/clair3/main.nf",
         "modules/nf-core/clair3/meta.yml",
@@ -73289,9 +73329,43 @@
         ],
         "maintainers": [
           "@robert-a-forsyth"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/clair3:2.0.5--d716697d8603446d",
+              "build_id": "bd-d716697d8603446d_1",
+              "scan_id": "sc-066321594eafb0f2_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/clair3:2.0.5--af64dfa2c8f0b388",
+              "build_id": "bd-af64dfa2c8f0b388_1",
+              "scan_id": "sc-a5fd11134d16e647_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/clair3:2.0.5--75604064cfb72c0f",
+              "build_id": "bd-75604064cfb72c0f_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/3b/3b8170a951de0e34d4b3d0d1e8033d92cc183145d364751757bbf597fabff618/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/clair3:2.0.5--4fe2b6c5f5156b65",
+              "build_id": "bd-4fe2b6c5f5156b65_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/fa/fac3c639be51f2aa2d33b51009f2a6c4175392b90c1073c670f7e70afa367f6d/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/clair3/.conda-lock/linux_amd64-bd-af64dfa2c8f0b388_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/clair3/.conda-lock/linux_arm64-bd-d716697d8603446d_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "bb85a103d95d7dfe4bd97998eb6a3f39f243a8fc",
       "pipelines": [
         {
           "name": "abotyper",
@@ -90555,7 +90629,7 @@
     {
       "name": "custom_addmostsevereconsequence",
       "path": "modules/nf-core/custom/addmostsevereconsequence/meta.yml",
-      "tree_sha": "5456961fe983a508d66eaab1432570a10b435cca",
+      "tree_sha": "8916b86d3724357904cc1ac4b93d597b76c8271a",
       "files": [
         "modules/nf-core/custom/addmostsevereconsequence/.conda-lock/linux_amd64-bd-1cb13a63908506a2_1.txt",
         "modules/nf-core/custom/addmostsevereconsequence/.conda-lock/linux_arm64-bd-2700cd1b1e45679d_1.txt",
@@ -90586,6 +90660,25 @@
                 "MIT"
               ],
               "identifier": ""
+            }
+          },
+          {
+            "bgzip": {
+              "description": "Block compression/decompression utility",
+              "homepage": "https://www.htslib.org/doc/bgzip.html",
+              "documentation": "https://www.htslib.org/doc/bgzip.html",
+              "tool_dev_url": "https://github.com/samtools/htslib",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:htslib"
             }
           }
         ],
@@ -90778,12 +90871,12 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7"
     },
     {
       "name": "custom_addmostseverepli",
       "path": "modules/nf-core/custom/addmostseverepli/meta.yml",
-      "tree_sha": "2f1a93e6481623ffb7a2fa40ed69ec61ea5d7d8d",
+      "tree_sha": "8b4d5e1f6844e6f34652e2b89b4b2faea6a481c2",
       "files": [
         "modules/nf-core/custom/addmostseverepli/.conda-lock/linux_amd64-bd-1cb13a63908506a2_1.txt",
         "modules/nf-core/custom/addmostseverepli/.conda-lock/linux_arm64-bd-2700cd1b1e45679d_1.txt",
@@ -90814,6 +90907,25 @@
                 "MIT"
               ],
               "identifier": ""
+            }
+          },
+          {
+            "bgzip": {
+              "description": "Block compression/decompression utility",
+              "homepage": "https://www.htslib.org/doc/bgzip.html",
+              "documentation": "https://www.htslib.org/doc/bgzip.html",
+              "tool_dev_url": "https://github.com/samtools/htslib",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:htslib"
             }
           }
         ],
@@ -90990,7 +91102,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7"
     },
     {
       "name": "custom_bed12codonpositions",
@@ -104734,6 +104846,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -123254,7 +123374,7 @@
     {
       "name": "ensemblvep_vep",
       "path": "modules/nf-core/ensemblvep/vep/meta.yml",
-      "tree_sha": "5afd6e45d2733035a1ae9d191474751a2f720f4d",
+      "tree_sha": "589347461e1fd43025c3158cf87f21295a3be6bb",
       "files": [
         "modules/nf-core/ensemblvep/vep/.conda-lock/linux_amd64-bd-43f77a48cc79bf38_1.txt",
         "modules/nf-core/ensemblvep/vep/.conda-lock/linux_arm64-bd-e6eb32f698e90ff9_1.txt",
@@ -123294,6 +123414,25 @@
                 "Apache-2.0"
               ],
               "identifier": ""
+            }
+          },
+          {
+            "tabix": {
+              "description": "Generic indexer for TAB-delimited genome position files",
+              "homepage": "https://www.htslib.org/doc/tabix.html",
+              "documentation": "https://www.htslib.org/doc/tabix.1.html",
+              "tool_dev_url": "https://github.com/samtools/htslib",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:tabix"
             }
           }
         ],
@@ -123716,7 +123855,7 @@
           }
         }
       },
-      "git_sha": "1b655c602466209048278ecde232df9a447b6e67",
+      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7",
       "pipelines": [
         {
           "name": "epitopeprediction",
@@ -125175,7 +125314,7 @@
     {
       "name": "expansionhunter",
       "path": "modules/nf-core/expansionhunter/meta.yml",
-      "tree_sha": "ba589e71115b07d08a245236672ab2f3cc1cf9fe",
+      "tree_sha": "c4fcece5b668caf0aceabdf4a6254414a4238d3c",
       "files": [
         "modules/nf-core/expansionhunter/environment.yml",
         "modules/nf-core/expansionhunter/main.nf",
@@ -125206,6 +125345,25 @@
                 "Apache-2.0"
               ],
               "identifier": "biotools:ExpansionHunter"
+            }
+          },
+          {
+            "bgzip": {
+              "description": "Block compression/decompression utility",
+              "homepage": "https://www.htslib.org/doc/bgzip.html",
+              "documentation": "https://www.htslib.org/doc/bgzip.html",
+              "tool_dev_url": "https://github.com/samtools/htslib",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:htslib"
             }
           }
         ],
@@ -125446,7 +125604,7 @@
           "@jemten"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7",
       "pipelines": [
         {
           "name": "raredisease",
@@ -131679,7 +131837,7 @@
     {
       "name": "fastqdl",
       "path": "modules/nf-core/fastqdl/meta.yml",
-      "tree_sha": "59e13cab2ad8a828be2db613b1c16bb0802cd7c3",
+      "tree_sha": "4c4a62b9f904aa4aa33655ab1d6e4c523762faac",
       "files": [
         "modules/nf-core/fastqdl/.conda-lock/linux_amd64-bd-0758300a069ba945_1.txt",
         "modules/nf-core/fastqdl/.conda-lock/linux_arm64-bd-0d8b58f8b87c6a78_1.txt",
@@ -131701,7 +131859,7 @@
         ],
         "tools": [
           {
-            "fastqdl": {
+            "fastq-dl": {
               "description": "A tool to download FASTQs associated with Study, Experiment, or Run accessions.",
               "homepage": "https://github.com/rpetit3/fastq-dl",
               "documentation": "https://github.com/rpetit3/fastq-dl",
@@ -131885,7 +132043,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "39a573d9581e2efa181e62306db4f8e971d57165",
       "pipelines": [
         {
           "name": "fetchngs",
@@ -147487,7 +147645,7 @@
     {
       "name": "fusionreport_detect",
       "path": "modules/nf-core/fusionreport/detect/meta.yml",
-      "tree_sha": "a4c9d847378d3b7ba6a6bc170336d4da461db409",
+      "tree_sha": "9d08850188beb462ab590718e1eb895cacd1df99",
       "files": [
         "modules/nf-core/fusionreport/detect/environment.yml",
         "modules/nf-core/fusionreport/detect/main.nf",
@@ -147508,7 +147666,7 @@
         ],
         "tools": [
           {
-            "fusionreport": {
+            "fusion_report": {
               "description": "Tool for parsing outputs from fusion detection tools",
               "homepage": "https://github.com/Clinical-Genomics/fusion-report",
               "documentation": "https://github.com/Clinical-Genomics/fusion-report",
@@ -147771,7 +147929,7 @@
           "@rannick"
         ]
       },
-      "git_sha": "22e5802bfde4095c2a58a5c2194e7a85e64999ea",
+      "git_sha": "39a573d9581e2efa181e62306db4f8e971d57165",
       "pipelines": [
         {
           "name": "rnafusion",
@@ -147782,7 +147940,7 @@
     {
       "name": "fusionreport_download",
       "path": "modules/nf-core/fusionreport/download/meta.yml",
-      "tree_sha": "9ef5518dd9f97f4deb403fbcb2e8d61d1e56cffc",
+      "tree_sha": "a0652cf03eb7ce58029858e0a7fc70dffdb5a827",
       "files": [
         "modules/nf-core/fusionreport/download/environment.yml",
         "modules/nf-core/fusionreport/download/main.nf",
@@ -147803,7 +147961,7 @@
         ],
         "tools": [
           {
-            "fusionreport": {
+            "fusion_report": {
               "description": "Generate an interactive summary report from fusion detection tools.",
               "homepage": "https://github.com/Clinical-Genomics/fusion-report",
               "documentation": "https://github.com/Clinical-Genomics/fusion-report/blob/master/README.md",
@@ -147892,7 +148050,7 @@
           "@praveenraj2018"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "39a573d9581e2efa181e62306db4f8e971d57165",
       "pipelines": [
         {
           "name": "rnafusion",
@@ -181019,7 +181177,7 @@
     {
       "name": "goleft_indexcov",
       "path": "modules/nf-core/goleft/indexcov/meta.yml",
-      "tree_sha": "d23e619c15cc1eaea02aaf45c3b17a35e8dbe4ff",
+      "tree_sha": "93529184ceeb8ba20239130b95ce879a04dc96a9",
       "files": [
         "modules/nf-core/goleft/indexcov/.conda-lock/linux_amd64-bd-f68a4f023ff8042a_1.txt",
         "modules/nf-core/goleft/indexcov/environment.yml",
@@ -181056,6 +181214,25 @@
                 "MIT"
               ],
               "identifier": ""
+            }
+          },
+          {
+            "tabix": {
+              "description": "Generic indexer for TAB-delimited genome position files",
+              "homepage": "https://www.htslib.org/doc/tabix.html",
+              "documentation": "https://www.htslib.org/doc/tabix.1.html",
+              "tool_dev_url": "https://github.com/samtools/htslib",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:tabix"
             }
           }
         ],
@@ -181348,7 +181525,7 @@
           }
         }
       },
-      "git_sha": "84238e6ab305a8bf797de33b65bfec1d885c550d",
+      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7",
       "pipelines": [
         {
           "name": "sarek",
@@ -215680,7 +215857,7 @@
     {
       "name": "jasminesv",
       "path": "modules/nf-core/jasminesv/meta.yml",
-      "tree_sha": "22ca071b4343b2b43c6a5784f43fc488d94e61c8",
+      "tree_sha": "687489ee8dd2a76f8642028ed7a85fb48a61ef80",
       "files": [
         "modules/nf-core/jasminesv/environment.yml",
         "modules/nf-core/jasminesv/main.nf",
@@ -215711,6 +215888,25 @@
                 "MIT"
               ],
               "identifier": ""
+            }
+          },
+          {
+            "bgzip": {
+              "description": "Block compression/decompression utility",
+              "homepage": "https://www.htslib.org/doc/bgzip.html",
+              "documentation": "https://www.htslib.org/doc/bgzip.html",
+              "tool_dev_url": "https://github.com/samtools/htslib",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:htslib"
             }
           }
         ],
@@ -215912,7 +216108,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7",
       "pipelines": [
         {
           "name": "longraredisease",
@@ -237364,7 +237560,7 @@
     {
       "name": "maltextract",
       "path": "modules/nf-core/maltextract/meta.yml",
-      "tree_sha": "c96bffcd50785a4264998498afb874b3deb6b31a",
+      "tree_sha": "17bfcd46a670ccc91d305f5aede55c78cc787dcc",
       "files": [
         "modules/nf-core/maltextract/environment.yml",
         "modules/nf-core/maltextract/main.nf",
@@ -237512,7 +237708,7 @@
           "@jfy133"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "bb3ab792823283f877b681b86115d2bdfd78124c"
     },
     {
       "name": "manta_convertinversion",
@@ -268597,7 +268793,7 @@
     {
       "name": "multivcfanalyzer",
       "path": "modules/nf-core/multivcfanalyzer/meta.yml",
-      "tree_sha": "6699c41b1c64213a1a578f619051bc46731e0ca8",
+      "tree_sha": "391cca7246a9cc38b2b84f3c4cb064f442b03c54",
       "files": [
         "modules/nf-core/multivcfanalyzer/environment.yml",
         "modules/nf-core/multivcfanalyzer/main.nf",
@@ -268629,6 +268825,25 @@
                 "GPL >=3"
               ],
               "identifier": ""
+            }
+          },
+          {
+            "tabix": {
+              "description": "Generic indexer for TAB-delimited genome position files",
+              "homepage": "https://www.htslib.org/doc/tabix.html",
+              "documentation": "https://www.htslib.org/doc/tabix.1.html",
+              "tool_dev_url": "https://github.com/samtools/htslib",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:tabix"
             }
           }
         ],
@@ -269089,7 +269304,7 @@
           "@TCLamnidis"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7"
     },
     {
       "name": "mummer",
@@ -269871,7 +270086,7 @@
     {
       "name": "muse_sump",
       "path": "modules/nf-core/muse/sump/meta.yml",
-      "tree_sha": "f645e45595582938681f5ecc9bd2712f086c7fc0",
+      "tree_sha": "aaffa884d4c91388123bc530af56b63430724137",
       "files": [
         "modules/nf-core/muse/sump/environment.yml",
         "modules/nf-core/muse/sump/main.nf",
@@ -269909,6 +270124,25 @@
                 "https://github.com/danielfan/MuSE/blob/master/LICENSE"
               ],
               "identifier": ""
+            }
+          },
+          {
+            "bgzip": {
+              "description": "Block compression/decompression utility",
+              "homepage": "https://www.htslib.org/doc/bgzip.html",
+              "documentation": "https://www.htslib.org/doc/bgzip.html",
+              "tool_dev_url": "https://github.com/samtools/htslib",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:htslib"
             }
           }
         ],
@@ -270081,7 +270315,7 @@
           "@famosab"
         ]
       },
-      "git_sha": "a871f4ee65017c7c3389a0029d8808e4e284ea63",
+      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7",
       "pipelines": [
         {
           "name": "sarek",
@@ -272722,7 +272956,7 @@
     {
       "name": "nanomonsv_parse",
       "path": "modules/nf-core/nanomonsv/parse/meta.yml",
-      "tree_sha": "f1be30076ac4a2b0b6fce9061d7cc907947a51aa",
+      "tree_sha": "b6c12d5389c9d026777af532836d1431678312ca",
       "files": [
         "modules/nf-core/nanomonsv/parse/environment.yml",
         "modules/nf-core/nanomonsv/parse/main.nf",
@@ -272754,6 +272988,44 @@
                 "GPL v3"
               ],
               "identifier": ""
+            }
+          },
+          {
+            "bgzip": {
+              "description": "Block compression/decompression utility",
+              "homepage": "https://www.htslib.org/doc/bgzip.html",
+              "documentation": "https://www.htslib.org/doc/bgzip.html",
+              "tool_dev_url": "https://github.com/samtools/htslib",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:htslib"
+            }
+          },
+          {
+            "tabix": {
+              "description": "Generic indexer for TAB-delimited genome position files",
+              "homepage": "https://www.htslib.org/doc/tabix.html",
+              "documentation": "https://www.htslib.org/doc/tabix.1.html",
+              "tool_dev_url": "https://github.com/samtools/htslib",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:tabix"
             }
           }
         ],
@@ -273192,7 +273464,7 @@
           "@awgymer"
         ]
       },
-      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63"
+      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7"
     },
     {
       "name": "nanoplot",
@@ -296803,7 +297075,7 @@
     {
       "name": "paragraph_vcf2paragraph",
       "path": "modules/nf-core/paragraph/vcf2paragraph/meta.yml",
-      "tree_sha": "949d3d9f00cc63fe5c52a9a886896644832c3b87",
+      "tree_sha": "39d69dbfc621f71f4b410c42c98a36aef59f78b3",
       "files": [
         "modules/nf-core/paragraph/vcf2paragraph/environment.yml",
         "modules/nf-core/paragraph/vcf2paragraph/main.nf",
@@ -296832,6 +297104,25 @@
                 "Apache License 2.0"
               ],
               "identifier": "biotools:Paragraph"
+            }
+          },
+          {
+            "bgzip": {
+              "description": "Block compression/decompression utility",
+              "homepage": "https://www.htslib.org/doc/bgzip.html",
+              "documentation": "https://www.htslib.org/doc/bgzip.html",
+              "tool_dev_url": "https://github.com/samtools/htslib",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:htslib"
             }
           }
         ],
@@ -296988,7 +297279,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7"
     },
     {
       "name": "paraphase",
@@ -313350,6 +313641,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -313657,6 +313952,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -339082,7 +339381,7 @@
     {
       "name": "rastair2_call",
       "path": "modules/nf-core/rastair2/call/meta.yml",
-      "tree_sha": "179f6970b2aaa9cf60a5bdc58d633819e1f2d692",
+      "tree_sha": "fd3bef70e7741db7ed6acfef1e9a26ab6434ba0b",
       "files": [
         "modules/nf-core/rastair2/call/.conda-lock/linux_amd64-bd-4ffd26b40813e268_1.txt",
         "modules/nf-core/rastair2/call/.conda-lock/linux_arm64-bd-0f7189390ccfdc4d_1.txt",
@@ -339117,6 +339416,25 @@
                 "LicenseRef-NonCommercial"
               ],
               "identifier": ""
+            }
+          },
+          {
+            "tabix": {
+              "description": "Generic indexer for TAB-delimited genome position files",
+              "homepage": "https://www.htslib.org/doc/tabix.html",
+              "documentation": "https://www.htslib.org/doc/tabix.1.html",
+              "tool_dev_url": "https://github.com/samtools/htslib",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:tabix"
             }
           }
         ],
@@ -339420,7 +339738,7 @@
           }
         }
       },
-      "git_sha": "0f229656d4350689c7e85b956a17b31742f1f42c"
+      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7"
     },
     {
       "name": "rastair2_mbias",
@@ -363578,7 +363896,7 @@
     {
       "name": "samtools_bam2fq",
       "path": "modules/nf-core/samtools/bam2fq/meta.yml",
-      "tree_sha": "ae94c4078ad68e0e3addbd5ee205fac263d08fa0",
+      "tree_sha": "7e0ad8a62ea142212ac09a706876982c762f0a48",
       "files": [
         "modules/nf-core/samtools/bam2fq/.conda-lock/linux_amd64-bd-ca51bc8a00d53523_4.txt",
         "modules/nf-core/samtools/bam2fq/.conda-lock/linux_arm64-bd-3c311ea7eb225a00_5.txt",
@@ -363614,6 +363932,25 @@
                 "MIT"
               ],
               "identifier": "biotools:samtools"
+            }
+          },
+          {
+            "bgzip": {
+              "description": "Block compression/decompression utility",
+              "homepage": "https://www.htslib.org/doc/bgzip.html",
+              "documentation": "https://www.htslib.org/doc/bgzip.html",
+              "tool_dev_url": "https://github.com/samtools/htslib",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:htslib"
             }
           }
         ],
@@ -363795,7 +364132,7 @@
           }
         }
       },
-      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
+      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7",
       "pipelines": [
         {
           "name": "rnadnavar",
@@ -406035,7 +406372,7 @@
     {
       "name": "spades",
       "path": "modules/nf-core/spades/meta.yml",
-      "tree_sha": "2ea6ba0e256286a4200c237f8e7682d18f7543c0",
+      "tree_sha": "7122e74f30749c40feb35c43d88e24f627fb5482",
       "files": [
         "modules/nf-core/spades/environment.yml",
         "modules/nf-core/spades/main.nf",
@@ -406304,7 +406641,7 @@
           "@d4straub"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "7856059a332d5d79c7de61221c88f2fb1efae1f4",
       "pipelines": [
         {
           "name": "denovotranscript",
@@ -413849,7 +414186,7 @@
     {
       "name": "stranger",
       "path": "modules/nf-core/stranger/meta.yml",
-      "tree_sha": "df5999254f178b836972b7e582379ce39bba1fdb",
+      "tree_sha": "f9733c518cbf5375aa59d58558ac0dbee94f867c",
       "files": [
         "modules/nf-core/stranger/environment.yml",
         "modules/nf-core/stranger/main.nf",
@@ -413880,6 +414217,25 @@
                 "MIT"
               ],
               "identifier": ""
+            }
+          },
+          {
+            "tabix": {
+              "description": "Generic indexer for TAB-delimited genome position files",
+              "homepage": "https://www.htslib.org/doc/tabix.html",
+              "documentation": "https://www.htslib.org/doc/tabix.1.html",
+              "tool_dev_url": "https://github.com/samtools/htslib",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:tabix"
             }
           }
         ],
@@ -414054,7 +414410,7 @@
           "@ljmesi"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7",
       "pipelines": [
         {
           "name": "longraredisease",
@@ -414459,7 +414815,7 @@
     {
       "name": "strdust",
       "path": "modules/nf-core/strdust/meta.yml",
-      "tree_sha": "262faa9d8c7b7bdccdbf09df180e179d4c410269",
+      "tree_sha": "fcd7542ca6345ec775edbab17321f80e7578f6c6",
       "files": [
         "modules/nf-core/strdust/environment.yml",
         "modules/nf-core/strdust/main.nf",
@@ -414489,6 +414845,25 @@
                 "MIT"
               ],
               "identifier": ""
+            }
+          },
+          {
+            "bgzip": {
+              "description": "Block compression/decompression utility",
+              "homepage": "https://www.htslib.org/doc/bgzip.html",
+              "documentation": "https://www.htslib.org/doc/bgzip.html",
+              "tool_dev_url": "https://github.com/samtools/htslib",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:htslib"
             }
           }
         ],
@@ -414721,7 +415096,7 @@
           "@Schmytzi"
         ]
       },
-      "git_sha": "9ef05a6153a7d0a0e56815190db8dbca3905ba63"
+      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7"
     },
     {
       "name": "strelka_germline",
@@ -424393,7 +424768,7 @@
     {
       "name": "tabix_bgzip",
       "path": "modules/nf-core/tabix/bgzip/meta.yml",
-      "tree_sha": "f8909a9a9bce64efc7d1307e5546def27729f6d5",
+      "tree_sha": "b327d5200acb49791a8451869623f42b864f8dbd",
       "files": [
         "modules/nf-core/tabix/bgzip/environment.yml",
         "modules/nf-core/tabix/bgzip/main.nf",
@@ -424419,7 +424794,32 @@
               "description": "Bgzip compresses or decompresses files in a similar manner to, and compatible with, gzip.\n",
               "homepage": "https://www.htslib.org/doc/tabix.html",
               "documentation": "http://www.htslib.org/doc/bgzip.html",
-              "doi": "10.1093/bioinformatics/btp352",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:tabix"
+            }
+          },
+          {
+            "tabix": {
+              "description": "Generic indexer for TAB-delimited genome position files",
+              "homepage": "https://www.htslib.org/doc/tabix.html",
+              "documentation": "https://www.htslib.org/doc/tabix.1.html",
+              "tool_dev_url": "https://github.com/samtools/htslib",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
               "licence": [
                 "MIT"
               ],
@@ -424541,7 +424941,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7",
       "pipelines": [
         {
           "name": "funcscan",
@@ -424588,7 +424988,7 @@
     {
       "name": "tabix_bgziptabix",
       "path": "modules/nf-core/tabix/bgziptabix/meta.yml",
-      "tree_sha": "7a71b283c1f50b706a0dec3cf261084e8d5ae310",
+      "tree_sha": "09e6d08466792ff6ee37c25ef6140a8ed286b34d",
       "files": [
         "modules/nf-core/tabix/bgziptabix/environment.yml",
         "modules/nf-core/tabix/bgziptabix/main.nf",
@@ -424614,11 +425014,36 @@
               "description": "Generic indexer for TAB-delimited genome position files.",
               "homepage": "https://www.htslib.org/doc/tabix.html",
               "documentation": "https://www.htslib.org/doc/tabix.1.html",
-              "doi": "10.1093/bioinformatics/btq671",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
               "licence": [
                 "MIT"
               ],
               "identifier": "biotools:tabix"
+            }
+          },
+          {
+            "bgzip": {
+              "description": "Block compression/decompression utility",
+              "homepage": "https://www.htslib.org/doc/bgzip.html",
+              "documentation": "https://www.htslib.org/doc/bgzip.html",
+              "tool_dev_url": "https://github.com/samtools/htslib",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:htslib"
             }
           }
         ],
@@ -424768,7 +425193,7 @@
           "@DLBPointon"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7",
       "pipelines": [
         {
           "name": "cutandrun",
@@ -424803,7 +425228,7 @@
     {
       "name": "tabix_tabix",
       "path": "modules/nf-core/tabix/tabix/meta.yml",
-      "tree_sha": "72cb050dfe26b6b5c8f867c3d1e6891b028132f7",
+      "tree_sha": "0d9e1d740085cfc17c7d57bb5f4d082ef4993038",
       "files": [
         "modules/nf-core/tabix/tabix/environment.yml",
         "modules/nf-core/tabix/tabix/main.nf",
@@ -424829,7 +425254,13 @@
               "description": "Generic indexer for TAB-delimited genome position files.",
               "homepage": "https://www.htslib.org/doc/tabix.html",
               "documentation": "https://www.htslib.org/doc/tabix.1.html",
-              "doi": "10.1093/bioinformatics/btq671",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
               "licence": [
                 "MIT"
               ],
@@ -424970,7 +425401,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7",
       "pipelines": [
         {
           "name": "drop",
@@ -453337,7 +453768,7 @@
     {
       "name": "vepyr_annotate",
       "path": "modules/nf-core/vepyr/annotate/meta.yml",
-      "tree_sha": "cede33bde090c12f4e603fc21918e3c518b479a1",
+      "tree_sha": "ee67d7a0ba7535ffa4efb405495a7f749cc4100e",
       "files": [
         "modules/nf-core/vepyr/annotate/.conda-lock/linux_amd64-bd-576c42addf1fb1dc_1.txt",
         "modules/nf-core/vepyr/annotate/.conda-lock/linux_arm64-bd-47dbdabdd2f558a8_1.txt",
@@ -453375,6 +453806,13 @@
               "description": "Generic indexer for TAB-delimited genome position files.",
               "homepage": "https://www.htslib.org/doc/tabix.html",
               "documentation": "https://www.htslib.org/doc/tabix.html",
+              "doi": "10.1093/gigascience/giab007",
+              "publication": {
+                "author": "Bonfield, J. K., Marshall, J., Danecek, P., Li, H., Ohan, V., Whitwham, A., Keane, T. & Davies, R. M.",
+                "year": 2021,
+                "title": "HTSlib: C library for reading/writing high-throughput sequencing data",
+                "source": "GigaScience"
+              },
               "licence": [
                 "MIT"
               ],
@@ -453669,7 +454107,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7"
     },
     {
       "name": "verifybamid_verifybamid",
@@ -475720,7 +476158,7 @@
     {
       "name": "fastq_align_dedup_bwamem",
       "path": "subworkflows/nf-core/fastq_align_dedup_bwamem/meta.yml",
-      "tree_sha": "4f4ba0bdde9edf4cf8d3c463b4522f743862bd2f",
+      "tree_sha": "fba0a6dd2706f248c157fffff016c0df3092ce9d",
       "files": [
         "subworkflows/nf-core/fastq_align_dedup_bwamem/main.nf",
         "subworkflows/nf-core/fastq_align_dedup_bwamem/meta.yml",
@@ -475866,7 +476304,7 @@
           "@eduard-watchmaker"
         ]
       },
-      "git_sha": "f5408179d4b14af7c2429fa5cf8ef1075b3a4071",
+      "git_sha": "1fdaa847da58b6523f106bba6669c84bb54c2a85",
       "pipelines": [
         {
           "name": "methylseq",
@@ -485465,6 +485903,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "b6403fdd610a2d5e3383857fca9057ad39eea966",
-  "updated_at": "2026-11-16T14:22:29.480Z"
+  "commit_sha": "1fdaa847da58b6523f106bba6669c84bb54c2a85",
+  "updated_at": "2026-11-17T02:15:26.798Z"
 }
