@@ -47,8 +47,9 @@
         title="Copy to clipboard"
         type="button"
         onclick={() => copyToClipboard(cmd)}
-        ><i class={"fa-regular px-1 fa-clipboard" + (copied ? "-check" : "")}></i></button
     >
+        <i class={"fa-regular px-1 fa-clipboard" + (copied ? "-check" : "")}></i>
+    </button>
 </div>
 
 <style lang="scss">

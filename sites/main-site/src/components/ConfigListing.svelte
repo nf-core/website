@@ -68,8 +68,9 @@
                             <a
                                 class="stretched-link"
                                 href={"/configs/" + config.id.replace("conf/", "").replace("(pipeline/.*)/", "") + "/"}
-                                >{@html config.id.replaceAll("_", "_<wbr>").replace("conf/", "")}</a
                             >
+                                {@html config.id.replaceAll("_", "_<wbr>").replace("conf/", "")}
+                            </a>
                         </div>
                     </td>
                     <td class="description text-small">
@@ -91,8 +92,9 @@
                                 <a
                                     class="badge bg-secondary me-2 fw-normal"
                                     href={`/configs/${config.id.replace("conf/", "").replace("(pipeline/.*)/", "")}/#${pipelineConfig.id.split("/").slice(-2, -1).join("/")}`}
-                                    >{pipelineConfig.id.split("/").slice(-2, -1).join("/")}</a
                                 >
+                                    {pipelineConfig.id.split("/").slice(-2, -1).join("/")}
+                                </a>
                             {/each}
                         {/if}
                     </td>

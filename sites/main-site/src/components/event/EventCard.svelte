@@ -69,8 +69,10 @@
                     <a
                         href={"/events/" + slug + "/"}
                         class="btn btn-outline-success text-nowrap rounded-start-0"
-                        class:rounded-0={time_category === "future"}>See details</a
+                        class:rounded-0={time_category === "future"}
                     >
+                        See details
+                    </a>
                     {#if time_category === "future"}
                         <ExportEventButton {frontmatter} add_class="btn-outline-success rounded-top-0" />
                     {/if}

@@ -55,8 +55,8 @@
                                 {:else}
                                     <i class={`fas ${item.icon}`} aria-hidden="true"></i>
                                 {/if}
-                                <span class="ms-1">{item.label}:</span></span
-                            >
+                                <span class="ms-1">{item.label}:</span>
+                            </span>
                             {#each item.value.split(",") as line}
                                 <code class="text-muted ms-1">{line}</code>
                             {/each}

@@ -107,9 +107,9 @@
                         <tr>
                             <td class=" name p-0">
                                 <div class="position-relative p-3">
-                                    <a class="stretched-link" href={"/special-interest-groups/" + group.id}
-                                        >{group.data.groupName}</a
-                                    >
+                                    <a class="stretched-link" href={"/special-interest-groups/" + group.id}>
+                                        {group.data.groupName}
+                                    </a>
                                 </div>
                             </td>
                             <td class="text-small">

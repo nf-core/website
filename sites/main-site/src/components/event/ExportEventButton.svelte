@@ -98,7 +98,7 @@
         <button class="dropdown-item" onclick={() => downloadIcal()}> Download iCal Event</button>
         <a class="dropdown-item" href={calendarData.google} target="_blank" rel="noreferrer"> Add to Google Calendar</a>
         <a class="dropdown-item" href={calendarData.outlook} target="_blank" rel="noreferrer">
-            Add to Microsoft Outlook</a
-        >
+            Add to Microsoft Outlook
+        </a>
     </div>
 </div>
