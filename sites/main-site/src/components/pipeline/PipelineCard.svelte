@@ -37,8 +37,8 @@
 <ListingCard {recentRelease}>
     {#snippet cardHeader()}
         <div class="d-flex flex-wrap justify-content-between align-items-center">
-            <a class="text-decoration-none" href={"/" + pipeline.name + "/" + (released ? tagName : "dev") + "/"}
-                >{name}
+            <a class="text-decoration-none" href={"/" + pipeline.name + "/" + (released ? tagName : "dev") + "/"}>
+                {name}
                 {#if archived}
                     <i class="fa-solid fa-xs fa-archive text-info" title="archived" data-bs-toggle="tooltip"></i>
                 {:else if released}
@@ -75,8 +75,9 @@
                     <a
                         href={"https://github.com/nf-core/" + name + "/releases/tag/" + tagName}
                         class="text-decoration-none badge text-bg-success fs-6 mb-0 rounded-top-0"
-                        >New release! <Confetti x={[-1.5, 1.75]} amount={100} rounded={true} /></a
                     >
+                        New release! <Confetti x={[-1.5, 1.75]} amount={100} rounded={true} />
+                    </a>
                 {/if}
             </div>
             {#if body}

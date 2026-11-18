@@ -34,7 +34,8 @@
                 aria-hidden="true"
                 tabindex="-1"
                 href={"#" + id?.replaceAll("_", "-")}
-                ><i class="ms-1 fas fa-xs invisible" aria-hidden="true"></i>{#if definition.fa_icon}
+            >
+                <i class="ms-1 fas fa-xs invisible" aria-hidden="true"></i>{#if definition.fa_icon}
                     <i class="fa fa-fw me-2 {definition.fa_icon}"></i>
                 {/if}
                 {definition.title}

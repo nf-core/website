@@ -77,8 +77,10 @@
             class:d-none={progress === 100}
             dominant-baseline="central"
             text-anchor="middle"
-            style="fill: var(--bs-body-color)">{label}</text
+            style="fill: var(--bs-body-color)"
         >
+            {label}
+        </text>
         <text
             x="50%"
             y="50%"
@@ -87,8 +89,10 @@
             class="success"
             dominant-baseline="central"
             text-anchor="middle"
-            style="fill: var(--bs-success)">{label}</text
+            style="fill: var(--bs-success)"
         >
+            {label}
+        </text>
     </svg>
     {#if title}
         <span class="ms-1">{title}</span>

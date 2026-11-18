@@ -124,27 +124,27 @@
                         <div class="w-100 row align-items-center">
                             <div class="col-8 py-lg-2 text-lg-start">
                                 <h5 class="pt-2 pb-0 pb-lg-1">
-                                    <a href={"events/" + event.id + "/"} class="text-success text-decoration-none"
-                                        >{event.data.title}</a
-                                    >
+                                    <a href={"events/" + event.id + "/"} class="text-success text-decoration-none">
+                                        {event.data.title}
+                                    </a>
                                     <span class="ms-1 my-auto">
-                                        <span class={"badge bg-" + eventTypeClasses[event.data.type] + " small"}
-                                            ><i class={eventTypeIcons[event.data.type] + " me-1"} aria-hidden="true"
-                                            ></i>
-                                            {event.data.type}</span
-                                        >
+                                        <span class={"badge bg-" + eventTypeClasses[event.data.type] + " small"}>
+                                            <i class={eventTypeIcons[event.data.type] + " me-1"} aria-hidden="true"></i>
+                                            {event.data.type}
+                                        </span>
                                     </span>
                                 </h5>
-                                <a href={"events/" + event.id + "/"} class="text-body text-decoration-none lead"
-                                    >{@html event.data.renderedSubtitle}</a
-                                >
+                                <a href={"events/" + event.id + "/"} class="text-body text-decoration-none lead">
+                                    {@html event.data.renderedSubtitle}
+                                </a>
                                 {#if event.data.duration}
                                     <p class="mb-1">
                                         <a
                                             href={"events/" + event.id + "/"}
                                             class="text-secondary-emphasis text-decoration-none"
-                                            >{event.data.duration}</a
                                         >
+                                            {event.data.duration}
+                                        </a>
                                     </p>
                                 {/if}
                             </div>
@@ -172,8 +172,10 @@
                                         <div class="btn-group" role="group" aria-label="Event details">
                                             <a
                                                 href={"events/" + event.id + "/"}
-                                                class="btn btn-outline-success text-nowrap">Event Details</a
+                                                class="btn btn-outline-success text-nowrap"
                                             >
+                                                Event Details
+                                            </a>
                                             {#if Array.isArray(event.data?.locations) && event.data.locations.length > 0}
                                                 <VideoButton urls={event.data.locations} />
                                             {/if}
@@ -193,23 +195,25 @@
                 {#each events as event (event.id)}
                     <div class="text-center">
                         <h4 class="pt-2 pb-0">
-                            <a href={"events/" + event.id + "/"} class="text-success text-decoration-none"
-                                >{event.data.title}</a
-                            >
+                            <a href={"events/" + event.id + "/"} class="text-success text-decoration-none">
+                                {event.data.title}
+                            </a>
                         </h4>
                         <div class="d-sm-none mb-1">
-                            <a href={"events/" + event.id + "/"} class="text-body text-decoration-none"
-                                >{@html event.data.renderedSubtitle}</a
-                            ><span class={"badge bg-" + eventTypeClasses[event.data.type] + " small ms-3"}
-                                ><i class={eventTypeIcons[event.data.type] + " me-1"} aria-hidden="true"></i>
-                                {event.data.type}</span
-                            >
+                            <a href={"events/" + event.id + "/"} class="text-body text-decoration-none">
+                                {@html event.data.renderedSubtitle}
+                            </a><span class={"badge bg-" + eventTypeClasses[event.data.type] + " small ms-3"}>
+                                <i class={eventTypeIcons[event.data.type] + " me-1"} aria-hidden="true"></i>
+                                {event.data.type}
+                            </span>
                         </div>
                         <div class="small mb-1 mx-3 d-flex flex-column">
                             <a
                                 href={"events/" + event.id + "/"}
-                                class="text-secondary-emphasis text-decoration-none mb-2">{event.data.duration}</a
+                                class="text-secondary-emphasis text-decoration-none mb-2"
                             >
+                                {event.data.duration}
+                            </a>
                             <div class="btn-group text-nowrap" role="group" aria-label="Event details">
                                 <a href={"events/" + event.id + "/"} class="btn btn-outline-success"> Event Details </a>
                                 {#if event_time_category === "upcoming"}
