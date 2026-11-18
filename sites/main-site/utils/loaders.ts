@@ -168,7 +168,7 @@ function createSchemaProcessor(renderMarkdown: Function): Processors {
                     const defsKey = schema.definitions ? "definitions" : "$defs";
                     if (schema[defsKey]) {
                         // Deep copy the definitions to avoid mutation
-                        schema[defsKey] = JSON.parse(JSON.stringify(schema[defsKey]));
+                        schema[defsKey] = structuredClone(schema[defsKey]);
 
                         await Promise.all(
                             Object.entries(schema[defsKey]).map(async ([key, definition]) => {
