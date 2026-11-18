@@ -8121,7 +8121,7 @@
     {
       "name": "amps",
       "path": "modules/nf-core/amps/meta.yml",
-      "tree_sha": "a912c857be4edbae98008c36491439dc8073b0ac",
+      "tree_sha": "a0dcd259a6a9bcc2815717159307237f973ea4ce",
       "files": [
         "modules/nf-core/amps/.conda-lock/linux_amd64-bd-ec5d92deb3e899f2_1.txt",
         "modules/nf-core/amps/.conda-lock/linux_arm64-bd-8545bf70d51a9ae1_1.txt",
@@ -8338,7 +8338,7 @@
           }
         }
       },
-      "git_sha": "87db199c5c99013cc657415176ae85e0d7603b42"
+      "git_sha": "c4d0cf8a8dc293b806163dcfdd8cdd3b6a17a386"
     },
     {
       "name": "amrfinderplus_run",
@@ -93652,6 +93652,219 @@
       ]
     },
     {
+      "name": "custom_mtx2h5ad",
+      "path": "modules/nf-core/custom/mtx2h5ad/meta.yml",
+      "tree_sha": "866c96e99a5c7ef8be9d04e05d7d9aed9a994471",
+      "files": [
+        "modules/nf-core/custom/mtx2h5ad/.conda-lock/linux_amd64-bd-03c29b706f98b938_1.txt",
+        "modules/nf-core/custom/mtx2h5ad/.conda-lock/linux_arm64-bd-9601b8fe732c7a72_1.txt",
+        "modules/nf-core/custom/mtx2h5ad/environment.yml",
+        "modules/nf-core/custom/mtx2h5ad/main.nf",
+        "modules/nf-core/custom/mtx2h5ad/meta.yml",
+        "modules/nf-core/custom/mtx2h5ad/templates/mtx2h5ad.py",
+        "modules/nf-core/custom/mtx2h5ad/tests/main.nf.test",
+        "modules/nf-core/custom/mtx2h5ad/tests/main.nf.test.snap",
+        "modules/nf-core/custom/mtx2h5ad/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "custom_mtx2h5ad",
+        "description": "Convert single-cell gene expression outputs from Cell Ranger, STARsolo, simpleaf or kallisto to AnnData H5AD format, retaining available RNA velocity layers.",
+        "keywords": [
+          "single-cell",
+          "gene expression",
+          "matrix",
+          "h5ad",
+          "conversion",
+          "rna velocity"
+        ],
+        "tools": [
+          {
+            "python": {
+              "description": "Python interpreter used to run the custom conversion script.",
+              "homepage": "https://www.python.org/",
+              "documentation": "https://docs.python.org/3/"
+            }
+          },
+          {
+            "scanpy": {
+              "description": "Single-cell analysis library used to read expression matrices.",
+              "homepage": "https://scanpy.readthedocs.io/",
+              "documentation": "https://scanpy.readthedocs.io/en/stable/api/reading.html",
+              "tool_dev_url": "https://github.com/scverse/scanpy",
+              "licence": [
+                "BSD-3-Clause"
+              ]
+            }
+          },
+          {
+            "anndata": {
+              "description": "Annotated data structures used to combine matrices and write H5AD files.",
+              "homepage": "https://anndata.readthedocs.io/",
+              "documentation": "https://anndata.readthedocs.io/en/stable/",
+              "tool_dev_url": "https://github.com/scverse/anndata",
+              "licence": [
+                "BSD-3-Clause"
+              ]
+            }
+          },
+          {
+            "pandas": {
+              "description": "Tabular data library used to read barcodes and gene annotations.",
+              "homepage": "https://pandas.pydata.org/",
+              "documentation": "https://pandas.pydata.org/docs/",
+              "tool_dev_url": "https://github.com/pandas-dev/pandas",
+              "licence": [
+                "BSD-3-Clause"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information.\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "inputs": {
+                "type": "file",
+                "description": "Mandatory expression files or directories to stage for conversion.\nCell Ranger, Cell Ranger ARC and Cell Ranger multi require a matching\n*{input_type}_feature_bc_matrix.h5 file. STARsolo requires a directory\nnamed by input_type containing matrix.mtx.gz, barcodes.tsv.gz and\nfeatures.tsv.gz; an optional velocyto_{input_type} directory supplies\nambiguous, spliced and unspliced matrices. Simpleaf requires an output\ndirectory containing alevin/quants.h5ad. Kallisto requires a directory\ncontaining Matrix Market matrices, *.barcodes.txt and *.genes.txt files\nappropriate to kb_workflow.\n"
+              }
+            },
+            {
+              "input_type": {
+                "type": "string",
+                "description": "Matrix selection for Cell Ranger and STARsolo, typically raw or filtered.\nSelects the Cell Ranger HDF5 filename or the staged STARsolo directory.\nIgnored for simpleaf and kallisto; pass an empty string when unused.\n"
+              }
+            }
+          ],
+          {
+            "txp2gene": {
+              "type": "file",
+              "description": "Transcript-to-gene mapping required for kallisto. A headerless tab-separated\nfile with transcript ID, gene ID and gene symbol in the first three columns.\nGene IDs and symbols are used to annotate the expression matrix.\nPass an empty list when unused by other aligners.\n",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_2330"
+                }
+              ]
+            }
+          },
+          {
+            "aligner": {
+              "type": "string",
+              "description": "Mandatory source aligner or quantification tool selecting the converter.",
+              "enum": [
+                "cellranger",
+                "cellrangerarc",
+                "cellrangermulti",
+                "star",
+                "simpleaf",
+                "kallisto"
+              ]
+            }
+          },
+          {
+            "kb_workflow": {
+              "type": "string",
+              "description": "kallisto workflow defining the matrix layout: standard reads a single\ncount matrix; lamanno combines spliced and unspliced matrices; nac combines\nnascent, ambiguous and mature matrices. The latter two retain the component\nmatrices as layers and sum them into the main count matrix.\nIgnored for other aligners; pass an empty string when unused.\n"
+            }
+          }
+        ],
+        "output": {
+          "h5ad": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.h5ad": {
+                  "type": "file",
+                  "description": "AnnData object containing cell-by-gene expression counts, sample labels,\ngene annotations and available RNA velocity layers. Original gene IDs\nare retained in var['gene_versions']; the variable index uses unique,\nversion-free gene IDs.\n",
+                  "pattern": "*.h5ad",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3590"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing Python, Scanpy, pandas and AnnData versions.",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing Python, Scanpy, pandas and AnnData versions."
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@delfiterradas"
+        ],
+        "maintainers": [
+          "@delfiterradas"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/anndata_h5py_hdf5plugin_leidenalg_pruned:03c29b706f98b938",
+              "build_id": "bd-03c29b706f98b938_1",
+              "scan_id": "sc-d1101a2c7ca63835_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/anndata_h5py_hdf5plugin_leidenalg_pruned:9601b8fe732c7a72",
+              "build_id": "bd-9601b8fe732c7a72_1",
+              "scan_id": "sc-49caa8f3f620e25a_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/anndata_h5py_hdf5plugin_leidenalg_pruned:171f94677ca2249d",
+              "build_id": "bd-171f94677ca2249d_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/dd/dd6d4d488389c4b066a145a1928cced511a2b7e409a53f2f69c25ad1ef370b42/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/anndata_h5py_hdf5plugin_leidenalg_pruned:dafa2fd95fb0a61f",
+              "build_id": "bd-dafa2fd95fb0a61f_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/d1/d1a483ca814756712f25aebb7b21127890e620de38480e6d6e9e284f2d2c2e58/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/custom/mtx2h5ad/.conda-lock/linux_amd64-bd-03c29b706f98b938_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/custom/mtx2h5ad/.conda-lock/linux_arm64-bd-9601b8fe732c7a72_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "7df7b960fcccb63920a369ee817b26f3893d5b42"
+    },
+    {
       "name": "custom_multiqccustombiotype",
       "path": "modules/nf-core/custom/multiqccustombiotype/meta.yml",
       "tree_sha": "d355dbb4b75cfbe2bd44ec1abe9838694db2f16f",
@@ -104843,6 +105056,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -124341,6 +124562,226 @@
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
     },
     {
+      "name": "epang_filterquery",
+      "path": "modules/nf-core/epang/filterquery/meta.yml",
+      "tree_sha": "08e636cd1c167879a5545c91e2fb3fab6bd9c065",
+      "files": [
+        "modules/nf-core/epang/filterquery/.conda-lock/linux_amd64-bd-fe0c202000bc8ed4_1.txt",
+        "modules/nf-core/epang/filterquery/.conda-lock/linux_arm64-bd-6fab93852b0eb5a5_1.txt",
+        "modules/nf-core/epang/filterquery/environment.yml",
+        "modules/nf-core/epang/filterquery/main.nf",
+        "modules/nf-core/epang/filterquery/meta.yml",
+        "modules/nf-core/epang/filterquery/templates/filterquery.sh",
+        "modules/nf-core/epang/filterquery/tests/main.nf.test",
+        "modules/nf-core/epang/filterquery/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "epang_filterquery",
+        "description": "Drop query sequences that have too few residues in the occupied columns of the reference alignment, before EPA-ng placement",
+        "keywords": [
+          "epa-ng",
+          "phylogenetic placement",
+          "alignment",
+          "filter",
+          "fasta"
+        ],
+        "tools": [
+          {
+            "gawk": {
+              "description": "GNU awk",
+              "homepage": "https://www.gnu.org/software/gawk/",
+              "documentation": "https://www.gnu.org/software/gawk/manual/",
+              "tool_dev_url": "https://www.gnu.org/prep/ftp.html",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "reference": {
+                "type": "file",
+                "description": "Aligned reference sequences in FASTA format, gzipped or not. A column\nis occupied when at least one reference sequence has a residue in it; gaps are `-`\nand `.`, and also `?`, `N` and `n` when the reference is nucleotide. It is taken to be\nnucleotide when at least 90% of its non-gap characters are A, C, G, T, U or N (either\ncase), otherwise protein, where `N` is asparagine. EPA-ng drops the unoccupied columns.\n",
+                "pattern": "*.{fasta,fa,afa,aln}{,.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "query": {
+                "type": "file",
+                "description": "Query sequences aligned to the reference, in FASTA format, gzipped or\nnot, with the same number of columns as `reference`.\n",
+                "pattern": "*.{fasta,fa,afa,aln}{,.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "min_query_columns": {
+                "type": "integer",
+                "description": "The minimum number of residues a query must have in occupied columns.\nAt least 1, the lowest value EPA-ng accepts. A query is also dropped when it has no\nunambiguous residue in them, since EPA-ng reads `?`, `N`, `X` and `O` (either case) as\ngaps and aborts on a query with nothing else, whatever this threshold is.\n"
+              }
+            },
+            {
+              "min_reference_coverage": {
+                "type": "float",
+                "description": "The minimum fraction of the occupied columns that a query must have a\nresidue in, between 0 and 1. 0 turns this filter off.\n"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "query": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.query.fasta.gz": {
+                  "type": "file",
+                  "description": "The queries that passed both thresholds, gzipped aligned FASTA. Not\nwritten when no query passes, since an empty file makes EPA-ng fail.\n",
+                  "pattern": "*.query.fasta.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "table": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.filterquery.tsv": {
+                  "type": "file",
+                  "description": "One row per query with the columns `query`, `reference_columns` (the\nnumber of occupied columns), `query_columns` (residues of the query in\nthem), `reference_coverage` (the ratio of the two), `unambiguous_columns` (the\nnumber of those columns where the query has a residue other than `?`, `N`, `X`\nand `O`, either case) and `kept` (`true` or `false`).\n",
+                  "pattern": "*.filterquery.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_gawk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gawk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "awk -Wversion | sed '1!d; s/.*Awk //; s/,.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gawk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "awk -Wversion | sed '1!d; s/.*Awk //; s/,.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@erikrikarddaniel"
+        ],
+        "maintainers": [
+          "@erikrikarddaniel"
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/gawk_gzip:6fab93852b0eb5a5",
+              "build_id": "bd-6fab93852b0eb5a5_1",
+              "scan_id": "sc-0bdc20c1d00f0236_3"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/gawk_gzip:fe0c202000bc8ed4",
+              "build_id": "bd-fe0c202000bc8ed4_1",
+              "scan_id": "sc-0653c1ae5a7281a7_3"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/gawk_gzip:9f1bcf81dc06adb6",
+              "build_id": "bd-9f1bcf81dc06adb6_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/06/0600fdb9287986d3d684b95d6e94f597c41b24a746608532d7c0836bd7b44c15/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/gawk_gzip:88d638f9e3f9deb5",
+              "build_id": "bd-88d638f9e3f9deb5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/b1/b18bce5d444a24376f0ee2afe5237f65cc62d14ff4cc1b7b1ed4f9a23f38e483/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/epang/filterquery/.conda-lock/linux_amd64-bd-fe0c202000bc8ed4_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/epang/filterquery/.conda-lock/linux_arm64-bd-6fab93852b0eb5a5_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "c256a0ebbda74979a0ecd86bcfed0422c5e4ea55"
+    },
+    {
       "name": "epang_place",
       "path": "modules/nf-core/epang/place/meta.yml",
       "tree_sha": "33995d50363742cf25c09cfc8bfba84f3667aa38",
@@ -125168,6 +125609,514 @@
         ]
       },
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+    },
+    {
+      "name": "eukcc_single",
+      "path": "modules/nf-core/eukcc/single/meta.yml",
+      "tree_sha": "e656ab275e4f03a49c3d148c12d186ec3a270548",
+      "files": [
+        "modules/nf-core/eukcc/single/.conda-lock/linux_amd64-bd-594e6049c8db4277_1.txt",
+        "modules/nf-core/eukcc/single/environment.yml",
+        "modules/nf-core/eukcc/single/main.nf",
+        "modules/nf-core/eukcc/single/meta.yml",
+        "modules/nf-core/eukcc/single/tests/main.nf.test",
+        "modules/nf-core/eukcc/single/tests/main.nf.test.snap",
+        "modules/nf-core/eukcc/single/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "eukcc_single",
+        "description": "Estimate completeness and contamination of a single eukaryotic genome or MAG",
+        "keywords": [
+          "eukaryotes",
+          "completeness",
+          "contamination",
+          "mag",
+          "metagenomics",
+          "quality control"
+        ],
+        "tools": [
+          {
+            "eukcc": {
+              "description": "Check eukaryotic genomes or MAGs for completeness and contamination.",
+              "homepage": "https://eukcc.readthedocs.io/en/latest/",
+              "documentation": "https://eukcc.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/EBI-Metagenomics/EukCC",
+              "doi": "10.1186/s13059-020-02155-4",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": "biotools:eukcc"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Genome or MAG in FASTA format (DNA, or amino acids with `--AA`), optionally gzipped",
+                "pattern": "*.{fa,fasta,fna,faa,fa.gz,fasta.gz,fna.gz,faa.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing database information. e.g. `[ id:'eukcc_db' ]`"
+              }
+            },
+            {
+              "db": {
+                "type": "directory",
+                "description": "EukCC database directory (e.g. from `eukcc download_db`)"
+              }
+            }
+          ],
+          {
+            "genomes": {
+              "type": "file",
+              "description": "Optional reference genomes in FASTA format, or proteomes with `--AA`, to define the marker gene set from (`--genomes`) instead of the tree placement; the lineage is then `NA`",
+              "pattern": "*.{fa,fasta,fna,faa,fa.gz,fasta.gz,fna.gz,faa.gz}",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_1929"
+                },
+                {
+                  "edam": "http://edamontology.org/format_3989"
+                }
+              ]
+            }
+          },
+          {
+            "use_placement": {
+              "type": "file",
+              "description": "Optional `savestate.json.gz` of a previous run, to reuse its marker gene set and lineage (`--use_placement`)",
+              "pattern": "*.json.gz",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3464"
+                },
+                {
+                  "edam": "http://edamontology.org/format_3989"
+                }
+              ]
+            }
+          }
+        ],
+        "output": {
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}/eukcc.tsv": {
+                  "type": "file",
+                  "description": "Table with completeness, contamination and NCBI lineage of the input",
+                  "pattern": "eukcc.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}/eukcc.log": {
+                  "type": "file",
+                  "description": "EukCC log file",
+                  "pattern": "eukcc.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "savestate": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}/savestate.json.gz": {
+                  "type": "file",
+                  "description": "State of the run with its marker gene set, to reuse with `use_placement`",
+                  "pattern": "savestate.json.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "marker_table": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}/scmg_marker_table.csv.gz": {
+                  "type": "file",
+                  "description": "Optional single copy marker gene table, produced only with `--extra`",
+                  "pattern": "scmg_marker_table.csv.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "workdir": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}/workdir": {
+                  "type": "directory",
+                  "description": "Optional EukCC working directory, kept with `--keep` or when no estimate could be made",
+                  "pattern": "workdir"
+                }
+              }
+            ]
+          ],
+          "versions_eukcc": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "eukcc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "eukcc --version | sed 's/^EukCC version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_metaeuk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "metaeuk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "metaeuk version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_hmmer": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hmmer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hmmsearch -h | grep -o '^# HMMER [0-9.]*' | cut -d' ' -f3": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_epang": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "epa-ng": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "epa-ng --version | sed 's/^EPA-ng v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_pplacer": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pplacer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pplacer --version | sed 's/^v//; s/-.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_gzip": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gzip": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gzip --version | head -1 | sed 's/^gzip //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "eukcc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "eukcc --version | sed 's/^EukCC version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "metaeuk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "metaeuk version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hmmer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hmmsearch -h | grep -o '^# HMMER [0-9.]*' | cut -d' ' -f3": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "epa-ng": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "epa-ng --version | sed 's/^EPA-ng v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pplacer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pplacer --version | sed 's/^v//; s/-.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gzip": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gzip --version | head -1 | sed 's/^gzip //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@dezordi"
+        ],
+        "maintainers": [
+          "@dezordi"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/epa-ng_eukcc_hmmer_metaeuk_pruned:594e6049c8db4277",
+              "build_id": "bd-594e6049c8db4277_1",
+              "scan_id": "sc-5d1d85fd581dc3dd_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/epa-ng_eukcc_hmmer_metaeuk_pruned:b7e3c7ca83b3b949",
+              "build_id": "bd-b7e3c7ca83b3b949_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/0b/0b250d20483a5003159796184688df6f61b320ad838f4445af4e1654aa498728/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/eukcc/single/.conda-lock/linux_amd64-bd-594e6049c8db4277_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "e15c896ec260b286200167fcb492a9888c0fac55"
     },
     {
       "name": "evigene_tr2aacds",
@@ -204944,14 +205893,13 @@
     {
       "name": "humann3_humann",
       "path": "modules/nf-core/humann3/humann/meta.yml",
-      "tree_sha": "585435fbb1f8e9af2753acafdab28a79d90199db",
+      "tree_sha": "130f7278886c1532514add27f84a7119261f411f",
       "files": [
         "modules/nf-core/humann3/humann/environment.yml",
         "modules/nf-core/humann3/humann/main.nf",
         "modules/nf-core/humann3/humann/meta.yml",
         "modules/nf-core/humann3/humann/tests/main.nf.test",
-        "modules/nf-core/humann3/humann/tests/main.nf.test.snap",
-        "modules/nf-core/humann3/humann/tests/nextflow.config"
+        "modules/nf-core/humann3/humann/tests/main.nf.test.snap"
       ],
       "type": "module",
       "meta": {
@@ -205273,7 +206221,7 @@
           "@vinisalazar"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "573b003e8d3414ebbeb23ee0f81e08c7d33b46b5",
       "pipelines": [
         {
           "name": "funcprofiler",
@@ -205284,14 +206232,13 @@
     {
       "name": "humann3_regroup",
       "path": "modules/nf-core/humann3/regroup/meta.yml",
-      "tree_sha": "6d02f35d3478c587172b1b7d1fe00b9f1a8a41e9",
+      "tree_sha": "815a4cf275d5336ad42c5c6f73b80bd6a55335ef",
       "files": [
         "modules/nf-core/humann3/regroup/environment.yml",
         "modules/nf-core/humann3/regroup/main.nf",
         "modules/nf-core/humann3/regroup/meta.yml",
         "modules/nf-core/humann3/regroup/tests/main.nf.test",
-        "modules/nf-core/humann3/regroup/tests/main.nf.test.snap",
-        "modules/nf-core/humann3/regroup/tests/nextflow.config"
+        "modules/nf-core/humann3/regroup/tests/main.nf.test.snap"
       ],
       "type": "module",
       "meta": {
@@ -205508,7 +206455,7 @@
           "@vinisalazar"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "573b003e8d3414ebbeb23ee0f81e08c7d33b46b5",
       "pipelines": [
         {
           "name": "funcprofiler",
@@ -211157,6 +212104,199 @@
         ]
       },
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+    },
+    {
+      "name": "inflammatoryoncophysics_calc",
+      "path": "modules/nf-core/inflammatoryoncophysics/calc/meta.yml",
+      "tree_sha": "f370729144a7a626d6295cebbe64328006219eb4",
+      "files": [
+        "modules/nf-core/inflammatoryoncophysics/calc/.conda-lock/linux_amd64-bd-b2972c171ba3d1ee_1.txt",
+        "modules/nf-core/inflammatoryoncophysics/calc/.conda-lock/linux_arm64-bd-ebd750e646daac4b_1.txt",
+        "modules/nf-core/inflammatoryoncophysics/calc/environment.yml",
+        "modules/nf-core/inflammatoryoncophysics/calc/main.nf",
+        "modules/nf-core/inflammatoryoncophysics/calc/meta.yml",
+        "modules/nf-core/inflammatoryoncophysics/calc/tests/main.nf.test",
+        "modules/nf-core/inflammatoryoncophysics/calc/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "inflammatoryoncophysics_calc",
+        "description": "Bedside Host-Tumor Biophysical Index (HTBI) calculator, ctDNA lead time kinetics, and recurrence risk stratification engine (RUO).",
+        "keywords": [
+          "oncology",
+          "biophysics",
+          "reaction-diffusion",
+          "ctdna",
+          "htbi",
+          "precision oncology"
+        ],
+        "tools": [
+          {
+            "inflammatory-onco-physics": {
+              "description": "Continuous reaction-diffusion solver and survival pipeline for microvascular pharmacological sanctuaries.",
+              "homepage": "https://github.com/Lukecele/inflammatory-onco-physics",
+              "documentation": "https://github.com/Lukecele/inflammatory-onco-physics#readme",
+              "tool_dev_url": "https://github.com/Lukecele/inflammatory-onco-physics",
+              "doi": "10.21203/rs.3.rs-11695210/v1",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:inflammatory-onco-physics"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "stage": {
+                "type": "integer",
+                "description": "Pathologic TNM Stage (1, 2, or 3)"
+              }
+            },
+            {
+              "grade": {
+                "type": "integer",
+                "description": "Histological differentiation grade (1, 2, or 3)"
+              }
+            },
+            {
+              "nlr": {
+                "type": "float",
+                "description": "Complete blood count neutrophil-to-lymphocyte ratio"
+              }
+            },
+            {
+              "crp": {
+                "type": "float",
+                "description": "Serum high-sensitivity C-reactive protein (hs-CRP) in mg/L"
+              }
+            },
+            {
+              "alb": {
+                "type": "float",
+                "description": "Serum albumin concentration in g/L"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "Bedside Host-Tumor Biophysical Index (HTBI) risk stratification and ctDNA lead time report (RUO)",
+                  "pattern": "*.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_inflammatoryoncophysics": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "inflammatory-onco-physics": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python3 -c \"import importlib.metadata; print(importlib.metadata.version('inflammatory-onco-physics'))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "inflammatory-onco-physics": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python3 -c \"import importlib.metadata; print(importlib.metadata.version('inflammatory-onco-physics'))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@Lukecele"
+        ],
+        "maintainers": [
+          "@Lukecele"
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/inflammatory-onco-physics:1.1.2--ebd750e646daac4b",
+              "build_id": "bd-ebd750e646daac4b_1",
+              "scan_id": "sc-7bafb8ebe6b3350d_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/inflammatory-onco-physics:1.1.2--b2972c171ba3d1ee",
+              "build_id": "bd-b2972c171ba3d1ee_1",
+              "scan_id": "sc-9c6c2458557fea4d_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/inflammatory-onco-physics:1.1.2--b98454cbc8d09352",
+              "build_id": "bd-b98454cbc8d09352_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/69/69015543f83041aebf808b0a6c411cfedba10764ec0ff871a2d6c3d5e8a93922/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/inflammatory-onco-physics:1.1.2--e6d72f5e02901b75",
+              "build_id": "bd-e6d72f5e02901b75_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/47/473d7b7aa247236404d727371607fd3db52ad207b9f3b60e6bd84297aefb23f7/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/inflammatoryoncophysics/calc/.conda-lock/linux_amd64-bd-b2972c171ba3d1ee_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/inflammatoryoncophysics/calc/.conda-lock/linux_arm64-bd-ebd750e646daac4b_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "95e103915738aabfbf77464751abb4400c543634"
     },
     {
       "name": "insitugame",
@@ -237191,7 +238331,7 @@
     {
       "name": "malt_build",
       "path": "modules/nf-core/malt/build/meta.yml",
-      "tree_sha": "aa9a3ab26b521803ebc9b0be189268db9a73663d",
+      "tree_sha": "76986e7942b877b1f193e4d37ae1c44183ea59b6",
       "files": [
         "modules/nf-core/malt/build/environment.yml",
         "modules/nf-core/malt/build/main.nf",
@@ -237362,7 +238502,7 @@
           "@LilyAnderssonLee"
         ]
       },
-      "git_sha": "281ff6b648a2e59364036dafc818914fc0441a0d",
+      "git_sha": "c4d0cf8a8dc293b806163dcfdd8cdd3b6a17a386",
       "pipelines": [
         {
           "name": "createtaxdb",
@@ -237373,7 +238513,7 @@
     {
       "name": "malt_run",
       "path": "modules/nf-core/malt/run/meta.yml",
-      "tree_sha": "d31bbff4a9abc41b9ace780ab58edd4dc196f0c4",
+      "tree_sha": "d9ffa3a38c9dced6713f6ad65d517b15fb683f50",
       "files": [
         "modules/nf-core/malt/run/environment.yml",
         "modules/nf-core/malt/run/main.nf",
@@ -237562,7 +238702,7 @@
           "@jfy133"
         ]
       },
-      "git_sha": "281ff6b648a2e59364036dafc818914fc0441a0d",
+      "git_sha": "c4d0cf8a8dc293b806163dcfdd8cdd3b6a17a386",
       "pipelines": [
         {
           "name": "taxprofiler",
@@ -242892,7 +244032,7 @@
     {
       "name": "melon",
       "path": "modules/nf-core/melon/meta.yml",
-      "tree_sha": "3262f3d124f5edab606ab159d81c55c541076286",
+      "tree_sha": "48f594f88b8e981a1cbd11ea352f6598fd54bf3b",
       "files": [
         "modules/nf-core/melon/environment.yml",
         "modules/nf-core/melon/main.nf",
@@ -243119,7 +244259,7 @@
           "@eparisis"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "573b003e8d3414ebbeb23ee0f81e08c7d33b46b5",
       "pipelines": [
         {
           "name": "taxprofiler",
@@ -247439,14 +248579,13 @@
     {
       "name": "metamaps_classify",
       "path": "modules/nf-core/metamaps/classify/meta.yml",
-      "tree_sha": "a777f870dd62281d13ebd41844c8227a45fdb4a6",
+      "tree_sha": "2ec4a13030431c68c44879f90711a7aa84b4c3c0",
       "files": [
         "modules/nf-core/metamaps/classify/environment.yml",
         "modules/nf-core/metamaps/classify/main.nf",
         "modules/nf-core/metamaps/classify/meta.yml",
         "modules/nf-core/metamaps/classify/tests/main.nf.test",
-        "modules/nf-core/metamaps/classify/tests/main.nf.test.snap",
-        "modules/nf-core/metamaps/classify/tests/nextflow.config"
+        "modules/nf-core/metamaps/classify/tests/main.nf.test.snap"
       ],
       "type": "module",
       "meta": {
@@ -247701,19 +248840,18 @@
           "@sofstam"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "573b003e8d3414ebbeb23ee0f81e08c7d33b46b5"
     },
     {
       "name": "metamaps_mapdirectly",
       "path": "modules/nf-core/metamaps/mapdirectly/meta.yml",
-      "tree_sha": "f2c2447dd680ca5f94cbb657216cbc96c5f851e1",
+      "tree_sha": "f041c4c943d2b0f8e2adfc9c1a5335c0aeae9e55",
       "files": [
         "modules/nf-core/metamaps/mapdirectly/environment.yml",
         "modules/nf-core/metamaps/mapdirectly/main.nf",
         "modules/nf-core/metamaps/mapdirectly/meta.yml",
         "modules/nf-core/metamaps/mapdirectly/tests/main.nf.test",
-        "modules/nf-core/metamaps/mapdirectly/tests/main.nf.test.snap",
-        "modules/nf-core/metamaps/mapdirectly/tests/nextflow.config"
+        "modules/nf-core/metamaps/mapdirectly/tests/main.nf.test.snap"
       ],
       "type": "module",
       "meta": {
@@ -247898,7 +249036,7 @@
           "@sofstam"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "573b003e8d3414ebbeb23ee0f81e08c7d33b46b5"
     },
     {
       "name": "metamdbg_asm",
@@ -248075,7 +249213,7 @@
     {
       "name": "metaphlan3_mergemetaphlantables",
       "path": "modules/nf-core/metaphlan3/mergemetaphlantables/meta.yml",
-      "tree_sha": "ea1680b5efd9b10a967e4ec7b4dd448b8bc6bdf6",
+      "tree_sha": "f388b380c5fa1766df6a62124849ea893543644f",
       "files": [
         "modules/nf-core/metaphlan3/mergemetaphlantables/environment.yml",
         "modules/nf-core/metaphlan3/mergemetaphlantables/main.nf",
@@ -248200,12 +249338,12 @@
           "@jfy133"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "573b003e8d3414ebbeb23ee0f81e08c7d33b46b5"
     },
     {
       "name": "metaphlan3_metaphlan3",
       "path": "modules/nf-core/metaphlan3/metaphlan3/meta.yml",
-      "tree_sha": "d79befd6c646b16d069c1c451f8e8a3a65b540f4",
+      "tree_sha": "5f5863121b50d5abd2e7becb28a24a0923f3f434",
       "files": [
         "modules/nf-core/metaphlan3/metaphlan3/environment.yml",
         "modules/nf-core/metaphlan3/metaphlan3/main.nf",
@@ -248378,7 +249516,7 @@
           "@MGordon09"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "573b003e8d3414ebbeb23ee0f81e08c7d33b46b5"
     },
     {
       "name": "metaphlan_makedb",
@@ -248521,7 +249659,7 @@
     {
       "name": "metaphlan_mergemetaphlantables",
       "path": "modules/nf-core/metaphlan/mergemetaphlantables/meta.yml",
-      "tree_sha": "3d8cdfce4cb545ad5edba322b8b3aa7e48b0e492",
+      "tree_sha": "25788865e3ce2d88d5c38c17341af8637d35be43",
       "files": [
         "modules/nf-core/metaphlan/mergemetaphlantables/.conda-lock/linux_amd64-bd-59796ca881a8bb02_1.txt",
         "modules/nf-core/metaphlan/mergemetaphlantables/.conda-lock/linux_arm64-bd-729d587efd21f3af_1.txt",
@@ -248684,7 +249822,7 @@
           }
         }
       },
-      "git_sha": "3f10df6804f18c40f80f9df5fd2b1bed0a8ab74d",
+      "git_sha": "573b003e8d3414ebbeb23ee0f81e08c7d33b46b5",
       "pipelines": [
         {
           "name": "taxprofiler",
@@ -248695,7 +249833,7 @@
     {
       "name": "metaphlan_metaphlan",
       "path": "modules/nf-core/metaphlan/metaphlan/meta.yml",
-      "tree_sha": "40e76bf5f5615c2e68c8240be077186f4c36833e",
+      "tree_sha": "9054d589eaa1df0962f6a63109350ea178641604",
       "files": [
         "modules/nf-core/metaphlan/metaphlan/.conda-lock/linux_amd64-bd-59796ca881a8bb02_1.txt",
         "modules/nf-core/metaphlan/metaphlan/.conda-lock/linux_arm64-bd-729d587efd21f3af_1.txt",
@@ -248930,7 +250068,7 @@
           }
         }
       },
-      "git_sha": "3f10df6804f18c40f80f9df5fd2b1bed0a8ab74d",
+      "git_sha": "573b003e8d3414ebbeb23ee0f81e08c7d33b46b5",
       "pipelines": [
         {
           "name": "funcprofiler",
@@ -252955,7 +254093,7 @@
     {
       "name": "mifaser",
       "path": "modules/nf-core/mifaser/meta.yml",
-      "tree_sha": "0cd6bc8eb9e59513853cc3edce586a917c1802b5",
+      "tree_sha": "382a97522ac7463e797c836c51199e74a4b384d2",
       "files": [
         "modules/nf-core/mifaser/environment.yml",
         "modules/nf-core/mifaser/main.nf",
@@ -253137,7 +254275,7 @@
           "@nickp60"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "573b003e8d3414ebbeb23ee0f81e08c7d33b46b5",
       "pipelines": [
         {
           "name": "funcprofiler",
@@ -267722,6 +268860,10 @@
           "version": "4.0.0"
         },
         {
+          "name": "genomeannotation",
+          "version": "dev"
+        },
+        {
           "name": "genomeannotator",
           "version": "dev"
         },
@@ -268321,10 +269463,10 @@
     {
       "name": "multiqcsav",
       "path": "modules/nf-core/multiqcsav/meta.yml",
-      "tree_sha": "3705adce8cdb3fd00cddbe73249155d77404e890",
+      "tree_sha": "40545106341a09728ebdfddef7bf158700fffbad",
       "files": [
-        "modules/nf-core/multiqcsav/.conda-lock/linux_amd64-bd-9b10d606ce2f36b6_1.txt",
-        "modules/nf-core/multiqcsav/.conda-lock/linux_arm64-bd-077315907ed11315_1.txt",
+        "modules/nf-core/multiqcsav/.conda-lock/linux_amd64-bd-f5f3daf6329d2edd_1.txt",
+        "modules/nf-core/multiqcsav/.conda-lock/linux_arm64-bd-167431ba7a1957b7_1.txt",
         "modules/nf-core/multiqcsav/environment.yml",
         "modules/nf-core/multiqcsav/main.nf",
         "modules/nf-core/multiqcsav/meta.yml",
@@ -268589,41 +269731,41 @@
           "@matthdsm"
         ],
         "containers": {
-          "conda": {
-            "linux/amd64": {
-              "lock_file": "modules/nf-core/multiqcsav/.conda-lock/linux_amd64-bd-9b10d606ce2f36b6_1.txt"
-            },
-            "linux/arm64": {
-              "lock_file": "modules/nf-core/multiqcsav/.conda-lock/linux_arm64-bd-077315907ed11315_1.txt"
-            }
-          },
           "docker": {
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/multiqc_multiqc_sav_pip_interop:9b10d606ce2f36b6",
-              "build_id": "bd-9b10d606ce2f36b6_1",
-              "scan_id": "sc-e07d8899984fea53_1"
+              "name": "community.wave.seqera.io/library/multiqc_multiqc_sav_python_pip_interop:f5f3daf6329d2edd",
+              "build_id": "bd-f5f3daf6329d2edd_1",
+              "scan_id": "sc-c87f1ab18314f06a_1"
             },
             "linux/arm64": {
-              "name": "community.wave.seqera.io/library/multiqc_multiqc_sav_pip_interop:077315907ed11315",
-              "build_id": "bd-077315907ed11315_1",
-              "scan_id": "sc-bd28ba4987c53bbe_1"
+              "name": "community.wave.seqera.io/library/multiqc_multiqc_sav_python_pip_interop:167431ba7a1957b7",
+              "build_id": "bd-167431ba7a1957b7_1",
+              "scan_id": "sc-44c6e6e2de48d3cc_1"
             }
           },
           "singularity": {
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/multiqc_multiqc_sav_pip_interop:a26da1aa4e8d32a6",
-              "build_id": "bd-a26da1aa4e8d32a6_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c1/c1311ac2bfb96d77487985fce321b25bbea85f574f9932b827ed6cafe7f75963/data"
+              "name": "oras://community.wave.seqera.io/library/multiqc_multiqc_sav_python_pip_interop:11295a2069d11075",
+              "build_id": "bd-11295a2069d11075_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/95/95d4d0144bea6576cc15addd019b8b4d25f90ea45f118741c3fd224e73e20259/data"
             },
             "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/multiqc_multiqc_sav_pip_interop:d1ed21d66511158d",
-              "build_id": "bd-d1ed21d66511158d_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/05/053f6d8c55b57e04b654070a3bd6eaa90685590158019d35c16092d301b80cb1/data"
+              "name": "oras://community.wave.seqera.io/library/multiqc_multiqc_sav_python_pip_interop:7f3f6280ea823e47",
+              "build_id": "bd-7f3f6280ea823e47_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/0e/0e0e7517631d9c224e18c92d1b33c8abc025ff14c09f013156317ae14a3311d1/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/multiqcsav/.conda-lock/linux_amd64-bd-f5f3daf6329d2edd_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/multiqcsav/.conda-lock/linux_arm64-bd-167431ba7a1957b7_1.txt"
             }
           }
         }
       },
-      "git_sha": "0a1a7142f5390835e61b1d965e1b3139b73669d6",
+      "git_sha": "0c0f63fa7fb9a084d5a82bd66593e2f225f94ada",
       "pipelines": [
         {
           "name": "demultiplex",
@@ -313666,6 +314808,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -313973,6 +315119,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -403627,9 +404777,222 @@
       "git_sha": "b836d6569438c5e69f224dc359b712b8fd81c937"
     },
     {
+      "name": "somalier_contamination",
+      "path": "modules/nf-core/somalier/contamination/meta.yml",
+      "tree_sha": "195e5542a73596a663738d7050cc51aeb0543b2d",
+      "files": [
+        "modules/nf-core/somalier/contamination/.conda-lock/linux_amd64-bd-127e0e29751f4940_1.txt",
+        "modules/nf-core/somalier/contamination/.conda-lock/linux_arm64-bd-76b5278bf32df42f_1.txt",
+        "modules/nf-core/somalier/contamination/environment.yml",
+        "modules/nf-core/somalier/contamination/main.nf",
+        "modules/nf-core/somalier/contamination/meta.yml",
+        "modules/nf-core/somalier/contamination/tests/main.nf.test",
+        "modules/nf-core/somalier/contamination/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "somalier_contamination",
+        "description": "Estimate contamination with somalier (>= 0.3.2): CHARR per sample and exact anchored (conpair-like) contamination MLEs for every ordered pair of extracted samples",
+        "keywords": [
+          "contamination",
+          "QC",
+          "somalier",
+          "bam",
+          "cram",
+          "charr"
+        ],
+        "tools": [
+          {
+            "somalier": {
+              "description": "Somalier can extract informative sites, evaluate relatedness, and perform quality-control on BAM/CRAM/BCF/VCF/GVCF or from jointly-called VCFs",
+              "homepage": "https://github.com/brentp/somalier",
+              "documentation": "https://github.com/brentp/somalier/blob/master/README.md",
+              "tool_dev_url": "https://github.com/brentp/somalier",
+              "doi": "10.1186/s13073-020-00761-2",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:somalier"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing group information\ne.g. [ id:'batch1' ]\n"
+              }
+            },
+            {
+              "extract": {
+                "type": "file",
+                "description": "List of .somalier files from somalier extract",
+                "pattern": "*.somalier",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sites information\ne.g. [ id:'hg38' ]\n"
+              }
+            },
+            {
+              "sites": {
+                "type": "file",
+                "description": "Sites VCF with INFO/AF; must be the sites file used for somalier extract",
+                "pattern": "*.{vcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "samples_tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "*.samples.tsv": {
+                  "type": "file",
+                  "description": "Per-sample CHARR contamination estimates",
+                  "pattern": "*.samples.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "pairs_tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "*.pairs.tsv": {
+                  "type": "file",
+                  "description": "Anchored contamination MLE for every ordered sample pair",
+                  "pattern": "*.pairs.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_somalier": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "somalier": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "somalier 2>&1 | sed -n 's/.*version: \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "somalier": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "somalier 2>&1 | sed -n 's/.*version: \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@apeltzer"
+        ],
+        "maintainers": [
+          "@apeltzer"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/somalier:0.3.6--127e0e29751f4940",
+              "build_id": "bd-127e0e29751f4940_1",
+              "scan_id": "sc-d34171139d0f9edf_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/somalier:0.3.6--76b5278bf32df42f",
+              "build_id": "bd-76b5278bf32df42f_1",
+              "scan_id": "sc-17f16146fcb05675_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/somalier:0.3.6--b3834d7a12ae1f53",
+              "build_id": "bd-b3834d7a12ae1f53_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/f5/f5ad8a7223d537f18f2899b16bd2b14f93866656c4ddce6d16181319d9a82f63/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/somalier:0.3.6--616e8a160c41dcb7",
+              "build_id": "bd-616e8a160c41dcb7_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/47/47d07f6bfed89f10492f67cd64ccc33efb18a9fc1dc596dd55642efca5d67c0e/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/somalier/contamination/.conda-lock/linux_amd64-bd-127e0e29751f4940_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/somalier/contamination/.conda-lock/linux_arm64-bd-76b5278bf32df42f_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "de5802b13d4d754909792797bcfdd8bd965d371d"
+    },
+    {
       "name": "somalier_extract",
       "path": "modules/nf-core/somalier/extract/meta.yml",
-      "tree_sha": "f37868762f64a64de4b1760d93cbc73c0f4adbd2",
+      "tree_sha": "15c43149251bf5b988cd7bc6c4e68d0b394a95aa",
       "files": [
         "modules/nf-core/somalier/extract/.conda-lock/linux_amd64-bd-127e0e29751f4940_1.txt",
         "modules/nf-core/somalier/extract/.conda-lock/linux_arm64-bd-76b5278bf32df42f_1.txt",
@@ -403856,12 +405219,12 @@
           }
         }
       },
-      "git_sha": "b836d6569438c5e69f224dc359b712b8fd81c937"
+      "git_sha": "cb523f66bc092e7e0a64f8b29734f6d1b6a94c0b"
     },
     {
       "name": "somalier_relate",
       "path": "modules/nf-core/somalier/relate/meta.yml",
-      "tree_sha": "1e576ad1cc1c4d79b04419724ac755fd484f83e0",
+      "tree_sha": "7c63a242fd59f6e4c79c17a7b8f955c6584bf012",
       "files": [
         "modules/nf-core/somalier/relate/.conda-lock/linux_amd64-bd-127e0e29751f4940_1.txt",
         "modules/nf-core/somalier/relate/.conda-lock/linux_arm64-bd-76b5278bf32df42f_1.txt",
@@ -403939,7 +405302,27 @@
                 }
               ]
             }
-          }
+          },
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sites information\ne.g. [ id:'hg38' ]\n"
+              }
+            },
+            {
+              "sites": {
+                "type": "file",
+                "description": "Optional sites VCF with INFO/AF matching the sites used for extract. Required by\nsomalier >= 0.3.2 for correct hom-ref/hom-alt counts and contamination_charr.\n",
+                "pattern": "*.{vcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            }
+          ]
         ],
         "output": {
           "html": [
@@ -404100,7 +405483,7 @@
           }
         }
       },
-      "git_sha": "b836d6569438c5e69f224dc359b712b8fd81c937"
+      "git_sha": "cb523f66bc092e7e0a64f8b29734f6d1b6a94c0b"
     },
     {
       "name": "sortmerna",
@@ -426203,7 +427586,7 @@
     {
       "name": "taxonkit_lineage",
       "path": "modules/nf-core/taxonkit/lineage/meta.yml",
-      "tree_sha": "7e3fffc6ccf8a45118011074b1255c72bc36f9ff",
+      "tree_sha": "a2634e27fa405589f47060e944f3b732b8380074",
       "files": [
         "modules/nf-core/taxonkit/lineage/.conda-lock/linux_amd64-bd-36a4cff30b2fab4e_1.txt",
         "modules/nf-core/taxonkit/lineage/.conda-lock/linux_arm64-bd-de6e2e39185eebec_1.txt",
@@ -426379,7 +427762,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "c4d0cf8a8dc293b806163dcfdd8cdd3b6a17a386",
       "pipelines": [
         {
           "name": "metatdenovo",
@@ -426390,7 +427773,7 @@
     {
       "name": "taxonkit_list",
       "path": "modules/nf-core/taxonkit/list/meta.yml",
-      "tree_sha": "0f79a5ff79a3717128edb7fccbceabcb3a3684e7",
+      "tree_sha": "3a0b3e72e1a05260c06cda252d60c2e3c663e4c5",
       "files": [
         "modules/nf-core/taxonkit/list/.conda-lock/linux_amd64-bd-73c6bc587e9e62ac_1.txt",
         "modules/nf-core/taxonkit/list/.conda-lock/linux_arm64-bd-c4fea380ac90b1cf_1.txt",
@@ -426565,12 +427948,12 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "c4d0cf8a8dc293b806163dcfdd8cdd3b6a17a386"
     },
     {
       "name": "taxonkit_name2taxid",
       "path": "modules/nf-core/taxonkit/name2taxid/meta.yml",
-      "tree_sha": "36f4767d117129f965b40374dd128414f94a5b2b",
+      "tree_sha": "1643b1940fdc27637f659b669dafdb6e7206bcae",
       "files": [
         "modules/nf-core/taxonkit/name2taxid/.conda-lock/linux_amd64-bd-96f7341bd5c149a7_1.txt",
         "modules/nf-core/taxonkit/name2taxid/environment.yml",
@@ -426732,7 +428115,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "c4d0cf8a8dc293b806163dcfdd8cdd3b6a17a386"
     },
     {
       "name": "taxpasta_merge",
@@ -475319,7 +476702,7 @@
     {
       "name": "fasta_newick_epang_gappa",
       "path": "subworkflows/nf-core/fasta_newick_epang_gappa/meta.yml",
-      "tree_sha": "16a47ed7dd36ef410cd611fee13aa214325f1b9b",
+      "tree_sha": "bc6677999a56cf984f5ddcce49b7d10188fa7dbe",
       "files": [
         "subworkflows/nf-core/fasta_newick_epang_gappa/main.nf",
         "subworkflows/nf-core/fasta_newick_epang_gappa/meta.yml",
@@ -475345,6 +476728,7 @@
           "hmmer/eslreformat",
           "clustalo/align",
           "mafft/align",
+          "epang/filterquery",
           "epang/place",
           "epang/split",
           "gappa/examinegraft",
@@ -475355,7 +476739,7 @@
           {
             "ch_pp_data": {
               "type": "map",
-              "description": "Phylogenetic placement input, one entry per sample, where:\n\n- `alignmethod` is the method used for alignment, 'hmmer', 'clustalo' or 'mafft'\n- `queryseqfile` is a fasta file with query sequences\n- `refseqfile` is a file with reference sequences, aligned unless an hmmfile is provided\n- `refphylogeny` is a newick file with the reference phylogenetic tree\n- `hmmfile` is an optional HMM file to use for alignment; implies that refseqfile is not aligned\n- `model` is the phylogenetic model to use in placement, e.g. 'LG+F' or 'GTR+I+F'\n- `taxonomy` is a tab separated file with taxonomy information for the reference sequences\n\nStructure: [\n  meta: val(meta),\n  data: [\n    alignmethod:  'hmmer',\n    queryseqfile: path(\"*.faa\"),\n    refseqfile:   path(\"*.alnfaa\"),\n    refphylogeny: path(\"*.newick\"),\n    hmmfile:      path(\"*.hmm\"),\n    model:        \"LG\",\n    taxonomy:     path(\"*.tsv\")\n  ]\n]\n"
+              "description": "Phylogenetic placement input, one entry per sample, where:\n\n- `alignmethod` is the method used for alignment, 'hmmer', 'clustalo' or 'mafft'\n- `queryseqfile` is a fasta file with query sequences\n- `refseqfile` is a file with reference sequences, aligned unless an hmmfile is provided\n- `refphylogeny` is a newick file with the reference phylogenetic tree\n- `hmmfile` is an optional HMM file to use for alignment; implies that refseqfile is not aligned\n- `model` is the phylogenetic model to use in placement, e.g. 'LG+F' or 'GTR+I+F'\n- `taxonomy` is a tab separated file with taxonomy information for the reference sequences\n- `min_query_columns` is optional, the minimum number of residues a query must have in the\n  reference alignment columns that are not all gaps; defaults to 1, the lowest value EPA-ng accepts.\n  A sample where no query passes gets no placement outputs, only a warning and the `filterquery_table`\n- `min_reference_coverage` is optional, the minimum fraction of those columns a query must have\n  a residue in, between 0 and 1; defaults to 0\n\nStructure: [\n  meta: val(meta),\n  data: [\n    alignmethod:  'hmmer',\n    queryseqfile: path(\"*.faa\"),\n    refseqfile:   path(\"*.alnfaa\"),\n    refphylogeny: path(\"*.newick\"),\n    hmmfile:      path(\"*.hmm\"),\n    model:        \"LG\",\n    taxonomy:     path(\"*.tsv\"),\n    min_query_columns:      1,\n    min_reference_coverage: 0\n  ]\n]\n"
             }
           },
           {
@@ -475385,6 +476769,13 @@
               "type": "file",
               "description": "EPA-NG log file.\n\nStructure: [ path(log) ]\n",
               "pattern": "*.epa_info.log"
+            }
+          },
+          {
+            "filterquery_table": {
+              "type": "file",
+              "description": "Tab separated file with one row per query sequence: the number of columns of the reference\nalignment with a residue, the number of those the query has a residue in, the coverage, the\nnumber of those columns with an unambiguous residue (not ?, N, X or O) and whether the query\npassed the filter and was placed.\n\nStructure: [ val(meta), path(tsv) ]\n",
+              "pattern": "*.filterquery.tsv"
             }
           },
           {
@@ -475430,7 +476821,7 @@
           "@erikrikarddaniel"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "c256a0ebbda74979a0ecd86bcfed0422c5e4ea55",
       "pipelines": [
         {
           "name": "ampliseq",
@@ -483076,6 +484467,10 @@
           "version": "dev"
         },
         {
+          "name": "genomeannotation",
+          "version": "dev"
+        },
+        {
           "name": "genomeassembler",
           "version": "2.0.1"
         },
@@ -483581,6 +484976,10 @@
         },
         {
           "name": "genephylomodeler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeannotation",
           "version": "dev"
         },
         {
@@ -484137,6 +485536,10 @@
         },
         {
           "name": "genephylomodeler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeannotation",
           "version": "dev"
         },
         {
@@ -485057,7 +486460,7 @@
     {
       "name": "vcf_extract_relate_somalier",
       "path": "subworkflows/nf-core/vcf_extract_relate_somalier/meta.yml",
-      "tree_sha": "ccd18ce0697d0561877a200779d727995f171d05",
+      "tree_sha": "bbec7607752d16037c27f8bd0b81097fe8b391bd",
       "files": [
         "subworkflows/nf-core/vcf_extract_relate_somalier/main.nf",
         "subworkflows/nf-core/vcf_extract_relate_somalier/meta.yml",
@@ -485099,7 +486502,7 @@
           },
           {
             "ch_somalier_sites": {
-              "description": "A VCF containing the common sites for Somalier\nStructure: [ path(somalier_sites_vcf) ]\n"
+              "description": "A VCF containing the common sites for Somalier (with INFO/AF), used by extract and relate\nStructure: [ val(meta), path(somalier_sites_vcf) ]\n"
             }
           },
           {
@@ -485147,7 +486550,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "b836d6569438c5e69f224dc359b712b8fd81c937"
+      "git_sha": "cb523f66bc092e7e0a64f8b29734f6d1b6a94c0b"
     },
     {
       "name": "vcf_filter_bcftools_ensemblvep",
@@ -486089,6 +487492,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "a7760c36981eddfed7247e9cecd1620667809623",
-  "updated_at": "2026-11-18T02:14:23.723Z"
+  "commit_sha": "0c0f63fa7fb9a084d5a82bd66593e2f225f94ada",
+  "updated_at": "2026-11-18T14:15:54.990Z"
 }
