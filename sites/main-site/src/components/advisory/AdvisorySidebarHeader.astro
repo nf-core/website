@@ -43,7 +43,7 @@ function getPersonInfo(person: string | Record<string, string>) {
 const sameReporterAndReviewer =
     frontmatter.reporter &&
     frontmatter.reviewer &&
-    JSON.stringify([...frontmatter.reporter].sort()) === JSON.stringify([...frontmatter.reviewer].sort());
+    JSON.stringify(frontmatter.reporter.toSorted()) === JSON.stringify(frontmatter.reviewer.toSorted());
 
 function resolveVersionRange(pipelineName: string, versionRange: string): string {
     const pipeline = pipelines_json.remote_workflows.find((p) => p.name === pipelineName);
