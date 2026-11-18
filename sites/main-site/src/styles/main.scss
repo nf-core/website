@@ -4,6 +4,10 @@
   display: none;
 }
 
+[data-bs-theme="light"] {
+  color-scheme: light;
+}
+
 body {
   font-feature-settings: "ss03"; // curved r https://rsms.me/inter/#features/ss03
   text-rendering: optimizeLegibility; // enables kerning and ligatures for smaller font sizes
