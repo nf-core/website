@@ -1,6 +1,6 @@
 # pipeline_if_empty_null
 
-#### `PipelineLint.pipeline_if_empty_null(root_dir=None){:python}`
+#### `PipelineLint.pipeline_if_empty_null(root_dir: Path | None = None) → dict[str, list[str] | list[Path]]{:python}`
 
 Check for ifEmpty(null)
 

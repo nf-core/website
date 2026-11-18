@@ -4,13 +4,13 @@
 
 Check if the current directory is a git repository.
 
-### `nf_core.pipelines.lint_utils.dump_json_with_prettier(file_name, file_content){:python}`
+### `nf_core.pipelines.lint_utils.dump_json_with_prettier(file_name: Path | str, file_content: Mapping[str, Any]) → None{:python}`
 
 Dump a JSON file and run prettier on it.
-:param file_name: A file identifier as a string or pathlib.Path.
-:type file_name: Path | str
-:param file_content: Content to dump into the JSON file
-:type file_content: dict
+
+- **Parameters:**
+  - **file_name** (_Path_ _|_ _str_) – A file identifier as a string or pathlib.Path.
+  - **file_content** (_Mapping_ \*\[\*_str_ _,_ _Any_ _]_) – Content to dump into the JSON file
 
 ### `nf_core.pipelines.lint_utils.dump_yaml_with_prettier(file_name: Path | str, file_content: dict) → None{:python}`
 
@@ -50,11 +50,12 @@ Print a summary table in plain text or rich format.
   - **plain_text** – If True, print in plain text format
   - **summary_colour** – Color for the rich table border (default: auto based on failures)
 
-### `nf_core.pipelines.lint_utils.run_prettier_on_file(file: Path | str | list[str]) → None{:python}`
+### `nf_core.pipelines.lint_utils.run_prettier_on_file(*files: Path) → None{:python}`
 
-Run the pre-commit hook prettier on a file.
+Run the pre-commit hook prettier on one or more files.
+
+Skipped (with a debug message) outside a git repository. Syntax errors in a file are logged
+as critical, any other prettier/prek failure as a warning.
 
 - **Parameters:**
-  **file** (_Path_ _|_ _str_) – A file identifier as a string or pathlib.Path.
-- **Warns:**
-  **If Prettier is not installed, a warning is logged.**
+  **\*files** (_Path_) – The files to format.

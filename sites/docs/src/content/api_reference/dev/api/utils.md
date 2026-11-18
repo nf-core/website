@@ -51,13 +51,6 @@ The Nextflow pipeline configuration file content.
 - **Type:**
   dict
 
-#### `files{:python}`
-
-A list of files found during the linting process.
-
-- **Type:**
-  list
-
 #### `git_sha{:python}`
 
 The git sha for the repo commit / current GitHub pull-request ($GITHUB_PR_COMMIT)
@@ -109,13 +102,7 @@ Try to load the pipeline environment.yml file, if it exists
 
 #### `conda_package_info{:python}`_: dict_
 
-#### `files{:python}`_: list\[Path]_
-
 #### `git_sha{:python}`_: str | None_
-
-#### `list_files() → list[Path]{:python}`
-
-Get a list of all files in the pipeline
 
 #### `load_pipeline_config() → bool{:python}`
 
@@ -134,6 +121,10 @@ Once loaded, set a few convenience reference class attributes
 #### `repo{:python}`_: git.Repo | None_
 
 #### `schema_obj{:python}`_: [PipelineSchema](pipelines/schema#nf_core.pipelines.schema.PipelineSchema) | None_
+
+### `nf_core.utils._get_wf_files_without_git(wf_path: Path) → list[Path]{:python}`
+
+Fallback for get_wf_files outside a git repository.
 
 ### `nf_core.utils._load_cached_remote_version() → str | None{:python}`
 
@@ -178,7 +169,7 @@ Check the version of Nextflow installed on the system.
 
 Overwrite default PyYAML output to make Prettier YAML linting happy
 
-### `nf_core.utils.determine_base_dir(directory: Path | str = '.') → Path{:python}`
+### `nf_core.utils.determine_base_dir(directory: Path | None = None) → Path{:python}`
 
 ### `nf_core.utils.fetch_wf_config(wf_path: Path, cache_config: bool = True) → dict{:python}`
 
@@ -247,9 +238,18 @@ Fetches details of a nf-core workflow to download.
 - **Raises:**
   **LockupError**\*\*,\*\* **if the pipeline can not be found.** –
 
-### `nf_core.utils.get_wf_files(wf_path: Path){:python}`
+### `nf_core.utils.get_wf_files(wf_path: Path) → list[Path]{:python}`
 
-Return a list of all files in a directory (ignores .gitigore files)
+Return all files in a directory that are not ignored by git.
+
+Uses git ls-files at a repository root, else fnmatches the top-level .gitignore.
+
+- **Parameters:**
+  **wf_path** (_Path_) – The directory to list.
+- **Returns:**
+  Paths of the files, prefixed with `wf_path`.
+- **Return type:**
+  list\[Path]
 
 ### `nf_core.utils.is_file_binary(path){:python}`
 
@@ -269,15 +269,6 @@ Checks if the specified directory have the minimum required files
 - **Raises:**
   **UserWarning** – If one of the files are missing
 
-### `nf_core.utils.is_relative_to(path1, path2){:python}`
-
-Checks if a path is relative to another.
-
-Should mimic Path.is_relative_to which not available in Python < 3.9
-
-path1 (Path | str): The path that could be a subpath
-path2 (Path | str): The path the could be the superpath
-
 ### `nf_core.utils.lazy_attrs(module_globals: dict, mapping: dict[str, str | Callable]){:python}`
 
 Build module-level `__getattr__` and `__dir__` for lazy attributes (PEP 562).
@@ -292,7 +283,7 @@ Usage:
 __getattr__, __dir__ = lazy_attrs(globals(), {"PipelineCreateApp": "nf_core.pipelines.create"})
 ```
 
-### `nf_core.utils.load_tools_config(directory: str | Path = '.') → tuple[Path | None,{:python}`[`NFCoreYamlConfig{:python}`](nf_core_yml#nf_core.utils.NFCoreYamlConfig)`| None]{:python}`
+### `nf_core.utils.load_tools_config(directory: Path | None = None) → tuple[Path | None,{:python}`[`NFCoreYamlConfig{:python}`](nf_core_yml#nf_core.utils.NFCoreYamlConfig)`| None]{:python}`
 
 Parse the nf-core.yml configuration file
 
