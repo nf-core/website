@@ -9,7 +9,7 @@ By starting with the nf-core template, you benefit from automated testing, consi
 
 Follow these steps to create a new nf-core pipeline, from initial proposal through to development.
 Start by proposing your pipeline to the community, before you write any code.
-After your proposal is accepted, you create the pipeline from the template and develop it on your own GitHub account.
+After your proposal is accepted, you create the pipeline from the template, add reviewed test data to nf-core/test-datasets, and develop the pipeline on your own GitHub account.
 If multiple people are working on the pipeline, request to move the repository to the nf-core GitHub organisation. Otherwise, request the move when the pipeline is ready for final development, review, and release.
 
 :::danger{title="Propose your pipeline before you build it"}
@@ -169,48 +169,45 @@ You should now see the nf-core template and branches in the GitHub web interface
 Repositories are generally not created within the nf-core organisation initially to avoid having empty pipelines listed if development takes longer than expected.
 :::
 
-## Develop your pipeline
-
-To develop your pipeline:
-
-1. Work on the `dev` branch following standard git development practices.
-
-1. Run the nf-core linting tool regularly to ensure your pipeline meets nf-core standards:
-
-   ```bash
-   nf-core pipelines lint
-   ```
-
-   - See the [nf-core tools documentation](/docs/nf-core-tools/pipelines/lint) for more information.
-   - GitHub Actions also runs this automatically, and you will receive notifications if tests fail.
-
-1. Test the pipeline locally with test data to verify:
-   - The pipeline executes successfully.
-   - Outputs are generated correctly.
-   - No errors or warnings occur.
-
-1. Use the `debug` profile when testing to get additional information:
-
-   ```bash
-   nextflow run <pipeline-name> -profile debug
-   ```
-
-   - This enables warnings about process selectors, shows additional debug output, and disables cleanup.
-
 ## Set up test data
 
-Test data is essential for validating your pipeline.
-nf-core uses the dedicated [nf-core/test-datasets](https://github.com/nf-core/test-datasets/) repository to store test data separately from pipeline code.
-This prevents repository bloat and ensures test data remains small and fast to execute.
+Set up your test data before you start pipeline development.
+You need test data to develop and test any pipeline, and an early review catches problems with the data before your pipeline depends on it.
+
+nf-core stores all pipeline test data in the dedicated [nf-core/test-datasets](https://github.com/nf-core/test-datasets/) repository, on a branch named after your pipeline.
+This keeps test data out of pipeline repositories, keeps test runs fast, and lets the community review the data separately from the pipeline code.
+
+:::danger{title="Do not add test data to your pipeline repository"}
+Do not commit test data files to your pipeline repository, not even temporarily during development.
+Files committed to git stay in the repository history, and removing them later is difficult.
+Your `test` profile must point to files in nf-core/test-datasets.
+:::
 
 :::note
 GitHub Actions automatically run tests whenever someone updates the pipeline code.
 nf-core uses nf-test to check pipeline results, and regular test runs catch syntax errors and other problems that cause Nextflow to exit with an error.
 :::
 
+### Choose your test data
+
+Before you add test data, make sure that it meets the [test data specifications](/docs/specifications/test-data/general).
+In particular, test data must:
+
+- Be publicly available, with a licence that allows public reuse.
+- Not contain personal data, including human sequence data from individual donors, unless the donors consented to open public sharing of that data (for example, a subset of a [Genome in a Bottle](https://www.nist.gov/programs-projects/genome-bottle) sample).
+  Simulated data and public reference genomes are fine.
+- Be very small, due to GitHub file size limits and GitHub Actions timeout constraints.
+  Use minimal reference data such as PhiX, yeast, or part of a chromosome, and aggressively subsample input data.
+- Reuse existing files from nf-core/test-datasets where possible.
+
+Ask for advice in the [#test-data](https://nfcore.slack.com/channels/test-data) Slack channel before you prepare new test data.
+Other community members can often point you to existing data that you can reuse.
+
 ### Add test data to nf-core/test-datasets
 
 To add your test data to the nf-core/test-datasets repository:
+
+1. Ask in the [#test-data](https://nfcore.slack.com/channels/test-data) Slack channel for a branch named after your pipeline on [nf-core/test-datasets](https://github.com/nf-core/test-datasets/), if one does not exist already.
 
 1. Fork the [nf-core/test-datasets](https://github.com/nf-core/test-datasets/) repository to your personal account.
 
@@ -223,11 +220,8 @@ To add your test data to the nf-core/test-datasets repository:
    ```
 
 1. Add your test data files.
-   - Test data files must be very small due to GitHub file size limits and GitHub Actions timeout constraints.
-   - Use minimal reference data such as PhiX, yeast, or part of a chromosome.
-   - Aggressively subsample input data to be as small as possible while still testing pipeline functionality.
 
-1. Ask for advice in the [#test-data](https://nfcore.slack.com/channels/test-data) Slack channel before adding test data.
+1. Describe the test data in the branch `README.md`, including the source of each file, how you generated it, and its licence.
 
 1. Push the new files to GitHub:
 
@@ -237,9 +231,14 @@ To add your test data to the nf-core/test-datasets repository:
    git push --set-upstream origin <pipeline-name>
    ```
 
-1. Create a pull request against the main [nf-core/test-datasets](https://github.com/nf-core/test-datasets/) repository.
-   - First, create a new branch with your pipeline name using the GitHub web interface on the [nf-core/test-datasets repository](https://github.com/nf-core/test-datasets/).
-   - Then open a pull request and select this branch as the target.
+1. Open a pull request against the `<pipeline-name>` branch of the [nf-core/test-datasets](https://github.com/nf-core/test-datasets/) repository.
+
+1. Request a review from a member of the nf-core core or maintainers team who is not part of your pipeline's development team.
+   - Use the [#test-data](https://nfcore.slack.com/channels/test-data) Slack channel to find a reviewer.
+   - The reviewer checks the data source, licence, size, and that the data does not contain unconsented personal data.
+   - Wait for this review before you build your pipeline tests on the data.
+
+Use the same process whenever you add new test data later in development.
 
 ### Configure the test profile
 
@@ -274,12 +273,41 @@ See the [test data specifications](/docs/specifications/test-data/general) for c
 
 ### Add full test data
 
-You will need a full-size test dataset for the `test_full` profile.
+You will need a full-size test dataset for the `test_full` profile before your first release.
 This dataset produces realistic output when executed on each release and gets rendered on the "Results" tab of your pipeline's page on nf-co.re.
 Whenever possible, resources such as datasets or databases required here should be specified as stable, secure links to the original source.
-In rare cases where the data is only available via insecure http, behind a login page, or otherwise difficult to download programatically, contact the core team at [#request-core](https://nfcore.slack.com/channels/request-core.
+In rare cases where the data is only available via insecure http, behind a login page, or otherwise difficult to download programatically, contact the core team at [#request-core](https://nfcore.slack.com/channels/request-core).
+The full-size dataset must meet the same licence and data protection requirements as the `test` dataset.
 
 For more information about running the tests using the `test_full` profile, watch [Bytesize 19](https://nf-co.re/events/2021/bytesize-19-aws-megatests).
+
+## Develop your pipeline
+
+To develop your pipeline:
+
+1. Work on the `dev` branch following standard git development practices.
+
+1. Run the nf-core linting tool regularly to ensure your pipeline meets nf-core standards:
+
+   ```bash
+   nf-core pipelines lint
+   ```
+
+   - See the [nf-core tools documentation](/docs/nf-core-tools/pipelines/lint) for more information.
+   - GitHub Actions also runs this automatically, and you will receive notifications if tests fail.
+
+1. Test the pipeline locally with the `test` profile to verify:
+   - The pipeline executes successfully.
+   - Outputs are generated correctly.
+   - No errors or warnings occur.
+
+1. Use the `debug` profile when testing to get additional information:
+
+   ```bash
+   nextflow run <pipeline-name> -profile debug
+   ```
+
+   - This enables warnings about process selectors, shows additional debug output, and disables cleanup.
 
 ## Move your pipeline to nf-core
 
