@@ -27,7 +27,7 @@ For modules:
 
 For subworkflows:
 
-- [ ] The replacement subworkflow exists in nf-core/modules
+- [ ] The replacement subworkflow exists in nf-core/subworkflows
 - [ ] `main.nf`: the deprecation message names the replacement and `assert false: deprecation_message` comes first in `main:`
 - [ ] `tests/main.nf.test`: the tests have no `setup` block and assert the failure
 
