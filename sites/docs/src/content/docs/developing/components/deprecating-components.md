@@ -7,32 +7,51 @@ shortTitle: Deprecating components
 ## Deprecating a module or subworkflow
 
 Sometimes modules or subworkflows become outdated and need to be deprecated (available, but no longer recommended).
-These modules or subworkflows should not be deleted as they could be used in private repositories, or used on other
-platforms.
+They are not deleted straight away, as they could be used in private repositories, or used on other platforms.
+Modules deprecated for more than one year are removed at the annual spring clean.
 
-The recommended procedure is, once the alternative is available on nf-core modules, to add a message explaining that
-the module/subworkflow is deprecated, and an `assert` in the code body to print a deprecation
-the module/subworkflow is deprecated, and an `assert` in the code body to print a deprecation
-message.
+Once the alternative is available on nf-core modules, add a message explaining that the module/subworkflow is deprecated, and an `assert` in the code body to print it.
+
+## Checklist
+
+For modules:
+
+- [ ] The replacement module exists in nf-core/modules
+- [ ] `main.nf`: the deprecation message names the replacement as `nf-core/modules/<tool>/<subtool>`
+- [ ] `main.nf`: `assert false: deprecation_message` comes first in `script:`, before any other check (e.g. the conda profile check)
+- [ ] `main.nf`: the `stub:` block is removed
+- [ ] `meta.yml`: `deprecated: true`, `deprecation_date` and `deprecation_pr` are set
+- [ ] `tests/main.nf.test`: a single test with dummy inputs and no `setup` block asserts the failure and the deprecation message
+- [ ] `tests/`: snapshots, test configs and any other test files are removed
+- [ ] `nf-core modules lint <tool>/<subtool>` and the nf-test pass
+
+For subworkflows:
+
+- [ ] The replacement subworkflow exists in nf-core/modules
+- [ ] `main.nf`: the deprecation message names the replacement and `assert false: deprecation_message` comes first in `main:`
+- [ ] `tests/main.nf.test`: the tests have no `setup` block and assert the failure
+
+## Updating main.nf
 
 For modules:
 
 ```nextflow title="main.nf"
-def deprecation_message = """
-WARNING: This module has been deprecated. Please use nf-core/modules/path/to/new/module
-
-Reason:
-This module is no longer fit for purpose because ...
-
-"""
-
 process OLD_MODULE {
   ...
 
   script:
+  def deprecation_message = """
+  WARNING: This module has been deprecated. Please use nf-core/modules/<tool>/<subtool>
+
+  Reason:
+  This module is no longer fit for purpose because ...
+  """
   assert false: deprecation_message
+  ...
 }
 ```
+
+Remove the `stub:` block: with `-stub`, Nextflow runs `script:` for processes without a stub, so the `assert` also stops stub runs.
 
 For subworkflows:
 
@@ -41,7 +60,7 @@ For subworkflows:
   main:
 
   def deprecation_message = """
-  WARNING: This subworkflow has been deprecated. Please use subworkflows/nf-core/path/to/new/module
+  WARNING: This subworkflow has been deprecated. Please use subworkflows/nf-core/<subworkflow>
 
   Reason:
   This subworkflow is no longer fit for purpose because ...
@@ -54,38 +73,51 @@ For subworkflows:
 The purpose of the `assert` is to introduce a mechanism which stops the pipeline and alerts the developer when
 an automatic update of the module/subworkflow is performed.
 
-### Updating meta.yml
+## Updating meta.yml
 
-Add `deprecated: true{:yml}` above `keywords:` to the module's `meta.yml` to mark it as deprecated in the nf-core registry and tooling:
+Add `deprecated: true{:yml}` above `keywords:` in the module's `meta.yml`, with the date (`YYYY-MM-DD`) and the pull request of the deprecation:
 
-```yaml title="meta.yml" {3}
+```yaml title="meta.yml" {3-5}
 name: old_module
 description: ...
 deprecated: true
+deprecation_date: "2026-11-19"
+deprecation_pr: "https://github.com/nf-core/modules/pull/1234"
 keywords:
   - ...
 ```
 
-This field is used by nf-core tools and the website to flag deprecated modules.
+`deprecated` is used by nf-core tools and the website to flag deprecated modules.
+`deprecation_date` tells when the module can be removed at the spring clean.
 
-### Updating the nf-tests
+## Updating the nf-tests
 
-Remove anything in the setup block.
-The addition of `assert false` will mean the nf-test will always fail.
-The `then` part of the nf-test should be updated with the following code for modules:
+The `assert false` makes every test fail, so the tests only check that failure.
+For modules, keep a single test with dummy inputs, without a `setup` block, and remove the snapshots and test configs:
 
 ```nextflow title="main.nf.test"
 ...
-  then {
-    assertAll(
-      { assert process.failed },
-      { assert process.errorReport.contains("WARNING: This module has been deprecated.")}
-    )
+  test("deprecated") {
+
+    when {
+      process {
+        """
+        input[0] = [ [ id:'test' ], file('input') ]
+        """
+      }
+    }
+
+    then {
+      assertAll(
+        { assert process.failed },
+        { assert process.errorReport.contains("WARNING: This module has been deprecated. Please use nf-core/modules/<tool>/<subtool>") }
+      )
+    }
   }
 ...
 ```
 
-Or the following code for subworkflows:
+For subworkflows, remove anything in the `setup` block and update the `then` block:
 
 ```nextflow title="main.nf.test"
 ...
