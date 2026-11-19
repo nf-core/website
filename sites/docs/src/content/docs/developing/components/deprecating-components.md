@@ -88,7 +88,7 @@ keywords:
 ```
 
 `deprecated` is used by nf-core tools and the website to flag deprecated modules.
-`deprecation_date` tells when the module can be removed at the spring clean.
+`deprecation_date` tells if the module can be removed at the spring clean.
 
 ## Updating the nf-tests
 
