@@ -7,6 +7,26 @@ weight: 2
 
 The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
+## Location of test data
+
+Test data MUST be stored in the [nf-core/test-datasets](https://github.com/nf-core/test-datasets) repository.
+Full-size test data for pipeline `test_full` profiles MAY instead be loaded from stable links to the original public source.
+
+Test data files MUST NOT be committed to pipeline repositories.
+
+## Review of new pipeline test data
+
+New test data for a pipeline MUST be added to the pipeline's test-datasets branch through a pull request.
+
+The pull request MUST be reviewed by a member of the nf-core core or maintainers team who is not part of the pipeline's development team.
+
+New pipelines SHOULD add and review their test data before pipeline development starts.
+
+:::info{title="Rationale" collapse}
+A review of the test data at the start of development catches problems such as unclear licences or identifiable human data before the pipeline and its tests depend on the data.
+A reviewer from outside the development team gives an independent check, which matters most when a small team develops a pipeline.
+:::
+
 ## Replication of test data
 
 New test data files within a branch (modules or pipelines) SHOULD NOT replicate existing test data unless absolutely necessary.
@@ -37,6 +57,12 @@ Data SHOULD be sub-sampled as aggressively as possible while still allowing the 
 ## License of test data
 
 Test data MUST be publicly available and have licenses that allow public reuse.
+
+## Personal and sensitive data
+
+Test data MUST NOT contain personal data, including human sequence data from individual donors, unless the donors consented to open public sharing of that data (for example, [Genome in a Bottle](https://www.nist.gov/programs-projects/genome-bottle) samples).
+
+Simulated data and public reference genomes MAY be used.
 
 ## Documentation of test data
 
