@@ -57,3 +57,5 @@ The following specifications define best practices that all nf-core pipelines SH
 - **[Publication credit](recommendations/publication_credit):** Pipeline publications SHOULD acknowledge the nf-core community and cite the nf-core framework paper.
 - **[Build with the community](recommendations/build_with_community):** Pipeline development SHOULD occur collaboratively with the community from the beginning rather than proposing complete pipelines.
 - **[Custom Docker images](recommendations/custom_containers):** Custom containers not available through BioContainers SHOULD be mirrored on quay.io for long-term reproducibility.
+- **[Oxford nanopore sequencing data](recommendations/oxford_nanopore_sequencing_data):** Pipelines developed to analyse
+  Oxford Nanopore sequencing data SHOULD take basecalled reads as inputs and SHOULD avoid replicating EPI2ME workflows.
