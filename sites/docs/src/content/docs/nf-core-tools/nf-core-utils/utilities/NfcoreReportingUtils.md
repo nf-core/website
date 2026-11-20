@@ -1,8 +1,9 @@
 ---
-# Copied from docs/utilities/NfcoreReportingUtils.md of nf-core/nf-core-utils 0.6.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
-title: "MultiQC Integration Tutorial"
-shortTitle: "MultiQC Integration Tutorial"
+# Copied from docs/utilities/NfcoreReportingUtils.md of nf-core/nf-core-utils 0.7.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+title: MultiQC Integration Tutorial
+shortTitle: MultiQC Integration Tutorial
 weight: 8
+md_github_url: https://github.com/nf-core/nf-core-utils/blob/main/docs/utilities/NfcoreReportingUtils.md
 ---
 
 # MultiQC Integration Tutorial
@@ -38,7 +39,7 @@ Generates a YAML-formatted string from a map of summary parameters for MultiQC w
 
 **Function Signature:**
 
-```nextflow
+```groovy
 static String paramsSummaryMultiqc(Map summaryParams)
 ```
 
@@ -117,14 +118,14 @@ Creates a comprehensive workflow summary template for MultiQC with both HTML and
 
 **Function Signature:**
 
-```nextflow
+```groovy
 static Map workflowSummaryMQC(Map summary, List<String> nfMetadataList, Map results)
 ```
 
 **Parameters:**
 
 - `summary` (Map): Map of workflow parameters and metadata
-- `nfMetadataList` (List<String>): List of metadata fields to include from workflow
+- `nfMetadataList` (List\<String\>): List of metadata fields to include from workflow
 - `results` (Map): Map of pipeline results and statistics
 
 **Returns:**
@@ -234,7 +235,7 @@ Generates formatted log messages for different pipeline sections with optional c
 
 **Function Signature:**
 
-```nextflow
+```groovy
 static Map<String, String> sectionLogs(Map sections, boolean monochrome = false)
 ```
 
@@ -558,7 +559,7 @@ class SectionTracker {
 
 ### Unit Testing
 
-```nextflow
+```groovy
 test("Parameter summary YAML generation") {
     when {
         def params = [
@@ -613,7 +614,7 @@ test("Section log formatting") {
 
 ### Integration Testing
 
-```nextflow
+```groovy
 test("Complete reporting workflow") {
     when {
         // Simulate full reporting workflow
