@@ -88,6 +88,13 @@ const headings = [
         >
             <i class="fab fa-youtube"></i> YouTube
         </a>
+        <a
+            href="https://play.workadventu.re/@/nf-core/nf-core/office"
+            class="mb-2 me-3 btn btn-lg btn-dark border-0"
+            style="background-color: #1b2a41;"
+        >
+            <Icon name="workadventure" /> WorkAdventure
+        </a>
     </p>
 
     <p class="text-info small">
@@ -258,6 +265,13 @@ const headings = [
         always open, but usage requires adherence to the{" "}
         <a href="https://nf-co.re/code_of_conduct">nf-core code of conduct</a>
     </p>
+    <a
+        href="https://play.workadventu.re/@/nf-core/nf-core/office"
+        class="btn btn-dark border-0"
+        style="background-color: #1b2a41;"
+    >
+        <Icon name="workadventure" /> Join the nf-core office
+    </a>
 </MarkdownTocLayout>
 <style lang="scss">
     @import "@styles/_variables.scss";
@@ -273,5 +287,8 @@ const headings = [
     }
     :global([data-bs-theme="dark"]) :global([data-icon="workadventure"]) {
         color: var(--bs-body-color);
+    }
+    .btn :global([data-icon="workadventure"]) {
+        color: inherit;
     }
 </style>
