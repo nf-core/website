@@ -6653,21 +6653,22 @@
     {
       "name": "ampcombi",
       "path": "modules/nf-core/ampcombi/meta.yml",
-      "tree_sha": "7e52de76f56da02778a9a42dd96a77bda0686da1",
+      "tree_sha": "60d3611c1d28cf498170d860c98d2e3c17084d37",
       "files": [
         "modules/nf-core/ampcombi/.conda-lock/linux_amd64-bd-b587b9835b2adf6b_1.txt",
         "modules/nf-core/ampcombi/.conda-lock/linux_arm64-bd-aff1d86abfe67bb2_1.txt",
         "modules/nf-core/ampcombi/environment.yml",
         "modules/nf-core/ampcombi/main.nf",
         "modules/nf-core/ampcombi/meta.yml",
-        "modules/nf-core/ampcombi/tests/main.nf.test",
-        "modules/nf-core/ampcombi/tests/main.nf.test.snap"
+        "modules/nf-core/ampcombi/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "ampcombi",
         "description": "A tool to parse and summarise results from antimicrobial peptides tools and present functional classification.",
         "deprecated": true,
+        "deprecation_date": "2024-05-03",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/5385",
         "keywords": [
           "antimicrobial peptides",
           "amps",
@@ -7055,7 +7056,7 @@
           }
         }
       },
-      "git_sha": "60cbbc984df0ebeab479af732b4cfcd07c9c52a7"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "ampcombi2_cluster",
@@ -8784,22 +8785,22 @@
     {
       "name": "amulety_antiberta2",
       "path": "modules/nf-core/amulety/antiberta2/meta.yml",
-      "tree_sha": "b8a75960249413eabc512626a8f830798890587c",
+      "tree_sha": "d9f706af890518b8174b9f7130b335ea2f36f21b",
       "files": [
         "modules/nf-core/amulety/antiberta2/.conda-lock/linux_amd64-bd-5abbe5fc5e136fd3_1.txt",
         "modules/nf-core/amulety/antiberta2/.conda-lock/linux_arm64-bd-0e94f7a12e9db539_1.txt",
         "modules/nf-core/amulety/antiberta2/environment.yml",
         "modules/nf-core/amulety/antiberta2/main.nf",
         "modules/nf-core/amulety/antiberta2/meta.yml",
-        "modules/nf-core/amulety/antiberta2/tests/gpu.nf.test",
-        "modules/nf-core/amulety/antiberta2/tests/main.nf.test",
-        "modules/nf-core/amulety/antiberta2/tests/nextflow.config"
+        "modules/nf-core/amulety/antiberta2/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "amulety_antiberta2",
         "description": "A module to create antiberta2 embeddings of antibody (BCR) amino acid sequences using amulety.",
         "deprecated": true,
+        "deprecation_date": "2026-01-21",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/9674",
         "keywords": [
           "embeddings",
           "BCR",
@@ -8962,27 +8963,27 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "amulety_antiberty",
       "path": "modules/nf-core/amulety/antiberty/meta.yml",
-      "tree_sha": "9bd3f08d6a744b49367c95f527e83a701a0e0969",
+      "tree_sha": "d830b4e1310e7b5ded5b9bed921a098f5322f94d",
       "files": [
         "modules/nf-core/amulety/antiberty/.conda-lock/linux_amd64-bd-5abbe5fc5e136fd3_1.txt",
         "modules/nf-core/amulety/antiberty/.conda-lock/linux_arm64-bd-0e94f7a12e9db539_1.txt",
         "modules/nf-core/amulety/antiberty/environment.yml",
         "modules/nf-core/amulety/antiberty/main.nf",
         "modules/nf-core/amulety/antiberty/meta.yml",
-        "modules/nf-core/amulety/antiberty/tests/gpu.nf.test",
-        "modules/nf-core/amulety/antiberty/tests/main.nf.test",
-        "modules/nf-core/amulety/antiberty/tests/nextflow.config"
+        "modules/nf-core/amulety/antiberty/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "amulety_antiberty",
         "description": "A module to create antiberty embeddings of antibody (BCR) amino acid sequences using amulety.",
         "deprecated": true,
+        "deprecation_date": "2026-01-21",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/9674",
         "keywords": [
           "embeddings",
           "BCR",
@@ -9145,27 +9146,27 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "amulety_balmpaired",
       "path": "modules/nf-core/amulety/balmpaired/meta.yml",
-      "tree_sha": "1e852cf62fab9d7394af60d2f10d909491038794",
+      "tree_sha": "f1eee01166e57502739569af681aed963602d1b8",
       "files": [
         "modules/nf-core/amulety/balmpaired/.conda-lock/linux_amd64-bd-5abbe5fc5e136fd3_1.txt",
         "modules/nf-core/amulety/balmpaired/.conda-lock/linux_arm64-bd-0e94f7a12e9db539_1.txt",
         "modules/nf-core/amulety/balmpaired/environment.yml",
         "modules/nf-core/amulety/balmpaired/main.nf",
         "modules/nf-core/amulety/balmpaired/meta.yml",
-        "modules/nf-core/amulety/balmpaired/tests/gpu.nf.test",
-        "modules/nf-core/amulety/balmpaired/tests/main.nf.test",
-        "modules/nf-core/amulety/balmpaired/tests/nextflow.config"
+        "modules/nf-core/amulety/balmpaired/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "amulety_balmpaired",
         "description": "A module to create BALM paired embeddings of antibody (BCR) amino acid sequences using amulety.",
         "deprecated": true,
+        "deprecation_date": "2026-01-21",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/9674",
         "keywords": [
           "embeddings",
           "BCR",
@@ -9328,7 +9329,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "amulety_embed",
@@ -9647,22 +9648,22 @@
     {
       "name": "amulety_esm2",
       "path": "modules/nf-core/amulety/esm2/meta.yml",
-      "tree_sha": "c6dfa735c66946becb00f964564d1165447607b1",
+      "tree_sha": "16838232bb48f4bf28bcc8f95cda1f8fe5b584db",
       "files": [
         "modules/nf-core/amulety/esm2/.conda-lock/linux_amd64-bd-5abbe5fc5e136fd3_1.txt",
         "modules/nf-core/amulety/esm2/.conda-lock/linux_arm64-bd-0e94f7a12e9db539_1.txt",
         "modules/nf-core/amulety/esm2/environment.yml",
         "modules/nf-core/amulety/esm2/main.nf",
         "modules/nf-core/amulety/esm2/meta.yml",
-        "modules/nf-core/amulety/esm2/tests/gpu.nf.test",
-        "modules/nf-core/amulety/esm2/tests/main.nf.test",
-        "modules/nf-core/amulety/esm2/tests/nextflow.config"
+        "modules/nf-core/amulety/esm2/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "amulety_esm2",
         "description": "A module to create esm2 embeddings of antibody (BCR) amino acid sequences using amulety.",
         "deprecated": true,
+        "deprecation_date": "2026-01-21",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/9674",
         "keywords": [
           "embeddings",
           "BCR",
@@ -9825,7 +9826,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "amulety_translate",
@@ -13812,20 +13813,20 @@
     {
       "name": "antismash_antismashlite",
       "path": "modules/nf-core/antismash/antismashlite/meta.yml",
-      "tree_sha": "0140680b0df117c58502c9333dfadd54678f86db",
+      "tree_sha": "4be8d41285af786e1ccf69d55eef6243651a40ab",
       "files": [
         "modules/nf-core/antismash/antismashlite/environment.yml",
         "modules/nf-core/antismash/antismashlite/main.nf",
         "modules/nf-core/antismash/antismashlite/meta.yml",
-        "modules/nf-core/antismash/antismashlite/tests/main.nf.test",
-        "modules/nf-core/antismash/antismashlite/tests/main.nf.test.snap",
-        "modules/nf-core/antismash/antismashlite/tests/nextflow.config"
+        "modules/nf-core/antismash/antismashlite/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "antismash_antismashlite",
         "description": "antiSMASH allows the rapid genome-wide identification, annotation\nand analysis of secondary metabolite biosynthesis gene clusters.\n",
         "deprecated": true,
+        "deprecation_date": "2025-05-22",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/8493",
         "keywords": [
           "secondary metabolites",
           "BGC",
@@ -14302,25 +14303,25 @@
           "@jasmezz"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "antismash_antismashlitedownloaddatabases",
       "path": "modules/nf-core/antismash/antismashlitedownloaddatabases/meta.yml",
-      "tree_sha": "52dc6a1f4fe51866c6fd3c8b2e95a1fa4f1ac25f",
+      "tree_sha": "103cda1065683712131d008cd31843db3c1f381d",
       "files": [
         "modules/nf-core/antismash/antismashlitedownloaddatabases/environment.yml",
         "modules/nf-core/antismash/antismashlitedownloaddatabases/main.nf",
         "modules/nf-core/antismash/antismashlitedownloaddatabases/meta.yml",
-        "modules/nf-core/antismash/antismashlitedownloaddatabases/tests/main.nf.test",
-        "modules/nf-core/antismash/antismashlitedownloaddatabases/tests/main.nf.test.snap",
-        "modules/nf-core/antismash/antismashlitedownloaddatabases/tests/nextflow.config"
+        "modules/nf-core/antismash/antismashlitedownloaddatabases/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "antismash_antismashlitedownloaddatabases",
         "description": "antiSMASH allows the rapid genome-wide identification, annotation and analysis of secondary metabolite biosynthesis gene clusters. This module downloads the antiSMASH databases for conda and docker/singularity runs.",
         "deprecated": true,
+        "deprecation_date": "2025-05-22",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/8493",
         "keywords": [
           "secondary metabolites",
           "BGC",
@@ -14452,7 +14453,7 @@
           "@jasmezz"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "any2fasta",
@@ -17243,8 +17244,10 @@
     {
       "name": "artic_aligntrim",
       "path": "modules/nf-core/artic/aligntrim/meta.yml",
-      "tree_sha": "c7655ff0c15e92f13ba7b78f8fa23fd8d307bcbc",
+      "tree_sha": "05fdb7ddb016f4fdbbbb3a37bec71ff2f29f1c4c",
       "files": [
+        "modules/nf-core/artic/aligntrim/.conda-lock/linux_amd64-bd-5fd2b1772c911075_1.txt",
+        "modules/nf-core/artic/aligntrim/.conda-lock/linux_arm64-bd-6f7f3214ceb2673d_1.txt",
         "modules/nf-core/artic/aligntrim/environment.yml",
         "modules/nf-core/artic/aligntrim/main.nf",
         "modules/nf-core/artic/aligntrim/meta.yml",
@@ -17450,6 +17453,153 @@
               }
             ]
           ],
+          "qc_summary": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.summary.tsv": {
+                  "type": "file",
+                  "description": "TSV report containing the number of fragments kept and removed for each removal reason",
+                  "pattern": "*.summary.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "qc_amplicons": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.amplicons.tsv": {
+                  "type": "file",
+                  "description": "TSV report containing the number of fragments kept and removed for each amplicon in the scheme",
+                  "pattern": "*.amplicons.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "qc_primer_pairs": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.primer_pairs.tsv": {
+                  "type": "file",
+                  "description": "TSV report containing counts of each combination of primers matched at the fragment ends",
+                  "pattern": "*.primer_pairs.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "qc_split_reads": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.split_reads.tsv": {
+                  "type": "file",
+                  "description": "TSV report containing joins in split (supplementary) alignments, e.g. amplicon chimeras",
+                  "pattern": "*.split_reads.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "qc_overlaps": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.overlaps.tsv": {
+                  "type": "file",
+                  "description": "TSV report containing base frequency concordance between neighbouring amplicons in their overlapping regions",
+                  "pattern": "*.overlaps.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "rejected_bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.rejected.bam": {
+                  "type": "file",
+                  "description": "Unsorted BAM file containing the untrimmed reads removed during trimming, each tagged with the reason for removal (ZR tag)",
+                  "pattern": "*.rejected.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "versions_align_trim": [
             [
               {
@@ -17502,9 +17652,43 @@
         ],
         "maintainers": [
           "@BioWilko"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/samtools_pip_align_trim:5fd2b1772c911075",
+              "build_id": "bd-5fd2b1772c911075_1",
+              "scan_id": "sc-dd89992ada54accd_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/samtools_pip_align_trim:6f7f3214ceb2673d",
+              "build_id": "bd-6f7f3214ceb2673d_1",
+              "scan_id": "sc-168eb45136ba69a4_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/samtools_pip_align_trim:dffb055ec8e17f3f",
+              "build_id": "bd-dffb055ec8e17f3f_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/23/23fb96f7b8c846ee7e502520801ab924560be07d9c5eec04e0c804d0c44851e1/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/samtools_pip_align_trim:e00af551075e8a27",
+              "build_id": "bd-e00af551075e8a27_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/99/996a25fe1d54150b634fbd958a2a55bd5c30c34c88df1208b67f3451c50906d2/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/artic/aligntrim/.conda-lock/linux_amd64-bd-5fd2b1772c911075_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/artic/aligntrim/.conda-lock/linux_arm64-bd-6f7f3214ceb2673d_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "18dd4cf17ca626a307d1d55b34cb36ba834a8152"
     },
     {
       "name": "artic_guppyplex",
@@ -22620,20 +22804,21 @@
     {
       "name": "bam2fastx_bam2fastq",
       "path": "modules/nf-core/bam2fastx/bam2fastq/meta.yml",
-      "tree_sha": "cabccbf2e90781637c28268ba17d75eec534b80c",
+      "tree_sha": "b02706c8f9c1ff8e6b3e7e3c63d582d35c68ab4e",
       "files": [
         "modules/nf-core/bam2fastx/bam2fastq/.conda-lock/linux_amd64-bd-1181601d78cb6c32_1.txt",
         "modules/nf-core/bam2fastx/bam2fastq/environment.yml",
         "modules/nf-core/bam2fastx/bam2fastq/main.nf",
         "modules/nf-core/bam2fastx/bam2fastq/meta.yml",
-        "modules/nf-core/bam2fastx/bam2fastq/tests/main.nf.test",
-        "modules/nf-core/bam2fastx/bam2fastq/tests/main.nf.test.snap"
+        "modules/nf-core/bam2fastx/bam2fastq/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "bam2fastx_bam2fastq",
         "description": "Conversion of PacBio BAM files into gzipped fastq files, including splitting of barcoded data",
         "deprecated": true,
+        "deprecation_date": "2024-06-19",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/5816",
         "keywords": [
           "bam2fastx",
           "bam2fastq",
@@ -22778,7 +22963,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "bamaligncleaner",
@@ -41259,7 +41444,7 @@
     {
       "name": "bff",
       "path": "modules/nf-core/bff/meta.yml",
-      "tree_sha": "91c82d81e782f678f212c6db640ef71c9d3e45a0",
+      "tree_sha": "5fdaf5d804a843557d45d714607e4a2d2ed12fba",
       "files": [
         "modules/nf-core/bff/environment.yml",
         "modules/nf-core/bff/main.nf",
@@ -41434,7 +41619,7 @@
           "@LuisHeinzlmeier"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "8257045816dd697471f17f14143faaba656a91af",
       "pipelines": [
         {
           "name": "hadge",
@@ -53426,7 +53611,7 @@
     {
       "name": "busco_generateplot",
       "path": "modules/nf-core/busco/generateplot/meta.yml",
-      "tree_sha": "f711f6ed0a3a59f471922a0f821bcb2a591943f6",
+      "tree_sha": "1eab6e7a529b6284e4968b64e0bc382fbbf76077",
       "files": [
         "modules/nf-core/busco/generateplot/.conda-lock/linux_amd64-bd-28bfd2435aed3cc4_1.txt",
         "modules/nf-core/busco/generateplot/environment.yml",
@@ -53439,6 +53624,8 @@
         "name": "busco_generateplot",
         "description": "BUSCO plot generation tool",
         "deprecated": true,
+        "deprecation_date": "2026-07-09",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/12336",
         "keywords": [
           "genome",
           "fasta",
@@ -53558,7 +53745,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "busco_phylogenomics",
@@ -58700,9 +58887,9 @@
     {
       "name": "caddsv_run",
       "path": "modules/nf-core/caddsv/run/meta.yml",
-      "tree_sha": "516665c83ab7ae3d5bcd269ae130112afd3dd1e4",
+      "tree_sha": "d44673373d885ff66197f3df1bffb8e89f76e0db",
       "files": [
-        "modules/nf-core/caddsv/run/.conda-lock/linux_amd64-bd-799f9464989eb8fe_1.txt",
+        "modules/nf-core/caddsv/run/.conda-lock/linux_amd64-bd-ee3857ad3388d6b5_1.txt",
         "modules/nf-core/caddsv/run/environment.yml",
         "modules/nf-core/caddsv/run/main.nf",
         "modules/nf-core/caddsv/run/meta.yml",
@@ -58805,7 +58992,7 @@
               }
             ]
           ],
-          "results": [
+          "formatted_input": [
             [
               {
                 "meta": {
@@ -58814,9 +59001,114 @@
                 }
               },
               {
-                "caddsv_results": {
-                  "type": "directory",
-                  "description": "CADD-SV output directory containing input, intermediate, and scored results."
+                "caddsv_results/input/id_*": {
+                  "type": "file",
+                  "description": "Input BED/TSV as normalised by CADD-SV before scoring.",
+                  "optional": true,
+                  "pattern": "id_*.{bed,tsv}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "bed": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "caddsv_results/beds/*/*.bed*": {
+                  "type": "file",
+                  "description": "Intermediate annotation and feature BED files, including the upstream/downstream flank files (`*.bedup*`, `*.beddown*`).",
+                  "optional": true,
+                  "pattern": "*.bed*",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "h5": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "caddsv_results/beds/*/*.h5": {
+                  "type": "file",
+                  "description": "SegmentNT probabilities for sample and reference sequences (`--seqresolved` and `--seqonly` only).",
+                  "optional": true,
+                  "pattern": "*.h5",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3590"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "raw_scores": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "caddsv_results/beds/*/output/*": {
+                  "type": "file",
+                  "description": "Model scores before final formatting (BED for coordinate input, TSV for `--seqonly`).",
+                  "optional": true,
+                  "pattern": "*.{bed,tsv}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "snakemake_log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "caddsv_results/.snakemake/log/*.snakemake.log": {
+                  "type": "file",
+                  "description": "Log of the internal CADD-SV Snakemake workflow.",
+                  "optional": true,
+                  "pattern": "*.snakemake.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
                 }
               }
             ]
@@ -58900,26 +59192,26 @@
         "containers": {
           "docker": {
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/caddsv_snakemake_pulp_bedops_pruned:799f9464989eb8fe",
-              "build_id": "bd-799f9464989eb8fe_1",
-              "scan_id": "sc-55f9316108db721c_1"
+              "name": "community.wave.seqera.io/library/bedops_bedtools_caddsv_htslib_pruned:ee3857ad3388d6b5",
+              "build_id": "bd-ee3857ad3388d6b5_1",
+              "scan_id": "sc-4b9ab28554ddba7f_1"
             }
           },
           "singularity": {
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/caddsv_snakemake_pulp_bedops_pruned:c829199550260c5d",
-              "build_id": "bd-c829199550260c5d_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/d2/d2fd85e11209001044c0b5f8cd663e8058cf006b8e6a0d8712a50857677ab664/data"
+              "name": "oras://community.wave.seqera.io/library/bedops_bedtools_caddsv_htslib_pruned:6f931208f004c935",
+              "build_id": "bd-6f931208f004c935_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/1b/1b0959d5012eaa6e532c20e40555e189cd76b2a145640f91e130c693f2bb5565/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/caddsv/run/.conda-lock/linux_amd64-bd-799f9464989eb8fe_1.txt"
+              "lock_file": "modules/nf-core/caddsv/run/.conda-lock/linux_amd64-bd-ee3857ad3388d6b5_1.txt"
             }
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "5ce2673c190bd7f779ec998aad835f7ec3a378c9"
     },
     {
       "name": "cafe",
@@ -60344,20 +60636,20 @@
     {
       "name": "cat_cat",
       "path": "modules/nf-core/cat/cat/meta.yml",
-      "tree_sha": "dc900b05db1dcb930d0846fd241b8f4e42928efe",
+      "tree_sha": "10910a54f299e8f7c1a4744e804595e8e827826a",
       "files": [
         "modules/nf-core/cat/cat/environment.yml",
         "modules/nf-core/cat/cat/main.nf",
         "modules/nf-core/cat/cat/meta.yml",
-        "modules/nf-core/cat/cat/tests/main.nf.test",
-        "modules/nf-core/cat/cat/tests/main.nf.test.snap",
-        "modules/nf-core/cat/cat/tests/nextflow.config"
+        "modules/nf-core/cat/cat/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "cat_cat",
         "description": "A module for concatenation of gzipped or uncompressed files",
         "deprecated": true,
+        "deprecation_date": "2026-03-31",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/11095",
         "keywords": [
           "concatenate",
           "gzip",
@@ -60468,7 +60760,7 @@
           "@FriederikeHanssen"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca",
       "pipelines": [
         {
           "name": "denovotranscript",
@@ -92400,7 +92692,7 @@
     {
       "name": "custom_dumpsoftwareversions",
       "path": "modules/nf-core/custom/dumpsoftwareversions/meta.yml",
-      "tree_sha": "c65d1f0fe74b5eeccf54df2fc36f6f71c30eb87e",
+      "tree_sha": "ab0187ea2c98e04befe43b089834b02285f86374",
       "files": [
         "modules/nf-core/custom/dumpsoftwareversions/.conda-lock/linux_amd64-bd-5aad79bfb397e7db_1.txt",
         "modules/nf-core/custom/dumpsoftwareversions/.conda-lock/linux_arm64-bd-b6b65551e6ce8ab3_1.txt",
@@ -92408,14 +92700,15 @@
         "modules/nf-core/custom/dumpsoftwareversions/main.nf",
         "modules/nf-core/custom/dumpsoftwareversions/meta.yml",
         "modules/nf-core/custom/dumpsoftwareversions/templates/dumpsoftwareversions.py",
-        "modules/nf-core/custom/dumpsoftwareversions/tests/main.nf.test",
-        "modules/nf-core/custom/dumpsoftwareversions/tests/main.nf.test.snap"
+        "modules/nf-core/custom/dumpsoftwareversions/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "custom_dumpsoftwareversions",
         "description": "Custom module used to dump software versions within the nf-core pipeline template",
         "deprecated": true,
+        "deprecation_date": "2025-03-11",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/6224",
         "keywords": [
           "custom",
           "dump",
@@ -92551,7 +92844,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca",
       "pipelines": [
         {
           "name": "atacseq",
@@ -93116,21 +93409,22 @@
     {
       "name": "custom_getchromsizes",
       "path": "modules/nf-core/custom/getchromsizes/meta.yml",
-      "tree_sha": "313f2dd2e3eca50f84171221704476e0eae87622",
+      "tree_sha": "7dfa4d8336b25d6f0cebe4811c928fd0cb25fe1a",
       "files": [
         "modules/nf-core/custom/getchromsizes/.conda-lock/linux_amd64-bd-ef1e734834ad9fa5_1.txt",
         "modules/nf-core/custom/getchromsizes/.conda-lock/linux_arm64-bd-fe9f11c26e616a8e_1.txt",
         "modules/nf-core/custom/getchromsizes/environment.yml",
         "modules/nf-core/custom/getchromsizes/main.nf",
         "modules/nf-core/custom/getchromsizes/meta.yml",
-        "modules/nf-core/custom/getchromsizes/tests/main.nf.test",
-        "modules/nf-core/custom/getchromsizes/tests/main.nf.test.snap"
+        "modules/nf-core/custom/getchromsizes/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "custom_getchromsizes",
         "description": "Generates a FASTA file of chromosome sizes and a fasta index file",
         "deprecated": true,
+        "deprecation_date": "2025-11-14",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/9367",
         "keywords": [
           "fasta",
           "chromosome",
@@ -93306,7 +93600,7 @@
           }
         }
       },
-      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28",
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca",
       "pipelines": [
         {
           "name": "atacseq",
@@ -97946,7 +98240,7 @@
     {
       "name": "dastool_scaffolds2bin",
       "path": "modules/nf-core/dastool/scaffolds2bin/meta.yml",
-      "tree_sha": "9d00a63e8ea2b5d6214404a039621c4935371ba0",
+      "tree_sha": "79d262d9e1dd8a39843843043847658b4a959e0b",
       "files": [
         "modules/nf-core/dastool/scaffolds2bin/environment.yml",
         "modules/nf-core/dastool/scaffolds2bin/main.nf",
@@ -97958,6 +98252,8 @@
         "name": "dastool_scaffolds2bin",
         "description": "Helper script to convert a set of bins in fasta format to tabular scaffolds2bin format",
         "deprecated": true,
+        "deprecation_date": "2024-12-11",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/7163",
         "keywords": [
           "binning",
           "das tool",
@@ -98084,7 +98380,7 @@
           "@maxibor"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "datavzrd",
@@ -105150,6 +105446,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -130224,19 +130528,20 @@
     {
       "name": "fastavalidator",
       "path": "modules/nf-core/fastavalidator/meta.yml",
-      "tree_sha": "55017b7bc5f11798ab86e4111844f3354a2a1800",
+      "tree_sha": "48ce7b95c29eac277c752036d0f72b045ef83670",
       "files": [
         "modules/nf-core/fastavalidator/environment.yml",
         "modules/nf-core/fastavalidator/main.nf",
         "modules/nf-core/fastavalidator/meta.yml",
-        "modules/nf-core/fastavalidator/tests/main.nf.test",
-        "modules/nf-core/fastavalidator/tests/main.nf.test.snap"
+        "modules/nf-core/fastavalidator/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "fastavalidator",
         "description": "\"Python C-extension for a simple validator for fasta files. The module emits the validated file or an\nerror log upon validation failure.\"\n",
         "deprecated": true,
+        "deprecation_date": "2026-03-25",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/11012",
         "keywords": [
           "fasta",
           "validation",
@@ -130366,7 +130671,7 @@
           "@gallvp"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca",
       "pipelines": [
         {
           "name": "multiplesequencealign",
@@ -134922,18 +135227,19 @@
     {
       "name": "fcs_fcsgx",
       "path": "modules/nf-core/fcs/fcsgx/meta.yml",
-      "tree_sha": "946a498a3b4b5d8400abd99ef8e67ec280d01f6e",
+      "tree_sha": "4334a9bf6068ba66dca3531c43cd102da403fbd5",
       "files": [
         "modules/nf-core/fcs/fcsgx/main.nf",
         "modules/nf-core/fcs/fcsgx/meta.yml",
-        "modules/nf-core/fcs/fcsgx/tests/main.nf.test",
-        "modules/nf-core/fcs/fcsgx/tests/main.nf.test.snap"
+        "modules/nf-core/fcs/fcsgx/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "fcs_fcsgx",
         "description": "Run FCS-GX on assembled genomes. The contigs of the assembly are searched against a reference database excluding the given taxid.",
         "deprecated": true,
+        "deprecation_date": "2025-04-11",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/8269",
         "keywords": [
           "assembly",
           "genomics",
@@ -135118,7 +135424,7 @@
           "@tillenglert"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "fcsgx_cleangenome",
@@ -195607,20 +195913,20 @@
     {
       "name": "hifitrimmer_filterbam",
       "path": "modules/nf-core/hifitrimmer/filterbam/meta.yml",
-      "tree_sha": "35b82103ca3380ef0aca29a1473ad64116805275",
+      "tree_sha": "8e06f0b70c13a7089cefd2995c2a6894f885274b",
       "files": [
         "modules/nf-core/hifitrimmer/filterbam/environment.yml",
         "modules/nf-core/hifitrimmer/filterbam/main.nf",
         "modules/nf-core/hifitrimmer/filterbam/meta.yml",
-        "modules/nf-core/hifitrimmer/filterbam/tests/main.nf.test",
-        "modules/nf-core/hifitrimmer/filterbam/tests/main.nf.test.snap",
-        "modules/nf-core/hifitrimmer/filterbam/tests/nextflow.config"
+        "modules/nf-core/hifitrimmer/filterbam/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "hifitrimmer_filterbam",
         "description": "Run hifi_trimmer filter_bam to filter and trim adapter hits from PacBio HiFi reads (BAM/FASTA/FASTQ) using BLAST against\nadapter sequences. Primary output is filtered FASTA/FASTQ.\n",
         "deprecated": true,
+        "deprecation_date": "2026-07-31",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/12465",
         "keywords": [
           "pacbio",
           "bam",
@@ -195807,7 +196113,7 @@
           "@sainsachiko"
         ]
       },
-      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "hifitrimmer_processblast",
@@ -202992,20 +203298,20 @@
     {
       "name": "hmtnote_annotate",
       "path": "modules/nf-core/hmtnote/annotate/meta.yml",
-      "tree_sha": "8de29af3baf47e5b184c9e1bf067d12d7e3daa3a",
+      "tree_sha": "4d5edb78f90e291e631f768bbb9579de5578682f",
       "files": [
         "modules/nf-core/hmtnote/annotate/environment.yml",
         "modules/nf-core/hmtnote/annotate/main.nf",
         "modules/nf-core/hmtnote/annotate/meta.yml",
-        "modules/nf-core/hmtnote/annotate/tests/main.nf.test",
-        "modules/nf-core/hmtnote/annotate/tests/main.nf.test.snap",
-        "modules/nf-core/hmtnote/annotate/tests/nextflow.config"
+        "modules/nf-core/hmtnote/annotate/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "hmtnote_annotate",
         "description": "Human mitochondrial variants annotation using HmtVar. Contains .plk file with annotation, so can be run offline",
         "deprecated": true,
+        "deprecation_date": "2026-05-24",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/11709",
         "keywords": [
           "hmtnote",
           "mitochondria",
@@ -203116,7 +203422,7 @@
           "@sysbiocoder"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "holodeck_eval",
@@ -203977,7 +204283,7 @@
     {
       "name": "homer_findpeaks",
       "path": "modules/nf-core/homer/findpeaks/meta.yml",
-      "tree_sha": "8b3d50241fe87cfadf1ea1c3c5dbc2e05bd35fc0",
+      "tree_sha": "7072d22bd0c240b5f3adba37fc6a45b9fbc18732",
       "files": [
         "modules/nf-core/homer/findpeaks/environment.yml",
         "modules/nf-core/homer/findpeaks/main.nf",
@@ -204107,7 +204413,7 @@
           "@edmundmiller"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "8257045816dd697471f17f14143faaba656a91af",
       "pipelines": [
         {
           "name": "nascent",
@@ -215435,19 +215741,20 @@
     {
       "name": "isoseq3_tag",
       "path": "modules/nf-core/isoseq3/tag/meta.yml",
-      "tree_sha": "d8e11fddcade1a3ca4d17a4ff18a5f0735bb8196",
+      "tree_sha": "ff8fda89840a79b827a24b2dfe8d7f16534b59bb",
       "files": [
         "modules/nf-core/isoseq3/tag/environment.yml",
         "modules/nf-core/isoseq3/tag/main.nf",
         "modules/nf-core/isoseq3/tag/meta.yml",
-        "modules/nf-core/isoseq3/tag/tests/main.nf.test",
-        "modules/nf-core/isoseq3/tag/tests/main.nf.test.snap"
+        "modules/nf-core/isoseq3/tag/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "isoseq3_tag",
         "description": "Extract UMI and cell barcodes",
         "deprecated": true,
+        "deprecation_date": "2026-09-03",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/12869",
         "keywords": [
           "isoseq",
           "tag",
@@ -215585,25 +215892,25 @@
           "@skraettli"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "isoseq_cluster",
       "path": "modules/nf-core/isoseq/cluster/meta.yml",
-      "tree_sha": "d6e5ccfeda7ed80cae50a85dfc209ab288ea93d5",
+      "tree_sha": "a107fc63dc597f6f6b8b9ee1aeed45fb12e6f145",
       "files": [
         "modules/nf-core/isoseq/cluster/environment.yml",
         "modules/nf-core/isoseq/cluster/main.nf",
         "modules/nf-core/isoseq/cluster/meta.yml",
-        "modules/nf-core/isoseq/cluster/tests/main.nf.test",
-        "modules/nf-core/isoseq/cluster/tests/main.nf.test.snap",
-        "modules/nf-core/isoseq/cluster/tests/nextflow.config"
+        "modules/nf-core/isoseq/cluster/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "isoseq_cluster",
         "description": "IsoSeq - Cluster - Cluster trimmed consensus sequences",
         "deprecated": true,
+        "deprecation_date": "2026-09-03",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/12872",
         "keywords": [
           "cluster",
           "HiFi",
@@ -215903,7 +216210,7 @@
           "@sguizard"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "isoseq_cluster2",
@@ -221677,19 +221984,20 @@
     {
       "name": "kat_hist",
       "path": "modules/nf-core/kat/hist/meta.yml",
-      "tree_sha": "638a032c684fe069d07c091e3376bba865ca0758",
+      "tree_sha": "de389893ea670fd3c8aa6a4ad75504d291114213",
       "files": [
         "modules/nf-core/kat/hist/environment.yml",
         "modules/nf-core/kat/hist/main.nf",
         "modules/nf-core/kat/hist/meta.yml",
-        "modules/nf-core/kat/hist/tests/main.nf.test",
-        "modules/nf-core/kat/hist/tests/nextflow.config"
+        "modules/nf-core/kat/hist/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "kat_hist",
         "description": "Creates a histogram of the number of distinct k-mers having a given frequency.",
         "deprecated": true,
+        "deprecation_date": "2025-04-23",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/8351",
         "keywords": [
           "k-mer",
           "histogram",
@@ -221894,7 +222202,7 @@
           "@mahesh-panchal"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "khmer_normalizebymedian",
@@ -226562,19 +226870,20 @@
     {
       "name": "krona_kronadb",
       "path": "modules/nf-core/krona/kronadb/meta.yml",
-      "tree_sha": "47b696b935141b018b4f9c2d966cfd6c47841559",
+      "tree_sha": "079c9b0677b74ec0f43548102cec04a93f8c46dc",
       "files": [
         "modules/nf-core/krona/kronadb/environment.yml",
         "modules/nf-core/krona/kronadb/main.nf",
         "modules/nf-core/krona/kronadb/meta.yml",
-        "modules/nf-core/krona/kronadb/tests/main.nf.test",
-        "modules/nf-core/krona/kronadb/tests/main.nf.test.snap"
+        "modules/nf-core/krona/kronadb/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "krona_kronadb",
         "description": "KronaTools Update Taxonomy downloads a taxonomy database",
         "deprecated": true,
+        "deprecation_date": "2025-03-03",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/7489",
         "keywords": [
           "database",
           "taxonomy",
@@ -226669,7 +226978,7 @@
           "@mjakobs"
         ]
       },
-      "git_sha": "697192edd1bd7a330a5edbc4eb2f0f69ecfbb6ce"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "krona_ktimportkrona",
@@ -227398,7 +227707,7 @@
     {
       "name": "last_lastal",
       "path": "modules/nf-core/last/lastal/meta.yml",
-      "tree_sha": "948520854038d8186031270ed460a7d4e04f84f3",
+      "tree_sha": "8f458ce34590856f90160f5444fc2a168418529c",
       "files": [
         "modules/nf-core/last/lastal/environment.yml",
         "modules/nf-core/last/lastal/main.nf",
@@ -227563,7 +227872,7 @@
           "@charles-plessy"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "8257045816dd697471f17f14143faaba656a91af",
       "pipelines": [
         {
           "name": "pairgenomealign",
@@ -228358,7 +228667,7 @@
     {
       "name": "last_train",
       "path": "modules/nf-core/last/train/meta.yml",
-      "tree_sha": "84e7dca4d4cbd090c6fe3274c38c46e42aa05ed1",
+      "tree_sha": "7ad0be6b4928b03d9c8cb86c2406fb1bc9f69843",
       "files": [
         "modules/nf-core/last/train/environment.yml",
         "modules/nf-core/last/train/main.nf",
@@ -228516,7 +228825,7 @@
           "@charles-plessy"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "8257045816dd697471f17f14143faaba656a91af",
       "pipelines": [
         {
           "name": "pairgenomealign",
@@ -242863,19 +243172,19 @@
     {
       "name": "mcstaging_imc2mc",
       "path": "modules/nf-core/mcstaging/imc2mc/meta.yml",
-      "tree_sha": "b7ab45a042d2ba9ed00050c4b6ef171c531e9b04",
+      "tree_sha": "707a9154743cd0b961773cc69eb4dfff269c02a7",
       "files": [
         "modules/nf-core/mcstaging/imc2mc/main.nf",
         "modules/nf-core/mcstaging/imc2mc/meta.yml",
-        "modules/nf-core/mcstaging/imc2mc/tests/main.nf.test",
-        "modules/nf-core/mcstaging/imc2mc/tests/main.nf.test.snap",
-        "modules/nf-core/mcstaging/imc2mc/tests/nextflow.config"
+        "modules/nf-core/mcstaging/imc2mc/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "mcstaging_imc2mc",
         "description": "Staging module for MCMICRO transforming Imaging Mass Cytometry .txt files to .tif files with OME-XML metadata. Includes optional hot pixel removal.",
         "deprecated": true,
+        "deprecation_date": "2026-04-02",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/11109",
         "keywords": [
           "imaging",
           "ome-tif",
@@ -242987,7 +243296,7 @@
           "@MargotCh"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "mcstaging_macsima2mc",
@@ -243142,19 +243451,19 @@
     {
       "name": "mcstaging_phenoimager2mc",
       "path": "modules/nf-core/mcstaging/phenoimager2mc/meta.yml",
-      "tree_sha": "4cefdedd8b523af513d104aacb092c6ce58ec6f3",
+      "tree_sha": "0c3729aace635c52725da4c7b35af076d42f9ab4",
       "files": [
         "modules/nf-core/mcstaging/phenoimager2mc/main.nf",
         "modules/nf-core/mcstaging/phenoimager2mc/meta.yml",
-        "modules/nf-core/mcstaging/phenoimager2mc/tests/main.nf.test",
-        "modules/nf-core/mcstaging/phenoimager2mc/tests/main.nf.test.snap",
-        "modules/nf-core/mcstaging/phenoimager2mc/tests/nextflow.config"
+        "modules/nf-core/mcstaging/phenoimager2mc/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "mcstaging_phenoimager2mc",
         "description": "Staging module for MCMICRO transforming PhenoImager .tif files into stacked and normalized ome-tif files per cycle, compatible as ASHLAR input.",
         "deprecated": true,
+        "deprecation_date": "2026-04-16",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/11208",
         "keywords": [
           "imaging",
           "registration",
@@ -243269,7 +243578,7 @@
           "@chiarasch"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "md5sum",
@@ -266986,19 +267295,20 @@
     {
       "name": "msisensor_msi",
       "path": "modules/nf-core/msisensor/msi/meta.yml",
-      "tree_sha": "211fe61feff5d6ed26e99194fa4fe133b958da47",
+      "tree_sha": "6a77ad0992abc9b5af6d6c4195e537342559979e",
       "files": [
         "modules/nf-core/msisensor/msi/environment.yml",
         "modules/nf-core/msisensor/msi/main.nf",
         "modules/nf-core/msisensor/msi/meta.yml",
-        "modules/nf-core/msisensor/msi/tests/main.nf.test",
-        "modules/nf-core/msisensor/msi/tests/main.nf.test.snap"
+        "modules/nf-core/msisensor/msi/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "msisensor_msi",
         "description": "Evaluate microsattelite instability (MSI) using paired tumor-normal sequencing data",
         "deprecated": true,
+        "deprecation_date": "2025-05-24",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/8544",
         "keywords": [
           "homoploymer",
           "microsatellite",
@@ -267202,24 +267512,25 @@
           "@kevbrick"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "msisensor_scan",
       "path": "modules/nf-core/msisensor/scan/meta.yml",
-      "tree_sha": "8665bfe09ecb3a5de037cace5bc43ca616c76a1f",
+      "tree_sha": "6ece85d8b57b5cd5281a4dc90a5f2e6bad69fa25",
       "files": [
         "modules/nf-core/msisensor/scan/environment.yml",
         "modules/nf-core/msisensor/scan/main.nf",
         "modules/nf-core/msisensor/scan/meta.yml",
-        "modules/nf-core/msisensor/scan/tests/main.nf.test",
-        "modules/nf-core/msisensor/scan/tests/main.nf.test.snap"
+        "modules/nf-core/msisensor/scan/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "msisensor_scan",
         "description": "Scan a reference genome to get microsatellite & homopolymer information",
         "deprecated": true,
+        "deprecation_date": "2025-05-24",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/8544",
         "keywords": [
           "homoploymer",
           "microsatellite",
@@ -267329,7 +267640,7 @@
           "@kevbrick"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "msisensorpro_baseline",
@@ -287669,22 +287980,22 @@
     {
       "name": "openms_idmassaccuracy",
       "path": "modules/nf-core/openms/idmassaccuracy/meta.yml",
-      "tree_sha": "2bccf397f8ebf2891c671b6474b1b45c16ecfd35",
+      "tree_sha": "7652d0f5370fcf758499080e466105824190eeb0",
       "files": [
         "modules/nf-core/openms/idmassaccuracy/.conda-lock/linux_amd64-bd-6825b96bd18a1e9e_1.txt",
         "modules/nf-core/openms/idmassaccuracy/.conda-lock/linux_arm64-bd-fcd8b7f4d2e7250d_1.txt",
         "modules/nf-core/openms/idmassaccuracy/environment.yml",
         "modules/nf-core/openms/idmassaccuracy/main.nf",
         "modules/nf-core/openms/idmassaccuracy/meta.yml",
-        "modules/nf-core/openms/idmassaccuracy/tests/main.nf.test",
-        "modules/nf-core/openms/idmassaccuracy/tests/main.nf.test.snap",
-        "modules/nf-core/openms/idmassaccuracy/tests/nextflow.config"
+        "modules/nf-core/openms/idmassaccuracy/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "openms_idmassaccuracy",
         "description": "Calculates a distribution of the mass error from given mass spectra and IDs.",
         "deprecated": true,
+        "deprecation_date": "2026-01-23",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/9638",
         "keywords": [
           "mass_error",
           "openms",
@@ -287861,7 +288172,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "openms_idmerger",
@@ -300152,20 +300463,20 @@
     {
       "name": "pbbam_pbmerge",
       "path": "modules/nf-core/pbbam/pbmerge/meta.yml",
-      "tree_sha": "ab12d96091e25588d6c6b9ef9d5d7c0763908920",
+      "tree_sha": "76a029454fb9f6558c35a521ea57816e9b95508a",
       "files": [
         "modules/nf-core/pbbam/pbmerge/environment.yml",
         "modules/nf-core/pbbam/pbmerge/main.nf",
         "modules/nf-core/pbbam/pbmerge/meta.yml",
-        "modules/nf-core/pbbam/pbmerge/tests/main.nf.test",
-        "modules/nf-core/pbbam/pbmerge/tests/main.nf.test.snap",
-        "modules/nf-core/pbbam/pbmerge/tests/nextflow.config"
+        "modules/nf-core/pbbam/pbmerge/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "pbbam_pbmerge",
         "description": "The pbbam software package provides components to create, query, & edit PacBio BAM files and associated indices. These components include a core C++ library, bindings for additional languages, and command-line utilities.",
         "deprecated": true,
+        "deprecation_date": "2024-08-30",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/6447",
         "keywords": [
           "pbbam",
           "pbmerge",
@@ -300294,7 +300605,7 @@
           "@sguizard"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "pbccs",
@@ -315224,6 +315535,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -315531,6 +315846,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -338317,19 +338636,20 @@
     {
       "name": "quartonotebook",
       "path": "modules/nf-core/quartonotebook/meta.yml",
-      "tree_sha": "8996e657675281f6a01b103e0ce9d07531d88028",
+      "tree_sha": "5551dcd974fd44cd9bd671fe54731c8d7fcb3af9",
       "files": [
         "modules/nf-core/quartonotebook/environment.yml",
         "modules/nf-core/quartonotebook/main.nf",
         "modules/nf-core/quartonotebook/meta.yml",
-        "modules/nf-core/quartonotebook/tests/main.nf.test",
-        "modules/nf-core/quartonotebook/tests/main.nf.test.snap"
+        "modules/nf-core/quartonotebook/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "quartonotebook",
         "description": "Render a Quarto notebook, including parametrization.",
         "deprecated": true,
+        "deprecation_date": "2026-08-19",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/12659",
         "keywords": [
           "quarto",
           "notebook",
@@ -338590,7 +338910,7 @@
           "@fasterius"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca",
       "pipelines": [
         {
           "name": "coproid",
@@ -341094,7 +341414,7 @@
     {
       "name": "rastair2_call",
       "path": "modules/nf-core/rastair2/call/meta.yml",
-      "tree_sha": "fd3bef70e7741db7ed6acfef1e9a26ab6434ba0b",
+      "tree_sha": "48abcc566b16d8c40f3b20750f6cb50973ced150",
       "files": [
         "modules/nf-core/rastair2/call/.conda-lock/linux_amd64-bd-4ffd26b40813e268_1.txt",
         "modules/nf-core/rastair2/call/.conda-lock/linux_arm64-bd-0f7189390ccfdc4d_1.txt",
@@ -341189,7 +341509,7 @@
             {
               "mbias_cutoffs": {
                 "type": "file",
-                "description": "Optional. One M-bias cutoffs file from rastair2/mbias (pass `[]` for none).\nLine 1 is used as `--nOT` and line 2 as `--nOB`: bases to ignore at the\nread ends, as `r1_start,r1_end,r2_start,r2_end`.\n",
+                "description": "Optional. One M-bias cutoffs file from rastair2/mbias (pass `[]` for none).\nLine 1 is used as `--nOT` and line 2 as `--nOB`: bases to ignore at the\nread ends, as `r1_start,r1_end,r2_start,r2_end`. A file without both\nlines (only one strand had data) is ignored.\n",
                 "pattern": "*.cutoffs.txt",
                 "ontologies": [
                   {
@@ -341451,7 +341771,7 @@
           }
         }
       },
-      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7"
+      "git_sha": "f5909a88bd4dd1ec5e754382f8353c88637fde4e"
     },
     {
       "name": "rastair2_mbias",
@@ -366105,20 +366425,22 @@
     {
       "name": "samtools_bgzip",
       "path": "modules/nf-core/samtools/bgzip/meta.yml",
-      "tree_sha": "717d04c99e18ced9cb3cc2424e3113f844eb4eeb",
+      "tree_sha": "9ed422866955843a093bfb2de3ff12074bdb2f22",
       "files": [
         "modules/nf-core/samtools/bgzip/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/bgzip/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
         "modules/nf-core/samtools/bgzip/environment.yml",
         "modules/nf-core/samtools/bgzip/main.nf",
         "modules/nf-core/samtools/bgzip/meta.yml",
-        "modules/nf-core/samtools/bgzip/tests/main.nf.test",
-        "modules/nf-core/samtools/bgzip/tests/main.nf.test.snap"
+        "modules/nf-core/samtools/bgzip/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "samtools_bgzip",
-        "description": "DEPRECATED. Use HTSLIB/BGZIPTABIX instead. Converts an arbitrary compressed or uncompressed file to BGZIP",
+        "description": "DEPRECATED. Use nf-core/modules/htslib/bgziptabix instead. Converts an arbitrary compressed or uncompressed file to BGZIP",
+        "deprecated": true,
+        "deprecation_date": "2026-05-22",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/11571",
         "keywords": [
           "compression",
           "fasta",
@@ -366281,7 +366603,7 @@
           }
         }
       },
-      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "samtools_calmd",
@@ -370018,7 +370340,7 @@
     {
       "name": "samtools_getrg",
       "path": "modules/nf-core/samtools/getrg/meta.yml",
-      "tree_sha": "9a3721b4e041d5c87b823f635dfab2a2b1644160",
+      "tree_sha": "d963682f44e9b2870d385a80244d88078e01110a",
       "files": [
         "modules/nf-core/samtools/getrg/.conda-lock/linux_amd64-bd-704fb80d75745bd4_7.txt",
         "modules/nf-core/samtools/getrg/.conda-lock/linux_arm64-bd-944a4060c62320c2_8.txt",
@@ -370032,6 +370354,8 @@
         "name": "samtools_getrg",
         "description": "filter/convert SAM/BAM/CRAM file",
         "deprecated": true,
+        "deprecation_date": "2025-10-27",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/9250",
         "keywords": [
           "view",
           "bam",
@@ -370174,7 +370498,7 @@
           }
         }
       },
-      "git_sha": "80eb474060aa4aa6d7b4b00e0dc785174f156a28"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "samtools_idxstats",
@@ -410252,7 +410576,7 @@
     {
       "name": "sratools_fasterqdump",
       "path": "modules/nf-core/sratools/fasterqdump/meta.yml",
-      "tree_sha": "3c856807e6006aededa6bb33d72b60338774a89a",
+      "tree_sha": "a614b9eded9ef461847b66092dc0f4fa50411b5a",
       "files": [
         "modules/nf-core/sratools/fasterqdump/.conda-lock/linux_amd64-bd-dd7a0b6dd85ec25a_1.txt",
         "modules/nf-core/sratools/fasterqdump/.conda-lock/linux_arm64-bd-9acd5f161c455e6e_1.txt",
@@ -410472,7 +410796,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "8257045816dd697471f17f14143faaba656a91af",
       "pipelines": [
         {
           "name": "fetchngs",
@@ -427278,20 +427602,20 @@
     {
       "name": "tabix_bgzip",
       "path": "modules/nf-core/tabix/bgzip/meta.yml",
-      "tree_sha": "b327d5200acb49791a8451869623f42b864f8dbd",
+      "tree_sha": "5c0db31ff035037a176470190512152b2a10b4e4",
       "files": [
         "modules/nf-core/tabix/bgzip/environment.yml",
         "modules/nf-core/tabix/bgzip/main.nf",
         "modules/nf-core/tabix/bgzip/meta.yml",
-        "modules/nf-core/tabix/bgzip/tests/bgzip_compress.config",
-        "modules/nf-core/tabix/bgzip/tests/main.nf.test",
-        "modules/nf-core/tabix/bgzip/tests/main.nf.test.snap",
-        "modules/nf-core/tabix/bgzip/tests/vcf_none.config"
+        "modules/nf-core/tabix/bgzip/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "tabix_bgzip",
-        "description": "DEPRECATED. Use HTSLIB/BGZIPTABIX instead. Compresses/decompresses files",
+        "description": "DEPRECATED. Use nf-core/modules/htslib/bgziptabix instead. Compresses/decompresses files",
+        "deprecated": true,
+        "deprecation_date": "2026-05-22",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/11571",
         "keywords": [
           "compress",
           "decompress",
@@ -427451,7 +427775,7 @@
           "@nvnieuwk"
         ]
       },
-      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7",
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca",
       "pipelines": [
         {
           "name": "funcscan",
@@ -427498,19 +427822,20 @@
     {
       "name": "tabix_bgziptabix",
       "path": "modules/nf-core/tabix/bgziptabix/meta.yml",
-      "tree_sha": "09e6d08466792ff6ee37c25ef6140a8ed286b34d",
+      "tree_sha": "1d96fd9ef02e30ce5c40f474d970d3831aa714a3",
       "files": [
         "modules/nf-core/tabix/bgziptabix/environment.yml",
         "modules/nf-core/tabix/bgziptabix/main.nf",
         "modules/nf-core/tabix/bgziptabix/meta.yml",
-        "modules/nf-core/tabix/bgziptabix/tests/main.nf.test",
-        "modules/nf-core/tabix/bgziptabix/tests/main.nf.test.snap",
-        "modules/nf-core/tabix/bgziptabix/tests/nextflow.config"
+        "modules/nf-core/tabix/bgziptabix/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "tabix_bgziptabix",
-        "description": "DEPRECATED. Use HTSLIB/BGZIPTABIX instead. bgzip a sorted tab-delimited genome file and then create tabix index",
+        "description": "DEPRECATED. Use nf-core/modules/htslib/bgziptabix instead. bgzip a sorted tab-delimited genome file and then create tabix index",
+        "deprecated": true,
+        "deprecation_date": "2026-05-22",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/11571",
         "keywords": [
           "bgzip",
           "compress",
@@ -427703,7 +428028,7 @@
           "@DLBPointon"
         ]
       },
-      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7",
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca",
       "pipelines": [
         {
           "name": "cutandrun",
@@ -427738,19 +428063,20 @@
     {
       "name": "tabix_tabix",
       "path": "modules/nf-core/tabix/tabix/meta.yml",
-      "tree_sha": "0d9e1d740085cfc17c7d57bb5f4d082ef4993038",
+      "tree_sha": "b89d2554dfc6dec55947e08aeff48d2895be57e9",
       "files": [
         "modules/nf-core/tabix/tabix/environment.yml",
         "modules/nf-core/tabix/tabix/main.nf",
         "modules/nf-core/tabix/tabix/meta.yml",
-        "modules/nf-core/tabix/tabix/tests/main.nf.test",
-        "modules/nf-core/tabix/tabix/tests/main.nf.test.snap",
-        "modules/nf-core/tabix/tabix/tests/nextflow.config"
+        "modules/nf-core/tabix/tabix/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "tabix_tabix",
-        "description": "DEPRECATED. Use HTSLIB/BGZIPTABIX instead. Create a tabix index from a sorted\nbgzip TAB-delimited genome file, or extract regions from a bgzipped VCF file\nusing an optional regions file.\n",
+        "description": "DEPRECATED. Use nf-core/modules/htslib/bgziptabix instead. Create a tabix index from a sorted\nbgzip TAB-delimited genome file, or extract regions from a bgzipped VCF file\nusing an optional regions file.\n",
+        "deprecated": true,
+        "deprecation_date": "2026-05-22",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/11571",
         "keywords": [
           "index",
           "tabix",
@@ -427911,7 +428237,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "efe94a0ea5cad01b5cad21f7112644bfab4ea2b7",
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca",
       "pipelines": [
         {
           "name": "drop",
@@ -428286,7 +428612,7 @@
     {
       "name": "tar",
       "path": "modules/nf-core/tar/meta.yml",
-      "tree_sha": "cde30fe34053845494539fb67407705aec9581d4",
+      "tree_sha": "6a775de36c522a3de0f9db6fceec01f0563f48d5",
       "files": [
         "modules/nf-core/tar/environment.yml",
         "modules/nf-core/tar/main.nf",
@@ -428444,7 +428770,7 @@
           "@jfy133"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "8257045816dd697471f17f14143faaba656a91af"
     },
     {
       "name": "taxonkit_lca",
@@ -446738,19 +447064,20 @@
     {
       "name": "untarfiles",
       "path": "modules/nf-core/untarfiles/meta.yml",
-      "tree_sha": "bbc3fd2178a7d7e6fefae77fc9001293ba73afb8",
+      "tree_sha": "2a6b9216fe8f06c6c0fcdf079b7f6d2e46d707e6",
       "files": [
         "modules/nf-core/untarfiles/environment.yml",
         "modules/nf-core/untarfiles/main.nf",
         "modules/nf-core/untarfiles/meta.yml",
-        "modules/nf-core/untarfiles/tests/main.nf.test",
-        "modules/nf-core/untarfiles/tests/main.nf.test.snap"
+        "modules/nf-core/untarfiles/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "untarfiles",
         "description": "Extract files.",
         "deprecated": true,
+        "deprecation_date": "2024-09-17",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/6412",
         "keywords": [
           "untar",
           "uncompress",
@@ -446873,7 +447200,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca",
       "pipelines": [
         {
           "name": "chipseq",
@@ -452021,19 +452348,20 @@
     {
       "name": "vcf2zarr_convert",
       "path": "modules/nf-core/vcf2zarr/convert/meta.yml",
-      "tree_sha": "b0889c450078f4686dff672d3a4b211ca9e07591",
+      "tree_sha": "a0a89f16cd6d3b15aa976b6f77b0bec257fa1423",
       "files": [
         "modules/nf-core/vcf2zarr/convert/environment.yml",
         "modules/nf-core/vcf2zarr/convert/main.nf",
         "modules/nf-core/vcf2zarr/convert/meta.yml",
-        "modules/nf-core/vcf2zarr/convert/tests/main.nf.test",
-        "modules/nf-core/vcf2zarr/convert/tests/main.nf.test.snap"
+        "modules/nf-core/vcf2zarr/convert/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "vcf2zarr_convert",
         "description": "Convert VCF data to the VCF Zarr specification reliably, in parallel or distributed over a cluster",
         "deprecated": true,
+        "deprecation_date": "2026-05-01",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/11207",
         "keywords": [
           "vcf",
           "zarr",
@@ -452153,24 +452481,25 @@
           "@camlloyd"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "vcf2zarr_explode",
       "path": "modules/nf-core/vcf2zarr/explode/meta.yml",
-      "tree_sha": "684dca1d32c7850c438cff5fec935b61f0b019b0",
+      "tree_sha": "f22808a30fe298abf1fe28b66a56c827f6690d2c",
       "files": [
         "modules/nf-core/vcf2zarr/explode/environment.yml",
         "modules/nf-core/vcf2zarr/explode/main.nf",
         "modules/nf-core/vcf2zarr/explode/meta.yml",
-        "modules/nf-core/vcf2zarr/explode/tests/main.nf.test",
-        "modules/nf-core/vcf2zarr/explode/tests/main.nf.test.snap"
+        "modules/nf-core/vcf2zarr/explode/tests/main.nf.test"
       ],
       "type": "module",
       "meta": {
         "name": "vcf2zarr_explode",
         "description": "Convert VCF(s) to intermediate columnar format",
         "deprecated": true,
+        "deprecation_date": "2026-05-01",
+        "deprecation_pr": "https://github.com/nf-core/modules/pull/11207",
         "keywords": [
           "vcf",
           "icf",
@@ -452286,7 +452615,7 @@
           "@camlloyd"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "fc11e6092349477cf22e1e85d4cb80a23e86acca"
     },
     {
       "name": "vcfanno",
@@ -459371,7 +459700,7 @@
     {
       "name": "vizgenpostprocessing_compiletilesegmentation",
       "path": "modules/nf-core/vizgenpostprocessing/compiletilesegmentation/meta.yml",
-      "tree_sha": "dfd153f02c31e0229ee40624af2fa8130dfe22b9",
+      "tree_sha": "d789dcc230d134eb6c40c0d622fae7f58443563b",
       "files": [
         "modules/nf-core/vizgenpostprocessing/compiletilesegmentation/environment.yml",
         "modules/nf-core/vizgenpostprocessing/compiletilesegmentation/main.nf",
@@ -459588,7 +459917,7 @@
           "@mcmero"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "8257045816dd697471f17f14143faaba656a91af"
     },
     {
       "name": "vizgenpostprocessing_preparesegmentation",
@@ -478594,7 +478923,7 @@
     {
       "name": "fastq_align_dedup_bismark",
       "path": "subworkflows/nf-core/fastq_align_dedup_bismark/meta.yml",
-      "tree_sha": "200366d42210b5696e78cc21ef0f11c3eac5d95a",
+      "tree_sha": "9f0128df4c5f409259009774db07d64351481f81",
       "files": [
         "subworkflows/nf-core/fastq_align_dedup_bismark/main.nf",
         "subworkflows/nf-core/fastq_align_dedup_bismark/meta.yml",
@@ -478767,7 +479096,7 @@
           "@sateeshperi"
         ]
       },
-      "git_sha": "3c595dd3453c7db934610f27682cec054d1ef737",
+      "git_sha": "8257045816dd697471f17f14143faaba656a91af",
       "pipelines": [
         {
           "name": "methylseq",
@@ -479054,7 +479383,7 @@
     {
       "name": "fastq_align_dedup_bwameth",
       "path": "subworkflows/nf-core/fastq_align_dedup_bwameth/meta.yml",
-      "tree_sha": "b00d5e1c350722472c9119a6d9a85fd3d580116b",
+      "tree_sha": "d0126556b4fb5e0c199fd5c4f8021d60059c6a0f",
       "files": [
         "subworkflows/nf-core/fastq_align_dedup_bwameth/main.nf",
         "subworkflows/nf-core/fastq_align_dedup_bwameth/meta.yml",
@@ -479176,7 +479505,7 @@
           "@eduard-watchmaker"
         ]
       },
-      "git_sha": "a582d5633f7df32396681ef4458068e2b509ca91",
+      "git_sha": "8257045816dd697471f17f14143faaba656a91af",
       "pipelines": [
         {
           "name": "methylseq",
@@ -485107,7 +485436,7 @@
     {
       "name": "tiff_segmentation_vpt",
       "path": "subworkflows/nf-core/tiff_segmentation_vpt/meta.yml",
-      "tree_sha": "105220c0eefe35635a64f6a25eabf1c845fb50a2",
+      "tree_sha": "28f0debe9a794614ea24d8bdff463dbdd4ac1087",
       "files": [
         "subworkflows/nf-core/tiff_segmentation_vpt/main.nf",
         "subworkflows/nf-core/tiff_segmentation_vpt/meta.yml",
@@ -485185,7 +485514,7 @@
           "@mcmero"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "8257045816dd697471f17f14143faaba656a91af"
     },
     {
       "name": "utils_annotation_cache",
@@ -488535,6 +488864,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "6b4353bb630d17b9e6099c4b8dd281532ecb718e",
-  "updated_at": "2026-11-19T14:15:00.850Z"
+  "commit_sha": "5ce2673c190bd7f779ec998aad835f7ec3a378c9",
+  "updated_at": "2026-11-20T02:14:45.832Z"
 }
