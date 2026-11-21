@@ -43,7 +43,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run benchmarks
-        uses: CodSpeedHQ/action@af75f77f17a054769abefaa42fe8dc2975469b5f # v5.6.3
+        uses: CodSpeedHQ/action@b1f28b5eccf7cb5bfe6a2a89cb3053eb67f1150c # v5.8.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
