@@ -106551,6 +106551,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -140684,6 +140692,328 @@
         }
       },
       "git_sha": "afdd1fb41a3f90edf93b841b60da300905eaa6fd"
+    },
+    {
+      "name": "fgumi_runall",
+      "path": "modules/nf-core/fgumi/runall/meta.yml",
+      "tree_sha": "f7753dc06276f6bf87f89f76f47f11b3ea9d7cd5",
+      "files": [
+        "modules/nf-core/fgumi/runall/.conda-lock/linux_amd64-bd-586e53443c420260_1.txt",
+        "modules/nf-core/fgumi/runall/.conda-lock/linux_arm64-bd-71ad13ee1b34247b_1.txt",
+        "modules/nf-core/fgumi/runall/environment.yml",
+        "modules/nf-core/fgumi/runall/main.nf",
+        "modules/nf-core/fgumi/runall/meta.yml",
+        "modules/nf-core/fgumi/runall/tests/main.nf.test",
+        "modules/nf-core/fgumi/runall/tests/main.nf.test.snap",
+        "modules/nf-core/fgumi/runall/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "fgumi_runall",
+        "description": "Run several fgumi stages (extract, correct, align, zipper, sort, group, consensus, filter) as one streaming process, with no intermediate BAM",
+        "keywords": [
+          "UMIs",
+          "alignment",
+          "consensus",
+          "bam",
+          "fastq"
+        ],
+        "tools": [
+          {
+            "fgumi": {
+              "description": "High-performance tools for UMI-tagged sequencing data.",
+              "homepage": "https://github.com/fulcrumgenomics/fgumi",
+              "documentation": "https://fgumi.readthedocs.io/",
+              "tool_dev_url": "https://github.com/fulcrumgenomics/fgumi",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:fgumi"
+            }
+          },
+          {
+            "bwamem3": {
+              "description": "Short-read aligner derived from bwa-mem2 with correctness fixes, performance improvements, and methylation-aware alignment.",
+              "homepage": "https://github.com/fg-labs/bwa-mem3",
+              "documentation": "https://github.com/fg-labs/bwa-mem3",
+              "tool_dev_url": "https://github.com/fg-labs/bwa-mem3",
+              "licence": [
+                "MIT AND Apache-2.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "FASTQ files with `start_from` set to `extract`, otherwise one BAM\nin the state that `start_from` names\n",
+                "pattern": "*.{fastq.gz,fq.gz,bam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "library": {
+                "type": "string",
+                "description": "Library name for the read group. Only used with `start_from` set to `extract`"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'genome' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome FASTA file. Needed when the run aligns, or with a methylation mode",
+                "pattern": "*.{fa,fasta,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Reference genome FASTA index (.fai)",
+                "pattern": "*.fai",
+                "ontologies": []
+              }
+            },
+            {
+              "dict": {
+                "type": "file",
+                "description": "Reference sequence dictionary (.dict)",
+                "pattern": "*.dict",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing index information\ne.g. `[ id:'genome' ]`\n"
+              }
+            },
+            {
+              "index": {
+                "type": "directory",
+                "description": "bwa-mem3 index, as a directory or a list of files. Needed when the run\naligns. It is linked next to the FASTA, so that `{ref}` in\n`--aligner::command` finds both\n",
+                "pattern": "*",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "start_from": {
+              "type": "string",
+              "description": "First stage to run",
+              "enum": [
+                "extract",
+                "correct",
+                "align",
+                "sort",
+                "group",
+                "consensus",
+                "filter"
+              ]
+            }
+          },
+          {
+            "stop_after": {
+              "type": "string",
+              "description": "Last stage to run",
+              "enum": [
+                "extract",
+                "correct",
+                "zipper",
+                "sort",
+                "group",
+                "consensus",
+                "filter"
+              ]
+            }
+          }
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}.bam": {
+                  "type": "file",
+                  "description": "Output BAM of the last stage",
+                  "pattern": "*.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_fgumi": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fgumi": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "fgumi --version | sed \"s/^fgumi //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_bwamem3": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bwamem3": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bwa-mem3 version | sed -nE '1 s/^([0-9]+(\\.[0-9]+)+).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fgumi": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "fgumi --version | sed \"s/^fgumi //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bwamem3": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bwa-mem3 version | sed -nE '1 s/^([0-9]+(\\.[0-9]+)+).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@eduard-watchmaker"
+        ],
+        "maintainers": [
+          "@eduard-watchmaker"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bwa-mem3_fgumi_coreutils_findutils:586e53443c420260",
+              "build_id": "bd-586e53443c420260_1",
+              "scan_id": "sc-d6a080a75af0e7d4_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/bwa-mem3_fgumi_coreutils_findutils:71ad13ee1b34247b",
+              "build_id": "bd-71ad13ee1b34247b_1",
+              "scan_id": "sc-f8489776c6da7459_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bwa-mem3_fgumi_coreutils_findutils:4014f2b644867ff8",
+              "build_id": "bd-4014f2b644867ff8_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/f5/f5c9ad9982b305e1991119fa62a4cb3e51f85cc25d37535da335867d4df01670/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/bwa-mem3_fgumi_coreutils_findutils:381d0ffe43c42af6",
+              "build_id": "bd-381d0ffe43c42af6_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/48/4865b9ca2738d438856a2ff5e1cf66c26c1b2df70cd215cc1a029a96c1245d75/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/fgumi/runall/.conda-lock/linux_amd64-bd-586e53443c420260_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/fgumi/runall/.conda-lock/linux_arm64-bd-71ad13ee1b34247b_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "7952a1fb5413f72d63d5d59e2a89141496bb96e0"
     },
     {
       "name": "fgumi_simplex",
@@ -315680,6 +316010,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -315987,6 +316321,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -364615,7 +364953,7 @@
     {
       "name": "samplesheetparser_diff",
       "path": "modules/nf-core/samplesheetparser/diff/meta.yml",
-      "tree_sha": "9172ef7a6fe07ffcc7066bf32d53d259034b6109",
+      "tree_sha": "3e9f3d5f7c687f47b728c0ad09cce7de73abe2b1",
       "files": [
         "modules/nf-core/samplesheetparser/diff/environment.yml",
         "modules/nf-core/samplesheetparser/diff/main.nf",
@@ -364762,12 +365100,12 @@
           "@chaitanyakasaraneni"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "cdabfa1f9011e21b79012fd83568c223ef65987b"
     },
     {
       "name": "samplesheetparser_info",
       "path": "modules/nf-core/samplesheetparser/info/meta.yml",
-      "tree_sha": "095387fab35e440e6c1121d45d99e304bdba792c",
+      "tree_sha": "8068a7d4998660052440f011dc5fe035552c4ebc",
       "files": [
         "modules/nf-core/samplesheetparser/info/environment.yml",
         "modules/nf-core/samplesheetparser/info/main.nf",
@@ -364901,12 +365239,12 @@
           "@chaitanyakasaraneni"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "cdabfa1f9011e21b79012fd83568c223ef65987b"
     },
     {
       "name": "samplesheetparser_merge",
       "path": "modules/nf-core/samplesheetparser/merge/meta.yml",
-      "tree_sha": "688313616228fe50b19243fc99099f2526a6608d",
+      "tree_sha": "ee72ab1c94c96fc8d02a77f1d4313318228ce1ce",
       "files": [
         "modules/nf-core/samplesheetparser/merge/environment.yml",
         "modules/nf-core/samplesheetparser/merge/main.nf",
@@ -365068,12 +365406,12 @@
           "@chaitanyakasaraneni"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "cdabfa1f9011e21b79012fd83568c223ef65987b"
     },
     {
       "name": "samplesheetparser_split",
       "path": "modules/nf-core/samplesheetparser/split/meta.yml",
-      "tree_sha": "026b399a719e9adf2e6a522536ce490125aa63b0",
+      "tree_sha": "7a59469ce82776fda061915e755f438645d18410",
       "files": [
         "modules/nf-core/samplesheetparser/split/environment.yml",
         "modules/nf-core/samplesheetparser/split/main.nf",
@@ -365241,12 +365579,12 @@
           "@chaitanyakasaraneni"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "cdabfa1f9011e21b79012fd83568c223ef65987b"
     },
     {
       "name": "samplesheetparser_validate",
       "path": "modules/nf-core/samplesheetparser/validate/meta.yml",
-      "tree_sha": "35e861710b188067a4e6fe00f6de0b129d7baa37",
+      "tree_sha": "d663660de103dc1485259bcb7db1950b970bebf7",
       "files": [
         "modules/nf-core/samplesheetparser/validate/environment.yml",
         "modules/nf-core/samplesheetparser/validate/main.nf",
@@ -365257,7 +365595,7 @@
       "type": "module",
       "meta": {
         "name": "samplesheetparser_validate",
-        "description": "Validate an Illumina SampleSheet.csv (V1 or V2) for index, adapter, and\nstructural issues. Format is auto-detected. Exits 0 if valid, 1 if errors\nare found — causing the pipeline to fail early with a clear message rather\nthan discovering demultiplexing problems downstream.\n",
+        "description": "Validate an Illumina SampleSheet.csv (V1 or V2) for index, adapter, and\nstructural issues. Format is auto-detected. Supports configurable strictness\n(via ext.args, e.g. --strictness strict) and validation against a custom\nJSON Schema. Exits 0 if valid, 1 if errors are found, causing the pipeline to\nfail early with a clear message rather than discovering demultiplexing\nproblems downstream.\n",
         "keywords": [
           "illumina",
           "samplesheet",
@@ -365302,7 +365640,19 @@
                 ]
               }
             }
-          ]
+          ],
+          {
+            "schema": {
+              "type": "file",
+              "description": "Optional JSON Schema (Draft 2020-12) to validate the sheet against,\nforwarded to `samplesheet validate --schema`. Pass an empty list\n([]) to skip custom-schema validation.\n",
+              "pattern": "*.{json,JSON}",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3464"
+                }
+              ]
+            }
+          }
         ],
         "output": {
           "json": [
@@ -365381,7 +365731,7 @@
           "@chaitanyakasaraneni"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "e4342563a002338ad4cac1ea066e89867c439fdd"
     },
     {
       "name": "samshee",
@@ -427036,6 +427386,217 @@
         }
       },
       "git_sha": "872ec9be3019f120984e1efccad8d940036961f4"
+    },
+    {
+      "name": "syncon_decon",
+      "path": "modules/nf-core/syncon/decon/meta.yml",
+      "tree_sha": "d8e522f9edbdcbfe0d434b999f6ae7a5b3a5bbc6",
+      "files": [
+        "modules/nf-core/syncon/decon/.conda-lock/linux_amd64-bd-454827d120667dec_1.txt",
+        "modules/nf-core/syncon/decon/.conda-lock/linux_arm64-bd-51b39cd869c65bf4_1.txt",
+        "modules/nf-core/syncon/decon/environment.yml",
+        "modules/nf-core/syncon/decon/main.nf",
+        "modules/nf-core/syncon/decon/meta.yml",
+        "modules/nf-core/syncon/decon/tests/main.nf.test",
+        "modules/nf-core/syncon/decon/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "syncon_decon",
+        "description": "Screen sequences in seq.1syncseq based on syncmer coverage profiles built from reads.1khash",
+        "keywords": [
+          "fasta",
+          "decontamination",
+          "syncmer"
+        ],
+        "tools": [
+          {
+            "syncon": {
+              "description": "Identifies and removes contaminant contigs from draft genome assemblies",
+              "homepage": "https://github.com/c-zhou/syncon",
+              "documentation": "https://github.com/c-zhou/syncon",
+              "tool_dev_url": "https://github.com/c-zhou/syncon",
+              "doi": "",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "asm_1khash": {
+                "type": "file",
+                "description": "1khash file of the assembly from syncon build",
+                "pattern": "*.{1khash}",
+                "ontologies": []
+              }
+            },
+            {
+              "asm_1syncseq": {
+                "type": "file",
+                "description": "1syncseq file of the assembly from syncon build",
+                "pattern": "*.{1syncseq}",
+                "ontologies": []
+              }
+            },
+            {
+              "reads_1khash": {
+                "type": "file",
+                "description": "1khash file of the reads from syncon build",
+                "pattern": "*.{1khash}",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "write_profile": {
+              "type": "boolean",
+              "description": "Whether to write per-syncmer profiles of the input assembly sequences"
+            }
+          }
+        ],
+        "output": {
+          "decon": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.decon.txt": {
+                  "type": "file",
+                  "description": "Decontamination screen of assembly based on syncmer coverage profiles built from reads.1khash",
+                  "pattern": "*.decon.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "profile": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.profile.txt": {
+                  "type": "file",
+                  "description": "Per-syncmer profiles of the input assembly sequences",
+                  "pattern": "*.profile.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_syncon": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "syncon": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "syncon": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@prototaxites"
+        ],
+        "maintainers": [
+          "@prototaxites"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/syncon:1.0--454827d120667dec",
+              "build_id": "bd-454827d120667dec_1",
+              "scan_id": "sc-edebc248ed4321cf_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/syncon:1.0--51b39cd869c65bf4",
+              "build_id": "bd-51b39cd869c65bf4_1",
+              "scan_id": "sc-eb8d8af05f677d04_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/syncon:1.0--5b2e7dd13f83f62a",
+              "build_id": "bd-5b2e7dd13f83f62a_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/92/92257f55688e8e0ea220e912051d61956103c387ab9ec3a4c4b382bc81f269f3/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/syncon:1.0--2180f1e71934c3c0",
+              "build_id": "bd-2180f1e71934c3c0_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/be/be85cb074d7868dc6fbfcdf0e6eabde839e61021665c8c2f856aa96dcbc3e568/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/syncon/decon/.conda-lock/linux_amd64-bd-454827d120667dec_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/syncon/decon/.conda-lock/linux_arm64-bd-51b39cd869c65bf4_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "fd18bd83f6fcddd0b9d81664ad13cef45deba494"
     },
     {
       "name": "syri",
@@ -489197,6 +489758,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "ee1b36dc3db6d544e12a16ba287fbe4a599e5b7c",
-  "updated_at": "2026-11-20T14:14:58.129Z"
+  "commit_sha": "cdabfa1f9011e21b79012fd83568c223ef65987b",
+  "updated_at": "2026-11-21T02:14:39.120Z"
 }
