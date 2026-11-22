@@ -31,20 +31,10 @@ const md_github_url = "https://github.com/nf-core/website/blob/main/sites/main-s
 
 const addEntriesToSection = (sections, advisories: CollectionEntry<"advisories">[]) => {
     // First, group advisories by year
-    const advisoriesByYear = advisories.reduce(
-        (acc, advisory) => {
-            const year = advisory.data.publishedDate.getFullYear();
-            if (!acc[year]) {
-                acc[year] = [];
-            }
-            acc[year].push(advisory);
-            return acc;
-        },
-        {} as Record<number, CollectionEntry<"advisories">[]>,
-    );
+    const advisoriesByYear = Object.groupBy(advisories, (advisory) => advisory.data.publishedDate.getFullYear());
 
     // Then, for each year, add the advisories to the corresponding section
-    Object.entries(advisoriesByYear).forEach(([year, yearAdvisories]) => {
+    Object.entries(advisoriesByYear).forEach(([year, yearAdvisories = []]) => {
         const yearSection = sections.find((section) => section.id === year);
         if (!yearSection) return;
 
@@ -141,12 +131,12 @@ function getLinkIcon(url: string) {
 ---
 
 <MarkdownTocLayout
-    title={title}
-    subtitle={subtitle}
-    md_github_url={md_github_url}
-    headings={headings}
+    {title}
+    {subtitle}
+    {md_github_url}
+    {headings}
     leftSidebar={true}
-    sections={sections}
+    {sections}
     docSearchTags={[
         { name: "page_type", content: "advisory" },
         ...frontmatter.type.map((type) => ({ name: "page_subtype", content: type })),
@@ -172,6 +162,6 @@ function getLinkIcon(url: string) {
         </div>
     )}
     <div slot="right-sidebar-top">
-        <AdvisorySidebarHeader frontmatter={frontmatter} />
+        <AdvisorySidebarHeader {frontmatter} />
     </div>
 </MarkdownTocLayout>

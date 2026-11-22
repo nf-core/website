@@ -37,8 +37,8 @@ const description = "Browse the " + generalConfigs.length + " configs that are c
 ---
 
 <ListingLayout
-    title={title}
-    description={description}
+    {title}
+    {description}
     filter={[]}
     sortBy={["Name", "Executor"]}
     displayStyle={[]}
@@ -49,7 +49,7 @@ const description = "Browse the " + generalConfigs.length + " configs that are c
         clusters or compute environments.
     </p>
     <h2>General configs</h2>
-    <ConfigListing configs={generalConfigs} pipelineConfigs={pipelineConfigs} slot="listing-components" client:load />
+    <ConfigListing configs={generalConfigs} {pipelineConfigs} slot="listing-components" client:load />
 </ListingLayout>
 
 <style></style>

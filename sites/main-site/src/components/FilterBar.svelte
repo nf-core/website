@@ -197,7 +197,8 @@
                             title={dis.name + " view"}
                             data-bs-toggle="tooltip"
                             aria-label={dis.name + " view"}
-                            ><i class={dis.icon}></i>
+                        >
+                            <i class={dis.icon}></i>
                         </button>
                     {/each}
                 </div>

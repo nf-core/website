@@ -60,7 +60,7 @@ For example, a pipeline uses the tool `fastp` for the preprocessing of input fil
 
 By default, the boilerplate text will say:
 
-```groovy title="utils_nfcore_pipeline_<pipeline-name>.nf"
+```nextflow title="utils_nfcore_pipeline_<pipeline-name>.nf"
 def toolCitationText() {
     def citation_text = [
             "Tools used in the workflow included:",
@@ -78,7 +78,7 @@ Which will be rendered in the MultiQC report as:
 
 However you can update this to instead say:
 
-```nextflow
+```nextflow title="utils_nfcore_pipeline_<pipeline-name>.nf"
 def toolCitationText() {
     def citation_text = [
             "Tools used in the workflow included:",
@@ -99,7 +99,7 @@ It is critical that for any time a citation is added to `toolCitationText()`, th
 
 For example, the boilerplate:
 
-```groovy title="utils_nfcore_pipeline_<pipeline-name>.nf"
+```nextflow title="utils_nfcore_pipeline_<pipeline-name>.nf"
 def toolBibliographyText() {
     def reference_text = [
             "<li>Ewels, P., Magnusson, M., Lundin, S., & Käller, M. (2016). MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics , 32(19), 3047–3048. doi: /10.1093/bioinformatics/btw354</li>"{% endif %}
@@ -111,7 +111,7 @@ def toolBibliographyText() {
 
 Becomes:
 
-```groovy title="utils_nfcore_pipeline_<pipeline-name>.nf"
+```nextflow title="utils_nfcore_pipeline_<pipeline-name>.nf"
 def toolBibliographyText() {
     def reference_text = [
             params.run_fastp ? "<li>Chen, S., Zhou, Y., Chen, Y., & Gu, J. (2018). fastp: an ultra-fast all-in-one FASTQ preprocessor. Bioinformatics , 34(17), i884–i890. <a href=\"https://doi.org/10.1093/bioinformatics/bty560\">10.1093/bioinformatics/bty560</a></li>" : "",
@@ -132,7 +132,7 @@ The leading sentence and condition can also be made more descriptive for more co
 
 For example, in a case where there were three different preprocessing steps, and there were mutually exclusive options for some of these preprocessing steps, the text could instead read:
 
-```groovy title="utils_nfcore_pipeline_<pipeline-name>.nf"
+```nextflow title="utils_nfcore_pipeline_<pipeline-name>.nf"
 def toolCitationText() {
     def text_seq_qc = [
         "Sequencing quality control with",
@@ -170,7 +170,7 @@ So if a user specified `--preprocessing_qc_tool falco`, `--shortread_qc_tool ada
 
 The corresponding `toolBibliographyText()` function would be:
 
-```groovy title="utils_nfcore_pipeline_<pipeline-name>.nf"
+```nextflow title="utils_nfcore_pipeline_<pipeline-name>.nf"
 def toolBibliographyText() {
     def text_seq_qc = [
         params.preprocessing_qc_tool == "falco"  ? "<li>de Sena Brandine, G., & Smith, A. D. (2021). Falco: high-speed FastQC emulation for quality control of sequencing data. F1000Research, 8(1874), 1874.  <a href=\"https://doi.org/10.12688/f1000research.21142.2\">10.12688/f1000research.21142.2</li>" : "",

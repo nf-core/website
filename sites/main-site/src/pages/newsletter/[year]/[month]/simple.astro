@@ -24,6 +24,6 @@ const data = await getNewsletterContentData(getCollection, pipelines, year, mont
         <title>nf-core Newsletter - {data.monthName} {year}</title>
     </head>
     <body>
-        <NewsletterSimpleLayout data={data} />
+        <NewsletterSimpleLayout {data} />
     </body>
 </html>

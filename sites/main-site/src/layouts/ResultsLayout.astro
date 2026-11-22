@@ -70,11 +70,11 @@ if (!isTruncated) {
 ---
 
 <PipelinePageLayout
-    pipeline={pipeline}
+    {pipeline}
     meta_title={pipeline + ": Results"}
     subtitle={description ?? undefined}
-    version={version}
-    versions={versions}
+    {version}
+    {versions}
     tabItems={md_files}
     viewTransitions={false}
 >
@@ -146,7 +146,7 @@ if (!isTruncated) {
                                 </span>
                             </a>
                         ))}
-                    {files && files.map((item) => <AWSFile item={item} />)}
+                    {files && files.map((item) => <AWSFile {item} />)}
                 </div>
                 {filename && <AWSFilePreview file={files.find((file) => file.name === filename)} />}
             </div>

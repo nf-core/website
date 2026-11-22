@@ -113,7 +113,7 @@ To avoid this issue, use `ctrl + c` (not `ctrl + z`) to stop a Nextflow run. `ct
 
 If a specific process fails with permission errors while writing to `$HOME`, the issue is caused by the `-u $(id -u):$(id -g)` option in the Docker profile. This option emulates your user inside the container but provides no home directory. Rather than disabling this globally, override `containerOptions` for the affected process in your `modules.config`:
 
-```groovy
+```nextflow
 process {
   withName: TOOL_NAME {
     containerOptions = ''
@@ -139,7 +139,7 @@ Add this line to `~/.bashrc` or `~/.zshrc` for a permanent fix.
 
 If processes inside Docker containers fail to fetch data on IPv6 machines, enable host network mode for the affected process in a custom config file:
 
-```groovy
+```nextflow
 process {
   withName: YOUR_MODULE {
     containerOptions = '--network host'

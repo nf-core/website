@@ -111,7 +111,7 @@ workflow.onComplete {
 
 Let's build up from basic terminal output to comprehensive notifications:
 
-```nextflow title="progressive_notifications.nf" hl_lines="15-23"
+```nextflow title="progressive_notifications.nf" {15-23}
 #!/usr/bin/env nextflow
 
 include {
@@ -174,7 +174,7 @@ workflow.onComplete {
 
 **Function Parameters**
 
-```groovy title="Function signature"
+```nextflow title="Function signature"
 void completionSummary(boolean monochromeLogs = true)
 ```
 
@@ -333,7 +333,7 @@ workflow.onComplete {
 
 **Function Parameters Reference**
 
-```groovy title="completionEmail signature"
+```nextflow title="completionEmail signature"
 void completionEmail(
     Map summaryParams,        // Grouped parameter summary
     String email,            // Primary email address
@@ -349,7 +349,7 @@ void completionEmail(
 
 For production pipelines, include MultiQC reports as attachments:
 
-```nextflow title="advanced_email_notification.nf" hl_lines="25-30"
+```nextflow title="advanced_email_notification.nf" focus={33-35,44}
 #!/usr/bin/env nextflow
 
 include { completionEmail } from 'plugin/nf-core-utils'
@@ -540,7 +540,7 @@ workflow.onError {
 
 Here's a comprehensive example showing all notification functions working together:
 
-```nextflow
+```nextflow expandable={62}
 #!/usr/bin/env nextflow
 
 include { completionSummary; completionEmail; imNotification } from 'plugin/nf-core-utils'
@@ -790,7 +790,7 @@ if (params.hook_url) {
 
 Test notification functions using nf-test:
 
-```groovy
+```nextflow
 test("Notification functions work correctly") {
     when {
         params {

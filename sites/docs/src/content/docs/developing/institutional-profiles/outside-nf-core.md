@@ -13,7 +13,7 @@ To integrate nf-core configs outside nf-core:
 
 1. Create a `conf/base.config` file with default process resources:
 
-   ```groovy
+   ```nextflow
    process {
        cpus   = 1
        memory = 7.GB
@@ -27,7 +27,7 @@ To integrate nf-core configs outside nf-core:
 
 1. In your top-level `nextflow.config`, define parameters for accessing the institutional configs repository:
 
-   ```groovy
+   ```nextflow
    params {
      custom_config_version      = 'master'
      custom_config_base         = "https://raw.githubusercontent.com/nf-core/configs/${params.custom_config_version}"
@@ -36,13 +36,13 @@ To integrate nf-core configs outside nf-core:
 
 1. Include the base configuration file in your `nextflow.config`:
 
-   ```groovy
+   ```nextflow
    includeConfig 'conf/base.config'
    ```
 
 1. Load the nf-core institutional repository:
 
-   ```groovy
+   ```nextflow
    includeConfig !System.getenv('NXF_OFFLINE') && params.custom_config_base ? "${params.custom_config_base}/nfcore_custom.config" : "/dev/null"
    ```
 
@@ -58,7 +58,7 @@ To integrate nf-core configs outside nf-core:
 
 For simpler setups, use a direct URL approach without conditional logic:
 
-```groovy
+```nextflow
 includeConfig 'https://raw.githubusercontent.com/nf-core/configs/master/nfcore_custom.config'
 ```
 

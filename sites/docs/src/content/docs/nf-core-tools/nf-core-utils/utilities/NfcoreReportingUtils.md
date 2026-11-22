@@ -38,7 +38,7 @@ Generates a YAML-formatted string from a map of summary parameters for MultiQC w
 
 **Function Signature:**
 
-```groovy
+```nextflow
 static String paramsSummaryMultiqc(Map summaryParams)
 ```
 
@@ -117,7 +117,7 @@ Creates a comprehensive workflow summary template for MultiQC with both HTML and
 
 **Function Signature:**
 
-```groovy
+```nextflow
 static Map workflowSummaryMQC(Map summary, List<String> nfMetadataList, Map results)
 ```
 
@@ -234,7 +234,7 @@ Generates formatted log messages for different pipeline sections with optional c
 
 **Function Signature:**
 
-```groovy
+```nextflow
 static Map<String, String> sectionLogs(Map sections, boolean monochrome = false)
 ```
 
@@ -558,7 +558,7 @@ class SectionTracker {
 
 ### Unit Testing
 
-```groovy
+```nextflow
 test("Parameter summary YAML generation") {
     when {
         def params = [
@@ -613,7 +613,7 @@ test("Section log formatting") {
 
 ### Integration Testing
 
-```groovy
+```nextflow
 test("Complete reporting workflow") {
     when {
         // Simulate full reporting workflow

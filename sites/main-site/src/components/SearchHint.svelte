@@ -12,8 +12,10 @@
             <button
                 type="button"
                 class="fw-normal border-0 bg-body-tertiary text-secondary-emphasis font-monospace"
-                onclick={() => SearchQuery.set(example.query)}>{example.query}</button
-            >({example.label}){i < examples.length - 1 ? "," : "."}
+                onclick={() => SearchQuery.set(example.query)}
+            >
+                {example.query}
+            </button>({example.label}){i < examples.length - 1 ? "," : "."}
         {/each}
     </div>
 </div>

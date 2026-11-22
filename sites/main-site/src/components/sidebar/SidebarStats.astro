@@ -57,25 +57,9 @@ const modules = included_components?.filter((x) => !subworkflows?.includes(x));
     <SidebarStatsRow content={[{ title: "maintainer" + (contributors.length > 1 ? "s" : "") }]}>
         <div class="contrib-avatars d-flex flex-wrap">
             {contributors &&
-                contributors.map(
-                    (contributor) => (
-                        (contributor = contributor.replace("@", "")),
-                        (
-                            <a
-                                href={"https://github.com/" + contributor}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="me-2 mb-2"
-                            >
-                                <GitHubUser
-                                    name={contributor}
-                                    image={`https://github.com/${contributor}.png`}
-                                    size={50}
-                                />
-                            </a>
-                        )
-                    ),
-                )}
+                contributors.map((contributor) => (
+                    <GitHubUser name={contributor.replace("@", "")} size={50} wrapperClasses="me-2 mb-2" />
+                ))}
         </div>
     </SidebarStatsRow>
     <SidebarStatsRow content={[{ title: "get in touch" }]} lastChild={true}>

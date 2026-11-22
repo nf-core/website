@@ -37,7 +37,7 @@ To add an nf-core module to your pipeline with nf-core tools:
 1. Add module-specific parameters in `nextflow.config` with sensible defaults.
    - For pipeline-level parameters that need to be passed to the module, insert them into `ext.args` using proper closure syntax:
 
-     ```groovy
+     ```nextflow
      ext.args = { "--option $params.option" }
      ```
 

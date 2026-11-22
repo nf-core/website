@@ -63,13 +63,7 @@ const headings = [
 ];
 ---
 
-<MarkdownTocLayout
-    title={title}
-    subtitle={subtitle}
-    headings={headings}
-    md_github_url={md_github_url}
-    leftSidebar={false}
->
+<MarkdownTocLayout {title} {subtitle} {headings} {md_github_url} leftSidebar={false}>
     <Heading level={1} id="introduction">
         Introduction
     </Heading>

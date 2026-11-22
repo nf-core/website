@@ -35,13 +35,13 @@ It retrieves a specific attribute (such as `fasta`, `gtf`, or index paths) for t
 
 **Function Signature**
 
-```groovy
+```nextflow
 Object getGenomeAttribute(String attribute)
 ```
 
 or (static utility):
 
-```groovy
+```nextflow
 Object ReferencesUtils.getGenomeAttribute(Map params, String attribute)
 ```
 
@@ -58,7 +58,7 @@ Returns the value of the requested attribute for the selected genome, or `null` 
 
 **Practical Example**
 
-```groovy
+```nextflow
 // Example params structure
 def params = [
     genome: 'GRCh38',
@@ -268,7 +268,7 @@ This function extracts metadata values with user parameter override support.
 
 **Function Signature**
 
-```groovy
+```nextflow
 Object getReferencesValue(
     Channel references,    // Reference metadata channel
     Object param,         // User parameter value or null
@@ -327,7 +327,7 @@ workflow {
 
 Here's a comprehensive example showing how to integrate reference resolution into a real bioinformatics pipeline:
 
-```nextflow title="complete_reference_pipeline.nf" hl_lines="8-11 18-27 35-42"
+```nextflow title="complete_reference_pipeline.nf" {3-4,26-33} expandable={44}
 #!/usr/bin/env nextflow
 
 include { getReferencesFile  } from 'plugin/nf-core-utils'

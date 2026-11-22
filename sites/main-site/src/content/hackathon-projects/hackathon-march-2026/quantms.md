@@ -41,7 +41,7 @@ Process names are not aligned, but I mapped them one to one in order.
 - DIANN subworkflow in `nf-core/modules` repo at
   `subworkflows/nf-core/dia_proteomics_analysis`
 
-  ```groovy
+  ```nextflow
   include { QUANTMSUTILS_DIANNCFG          } from '../../../modules/nf-core/quantmsutils/dianncfg/main'
   include { QUANTMSUTILS_MZMLSTATISTICS    } from '../../../modules/nf-core/quantmsutils/mzmlstatistics/main'
   include { QUANTMSUTILS_DIANN2MZTAB       } from '../../../modules/nf-core/quantmsutils/diann2mztab/main'
@@ -57,7 +57,7 @@ Process names are not aligned, but I mapped them one to one in order.
   mapped them one to one in order. So files could be compared to the ones in
   `nf-core/modules` repo.
 
-  ```groovy
+  ```nextflow
   include { GENERATE_CFG                } from '../modules/local/diann/generate_cfg/main'
   include { MSSTATS_LFQ                 } from '../modules/local/msstats/msstats_lfq/main'
   include { CONVERT_RESULTS             } from '../modules/local/diann/convert_results/main'

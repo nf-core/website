@@ -36,7 +36,7 @@ You will need the following to get started:
 
 1. Fork the pipeline repository to your GitHub account and clone it locally:
 
-   ```bash
+   ```bash placeholder="<github-username>,<pipeline-name>,<branch-name>"
    git clone https://github.com/<github-username>/<pipeline-name>.git
    cd <pipeline-name>
    git remote add upstream https://github.com/nf-core/<pipeline-name>.git
@@ -45,6 +45,7 @@ You will need the following to get started:
 
    :::note
    Replace `<github-username>`, `<pipeline-name>`, and `<branch-name>` with appropriate values.
+   You can type them into the fields in the code block, and they fill in the other commands on this page.
    Use descriptive branch names like `add-fastqc-module` or `fix-memory-issue`.
    :::
 
@@ -68,7 +69,7 @@ You will need the following to get started:
 
 1. Test your changes locally:
 
-   ```bash
+   ```bash placeholder="<outdir>"
    nextflow run . -profile debug,test,docker --outdir <outdir>
    ```
 
@@ -89,7 +90,7 @@ You will need the following to get started:
 
 1. Commit and push your changes with a clear message:
 
-   ```bash
+   ```bash placeholder="<description>,<branch-name>"
    git add .
    git commit -m "Add feature: <description>"
    git push origin <branch-name>
@@ -144,7 +145,7 @@ Pull requests are typically fully reviewed when these tests pass.
 All nf-core pipelines must adhere to a [set of guidelines](../specifications/pipelines/overview).
 The linting tool checks that your code follows these standards:
 
-```bash
+```bash placeholder="<pipeline-directory>"
 nf-core pipelines lint <pipeline-directory>
 ```
 
@@ -208,7 +209,7 @@ When adding a new process to a pipeline:
 
 Define parameters with default values in `nextflow.config` under the `params` scope:
 
-```groovy
+```nextflow
 params {
     my_parameter = 'default_value'
 }
@@ -226,7 +227,7 @@ This adds your parameters to `nextflow_schema.json` with descriptions and valida
 
 Define process resource requirements (CPUs, memory, time) in `conf/base.config` using `withLabel:` selectors:
 
-```groovy
+```nextflow
 withLabel: process_low {
     cpus = 2
     memory = 4.GB
@@ -236,7 +237,7 @@ withLabel: process_low {
 Use standardized labels from the [nf-core pipeline template](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/conf/base.config).
 Reference resources dynamically in process blocks:
 
-```groovy
+```nextflow
 script:
 """
 tool --threads ${task.cpus} --memory ${task.memory}
@@ -252,7 +253,7 @@ Use consistent naming schemes for channels:
 
 Example:
 
-```groovy
+```nextflow
 ch_output_from_fastqc
 ch_fastqc_for_multiqc
 ```
@@ -261,8 +262,8 @@ ch_fastqc_for_multiqc
 
 If you use new Nextflow features, update the minimum required version:
 
-```bash
-nf-core pipelines bump-version --nextflow . [min_nf_version]
+```bash placeholder="<min_nf_version"
+nf-core pipelines bump-version --nextflow <min_nf_version>
 ```
 
 ### Images and figures

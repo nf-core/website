@@ -11,11 +11,15 @@
     } from "./advisoryUtils";
     import ListingCard from "../ListingCard.svelte";
 
-    export let frontmatter: CollectionEntry<"advisories">["data"];
-    export let slug: string = "";
-    export let showDescription: boolean = true;
+    interface Props {
+        frontmatter: CollectionEntry<"advisories">["data"];
+        slug?: string;
+        showDescription?: boolean;
+    }
 
-    const metadataItems = getAdvisoryMetadataItems(frontmatter);
+    let { frontmatter, slug = "", showDescription = true }: Props = $props();
+
+    const metadataItems = $derived(getAdvisoryMetadataItems(frontmatter));
 </script>
 
 <a href={"/advisories/" + slug + "/"} class="card-link text-decoration-none">
@@ -51,8 +55,8 @@
                                 {:else}
                                     <i class={`fas ${item.icon}`} aria-hidden="true"></i>
                                 {/if}
-                                <span class="ms-1">{item.label}:</span></span
-                            >
+                                <span class="ms-1">{item.label}:</span>
+                            </span>
                             {#each item.value.split(",") as line}
                                 <code class="text-muted ms-1">{line}</code>
                             {/each}

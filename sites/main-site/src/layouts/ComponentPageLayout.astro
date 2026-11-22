@@ -16,16 +16,16 @@ const title = (type === "modules" ? "modules/<wbr>" : "") + name.replaceAll("_",
 ---
 
 <PageLayout
-    title={title}
+    {title}
     subtitle={description}
     mainpage_container={true}
-    topics={topics}
+    {topics}
     docSearchTags={[
         { name: "page_type", content: type.charAt(0).toUpperCase() + type.slice(1) },
         { name: "page_rank", content: type === "modules" ? "7" : "6" },
     ]}
 >
-    <SubHeader gh_url={gh_url} component_type={type} slot="sub-header" component={name} />
+    <SubHeader {gh_url} component_type={type} slot="sub-header" component={name} />
     <div>
         <slot />
     </div>

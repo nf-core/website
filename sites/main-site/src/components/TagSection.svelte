@@ -69,9 +69,9 @@
             {#if expanded}
                 <span class="text-small">hide</span>
             {:else}
-                <span class="text-small"
-                    >and {additionalTagsCount} more {additionalTagsCount === 1 ? type.slice(0, -1) : type}</span
-                >
+                <span class="text-small">
+                    and {additionalTagsCount} more {additionalTagsCount === 1 ? type.slice(0, -1) : type}
+                </span>
             {/if}
         </span>
     {/if}

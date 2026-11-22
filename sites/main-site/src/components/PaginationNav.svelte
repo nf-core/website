@@ -50,8 +50,10 @@
                     onkeydown={(e) => handleKeydown(e, $currentPage - 1)}
                     role="button"
                     class="page-link"
-                    tabindex="0">Previous</span
+                    tabindex="0"
                 >
+                    Previous
+                </span>
             </li>
 
             {#if truncated}
@@ -62,8 +64,10 @@
                             onclick={() => handlePageChange(1)}
                             onkeydown={(e) => handleKeydown(e, 1)}
                             role="button"
-                            tabindex="0">1</span
+                            tabindex="0"
                         >
+                            1
+                        </span>
                     </li>
                     <li class="page-item disabled">
                         <span class="page-link">...</span>
@@ -76,8 +80,10 @@
                             onkeydown={(e) => handleKeydown(e, page)}
                             role="button"
                             class="page-link"
-                            tabindex="0">{page}</span
+                            tabindex="0"
                         >
+                            {page}
+                        </span>
                     </li>
                 {/each}
                 {#if truncatedPages[truncatedPages.length - 1] < lastPage - 1}
@@ -90,8 +96,10 @@
                             onkeydown={(e) => handleKeydown(e, lastPage)}
                             role="button"
                             tabindex="0"
-                            class="page-link">{lastPage}</span
+                            class="page-link"
                         >
+                            {lastPage}
+                        </span>
                     </li>
                 {/if}
             {:else}
@@ -102,8 +110,10 @@
                             onkeydown={(e) => handleKeydown(e, page)}
                             role="button"
                             tabindex="0"
-                            class="page-link">{page}</span
+                            class="page-link"
                         >
+                            {page}
+                        </span>
                     </li>
                 {/each}
             {/if}
@@ -114,8 +124,10 @@
                     onkeydown={(e) => handleKeydown(e, $currentPage + 1)}
                     class="page-link"
                     role="button"
-                    tabindex="0">Next</span
+                    tabindex="0"
                 >
+                    Next
+                </span>
             </li>
         </ul>
     </nav>

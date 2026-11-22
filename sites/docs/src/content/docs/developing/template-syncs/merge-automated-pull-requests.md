@@ -58,7 +58,7 @@ Local resolution allows you to test changes on your machine before committing.
 
 When you pull the `TEMPLATE` branch, you may see log messages indicating merge conflicts:
 
-```console
+```console {12,14,16}
 $ git pull upstream TEMPLATE
 
 remote: Enumerating objects: 33, done.
@@ -80,7 +80,7 @@ CONFLICT (content): Merge conflict in environment.yml
 
 Check the current status to see files with merge conflicts under **Unmerged paths**:
 
-```console
+```console {18,21-40}
 $ git status
 
 On branch merging-template-updates

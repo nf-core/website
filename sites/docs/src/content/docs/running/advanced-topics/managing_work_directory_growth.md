@@ -50,7 +50,7 @@ nextflow clean -n -before $(nextflow log -q | tail -n 1)
 
 Nextflow supports automatic work directory cleanup upon _successful_ pipeline completion through configuration directives:
 
-```groovy title="nextflow.config"
+```nextflow title="nextflow.config"
 cleanup = true
 ```
 
@@ -67,7 +67,7 @@ You must remove the work directory of any _failed_ run manually, such as with th
 
 The scratch directive enables process execution in temporary directories typically local to compute nodes, with only selective output staging to the work directory:
 
-```groovy
+```nextflow
 process SEQUENCE_ALIGNMENT {
     scratch true
 
@@ -95,7 +95,7 @@ This configuration is particularly beneficial in HPC environments where it reduc
 
 The [`nf-boost`](https://registry.nextflow.io/plugins/nf-boost) plugin implements intelligent cleanup mechanisms that remove intermediate files during pipeline execution as they become unnecessary:
 
-```groovy title="nextflow.config"
+```nextflow title="nextflow.config"
 plugins {
     id 'nf-boost'
 }
@@ -116,7 +116,7 @@ See [nf-boost](https://github.com/bentsherman/nf-boost) for more information.
 
 _If writing the pipeline code_, you can minimise intermediate file generation through process optimization:
 
-```groovy
+```nextflow
 process OPTIMIZED_ANALYSIS {
     input:
     path input_data

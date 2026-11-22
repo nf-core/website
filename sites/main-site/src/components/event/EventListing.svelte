@@ -4,6 +4,7 @@
     import { CurrentFilter, SearchQuery } from "@components/store";
     import { onMount } from "svelte";
     import type { CollectionEntry } from "astro:content";
+    import { eventTypeClasses, eventTypeIcons, type EventType } from "@components/event/eventUtils";
 
     interface Props {
         events?: CollectionEntry<"events">[];
@@ -85,25 +86,11 @@
         currentEvents = currentEventsFiltered;
     });
 
-    const event_type_classes = {
-        bytesize: "success",
-        hackathon: "primary",
-        talk: "info",
-        training: "warning",
-    };
-    const event_type_icons = {
-        bytesize: "fa-solid fa-apple-core",
-        hackathon: "fa-solid fa-laptop-code",
-        talk: "fa-solid fa-presentation",
-        training: "fa-solid fa-chalkboard-teacher",
-    };
-    const event_types = Object.keys(event_type_classes).map((type) => {
-        return {
-            name: type,
-            class: event_type_classes[type],
-            icon: event_type_icons[type],
-        };
-    });
+    const event_types = (Object.keys(eventTypeClasses) as EventType[]).map((type) => ({
+        name: type,
+        class: eventTypeClasses[type],
+        icon: eventTypeIcons[type],
+    }));
 
     function hasYearChanged(events, idx) {
         if (idx === 0 || events[idx].data.start.getFullYear() !== events[idx - 1].data.start.getFullYear()) {

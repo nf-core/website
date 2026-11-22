@@ -81,9 +81,7 @@ if (onGoingEvents?.length > 0) {
                 <NfCoreLogoDarkbg />
             </div>
         </a>
-        {navTocHeadings.length > 0 && (
-            <NavbarToc headings={navTocHeadings} showHiddenBtn={showHiddenBtn} client:visible />
-        )}
+        {navTocHeadings.length > 0 && <NavbarToc headings={navTocHeadings} {showHiddenBtn} client:visible />}
         <div class:list={["align-self-center d-xl-none", { "me-5": navTocHeadings.length === 0 }]}>
             <Search id="docsearch-mobile" />
         </div>

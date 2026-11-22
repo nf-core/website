@@ -45,7 +45,7 @@ function getLinkIcon(link) {
             </dl>
 
             {!frontmatter.hideExportButton && (
-                <ExportEventButton frontmatter={frontmatter} add_class="btn-outline-light col" client:idle />
+                <ExportEventButton {frontmatter} add_class="btn-outline-light col" client:idle />
             )}
         </div>
         <div class="col">

@@ -17,14 +17,14 @@ Compliance of a config to the strict syntax can be checked using the methods des
 
 Variables MUST be defined as parameters (`params`) for reusing information in different parts of a config.
 
-```groovy
+```nextflow
 - def variable_name = <code>
 + params.variable_name = <code>
 ```
 
 Variables that are defined using a condition MUST be wrapped in a closure and executed with the `.call()` function.
 
-```groovy
+```nextflow
 params.variable_name = {
     if (large_data == true) {
         return 'small'
@@ -42,14 +42,14 @@ Functions MUST NOT be used within a config.
 
 Simple if-else statements SHOULD be written using a ternary operator.
 
-```groovy
+```nextflow
 process.executor = params.slurm ? 'slurm' : 'local'
 ```
 
 Larger conditions SHOULD be written using if-else statements.
 Switch conditions MUST NOT be used.
 
-```groovy
+```nextflow
 queue = {
   if (task.memory >= 216.GB) {
       if (task.time >= 7.d) {
@@ -73,7 +73,7 @@ queue = {
 
 If related HPCs are being referred to in a single config, conditional sub-config files MAY be included by passing a closure to `includeConfig()`:
 
-```groovy
+```nextflow
 includeConfig ({
     if (condition) {
         return "conf1.config"
@@ -89,6 +89,6 @@ includeConfig ({
 
 Environmental variables MUST be referenced with a `System.getenv` call.
 
-```groovy
+```nextflow
 scratch      = "/scratch/${System.getenv('USER')}"
 ```

@@ -27,15 +27,10 @@ const {
 } = Astro.props;
 ---
 
-<PageLayout
-    title={title}
-    subtitle={description}
-    mainpage_container={mainpage_container}
-    viewTransitions={viewTransitions}
->
+<PageLayout {title} subtitle={description} {mainpage_container} {viewTransitions}>
     <div class="container-fluid main-content pt-md-2 p-1">
         <slot />
-        <FilterBar displayStyle={displayStyle} filter={filter} sortBy={sortBy} client:load />
+        <FilterBar {displayStyle} {filter} {sortBy} client:load />
         {searchExamples && <SearchHint examples={searchExamples} client:load />}
         <slot name="listing-components" />
     </div>

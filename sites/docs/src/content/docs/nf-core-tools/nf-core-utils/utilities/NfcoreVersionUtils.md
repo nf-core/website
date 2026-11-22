@@ -761,7 +761,7 @@ Workflow:
 
 Test version functions across migration stages:
 
-```groovy
+```nextflow
 // Test different migration scenarios
 test("Legacy version processing") {
     when {

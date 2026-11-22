@@ -8,12 +8,14 @@ module.exports = {
             files: "**/*.astro",
             options: {
                 parser: "astro",
+                astroAllowShorthand: true,
             },
         },
         {
             files: "**/*.svelte",
             options: {
                 parser: "svelte",
+                svelteAllowShorthand: true,
             },
         },
     ],

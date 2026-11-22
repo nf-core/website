@@ -26,7 +26,7 @@ const { class: className = "", id, groupByYear = false } = Astro.props;
 
 <div
     class:list={["hex-grid-container", className]}
-    id={id}
+    {id}
     data-group-by-year={groupByYear ? "" : undefined}
     aria-label="Grid of hexagonal stickers"
 >

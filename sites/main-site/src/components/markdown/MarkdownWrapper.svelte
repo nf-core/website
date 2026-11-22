@@ -1,7 +1,5 @@
 <script lang="ts">
     import { currentHeading, Checkboxes } from "@components/store";
-    import * as icons from "file-icons-js";
-    import "file-icons-js/css/style.css";
     import { onMount } from "svelte";
 
     interface Props {
@@ -63,25 +61,6 @@
             }
         });
 
-        // Add file icon to Expressive Code editor frame titles
-        document
-            .querySelectorAll(".expressive-code figure.has-title:not(.is-terminal) figcaption .title")
-            .forEach((block) => {
-                // Skip blocks that already got a build-time icon (e.g. the
-                // Nextflow logo injected by the file-icons EC plugin).
-                if (block.querySelector("svg")) return;
-                const title = block.textContent;
-                const fileIcon = icons.getClass(title);
-                let icon: HTMLElement;
-                if (fileIcon) {
-                    icon = document.createElement("span");
-                    icon.classList.add("ms-1", "me-2", fileIcon);
-                } else {
-                    icon = document.createElement("i");
-                    icon.classList.add("fa", "fa-regular", "fa-file-code", "ms-1", "me-2");
-                }
-                block.prepend(icon);
-            });
         // change stored Checkboxes to checked
         $Checkboxes.forEach((checkbox) => {
             const element = document.getElementById(checkbox.id);

@@ -8,7 +8,7 @@ interface Props {
 const { id = "docsearch" } = Astro.props;
 ---
 
-<div id={id} data-search-container>
+<div {id} data-search-container>
     <button type="button" class="DocSearch DocSearch-Button" aria-label="Search">
         <span class="DocSearch-Button-Container">
             <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" class="DocSearch-Search-Icon">

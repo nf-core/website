@@ -28,6 +28,7 @@ export interface Props {
                 co2e_emissions: number;
                 energy_consumption: number;
             };
+            nextflow_version: string;
         }[];
         stargazers_count: number;
         subscribers_count: number;
@@ -179,9 +180,7 @@ const subworkflows: string[] = release?.components?.subworkflows || [];
                 title: "last release",
                 value:
                     meta.releases.length > 1
-                        ? formatDistance(new Date(meta.releases[0].published_at), new Date(), {
-                              addSuffix: true,
-                          })
+                        ? formatDistance(new Date(meta.releases[0].published_at), new Date(), { addSuffix: true })
                         : "not yet released",
             },
             {
@@ -203,6 +202,11 @@ const subworkflows: string[] = release?.components?.subworkflows || [];
                 },
             ]}
         />
+    )}
+    {release?.nextflow_version && (
+        <SidebarStatsRow content={[{ title: "minimum Nextflow version" }]}>
+            <code>{release.nextflow_version}</code>
+        </SidebarStatsRow>
     )}
     {modules.length > 0 && (
         <SidebarStatsRow content={[{ title: "included modules" }]}>

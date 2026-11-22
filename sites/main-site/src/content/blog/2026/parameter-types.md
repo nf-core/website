@@ -56,7 +56,7 @@ nf-schema 2.7.2 and higher automatically converts CLI parameters to their correc
 
 You can bump the plugin via a configuration file:
 
-```groovy title="nextflow.config"
+```nextflow title="nextflow.config"
 plugins {
     id 'nf-schema@2.7.2'
 }
@@ -137,7 +137,7 @@ This is a non-exhaustive list of parameters that belong to this category. This w
 
 Support for nested parameters has been silently 'deprecated' with the introduction of parameter types. This issue can be resolved by migrating `genomes` parameter in `conf/igenomes.config` to a `Map` structure instead of using nested parameters. e.g.:
 
-```groovy title="conf/igenomes.config"
+```nextflow title="conf/igenomes.config"
 params.genomes {
     'GRCh38' {
         fasta = "..."
@@ -152,7 +152,7 @@ params.genomes {
 
 should become:
 
-```groovy title="conf/igenomes.config"
+```nextflow title="conf/igenomes.config"
 params.genomes = [
     'GRCh38': [
         fasta: "...",

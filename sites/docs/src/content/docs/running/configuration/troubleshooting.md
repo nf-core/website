@@ -85,7 +85,7 @@ Singularity cannot access your file system paths.
 
 Add bind paths to your Nextflow configuration:
 
-```groovy
+```nextflow
 singularity {
   enabled = true
   autoMounts = true
@@ -114,7 +114,7 @@ Nextflow passes `$TMPDIR` into Singularity and Apptainer containers but does not
 
 Mount the directory in your Nextflow configuration:
 
-```groovy
+```nextflow
 singularity.runOptions = '-B "$TMPDIR"'
 ```
 
@@ -141,7 +141,7 @@ docker pull nfcore/pipeline:dev
 
 Or add to your configuration to always pull:
 
-```groovy
+```nextflow
 docker {
   enabled = true
   runOptions = '--pull=always'

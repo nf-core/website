@@ -58,12 +58,12 @@ const headings = (schemaEntry?.rendered?.metadata?.headings ?? []) as {
 ---
 
 <PipelinePageLayout
-    pipeline={pipeline}
+    {pipeline}
     meta_title={pipeline + ": Parameters"}
     subtitle={String(description || "")}
-    headings={headings}
-    version={version}
-    versions={versions}
+    {headings}
+    {version}
+    {versions}
     tabItems={md_files}
     showHiddenBtn={true}
 >

@@ -86,26 +86,26 @@ if (showRightSidebar) {
 ---
 
 <PageLayout
-    title={title}
+    {title}
     meta_title={meta_title || title}
-    subtitle={subtitle}
-    md_github_url={md_github_url}
-    event_header={event_header}
+    {subtitle}
+    {md_github_url}
+    {event_header}
     subfooter={md_github_url && !Astro.url.pathname.startsWith("/docs/") ? true : false}
     mainpage_container={false}
     navTocHeadings={headings}
-    sections={sections}
-    docSearchTags={docSearchTags}
-    viewTransitions={viewTransitions}
-    image={image}
-    doubleNavbar={doubleNavbar}
+    {sections}
+    {docSearchTags}
+    {viewTransitions}
+    {image}
+    {doubleNavbar}
 >
     <slot name="header-top" slot="header-top" />
     <div class="container-fluid main-content">
         <div class="row">
             <div class:list={`col-12 col-xl-${mainContentWidth} order-2`}>
                 <div class="markdown-content m-auto me-xl-0" transition:animate="fade">
-                    <MarkdownWrapper headings={headings} client:idle>
+                    <MarkdownWrapper {headings} client:idle>
                         <slot />
                     </MarkdownWrapper>
                 </div>
@@ -113,13 +113,7 @@ if (showRightSidebar) {
 
             {showRightSidebar && (
                 <div class={`col-12 col-xl-${rightSidebarWidth} sidebar-right toc order-3`}>
-                    <SidebarToc
-                        headings={headings}
-                        minNumHeadings={minNumHeadings}
-                        minHeadingDepth={minHeadingDepth}
-                        maxHeadingDepth={maxHeadingDepth}
-                        client:idle
-                    >
+                    <SidebarToc {headings} {minNumHeadings} {minHeadingDepth} {maxHeadingDepth} client:idle>
                         <slot slot="rightSidebarTop" name="right-sidebar-top" />
                         <slot slot="defaultContent" name="right-sidebar-bottom" />
                         <a class="text-small text-body-secondary" href={md_github_url} slot="rightSidebarLinkBar">

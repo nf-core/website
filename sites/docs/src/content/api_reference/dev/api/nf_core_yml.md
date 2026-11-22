@@ -287,11 +287,9 @@ Template configuration schema
   - `is_nfcore (bool | None)`
   - `name (str | None)`
   - `org (str | None)`
-  - `outdir (str | pathlib.Path | None)`
+  - `outdir (pathlib.Path | None)`
   - `skip_features (list | None)`
   - `version (str | None)`
-- **Validators:**
-  - `outdir_to_str` » `outdir`
 
 #### _`field{:python}`_`author{:python}`_: str | None_`{:python}`_= None_
 
@@ -317,12 +315,9 @@ Pipeline name
 
 Organisation name
 
-#### _`field{:python}`_`outdir{:python}`_: str | Path | None_`{:python}`_= None_
+#### _`field{:python}`_`outdir{:python}`_: Path | None_`{:python}`_= None_
 
 Output directory
-
-- **Validated by:**
-  - `outdir_to_str`
 
 #### _`field{:python}`_`skip_features{:python}`_: list | None_`{:python}`_= None_
 

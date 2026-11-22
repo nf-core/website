@@ -38,9 +38,10 @@
     title="Copy to clipboard"
     role="button"
     tabindex="0"
-    >{@render children?.()}{#if copied}{@html copiedLabel}
-    {:else}{@html label}{/if}</span
 >
+    {@render children?.()}{#if copied}{@html copiedLabel}
+    {:else}{@html label}{/if}
+</span>
 
 <style>
     .copy-url {

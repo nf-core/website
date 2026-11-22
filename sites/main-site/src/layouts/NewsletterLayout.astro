@@ -139,13 +139,13 @@ const pipelinesAndProposals: { title: string; url: string; sub: string; labels: 
         sub: p.description,
         labels: [{ text: "New repo", ...TYPE_LABEL }],
     })),
-    ...[...pipelineProposals].sort(sortByStatus).map((p: any) => ({
+    ...pipelineProposals.toSorted(sortByStatus).map((p: any) => ({
         title: p.displayTitle,
         url: p.url,
         sub: `Pipeline proposal #${p.number}`,
         labels: [statusLabel(p.status)],
     })),
-    ...[...otherProposals].sort(sortByStatus).map((p: any) => ({
+    ...otherProposals.toSorted(sortByStatus).map((p: any) => ({
         title: p.displayTitle,
         url: p.url,
         sub: `${RFC_TITLE_PATTERN.test(p.title ?? "") ? "RFC proposal" : "Other proposal"} #${p.number}`,

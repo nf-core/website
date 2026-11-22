@@ -133,8 +133,9 @@
                                 <a
                                     class="stretched-link"
                                     href={"/" + pipeline.name + "/" + pipeline.releases[0].tag_name + "/"}
-                                    >{pipeline.name}</a
                                 >
+                                    {pipeline.name}
+                                </a>
                             </div>
                         </td>
                         <td class="text-small">

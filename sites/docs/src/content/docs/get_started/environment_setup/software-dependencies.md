@@ -79,7 +79,7 @@ For installation instructions, see [Shifter](https://github.com/NERSC/shifter)
 Conda and Mamba are package management systems that create isolated software environments.
 While they do not provide the same level of isolation as containers, they offer alternatives when containers are not available or practical.
 
-:::caution
+:::warning
 Conda environments may provide poorer reproducibility than container-based methods because low-level dependencies can change over time.
 Containers are recommended when possible.
 :::

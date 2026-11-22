@@ -4,6 +4,10 @@
   display: none;
 }
 
+[data-bs-theme="light"] {
+  color-scheme: light;
+}
+
 body {
   font-feature-settings: "ss03"; // curved r https://rsms.me/inter/#features/ss03
   text-rendering: optimizeLegibility; // enables kerning and ligatures for smaller font sizes
@@ -1171,7 +1175,7 @@ Launch Page
     margin-bottom: 0;
   }
 
-  .admonition-body .title svg {
+  .admonition-body > .title svg {
     width: 1.2rem;
     height: 1.2rem;
     fill: currentColor;

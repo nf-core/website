@@ -22,7 +22,7 @@ This means we don't write the tool versions to a `versions.yml` file anymore, bu
 
 The main change happens in the `main.nf` files:
 
-```groovy title="main.nf" del={4,7-10} ins={5}
+```nextflow title="main.nf" del={4,7-10} ins={5}
 output:
 tuple val(meta), path("*.html"), emit: html
 tuple val(meta), path("*.zip") , emit: zip

@@ -25,13 +25,13 @@ const maxHeadingDepth = Astro.props.about.data.maxHeadingDepth || 4;
 ---
 
 <MarkdownTocLayout
-    title={title}
-    subtitle={subtitle}
-    md_github_url={md_github_url}
-    headings={headings}
+    {title}
+    {subtitle}
+    {md_github_url}
+    {headings}
     leftSidebar={false}
-    minHeadingDepth={minHeadingDepth}
-    maxHeadingDepth={maxHeadingDepth}
+    {minHeadingDepth}
+    {maxHeadingDepth}
 >
     <Content />
 </MarkdownTocLayout>

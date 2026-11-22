@@ -57,7 +57,7 @@ nextflow run nf-core/methylseq \
     --input samplesheet.csv --genome GRCh38
 ```
 
-:::caution{title="`-profile gpu` applies to the whole run"}
+:::warning{title="`-profile gpu` applies to the whole run"}
 In this pattern, the `gpu` profile might set the container engine's GPU flags globally (`docker.runOptions`, `singularity.runOptions`, etc.), so every process in the run gets them — not just the GPU-accelerated one - check the pipeline configuration.
 
 Check the pipeline's usage docs for whether you also need to set the `accelerator` directive yourself in a custom config — some pipelines only set it automatically on cloud/Kubernetes executors (`awsbatch`, `google-batch`, `k8s`, `hq`), leaving it up to you elsewhere.
@@ -83,7 +83,7 @@ Check [nf-core/configs](https://github.com/nf-core/configs) to see if your clust
 
 To request more GPUs or target specific hardware for one run, add a custom config with [`-c`](./configuration-options#custom-configuration-files) that targets the process by name:
 
-```groovy title="custom-gpu.config"
+```nextflow title="custom-gpu.config"
 process {
     withName: 'RIBODETECTOR' {
         accelerator = [request: 2, type: 'a100']
@@ -93,7 +93,7 @@ process {
 
 Only set `clusterOptions` yourself if there's no institutional profile doing this translation, or its `clusterOptions` hardcodes a flag instead of reading `task.accelerator`:
 
-```groovy title="custom-gpu.config"
+```nextflow title="custom-gpu.config"
 process {
     withName: 'RIBODETECTOR' {
         accelerator = [request: 2, type: 'a100']

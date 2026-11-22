@@ -16,7 +16,7 @@ Where possible nf-core will use BioContainers to fetch pre-built software contai
 Software requirements SHOULD be declared within the module file using the Nextflow `container` directive.
 For single-tool BioContainers, the `nf-core modules create` command will automatically fetch and fill in the appropriate Conda / Docker / Singularity definitions by parsing the information provided in the first part of the module name:
 
-```groovy
+```nextflow
 conda "bioconda::fastqc=0.11.9"
 container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
     'https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0' :
@@ -56,7 +56,7 @@ It is also possible for a new multi-tool container to be built and added to BioC
 - Once the PR has been accepted a container will get built and you can find it using a search tool in the `galaxy-tool-util conda` package
 
   ```console
-  mulled-search --destination quay singularity conda  --search pysam biopython  | grep "mulled"
+  $ mulled-search --destination quay singularity conda  --search pysam biopython  | grep "mulled"
   quay         mulled-v2-3a59640f3fe1ed11819984087d31d68600200c3f  185a25ca79923df85b58f42deb48f5ac4481e91f-0  docker pull quay.io/biocontainers/mulled-v2-3a59640f3fe1ed11819984087d31d68600200c3f:185a25ca79923df85b58f42deb48f5ac4481e91f-0
   singularity  mulled-v2-3a59640f3fe1ed11819984087d31d68600200c3f  185a25ca79923df85b58f42deb48f5ac4481e91f-0  wget https://depot.galaxyproject.org/singularity/mulled-v2-3a59640f3fe1ed11819984087d31d68600200c3f:185a25ca79923df85b58f42deb48f5ac4481e91f-0
   ```
@@ -84,13 +84,13 @@ It is also possible for a new multi-tool container to be built and added to BioC
 Modules MAY provide GPU-accelerated containers. One of three container approaches SHOULD be chosen according to the tool:
 
 - A **single container**, when GPU overhead is minimal or a CPU fallback fits in one image. This is simplest and preferred.
-- A **dual CPU/GPU container**, when the GPU build is substantially larger (e.g., CUDA PyTorch). The module SHOULD switch containers based on `task.accelerator{:groovy}`, and a separate `environment.gpu.yml` SHOULD be provided for the GPU dependencies. The CPU `environment.yml` MUST remain unchanged.
+- A **dual CPU/GPU container**, when the GPU build is substantially larger (e.g., CUDA PyTorch). The module SHOULD switch containers based on `task.accelerator{:nextflow}`, and a separate `environment.gpu.yml` SHOULD be provided for the GPU dependencies. The CPU `environment.yml` MUST remain unchanged.
 - A **vendor-provided GPU container**, when no conda equivalent exists (e.g., NVIDIA Parabricks). These modules SHOULD guard against conda/mamba profiles.
 
 GPU containers SHOULD be built with [Wave](https://wave.seqera.io), and both Docker and Singularity URLs MUST be provided.
 `cuda-version` MUST be pinned exactly; version ranges are not allowed.
 GPU modules SHOULD emit the CUDA runtime version on the `versions` topic channel.
-Tools that provide separate GPU and CPU binaries SHOULD select between them based on `task.accelerator{:groovy}`.
+Tools that provide separate GPU and CPU binaries SHOULD select between them based on `task.accelerator{:nextflow}`.
 
 For the dual-container pattern, CUDA version pinning strategy, runtime configuration, GPU-enabled Python packages, and worked examples, see the [GPU-capable modules](/docs/developing/components/gpu-modules) guide.
 

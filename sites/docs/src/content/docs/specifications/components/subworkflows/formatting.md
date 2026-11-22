@@ -23,11 +23,11 @@ The version two the of Nextflow strict syntax will be made default in Nextflow v
 
 Common issues within nf-core components to avoid:
 
-| Old syntax                                 | Prefered syntax                                                              |
-| ------------------------------------------ | ---------------------------------------------------------------------------- |
-| Undeclared variable `my_variable{:groovy}` | Specify `def` before the variable: `def my_variable{:groovy}`                |
-| `input.collect{ it[1].name }{:groovy}`     | Specify a variable name: `input.collect{ meta, file -> file.name }{:groovy}` |
-| `for{:groovy}` loop                        | Use the `.each` operator: `.each{}{:groovy}` operator                        |
+| Old syntax                                   | Prefered syntax                                                                |
+| -------------------------------------------- | ------------------------------------------------------------------------------ |
+| Undeclared variable `my_variable{:nextflow}` | Specify `def` before the variable: `def my_variable{:nextflow}`                |
+| `input.collect{ it[1].name }{:nextflow}`     | Specify a variable name: `input.collect{ meta, file -> file.name }{:nextflow}` |
+| `for{:nextflow}` loop                        | Use the `.each` operator: `.each{}{:nextflow}` operator                        |
 
 ## General module code formatting
 
