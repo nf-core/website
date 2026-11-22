@@ -20318,6 +20318,10 @@
         {
           "name": "differentialabundance",
           "version": "2.0.0"
+        },
+        {
+          "name": "scdownstream",
+          "version": "dev"
         }
       ]
     },
@@ -46655,10 +46659,10 @@
     {
       "name": "bismark_align",
       "path": "modules/nf-core/bismark/align/meta.yml",
-      "tree_sha": "629b444f9f314c367cc24ec57945950b9bad8bf3",
+      "tree_sha": "cf399281f2fed7c4f2809f6d0ff10f6b46f5e2a7",
       "files": [
-        "modules/nf-core/bismark/align/.conda-lock/linux_amd64-bd-a48d2651f3b6d1d1_1.txt",
-        "modules/nf-core/bismark/align/.conda-lock/linux_arm64-bd-a00564c2539e26b4_1.txt",
+        "modules/nf-core/bismark/align/.conda-lock/linux_amd64-bd-1eb534160cb7def7_2.txt",
+        "modules/nf-core/bismark/align/.conda-lock/linux_arm64-bd-60746007c6266ec6_2.txt",
         "modules/nf-core/bismark/align/environment.yml",
         "modules/nf-core/bismark/align/main.nf",
         "modules/nf-core/bismark/align/meta.yml",
@@ -46908,39 +46912,39 @@
         "containers": {
           "docker": {
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/bismark_bwa-mem3:a48d2651f3b6d1d1",
-              "build_id": "bd-a48d2651f3b6d1d1_1",
-              "scan_id": "sc-f1f8d54d252b7ff5_1"
+              "name": "community.wave.seqera.io/library/bismark_bwa-mem3:1eb534160cb7def7",
+              "build_id": "bd-1eb534160cb7def7_2",
+              "scan_id": "sc-34516715d42552ed_1"
             },
             "linux/arm64": {
-              "name": "community.wave.seqera.io/library/bismark_bwa-mem3:a00564c2539e26b4",
-              "build_id": "bd-a00564c2539e26b4_1",
-              "scan_id": "sc-3c9f22db2ecf969e_1"
+              "name": "community.wave.seqera.io/library/bismark_bwa-mem3:60746007c6266ec6",
+              "build_id": "bd-60746007c6266ec6_2",
+              "scan_id": "sc-70a71f6c3827f515_1"
             }
           },
           "singularity": {
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/bismark_bwa-mem3:fdd4223054345883",
-              "build_id": "bd-fdd4223054345883_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/5a/5a75fb7f3673720d2d5f5d5e59776f5782797607d6cbcfdb6afd8213151e344f/data"
+              "name": "oras://community.wave.seqera.io/library/bismark_bwa-mem3:c2f1948797e73d2d",
+              "build_id": "bd-c2f1948797e73d2d_2",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/20/20bce4b3bce2e7045431676190322012e22a96cef1a53eaadd14acc89de2e232/data"
             },
             "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/bismark_bwa-mem3:56ff160e945f4623",
-              "build_id": "bd-56ff160e945f4623_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/cc/cc41d48545d831ad4ab17ae6110b94d9d9857acfee73bda768998c48e9ad2119/data"
+              "name": "oras://community.wave.seqera.io/library/bismark_bwa-mem3:1c63481bbe3e9b04",
+              "build_id": "bd-1c63481bbe3e9b04_2",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/62/62f1fecca07a62d06cfa93d1ee63ec7a329a3d62f7ecf00abb3f7d4ac896b889/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/bismark/align/.conda-lock/linux_amd64-bd-a48d2651f3b6d1d1_1.txt"
+              "lock_file": "modules/nf-core/bismark/align/.conda-lock/linux_amd64-bd-1eb534160cb7def7_2.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/bismark/align/.conda-lock/linux_arm64-bd-a00564c2539e26b4_1.txt"
+              "lock_file": "modules/nf-core/bismark/align/.conda-lock/linux_arm64-bd-60746007c6266ec6_2.txt"
             }
           }
         }
       },
-      "git_sha": "c4ee44040e61703314059bcbe330e7bda2a48365",
+      "git_sha": "46842d1ee933d20b78619d513aef7713ed121d72",
       "pipelines": [
         {
           "name": "methylseq",
@@ -46951,10 +46955,10 @@
     {
       "name": "bismark_coverage2cytosine",
       "path": "modules/nf-core/bismark/coverage2cytosine/meta.yml",
-      "tree_sha": "c0219523e7af312e55de0e39a71a50c4db4c9be7",
+      "tree_sha": "211f8d5d14ba154cd333393032b370a73773ebf8",
       "files": [
-        "modules/nf-core/bismark/coverage2cytosine/.conda-lock/linux_amd64-bd-f5ac4e7eb5a16146_1.txt",
-        "modules/nf-core/bismark/coverage2cytosine/.conda-lock/linux_arm64-bd-a344216d17e818ee_1.txt",
+        "modules/nf-core/bismark/coverage2cytosine/.conda-lock/linux_amd64-bd-4721154cfbeba5e3_1.txt",
+        "modules/nf-core/bismark/coverage2cytosine/.conda-lock/linux_arm64-bd-56704b289b4ed628_1.txt",
         "modules/nf-core/bismark/coverage2cytosine/environment.yml",
         "modules/nf-core/bismark/coverage2cytosine/main.nf",
         "modules/nf-core/bismark/coverage2cytosine/meta.yml",
@@ -47158,39 +47162,39 @@
         "containers": {
           "docker": {
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/bismark:3.3.0--f5ac4e7eb5a16146",
-              "build_id": "bd-f5ac4e7eb5a16146_1",
-              "scan_id": "sc-df9c6c18f0a60d02_1"
+              "name": "community.wave.seqera.io/library/bismark:3.4.0--4721154cfbeba5e3",
+              "build_id": "bd-4721154cfbeba5e3_1",
+              "scan_id": "sc-e58d7647fa648f4f_1"
             },
             "linux/arm64": {
-              "name": "community.wave.seqera.io/library/bismark:3.3.0--a344216d17e818ee",
-              "build_id": "bd-a344216d17e818ee_1",
-              "scan_id": "sc-1346c1fb78ca477e_1"
+              "name": "community.wave.seqera.io/library/bismark:3.4.0--56704b289b4ed628",
+              "build_id": "bd-56704b289b4ed628_1",
+              "scan_id": "sc-8fe654a6c7c7e0cc_1"
             }
           },
           "singularity": {
             "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/bismark:3.3.0--f9a59897887bb0cf",
-              "build_id": "bd-f9a59897887bb0cf_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/df/dfd8ffcbdcdd531118e91bbbbb4427a93f4ffb9caf8b7df373621bb7dc1824e3/data"
+              "name": "oras://community.wave.seqera.io/library/bismark:3.4.0--8e6b0778a07044bd",
+              "build_id": "bd-8e6b0778a07044bd_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/240009db98fd86ec6f661a0ea4b1b7628da0c37eb1b5432d75aaab0b56eccc40/data"
             },
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/bismark:3.3.0--bcf731e913779692",
-              "build_id": "bd-bcf731e913779692_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/59/59db1f1331e9bd80560221e6283dea4e9f14de41e2f028c13b71f0b9e42b8afb/data"
+              "name": "oras://community.wave.seqera.io/library/bismark:3.4.0--389ad6389644dbc5",
+              "build_id": "bd-389ad6389644dbc5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/10/106c5858e0e1021f5eb80619e7ec56f02e5fc857d2bdbb00570d30a5add9b5e9/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/bismark/coverage2cytosine/.conda-lock/linux_amd64-bd-f5ac4e7eb5a16146_1.txt"
+              "lock_file": "modules/nf-core/bismark/coverage2cytosine/.conda-lock/linux_amd64-bd-4721154cfbeba5e3_1.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/bismark/coverage2cytosine/.conda-lock/linux_arm64-bd-a344216d17e818ee_1.txt"
+              "lock_file": "modules/nf-core/bismark/coverage2cytosine/.conda-lock/linux_arm64-bd-56704b289b4ed628_1.txt"
             }
           }
         }
       },
-      "git_sha": "c4ee44040e61703314059bcbe330e7bda2a48365",
+      "git_sha": "46842d1ee933d20b78619d513aef7713ed121d72",
       "pipelines": [
         {
           "name": "methylseq",
@@ -47201,10 +47205,10 @@
     {
       "name": "bismark_deduplicate",
       "path": "modules/nf-core/bismark/deduplicate/meta.yml",
-      "tree_sha": "f56256a6d8aa634b42bcc5bf2a64e90730670181",
+      "tree_sha": "9fd655d8df6776f311afb9b1c29847cefa82a941",
       "files": [
-        "modules/nf-core/bismark/deduplicate/.conda-lock/linux_amd64-bd-f5ac4e7eb5a16146_1.txt",
-        "modules/nf-core/bismark/deduplicate/.conda-lock/linux_arm64-bd-a344216d17e818ee_1.txt",
+        "modules/nf-core/bismark/deduplicate/.conda-lock/linux_amd64-bd-4721154cfbeba5e3_1.txt",
+        "modules/nf-core/bismark/deduplicate/.conda-lock/linux_arm64-bd-56704b289b4ed628_1.txt",
         "modules/nf-core/bismark/deduplicate/environment.yml",
         "modules/nf-core/bismark/deduplicate/main.nf",
         "modules/nf-core/bismark/deduplicate/meta.yml",
@@ -47352,39 +47356,39 @@
         "containers": {
           "docker": {
             "linux/arm64": {
-              "name": "community.wave.seqera.io/library/bismark:3.3.0--a344216d17e818ee",
-              "build_id": "bd-a344216d17e818ee_1",
-              "scan_id": "sc-1346c1fb78ca477e_1"
+              "name": "community.wave.seqera.io/library/bismark:3.4.0--56704b289b4ed628",
+              "build_id": "bd-56704b289b4ed628_1",
+              "scan_id": "sc-8fe654a6c7c7e0cc_1"
             },
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/bismark:3.3.0--f5ac4e7eb5a16146",
-              "build_id": "bd-f5ac4e7eb5a16146_1",
-              "scan_id": "sc-df9c6c18f0a60d02_1"
+              "name": "community.wave.seqera.io/library/bismark:3.4.0--4721154cfbeba5e3",
+              "build_id": "bd-4721154cfbeba5e3_1",
+              "scan_id": "sc-e58d7647fa648f4f_1"
             }
           },
           "singularity": {
             "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/bismark:3.3.0--f9a59897887bb0cf",
-              "build_id": "bd-f9a59897887bb0cf_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/df/dfd8ffcbdcdd531118e91bbbbb4427a93f4ffb9caf8b7df373621bb7dc1824e3/data"
+              "name": "oras://community.wave.seqera.io/library/bismark:3.4.0--8e6b0778a07044bd",
+              "build_id": "bd-8e6b0778a07044bd_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/240009db98fd86ec6f661a0ea4b1b7628da0c37eb1b5432d75aaab0b56eccc40/data"
             },
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/bismark:3.3.0--bcf731e913779692",
-              "build_id": "bd-bcf731e913779692_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/59/59db1f1331e9bd80560221e6283dea4e9f14de41e2f028c13b71f0b9e42b8afb/data"
+              "name": "oras://community.wave.seqera.io/library/bismark:3.4.0--389ad6389644dbc5",
+              "build_id": "bd-389ad6389644dbc5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/10/106c5858e0e1021f5eb80619e7ec56f02e5fc857d2bdbb00570d30a5add9b5e9/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/bismark/deduplicate/.conda-lock/linux_amd64-bd-f5ac4e7eb5a16146_1.txt"
+              "lock_file": "modules/nf-core/bismark/deduplicate/.conda-lock/linux_amd64-bd-4721154cfbeba5e3_1.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/bismark/deduplicate/.conda-lock/linux_arm64-bd-a344216d17e818ee_1.txt"
+              "lock_file": "modules/nf-core/bismark/deduplicate/.conda-lock/linux_arm64-bd-56704b289b4ed628_1.txt"
             }
           }
         }
       },
-      "git_sha": "c4ee44040e61703314059bcbe330e7bda2a48365",
+      "git_sha": "46842d1ee933d20b78619d513aef7713ed121d72",
       "pipelines": [
         {
           "name": "methylseq",
@@ -47395,10 +47399,10 @@
     {
       "name": "bismark_genomepreparation",
       "path": "modules/nf-core/bismark/genomepreparation/meta.yml",
-      "tree_sha": "46aeb93c319e381d12baa9e461b2510accf20473",
+      "tree_sha": "ba5e7d4e82c8c32e00bae241e3f7e212e4148fb7",
       "files": [
-        "modules/nf-core/bismark/genomepreparation/.conda-lock/linux_amd64-bd-f5ac4e7eb5a16146_1.txt",
-        "modules/nf-core/bismark/genomepreparation/.conda-lock/linux_arm64-bd-a344216d17e818ee_1.txt",
+        "modules/nf-core/bismark/genomepreparation/.conda-lock/linux_amd64-bd-4721154cfbeba5e3_1.txt",
+        "modules/nf-core/bismark/genomepreparation/.conda-lock/linux_arm64-bd-56704b289b4ed628_1.txt",
         "modules/nf-core/bismark/genomepreparation/environment.yml",
         "modules/nf-core/bismark/genomepreparation/main.nf",
         "modules/nf-core/bismark/genomepreparation/meta.yml",
@@ -47526,39 +47530,39 @@
         "containers": {
           "docker": {
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/bismark:3.3.0--f5ac4e7eb5a16146",
-              "build_id": "bd-f5ac4e7eb5a16146_1",
-              "scan_id": "sc-df9c6c18f0a60d02_1"
+              "name": "community.wave.seqera.io/library/bismark:3.4.0--4721154cfbeba5e3",
+              "build_id": "bd-4721154cfbeba5e3_1",
+              "scan_id": "sc-e58d7647fa648f4f_1"
             },
             "linux/arm64": {
-              "name": "community.wave.seqera.io/library/bismark:3.3.0--a344216d17e818ee",
-              "build_id": "bd-a344216d17e818ee_1",
-              "scan_id": "sc-1346c1fb78ca477e_1"
+              "name": "community.wave.seqera.io/library/bismark:3.4.0--56704b289b4ed628",
+              "build_id": "bd-56704b289b4ed628_1",
+              "scan_id": "sc-8fe654a6c7c7e0cc_1"
             }
           },
           "singularity": {
             "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/bismark:3.3.0--f9a59897887bb0cf",
-              "build_id": "bd-f9a59897887bb0cf_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/df/dfd8ffcbdcdd531118e91bbbbb4427a93f4ffb9caf8b7df373621bb7dc1824e3/data"
+              "name": "oras://community.wave.seqera.io/library/bismark:3.4.0--8e6b0778a07044bd",
+              "build_id": "bd-8e6b0778a07044bd_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/240009db98fd86ec6f661a0ea4b1b7628da0c37eb1b5432d75aaab0b56eccc40/data"
             },
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/bismark:3.3.0--bcf731e913779692",
-              "build_id": "bd-bcf731e913779692_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/59/59db1f1331e9bd80560221e6283dea4e9f14de41e2f028c13b71f0b9e42b8afb/data"
+              "name": "oras://community.wave.seqera.io/library/bismark:3.4.0--389ad6389644dbc5",
+              "build_id": "bd-389ad6389644dbc5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/10/106c5858e0e1021f5eb80619e7ec56f02e5fc857d2bdbb00570d30a5add9b5e9/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/bismark/genomepreparation/.conda-lock/linux_amd64-bd-f5ac4e7eb5a16146_1.txt"
+              "lock_file": "modules/nf-core/bismark/genomepreparation/.conda-lock/linux_amd64-bd-4721154cfbeba5e3_1.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/bismark/genomepreparation/.conda-lock/linux_arm64-bd-a344216d17e818ee_1.txt"
+              "lock_file": "modules/nf-core/bismark/genomepreparation/.conda-lock/linux_arm64-bd-56704b289b4ed628_1.txt"
             }
           }
         }
       },
-      "git_sha": "c4ee44040e61703314059bcbe330e7bda2a48365",
+      "git_sha": "46842d1ee933d20b78619d513aef7713ed121d72",
       "pipelines": [
         {
           "name": "methylseq",
@@ -47569,10 +47573,10 @@
     {
       "name": "bismark_methylationextractor",
       "path": "modules/nf-core/bismark/methylationextractor/meta.yml",
-      "tree_sha": "5f34999ad57ba5b5b10bbb4d695e84568e1b0d45",
+      "tree_sha": "f38e1920ac439955f291a955e7cbbdc4bc5730f6",
       "files": [
-        "modules/nf-core/bismark/methylationextractor/.conda-lock/linux_amd64-bd-f5ac4e7eb5a16146_1.txt",
-        "modules/nf-core/bismark/methylationextractor/.conda-lock/linux_arm64-bd-a344216d17e818ee_1.txt",
+        "modules/nf-core/bismark/methylationextractor/.conda-lock/linux_amd64-bd-4721154cfbeba5e3_1.txt",
+        "modules/nf-core/bismark/methylationextractor/.conda-lock/linux_arm64-bd-56704b289b4ed628_1.txt",
         "modules/nf-core/bismark/methylationextractor/environment.yml",
         "modules/nf-core/bismark/methylationextractor/main.nf",
         "modules/nf-core/bismark/methylationextractor/meta.yml",
@@ -47790,39 +47794,39 @@
         "containers": {
           "docker": {
             "linux/arm64": {
-              "name": "community.wave.seqera.io/library/bismark:3.3.0--a344216d17e818ee",
-              "build_id": "bd-a344216d17e818ee_1",
-              "scan_id": "sc-1346c1fb78ca477e_1"
+              "name": "community.wave.seqera.io/library/bismark:3.4.0--56704b289b4ed628",
+              "build_id": "bd-56704b289b4ed628_1",
+              "scan_id": "sc-8fe654a6c7c7e0cc_1"
             },
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/bismark:3.3.0--f5ac4e7eb5a16146",
-              "build_id": "bd-f5ac4e7eb5a16146_1",
-              "scan_id": "sc-df9c6c18f0a60d02_1"
+              "name": "community.wave.seqera.io/library/bismark:3.4.0--4721154cfbeba5e3",
+              "build_id": "bd-4721154cfbeba5e3_1",
+              "scan_id": "sc-e58d7647fa648f4f_1"
             }
           },
           "singularity": {
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/bismark:3.3.0--bcf731e913779692",
-              "build_id": "bd-bcf731e913779692_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/59/59db1f1331e9bd80560221e6283dea4e9f14de41e2f028c13b71f0b9e42b8afb/data"
+              "name": "oras://community.wave.seqera.io/library/bismark:3.4.0--389ad6389644dbc5",
+              "build_id": "bd-389ad6389644dbc5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/10/106c5858e0e1021f5eb80619e7ec56f02e5fc857d2bdbb00570d30a5add9b5e9/data"
             },
             "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/bismark:3.3.0--f9a59897887bb0cf",
-              "build_id": "bd-f9a59897887bb0cf_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/df/dfd8ffcbdcdd531118e91bbbbb4427a93f4ffb9caf8b7df373621bb7dc1824e3/data"
+              "name": "oras://community.wave.seqera.io/library/bismark:3.4.0--8e6b0778a07044bd",
+              "build_id": "bd-8e6b0778a07044bd_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/240009db98fd86ec6f661a0ea4b1b7628da0c37eb1b5432d75aaab0b56eccc40/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/bismark/methylationextractor/.conda-lock/linux_amd64-bd-f5ac4e7eb5a16146_1.txt"
+              "lock_file": "modules/nf-core/bismark/methylationextractor/.conda-lock/linux_amd64-bd-4721154cfbeba5e3_1.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/bismark/methylationextractor/.conda-lock/linux_arm64-bd-a344216d17e818ee_1.txt"
+              "lock_file": "modules/nf-core/bismark/methylationextractor/.conda-lock/linux_arm64-bd-56704b289b4ed628_1.txt"
             }
           }
         }
       },
-      "git_sha": "c4ee44040e61703314059bcbe330e7bda2a48365",
+      "git_sha": "46842d1ee933d20b78619d513aef7713ed121d72",
       "pipelines": [
         {
           "name": "methylseq",
@@ -47833,10 +47837,10 @@
     {
       "name": "bismark_report",
       "path": "modules/nf-core/bismark/report/meta.yml",
-      "tree_sha": "51399e50fe8ce32f519641d4d628a58446ccddff",
+      "tree_sha": "6a00ea8741940e17f39a8060894ec906ae313284",
       "files": [
-        "modules/nf-core/bismark/report/.conda-lock/linux_amd64-bd-f5ac4e7eb5a16146_1.txt",
-        "modules/nf-core/bismark/report/.conda-lock/linux_arm64-bd-a344216d17e818ee_1.txt",
+        "modules/nf-core/bismark/report/.conda-lock/linux_amd64-bd-4721154cfbeba5e3_1.txt",
+        "modules/nf-core/bismark/report/.conda-lock/linux_arm64-bd-56704b289b4ed628_1.txt",
         "modules/nf-core/bismark/report/environment.yml",
         "modules/nf-core/bismark/report/main.nf",
         "modules/nf-core/bismark/report/meta.yml",
@@ -47989,39 +47993,39 @@
         "containers": {
           "docker": {
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/bismark:3.3.0--f5ac4e7eb5a16146",
-              "build_id": "bd-f5ac4e7eb5a16146_1",
-              "scan_id": "sc-df9c6c18f0a60d02_1"
+              "name": "community.wave.seqera.io/library/bismark:3.4.0--4721154cfbeba5e3",
+              "build_id": "bd-4721154cfbeba5e3_1",
+              "scan_id": "sc-e58d7647fa648f4f_1"
             },
             "linux/arm64": {
-              "name": "community.wave.seqera.io/library/bismark:3.3.0--a344216d17e818ee",
-              "build_id": "bd-a344216d17e818ee_1",
-              "scan_id": "sc-1346c1fb78ca477e_1"
+              "name": "community.wave.seqera.io/library/bismark:3.4.0--56704b289b4ed628",
+              "build_id": "bd-56704b289b4ed628_1",
+              "scan_id": "sc-8fe654a6c7c7e0cc_1"
             }
           },
           "singularity": {
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/bismark:3.3.0--bcf731e913779692",
-              "build_id": "bd-bcf731e913779692_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/59/59db1f1331e9bd80560221e6283dea4e9f14de41e2f028c13b71f0b9e42b8afb/data"
+              "name": "oras://community.wave.seqera.io/library/bismark:3.4.0--389ad6389644dbc5",
+              "build_id": "bd-389ad6389644dbc5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/10/106c5858e0e1021f5eb80619e7ec56f02e5fc857d2bdbb00570d30a5add9b5e9/data"
             },
             "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/bismark:3.3.0--f9a59897887bb0cf",
-              "build_id": "bd-f9a59897887bb0cf_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/df/dfd8ffcbdcdd531118e91bbbbb4427a93f4ffb9caf8b7df373621bb7dc1824e3/data"
+              "name": "oras://community.wave.seqera.io/library/bismark:3.4.0--8e6b0778a07044bd",
+              "build_id": "bd-8e6b0778a07044bd_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/240009db98fd86ec6f661a0ea4b1b7628da0c37eb1b5432d75aaab0b56eccc40/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/bismark/report/.conda-lock/linux_amd64-bd-f5ac4e7eb5a16146_1.txt"
+              "lock_file": "modules/nf-core/bismark/report/.conda-lock/linux_amd64-bd-4721154cfbeba5e3_1.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/bismark/report/.conda-lock/linux_arm64-bd-a344216d17e818ee_1.txt"
+              "lock_file": "modules/nf-core/bismark/report/.conda-lock/linux_arm64-bd-56704b289b4ed628_1.txt"
             }
           }
         }
       },
-      "git_sha": "c4ee44040e61703314059bcbe330e7bda2a48365",
+      "git_sha": "46842d1ee933d20b78619d513aef7713ed121d72",
       "pipelines": [
         {
           "name": "methylseq",
@@ -48032,10 +48036,10 @@
     {
       "name": "bismark_summary",
       "path": "modules/nf-core/bismark/summary/meta.yml",
-      "tree_sha": "cbbd3046c0134487f2c4c435a932f3a93840c742",
+      "tree_sha": "c0afa41ea14ec7fd34788ea2cdc029310f64cc85",
       "files": [
-        "modules/nf-core/bismark/summary/.conda-lock/linux_amd64-bd-f5ac4e7eb5a16146_1.txt",
-        "modules/nf-core/bismark/summary/.conda-lock/linux_arm64-bd-a344216d17e818ee_1.txt",
+        "modules/nf-core/bismark/summary/.conda-lock/linux_amd64-bd-4721154cfbeba5e3_1.txt",
+        "modules/nf-core/bismark/summary/.conda-lock/linux_arm64-bd-56704b289b4ed628_1.txt",
         "modules/nf-core/bismark/summary/environment.yml",
         "modules/nf-core/bismark/summary/main.nf",
         "modules/nf-core/bismark/summary/meta.yml",
@@ -48180,39 +48184,39 @@
         "containers": {
           "docker": {
             "linux/arm64": {
-              "name": "community.wave.seqera.io/library/bismark:3.3.0--a344216d17e818ee",
-              "build_id": "bd-a344216d17e818ee_1",
-              "scan_id": "sc-1346c1fb78ca477e_1"
+              "name": "community.wave.seqera.io/library/bismark:3.4.0--56704b289b4ed628",
+              "build_id": "bd-56704b289b4ed628_1",
+              "scan_id": "sc-8fe654a6c7c7e0cc_1"
             },
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/bismark:3.3.0--f5ac4e7eb5a16146",
-              "build_id": "bd-f5ac4e7eb5a16146_1",
-              "scan_id": "sc-df9c6c18f0a60d02_1"
+              "name": "community.wave.seqera.io/library/bismark:3.4.0--4721154cfbeba5e3",
+              "build_id": "bd-4721154cfbeba5e3_1",
+              "scan_id": "sc-e58d7647fa648f4f_1"
             }
           },
           "singularity": {
             "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/bismark:3.3.0--f9a59897887bb0cf",
-              "build_id": "bd-f9a59897887bb0cf_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/df/dfd8ffcbdcdd531118e91bbbbb4427a93f4ffb9caf8b7df373621bb7dc1824e3/data"
+              "name": "oras://community.wave.seqera.io/library/bismark:3.4.0--8e6b0778a07044bd",
+              "build_id": "bd-8e6b0778a07044bd_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/24/240009db98fd86ec6f661a0ea4b1b7628da0c37eb1b5432d75aaab0b56eccc40/data"
             },
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/bismark:3.3.0--bcf731e913779692",
-              "build_id": "bd-bcf731e913779692_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/59/59db1f1331e9bd80560221e6283dea4e9f14de41e2f028c13b71f0b9e42b8afb/data"
+              "name": "oras://community.wave.seqera.io/library/bismark:3.4.0--389ad6389644dbc5",
+              "build_id": "bd-389ad6389644dbc5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/10/106c5858e0e1021f5eb80619e7ec56f02e5fc857d2bdbb00570d30a5add9b5e9/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/bismark/summary/.conda-lock/linux_amd64-bd-f5ac4e7eb5a16146_1.txt"
+              "lock_file": "modules/nf-core/bismark/summary/.conda-lock/linux_amd64-bd-4721154cfbeba5e3_1.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/bismark/summary/.conda-lock/linux_arm64-bd-a344216d17e818ee_1.txt"
+              "lock_file": "modules/nf-core/bismark/summary/.conda-lock/linux_arm64-bd-56704b289b4ed628_1.txt"
             }
           }
         }
       },
-      "git_sha": "c4ee44040e61703314059bcbe330e7bda2a48365",
+      "git_sha": "46842d1ee933d20b78619d513aef7713ed121d72",
       "pipelines": [
         {
           "name": "methylseq",
@@ -105560,6 +105564,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -316038,6 +316050,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -316345,6 +316361,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -480277,7 +480297,7 @@
     {
       "name": "fastq_align_dedup_bismark",
       "path": "subworkflows/nf-core/fastq_align_dedup_bismark/meta.yml",
-      "tree_sha": "42641ac48c820d5cc0b3df54c54b2a0ea798be8b",
+      "tree_sha": "de4fcde5ca1e06ef6080c06271e1e5fc93d38e23",
       "files": [
         "subworkflows/nf-core/fastq_align_dedup_bismark/main.nf",
         "subworkflows/nf-core/fastq_align_dedup_bismark/meta.yml",
@@ -480450,7 +480470,7 @@
           "@sateeshperi"
         ]
       },
-      "git_sha": "c4ee44040e61703314059bcbe330e7bda2a48365",
+      "git_sha": "46842d1ee933d20b78619d513aef7713ed121d72",
       "pipelines": [
         {
           "name": "methylseq",
@@ -490218,6 +490238,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "bbd7054a060ab558521f3c6601df5323c96362fd",
-  "updated_at": "2026-11-22T02:14:36.506Z"
+  "commit_sha": "46842d1ee933d20b78619d513aef7713ed121d72",
+  "updated_at": "2026-11-22T14:14:27.376Z"
 }
