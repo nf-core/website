@@ -26,7 +26,8 @@ The record given as input to the process MUST contain the required fields and MA
 
 The input record definition MUST include the following required fields:
 
-- Any required input values used to control internal module logic, including the `id` field
+- Any required input values used to control internal module logic, including the `id` field.
+  Sample information the process needs, such as `single_end` or `strandedness`, MUST be a top-level field and not read from `meta`.
 - Any required input files of the process
 
 ### Optional fields
@@ -48,12 +49,12 @@ Mark a field as optional by adding `?` after its type, for example `meta: Record
 
 File fields in the input record SHOULD use one of the following types:
 
-| Type         | Description                                       |
-| ------------ | ------------------------------------------------- |
-| `Path`       | A single file                                     |
-| `Set<Path>`  | One or more unique files, where the order doesn't matter |
-| `List<Path>` | One or more files, where the order matters               |
-| `Bag<Path>`  | One or more files, where the order doesn't matter        |
+| Type         | Description                                                   | Convert with  |
+| ------------ | ------------------------------------------------------------- | ------------- |
+| `Path`       | A single file                                                 |               |
+| `Set<Path>`  | Files where the order doesn't matter, without duplicate paths | `.toSet()`    |
+| `List<Path>` | Files where the order matters, duplicate paths allowed        | `.toSorted()` |
+| `Bag<Path>`  | Files where the order doesn't matter, duplicate paths allowed |               |
 
 ## Output record structure
 
@@ -62,24 +63,29 @@ The output record definition MUST contain the following fields:
 - `id`: The input identifier from the input record
 - `meta`: The optional `meta` record from the input record, used to supply sample-level metadata beyond `id`.
   The output record MUST always emit `meta`.
-- All possible file outputs of the process
+- All possible file outputs of the process, declared with `file()` or `files()`.
+  Use `optional: true` for files the process may not produce.
 
 ## Version reporting
 
 All modules MUST report versions in the `topic:` block using a record with three fields: `process`, `tool`, and `version`.
 Send the record to the `versions` topic:
 
-topic:
-record(process: "${task.process}", tool: 'samtools', version: eval('samtools version | sed "1!d;s/.* //"')) >> 'versions'
 ```
 
 ## `ext` directive
 
-Modules MUST specify all `ext` variables as an independent `ext` directive, instead of with `def prefix = ...` or `def args = ...` in the `script:` block.
+Modules MUST specify all `ext` variables as an independent `ext` directive, instead of computing them with `def prefix = ...` or `def args = ...` in the `script:` block.
 Each `ext` variable SHOULD be defined as a closure, so that it evaluates correctly in all cases.
 Use `task.ext.args` and `task.ext.prefix` in the `script:` and `stub:` blocks.
+A module MAY alias them, for example `def args = task.ext.args`.
 
-ext [
+Each `ext` variable resolves in this order:
+
+1. `ext.<var>` set in a configuration file by the pipeline **user**
+2. The matching input record field (`<tool_name>_args`, `output_prefix`) set by the pipeline **developer**
+3. The default in the `ext` directive, for example `id` for `prefix`
+
     prefix: { output_prefix ?: "${id}" },
     args: { <tool_name>_args ?: '' }
 ]
@@ -92,6 +98,7 @@ See [nf-core/modules#8808](https://github.com/nf-core/modules/pull/8808/changes)
 Modules MUST NOT include a `when:` block that reads `task.ext.when`.
 If a module needs conditional execution, the calling workflow decides whether to run the module, either with an `if` statement around the call or with a `filter` on the input channel.
 Pipelines MUST NOT set `process.when` in `modules.config`.
+`process.when` is reserved for pipeline **users**.
 
 ## Arguments and prefixes in `modules.config`
 
@@ -99,6 +106,12 @@ Pipelines MAY move `ext.args` from `modules.config` to the `<tool_name>_args` fi
 Pipeline users can still override the arguments by supplying their own config with `ext.args` set.
 
 Similarly, pipelines MAY move `ext.prefix` from `modules.config` to the `output_prefix` field of the input record.
+
+## Staging
+
+Inputs that need staging, for example under a fixed file name, MUST be staged in the `stage:` block.
+Scripts that ship with a module SHOULD be staged from the module directory in the `stage:` block and run as command-line scripts, instead of using `template` or the pipeline `bin/` directory.
+See [Module with a staged script](#module-with-a-staged-script).
 
 ## Examples
 
