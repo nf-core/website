@@ -52062,7 +52062,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -68034,7 +68034,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -68661,7 +68661,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -106567,6 +106567,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -111249,7 +111257,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -143984,7 +143992,7 @@
         },
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "genomeqc",
@@ -144204,7 +144212,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -150816,7 +150824,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -221436,7 +221444,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -224285,7 +224293,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -224470,7 +224478,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -225684,7 +225692,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -225955,7 +225963,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -226977,7 +226985,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -239568,7 +239576,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -249261,7 +249269,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -269947,7 +269955,7 @@
         },
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "crisprseq",
@@ -313515,7 +313523,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "magmap",
@@ -316026,6 +316034,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -316333,6 +316345,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -408345,7 +408361,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "magmap",
@@ -408660,7 +408676,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "magmap",
@@ -424407,6 +424423,434 @@
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
     },
     {
+      "name": "svdss_search",
+      "path": "modules/nf-core/svdss/search/meta.yml",
+      "tree_sha": "253040b47a4b124eefdb46d9f13b20dfde4c7ce0",
+      "files": [
+        "modules/nf-core/svdss/search/.conda-lock/linux_amd64-bd-5e16609dd2159d4e_1.txt",
+        "modules/nf-core/svdss/search/environment.yml",
+        "modules/nf-core/svdss/search/main.nf",
+        "modules/nf-core/svdss/search/meta.yml",
+        "modules/nf-core/svdss/search/tests/main.nf.test",
+        "modules/nf-core/svdss/search/tests/main.nf.test.snap",
+        "modules/nf-core/svdss/search/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "svdss_search",
+        "description": "Extract sample-specific strings (SFS) from reads with SVDSS by searching them against an FM-index of the reference genome",
+        "keywords": [
+          "structural variants",
+          "sv calling",
+          "sample-specific strings",
+          "long reads",
+          "fm-index"
+        ],
+        "tools": [
+          {
+            "svdss": {
+              "description": "Structural Variant Discovery from Sample-specific Strings.",
+              "homepage": "https://github.com/Parsoa/SVDSS",
+              "documentation": "https://github.com/Parsoa/SVDSS/blob/v2.1.1/README.md",
+              "tool_dev_url": "https://github.com/Parsoa/SVDSS",
+              "doi": "10.1038/s41592-022-01674-1",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:svdss"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Reads in BAM format, ideally smoothed with SVDSS smooth, or in FASTQ format (plain or gzip-compressed).\nFiles ending in `.bam` are passed with `--bam`, all others with `--fastx`.\n",
+                "pattern": "*.{bam,fastq,fq,fastq.gz,fq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'genome' ]`\n"
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "FM-index of the reference genome produced by SVDSS index",
+                "pattern": "*.{fmd,fmr}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "sfs": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.sfs.txt": {
+                  "type": "file",
+                  "description": "Tab-separated list of sample-specific strings found in each read",
+                  "pattern": "*.sfs.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_svdss": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "svdss": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SVDSS --version 2>&1 | sed 's/SVDSS, v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "svdss": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SVDSS --version 2>&1 | sed 's/SVDSS, v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@krannich479"
+        ],
+        "maintainers": [
+          "@krannich479"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/svdss:2.1.1--5e16609dd2159d4e",
+              "build_id": "bd-5e16609dd2159d4e_1",
+              "scan_id": "sc-51794ca4e3402b13_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/svdss:2.1.1--863856ae1b522117",
+              "build_id": "bd-863856ae1b522117_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/83/8357bb6a78ac936810ecc7528fa4b53a8deea7e7d8abb31afb8ed7e14a05fdc3/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/svdss/search/.conda-lock/linux_amd64-bd-5e16609dd2159d4e_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "bbd7054a060ab558521f3c6601df5323c96362fd"
+    },
+    {
+      "name": "svdss_smooth",
+      "path": "modules/nf-core/svdss/smooth/meta.yml",
+      "tree_sha": "ea9039e03dbd5fcc21299dabb5629579cce78a8d",
+      "files": [
+        "modules/nf-core/svdss/smooth/.conda-lock/linux_amd64-bd-a3b4ff04ffb34c8c_1.txt",
+        "modules/nf-core/svdss/smooth/environment.yml",
+        "modules/nf-core/svdss/smooth/main.nf",
+        "modules/nf-core/svdss/smooth/meta.yml",
+        "modules/nf-core/svdss/smooth/tests/main.nf.test",
+        "modules/nf-core/svdss/smooth/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "svdss_smooth",
+        "description": "Smooth aligned reads with SVDSS by removing SNPs, small indels and sequencing errors, producing a sorted and indexed BAM for SFS extraction with SVDSS search",
+        "keywords": [
+          "structural variants",
+          "sv calling",
+          "smoothing",
+          "long reads",
+          "bam"
+        ],
+        "tools": [
+          {
+            "svdss": {
+              "description": "Structural Variant Discovery from Sample-specific Strings.",
+              "homepage": "https://github.com/Parsoa/SVDSS",
+              "documentation": "https://github.com/Parsoa/SVDSS/blob/v2.1.1/README.md",
+              "tool_dev_url": "https://github.com/Parsoa/SVDSS",
+              "doi": "10.1038/s41592-022-01674-1",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:svdss"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Coordinate-sorted BAM file of reads aligned to the reference",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "Index of the input BAM file",
+                "pattern": "*.bai",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'genome' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome the reads were aligned to, plain or gzip-compressed",
+                "pattern": "*.{fasta,fa,fna}{,.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.bam": {
+                  "type": "file",
+                  "description": "Smoothed BAM file, sorted in the same order as the input",
+                  "pattern": "*.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "bai": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.bam.bai": {
+                  "type": "file",
+                  "description": "Index of the smoothed BAM file",
+                  "pattern": "*.bam.bai",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_svdss": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "svdss": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SVDSS --version 2>&1 | sed 's/SVDSS, v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "svdss": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SVDSS --version 2>&1 | sed 's/SVDSS, v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@krannich479"
+        ],
+        "maintainers": [
+          "@krannich479"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/samtools_svdss:a3b4ff04ffb34c8c",
+              "build_id": "bd-a3b4ff04ffb34c8c_1",
+              "scan_id": "sc-dc59d908ec2d1263_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/samtools_svdss:4a9e31ca1b7fa68f",
+              "build_id": "bd-4a9e31ca1b7fa68f_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/da/daa86b771119a67c6dfc0892e58015effe34df2c82754aad558d53253b074600/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/svdss/smooth/.conda-lock/linux_amd64-bd-a3b4ff04ffb34c8c_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "d081fd9d153194aa7b08122910fcf1ba9f93fcb2"
+    },
+    {
       "name": "svim_alignment",
       "path": "modules/nf-core/svim/alignment/meta.yml",
       "tree_sha": "d8693feb9c86b254b2efd31c0c16b4575f024945",
@@ -426707,7 +427151,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -448291,7 +448735,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "drugresponseeval",
@@ -477712,7 +478156,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -486654,7 +487098,7 @@
         },
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "crisprseq",
@@ -487166,7 +487610,7 @@
         },
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "crisprseq",
@@ -487726,7 +488170,7 @@
         },
         {
           "name": "createtaxdb",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "crisprseq",
@@ -489774,6 +490218,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "cdabfa1f9011e21b79012fd83568c223ef65987b",
-  "updated_at": "2026-11-21T14:15:20.738Z"
+  "commit_sha": "bbd7054a060ab558521f3c6601df5323c96362fd",
+  "updated_at": "2026-11-22T02:14:36.506Z"
 }

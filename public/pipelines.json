@@ -7989,9 +7989,9 @@
             "url": "https://api.github.com/repos/nf-core/createtaxdb",
             "created_at": "2023-10-24T08:41:35Z",
             "updated_at": "2026-10-08T08:14:02Z",
-            "pushed_at": "2026-11-15T15:19:03Z",
+            "pushed_at": "2026-11-21T18:09:25Z",
             "homepage": "https://nf-co.re/createtaxdb",
-            "size": 8744,
+            "size": 8763,
             "stargazers_count": 22,
             "watchers_count": 22,
             "language": "Nextflow",
@@ -8098,7 +8098,7 @@
             "contributors": [
                 {
                     "name": "jfy133",
-                    "count": 613,
+                    "count": 662,
                     "avatar_url": "https://avatars.githubusercontent.com/u/17950287?v=4"
                 },
                 {
@@ -8118,8 +8118,13 @@
                 },
                 {
                     "name": "mashehu",
-                    "count": 6,
+                    "count": 7,
                     "avatar_url": "https://avatars.githubusercontent.com/u/6169021?v=4"
+                },
+                {
+                    "name": "sofstam",
+                    "count": 4,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/91951607?v=4"
                 },
                 {
                     "name": "haris18s",
@@ -8152,24 +8157,30 @@
                     "avatar_url": "https://avatars.githubusercontent.com/u/1019628?v=4"
                 },
                 {
+                    "name": "ewels",
+                    "count": 1,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/465550?v=4"
+                },
+                {
                     "name": "ningyuxin1999",
                     "count": 1,
                     "avatar_url": "https://avatars.githubusercontent.com/u/92061677?v=4"
                 }
             ],
-            "released_after_tools": false,
-            "head_sha": "c643a001a1d12d2c4961ca54bfd7d077d1691963",
-            "last_release_is_head": false,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/createtaxdb/compare/c643a001a1d12d2c4961ca54bfd7d077d1691963...b01a0f8ed96a5990d15470828dfa92a22cf08bba",
+            "released_after_tools": true,
+            "head_sha": "56b10043884bf1e5a823771df164d8fbf26c0ff0",
+            "last_release_is_head": true,
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/createtaxdb/compare/56b10043884bf1e5a823771df164d8fbf26c0ff0...56b10043884bf1e5a823771df164d8fbf26c0ff0",
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
             "main_nextflow_config_plugins": [
-                "nf-schema@2.7.2"
+                "nf-schema@2.7.3"
             ],
             "main_nextflow_config_manifest": {
-                "defaultBranch": "main"
+                "defaultBranch": "main",
+                "diagram": "assets/createtaxdb-metromap-diagram-light.png"
             },
             "main_uses_params_block": false,
             "main_has_pr_comment_workflow": true,
@@ -8183,6 +8194,55 @@
             "dev_uses_params_block": false,
             "dev_has_pr_comment_workflow": true,
             "releases": [
+                {
+                    "tag_name": "3.2.0",
+                    "published_at": "2026-11-21T18:01:10Z",
+                    "tag_sha": "56b10043884bf1e5a823771df164d8fbf26c0ff0",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md",
+                        "docs/usage/faq.md",
+                        "docs/usage/tutorials.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "bracken_build",
+                            "centrifuge_build",
+                            "centrifuger_build",
+                            "diamond_makedb",
+                            "find_concatenate",
+                            "find_unpigz",
+                            "ganon_buildcustom",
+                            "kaiju_mkfmi",
+                            "kmcp_compute",
+                            "kmcp_index",
+                            "kraken2_add",
+                            "kraken2_build",
+                            "krakenuniq_build",
+                            "malt_build",
+                            "metacache_build",
+                            "multiqc",
+                            "pigz_compress",
+                            "sourmash_index",
+                            "sourmash_sketch",
+                            "sylph_sketchgenomes",
+                            "unzip"
+                        ],
+                        "subworkflows": [
+                            "fasta_build_add_kraken2_bracken",
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfschema_plugin"
+                        ]
+                    },
+                    "nextflow_version": "!>=26.04.6",
+                    "nf_core_version": "4.2.2",
+                    "plugins": [
+                        "nf-schema@2.7.3"
+                    ],
+                    "co2footprint_files": null
+                },
                 {
                     "tag_name": "3.1.0",
                     "published_at": "2026-07-03T08:28:15Z",
@@ -8419,8 +8479,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2026-11-15T15:19:01Z",
-                    "tag_sha": "c3c7b19b365867513cc47c07c9362682e98c561e",
+                    "published_at": "2026-11-21T18:02:10Z",
+                    "tag_sha": "e85b491ef7c035e07fccb7a619df11f74310c271",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -8462,7 +8522,7 @@
                     "nextflow_version": "!>=26.04.6",
                     "nf_core_version": "4.2.2",
                     "plugins": [
-                        "nf-schema@2.7.2"
+                        "nf-schema@2.7.3"
                     ],
                     "co2footprint_files": null
                 }
@@ -11007,7 +11067,7 @@
             "forks_count": 5,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 18,
+            "open_issues_count": 26,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -11021,7 +11081,7 @@
             ],
             "visibility": "public",
             "forks": 5,
-            "open_issues": 18,
+            "open_issues": 26,
             "watchers": 5,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -32232,9 +32292,9 @@
             "url": "https://api.github.com/repos/nf-core/methylseq",
             "created_at": "2018-03-12T15:46:42Z",
             "updated_at": "2026-10-22T11:02:40Z",
-            "pushed_at": "2026-11-21T13:54:43Z",
+            "pushed_at": "2026-11-21T23:10:48Z",
             "homepage": "https://nf-co.re/methylseq",
-            "size": 28429,
+            "size": 28484,
             "stargazers_count": 201,
             "watchers_count": 201,
             "language": "Nextflow",
@@ -32247,7 +32307,7 @@
             "forks_count": 185,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 37,
+            "open_issues_count": 33,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -32267,7 +32327,7 @@
             ],
             "visibility": "public",
             "forks": 185,
-            "open_issues": 37,
+            "open_issues": 33,
             "watchers": 201,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -32334,7 +32394,7 @@
             "dev_branch_protection_enforce_admins": false,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 11,
+            "open_pr_count": 7,
             "repository_url": "https://github.com/nf-core/methylseq",
             "contributors": [
                 {
@@ -33255,8 +33315,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2026-11-21T13:46:11Z",
-                    "tag_sha": "68a61cc6c46c82c9fabd417b51cb94d296b54b1f",
+                    "published_at": "2026-11-21T23:10:47Z",
+                    "tag_sha": "3da58f4de6c336eb5fd09a5f88dd68d72106ef0c",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -33266,7 +33326,6 @@
                     "components": {
                         "modules": [
                             "bcftools_stats",
-                            "bedtools_intersect",
                             "bismark_align",
                             "bismark_coverage2cytosine",
                             "bismark_deduplicate",
@@ -35284,8 +35343,14 @@
             },
             "master_uses_params_block": false,
             "master_has_pr_comment_workflow": true,
-            "dev_nextflow_config_plugins": [],
-            "dev_nextflow_config_manifest": {},
+            "dev_nextflow_config_plugins": [
+                "nf-schema@2.5.1",
+                "nf-co2footprint@1.0.0",
+                "nf-prov@1.2.2"
+            ],
+            "dev_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
             "dev_uses_params_block": false,
             "dev_has_pr_comment_workflow": false,
             "releases": [
@@ -35544,12 +35609,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/nanoseq",
             "created_at": "2019-09-09T11:23:29Z",
-            "updated_at": "2026-10-17T15:45:02Z",
+            "updated_at": "2026-11-21T20:15:05Z",
             "pushed_at": "2026-11-11T13:42:16Z",
             "homepage": "https://nf-co.re/nanoseq",
             "size": 8778,
-            "stargazers_count": 232,
-            "watchers_count": 232,
+            "stargazers_count": 231,
+            "watchers_count": 231,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -35575,7 +35640,7 @@
             "visibility": "public",
             "forks": 109,
             "open_issues": 70,
-            "watchers": 232,
+            "watchers": 231,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -38251,7 +38316,7 @@
             "forks_count": 13,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 11,
+            "open_issues_count": 12,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -38267,7 +38332,7 @@
             ],
             "visibility": "public",
             "forks": 13,
-            "open_issues": 11,
+            "open_issues": 12,
             "watchers": 16,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -38340,7 +38405,7 @@
             "dev_uses_ruleset": true,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 3,
+            "open_pr_count": 4,
             "repository_url": "https://github.com/nf-core/pacvar",
             "contributors": [
                 {
@@ -38791,8 +38856,13 @@
             },
             "master_uses_params_block": false,
             "master_has_pr_comment_workflow": true,
-            "dev_nextflow_config_plugins": [],
-            "dev_nextflow_config_manifest": {},
+            "dev_nextflow_config_plugins": [
+                "nf-schema@2.7.3"
+            ],
+            "dev_nextflow_config_manifest": {
+                "defaultBranch": "master",
+                "diagram": "docs/images/pairgenomealign-tubemap.png"
+            },
             "dev_uses_params_block": false,
             "dev_has_pr_comment_workflow": true,
             "releases": [
