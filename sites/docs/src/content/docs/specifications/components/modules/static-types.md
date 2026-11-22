@@ -71,6 +71,9 @@ The output record definition MUST contain the following fields:
 All modules MUST report versions in the `topic:` block using a record with three fields: `process`, `tool`, and `version`.
 Send the record to the `versions` topic:
 
+```groovy
+topic:
+record(process: "${task.process}", tool: 'samtools', version: eval('samtools version | sed "1!d;s/.* //"')) >> 'versions'
 ```
 
 ## `ext` directive
@@ -86,6 +89,8 @@ Each `ext` variable resolves in this order:
 2. The matching input record field (`<tool_name>_args`, `output_prefix`) set by the pipeline **developer**
 3. The default in the `ext` directive, for example `id` for `prefix`
 
+```groovy
+ext [
     prefix: { output_prefix ?: "${id}" },
     args: { <tool_name>_args ?: '' }
 ]
