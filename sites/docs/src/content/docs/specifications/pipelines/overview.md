@@ -57,3 +57,4 @@ The following specifications define best practices that all nf-core pipelines SH
 - **[Publication credit](recommendations/publication_credit):** Pipeline publications SHOULD acknowledge the nf-core community and cite the nf-core framework paper.
 - **[Build with the community](recommendations/build_with_community):** Pipeline development SHOULD occur collaboratively with the community from the beginning rather than proposing complete pipelines.
 - **[Custom Docker images](recommendations/custom_containers):** Custom containers not available through BioContainers SHOULD be mirrored on quay.io for long-term reproducibility.
+- **[Avoid duplicating industry-standard workflows](recommendations/industry_standards):** Pipelines SHOULD NOT reproduce established industry-standard workflows, such as vendor-maintained workflows, and SHOULD accept their outputs as input.
