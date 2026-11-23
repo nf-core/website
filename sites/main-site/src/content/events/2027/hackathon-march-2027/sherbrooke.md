@@ -1,4 +1,3 @@
-
 ---
 title: "Hackathon - March 2027 (Université de Sherbrooke)"
 subtitle: "Local hub of the nf-core hackathon in Sherbrooke, Quebec, Canada"
@@ -9,20 +8,22 @@ startTime: "09:00-04:00"
 endDate: "2027-03-17"
 endTime: "17:00-04:00"
 locations:
-    - name: Université de Sherbrooke
-      address: |
-          Campus Principal, 2500 Boulevard de l'Université, Sherbrooke, QC J1K 2R1, Canada
-      links:
-          - https://www.usherbrooke.ca/
-          - https://scil.usherbrooke.ca/
-      geoCoordinates: [45.379917, -71.925806]
-      country: Canada
-      city: Sherbrooke
+  - name: Université de Sherbrooke
+    address: |
+      Campus Principal, 2500 Boulevard de l'Université, Sherbrooke, QC J1K 2R1, Canada
+    links:
+      - https://www.usherbrooke.ca/
+      - https://scil.usherbrooke.ca/
+    geoCoordinates: [45.379917, -71.925806]
+    country: Canada
+    city: Sherbrooke
 layout: "@layouts/events/HackathonMarch2027.astro"
 ---
+
 Joint effort from students of the Biology department and the SCIL. Attendees from outside the Université de Sherbrooke are welcome. Please contact the organizers for more information.
 
 Organizers:
+
 - Simon Jeanneau (https://nfcore.slack.com/team/U0B46F0CQ74)
 - Arnaud Boré (https://nfcore.slack.com/team/U0749LM7406)
 - [SCIL](https://scil.usherbrooke.ca/)-[Université de Sherbrooke](https://usherbrooke.ca/)
