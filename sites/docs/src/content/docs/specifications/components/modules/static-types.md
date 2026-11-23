@@ -107,10 +107,10 @@ Pipelines MUST NOT set `process.when` in `modules.config`.
 
 ## Arguments and prefixes in `modules.config`
 
-Pipelines MAY move `ext.args` from `modules.config` to the `<tool_name>_args` field of the input record.
+Pipelines SHOULD move `ext.args` from `modules.config` to the `<tool_name>_args` field of the input record.
 Pipeline users can still override the arguments by supplying their own config with `ext.args` set.
 
-Similarly, pipelines MAY move `ext.prefix` from `modules.config` to the `output_prefix` field of the input record.
+Similarly, pipelines SHOULD move `ext.prefix` from `modules.config` to the `output_prefix` field of the input record.
 
 ## Staging
 

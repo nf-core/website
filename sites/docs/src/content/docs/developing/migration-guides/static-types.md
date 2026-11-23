@@ -17,7 +17,7 @@ You will need the following to get started:
 
 - Nextflow 26.10.0 or later
 - A clone of the `nf-core/modules` repository
-- nf-core tools
+- nf-core tools 5.0.0 or later
 - nf-test
 
 :::
@@ -58,8 +58,8 @@ To migrate the module `main.nf` file:
 1. Remove the `def args` and `def prefix` lines from the `script:` and `stub:` blocks.
    Use `${task.ext.args}` and `${task.ext.prefix}` instead.
    In case `prefix` and `args` are often used, it is still allowed to define them like this to reduce reduncancy:
-     - `def prefix = task.ext.prefix`
-     - `def args = task.ext.args`
+   - `def prefix = task.ext.prefix`
+   - `def args = task.ext.args`
 
 1. Remove the `when:` block:
 
@@ -89,7 +89,7 @@ To migrate the module `main.nf` file:
    ```
 
    Replace `<tool>` with the tool name and `<version-command>` with the command that prints its version.
-   If the module writes a `versions.yml` file, remove the `versions.yml` HEREDOC from the `script:` and `stub:` blocks. This is mainly the case for modules that use script templates. Since templates are no longer best-practice (see the next chapter for a more in-depth explanation on this), emit the package versions directly using the `eval` function. 
+   If the module writes a `versions.yml` file, remove the `versions.yml` HEREDOC from the `script:` and `stub:` blocks. This is mainly the case for modules that use script templates. Since templates are no longer best-practice (see the next chapter for a more in-depth explanation on this), emit the package versions directly using the `eval` function.
 
 ## Replace a template with a staged script
 
@@ -174,12 +174,10 @@ To update the tests:
 
 To finish the migration:
 
-1. Update the module `meta.yml` file to match the new input and output records.
-
-1. Lint the module:
+1. Lint the module and update the module `meta.yml` file to match the new input and output records:
 
    ```bash
-   nf-core modules lint <module-name>
+   nf-core modules lint <module-name> --fix
    ```
 
 1. Update the subworkflows and pipelines that call the module, and update their snapshots.
