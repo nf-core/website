@@ -63271,6 +63271,1036 @@
       ]
     },
     {
+      "name": "ccnv_extract",
+      "path": "modules/nf-core/ccnv/extract/meta.yml",
+      "tree_sha": "053dd2665b8ed7101c0aadd465d15ea3cc2cad2c",
+      "files": [
+        "modules/nf-core/ccnv/extract/.conda-lock/linux_amd64-bd-726d8b142feb0e3d_3.txt",
+        "modules/nf-core/ccnv/extract/.conda-lock/linux_arm64-bd-77964c5a593670f7_3.txt",
+        "modules/nf-core/ccnv/extract/environment.yml",
+        "modules/nf-core/ccnv/extract/main.nf",
+        "modules/nf-core/ccnv/extract/meta.yml",
+        "modules/nf-core/ccnv/extract/tests/main.nf.test",
+        "modules/nf-core/ccnv/extract/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "ccnv_extract",
+        "description": "Extract read count and fragment length information from BAM/CRAM files using CCNV",
+        "keywords": [
+          "ccnv",
+          "cnv",
+          "nips",
+          "fragmentomics",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "ccnv": {
+              "description": "CCNV is a tool to extract copy number variation information from sequencing data.",
+              "homepage": "https://matthdsm.github.io/ccnv/",
+              "documentation": "https://matthdsm.github.io/ccnv/",
+              "tool_dev_url": "https://github.com/matthdsm/ccnv",
+              "doi": "",
+              "licence": [
+                "AGPL-3.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Sorted BAM/CRAM file",
+                "pattern": "*.{bam,cram}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2573"
+                  }
+                ]
+              }
+            },
+            {
+              "reads_index": {
+                "type": "file",
+                "description": "Index file for the reads (BAM/CRAM)",
+                "pattern": "*.{bai,crai,csi}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'reference1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome FASTA file",
+                "pattern": "*.{fasta,fa,fna}",
+                "ontologies": []
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "FASTA index file",
+                "pattern": "*.{fasta,fa,fna}.fai",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "ccnv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.ccnv": {
+                  "type": "file",
+                  "description": "CCNV output file",
+                  "pattern": "*.ccnv",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_ccnv": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ccnv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ccnv --version 2>&1 | sed 's/ccnv //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ccnv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ccnv --version 2>&1 | sed 's/ccnv //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@matthdsm"
+        ],
+        "maintainers": [
+          "@matthdsm"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/ccnv:1.1.0--726d8b142feb0e3d",
+              "build_id": "bd-726d8b142feb0e3d_3",
+              "scan_id": "sc-5b44d2694676a524_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/ccnv:1.1.0--77964c5a593670f7",
+              "build_id": "bd-77964c5a593670f7_3",
+              "scan_id": "sc-ba09599fda53a5fc_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/ccnv:1.1.0--597daee53c645636",
+              "build_id": "bd-597daee53c645636_3",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/cd/cd552e195217d37801cf86348dbe875fa66ae2014147e481fd6be6e80dbbcd90/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/ccnv:1.1.0--6adee92177cfea32",
+              "build_id": "bd-6adee92177cfea32_3",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/88/88cbdaefd17962221372b111e46cf2bdc6e0a82e969adc5090dc4f9ac3758ba5/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/ccnv/extract/.conda-lock/linux_amd64-bd-726d8b142feb0e3d_3.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/ccnv/extract/.conda-lock/linux_arm64-bd-77964c5a593670f7_3.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "ce57c50ef2005759430a980e3e533a49f0df827a"
+    },
+    {
+      "name": "ccnv_predict",
+      "path": "modules/nf-core/ccnv/predict/meta.yml",
+      "tree_sha": "8eb39b10ef5950752de02bfaa8389cb6fbab3217",
+      "files": [
+        "modules/nf-core/ccnv/predict/.conda-lock/linux_amd64-bd-726d8b142feb0e3d_3.txt",
+        "modules/nf-core/ccnv/predict/.conda-lock/linux_arm64-bd-77964c5a593670f7_3.txt",
+        "modules/nf-core/ccnv/predict/environment.yml",
+        "modules/nf-core/ccnv/predict/main.nf",
+        "modules/nf-core/ccnv/predict/meta.yml",
+        "modules/nf-core/ccnv/predict/tests/main.nf.test",
+        "modules/nf-core/ccnv/predict/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "ccnv_predict",
+        "description": "Predict CNV information from BAM/CRAM/SAM files using CCNV",
+        "keywords": [
+          "ccnv",
+          "cnv",
+          "nips",
+          "fragmentomics",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "ccnv": {
+              "description": "CCNV is a tool to extract copy number variation information from sequencing data.",
+              "homepage": "https://matthdsm.github.io/ccnv/",
+              "documentation": "https://matthdsm.github.io/ccnv/",
+              "tool_dev_url": "https://github.com/matthdsm/ccnv",
+              "doi": "",
+              "licence": [
+                "AGPL-3.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Sorted BAM/CRAM file",
+                "pattern": "*.{bam,cram}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2573"
+                  }
+                ]
+              }
+            },
+            {
+              "reads_index": {
+                "type": "file",
+                "description": "Index file for the reads (BAM/CRAM)",
+                "pattern": "*.{bai,crai,csi}",
+                "ontologies": []
+              }
+            },
+            {
+              "ccnv": {
+                "type": "file",
+                "description": "CCNV pre-converted bam/cram file",
+                "pattern": "*.ccnv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2333"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'reference1' ]`\n"
+              }
+            },
+            {
+              "ccnv_reference": {
+                "type": "file",
+                "description": "CCNV reference file",
+                "pattern": "*.ccnv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2333"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'reference1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome FASTA file",
+                "pattern": "*.{fasta,fa,fna}",
+                "ontologies": []
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "FASTA index file",
+                "pattern": "*.{fasta,fa,fna}.fai",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'reference1' ]`\n"
+              }
+            },
+            {
+              "mappability": {
+                "type": "file",
+                "description": "Mappability BigWig track",
+                "pattern": "*.bw",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3006"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta5": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'reference1' ]`\n"
+              }
+            },
+            {
+              "gc_content": {
+                "type": "file",
+                "description": "GC content track",
+                "pattern": "*.{bed,bed.gz,fasta,fa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "gc_content_index": {
+                "type": "file",
+                "description": "Index file for the GC content track",
+                "pattern": "*.{tbi,csi,fai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3616"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "qc_json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_qc.json": {
+                  "type": "file",
+                  "description": "QC JSON file",
+                  "pattern": "*_qc.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "plot_html": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_plot.html": {
+                  "type": "file",
+                  "description": "Plot HTML file",
+                  "pattern": "*_plot.html",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "bins_bed": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_bins.bed.gz": {
+                  "type": "file",
+                  "description": "Bins BED file",
+                  "pattern": "*_bins.bed.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              },
+              {
+                "*_bins.bed.gz.{tbi,csi}": {
+                  "type": "file",
+                  "description": "Bins BED index file",
+                  "pattern": "*_bins.bed.gz.{tbi,csi}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3616"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "segments_bed": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_segments.bed.gz": {
+                  "type": "file",
+                  "description": "Segments BED file",
+                  "pattern": "*_segments.bed.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              },
+              {
+                "*_segments.bed.gz.{tbi,csi}": {
+                  "type": "file",
+                  "description": "Segments BED index file",
+                  "pattern": "*_segments.bed.gz.{tbi,csi}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3616"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "calls_bed": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_calls.bed.gz": {
+                  "type": "file",
+                  "description": "Calls BED file",
+                  "pattern": "*_calls.bed.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              },
+              {
+                "*_calls.bed.gz.{tbi,csi}": {
+                  "type": "file",
+                  "description": "Calls BED index file",
+                  "pattern": "*_calls.bed.gz.{tbi,csi}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3616"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "bins_vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_bins.vcf.gz": {
+                  "type": "file",
+                  "description": "Bins VCF file",
+                  "pattern": "*_bins.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              },
+              {
+                "*_bins.vcf.gz.{tbi,csi}": {
+                  "type": "file",
+                  "description": "Bins VCF index file",
+                  "pattern": "*_bins.vcf.gz.{tbi,csi}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3616"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "segments_vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_segments.vcf.gz": {
+                  "type": "file",
+                  "description": "Segments VCF file",
+                  "pattern": "*_segments.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              },
+              {
+                "*_segments.vcf.gz.{tbi,csi}": {
+                  "type": "file",
+                  "description": "Segments VCF index file",
+                  "pattern": "*_segments.vcf.gz.{tbi,csi}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3616"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "calls_vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_calls.vcf.gz": {
+                  "type": "file",
+                  "description": "Calls VCF file",
+                  "pattern": "*_calls.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              },
+              {
+                "*_calls.vcf.gz.{tbi,csi}": {
+                  "type": "file",
+                  "description": "Calls VCF index file",
+                  "pattern": "*_calls.vcf.gz.{tbi,csi}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3616"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_ccnv": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ccnv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ccnv --version 2>&1 | sed 's/ccnv //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ccnv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ccnv --version 2>&1 | sed 's/ccnv //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@matthdsm"
+        ],
+        "maintainers": [
+          "@matthdsm"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/ccnv:1.1.0--726d8b142feb0e3d",
+              "build_id": "bd-726d8b142feb0e3d_3",
+              "scan_id": "sc-5b44d2694676a524_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/ccnv:1.1.0--77964c5a593670f7",
+              "build_id": "bd-77964c5a593670f7_3",
+              "scan_id": "sc-ba09599fda53a5fc_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/ccnv:1.1.0--6adee92177cfea32",
+              "build_id": "bd-6adee92177cfea32_3",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/88/88cbdaefd17962221372b111e46cf2bdc6e0a82e969adc5090dc4f9ac3758ba5/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/ccnv:1.1.0--597daee53c645636",
+              "build_id": "bd-597daee53c645636_3",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/cd/cd552e195217d37801cf86348dbe875fa66ae2014147e481fd6be6e80dbbcd90/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/ccnv/predict/.conda-lock/linux_amd64-bd-726d8b142feb0e3d_3.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/ccnv/predict/.conda-lock/linux_arm64-bd-77964c5a593670f7_3.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "ce57c50ef2005759430a980e3e533a49f0df827a"
+    },
+    {
+      "name": "ccnv_reference",
+      "path": "modules/nf-core/ccnv/reference/meta.yml",
+      "tree_sha": "cde1eec27d79e3a652315b3c5a58464be3af87f5",
+      "files": [
+        "modules/nf-core/ccnv/reference/.conda-lock/linux_amd64-bd-726d8b142feb0e3d_3.txt",
+        "modules/nf-core/ccnv/reference/.conda-lock/linux_arm64-bd-77964c5a593670f7_3.txt",
+        "modules/nf-core/ccnv/reference/environment.yml",
+        "modules/nf-core/ccnv/reference/main.nf",
+        "modules/nf-core/ccnv/reference/meta.yml",
+        "modules/nf-core/ccnv/reference/tests/main.nf.test",
+        "modules/nf-core/ccnv/reference/tests/main.nf.test.snap"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "ccnv_reference",
+        "description": "Generate reference information for CNV analysis using CCNV",
+        "keywords": [
+          "ccnv",
+          "cnv",
+          "nips",
+          "fragmentomics",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "ccnv": {
+              "description": "CCNV is a tool to extract copy number variation information from sequencing data.",
+              "homepage": "https://matthdsm.github.io/ccnv/",
+              "documentation": "https://matthdsm.github.io/ccnv/",
+              "tool_dev_url": "https://github.com/matthdsm/ccnv",
+              "doi": "",
+              "licence": [
+                "AGPL-3.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "cohort_yaml": {
+                "type": "file",
+                "description": "Cohort YAML file",
+                "pattern": "*.yaml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            },
+            {
+              "cohort_ccnv": {
+                "type": "file",
+                "description": "ccnv files in cohort yaml",
+                "pattern": "*.ccnv",
+                "ontologies": []
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome FASTA file for flat references. Superceded by cohort_ccnv if provided",
+                "pattern": "*.{fasta,fa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "FASTA index file",
+                "pattern": "*.{fasta,fa,fna}.fai",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing additional metadata for the reference files\ne.g. `[ id:'reference1' ]`\n"
+              }
+            },
+            {
+              "mappability": {
+                "type": "file",
+                "description": "Mappability BigWig track",
+                "pattern": "*.bw",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3006"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'reference1' ]`\n"
+              }
+            },
+            {
+              "gc_content": {
+                "type": "file",
+                "description": "GC content track",
+                "pattern": "*.{bed,bed.gz,fasta,fa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "gc_content_index": {
+                "type": "file",
+                "description": "GC content index file",
+                "pattern": "*.{tbi,csi,fai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "ccnv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing reference information\ne.g. `[ id:'reference1' ]`\n"
+                }
+              },
+              {
+                "*.ccnv": {
+                  "type": "file",
+                  "description": "ccnv reference file",
+                  "pattern": "*.ccnv",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "qc_json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing reference information\ne.g. `[ id:'reference1' ]`\n"
+                }
+              },
+              {
+                "*_qc.json": {
+                  "type": "file",
+                  "description": "QC JSON file",
+                  "pattern": "*_qc.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_ccnv": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ccnv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ccnv --version 2>&1 | sed 's/ccnv //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ccnv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ccnv --version 2>&1 | sed 's/ccnv //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@matthdsm"
+        ],
+        "maintainers": [
+          "@matthdsm"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/ccnv:1.1.0--726d8b142feb0e3d",
+              "build_id": "bd-726d8b142feb0e3d_3",
+              "scan_id": "sc-5b44d2694676a524_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/ccnv:1.1.0--77964c5a593670f7",
+              "build_id": "bd-77964c5a593670f7_3",
+              "scan_id": "sc-ba09599fda53a5fc_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/ccnv:1.1.0--597daee53c645636",
+              "build_id": "bd-597daee53c645636_3",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/cd/cd552e195217d37801cf86348dbe875fa66ae2014147e481fd6be6e80dbbcd90/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/ccnv:1.1.0--6adee92177cfea32",
+              "build_id": "bd-6adee92177cfea32_3",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/88/88cbdaefd17962221372b111e46cf2bdc6e0a82e969adc5090dc4f9ac3758ba5/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/ccnv/reference/.conda-lock/linux_amd64-bd-726d8b142feb0e3d_3.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/ccnv/reference/.conda-lock/linux_arm64-bd-77964c5a593670f7_3.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "ce57c50ef2005759430a980e3e533a49f0df827a"
+    },
+    {
       "name": "cdhit_cdhit",
       "path": "modules/nf-core/cdhit/cdhit/meta.yml",
       "tree_sha": "13c681c7309ba23110aba0eef7bcef664a8be451",
@@ -93929,7 +94959,7 @@
     {
       "name": "custom_matrixfilter",
       "path": "modules/nf-core/custom/matrixfilter/meta.yml",
-      "tree_sha": "a0efc2d0e830d825228d2910d0cf74a0c9c05d9b",
+      "tree_sha": "54567503d3969e1fd8c408c90778daa13e7553b5",
       "files": [
         "modules/nf-core/custom/matrixfilter/.conda-lock/linux_amd64-bd-d903e969fe33d78c_1.txt",
         "modules/nf-core/custom/matrixfilter/.conda-lock/linux_arm64-bd-f91724a02edbff11_1.txt",
@@ -94149,7 +95179,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "ca6725c5a2e9102a3037151806fac21801946bca",
       "pipelines": [
         {
           "name": "differentialabundance",
@@ -105564,6 +106594,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -316066,6 +317104,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -316373,6 +317415,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -427698,7 +428744,7 @@
     {
       "name": "syncon_build",
       "path": "modules/nf-core/syncon/build/meta.yml",
-      "tree_sha": "9f9ffbc534408d23dd425ce0570f7462735f5c66",
+      "tree_sha": "f98c813867627be2f460007ff1e371968fcda2bc",
       "files": [
         "modules/nf-core/syncon/build/.conda-lock/linux_amd64-bd-454827d120667dec_1.txt",
         "modules/nf-core/syncon/build/.conda-lock/linux_arm64-bd-51b39cd869c65bf4_1.txt",
@@ -427881,7 +428927,7 @@
           }
         }
       },
-      "git_sha": "872ec9be3019f120984e1efccad8d940036961f4"
+      "git_sha": "02e51c74857608c8d30af2282e7aa42146a5784f"
     },
     {
       "name": "syncon_decon",
@@ -428093,6 +429139,190 @@
         }
       },
       "git_sha": "fd18bd83f6fcddd0b9d81664ad13cef45deba494"
+    },
+    {
+      "name": "syncon_fetch",
+      "path": "modules/nf-core/syncon/fetch/meta.yml",
+      "tree_sha": "8dca3972909e82aeae5a73c25015c27e918b123e",
+      "files": [
+        "modules/nf-core/syncon/fetch/.conda-lock/linux_amd64-bd-454827d120667dec_1.txt",
+        "modules/nf-core/syncon/fetch/.conda-lock/linux_arm64-bd-51b39cd869c65bf4_1.txt",
+        "modules/nf-core/syncon/fetch/environment.yml",
+        "modules/nf-core/syncon/fetch/main.nf",
+        "modules/nf-core/syncon/fetch/meta.yml",
+        "modules/nf-core/syncon/fetch/tests/main.nf.test",
+        "modules/nf-core/syncon/fetch/tests/main.nf.test.snap",
+        "modules/nf-core/syncon/fetch/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "syncon_fetch",
+        "description": "Fetch sequences from the database given a list of sequence IDs.",
+        "keywords": [
+          "fasta",
+          "decontamination",
+          "syncmer"
+        ],
+        "tools": [
+          {
+            "syncon": {
+              "description": "Identifies and removes contaminant contigs from draft genome assemblies",
+              "homepage": "https://github.com/c-zhou/syncon",
+              "documentation": "https://github.com/c-zhou/syncon",
+              "tool_dev_url": "https://github.com/c-zhou/syncon",
+              "doi": "",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "sequences": {
+                "type": "file",
+                "description": "Sequences to decontaminate",
+                "pattern": "*.{fa,fa.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "decon_txt": {
+                "type": "file",
+                "description": "decon.txt file from syncon decon",
+                "pattern": "*.decon.txt",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "decontaminated_fasta": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.fa": {
+                  "type": "file",
+                  "description": "Decontaminated FASTA file, with only sequences marked \"KEEP\" in the input decon.txt",
+                  "pattern": "*.fa",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_syncon": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "syncon": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "syncon": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@prototaxites"
+        ],
+        "maintainers": [
+          "@prototaxites"
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/syncon:1.0--51b39cd869c65bf4",
+              "build_id": "bd-51b39cd869c65bf4_1",
+              "scan_id": "sc-eb8d8af05f677d04_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/syncon:1.0--454827d120667dec",
+              "build_id": "bd-454827d120667dec_1",
+              "scan_id": "sc-edebc248ed4321cf_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/syncon:1.0--5b2e7dd13f83f62a",
+              "build_id": "bd-5b2e7dd13f83f62a_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/92/92257f55688e8e0ea220e912051d61956103c387ab9ec3a4c4b382bc81f269f3/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/syncon:1.0--2180f1e71934c3c0",
+              "build_id": "bd-2180f1e71934c3c0_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/be/be85cb074d7868dc6fbfcdf0e6eabde839e61021665c8c2f856aa96dcbc3e568/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/syncon/fetch/.conda-lock/linux_amd64-bd-454827d120667dec_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/syncon/fetch/.conda-lock/linux_arm64-bd-51b39cd869c65bf4_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "02e51c74857608c8d30af2282e7aa42146a5784f"
     },
     {
       "name": "syri",
@@ -454010,7 +455240,7 @@
     {
       "name": "vcfanno",
       "path": "modules/nf-core/vcfanno/meta.yml",
-      "tree_sha": "48e0f377277962739712a501ccd98d728d63c5f5",
+      "tree_sha": "67a16b600877597764e2f39d6bb5c023e330030c",
       "files": [
         "modules/nf-core/vcfanno/.conda-lock/linux_amd64-bd-7ac3a954ec1a227e_1.txt",
         "modules/nf-core/vcfanno/.conda-lock/linux_arm64-bd-f83d76e34f8d09e0_1.txt",
@@ -454230,7 +455460,7 @@
           }
         }
       },
-      "git_sha": "453357bb8404077587d0630149d57487d3eae135",
+      "git_sha": "52db13003ee71e6551fb8db9b36dedc4c1e58733",
       "pipelines": [
         {
           "name": "raredisease",
@@ -467312,8 +468542,9 @@
     {
       "name": "wisecondorx_convert",
       "path": "modules/nf-core/wisecondorx/convert/meta.yml",
-      "tree_sha": "81e4782df2b0601153115fc3a72f7be233f5bb98",
+      "tree_sha": "8f51cae1a252fee6715c80ddce8d3a98b85a2a4b",
       "files": [
+        "modules/nf-core/wisecondorx/convert/.conda-lock/linux_amd64-bd-dd93194eb6a11e3b_1.txt",
         "modules/nf-core/wisecondorx/convert/environment.yml",
         "modules/nf-core/wisecondorx/convert/main.nf",
         "modules/nf-core/wisecondorx/convert/meta.yml",
@@ -467473,15 +468704,47 @@
         ],
         "maintainers": [
           "@nvnieuwk"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/wisecondorx:1.3.3--dd93194eb6a11e3b",
+              "build_id": "bd-dd93194eb6a11e3b_1",
+              "scan_id": "sc-254ad37e8c10ad16_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/wisecondorx:1.3.3--b781c84c03e3e3f6",
+              "build_id": "bd-b781c84c03e3e3f6_1",
+              "scan_id": "sc-56117ac8100a8a66_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/wisecondorx:1.3.3--edb925d765d245e7",
+              "build_id": "bd-edb925d765d245e7_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/41/4103a257615e467895ebb0ff8aca0c17f80e852466feb36736236a4ca2597abf/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/wisecondorx:1.3.3--87686de4c11c5c60",
+              "build_id": "bd-87686de4c11c5c60_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/aa/aa622b8732f3682d645b3f73b63c15d3461188378ba6974cf89af6af9a145a67/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/wisecondorx/convert/.conda-lock/linux_amd64-bd-dd93194eb6a11e3b_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "83c6b728b05de66e111d2736ae07cf2df43e74c8"
     },
     {
       "name": "wisecondorx_gender",
       "path": "modules/nf-core/wisecondorx/gender/meta.yml",
-      "tree_sha": "f42246f32d831c5aeeeee4355d18242c30effe76",
+      "tree_sha": "d80a52c1f499ae1d895d70eb252eff322baa9d32",
       "files": [
+        "modules/nf-core/wisecondorx/gender/.conda-lock/linux_amd64-bd-dd93194eb6a11e3b_1.txt",
         "modules/nf-core/wisecondorx/gender/environment.yml",
         "modules/nf-core/wisecondorx/gender/main.nf",
         "modules/nf-core/wisecondorx/gender/meta.yml",
@@ -467607,15 +468870,47 @@
         ],
         "maintainers": [
           "@nvnieuwk"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/wisecondorx:1.3.3--b781c84c03e3e3f6",
+              "build_id": "bd-b781c84c03e3e3f6_1",
+              "scan_id": "sc-56117ac8100a8a66_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/wisecondorx:1.3.3--dd93194eb6a11e3b",
+              "build_id": "bd-dd93194eb6a11e3b_1",
+              "scan_id": "sc-254ad37e8c10ad16_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/wisecondorx:1.3.3--edb925d765d245e7",
+              "build_id": "bd-edb925d765d245e7_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/41/4103a257615e467895ebb0ff8aca0c17f80e852466feb36736236a4ca2597abf/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/wisecondorx:1.3.3--87686de4c11c5c60",
+              "build_id": "bd-87686de4c11c5c60_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/aa/aa622b8732f3682d645b3f73b63c15d3461188378ba6974cf89af6af9a145a67/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/wisecondorx/gender/.conda-lock/linux_amd64-bd-dd93194eb6a11e3b_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "83c6b728b05de66e111d2736ae07cf2df43e74c8"
     },
     {
       "name": "wisecondorx_newref",
       "path": "modules/nf-core/wisecondorx/newref/meta.yml",
-      "tree_sha": "39e87dc3448002add2dbd879a847aa3d264ec903",
+      "tree_sha": "088fcfbb226e11035e3cf25a6051e4e88b7dc96e",
       "files": [
+        "modules/nf-core/wisecondorx/newref/.conda-lock/linux_amd64-bd-dd93194eb6a11e3b_1.txt",
         "modules/nf-core/wisecondorx/newref/environment.yml",
         "modules/nf-core/wisecondorx/newref/main.nf",
         "modules/nf-core/wisecondorx/newref/meta.yml",
@@ -467735,15 +469030,47 @@
         ],
         "maintainers": [
           "@nvnieuwk"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/wisecondorx:1.3.3--dd93194eb6a11e3b",
+              "build_id": "bd-dd93194eb6a11e3b_1",
+              "scan_id": "sc-254ad37e8c10ad16_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/wisecondorx:1.3.3--b781c84c03e3e3f6",
+              "build_id": "bd-b781c84c03e3e3f6_1",
+              "scan_id": "sc-56117ac8100a8a66_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/wisecondorx:1.3.3--edb925d765d245e7",
+              "build_id": "bd-edb925d765d245e7_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/41/4103a257615e467895ebb0ff8aca0c17f80e852466feb36736236a4ca2597abf/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/wisecondorx:1.3.3--87686de4c11c5c60",
+              "build_id": "bd-87686de4c11c5c60_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/aa/aa622b8732f3682d645b3f73b63c15d3461188378ba6974cf89af6af9a145a67/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/wisecondorx/newref/.conda-lock/linux_amd64-bd-dd93194eb6a11e3b_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "83c6b728b05de66e111d2736ae07cf2df43e74c8"
     },
     {
       "name": "wisecondorx_predict",
       "path": "modules/nf-core/wisecondorx/predict/meta.yml",
-      "tree_sha": "391778fad68c1dc44179585de435c967c39c9ef2",
+      "tree_sha": "31dfc124c459c8073b7d5422721d54b37bdc5ab0",
       "files": [
+        "modules/nf-core/wisecondorx/predict/.conda-lock/linux_amd64-bd-dd93194eb6a11e3b_1.txt",
         "modules/nf-core/wisecondorx/predict/environment.yml",
         "modules/nf-core/wisecondorx/predict/main.nf",
         "modules/nf-core/wisecondorx/predict/meta.yml",
@@ -467986,9 +469313,40 @@
         ],
         "maintainers": [
           "@nvnieuwk"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/wisecondorx:1.3.3--b781c84c03e3e3f6",
+              "build_id": "bd-b781c84c03e3e3f6_1",
+              "scan_id": "sc-56117ac8100a8a66_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/wisecondorx:1.3.3--dd93194eb6a11e3b",
+              "build_id": "bd-dd93194eb6a11e3b_1",
+              "scan_id": "sc-254ad37e8c10ad16_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/wisecondorx:1.3.3--87686de4c11c5c60",
+              "build_id": "bd-87686de4c11c5c60_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/aa/aa622b8732f3682d645b3f73b63c15d3461188378ba6974cf89af6af9a145a67/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/wisecondorx:1.3.3--edb925d765d245e7",
+              "build_id": "bd-edb925d765d245e7_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/41/4103a257615e467895ebb0ff8aca0c17f80e852466feb36736236a4ca2597abf/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/wisecondorx/predict/.conda-lock/linux_amd64-bd-dd93194eb6a11e3b_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "83c6b728b05de66e111d2736ae07cf2df43e74c8"
     },
     {
       "name": "wittyer",
@@ -490254,6 +491612,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "46842d1ee933d20b78619d513aef7713ed121d72",
-  "updated_at": "2026-11-23T02:14:24.831Z"
+  "commit_sha": "83c6b728b05de66e111d2736ae07cf2df43e74c8",
+  "updated_at": "2026-11-23T14:15:31.916Z"
 }
