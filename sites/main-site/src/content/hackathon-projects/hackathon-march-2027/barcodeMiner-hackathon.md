@@ -3,7 +3,8 @@ title: BarcodeMiner
 category: pipelines
 # TODO: create a project-specific Slack channel and update this link
 slack: https://nfcore.slack.com/channels/hackathon-mar-2027
-location: Sherbrooke https://nf-co.re/events/2027/hackathon-march-2027/sherbrooke
+location: Université de Sherbrooke, Canada
+ https://nf-co.re/events/2027/hackathon-march-2027/sherbrooke
 image: "/assets/images/events/2026/hackathon-march/development-guides.jpg"
 image_alt: "Is this a barcode?"
 leaders:
