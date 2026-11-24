@@ -3,14 +3,13 @@ title: BarcodeMiner
 category: pipelines
 # TODO: create a project-specific Slack channel and update this link
 slack: https://nfcore.slack.com/channels/hackathon-mar-2027
-location: Université de Sherbrooke, Canada
- https://nf-co.re/events/2027/hackathon-march-2027/sherbrooke
-image: "/assets/images/events/2026/hackathon-march/development-guides.jpg"
-image_alt: "Is this a barcode?"
+location: in-person
+image: "/assets/images/events/2027/hackathon-march/is-this-a-barcode-meme.jpg"
+image_alt: "Is this a pigeon? meme, captioned 'is this a Barcode?'"
 leaders:
   jorondo1:
     name: Jonathan Rondeau-Leclaire
-    slack: TODO
+    slack: https://nfcore.slack.com/team/U0BQNPDLRNZ
 ---
 
 ## Goal
@@ -28,4 +27,4 @@ BarcodeMiner is a draft pipeline that leverages Dicey to mine the entire NIH Cor
 - Build a dicey module
 - Write subworkflows: database index builder, core algorithm, NCBI taxonomy cleaner
 - Docs
-- More on the way! 
+- More on the way!
