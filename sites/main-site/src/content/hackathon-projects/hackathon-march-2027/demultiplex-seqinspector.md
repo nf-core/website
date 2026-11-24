@@ -4,8 +4,8 @@ category: pipelines
 # TODO: create a project-specific Slack channel and update this link
 slack: https://nfcore.slack.com/channels/hackathon-mar-2027
 location: in-person
-image: "/assets/images/events/2027/hackathon-march/demultiplex-seqinspector-fusion-meme.jpg"
-image_alt: nf-core/seqinspector logo
+image: "/assets/images/events/2027/hackathon-march/demultiplex-x-seqinspector-logos.png"
+image_alt: nf-core/demultiplex x nf-core/seqinspector logos
 leaders:
   FranBonath:
     name: Franziska Bonath
