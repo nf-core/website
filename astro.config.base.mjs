@@ -110,13 +110,31 @@ export default {
     },
     vite: {
         plugins: [yaml()],
+        // @astrojs/svelte and @astrojs/svelte-renderer must be noExternal so the renderer
+        // shares Svelte's server runtime with the compiled components. @astrojs/svelte-renderer
+        // finds them by crawling the sub-site's package.json, but our deps live in the root
+        // package.json, so it finds nothing. The renderer then loads svelte natively while
+        // components get Vite's copy: two `ssr_context` instances, and dev SSR crashes with
+        // "Cannot read properties of null (reading 'function')".
         ssr: {
-            noExternal: ["@popperjs/core", "svelte-confetti", "@mashehu/astropub-md"],
+            noExternal: [
+                "@popperjs/core",
+                "svelte-confetti",
+                "@mashehu/astropub-md",
+                "@astrojs/svelte",
+                "@astrojs/svelte-renderer",
+            ],
         },
         resolve: {
             preserveSymlinks: true,
             browser: true,
-            noExternal: ["@popperjs/core", "svelte-confetti", "@mashehu/astropub-md"],
+            noExternal: [
+                "@popperjs/core",
+                "svelte-confetti",
+                "@mashehu/astropub-md",
+                "@astrojs/svelte",
+                "@astrojs/svelte-renderer",
+            ],
             alias: {
                 "@styles": resolve(process.cwd(), "../main-site/src/styles"),
             },
