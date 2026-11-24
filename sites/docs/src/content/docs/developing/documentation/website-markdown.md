@@ -138,9 +138,8 @@ Many people have speculated that if we knew exactly why the bowl of petunias had
 
 ### GitHub style admonitions
 
-For `README.md` files, you can also use the [GitHub style admonitions/alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts).
-This _only_ works with markdown files fetched from pipeline repositories.
-Don't use it in markdown files in the website repo.
+For markdown that is also read on GitHub, such as pipeline docs, `nf-core/configs` docs or release notes, you can also use the [GitHub style admonitions/alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts).
+In markdown files in the website repo, prefer the `:::` syntax above, as it supports custom titles and icons.
 
 ```md
 > [!NOTE]

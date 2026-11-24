@@ -4,7 +4,6 @@ import type { Loader, LoaderContext } from "astro/loaders";
 import { octokit, getCurrentRateLimitRemaining } from "@components/octokit.js";
 import ProgressBar from "progress";
 import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
-import { createMarkdownProcessor } from "@astrojs/markdown-remark";
 import { optimize } from "svgo";
 
 // ========================================
@@ -532,16 +531,7 @@ export function configLoader(): Loader {
             const fetcher = new GitHubContentFetcher("nf-core", "configs", "master", context);
 
             const processors = {
-                md: async (text: string, config: AstroConfig): Promise<RenderedContent> => {
-                    const processor = await createMarkdownProcessor(config.markdown);
-                    try {
-                        const { code: html, metadata } = await processor.render(text);
-                        return { html, metadata };
-                    } catch (error) {
-                        console.error(`Error processing markdown: ${error.message}`);
-                        throw error;
-                    }
-                },
+                md: (text: string): Promise<RenderedContent> => context.renderMarkdown(text),
                 ...createConfigProcessor(),
             };
 

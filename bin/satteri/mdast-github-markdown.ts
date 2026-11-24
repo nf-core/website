@@ -5,7 +5,7 @@
 // - Fixes image URLs
 // - Fixes link URLs
 // - Rewrites theme-aware <picture> into hide-dark/hide-light <img> pairs
-// - Converts GitHub admonitions ([!NOTE] etc.) into directives for admonitions.ts
+// (GitHub alerts like [!NOTE] are converted by githubAlertsPlugin, part of the shared plugins.)
 // - Cleans up headers
 // - Fixes code blocks
 //
@@ -69,6 +69,52 @@ function rewriteThemedPictures(value: string): string {
         return img(light, "hide-dark") + img(dark, "hide-light");
     });
 }
+
+const ALERT_REMAP: Record<string, [string, string]> = {
+    IMPORTANT: ["info", "Important"],
+    CAUTION: ["danger", "Caution"],
+};
+
+/**
+ * GitHub-style admonitions: > [!NOTE] ... → :::note directive, which
+ * admonitions.ts (running after this plugin) turns into the styled box.
+ */
+function githubAlertToDirective(node: any) {
+    const firstChild = node.children?.[0];
+    if (firstChild?.type !== "paragraph" || !firstChild.children?.length) return;
+    const firstText = firstChild.children[0];
+    if (firstText.type !== "text" || !firstText.value.startsWith("[!")) return;
+    const match = firstText.value.match(ADMONITION_REGEX);
+    if (!match) return;
+
+    // Alert types without a matching admonition map to the closest one, keeping their name as title
+    const [type, title] = ALERT_REMAP[match[1]] ?? [match[1].toLowerCase()];
+    const attributes: Record<string, string> = title ? { title } : {};
+
+    const paragraphChildren = [
+        ...(match[2] ? [{ type: "text", value: match[2] + " " }] : []),
+        ...firstChild.children.slice(1),
+    ];
+
+    return {
+        type: "containerDirective",
+        name: type,
+        attributes,
+        children: [
+            ...(paragraphChildren.length > 0 ? [{ type: "paragraph", children: paragraphChildren }] : []),
+            ...node.children.slice(1),
+        ],
+    };
+}
+
+/**
+ * GitHub alert → admonition conversion. Part of the shared plugins (markdownConfig.ts),
+ * so every renderer supports it, not just the pipeline docs.
+ */
+export const githubAlertsPlugin = defineMdastPlugin({
+    name: "github-alerts",
+    blockquote: githubAlertToDirective,
+});
 
 export interface GitHubMarkdownOptions {
     org?: string;
@@ -136,39 +182,6 @@ export function createGitHubMarkdownPlugin(options: GitHubMarkdownOptions) {
                 children[0] = { ...children[0], value: children[0].value.replace(prefix, "") };
                 return { ...node, children };
             }
-        },
-        blockquote(node: any) {
-            // GitHub-style admonitions: > [!NOTE] ... → :::note directive, which
-            // admonitions.ts (running after this plugin) turns into the styled box.
-            const firstChild = node.children?.[0];
-            if (firstChild?.type !== "paragraph" || !firstChild.children?.length) return;
-            const firstText = firstChild.children[0];
-            if (firstText.type !== "text" || !firstText.value.startsWith("[!")) return;
-            const match = firstText.value.match(ADMONITION_REGEX);
-            if (!match) return;
-
-            let type = match[1].toLowerCase();
-            if (type === "important") type = "info";
-            else if (type === "caution") type = "danger";
-
-            const attributes: Record<string, string> = {};
-            if (match[1] === "IMPORTANT") attributes.title = "Important";
-            else if (match[1] === "CAUTION") attributes.title = "Caution";
-
-            const paragraphChildren = [
-                ...(match[2] ? [{ type: "text", value: match[2] + " " }] : []),
-                ...firstChild.children.slice(1),
-            ];
-
-            return {
-                type: "containerDirective",
-                name: type,
-                attributes,
-                children: [
-                    ...(paragraphChildren.length > 0 ? [{ type: "paragraph", children: paragraphChildren }] : []),
-                    ...node.children.slice(1),
-                ],
-            };
         },
         html(node: any, ctx) {
             let value = node.value;

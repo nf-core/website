@@ -36,6 +36,7 @@ import { headingNumbersPlugin } from "./hast-heading-numbers.ts";
 import { inlineCodePlugin } from "./hast-inline-code.ts";
 import { markdownLinksPlugin } from "./hast-markdown-links.ts";
 import { tablesPlugin } from "./hast-tables.ts";
+import { githubAlertsPlugin } from "./mdast-github-markdown.ts";
 import { mermaidPlugin } from "./mdast-mermaid.ts";
 
 const features = {
@@ -53,6 +54,8 @@ const expressiveCodePlugin = expressiveCode(createEcConfig());
 const sharedMdastPlugins = [
     // GitHub shortcode names (:tada:, :heart:, …), as used by node-emoji/remark-emoji before
     satteriEmoji({ shortcodes: ["github"] }),
+    // > [!NOTE] → :::note, before the admonition plugins turn directives into boxes
+    githubAlertsPlugin,
     directiveTextMergePlugin,
     admonitionsMdastPlugin,
     mermaidPlugin,
