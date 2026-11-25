@@ -17,33 +17,22 @@ Make [nf-core/captnseq](https://github.com/nf-core/captnseq) usable by labs othe
 
 ## Description
 
-CAPTn-seq (Computational Analysis Pipeline for Tn-seq) is an end-to-end pipeline for transposon insertion sequencing (TIS/Tn-seq).
-It is the continuation of the [Barcelona 2026 hackathon project](https://nf-co.re/hackathon-projects/hackathon-barcelona-2026/captnseq), where the goal was to port a bespoke, single-lab Snakemake workflow to Nextflow.
-
-Since then:
-
-- the Tn-seq half of the port is finished and lives at [nf-core/captnseq](https://github.com/nf-core/captnseq): raw reads → trimming → mapping → deduplication → insertion-site calling → per-gene essentiality → gene × sample tables
-- the custom Python code was packaged as [captnseq-toolkit](https://github.com/simonjeanneau/captnseq-toolkit), available on Bioconda/BioContainers
-- hand-rolled modules were replaced by nf-core/modules (cutadapt, fastp, BWA, samtools, bedtools)
-- a small public test dataset is in nf-core/test-datasets, and CI runs on it
-
-What is still missing is what turns a working pipeline into one another lab can pick up: support for other library layouts, real documentation, a full-size test, and the HTTM part, which compares relative essentiality across mutant backgrounds to call synthetic gene–gene interactions from [High-Throughput Transposon Mutagenesis (HTTM)](https://pmc.ncbi.nlm.nih.gov/articles/PMC10089323/) data.
+CAPTn-seq (Computational Analysis Pipeline for Tn-seq) is an end-to-end pipeline for transposon insertion sequencing (TIS/Tn-seq). While it is currently reaching maturity, it still lacks a handful of features to facilitate its usage by another lab.
 
 ## Tasks
 
 :::info{title="Disclaimer"}
-The following list is only indicative.
-Every item has an open issue on the repository. Help and advice from more experienced Nextflow/nf-core developers is very welcome, even outside this list.
+The following list shows the pending tasks with an indicative estimation of the technical difficulty and familiarity with the project required. However, help and advice from more experienced Nextflow/nf-core developers is very welcome, even outside this list.
 :::
 
-- **(Easy/Medium)** Add an optional tag filtering/trimming step before mapping, for libraries that carry a transposon tag in the read ([#22](https://github.com/nf-core/captnseq/issues/22))
-- **(Medium)** Single-end support: no deduplication for single-end samples, one layout per run ([#21](https://github.com/nf-core/captnseq/issues/21))
-- **(Easy)** Write `docs/usage.md` and `docs/output.md` for this pipeline, a good test of how readable the code is to newcomers ([#15](https://github.com/nf-core/captnseq/issues/15), [#16](https://github.com/nf-core/captnseq/issues/16), umbrella [#5](https://github.com/nf-core/captnseq/issues/5))
+- **(Easy)** Add an optional tag filtering/trimming step before mapping, for libraries that carry a transposon tag in the read ([#22](https://github.com/nf-core/captnseq/issues/22))
 - **(Easy)** Add a fill-in params file and fix the example samplesheet ([#17](https://github.com/nf-core/captnseq/issues/17))
-- **(Medium)** Replace the template `test_full` profile with a real full-size public dataset ([#18](https://github.com/nf-core/captnseq/issues/18))
+- **(Easy)** Curate the metro map of the Tn-seq part ([#10](https://github.com/nf-core/captnseq/issues/10))
+- **(Easy)** Write `docs/usage.md` and `docs/output.md` for this pipeline, a good test of how readable the code is to newcomers ([#15](https://github.com/nf-core/captnseq/issues/15), [#16](https://github.com/nf-core/captnseq/issues/16), umbrella [#5](https://github.com/nf-core/captnseq/issues/5))
 - **(Easy/Medium)** Replace the hardcoded cluster profiles with an example SLURM config, and repair the parallel mode on SLURM ([#20](https://github.com/nf-core/captnseq/issues/20), [#12](https://github.com/nf-core/captnseq/issues/12))
-- **(Easy)** Finish the metro map of the Tn-seq part ([#10](https://github.com/nf-core/captnseq/issues/10))
-- **(Hard, stretch)** Port the digenic interaction calling, the pipeline's core contribution, and decide whether it belongs in captnseq or in a separate downstream pipeline. This ties in with finding a better name for the pipeline ([#6](https://github.com/nf-core/captnseq/issues/6)); outside opinions are very welcome
+- **(Medium)** Single-end support: no deduplication for single-end samples, one layout per run ([#21](https://github.com/nf-core/captnseq/issues/21))
+- **(Medium)** Replace the template `test_full` profile with a real full-size public dataset ([#18](https://github.com/nf-core/captnseq/issues/18))
+- **(Hard)** Port the digenic interaction calling, the pipeline's core contribution, and decide whether it belongs in captnseq or in a separate downstream pipeline. This ties in with finding a better name for the pipeline ([#6](https://github.com/nf-core/captnseq/issues/6)); outside opinions are very welcome
 
 Success: a new user can run captnseq on their own paired-end or single-end Tn-seq data by reading the docs only.
 
