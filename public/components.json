@@ -56053,7 +56053,7 @@
     {
       "name": "bwamem2_index",
       "path": "modules/nf-core/bwamem2/index/meta.yml",
-      "tree_sha": "98de6d6cdf97912c099299c1374cbf37d0c36f24",
+      "tree_sha": "453faf284e1007c61ebee7a81cfee8e2fb132fbd",
       "files": [
         "modules/nf-core/bwamem2/index/environment.yml",
         "modules/nf-core/bwamem2/index/main.nf",
@@ -56080,7 +56080,7 @@
               "doi": "10.1109/IPDPS.2019.00041",
               "publication": {
                 "author": "Vasimuddin, M., Misra, S., Li, H. & Aluru, S.",
-                "year": 2018,
+                "year": 2019,
                 "source": "IEEE International Parallel and Distributed Processing Symposium (IPDPS)",
                 "title": "Efficient Architecture-Aware Acceleration of BWA-MEM for Multicore Systems"
               },
@@ -56210,7 +56210,7 @@
           "@maxulysse"
         ]
       },
-      "git_sha": "f5408179d4b14af7c2429fa5cf8ef1075b3a4071",
+      "git_sha": "baaeefb43222b8e9b253330d70d95dce2885b40a",
       "pipelines": [
         {
           "name": "callingcards",
@@ -56273,7 +56273,7 @@
     {
       "name": "bwamem2_mem",
       "path": "modules/nf-core/bwamem2/mem/meta.yml",
-      "tree_sha": "6567eecfd3df9f537ccafb62bc0728dd8def08e1",
+      "tree_sha": "b698af734f898123d081bdbe3cbd4023d7509a35",
       "files": [
         "modules/nf-core/bwamem2/mem/environment.yml",
         "modules/nf-core/bwamem2/mem/main.nf",
@@ -56303,7 +56303,7 @@
               "doi": "10.1109/IPDPS.2019.00041",
               "publication": {
                 "author": "Vasimuddin, M., Misra, S., Li, H. & Aluru, S.",
-                "year": 2018,
+                "year": 2019,
                 "source": "IEEE International Parallel and Distributed Processing Symposium (IPDPS)",
                 "title": "Efficient Architecture-Aware Acceleration of BWA-MEM for Multicore Systems"
               },
@@ -56607,7 +56607,7 @@
           "@matthdsm"
         ]
       },
-      "git_sha": "9804fc814f848fd7100b2203e35ff6d5321d031f",
+      "git_sha": "baaeefb43222b8e9b253330d70d95dce2885b40a",
       "pipelines": [
         {
           "name": "callingcards",
@@ -107774,6 +107774,14 @@
         {
           "name": "variantcatalogue",
           "version": "dev"
+        },
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -134943,7 +134951,7 @@
     {
       "name": "fastqe",
       "path": "modules/nf-core/fastqe/meta.yml",
-      "tree_sha": "e4d8d9f9f607669659a3c9e929c92d34ad6c3b63",
+      "tree_sha": "5f992103e410d531eada1404cae1eb49f2dde29b",
       "files": [
         "modules/nf-core/fastqe/environment.yml",
         "modules/nf-core/fastqe/main.nf",
@@ -134968,12 +134976,12 @@
               "homepage": "https://github.com/fastqe/fastqe",
               "documentation": "https://github.com/fastqe/fastqe#readme",
               "tool_dev_url": "https://github.com/fastqe/fastqe",
-              "doi": "10.21105/joss.02400",
+              "doi": "10.24918/cs.2021.17",
               "publication": {
-                "author": "StJacques, R., Maza, M., Robertson, S., Lu, G., Lonsdale, A. & Enke, R. A.",
-                "year": 2019,
-                "title": "A Fun Introductory Command Line Exercise: Next Generation Sequencing Quality Analysis with Emoji!",
-                "source": "Journal of Open Source Education"
+                "author": "St. Jacques, R. M., Maza, W. M., Robertson, S. D., Lonsdale, A., Murray, C. S., Williams, J. J. & Enke, R. A.",
+                "year": 2021,
+                "title": "A Fun Introductory Command Line Lesson: Next Generation Sequencing Quality Analysis with Emoji!",
+                "source": "CourseSource"
               },
               "licence": [
                 "MIT"
@@ -135076,7 +135084,7 @@
           "@adamrtalbot"
         ]
       },
-      "git_sha": "44ef798b3c2bfd4a429f1218a794c08954e83414",
+      "git_sha": "baaeefb43222b8e9b253330d70d95dce2885b40a",
       "pipelines": [
         {
           "name": "seqinspector",
@@ -149038,7 +149046,7 @@
     {
       "name": "freyja_boot",
       "path": "modules/nf-core/freyja/boot/meta.yml",
-      "tree_sha": "2f1267c85c9b498970e7fd04a1225fb4ef26aefa",
+      "tree_sha": "e419f392d5cff58ab60f29f7aeefebf9c6340488",
       "files": [
         "modules/nf-core/freyja/boot/.conda-lock/linux_amd64-bd-be3cbd6f14f9d542_1.txt",
         "modules/nf-core/freyja/boot/.conda-lock/linux_arm64-bd-55d2f3a5585cc140_1.txt",
@@ -149284,7 +149292,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "0109b3e4901c5f6c88bb260abd1f42e891964f33",
       "pipelines": [
         {
           "name": "viralrecon",
@@ -149295,7 +149303,7 @@
     {
       "name": "freyja_demix",
       "path": "modules/nf-core/freyja/demix/meta.yml",
-      "tree_sha": "57c2dfad27d3613c3545ad85652e47215d8af705",
+      "tree_sha": "1b6b40e8e794a4c5ad89dcf878d210c409f932b6",
       "files": [
         "modules/nf-core/freyja/demix/.conda-lock/linux_amd64-bd-be3cbd6f14f9d542_1.txt",
         "modules/nf-core/freyja/demix/.conda-lock/linux_arm64-bd-55d2f3a5585cc140_1.txt",
@@ -149512,7 +149520,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "0109b3e4901c5f6c88bb260abd1f42e891964f33",
       "pipelines": [
         {
           "name": "viralrecon",
@@ -149722,7 +149730,7 @@
     {
       "name": "freyja_variants",
       "path": "modules/nf-core/freyja/variants/meta.yml",
-      "tree_sha": "f0f74ce8985db57467b5ab1aa1b1730901e3f834",
+      "tree_sha": "6299e28a87a260b6c8c10e786330e61526151dcb",
       "files": [
         "modules/nf-core/freyja/variants/.conda-lock/linux_amd64-bd-be3cbd6f14f9d542_1.txt",
         "modules/nf-core/freyja/variants/.conda-lock/linux_arm64-bd-55d2f3a5585cc140_1.txt",
@@ -149773,14 +149781,30 @@
               }
             }
           ],
-          {
-            "fasta": {
-              "type": "file",
-              "description": "The reference sequence used for mapping and generating the BAM file",
-              "pattern": "*.fa",
-              "ontologies": []
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "The reference sequence used for mapping and generating the BAM file",
+                "pattern": "*.{fa,fasta}",
+                "ontologies": []
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "FASTA index (.fai) of the reference sequence, required by samtools mpileup",
+                "pattern": "*.fai",
+                "ontologies": []
+              }
             }
-          }
+          ]
         ],
         "output": {
           "variants": [
@@ -149905,7 +149929,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "0109b3e4901c5f6c88bb260abd1f42e891964f33",
       "pipelines": [
         {
           "name": "viralrecon",
@@ -317535,6 +317559,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -317842,6 +317870,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -395643,7 +395675,7 @@
     {
       "name": "sequali",
       "path": "modules/nf-core/sequali/meta.yml",
-      "tree_sha": "10bb4412b90d963fdd41fbb64287b2c0e1b88c48",
+      "tree_sha": "643a287cf16cf68a6f25d46a80585991d2bfbcbc",
       "files": [
         "modules/nf-core/sequali/environment.yml",
         "modules/nf-core/sequali/main.nf",
@@ -395667,11 +395699,11 @@
               "homepage": "https://github.com/rhpvorderman/sequali",
               "documentation": "https://sequali.readthedocs.io/en/latest/",
               "tool_dev_url": "https://github.com/rhpvorderman/sequali",
-              "doi": "10.5281/zenodo.10854010",
+              "doi": "10.1093/bioadv/vbaf010",
               "publication": {
                 "author": "Vorderman, R. H. P.",
                 "year": 2025,
-                "title": "Sequali: a flexible and extensible quality control tool for FASTQ and uBAM files",
+                "title": "Sequali: efficient and comprehensive quality control of short- and long-read sequencing data",
                 "source": "Bioinformatics Advances"
               },
               "licence": [
@@ -395800,7 +395832,7 @@
           "@DarkoCucin"
         ]
       },
-      "git_sha": "d04d60e30d60e36014b766e2dbfcd4bb562d7795",
+      "git_sha": "baaeefb43222b8e9b253330d70d95dce2885b40a",
       "pipelines": [
         {
           "name": "seqinspector",
@@ -400032,8 +400064,9 @@
     {
       "name": "shovill",
       "path": "modules/nf-core/shovill/meta.yml",
-      "tree_sha": "ea23e8a27640d4bb29593fa6c942480a894cce7b",
+      "tree_sha": "69c7a123591911d5ff715ced2ede51cc9c68ac08",
       "files": [
+        "modules/nf-core/shovill/.conda-lock/linux_amd64-bd-eab27bd761ae82ef_1.txt",
         "modules/nf-core/shovill/environment.yml",
         "modules/nf-core/shovill/main.nf",
         "modules/nf-core/shovill/meta.yml",
@@ -400165,10 +400198,10 @@
                 }
               },
               {
-                "contigs.{fastg,gfa,LastGraph}": {
+                "{skesa,spades,megahit,velvet}.{fastg,gfa,LastGraph}": {
                   "type": "file",
                   "description": "Assembly graph produced by MEGAHIT, SPAdes, or Velvet",
-                  "pattern": "contigs.{fastg,gfa,LastGraph}",
+                  "pattern": "{skesa,spades,megahit,velvet}.{fastg,gfa,LastGraph}",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3975"
@@ -400231,9 +400264,30 @@
         ],
         "maintainers": [
           "@rpetit3"
-        ]
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/shovill:1.4.2--eab27bd761ae82ef",
+              "build_id": "bd-eab27bd761ae82ef_1",
+              "scan_id": "sc-d5a858a465e56c7a_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/shovill:1.4.2--682ca4fde86465c8",
+              "build_id": "bd-682ca4fde86465c8_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/97/97e3f0d4872793310b8bada5c56aa3905bb2ac430b91a7521a84a06b72e1768f/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/shovill/.conda-lock/linux_amd64-bd-eab27bd761ae82ef_1.txt"
+            }
+          }
+        }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+      "git_sha": "8ff6e435c475d35be6a34d303232fce27ea7f3c5"
     },
     {
       "name": "sickle",
@@ -432026,6 +432080,198 @@
         ]
       },
       "git_sha": "8257045816dd697471f17f14143faaba656a91af"
+    },
+    {
+      "name": "tauglymphatic_calc",
+      "path": "modules/nf-core/tauglymphatic/calc/meta.yml",
+      "tree_sha": "200ab456b3df8a20533603295d0b3dd9174e1dac",
+      "files": [
+        "modules/nf-core/tauglymphatic/calc/.conda-lock/linux_amd64-bd-19d94451d3401cc3_1.txt",
+        "modules/nf-core/tauglymphatic/calc/.conda-lock/linux_arm64-bd-233ceef5fa3cbd76_1.txt",
+        "modules/nf-core/tauglymphatic/calc/environment.yml",
+        "modules/nf-core/tauglymphatic/calc/main.nf",
+        "modules/nf-core/tauglymphatic/calc/meta.yml",
+        "modules/nf-core/tauglymphatic/calc/tests/main.nf.test",
+        "modules/nf-core/tauglymphatic/calc/tests/main.nf.test.snap",
+        "modules/nf-core/tauglymphatic/calc/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "tauglymphatic_calc",
+        "description": "Biophysical reaction-diffusion and perivascular glymphatic tau clearance calculator (RUO).",
+        "keywords": [
+          "neuroscience",
+          "biophysics",
+          "reaction-diffusion",
+          "glymphatic",
+          "tauopathy",
+          "dti-alps"
+        ],
+        "tools": [
+          {
+            "tau-glymphatic-continuum": {
+              "description": "Multiscale biophysical reaction-diffusion and perivascular glymphatic clearance engine for tau spreading.",
+              "homepage": "https://github.com/Lukecele/tau-glymphatic-continuum",
+              "documentation": "https://github.com/Lukecele/tau-glymphatic-continuum#readme",
+              "tool_dev_url": "https://github.com/Lukecele/tau-glymphatic-continuum",
+              "doi": "10.5281/zenodo.24393484",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:tau-glymphatic-continuum",
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "alps": {
+                "type": "float",
+                "description": "Patient DTI-ALPS index (e.g. 1.60 for healthy, 1.15 for AD)"
+              }
+            },
+            {
+              "apoe_e4": {
+                "type": "integer",
+                "description": "Number of APOE-e4 high-risk alleles (0, 1, or 2)"
+              }
+            },
+            {
+              "trem2_r47h": {
+                "type": "boolean",
+                "description": "Whether the sample carries the TREM2 R47H loss-of-function variant"
+              }
+            },
+            {
+              "nlrp3": {
+                "type": "boolean",
+                "description": "Whether chronic NLRP3 inflammasome hyper-activation is present"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.{txt,json}": {
+                  "type": "file",
+                  "description": "Biophysical glymphatic clearance report in text or structured JSON format (with --json)",
+                  "pattern": "*.{txt,json}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_tauglymphatic": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "tau-glymphatic-continuum": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python3 -c \"import importlib.metadata; print(importlib.metadata.version('tau-glymphatic-continuum'))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "tau-glymphatic-continuum": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python3 -c \"import importlib.metadata; print(importlib.metadata.version('tau-glymphatic-continuum'))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@Lukecele"
+        ],
+        "maintainers": [
+          "@Lukecele"
+        ],
+        "containers": {
+          "docker": {
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/tau-glymphatic-continuum:1.1.2--19d94451d3401cc3",
+              "build_id": "bd-19d94451d3401cc3_1",
+              "scan_id": "sc-e57fb822c7e24b8c_1"
+            },
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/tau-glymphatic-continuum:1.1.2--233ceef5fa3cbd76",
+              "build_id": "bd-233ceef5fa3cbd76_1",
+              "scan_id": "sc-e66eed5158827eda_1"
+            }
+          },
+          "singularity": {
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/tau-glymphatic-continuum:1.1.2--a0e4fb46100d69a9",
+              "build_id": "bd-a0e4fb46100d69a9_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/db/db230f0ed6fef58e6960f9a04a15307470749a848c165ea6c2964803d5505471/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/tau-glymphatic-continuum:1.1.2--8448ea7888cadba1",
+              "build_id": "bd-8448ea7888cadba1_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e3/e34ee7ba91e80805a7f36e30adb18f7c9ac3a970d845a832eb12e344f541f625/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/tauglymphatic/calc/.conda-lock/linux_amd64-bd-19d94451d3401cc3_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/tauglymphatic/calc/.conda-lock/linux_arm64-bd-233ceef5fa3cbd76_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "6c416b68323f692ad23365afac9ad3b7bfae3d72"
     },
     {
       "name": "taxonkit_lca",
@@ -478491,7 +478737,7 @@
     {
       "name": "bam_variant_demix_boot_freyja",
       "path": "subworkflows/nf-core/bam_variant_demix_boot_freyja/meta.yml",
-      "tree_sha": "385926b60f3cf6978311ba561d3762ef331157bf",
+      "tree_sha": "f1807f8a7ce6db34a9101cecbed6180bd7631659",
       "files": [
         "subworkflows/nf-core/bam_variant_demix_boot_freyja/main.nf",
         "subworkflows/nf-core/bam_variant_demix_boot_freyja/meta.yml",
@@ -478522,9 +478768,9 @@
             }
           },
           {
-            "ch_fasta": {
+            "ch_fasta_fai": {
               "type": "file",
-              "description": "Structure: [ val(meta), path(fasta) ]\nGroovy Map containing sample information e.g. [ id:'test', single_end:false ] and the fasta reference used for the sorted BAM file\n"
+              "description": "Structure: [ val(meta), path(fasta), path(fai) ]\nGroovy Map containing reference information e.g. [ id:'genome' ], the fasta reference used for the sorted BAM file and its FASTA index (.fai)\n"
             }
           },
           {
@@ -478615,7 +478861,7 @@
           "@Joon-Klaps"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "0109b3e4901c5f6c88bb260abd1f42e891964f33",
       "pipelines": [
         {
           "name": "viralrecon",
@@ -492338,6 +492584,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "f0bb572d85db802d437d70033721a95476260131",
-  "updated_at": "2026-11-25T02:15:16.543Z"
+  "commit_sha": "baaeefb43222b8e9b253330d70d95dce2885b40a",
+  "updated_at": "2026-11-25T14:15:12.521Z"
 }
