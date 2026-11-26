@@ -56,7 +56,7 @@ Not every committer is a person. `nf-core-bot` is fifth on the leaderboard with 
 
 ## More pipelines, in more fields
 
-nf-core has 146 active pipelines, and more than 100 of them have a stable release. We aim for one pipeline per type of analysis, so the common genomics workflows are well covered by now and new pipelines increasingly mean new techniques and new science. Recent arrivals process satellite imagery of rangelands ([`rangeland`](/rangeland)), light-sheet microscopy ([`lsmquant`](/lsmquant)) and whole-slide tissue images ([`mcmicro`](/mcmicro)), and track malaria drug-resistance markers ([`plasmodiumdrugres`](/plasmodiumdrugres)).
+nf-core has 146 active pipelines, and more than 100 of them have a stable release. We aim for one pipeline per type of analysis, so the common genomics workflows are well covered by now and new pipelines increasingly mean new techniques and fields. Recent arrivals process satellite imagery of rangelands ([`rangeland`](/rangeland)), light-sheet microscopy ([`lsmquant`](/lsmquant)) and whole-slide tissue images ([`mcmicro`](/mcmicro)), and track malaria drug-resistance markers ([`plasmodiumdrugres`](/plasmodiumdrugres)).
 
 ![Stacked area chart of active nf-core pipelines from 2018 to 2026, with the released segment growing into the in-development segment: 146 pipelines, 105 released, 41 in development](../../../assets/images/blog/community-milestones-2026/pipeline-releases.svg)
 
