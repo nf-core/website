@@ -478,10 +478,13 @@ async function getNewsletterStaticPathsData(
     const advisories = await getCollectionFn("advisories");
 
     let allProposals: RawProposal[] = [];
-    try {
-        allProposals = await fetchAllProposals();
-    } catch (e) {
-        console.warn("Could not fetch proposals:", e);
+    // Proposals cost a lot of GitHub API calls and can stall a preview build for the full rate-limit reset.
+    if (!process.env.CONTEXT || process.env.CONTEXT === "production") {
+        try {
+            allProposals = await fetchAllProposals();
+        } catch (e) {
+            console.warn("Could not fetch proposals:", e);
+        }
     }
 
     // Drop any candidate month whose newsletter would render no content (see
