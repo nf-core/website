@@ -39,6 +39,16 @@ Common mime types: <https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_
 
 #### `del_schema_filename() → None{:python}`
 
+#### `get_param_groups() → list[dict]{:python}`
+
+Get the parameter groups of the schema, including ungrouped parameters.
+
+- **Returns:**
+  The group definitions under `definitions` (Draft 7) or `$defs` (Draft 2020-12),
+  followed by a synthetic “Other parameters” group holding the top-level `properties`, if any.
+- **Return type:**
+  list\[dict]
+
 #### `get_schema_defaults() → None{:python}`
 
 Generate set of default input parameters from schema.
