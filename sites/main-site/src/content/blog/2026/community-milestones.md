@@ -20,7 +20,7 @@ A round number is a good excuse to look at the data behind it. Everything in thi
 
 ## 15,000 on Slack
 
-Slack is where most people first meet nf-core. Most arrive with a question about running a pipeline. Plenty stay to contribute and help others.
+Slack is where the community talks. Some people join with a question about running a pipeline, others after their first module pull request. Plenty stay to help others.
 
 ![A Slack-style window open on #announcements whose message shows 15,193 small squares, one per member, grouped and coloured by the year they joined, 2018 to 2026](../../../assets/images/blog/community-milestones-2026/slack-15000.svg)
 
