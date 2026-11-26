@@ -24,7 +24,7 @@ Slack is where the community talks. Some people join with a question about runni
 
 ![A Slack-style window open on #announcements whose message shows 15,193 small squares, one per member, grouped and coloured by the year they joined, 2018 to 2026](../../../assets/images/blog/community-milestones-2026/slack-15000.svg)
 
-Exactly six years ago, on 26 November 2020, the workspace passed 1,000 members. It has grown fifteen-fold since. The biggest year we have complete data for was 2023, with 3,521 new members. This year has added 1,775 so far, around 160 a month.
+Exactly six years ago, the workspace passed 1,000 members, and it has grown fifteen-fold since. This year, around 160 new people have joined each month.
 
 Slack counts someone as active if they've used it in the past 14 days. Right now that's 1,016 people. The record is 2,196, on 21 March this year, the week after the hackathon.
 
