@@ -16091,7 +16091,7 @@
       "pipelines": [
         {
           "name": "proteinannotator",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "proteinfold",
@@ -76673,7 +76673,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -97055,7 +97055,7 @@
       "pipelines": [
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -106711,6 +106711,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -119407,7 +119415,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -122529,6 +122537,391 @@
         }
       },
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
+    },
+    {
+      "name": "edger_diffsplice",
+      "path": "modules/nf-core/edger/diffsplice/meta.yml",
+      "tree_sha": "dc3a6d9ba7d907054bae017f2f4b0122cc7439f5",
+      "files": [
+        "modules/nf-core/edger/diffsplice/.conda-lock/linux_amd64-bd-9157ebf19fbdc614_1.txt",
+        "modules/nf-core/edger/diffsplice/.conda-lock/linux_arm64-bd-c4f388435e97989b_1.txt",
+        "modules/nf-core/edger/diffsplice/environment.yml",
+        "modules/nf-core/edger/diffsplice/main.nf",
+        "modules/nf-core/edger/diffsplice/meta.yml",
+        "modules/nf-core/edger/diffsplice/templates/edger_diffsplice.R",
+        "modules/nf-core/edger/diffsplice/tests/main.nf.test",
+        "modules/nf-core/edger/diffsplice/tests/main.nf.test.snap",
+        "modules/nf-core/edger/diffsplice/tests/nextflow.config"
+      ],
+      "type": "module",
+      "meta": {
+        "name": "edger_diffsplice",
+        "description": "Tests for differential exon or transcript usage with edgeR `diffSpliceDGE`, for one contrast.\nOptions are passed via `ext.args` as `--option value` pairs:\n`gene_id_col` (default `gene_id`), `feature_id_col` (`feature_id`),\n`annotation_cols` (`;`-separated count table columns carried into the results),\n`count_col_suffix` (removed from count table column names), `sample_id_col` (`experiment_accession`),\n`blocking_variables` (`;`-separated sample sheet columns, not combinable with a formula),\n`subset_to_contrast_samples` (`FALSE`, needs a contrast variable with reference and target levels),\n`exclude_samples_col` and `exclude_samples_values` (`;`-separated),\n`filter_by_expr` (`FALSE`), `min_count` (`10`), `norm_method` (`TMM`), `test_method` (`qlf` or `lrt`),\n`robust` (`TRUE`), `adjust_method` (`BH`), `plot_n` (`10`) and `round_digits` (no rounding).\nDefaults that differ from edgeR's own: `robust` is `TRUE` and `filterByExpr` is off.\nSample sheet column names are converted with `make.names()`. With a contrast variable, design\nmatrix columns are named `<variable>.<level>` (e.g. `condition.YRI`); with a formula they keep\nthe `model.matrix` names (e.g. `conditionYRI`).\n",
+        "keywords": [
+          "differential",
+          "splicing",
+          "exon usage",
+          "transcript usage",
+          "rna-seq",
+          "edger"
+        ],
+        "tools": [
+          {
+            "edger": {
+              "description": "Empirical Analysis of Digital Gene Expression Data in R",
+              "homepage": "https://bioconductor.org/packages/release/bioc/html/edgeR.html",
+              "documentation": "https://bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf",
+              "tool_dev_url": "https://code.bioconductor.org/browse/edgeR/",
+              "doi": "10.1093/bioinformatics/btp616",
+              "licence": [
+                "GPL >=2"
+              ],
+              "identifier": "biotools:edger"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing contrast information, e.g. [ id:'contrast1', blocking:'patient' ].\nThis can be used at the workflow level to pass optional parameters to the module via ext.args,\ne.g. '--blocking_variables $meta.blocking'."
+              }
+            },
+            {
+              "contrast_variable": {
+                "type": "string",
+                "description": "(Optional, required if reference and target are used) The column in the sample sheet that should be used to define groups for comparison"
+              }
+            },
+            {
+              "reference": {
+                "type": "string",
+                "description": "(Optional, required if contrast_variable and target are used) The value within the contrast_variable column of the sample sheet that should be used to derive the reference samples"
+              }
+            },
+            {
+              "target": {
+                "type": "string",
+                "description": "(Optional, required if contrast_variable and reference are used) The value within the contrast_variable column of the sample sheet that should be used to derive the target samples"
+              }
+            },
+            {
+              "formula": {
+                "type": "string",
+                "description": "(Optional, requires comparison if used) R formula string used to build the design matrix, e.g. '~ genotype * treatment'. Cannot be combined with `blocking_variables`"
+              }
+            },
+            {
+              "comparison": {
+                "type": "string",
+                "description": "(Optional, mandatory if formula is used; requires either formula or contrast_variable) Literal contrast string passed to `limma::makeContrasts`, using design matrix column names after `make.names()`, e.g. 'genotypeWT.treatmentTreated'"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy map containing study-wide metadata related to the sample sheet and count matrix"
+              }
+            },
+            {
+              "samplesheet": {
+                "type": "file",
+                "description": "CSV or TSV sample sheet with one row per sample",
+                "pattern": "*.{csv,tsv,txt}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "counts": {
+                "type": "file",
+                "description": "CSV or TSV raw count matrix with one row per feature (e.g. exon or transcript), a gene ID column, a feature ID column and one column per sample. Lines starting with '#' are skipped and columns that are neither annotation nor a sample in the sample sheet are ignored, so a multi-sample featureCounts table can be used with `--gene_id_col Geneid --feature_id_col Start` and `--count_col_suffix`",
+                "pattern": "*.{csv,tsv,txt}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "results": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, e.g. [ id:'contrast1', blocking:'patient' ].\nThis can be used at the workflow level to pass optional parameters to the module via ext.args,\ne.g. '--blocking_variables $meta.blocking'."
+                }
+              },
+              {
+                "*.edger.diffsplice.results.tsv": {
+                  "type": "file",
+                  "description": "TSV table of the feature-level test of each feature against the other features of its gene, as output by edgeR topSpliceDGE with test 'exon', sorted by p-value. Columns are the gene, feature and annotation columns, then `logFC`, `exon.F` (`qlf`) or `exon.LR` (`lrt`), `P.Value` and `FDR`",
+                  "pattern": "*.edger.diffsplice.results.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "simes": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, e.g. [ id:'contrast1', blocking:'patient' ].\nThis can be used at the workflow level to pass optional parameters to the module via ext.args,\ne.g. '--blocking_variables $meta.blocking'."
+                }
+              },
+              {
+                "*.edger.diffsplice.simes.tsv": {
+                  "type": "file",
+                  "description": "TSV table of gene-level results combining the feature-level p-values with Simes' method, as output by edgeR topSpliceDGE with test 'Simes', sorted by p-value. Columns are the gene-level annotation columns, then `NExons`, `P.Value` and `FDR`",
+                  "pattern": "*.edger.diffsplice.simes.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "gene": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, e.g. [ id:'contrast1', blocking:'patient' ].\nThis can be used at the workflow level to pass optional parameters to the module via ext.args,\ne.g. '--blocking_variables $meta.blocking'."
+                }
+              },
+              {
+                "*.edger.diffsplice.gene.tsv": {
+                  "type": "file",
+                  "description": "TSV table of gene-level F or likelihood ratio test results, as output by edgeR topSpliceDGE with test 'gene', sorted by p-value. Columns are the gene-level annotation columns, then `NExons`, `gene.F` (`qlf`) or `gene.LR` (`lrt`), `P.Value` and `FDR`",
+                  "pattern": "*.edger.diffsplice.gene.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "plots": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, e.g. [ id:'contrast1', blocking:'patient' ].\nThis can be used at the workflow level to pass optional parameters to the module via ext.args,\ne.g. '--blocking_variables $meta.blocking'."
+                }
+              },
+              {
+                "*.edger.diffsplice.pdf": {
+                  "type": "file",
+                  "description": "PDF with one plotSpliceDGE page per top gene by Simes p-value",
+                  "pattern": "*.edger.diffsplice.pdf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3508"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "bcv_plot": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, e.g. [ id:'contrast1', blocking:'patient' ].\nThis can be used at the workflow level to pass optional parameters to the module via ext.args,\ne.g. '--blocking_variables $meta.blocking'."
+                }
+              },
+              {
+                "*.edger.bcv.png": {
+                  "type": "file",
+                  "description": "Biological coefficient of variation (BCV) plot of the estimated dispersions",
+                  "pattern": "*.edger.bcv.png",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3603"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "rdata": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, e.g. [ id:'contrast1', blocking:'patient' ].\nThis can be used at the workflow level to pass optional parameters to the module via ext.args,\ne.g. '--blocking_variables $meta.blocking'."
+                }
+              },
+              {
+                "*.DGEGLM.edger.rds": {
+                  "type": "file",
+                  "description": "Serialised DGEGLM object of the fitted edgeR model",
+                  "pattern": "*.DGEGLM.edger.rds",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "lrt": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, e.g. [ id:'contrast1', blocking:'patient' ].\nThis can be used at the workflow level to pass optional parameters to the module via ext.args,\ne.g. '--blocking_variables $meta.blocking'."
+                }
+              },
+              {
+                "*.DGELRT.edger.rds": {
+                  "type": "file",
+                  "description": "Serialised DGELRT object returned by diffSpliceDGE",
+                  "pattern": "*.DGELRT.edger.rds",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "model": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, e.g. [ id:'contrast1', blocking:'patient' ].\nThis can be used at the workflow level to pass optional parameters to the module via ext.args,\ne.g. '--blocking_variables $meta.blocking'."
+                }
+              },
+              {
+                "*.edger.model.txt": {
+                  "type": "file",
+                  "description": "Text file containing the model formula",
+                  "pattern": "*.edger.model.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "session_info": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing contrast information, e.g. [ id:'contrast1', blocking:'patient' ].\nThis can be used at the workflow level to pass optional parameters to the module via ext.args,\ne.g. '--blocking_variables $meta.blocking'."
+                }
+              },
+              {
+                "*.R_sessionInfo.log": {
+                  "type": "file",
+                  "description": "R session information",
+                  "pattern": "*.R_sessionInfo.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@vagkaratzas",
+          "@jma1991",
+          "@piplus2",
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@piplus2",
+          "@pinin4fjords"
+        ],
+        "containers": {
+          "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/bioconductor-edger_bioconductor-limma:c4f388435e97989b",
+              "build_id": "bd-c4f388435e97989b_1",
+              "scan_id": "sc-1fd8fbedf5a03cc0_1"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/bioconductor-edger_bioconductor-limma:9157ebf19fbdc614",
+              "build_id": "bd-9157ebf19fbdc614_1",
+              "scan_id": "sc-965e9f5aa4dfa45b_1"
+            }
+          },
+          "singularity": {
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/bioconductor-edger_bioconductor-limma:4f624b15a27bcc31",
+              "build_id": "bd-4f624b15a27bcc31_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e3/e326b161932d5fb9c57f0b524a04c8dafba07d9aa74ae9a2131ebe0e5d1943ce/data"
+            },
+            "linux/amd64": {
+              "name": "oras://community.wave.seqera.io/library/bioconductor-edger_bioconductor-limma:52bbdf90078cef7d",
+              "build_id": "bd-52bbdf90078cef7d_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/50/50c7985e75608e4fde881490b5c676741486a9b8a21fd937bcd66a39c664b47b/data"
+            }
+          },
+          "conda": {
+            "linux/amd64": {
+              "lock_file": "modules/nf-core/edger/diffsplice/.conda-lock/linux_amd64-bd-9157ebf19fbdc614_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/edger/diffsplice/.conda-lock/linux_arm64-bd-c4f388435e97989b_1.txt"
+            }
+          }
+        }
+      },
+      "git_sha": "e5fe77c7ab318e6d8465173117785c2ffc99512e"
     },
     {
       "name": "eggnogmapper",
@@ -126713,7 +127106,13 @@
           }
         }
       },
-      "git_sha": "c256a0ebbda74979a0ecd86bcfed0422c5e4ea55"
+      "git_sha": "c256a0ebbda74979a0ecd86bcfed0422c5e4ea55",
+      "pipelines": [
+        {
+          "name": "phyloplace",
+          "version": "2.4.0"
+        }
+      ]
     },
     {
       "name": "epang_place",
@@ -126948,7 +127347,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -127146,7 +127545,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -130261,6 +130660,10 @@
       },
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
       "pipelines": [
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
+        },
         {
           "name": "seqsubmit",
           "version": "1.0.0"
@@ -143954,6 +144357,10 @@
           "version": "5.5.0"
         },
         {
+          "name": "pathogenepidemiology",
+          "version": "dev"
+        },
+        {
           "name": "taxprofiler",
           "version": "2.0.1"
         }
@@ -145410,6 +145817,10 @@
         {
           "name": "metatdenovo",
           "version": "2.0.0"
+        },
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
         },
         {
           "name": "proteinfamilies",
@@ -152943,7 +153354,7 @@
       "pipelines": [
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -153210,7 +153621,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -153384,7 +153795,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -153650,7 +154061,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -177110,7 +177521,7 @@
     {
       "name": "genmod_annotate",
       "path": "modules/nf-core/genmod/annotate/meta.yml",
-      "tree_sha": "7c57790b1c68f67e34f7e013dffd774b6ba43564",
+      "tree_sha": "542a2738e70a2b8b97f4ca219620e0c4fb6db414",
       "files": [
         "modules/nf-core/genmod/annotate/environment.yml",
         "modules/nf-core/genmod/annotate/main.nf",
@@ -177233,7 +177644,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "254fc644ab1da4bf8ba16cdce90c4e41ddd09861",
       "pipelines": [
         {
           "name": "raredisease",
@@ -177244,7 +177655,7 @@
     {
       "name": "genmod_compound",
       "path": "modules/nf-core/genmod/compound/meta.yml",
-      "tree_sha": "94e467ef238caafdd3aa1b2be80ed5a470df3781",
+      "tree_sha": "5633fd5142ddba74c858e412a3f906b43d08d601",
       "files": [
         "modules/nf-core/genmod/compound/environment.yml",
         "modules/nf-core/genmod/compound/main.nf",
@@ -177366,7 +177777,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "254fc644ab1da4bf8ba16cdce90c4e41ddd09861",
       "pipelines": [
         {
           "name": "raredisease",
@@ -177377,7 +177788,7 @@
     {
       "name": "genmod_models",
       "path": "modules/nf-core/genmod/models/meta.yml",
-      "tree_sha": "2f676c597547e3e50091c50a045e31c1ee7d09a6",
+      "tree_sha": "cb59bbc9492aeb5af3970801f31c5745c097b85a",
       "files": [
         "modules/nf-core/genmod/models/environment.yml",
         "modules/nf-core/genmod/models/main.nf",
@@ -177518,7 +177929,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "254fc644ab1da4bf8ba16cdce90c4e41ddd09861",
       "pipelines": [
         {
           "name": "raredisease",
@@ -177529,7 +177940,7 @@
     {
       "name": "genmod_score",
       "path": "modules/nf-core/genmod/score/meta.yml",
-      "tree_sha": "f64143639a7a34353832ce1311616782b244e4f1",
+      "tree_sha": "70e63011fd6dc85540f5816bacc0d4671a635f9a",
       "files": [
         "modules/nf-core/genmod/score/environment.yml",
         "modules/nf-core/genmod/score/main.nf",
@@ -177666,7 +178077,7 @@
           "@ramprasadn"
         ]
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "254fc644ab1da4bf8ba16cdce90c4e41ddd09861",
       "pipelines": [
         {
           "name": "raredisease",
@@ -191502,6 +191913,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "proteinannotator",
+          "version": "1.2.0"
+        },
+        {
           "name": "proteinfamilies",
           "version": "2.6.0"
         },
@@ -201871,7 +202286,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "taxmarker",
@@ -202320,7 +202735,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "taxmarker",
@@ -203085,7 +203500,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -203279,7 +203694,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "proteinfamilies",
@@ -203493,7 +203908,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "proteinfamilies",
@@ -204433,7 +204848,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -204733,11 +205148,11 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "proteinannotator",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "proteinfamilies",
@@ -215908,7 +216323,7 @@
         },
         {
           "name": "proteinannotator",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -226867,6 +227282,10 @@
         {
           "name": "metatdenovo",
           "version": "2.0.0"
+        },
+        {
+          "name": "proteinannotator",
+          "version": "1.2.0"
         }
       ]
     },
@@ -239503,7 +239922,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "proteinfamilies",
@@ -271616,11 +272035,11 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "proteinannotator",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "proteinfamilies",
@@ -277425,6 +277844,10 @@
         {
           "name": "nanoseq",
           "version": "3.1.0"
+        },
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
         },
         {
           "name": "pathogensurveillance",
@@ -317563,6 +317986,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -317870,6 +318297,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -363958,7 +364389,7 @@
       "pipelines": [
         {
           "name": "proteinannotator",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -376897,6 +377328,10 @@
         {
           "name": "longraredisease",
           "version": "1.0.0"
+        },
+        {
+          "name": "pathogenepidemiology",
+          "version": "dev"
         },
         {
           "name": "phaseimpute",
@@ -390812,7 +391247,7 @@
       "pipelines": [
         {
           "name": "proteinannotator",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "proteinfamilies",
@@ -392160,7 +392595,7 @@
       "pipelines": [
         {
           "name": "proteinannotator",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "proteinfamilies",
@@ -392384,7 +392819,7 @@
         },
         {
           "name": "proteinannotator",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "proteinfamilies",
@@ -392964,7 +393399,7 @@
         },
         {
           "name": "proteinannotator",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "proteinfamilies",
@@ -395502,7 +395937,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -446160,7 +446595,7 @@
     {
       "name": "tximeta_tximport",
       "path": "modules/nf-core/tximeta/tximport/meta.yml",
-      "tree_sha": "52ba3c656ed595809d30d195652abaa4ddd12337",
+      "tree_sha": "cde96df8e0e1fcf05835e1ba01a7febf4d251fc3",
       "files": [
         "modules/nf-core/tximeta/tximport/environment.yml",
         "modules/nf-core/tximeta/tximport/main.nf",
@@ -446173,7 +446608,7 @@
       "type": "module",
       "meta": {
         "name": "tximeta_tximport",
-        "description": "Import transcript-level abundances and estimated counts for gene-level\nanalysis packages\n",
+        "description": "Import transcript-level abundances and estimated counts for gene-level\nanalysis packages. `ext.args` accepts `--tx_col`, `--gene_id_col` and\n`--gene_name_col` to select tx2gene columns, and `--ignore_tx_version true`\nto strip trailing version suffixes from transcript IDs in both the\nquantifications and the tx2gene before matching them. With it, the\ntranscript-level tables and `tx2gene_augmented.tsv` use the stripped IDs.\n",
         "keywords": [
           "gene",
           "kallisto",
@@ -446397,6 +446832,50 @@
               }
             ]
           ],
+          "counts_transcript_scaled": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing information related to the experiment as a whole\ne.g. `[ id:'SRP123456' ]`\n"
+                }
+              },
+              {
+                "*transcript_counts_scaled.tsv": {
+                  "type": "file",
+                  "description": "Count values derived from tximport output without summarizeToGene(),\nwith a 'countsFromAbundance' specification of 'scaledTPM'\n",
+                  "pattern": "*transcript_counts_scaled.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "counts_transcript_dtu_scaled": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing information related to the experiment as a whole\ne.g. `[ id:'SRP123456' ]`\n"
+                }
+              },
+              {
+                "*transcript_counts_dtu_scaled.tsv": {
+                  "type": "file",
+                  "description": "Count values derived from tximport output without summarizeToGene(),\nwith a 'countsFromAbundance' specification of 'dtuScaledTPM', the\nrecommended input for differential transcript usage analysis with\ne.g. DRIMSeq or DEXSeq. Transcripts missing from the input tx2gene\nare treated as the only isoform of their own gene.\n",
+                  "pattern": "*transcript_counts_dtu_scaled.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "lengths_transcript": [
             [
               {
@@ -446472,7 +446951,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "3553e8966a3a0575481e215ca21765f68b940cf3",
+      "git_sha": "3852918d5b1872e0aa9b26e2253132fba59a783a",
       "pipelines": [
         {
           "name": "circrna",
@@ -450462,7 +450941,7 @@
         },
         {
           "name": "proteinannotator",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "proteinfamilies",
@@ -480111,7 +480590,7 @@
       "pipelines": [
         {
           "name": "proteinannotator",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "proteinfamilies",
@@ -481425,7 +481904,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -481875,7 +482354,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -489675,7 +490154,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "pixelator",
@@ -489687,7 +490166,7 @@
         },
         {
           "name": "proteinannotator",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "proteinfamilies",
@@ -490187,7 +490666,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "pixelator",
@@ -490199,7 +490678,7 @@
         },
         {
           "name": "proteinannotator",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "proteinfamilies",
@@ -490739,7 +491218,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "pixelator",
@@ -490751,7 +491230,7 @@
         },
         {
           "name": "proteinannotator",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "proteinfamilies",
@@ -492584,6 +493063,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "baaeefb43222b8e9b253330d70d95dce2885b40a",
-  "updated_at": "2026-11-25T14:15:12.521Z"
+  "commit_sha": "3852918d5b1872e0aa9b26e2253132fba59a783a",
+  "updated_at": "2026-11-26T02:14:31.586Z"
 }
