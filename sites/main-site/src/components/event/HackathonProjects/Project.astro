@@ -23,10 +23,10 @@ const border_col = this_color ? { "border-left-color": this_color, "border-left-
 
 <div class="card mb-2" style={border_col}>
     <div class="card-body p-2">
-        <div class="pe-0 d-flex align-items-center justify-content-between">
-            <a href={`/hackathon-projects/${id}`}>{title}</a>
+        <div class="pe-0 d-flex align-items-center justify-content-between gap-2">
+            <a href={`/hackathon-projects/${id}`} class="project-title">{title}</a>
             {leaders && (
-                <div class="d-flex flex-wrap">
+                <div class="d-flex flex-nowrap flex-shrink-0 leaders">
                     {Object.entries(leaders).map(([github]) => (
                         <Profile name={github} size={50} />
                     ))}
@@ -35,3 +35,20 @@ const border_col = this_color ? { "border-left-color": this_color, "border-left-
         </div>
     </div>
 </div>
+
+<style lang="scss">
+    .project-title {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+    // On narrow screens, overlap the leader avatars horizontally instead of
+    // letting them wrap into a tall vertical column next to the title.
+    @media (max-width: 575.98px) {
+        .leaders > :global(.github-profile-wrapper:not(:first-child)) {
+            margin-left: -1.5rem;
+        }
+        .leaders :global(img) {
+            box-shadow: 0 0 0 2px var(--bs-body-bg);
+        }
+    }
+</style>
