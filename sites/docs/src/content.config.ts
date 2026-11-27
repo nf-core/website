@@ -13,6 +13,8 @@ const docs = defineCollection({
         parentWeight: z.number().optional(),
         type: z.enum(["tutorial"]).optional(),
         markdownPlugin: z.enum(["checklist", "addNumbersToHeadings"]).optional(),
+        // for docs copied from another repository, e.g. by .github/workflows/add-nf-core-utils-docs.yml
+        md_github_url: z.url().optional(),
     }),
 });
 

@@ -1,8 +1,9 @@
 ---
-# Copied from docs/utilities/NfcoreConfigValidator.md of nf-core/nf-core-utils 0.6.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
-title: "Configuration Validation Tutorial"
-shortTitle: "Configuration Validation Tutorial"
+# Copied from docs/utilities/NfcoreConfigValidator.md of nf-core/nf-core-utils 0.7.0 by .github/workflows/add-nf-core-utils-docs.yml: edit it there
+title: Configuration Validation Tutorial
+shortTitle: Configuration Validation Tutorial
 weight: 5
+md_github_url: https://github.com/nf-core/nf-core-utils/blob/main/docs/utilities/NfcoreConfigValidator.md
 ---
 
 # Configuration Validation Tutorial
@@ -35,6 +36,15 @@ The utility provides two essential validation functions:
 
 - **`checkConfigProvided()`**: Validates that custom configuration or profiles are being used
 - **`checkProfileProvided(args, monochromeLogs)`**: Validates command-line profile arguments and warns about common mistakes
+
+These checks are explicit: the plugin's observer does not run them. Call each once
+during pipeline initialization, or retain the equivalent template-local check.
+Do not call both implementations of the same check. Pipelines that only load the
+plugin must add the calls if they want validation, including trailing-comma
+rejection. An uncaught profile validation error aborts Nextflow with a nonzero exit
+status and a single `ERROR` label (with optional colour); missing custom config and
+positional arguments remain warnings. Call validation from pipeline initialization,
+not an observer callback, where Nextflow catches and logs exceptions.
 
 ## 2. Getting Started with Configuration Validation
 
@@ -136,7 +146,7 @@ workflow {
 
 **Function Reference**
 
-```nextflow title="Function signature"
+```groovy title="Function signature"
 boolean checkConfigProvided()
 ```
 
@@ -234,7 +244,7 @@ workflow {
 
 The function supports color formatting for better user experience:
 
-```nextflow title="colored_validation.nf" {5}
+```nextflow title="colored_validation.nf" hl_lines="5"
 #!/usr/bin/env nextflow
 
 include { checkProfileProvided } from 'plugin/nf-core-utils'
@@ -263,7 +273,7 @@ HINT: A common mistake is to provide multiple values separated by spaces e.g. `-
 
 **Function Reference**
 
-```nextflow title="Function signature"
+```groovy title="Function signature"
 void checkProfileProvided(List args, boolean monochromeLogs = true)
 ```
 
@@ -315,7 +325,7 @@ Let's explore how to integrate configuration validation into different types of 
 
 Here's the standard integration pattern for nf-core pipelines:
 
-```nextflow title="standard_nfcore_pipeline.nf" {5-8}
+```nextflow title="standard_nfcore_pipeline.nf" hl_lines="5-8"
 #!/usr/bin/env nextflow
 
 nextflow.enable.dsl = 2
@@ -509,7 +519,7 @@ When implementing configuration validation in your pipeline:
 
 Follow this standard pattern for nf-core pipelines:
 
-```nextflow title="recommended_pattern.nf" {5-7}
+```nextflow title="recommended_pattern.nf" hl_lines="5-7"
 #!/usr/bin/env nextflow
 
 nextflow.enable.dsl = 2
