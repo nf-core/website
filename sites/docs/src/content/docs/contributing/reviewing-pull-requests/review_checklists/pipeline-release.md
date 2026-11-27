@@ -130,6 +130,14 @@ Check that parameters follow nf-core conventions:
 - [ ] Boolean parameters default to `false` (prefer `skip_step = false` over `run_step = true`)
 - [ ] Parameter names are consistent and self-explanatory
 
+### Test data
+
+Check that:
+
+- [ ] The pipeline repository contains no test data files
+- [ ] The `test` and `test_full` profiles use data from [nf-core/test-datasets](https://github.com/nf-core/test-datasets) or stable links to public sources
+- [ ] The test data meets the [test data specifications](/docs/specifications/test-data/general), including the licence and personal data requirements
+
 ### Manifest
 
 Verify that the manifest:
