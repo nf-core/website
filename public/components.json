@@ -50609,7 +50609,7 @@
         },
         {
           "name": "hic",
-          "version": "dev"
+          "version": "2.1.0"
         },
         {
           "name": "marsseq",
@@ -50868,7 +50868,7 @@
         },
         {
           "name": "hic",
-          "version": "dev"
+          "version": "2.1.0"
         },
         {
           "name": "marsseq",
@@ -54553,10 +54553,6 @@
           "version": "1.1.0"
         },
         {
-          "name": "hic",
-          "version": "dev"
-        },
-        {
           "name": "hicar",
           "version": "1.0.0"
         },
@@ -54972,10 +54968,6 @@
         {
           "name": "hgtseq",
           "version": "1.1.0"
-        },
-        {
-          "name": "hic",
-          "version": "dev"
         },
         {
           "name": "hicar",
@@ -59734,13 +59726,7 @@
           }
         }
       },
-      "git_sha": "b41ba41cdf31aed4945e72c8a1111cd79463d721",
-      "pipelines": [
-        {
-          "name": "hic",
-          "version": "dev"
-        }
-      ]
+      "git_sha": "b41ba41cdf31aed4945e72c8a1111cd79463d721"
     },
     {
       "name": "canu",
@@ -86655,7 +86641,7 @@
       "pipelines": [
         {
           "name": "hic",
-          "version": "dev"
+          "version": "2.1.0"
         }
       ]
     },
@@ -86838,7 +86824,7 @@
       "pipelines": [
         {
           "name": "hic",
-          "version": "dev"
+          "version": "2.1.0"
         }
       ]
     },
@@ -87112,7 +87098,7 @@
       "pipelines": [
         {
           "name": "hic",
-          "version": "dev"
+          "version": "2.1.0"
         },
         {
           "name": "hicar",
@@ -87257,7 +87243,7 @@
       "pipelines": [
         {
           "name": "hic",
-          "version": "dev"
+          "version": "2.1.0"
         }
       ]
     },
@@ -87520,7 +87506,7 @@
       "pipelines": [
         {
           "name": "hic",
-          "version": "dev"
+          "version": "2.1.0"
         }
       ]
     },
@@ -94158,6 +94144,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "hic",
+          "version": "2.1.0"
+        },
+        {
           "name": "hicar",
           "version": "1.0.0"
         },
@@ -94892,6 +94882,10 @@
         {
           "name": "deepmodeloptim",
           "version": "dev"
+        },
+        {
+          "name": "hic",
+          "version": "2.1.0"
         },
         {
           "name": "lncpipe",
@@ -106717,6 +106711,14 @@
       },
       "git_sha": "99afe7e15c057d2727416bb1b4bd45969f3a295c",
       "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "1.1.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "1.1.0"
@@ -122555,7 +122557,7 @@
     {
       "name": "edger_diffsplice",
       "path": "modules/nf-core/edger/diffsplice/meta.yml",
-      "tree_sha": "dc3a6d9ba7d907054bae017f2f4b0122cc7439f5",
+      "tree_sha": "1ed4185edbed9f720f044be2a26fa6dfeb5b207c",
       "files": [
         "modules/nf-core/edger/diffsplice/.conda-lock/linux_amd64-bd-9157ebf19fbdc614_1.txt",
         "modules/nf-core/edger/diffsplice/.conda-lock/linux_arm64-bd-c4f388435e97989b_1.txt",
@@ -122570,7 +122572,7 @@
       "type": "module",
       "meta": {
         "name": "edger_diffsplice",
-        "description": "Tests for differential exon or transcript usage with edgeR `diffSpliceDGE`, for one contrast.\nOptions are passed via `ext.args` as `--option value` pairs:\n`gene_id_col` (default `gene_id`), `feature_id_col` (`feature_id`),\n`annotation_cols` (`;`-separated count table columns carried into the results),\n`count_col_suffix` (removed from count table column names), `sample_id_col` (`experiment_accession`),\n`blocking_variables` (`;`-separated sample sheet columns, not combinable with a formula),\n`subset_to_contrast_samples` (`FALSE`, needs a contrast variable with reference and target levels),\n`exclude_samples_col` and `exclude_samples_values` (`;`-separated),\n`filter_by_expr` (`FALSE`), `min_count` (`10`), `norm_method` (`TMM`), `test_method` (`qlf` or `lrt`),\n`robust` (`TRUE`), `adjust_method` (`BH`), `plot_n` (`10`) and `round_digits` (no rounding).\nDefaults that differ from edgeR's own: `robust` is `TRUE` and `filterByExpr` is off.\nSample sheet column names are converted with `make.names()`. With a contrast variable, design\nmatrix columns are named `<variable>.<level>` (e.g. `condition.YRI`); with a formula they keep\nthe `model.matrix` names (e.g. `conditionYRI`).\n",
+        "description": "Tests for differential exon or transcript usage with edgeR `diffSpliceDGE`, for one contrast.\nOptions are passed via `ext.args` as `--option value` pairs:\n`gene_id_col` (default `gene_id`), `feature_id_col` (`feature_id`),\n`annotation_cols` (`;`-separated count table columns carried into the results),\n`count_col_suffix` (removed from count table column names), `sample_id_col` (`experiment_accession`),\n`blocking_variables` (`;`-separated sample sheet columns, not combinable with a formula; cast to factors, a variable with one level in the samples used is left out with a warning, and a variable confounded with the contrast variable or leaving no residual degrees of freedom stops the module),\n`subset_to_contrast_samples` (`FALSE`, needs a contrast variable with reference and target levels),\n`exclude_samples_col` and `exclude_samples_values` (`;`-separated),\n`filter_by_expr` (`FALSE`), `min_count` (`10`), `norm_method` (`TMM`), `test_method` (`qlf` or `lrt`),\n`robust` (`TRUE`), `adjust_method` (`BH`), `plot_n` (`10`) and `round_digits` (no rounding).\nDefaults that differ from edgeR's own: `robust` is `TRUE` and `filterByExpr` is off.\nSample sheet column names are converted with `make.names()`. With a contrast variable, design\nmatrix columns are named `<variable>.<level>` (e.g. `condition.YRI`); with a formula they keep\nthe `model.matrix` names (e.g. `conditionYRI`).\n",
         "keywords": [
           "differential",
           "splicing",
@@ -122935,7 +122937,7 @@
           }
         }
       },
-      "git_sha": "e5fe77c7ab318e6d8465173117785c2ffc99512e"
+      "git_sha": "99b282295c775f06644a38d828deb6bd23d6da8a"
     },
     {
       "name": "eggnogmapper",
@@ -134948,7 +134950,7 @@
         },
         {
           "name": "hic",
-          "version": "dev"
+          "version": "2.1.0"
         },
         {
           "name": "hicar",
@@ -181288,7 +181290,7 @@
     {
       "name": "gffread",
       "path": "modules/nf-core/gffread/meta.yml",
-      "tree_sha": "9e5cd2ed9c3c28e9ab8dcf996f4135ac3ae8b64d",
+      "tree_sha": "152a81ff904bdc9bc68f906d759fe3476054c921",
       "files": [
         "modules/nf-core/gffread/.conda-lock/linux_amd64-bd-fde1489f7e69618e_1.txt",
         "modules/nf-core/gffread/.conda-lock/linux_arm64-bd-09577fef8a4d5cda_1.txt",
@@ -181297,9 +181299,6 @@
         "modules/nf-core/gffread/meta.yml",
         "modules/nf-core/gffread/tests/main.nf.test",
         "modules/nf-core/gffread/tests/main.nf.test.snap",
-        "modules/nf-core/gffread/tests/nextflow-bed.config",
-        "modules/nf-core/gffread/tests/nextflow-fasta.config",
-        "modules/nf-core/gffread/tests/nextflow-gff3.config",
         "modules/nf-core/gffread/tests/nextflow.config"
       ],
       "type": "module",
@@ -181431,6 +181430,28 @@
               }
             ]
           ],
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing meta data\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "Tab-separated table of the attributes listed with the '--table' argument, one row per transcript and no header",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "versions_gffread": [
             [
               {
@@ -181520,7 +181541,7 @@
           }
         }
       },
-      "git_sha": "fc934fa053c37584ae5ccd879a7dae0ec123e713",
+      "git_sha": "78824064a3699eb7b79c1108425edcf3fb07a993",
       "pipelines": [
         {
           "name": "atacseq",
@@ -238939,10 +238960,6 @@
         {
           "name": "chipseq",
           "version": "2.1.0"
-        },
-        {
-          "name": "hic",
-          "version": "dev"
         }
       ]
     },
@@ -272380,10 +272397,6 @@
           "version": "1.1.0"
         },
         {
-          "name": "hic",
-          "version": "dev"
-        },
-        {
           "name": "hicar",
           "version": "1.0.0"
         },
@@ -278116,7 +278129,7 @@
     {
       "name": "nanoplot",
       "path": "modules/nf-core/nanoplot/meta.yml",
-      "tree_sha": "c244c0e9ea9cbb714ade4181fc0aa95906cb6a45",
+      "tree_sha": "bbcb092dcf1e24420c03c77976e5c3b5b41a3fe9",
       "files": [
         "modules/nf-core/nanoplot/.conda-lock/linux_amd64-bd-ec07a019f2ec14a8_1.txt",
         "modules/nf-core/nanoplot/.conda-lock/linux_arm64-bd-649a3f677050dd45_1.txt",
@@ -278313,7 +278326,7 @@
           }
         }
       },
-      "git_sha": "574ad1868a466e73d0f5ef8c139a260fbf2d8b9c",
+      "git_sha": "9ab17d6c0c6cda0bb4ed8a1ee15173209eb4f881",
       "pipelines": [
         {
           "name": "abotyper",
@@ -294988,10 +295001,6 @@
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
       "pipelines": [
         {
-          "name": "hic",
-          "version": "dev"
-        },
-        {
           "name": "hicar",
           "version": "1.0.0"
         }
@@ -295179,10 +295188,6 @@
       },
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
       "pipelines": [
-        {
-          "name": "hic",
-          "version": "dev"
-        },
         {
           "name": "hicar",
           "version": "1.0.0"
@@ -295524,13 +295529,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
-      "pipelines": [
-        {
-          "name": "hic",
-          "version": "dev"
-        }
-      ]
+      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
     },
     {
       "name": "pairtools_parse",
@@ -295722,10 +295721,6 @@
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
       "pipelines": [
         {
-          "name": "hic",
-          "version": "dev"
-        },
-        {
           "name": "hicar",
           "version": "1.0.0"
         }
@@ -295901,10 +295896,6 @@
       },
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
       "pipelines": [
-        {
-          "name": "hic",
-          "version": "dev"
-        },
         {
           "name": "hicar",
           "version": "1.0.0"
@@ -296093,10 +296084,6 @@
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
       "pipelines": [
         {
-          "name": "hic",
-          "version": "dev"
-        },
-        {
           "name": "hicar",
           "version": "1.0.0"
         }
@@ -296267,10 +296254,6 @@
       },
       "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
       "pipelines": [
-        {
-          "name": "hic",
-          "version": "dev"
-        },
         {
           "name": "hicar",
           "version": "1.0.0"
@@ -296614,13 +296597,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
-      "pipelines": [
-        {
-          "name": "hic",
-          "version": "dev"
-        }
-      ]
+      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341"
     },
     {
       "name": "panacus_histgrowth",
@@ -318520,6 +318497,10 @@
         {
           "name": "riboseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
         }
       ]
     },
@@ -318827,6 +318808,10 @@
       },
       "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "2.0.0"
+        },
         {
           "name": "riboseq",
           "version": "2.0.0"
@@ -372138,10 +372123,6 @@
           "version": "dev"
         },
         {
-          "name": "hic",
-          "version": "dev"
-        },
-        {
           "name": "longraredisease",
           "version": "1.0.0"
         },
@@ -373289,10 +373270,6 @@
           "version": "1.1.0"
         },
         {
-          "name": "hic",
-          "version": "dev"
-        },
-        {
           "name": "hicar",
           "version": "1.0.0"
         },
@@ -374343,10 +374320,6 @@
         {
           "name": "hgtseq",
           "version": "1.1.0"
-        },
-        {
-          "name": "hic",
-          "version": "dev"
         },
         {
           "name": "hicar",
@@ -376519,10 +376492,6 @@
         {
           "name": "hgtseq",
           "version": "1.1.0"
-        },
-        {
-          "name": "hic",
-          "version": "dev"
         },
         {
           "name": "hicar",
@@ -395928,7 +395897,7 @@
     {
       "name": "seqtk_sample",
       "path": "modules/nf-core/seqtk/sample/meta.yml",
-      "tree_sha": "115e81c6794e13d73357145672cc69fae0931ecd",
+      "tree_sha": "4496e8ad74ec5d1abe48ddd6bef1f01407d7e0fa",
       "files": [
         "modules/nf-core/seqtk/sample/.conda-lock/linux_amd64-bd-3fa479d3961a5b8d_1.txt",
         "modules/nf-core/seqtk/sample/.conda-lock/linux_arm64-bd-20d400e8a7f5eb7e_1.txt",
@@ -396097,7 +396066,7 @@
           }
         }
       },
-      "git_sha": "7b3452a23773f687ededb4befd037920e5a51341",
+      "git_sha": "a22ed0628e62c749b14a0bdd4f46c91038356241",
       "pipelines": [
         {
           "name": "demultiplex",
@@ -433441,10 +433410,10 @@
     {
       "name": "taxonkit_lineage",
       "path": "modules/nf-core/taxonkit/lineage/meta.yml",
-      "tree_sha": "a2634e27fa405589f47060e944f3b732b8380074",
+      "tree_sha": "e4005cd9eb939db9d1075d39c1808c1fa01db9da",
       "files": [
-        "modules/nf-core/taxonkit/lineage/.conda-lock/linux_amd64-bd-36a4cff30b2fab4e_1.txt",
-        "modules/nf-core/taxonkit/lineage/.conda-lock/linux_arm64-bd-de6e2e39185eebec_1.txt",
+        "modules/nf-core/taxonkit/lineage/.conda-lock/linux_amd64-bd-73c6bc587e9e62ac_1.txt",
+        "modules/nf-core/taxonkit/lineage/.conda-lock/linux_arm64-bd-c4fea380ac90b1cf_1.txt",
         "modules/nf-core/taxonkit/lineage/environment.yml",
         "modules/nf-core/taxonkit/lineage/main.nf",
         "modules/nf-core/taxonkit/lineage/meta.yml",
@@ -433584,40 +433553,40 @@
         ],
         "containers": {
           "docker": {
-            "linux/amd64": {
-              "name": "community.wave.seqera.io/library/taxonkit:0.18.0--36a4cff30b2fab4e",
-              "build_id": "bd-36a4cff30b2fab4e_1",
-              "scan_id": "sc-5b2632f97a2ee7e6_1"
-            },
             "linux/arm64": {
-              "name": "community.wave.seqera.io/library/taxonkit:0.18.0--de6e2e39185eebec",
-              "build_id": "bd-de6e2e39185eebec_1",
-              "scan_id": "sc-10438595a9c26798_1"
+              "name": "community.wave.seqera.io/library/taxonkit:0.20.0--c4fea380ac90b1cf",
+              "build_id": "bd-c4fea380ac90b1cf_1",
+              "scan_id": "sc-ddb288c4a2445524_2"
+            },
+            "linux/amd64": {
+              "name": "community.wave.seqera.io/library/taxonkit:0.20.0--73c6bc587e9e62ac",
+              "build_id": "bd-73c6bc587e9e62ac_1",
+              "scan_id": "sc-ff6cdc452c972e3b_2"
             }
           },
           "singularity": {
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/taxonkit:0.18.0--39cc81845cd74851",
-              "build_id": "bd-39cc81845cd74851_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/47/47a901198dfa6fd00c447557e953a64abb8794d49812ccb623bc973510069706/data"
+              "name": "oras://community.wave.seqera.io/library/taxonkit:0.20.0--3569c1329415cdc5",
+              "build_id": "bd-3569c1329415cdc5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c3/c33b5ce6cec42ed5986d11c706d5726b2eb7dc0902b9c1c333a319864a3b45ea/data"
             },
             "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/taxonkit:0.18.0--fd841a37e66b41ea",
-              "build_id": "bd-fd841a37e66b41ea_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/64/64904ec52d65612fed6a2c0463ec860d83e56cce05a82a52144cd060e5a5e5a9/data"
+              "name": "oras://community.wave.seqera.io/library/taxonkit:0.20.0--366a461633f052b3",
+              "build_id": "bd-366a461633f052b3_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/3c/3c009f29051832677bcbd04c15582f0a904ec435780967ac85790a4b83271355/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/taxonkit/lineage/.conda-lock/linux_amd64-bd-36a4cff30b2fab4e_1.txt"
+              "lock_file": "modules/nf-core/taxonkit/lineage/.conda-lock/linux_amd64-bd-73c6bc587e9e62ac_1.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/taxonkit/lineage/.conda-lock/linux_arm64-bd-de6e2e39185eebec_1.txt"
+              "lock_file": "modules/nf-core/taxonkit/lineage/.conda-lock/linux_arm64-bd-c4fea380ac90b1cf_1.txt"
             }
           }
         }
       },
-      "git_sha": "c4d0cf8a8dc293b806163dcfdd8cdd3b6a17a386",
+      "git_sha": "afd4b6419327c5f115e01f1cad9a51fcdd4811c2",
       "pipelines": [
         {
           "name": "metatdenovo",
@@ -433808,9 +433777,10 @@
     {
       "name": "taxonkit_name2taxid",
       "path": "modules/nf-core/taxonkit/name2taxid/meta.yml",
-      "tree_sha": "1643b1940fdc27637f659b669dafdb6e7206bcae",
+      "tree_sha": "a90555f5f901f6a54234a1fb490523e6bc218422",
       "files": [
-        "modules/nf-core/taxonkit/name2taxid/.conda-lock/linux_amd64-bd-96f7341bd5c149a7_1.txt",
+        "modules/nf-core/taxonkit/name2taxid/.conda-lock/linux_amd64-bd-73c6bc587e9e62ac_1.txt",
+        "modules/nf-core/taxonkit/name2taxid/.conda-lock/linux_arm64-bd-c4fea380ac90b1cf_1.txt",
         "modules/nf-core/taxonkit/name2taxid/environment.yml",
         "modules/nf-core/taxonkit/name2taxid/main.nf",
         "modules/nf-core/taxonkit/name2taxid/meta.yml",
@@ -433950,27 +433920,40 @@
         ],
         "containers": {
           "docker": {
+            "linux/arm64": {
+              "name": "community.wave.seqera.io/library/taxonkit:0.20.0--c4fea380ac90b1cf",
+              "build_id": "bd-c4fea380ac90b1cf_1",
+              "scan_id": "sc-ddb288c4a2445524_2"
+            },
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/taxonkit:0.15.1--96f7341bd5c149a7",
-              "build_id": "bd-96f7341bd5c149a7_1",
-              "scan_id": "sc-c8bb467f18ed463b_1"
+              "name": "community.wave.seqera.io/library/taxonkit:0.20.0--73c6bc587e9e62ac",
+              "build_id": "bd-73c6bc587e9e62ac_1",
+              "scan_id": "sc-ff6cdc452c972e3b_2"
             }
           },
           "singularity": {
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/taxonkit:0.15.1--02c1c8d5d79d9d5c",
-              "build_id": "bd-02c1c8d5d79d9d5c_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/91/91013897d309411f36f0bf958988adf50d8abeeecd910b7debd446bfc1e3f2d8/data"
+              "name": "oras://community.wave.seqera.io/library/taxonkit:0.20.0--3569c1329415cdc5",
+              "build_id": "bd-3569c1329415cdc5_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c3/c33b5ce6cec42ed5986d11c706d5726b2eb7dc0902b9c1c333a319864a3b45ea/data"
+            },
+            "linux/arm64": {
+              "name": "oras://community.wave.seqera.io/library/taxonkit:0.20.0--366a461633f052b3",
+              "build_id": "bd-366a461633f052b3_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/3c/3c009f29051832677bcbd04c15582f0a904ec435780967ac85790a4b83271355/data"
             }
           },
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/taxonkit/name2taxid/.conda-lock/linux_amd64-bd-96f7341bd5c149a7_1.txt"
+              "lock_file": "modules/nf-core/taxonkit/name2taxid/.conda-lock/linux_amd64-bd-73c6bc587e9e62ac_1.txt"
+            },
+            "linux/arm64": {
+              "lock_file": "modules/nf-core/taxonkit/name2taxid/.conda-lock/linux_arm64-bd-c4fea380ac90b1cf_1.txt"
             }
           }
         }
       },
-      "git_sha": "c4d0cf8a8dc293b806163dcfdd8cdd3b6a17a386"
+      "git_sha": "afd4b6419327c5f115e01f1cad9a51fcdd4811c2"
     },
     {
       "name": "taxpasta_merge",
@@ -444402,10 +444385,6 @@
           "version": "1.1.0"
         },
         {
-          "name": "hic",
-          "version": "dev"
-        },
-        {
           "name": "lncpipe",
           "version": "dev"
         },
@@ -447149,7 +447128,7 @@
     {
       "name": "tximeta_tximport",
       "path": "modules/nf-core/tximeta/tximport/meta.yml",
-      "tree_sha": "cde96df8e0e1fcf05835e1ba01a7febf4d251fc3",
+      "tree_sha": "47f205e1c41b2a36d6fefeb4e0ecc57e103d1e58",
       "files": [
         "modules/nf-core/tximeta/tximport/environment.yml",
         "modules/nf-core/tximeta/tximport/main.nf",
@@ -447183,6 +447162,19 @@
                 "GPL-2"
               ],
               "identifier": "biotools:tximeta"
+            }
+          },
+          {
+            "tximport": {
+              "description": "Import and summarise transcript-level estimates for transcript- and gene-level analysis",
+              "homepage": "https://bioconductor.org/packages/release/bioc/html/tximport.html",
+              "documentation": "https://bioconductor.org/packages/release/bioc/vignettes/tximport/inst/doc/tximport.html",
+              "tool_dev_url": "https://github.com/thelovelab/tximport",
+              "doi": "10.12688/f1000research.7563.1",
+              "licence": [
+                "LGPL-2.0-or-later"
+              ],
+              "identifier": "biotools:tximport"
             }
           }
         ],
@@ -447505,7 +447497,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "3852918d5b1872e0aa9b26e2253132fba59a783a",
+      "git_sha": "fd7666afa7a12f6350ecaf12f105ff088b987971",
       "pipelines": [
         {
           "name": "circrna",
@@ -484906,7 +484898,7 @@
     {
       "name": "fastq_contam_seqtk_kraken",
       "path": "subworkflows/nf-core/fastq_contam_seqtk_kraken/meta.yml",
-      "tree_sha": "05da322fd663b26aec9d9486c0f1292623d35f53",
+      "tree_sha": "1e634e09d7eafa24e81ad172f93f13e24228023f",
       "files": [
         "subworkflows/nf-core/fastq_contam_seqtk_kraken/main.nf",
         "subworkflows/nf-core/fastq_contam_seqtk_kraken/meta.yml",
@@ -484970,7 +484962,7 @@
           "@apeltzer"
         ]
       },
-      "git_sha": "330756ea968211d5ac57569a1701c3ff1ffd298e",
+      "git_sha": "a22ed0628e62c749b14a0bdd4f46c91038356241",
       "pipelines": [
         {
           "name": "demultiplex",
@@ -488932,7 +488924,7 @@
     {
       "name": "quant_tximport_summarizedexperiment",
       "path": "subworkflows/nf-core/quant_tximport_summarizedexperiment/meta.yml",
-      "tree_sha": "0893cb3db29147f92b14ceb64c34846c5560c065",
+      "tree_sha": "31c77ad209ae02af3a1392e2c64bcd0af139f2bf",
       "files": [
         "subworkflows/nf-core/quant_tximport_summarizedexperiment/main.nf",
         "subworkflows/nf-core/quant_tximport_summarizedexperiment/meta.yml",
@@ -489069,6 +489061,20 @@
             }
           },
           {
+            "counts_transcript_scaled": {
+              "type": "file",
+              "description": "Transcript-level matrix of estimated counts, generated from abundance\n(TPM) values by scaling to library size with tximport\n`countsFromAbundance = 'scaledTPM'`.\n",
+              "pattern": "*.transcript_counts_scaled.tsv"
+            }
+          },
+          {
+            "counts_transcript_dtu_scaled": {
+              "type": "file",
+              "description": "Transcript-level matrix of estimated counts from tximport\n`countsFromAbundance = 'dtuScaledTPM'`, the recommended input for\ndifferential transcript usage analysis with e.g. DRIMSeq or DEXSeq.\n",
+              "pattern": "*.transcript_counts_dtu_scaled.tsv"
+            }
+          },
+          {
             "lengths_transcript": {
               "type": "file",
               "description": "Transcript-level matrix of effective length values.\n",
@@ -489085,7 +489091,7 @@
           {
             "merged_transcript_rds": {
               "type": "file",
-              "description": "Serialised SummarizedExperiment object containing transcript-level\nassays (counts, lengths, TPM).\n",
+              "description": "Serialised SummarizedExperiment object containing transcript-level\nassays (counts, scaled counts, DTU-scaled counts, lengths, TPM).\n",
               "pattern": "*.rds"
             }
           }
@@ -489097,7 +489103,7 @@
           "@pinin4fjords"
         ]
       },
-      "git_sha": "3553e8966a3a0575481e215ca21765f68b940cf3",
+      "git_sha": "49d0ca7a887eeb1b85cfb68ab18c8039753bd1de",
       "pipelines": [
         {
           "name": "riboseq",
@@ -490575,10 +490581,6 @@
           "version": "1.0.0"
         },
         {
-          "name": "hic",
-          "version": "dev"
-        },
-        {
           "name": "hlatyping",
           "version": "2.2.0"
         },
@@ -491089,10 +491091,6 @@
         {
           "name": "hadge",
           "version": "1.0.0"
-        },
-        {
-          "name": "hic",
-          "version": "dev"
         },
         {
           "name": "hlatyping",
@@ -491653,10 +491651,6 @@
         {
           "name": "hadge",
           "version": "1.0.0"
-        },
-        {
-          "name": "hic",
-          "version": "dev"
         },
         {
           "name": "hlatyping",
@@ -493629,6 +493623,6 @@
       "git_sha": "ed7a2286df416088793e62fa6a740d07974d0ff8"
     }
   ],
-  "commit_sha": "867d17300172a04a28e3efe1817ca7188f7c3ee2",
-  "updated_at": "2026-11-26T14:15:41.091Z"
+  "commit_sha": "49d0ca7a887eeb1b85cfb68ab18c8039753bd1de",
+  "updated_at": "2026-11-27T02:15:40.163Z"
 }
