@@ -8,6 +8,11 @@ weight: 1
 
 The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
+:::note
+Some of these specifications, including the `when` statement, `def args`, and version emission, differ for modules that use static types.
+See [static types and records](/docs/specifications/components/modules/static-types).
+:::
+
 ## Required and optional input files
 
 All mandatory and optional input files MUST be included in `input` channel definitions.
