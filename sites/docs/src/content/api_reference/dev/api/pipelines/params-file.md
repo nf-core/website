@@ -45,6 +45,11 @@ Generate the contents of a parameter template file.
 
 Assumes the pipeline has been fetched (if remote) and the schema loaded.
 
+Includes top-level `properties` and parameters grouped under
+`definitions` (Draft 7) or `$defs` (Draft 2020-12). Ungrouped
+parameters appear under “Other parameters”, with the same defaults,
+descriptions and hidden-parameter handling as grouped parameters.
+
 - **Parameters:**
   **show_hidden** (_bool_) – Whether to include hidden parameters
 - **Returns:**
